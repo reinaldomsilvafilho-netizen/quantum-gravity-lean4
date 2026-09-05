@@ -205,7 +205,7 @@ Let the bulk spacetime $(M, g_{\mu\nu})$ be asymptotically Anti-de Sitter ($\mat
 \end{equation}
 where $z \to 0$ corresponds to the boundary.
 
-\begin{theorem}[Emergence of the Non-Linear Einstein Equations]
+\begin{theorem}[Linearized Emergence of the Einstein Equations, with Non-Linear Corrections from Relative-Entropy Positivity]
 \label{thm:einstein_emergence}
 Assume:
 \begin{enumerate}[label=(\alph*)]
@@ -217,11 +217,12 @@ Assume:
     \item The first law of entanglement entropy $\delta S_A = \delta \langle H_A \rangle$ holds for all balls $A$ of all radii $R > 0$ and centers $x_0 \in \R^{d-1, 1}$.
     \item The bulk matter fields satisfy the semiclassical stress-energy coupling $\langle T_{\mu\nu}^{\mathrm{matter}} \rangle$.
 \end{enumerate}
-Then, the bulk metric perturbation $h_{\mu\nu} = g_{\mu\nu} - g_{\mu\nu}^{\mathrm{AdS}}$ must satisfy the full non-linear Einstein field equations:
+Then the bulk metric perturbation $h_{\mu\nu} = g_{\mu\nu} - g_{\mu\nu}^{\mathrm{AdS}}$ satisfies, to first order in $h_{\mu\nu}$, the linearized Einstein field equations:
 \begin{equation}
     \label{eq:einstein_emergent}
-    G_{\mu\nu} + \Lambda g_{\mu\nu} = 8\pi G_N \langle T_{\mu\nu}^{\mathrm{matter}} \rangle, \quad \forall (x, z) \in M.
+    \delta\!\left(G_{\mu\nu} + \Lambda g_{\mu\nu} - 8\pi G_N \langle T_{\mu\nu}^{\mathrm{matter}} \rangle\right) = 0, \quad \forall (x, z) \in M.
 \end{equation}
+The non-linear completion of \eqref{eq:einstein_emergent}, order by order in $h_{\mu\nu}$, follows from the positivity of the second-order modular relative entropy $S(\rho_A\|\sigma_A) \ge 0$ (see Theorem~5.1 of \cite{silvafilho2026grand}).
 \end{theorem}
 
 \begin{proof}
@@ -235,29 +236,11 @@ By Stokes' theorem applied to the homology region $\Sigma_A$ between the boundar
 \begin{equation}
     \int_{\partial \Sigma_A} \chi = \int_A \chi - \int_{\gamma_A} \chi = \int_{\Sigma_A} \dif \chi.
 \end{equation}
-On the boundary $z = 0$, the conformal Killing property of $\xi$ along with \eqref{eq:local_modular_ham} guarantees:
+On the boundary $z = 0$, the conformal Killing property of $\xi$ along with \eqref{eq:local_modular_ham} guarantees $\int_A \chi = \delta \langle H_A \rangle$. On the extremal surface $\gamma_A$, because $\xi|_{\gamma_A} = 0$ and its gradient gives the unit binormal, Wald's formula yields $\int_{\gamma_A} \chi = \delta \Area(\gamma_A)/(4 G_N) = \delta S_A$. Therefore the boundary first law $\delta S_A = \delta \langle H_A \rangle$ translates precisely into $\int_{\Sigma_A} \dif \chi = 0$. A direct calculation gives:
 \begin{equation}
-    \int_A \chi = \delta \langle H_A \rangle.
+    \dif \chi = -2 \xi^\mu\, \delta\!\left( G_{\mu\nu} + \Lambda g_{\mu\nu} - 8\pi G_N \langle T_{\mu\nu}^{\mathrm{matter}} \rangle \right) \mathbf{\epsilon}^\nu,
 \end{equation}
-On the extremal surface $\gamma_A$, because $\xi|_{\gamma_A} = 0$ and its gradient gives the unit binormal, Wald's formula yields:
-\begin{equation}
-    \int_{\gamma_A} \chi = \frac{1}{4 G_N} \delta \Area(\gamma_A) = \delta S_A.
-\end{equation}
-Therefore, the boundary first law of entanglement $\delta S_A = \delta \langle H_A \rangle$ translates precisely into the bulk vanishing constraint:
-\begin{equation}
-    \int_{\Sigma_A} \dif \chi = 0.
-\end{equation}
-A direct calculation of the exterior derivative of the Wald form reveals:
-\begin{equation}
-    \dif \chi = -2 \xi^\mu \left( G_{\mu\nu} + \Lambda g_{\mu\nu} - 8\pi G_N \langle T_{\mu\nu}^{\mathrm{matter}} \rangle \right) \mathbf{\epsilon}^\nu,
-\end{equation}
-where $\mathbf{\epsilon}^\nu$ is the volume element contracted along $\nu$. 
-
-Since this integral must vanish identically for all spherical regions $A$ with arbitrary centers $x_0 \in \R^{d-1}$ and arbitrary scales $R > 0$, the spatial slice $\Sigma_A$ sweeps out every open neighborhood of the bulk manifold $M$. By the fundamental lemma of the calculus of variations, the integrand must vanish pointwise:
-\begin{equation}
-    G_{\mu\nu} + \Lambda g_{\mu\nu} - 8\pi G_N \langle T_{\mu\nu}^{\mathrm{matter}} \rangle = 0.
-\end{equation}
-This establishes the non-linear Einstein field equations in the interior bulk.
+which is linear in the perturbation since $\delta S_A$ enters only at first order. Since this must vanish for all spherical regions $A$ of arbitrary center and radius, the fundamental lemma of the calculus of variations forces $\delta(G_{\mu\nu} + \Lambda g_{\mu\nu} - 8\pi G_N \langle T_{\mu\nu}^{\mathrm{matter}}\rangle) = 0$ pointwise, i.e.\ the linearized Einstein equation. This establishes the theorem at first order; the argument does not by itself constrain terms of $\mathcal{O}(h^2)$ or higher, which are fixed instead by the second-order relative entropy positivity argument of Chapter~12.
 \end{proof}
 
 % =========================================================================
@@ -572,6 +555,11 @@ KITP Strings Seminar, 2015.
 F.~Pastawski, B.~Yoshida, D.~Harlow, and J.~Preskill,
 \emph{Holographic quantum error-correcting codes: Toy models for the bulk/boundary correspondence},
 Journal of High Energy Physics, \textbf{2015} (2015), no.~6, 149.
+
+\bibitem{silvafilho2026grand}
+R.~M.~Silva-Filho,
+\emph{A Unified Geometric and Algebraic Theory of Quantum Gravity: From Simplicial Fractional Calculus and Minimax Foliations to Emergent Holographic Spacetime},
+Treatise on Multilinear Geometry and Quantum Gravity, Vol.~1, Chap.~12 (2026).
 
 \end{thebibliography}
 
