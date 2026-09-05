@@ -1,0 +1,22 @@
+﻿# LaTeX temporary compilation files
+*.aux
+*.bbl
+*.blg
+*.fdb_latexmk
+*.fls
+*.log
+*.nav
+*.out
+*.snm
+*.synctex.gz
+*.toc
+*.vrb
+*.dvi
+
+# Python cache
+__pycache__/
+*.pyc
+
+# OS generated
+Thumbs.db
+.DS_Store
