@@ -1,4 +1,4 @@
-﻿# REPO MAP & WORKING MEMORY: Resilient Turing / Quantum Gravity Framework
+# REPO MAP & WORKING MEMORY: Resilient Turing / Quantum Gravity Framework
 
 **Author**: Reinaldo M. Silva-Filho (reinaldo.filho1@estudante.ufla.br)
 **Institution**: Universidade Federal de Lavras (UFLA), PPGEEAA/DES
@@ -23,8 +23,8 @@
 The 13 canonical chapters in `unified_quantum_gravity_book/` map 1:1 to the foundational treatises:
 
 - **Part I: Functional Multilinear Algebra & Geometric Flows**
-  - `chap01_functional_realizations_matrices_tensors.tex`: $\mathcal{L}^p$ extensions, BV/coarea, spectral complexity.
-  - `chap02_geometric_flows_tensor_varieties.tex`: Continuous Toda flows, TT-varieties, Ricci flows on graphons.
+  - `chap01_functional_realizations_matrices_tensors.tex`: $\mathcal{L}^p$ extensions, BV/coarea, spectral complexity. **[AUDIT PASSED - FINAL]** (`PROOF_AUDIT_CHAP01_FINAL.md`)
+  - `chap02_geometric_flows_tensor_varieties.tex`: Continuous Toda flows, TT-varieties, Ricci flows on graphons. **[AUDIT PASSED - FINAL]** (`PROOF_AUDIT_CHAP02_FINAL.md`)
 - **Part II: Continuous Simplicial Geometry & Fractional Calculus**
   - `chap03_pascal_simplex_continuous_multinomials.tex`: Pascal simplex analytic continuation, $\Gamma(z)$ integrals.
   - `chap04_simplicial_waves_porous_transport.tex`: Fractional wave equations, porous transport on simplices.
