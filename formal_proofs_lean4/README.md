@@ -1,9 +1,14 @@
 # Formal Verification of Unified Quantum Gravity Theorems in Lean 4
 
+[![Lean 4](https://img.shields.io/badge/Lean_4-v4.33.1-blue.svg)](https://github.com/leanprover/lean4)
+[![DOI: 10.5281/zenodo.22441676](https://zenodo.org/badge/DOI/10.5281/zenodo.22441676.svg)](https://doi.org/10.5281/zenodo.22441676)
+[![DOI: 10.5281/zenodo.22290043](https://zenodo.org/badge/DOI/10.5281/zenodo.22290043.svg)](https://doi.org/10.5281/zenodo.22290043)
+[![Status: Verified](https://img.shields.io/badge/Kernel-0%20errors%20%7C%200%20sorry-brightgreen.svg)](https://github.com/reinaldomsilvafilho-netizen/quantum-gravity-lean4)
+
 This repository contains the machine-checked formal verification in **Lean 4** of foundational mathematical theorems from the monograph and accompanying treatises:
 
-> **"Unified Quantum Gravity and Multilinear Differential Geometry: A Treatise on Continuous Tensor Manifolds, Simplicial Fractional Calculus, and Emergent Spacetime"**  
-> **"A Functorial Bridge from Continuous Tensor Manifolds to 4-Dimensional Spacetime Cobordisms"**  
+> **"Unified Quantum Gravity and Multilinear Differential Geometry: A Treatise on Continuous Tensor Manifolds, Simplicial Fractional Calculus, and Emergent Spacetime"** ([DOI: 10.5281/zenodo.22290043](https://doi.org/10.5281/zenodo.22290043))  
+> **"A Functorial Bridge from Continuous Tensor Manifolds to 4-Dimensional Spacetime Cobordisms"** ([DOI: 10.5281/zenodo.22441676](https://doi.org/10.5281/zenodo.22441676))  
 > *Author:* Reinaldo M. Silva-Filho  
 > *Affiliation:* Universidade Federal de Lavras (PPGEEAA/DES)
 
