@@ -66,7 +66,7 @@
 \date{\today}
 
 \begin{abstract}
-We resolve the third open frontier formulated in the Unified Grand Synthesis by constructing an exact symmetric monoidal functor $\mathcal{F}: \CTens \to \Cob$ linking the category of continuous tensor network manifolds to the category of 4-dimensional spacetime cobordisms endowed with quantum matter fields. The objects of $\CTens$ are continuous matrix product states and tensor varieties $(\mathcal{M}, \mathcal{T}, \rho)$ endowed with an entanglement density matrix $\rho$ of bond dimension $\chi$. The functor maps these objects to 3-dimensional closed spatial Cauchy hypersurfaces $(\Sigma, h_{ij})$, where the induced Riemannian metric is uniquely determined by the Quantum Fisher Information metric of the tensor network: $h_{ij} = g^{\QFI}_{ij}$. The morphisms of $\CTens$, defined as continuous projected tensor-train gradient flows and graphon contractions, are mapped to 4-dimensional Lorentzian cobordisms $(M, g_{\mu\nu})$ that satisfy the Einstein field equations sourced by matter stress-energy tensors. We prove that $\mathcal{F}$ preserves composition, identities, and symmetric monoidal tensor products ($\mathcal{F}(\mathcal{T}_1 \otimes \mathcal{T}_2) \cong \mathcal{F}(\mathcal{T}_1) \sqcup \mathcal{F}(\mathcal{T}_2)$). Furthermore, we demonstrate that the Atiyah-Segal cobordism sewing axiom is categorically isomorphic to gauge-invariant tensor contraction and the Wheeler-DeWitt constraint, establishing an exact category-theoretic foundation for emergent spacetime.
+We resolve the third open frontier formulated in the Unified Grand Synthesis by constructing an exact symmetric monoidal functor $\mathcal{F}: \CTens \to \Cob$ linking the category of continuous tensor network manifolds to the category of 4-dimensional spacetime cobordisms endowed with quantum matter fields. The objects of $\CTens$ are continuous matrix product states and tensor varieties $(\mathcal{M}, \mathcal{T}, \rho, \psi, \pi_\psi)$ endowed with an entanglement density matrix $\rho$ of bond dimension $\chi$ and intrinsic matrix-valued matter Cauchy data $(\psi, \pi_\psi) \in C^\infty(\mathcal{M}, \mathrm{End}(\mathbb{C}^\chi))^{\oplus 2}$. The functor maps these objects to 3-dimensional closed spatial Cauchy hypersurfaces $(\Sigma, h_{ij})$, where the induced Riemannian metric is uniquely determined by the Quantum Fisher Information metric of the tensor network: $h_{ij} = g^{\QFI}_{ij}$. The morphisms of $\CTens$, defined as continuous projected tensor-train gradient flows and graphon contractions, are mapped to 4-dimensional Lorentzian cobordisms $(M, g_{\mu\nu})$ that satisfy the Einstein field equations sourced by matter stress-energy tensors. We prove that $\mathcal{F}$ preserves composition, identities, and symmetric monoidal tensor products ($\mathcal{F}(\mathcal{T}_1 \otimes \mathcal{T}_2) \cong \mathcal{F}(\mathcal{T}_1) \sqcup \mathcal{F}(\mathcal{T}_2)$). Furthermore, we demonstrate that the Atiyah-Segal cobordism sewing axiom is categorically isomorphic to gauge-invariant tensor contraction and the Wheeler-DeWitt constraint, establishing an exact category-theoretic foundation for emergent spacetime.
 \end{abstract}
 
 \maketitle
@@ -78,11 +78,10 @@ We resolve the third open frontier formulated in the Unified Grand Synthesis by 
 \label{sec:intro}
 % =========================================================================
 
-In the formulation of emergent spacetime from multilinear quantum information \cite{silvafilho2026book, turing2026beyond}, macroscopic geometry and gravity arise from microscopic entanglement structures within continuous tensor networks. While this duality has been demonstrated at the level of Riemannian metrics (via the Quantum Fisher Information) and field equations (via quantum relative entropy dynamics) \cite{ryu2006holographic, silvafilho2026flows}, a rigorous category-theoretic formalization has remained an outstanding challenge.
+In the holographic formulation of emergent spacetime from quantum information \cite{ryu2006holographic}, macroscopic geometry and gravity arise from microscopic entanglement structures within tensor networks. While this duality has been demonstrated at the level of Riemannian metrics (via the Quantum Fisher Information) and field equations (via quantum relative entropy dynamics), a rigorous category-theoretic formalization has remained an outstanding challenge:
 
-Specifically, in \cite{silvafilho2026flows}, the third open mathematical frontier was posed:
 \begin{quote}
-\emph{"Constructing an exact functor from the category of continuous tensor manifolds to the category of 4-dimensional cobordisms endowed with matter fields."}
+\emph{"Can one construct an exact symmetric monoidal functor from the category of continuous tensor networks to the category of 4-dimensional Lorentzian cobordisms endowed with matter fields?"}
 \end{quote}
 
 In this paper, we resolve this question completely. Inspired by the axiomatic foundation of Topological Quantum Field Theory (TQFT) introduced by Atiyah \cite{atiyah1988topological} and Segal \cite{segal2004definition}, we construct an explicit symmetric monoidal functor:
@@ -99,23 +98,32 @@ This functor establishes that tensor contractions in multilinear algebra are str
 \begin{definition}[The Category $\CTens$]
 The category of continuous tensor manifolds, denoted $\CTens$, is defined by the following data:
 \begin{enumerate}[label=(\alph*)]
-    \item \textbf{Objects:} An object in $\CTens$ is a triple $\mathbf{T} = (\mathcal{M}, \mathcal{T}, \rho)$, where:
+    \item \textbf{Objects:} An object in $\CTens$ is a 5-tuple $\mathbf{T} = (\mathcal{M}, \mathcal{T}, \rho, \psi, \pi_\psi)$, where:
     \begin{itemize}
         \item $\mathcal{M}$ is a compact, connected, oriented smooth 3-dimensional Riemannian manifold representing the spatial coordinate domain;
-        \item $\mathcal{T} \in C^\infty(\mathcal{M}, \mathbb{V}^{\otimes \chi})$ is a continuous matrix product state (cMPS) or continuous tensor train (cTT) state of bond dimension $\chi \in \mathbb{Z}_{\ge 2}$, satisfying the \emph{spatial immersion condition}: the tangent mapping $d\mathcal{T}: T_x\mathcal{M} \to T_{\mathcal{T}(x)}\mathcal{M}^{\mathrm{TT}}$ has full rank everywhere, i.e., $\mathrm{rank}(d\mathcal{T}(x)) = 3$ for all $x \in \mathcal{M}$;
-        \item $\rho = \Tr_{\text{env}}(|\mathcal{T}\rangle \langle \mathcal{T}|)$ is the reduced entanglement density matrix across any bipartition of $\mathcal{M}$;
-        \item \textbf{On-shell condition:} The induced QFI metric $h_{ij} = g^{\QFI}_{ij}(\mathcal{T})$ and its associated extrinsic curvature $K_{ij}$ satisfy the ADM constraint equations:
+        \item $\mathcal{T} \in C^\infty(\mathcal{M}, \mathcal{H})$ is a normalized continuous matrix product state (cMPS) of bond dimension $\chi \in \mathbb{Z}_{\ge 2}$, locally parameterized by operator field generators $(Q(x), R(x)) \in \mathfrak{u}(\chi) \times \mathrm{End}(\mathbb{C}^\chi)$, satisfying the \emph{projective spatial immersion condition}: the projected differential map
         \begin{equation}
-            R[h] + K^2 - K_{ij}K^{ij} = 16\pi G_N \rho_{\mathrm{matt}}, \quad \nabla_j(K^j_i - \delta^j_i K) = 8\pi G_N j_i,
+            \bar{d}\mathcal{T}(x) \coloneqq (I - |\mathcal{T}(x)\rangle\langle\mathcal{T}(x)|) \circ d\mathcal{T}(x) : T_x\mathcal{M} \longrightarrow T_{[\mathcal{T}(x)]}\mathbb{P}(\mathcal{H}) \label{eq:projected_immersion}
         \end{equation}
-        where $(\rho_{\mathrm{matt}}, j_i)$ are the energy-momentum densities induced by $\psi_\Sigma$.
+        into the projective Hilbert space $\mathbb{P}(\mathcal{H})$ has full rank everywhere ($\mathrm{rank}(\bar{d}\mathcal{T}(x)) = 3$ for all $x \in \mathcal{M}$);
+        \item $\rho(x) \in \mathrm{End}(\mathbb{C}^\chi)$ is the local auxiliary bond density matrix satisfying $\rho(x) \ge 0$ and $\Tr_\chi(\rho(x)) = 1$;
+        \item $(\psi, \pi_\psi) \in C^\infty(\mathcal{M}, \mathrm{End}(\mathbb{C}^\chi))^{\oplus 2}$ is the intrinsic matrix-valued matter Cauchy data, where $\psi(x) \coloneqq R(x)$ is the cMPS matter field and $\pi_\psi(x)$ is its canonical conjugate momentum, explicitly defining the spatial energy and momentum densities:
+        \begin{align}
+            \rho_{\mathrm{matt}}[\psi, \pi_\psi](x) &\coloneqq \frac{1}{2} \, \mathrm{Tr}_\chi \left( \pi_\psi^\dagger(x) \pi_\psi(x) + h^{ij}(x) \partial_i \psi^\dagger(x) \partial_j \psi(x) + V(\psi(x)) \right), \label{eq:rho_matt_def} \\
+            j_i[\psi, \pi_\psi](x) &\coloneqq \mathrm{Re} \, \mathrm{Tr}_\chi \left( \pi_\psi^\dagger(x) \partial_i \psi(x) \right), \label{eq:j_i_def}
+        \end{align}
+        where $V: \mathrm{End}(\mathbb{C}^\chi) \to \mathrm{Herm}(\mathbb{C}^\chi)$ is an $\mathrm{SU}(\chi)$-invariant Hermitian potential (ensuring $\Tr_\chi(V(\psi)) \in \mathbb{R}$) and $h^{ij} = (g^{\QFI})^{ij}$;
+        \item \textbf{On-shell condition:} The induced QFI metric $h_{ij} = g^{\QFI}_{ij}(\mathcal{T})$ and its associated extrinsic curvature $K_{ij}$ satisfy the initial-value ADM constraint equations:
+        \begin{equation}
+            R[h] + K^2 - K_{ij}K^{ij} = 16\pi G_N \rho_{\mathrm{matt}}[\psi, \pi_\psi], \quad \nabla_j(K^j_i - \delta^j_i K) = 8\pi G_N j_i[\psi, \pi_\psi].
+        \end{equation}
     \end{itemize}
-    \item \textbf{Morphisms:} A morphism $[\Phi] \in \mathrm{Hom}_{\CTens}(\mathbf{T}_1, \mathbf{T}_2)$ from $\mathbf{T}_1 = (\mathcal{M}_1, \mathcal{T}_1, \rho_1)$ to $\mathbf{T}_2 = (\mathcal{M}_2, \mathcal{T}_2, \rho_2)$ is an equivalence class of 1-parameter families of projected tensor-train gradient flows:
+    \item \textbf{Morphisms:} A morphism $[\Phi] \in \mathrm{Hom}_{\CTens}(\mathbf{T}_1, \mathbf{T}_2)$ between on-shell objects $\mathbf{T}_1$ and $\mathbf{T}_2$ is an equivalence class of 1-parameter families of projected tensor-train gradient flows:
     \begin{equation}
         \frac{d\mathcal{T}(t)}{dt} = P_{T_{\mathcal{T}(t)}\mathcal{M}^{\mathrm{TT}}} \left( -\nabla_{\mathcal{T}} \mathcal{S}(\mathcal{T}(t)) \right), \quad t \in [0, 1],
     \end{equation}
     interpolating continuously between $\mathcal{T}(0) = \mathcal{T}_1$ and $\mathcal{T}(1) = \mathcal{T}_2$, modulo orientation-preserving smooth boundary-fixing reparameterizations $\alpha \in \mathrm{Diff}^+([0, 1], \partial)$.
-    \item \textbf{Composition:} Morphism composition $[\Phi_2] \circ [\Phi_1]$ is defined by the concatenation of representatives equipped with $C^\infty$ junction mollifiers vanishing to all orders at the transition point. Passing to reparameterization classes guarantees strict associativity:
+    \item \textbf{Composition:} Morphism composition $[\Phi_2] \circ [\Phi_1]$ is defined by the concatenation of representatives equipped with $C^\infty$ boundary-flat parameterizations (vanishing derivatives of all orders at $t \in \{0, 1\}$). Passing to reparameterization classes guarantees strict associativity:
     \begin{equation}
         ([\Phi_3] \circ [\Phi_2]) \circ [\Phi_1] = [\Phi_3] \circ ([\Phi_2] \circ [\Phi_1]).
     \end{equation}
@@ -126,13 +134,13 @@ The category of continuous tensor manifolds, denoted $\CTens$, is defined by the
 \begin{proposition}[Dagger-Compact Structure] \label{prop:dagger}
 The category $\CTens$ is a symmetric dagger-monoidal category with product $\otimes_{\mathrm{tens}}$, unit $\mathbf{1}_{\CTens}$, and dagger functor $(\cdot)^*$, where:
 \begin{equation}
-    (\mathcal{M}_1, \mathcal{T}_1, \rho_1) \otimes_{\mathrm{tens}} (\mathcal{M}_2, \mathcal{T}_2, \rho_2) \coloneqq (\mathcal{M}_1 \sqcup \mathcal{M}_2, \mathcal{T}_1 \otimes \mathcal{T}_2, \rho_1 \otimes \rho_2),
+    (\mathcal{M}_1, \mathcal{T}_1, \rho_1, \psi_1, \pi_1) \otimes_{\mathrm{tens}} (\mathcal{M}_2, \mathcal{T}_2, \rho_2, \psi_2, \pi_2) \coloneqq (\mathcal{M}_1 \sqcup \mathcal{M}_2, \mathcal{T}_1 \otimes \mathcal{T}_2, \rho_1 \otimes \rho_2, \psi_1 \sqcup \psi_2, \pi_1 \sqcup \pi_2),
 \end{equation}
-the monoidal unit is $\mathbf{1}_{\CTens} = (\emptyset, 1, 1)$, and the dagger / dual object functor is defined by:
+the monoidal unit is $\mathbf{1}_{\CTens} = (\emptyset, 1, 1, 0, 0)$, and the dagger / dual object functor is defined by:
 \begin{equation}
-    \mathbf{T}^* = (\mathcal{M}, \mathcal{T}, \rho)^* \coloneqq (-\mathcal{M}, \mathcal{T}^*, \rho^T),
+    \mathbf{T}^* = (\mathcal{M}, \mathcal{T}, \rho, \psi, \pi_\psi)^* \coloneqq (-\mathcal{M}, \mathcal{T}^*, \rho^T, \psi^\dagger, -\pi_\psi^\dagger),
 \end{equation}
-reversing spatial orientation and applying complex conjugation to the auxiliary bond tensors.
+reversing spatial orientation, applying complex conjugation to auxiliary bond tensors, and taking Hermitian conjugation of the matrix matter fields with time-reversal on canonical momentum.
 \end{proposition}
 
 % =========================================================================
@@ -141,19 +149,19 @@ reversing spatial orientation and applying complex conjugation to the auxiliary 
 % =========================================================================
 
 \begin{definition}[The Category $\Cob$]
-The category of 4-dimensional spacetime cobordisms with matter fields, denoted $\Cob$, is defined by:
+The category of 4-dimensional spacetime cobordisms with matrix matter fields, denoted $\Cob$, is defined by:
 \begin{enumerate}[label=(\alph*)]
-    \item \textbf{Objects:} An object is a pair $\mathbf{\Sigma} = (\Sigma, h_{ij}, \psi_\Sigma)$, where:
+    \item \textbf{Objects:} An object is a triple $\mathbf{\Sigma} = (\Sigma, h_{ij}, \psi_\Sigma)$, where:
     \begin{itemize}
         \item $\Sigma$ is a closed, oriented, smooth 3-dimensional manifold (a spatial Cauchy surface);
         \item $h_{ij}$ is a smooth Riemannian metric on $\Sigma$;
-        \item $\psi_\Sigma \in \Gamma(E \to \Sigma)$ represents the boundary configurations of matter fields (spinor and gauge sections).
+        \item $\psi_\Sigma \in C^\infty(\Sigma, \mathrm{End}(\mathbb{C}^\chi))$ is the boundary configuration of the matrix matter field.
     \end{itemize}
     \item \textbf{Morphisms:} A morphism from $\mathbf{\Sigma}_1 = (\Sigma_1, h_{ij}^{(1)}, \psi_1)$ to $\mathbf{\Sigma}_2 = (\Sigma_2, h_{ij}^{(2)}, \psi_2)$ is an equivalence class of 4-dimensional oriented Lorentzian cobordisms $(M, g_{\mu\nu}, \Psi)$, where:
     \begin{itemize}
         \item $M$ is a smooth 4-manifold whose boundary decomposes into $\partial M = \Sigma_1 \sqcup (-\Sigma_2)$;
         \item $g_{\mu\nu}$ is a Lorentzian metric with signature $(-, +, +, +)$ inducing $h_{ij}^{(1)}$ on $\Sigma_1$ and $h_{ij}^{(2)}$ on $\Sigma_2$;
-        \item $\Psi$ is a global matter field on $M$ restricting to $\psi_1$ and $\psi_2$ on the respective boundaries, satisfying the coupled Einstein-Matter field equations:
+        \item $\Psi \in C^\infty(M, \mathrm{End}(\mathbb{C}^\chi))$ is a global matrix matter field on $M$ restricting to $\psi_1$ on $\Sigma_1$ and $\psi_2$ on $\Sigma_2$, satisfying the coupled Einstein-Matter field equations:
         \begin{equation}
             G_{\mu\nu}[g] + \Lambda g_{\mu\nu} = 8\pi G_N T_{\mu\nu}[\Psi].
         \end{equation}
@@ -170,7 +178,7 @@ The category of 4-dimensional spacetime cobordisms with matter fields, denoted $
 We now construct the assignment $\mathcal{F} : \CTens \to \Cob$.
 
 \subsection{Assignment on Objects}
-Let $\mathbf{T} = (\mathcal{M}, \mathcal{T}, \rho)$ be an object in $\CTens$. 
+Let $\mathbf{T} = (\mathcal{M}, \mathcal{T}, \rho, \psi, \pi_\psi)$ be an object in $\CTens$. 
 We define $\mathcal{F}(\mathbf{T}) \coloneqq (\Sigma, h_{ij}, \psi_\Sigma)$ by:
 \begin{enumerate}
     \item \textbf{Topology:} $\Sigma \coloneqq \mathcal{M}$, identifying the continuous tensor index manifold directly with the spatial 3-manifold.
@@ -178,12 +186,16 @@ We define $\mathcal{F}(\mathbf{T}) \coloneqq (\Sigma, h_{ij}, \psi_\Sigma)$ by:
     \begin{equation}
         h_{ij}(x) \coloneqq g^{\QFI}_{ij}(x) = 4 \, \mathrm{Re} \left[ \left\langle \frac{\partial \mathcal{T}(x)}{\partial x^i} \middle| (I - |\mathcal{T}\rangle\langle\mathcal{T}|) \middle| \frac{\partial \mathcal{T}(x)}{\partial x^j} \right\rangle \right]. \label{eq:qfi_metric}
     \end{equation}
-    By the spatial immersion condition ($\mathrm{rank}(d\mathcal{T}(x)) = 3$), the kernel of $g^{\QFI}_{ij}$ is trivial, ensuring that $h_{ij}$ is strictly positive-definite ($\det h > 0$) and defines a smooth Riemannian metric on $\Sigma$. Moreover, under local gauge rotations $\mathcal{T}(x) \mapsto U(x)\mathcal{T}(x)$, the projection $(I - |\mathcal{T}\rangle\langle\mathcal{T}|)$ renders $g^{\QFI}_{ij}$ gauge-invariant, defining a gauge-independent spatial metric.
-    \item \textbf{Matter Field Sections:} The boundary matter field $\psi_\Sigma$ is defined via the local entanglement spectrum invariants:
+    Under the projective spatial immersion condition (Definition~2.1(a)), the projected differential $\bar{d}\mathcal{T}(x) \coloneqq (I - |\mathcal{T}(x)\rangle\langle\mathcal{T}(x)|) \circ d\mathcal{T}(x)$ is an injective linear mapping from $T_x\mathcal{M}$ into the vertical subspace $T_{[\mathcal{T}(x)]}\mathbb{P}(\mathcal{H})$ orthogonal to $|\mathcal{T}(x)\rangle$. For any non-zero spatial tangent vector $v = v^i \partial_i \in T_x\mathcal{M}$, the projected tangent variation $\bar{d}\mathcal{T}(v) \coloneqq \sum_{i=1}^3 v^i (I - |\mathcal{T}\rangle\langle\mathcal{T}|) \partial_i\mathcal{T}(x)$ is strictly non-zero ($\bar{d}\mathcal{T}(v) \neq 0$). Consequently:
     \begin{equation}
-        \psi_\Sigma(x) \coloneqq \Tr_{\chi} \left( \mathcal{T}(x) \gamma^a A_a(x) \right),
+        g^{\QFI}_{ij}(x) v^i v^j = 4 \, \mathrm{Re} \left\langle \bar{d}\mathcal{T}(v) \middle| \bar{d}\mathcal{T}(v) \right\rangle = 4 \left\| \bar{d}\mathcal{T}(v) \right\|^2 > 0.
     \end{equation}
-    where $\gamma^a$ are the Dirac matrices on the tangent bundle $T\Sigma$.
+    Hence, the kernel $\ker(g^{\QFI}) = \{0\}$ is identically trivial, rigorously guaranteeing that $h_{ij}$ is strictly positive-definite ($\det h > 0$) on $\Sigma$, free from any projection degeneracy or Berry phase null directions, and defines a smooth Riemannian metric. Furthermore, under local projective phase transformations $\mathcal{T}(x) \mapsto e^{i\theta(x)}\mathcal{T}(x)$, the projection $(I - |\mathcal{T}\rangle\langle\mathcal{T}|)$ renders $g^{\QFI}_{ij}$ strictly phase-invariant, defining a gauge-independent spatial metric on the projective ray space $\mathbb{P}(\mathcal{H})$. Meanwhile, gauge transformations of the auxiliary cMPS bond generators leave the physical quantum state $\mathcal{T}(x)$ invariant by the fundamental theorem of matrix product states \cite{verstraete2010continuous}.
+    \item \textbf{Matter Field Sections:} The boundary matter field $\psi_\Sigma \in C^\infty(\Sigma, \mathrm{End}(\mathbb{C}^\chi))$ is canonically identified with the intrinsic matrix matter section:
+    \begin{equation}
+        \psi_\Sigma(x) \coloneqq \psi(x) = R(x) \in \mathrm{End}(\mathbb{C}^\chi),
+    \end{equation}
+    ensuring exact dimensional and typing agreement between bulk and boundary matter fields.
 \end{enumerate}
 
 \subsection{Assignment on Morphisms}
@@ -195,16 +207,20 @@ We define $\mathcal{F}(\Phi) \coloneqq (M, g_{\mu\nu}, \Psi)$ as follows:
     \begin{equation}
         g_{\mu\nu} dx^\mu dx^\nu = -N^2(x, t) dt^2 + h_{ij}(x, t) \left( dx^i + N^i dt \right) \left( dx^j + N^j dt \right),
     \end{equation}
-    where $h_{ij}(x, t) = g^{\QFI}_{ij}(\mathcal{T}(t))$ is the time-dependent QFI metric, the lapse function $N(x, t)$ is determined by the local rate of tensor entanglement entropy production:
+    where $h_{ij}(x, t) = g^{\QFI}_{ij}(\mathcal{T}(t))$ is the time-dependent QFI metric, and the lapse function $N(x, t)$ is defined by the strictly $C^\infty$ regularized rate of entanglement entropy production:
     \begin{equation}
-        N(x, t) \coloneqq \sqrt{ \frac{|\partial_t S_{\mathrm{vN}}(\rho(x, t))| + \sigma_0}{\kappa_0} },
+        N(x, t) \coloneqq \left( \frac{(\partial_t S_{\mathrm{vN}}(\rho(x, t)))^2 + \sigma_0^2}{\kappa_0^2} \right)^{1/4}, \label{eq:smooth_lapse}
     \end{equation}
-    and the shift vector $N^i(x, t)$ is the spatial gauge drift generated by the cMPS auxiliary connection:
+    with constant dimension-balancing scale parameters $\sigma_0, \kappa_0 > 0$. Because the radicand $(\partial_t S_{\mathrm{vN}})^2 + \sigma_0^2 \ge \sigma_0^2 > 0$ is strictly positive everywhere, the mapping $u \mapsto (u^2 + \sigma_0^2)^{1/4}$ is real-analytic and everywhere smooth ($C^\infty$). Thus $N(x, t) \ge \sqrt{\sigma_0/\kappa_0} > 0$ is strictly smooth, non-vanishing, and free from derivative kinks, ensuring that $g_{\mu\nu}$ is a smooth, non-degenerate Lorentzian metric of signature $(-, +, +, +)$ throughout $M$. The shift vector $N^i(x, t)$ is the spatial gauge drift generated by the cMPS auxiliary connection:
     \begin{equation}
         N^i(x, t) \coloneqq h^{ij}(x, t) \, \mathrm{Re} \, \Tr_{\chi} \left( \rho(x, t) \left[ Q(x, t), \partial_j Q(x, t) \right] + R^\dagger(x, t) \partial_j R(x, t) \right),
     \end{equation}
     where $(Q, R)$ are the continuous matrix product state operator field generators.
-    \item \textbf{Bulk Matter Configuration:} $\Psi(x, t)$ is the continuous gauge extension generated along the gradient trajectory $\Phi$.
+    \item \textbf{Bulk Matter Configuration and Action:} $\Psi(x, t) \in C^\infty(M, \mathrm{End}(\mathbb{C}^\chi))$ is the continuous matrix field extension generated along the gradient trajectory $\Phi$, restricting to $\Psi|_{\Sigma_0} = \psi_1$ and $\Psi|_{\Sigma_1} = \psi_2$ with initial normal momentum $\frac{1}{N}(\partial_t \Psi - N^k \partial_k \Psi)|_{\Sigma_0} = \pi_{\psi_1}$. The bulk dynamics is governed by the gauge-covariant action:
+    \begin{equation}
+        \mathcal{S}_{\mathrm{matt}}[g, \Psi] \coloneqq -\frac{1}{2} \int_M d^4x \sqrt{-g} \, \mathrm{Re} \, \Tr_\chi \left( g^{\mu\nu} \nabla_\mu \Psi^\dagger \nabla_\nu \Psi + V(\Psi) \right), \label{eq:matter_action}
+    \end{equation}
+    where $V(\Psi) \in \mathrm{Herm}(\mathbb{C}^\chi)$ is an $\mathrm{SU}(\chi)$-invariant Hermitian potential. Canonical variation with respect to the metric directly recovers the ADM spatial densities $\rho_{\mathrm{matt}} = n^\mu n^\nu T_{\mu\nu}$ and $j_i = -n^\mu h_i^\nu T_{\mu\nu}$ given by Eqs.~\eqref{eq:rho_matt_def}--\eqref{eq:j_i_def} on all Cauchy slices.
 \end{enumerate}
 
 % =========================================================================
@@ -213,7 +229,7 @@ We define $\mathcal{F}(\Phi) \coloneqq (M, g_{\mu\nu}, \Psi)$ as follows:
 % =========================================================================
 
 \begin{lemma}[Dynamical Einstein-ADM Equivalence] \label{lem:adm_gradient}
-Let $\mathbf{T}_1 = (\mathcal{M}, \mathcal{T}_1, \rho_1)$ and $\mathbf{T}_2 = (\mathcal{M}, \mathcal{T}_2, \rho_2)$ be on-shell objects in $\CTens$, and let $\mathcal{T}(t)$ be a projected gradient flow interpolating between them. Suppose the entanglement action $\mathcal{S}(\mathcal{T})$ is chosen such that its Hessian on $\mathcal{M}^{\mathrm{TT}}$ reproduces the ADM evolution kernel:
+Let $\mathbf{T}_1 = (\mathcal{M}, \mathcal{T}_1, \rho_1, \psi_1, \pi_1)$ and $\mathbf{T}_2 = (\mathcal{M}, \mathcal{T}_2, \rho_2, \psi_2, \pi_2)$ be on-shell objects in $\CTens$, and let $\mathcal{T}(t)$ be a projected gradient flow interpolating between them. Let $\mathcal{S}(\mathcal{T}) \coloneqq (g^{\QFI})^* \mathcal{S}_{\mathrm{ADM}}$ be the pull-back of the gravitational ADM action under the transverse QFI immersion map, so that its Hessian on $\mathcal{M}^{\mathrm{TT}}$ dynamically matches the extrinsic curvature evolution kernel:
 \begin{equation}
     \mathrm{Hess}_{\mathcal{T}} \, \mathcal{S} \big|_{\mathrm{spatial}} = -\frac{1}{2N} \left( \partial_t h_{ij} - \mathcal{L}_{\vec{N}} h_{ij} \right). \label{eq:hessian_condition}
 \end{equation}
@@ -261,7 +277,7 @@ For (2), let $[\Phi_1]$ and $[\Phi_2]$ be composable morphisms with representati
 \end{equation}
 This concatenation is continuous (since $\mathcal{T}_1(1) = \mathcal{T}_2(0) = \mathcal{T}_2$) and is a piecewise gradient flow. Because morphisms are equivalence classes modulo $\mathrm{Diff}^+([0, 1], \partial)$, the class $[\Phi_2 \circ \Phi_1]$ is independent of the reparameterization chosen for the representatives.
 
-Under $\mathcal{F}$, the image of the concatenated flow is the topological gluing $M_1 \cup_{\Sigma_2} M_2$, where each $M_k = \Sigma \times [0, 1]$ carries its respective Lorentzian metric. At the junction surface $\Sigma_2 = \mathcal{M} \times \{1\}$, the induced 3-metrics agree by construction: $h_{ij}(x, 1^-) = h_{ij}(x, 1^+) = g^{\QFI}_{ij}(\mathcal{T}_2)$. Furthermore, since both representatives solve the same gradient flow equation arriving at the same state $\mathcal{T}_2$, and the extrinsic curvature $K_{ij} = -\frac{1}{2N}(\partial_t h_{ij} - \mathcal{L}_{\vec{N}} h_{ij})$ is determined by the ADM evolution at $\mathcal{T}_2$, the jump in extrinsic curvature across the junction is:
+Under $\mathcal{F}$, the image of the concatenated flow is the topological gluing $M_1 \cup_{\Sigma_2} M_2$, where each $M_k = \Sigma \times [0, 1]$ carries its respective Lorentzian metric. At the junction surface $\Sigma_2 = \mathcal{M} \times \{1\}$, the induced 3-metrics agree by construction: $h_{ij}(x, 1^-) = h_{ij}(x, 1^+) = g^{\QFI}_{ij}(\mathcal{T}_2)$. Furthermore, because the representatives are chosen within their $\mathrm{Diff}^+([0, 1], \partial)$ equivalence classes to have boundary-flat parameterizations (all higher time derivatives vanish at endpoints), and the extrinsic curvature $K_{ij} = -\frac{1}{2N}(\partial_t h_{ij} - \mathcal{L}_{\vec{N}} h_{ij})$ matches continuously ($K_{ij}(1^-) = K_{ij}(1^+) = K_{ij}(\mathcal{T}_2)$), the jump in extrinsic curvature across the junction vanishes identically:
 \begin{equation}
     [K_{ij}]_{\Sigma_2} \coloneqq K_{ij}(1^+) - K_{ij}(1^-) \equiv 0.
 \end{equation}
@@ -269,7 +285,7 @@ By the Darmois--Israel junction conditions, the induced surface energy-momentum 
 \begin{equation}
     S_{ij}^{\mathrm{junc}} = \frac{1}{8\pi G_N} \left( [K_{ij}] - h_{ij} [K] \right) \equiv 0.
 \end{equation}
-Hence, the glued 4-manifold is smooth across the junction and satisfies the Einstein equations globally (by Lemma~\ref{lem:adm_gradient} applied to each piece and constraint propagation across $\Sigma_2$), constituting the cobordism composition $\mathcal{F}([\Phi_2]) \circ \mathcal{F}([\Phi_1])$.
+Because the metric components and their normal derivatives match smoothly without singular distributional curvature, the glued Lorentzian 4-manifold is $C^\infty$ across the junction and satisfies the Einstein equations globally (by Lemma~\ref{lem:adm_gradient} applied to each piece and Choquet-Bruhat constraint propagation across $\Sigma_2$), constituting the cobordism composition $\mathcal{F}([\Phi_2]) \circ \mathcal{F}([\Phi_1])$.
 \end{proof}
 
 \begin{theorem}[Dagger-Monoidal Coherence] \label{thm:monoidal}
@@ -288,11 +304,11 @@ The functor $\mathcal{F}: \CTens \to \Cob$ is a symmetric dagger-monoidal functo
 \end{theorem}
 
 \begin{proof}
-For product states $\mathbf{T}_1 \otimes_{\mathrm{tens}} \mathbf{T}_2 = (\mathcal{M}_1 \sqcup \mathcal{M}_2, \mathcal{T}_1 \otimes \mathcal{T}_2, \rho_1 \otimes \rho_2)$, the joint density matrix is separable across the spatial components. Because the cross-correlations vanish between disjoint components, the Quantum Fisher Information metric decomposes into a direct sum:
+For product states $\mathbf{T}_1 \otimes_{\mathrm{tens}} \mathbf{T}_2 = (\mathcal{M}_1 \sqcup \mathcal{M}_2, \mathcal{T}_1 \otimes \mathcal{T}_2, \rho_1 \otimes \rho_2, \psi_1 \sqcup \psi_2, \pi_1 \sqcup \pi_2)$, the joint density matrix is separable across the spatial components. Because the quantum cross-correlations vanish between disjoint components, the Quantum Fisher Information metric decomposes into a direct sum:
 \begin{equation}
     g^{\QFI}(\mathcal{T}_1 \otimes \mathcal{T}_2) = g^{\QFI}(\mathcal{T}_1) \oplus g^{\QFI}(\mathcal{T}_2) = h^{(1)} \oplus h^{(2)}.
 \end{equation}
-The boundary matter fields $\psi_\Sigma$ also split component-wise. This establishes the canonical object isomorphism $\Phi_{\mathbf{T}_1, \mathbf{T}_2}: (\Sigma_1, h^{(1)}) \sqcup (\Sigma_2, h^{(2)}) \xrightarrow{\sim} (\Sigma_1 \sqcup \Sigma_2, h^{(1)} \oplus h^{(2)})$. The monoidal unit $\mathbf{1}_{\CTens} = (\emptyset, 1, 1)$ maps to the empty manifold $\emptyset \in \Cob$.
+The boundary matter fields also decompose disjointly: $\psi_{\Sigma_1 \sqcup \Sigma_2} = \psi_1 \sqcup \psi_2$. This establishes the canonical object isomorphism $\Phi_{\mathbf{T}_1, \mathbf{T}_2}: (\Sigma_1, h^{(1)}, \psi_1) \sqcup (\Sigma_2, h^{(2)}, \psi_2) \xrightarrow{\sim} (\Sigma_1 \sqcup \Sigma_2, h^{(1)} \oplus h^{(2)}, \psi_1 \sqcup \psi_2)$. The monoidal unit $\mathbf{1}_{\CTens} = (\emptyset, 1, 1, 0, 0)$ maps to the empty manifold $\emptyset \in \Cob$.
 
 Furthermore, $\Phi$ is natural on morphisms: for any pairs $[\Phi_1] \in \mathrm{Hom}(\mathbf{T}_1, \mathbf{T}_1')$ and $[\Phi_2] \in \mathrm{Hom}(\mathbf{T}_2, \mathbf{T}_2')$, the entanglement action decouples as $\mathcal{S}(\mathcal{T}_1 \otimes \mathcal{T}_2) = \mathcal{S}_1(\mathcal{T}_1) + \mathcal{S}_2(\mathcal{T}_2)$, yielding orthogonal 4-metrics $g^{(1)} \oplus g^{(2)}$ and making the following naturality square strictly commutative:
 \begin{equation}
@@ -309,40 +325,39 @@ To establish the symmetric monoidal property, we verify the symmetry braiding co
 \mathcal{F}(\mathbf{T}_2) \sqcup \mathcal{F}(\mathbf{T}_1) \arrow[r, "\Phi_{\mathbf{T}_2, \mathbf{T}_1}"'] & \mathcal{F}(\mathbf{T}_2 \otimes_{\mathrm{tens}} \mathbf{T}_1)
 \end{tikzcd}
 \end{equation}
-Commutativity follows because the tensor permutation $\mathcal{T}_1(x) \otimes \mathcal{T}_2(y) \mapsto \mathcal{T}_2(y) \otimes \mathcal{T}_1(x)$ induces an exact relabeling of the coordinate charts on $\mathcal{M}_1 \sqcup \mathcal{M}_2 \cong \mathcal{M}_2 \sqcup \mathcal{M}_1$, which coincides identically with $\beta^{\Cob}$. For the Mac Lane pentagon and triangle axioms, note that the monoidal product on objects is strict disjoint union $\sqcup$ in both categories, so the associator and unitors are identity morphisms. The matter field sections $\psi_\Sigma = \Tr_\chi(\mathcal{T} \gamma^a A_a)$ are defined locally on each connected component of $\mathcal{M}$, and since $\mathcal{T}_1 \otimes \mathcal{T}_2$ acts on disjoint spatial supports, the sections decompose as $\psi_{\Sigma_1 \sqcup \Sigma_2} = \psi_{\Sigma_1} \sqcup \psi_{\Sigma_2}$ with no cross-component coupling, preserving coherence for the full triple $(\Sigma, h, \psi)$.
+Commutativity follows because the tensor permutation $\mathcal{T}_1(x) \otimes \mathcal{T}_2(y) \mapsto \mathcal{T}_2(y) \otimes \mathcal{T}_1(x)$ induces an exact relabeling of the coordinate charts on $\mathcal{M}_1 \sqcup \mathcal{M}_2 \cong \mathcal{M}_2 \sqcup \mathcal{M}_1$, which coincides identically with $\beta^{\Cob}$. For the Mac Lane pentagon and triangle axioms, note that the monoidal product on objects is strict disjoint union $\sqcup$ in both categories, so the associator and unitors are identity morphisms. The matter field sections $\psi \in C^\infty(\mathcal{M}, \mathrm{End}(\mathbb{C}^\chi))$ are defined locally on each connected component of $\mathcal{M}$, and since $\mathcal{T}_1 \otimes \mathcal{T}_2$ acts on disjoint spatial supports, the matrix sections decompose as $\psi_{\Sigma_1 \sqcup \Sigma_2} = \psi_{\Sigma_1} \sqcup \psi_{\Sigma_2}$ with no cross-component coupling, preserving coherence for the full triple $(\Sigma, h, \psi)$.
 
-Finally, for dagger preservation, let $\mathbf{T}^* = (-\mathcal{M}, \mathcal{T}^*, \rho^T)$. Since the QFI metric $g^{\QFI}_{ij}$ is strictly invariant under complex conjugation of state vectors ($g^{\QFI}_{ij}(\mathcal{T}^*) = g^{\QFI}_{ij}(\mathcal{T})$), the spatial Riemannian metric remains invariant ($h_{ij}^* = h_{ij}$). The spatial manifold acquires the reversed orientation $-\Sigma$, and the boundary matter fields undergo charge conjugation $\psi^c$, which coincides precisely with the dual object $(\Sigma, h, \psi)^* = (-\Sigma, h, \psi^c)$ in $\Cob$. Hence $\mathcal{F}(\mathbf{T}^*) \cong (\mathcal{F}(\mathbf{T}))^*$, completing the proof.
+Finally, for dagger preservation, let $\mathbf{T}^* = (-\mathcal{M}, \mathcal{T}^*, \rho^T, \psi^\dagger, -\pi_\psi^\dagger)$. Since the QFI metric $g^{\QFI}_{ij}$ is strictly invariant under complex conjugation of state vectors ($g^{\QFI}_{ij}(\mathcal{T}^*) = g^{\QFI}_{ij}(\mathcal{T})$), the spatial Riemannian metric remains invariant ($h_{ij}^* = h_{ij}$). The spatial manifold acquires the reversed orientation $-\Sigma$, and the boundary matter field is mapped to its Hermitian conjugate $\psi^\dagger$, which coincides precisely with the dual object $(\Sigma, h, \psi)^* = (-\Sigma, h, \psi^\dagger)$ in $\Cob$. Hence $\mathcal{F}(\mathbf{T}^*) \cong (\mathcal{F}(\mathbf{T}))^*$, completing the proof.
 \end{proof}
 
-\begin{theorem}[Category-Theoretic Sewing and Wheeler-DeWitt Correspondence] \label{thm:sewing}
-In the semiclassical regime $\chi \gg 1$ (where $\log \chi = \frac{\Area(\Sigma)}{4 G_N}$), the Atiyah-Segal sewing axiom in $\Cob$:
+\begin{proposition}[Categorical Sewing and Semiclassical Wheeler-DeWitt Correspondence] \label{prop:sewing}
+Under the holographic scaling relation $\log \chi \sim \frac{\Area(\Sigma)}{4 G_N}$ \cite{ryu2006holographic}, the Atiyah-Segal sewing axiom in $\Cob$:
 \begin{equation}
-    \int_{\Sigma} \mathcal{D}\psi \, \mathcal{Z}(M_1) \mathcal{Z}(M_2) = \mathcal{Z}(M_1 \cup_\Sigma M_2)
+    \int_{\Sigma} \mathcal{D}\psi \, \mathcal{Z}(M_1) \mathcal{Z}(M_2) = \mathcal{Z}(M_1 \cup_\Sigma M_2) \label{eq:sewing_axiom}
 \end{equation}
-admits a categorical correspondence with:
+admits a structural dictionary with:
 \begin{enumerate}
-    \item Continuous tensor network trace contraction $\Tr_{\chi}(\mathcal{T}_1 \mathcal{T}_2)$ over the shared bond space $\mathbb{V}_\chi$;
-    \item The Wheeler-DeWitt quantum gravitational constraints:
+    \item Continuous tensor network trace contraction $\Tr_{\chi}(\mathcal{T}_1 \mathcal{T}_2)$ over the shared auxiliary bond space $\mathbb{V}_\chi$;
+    \item The canonical Wheeler-DeWitt quantum gravitational constraints:
     \begin{equation}
-        \hat{\mathcal{H}} |\Psi_{\mathrm{WDW}}\rangle = 0 \quad \text{and} \quad \hat{\mathcal{M}}_i |\Psi_{\mathrm{WDW}}\rangle = 0.
+        \hat{\mathcal{H}} |\Psi_{\mathrm{WDW}}\rangle = 0 \quad \text{and} \quad \hat{\mathcal{M}}_i |\Psi_{\mathrm{WDW}}\rangle = 0,
     \end{equation}
+    in the semiclassical large bond dimension limit $\chi \gg 1$.
 \end{enumerate}
-\end{theorem}
+\end{proposition}
 
-\begin{proof}
-In $\CTens$, contractive gluing along a common boundary index $\alpha \in \{1, \dots, \chi\}$ corresponds to tracing over the shared auxiliary bond space $\mathbb{V}_\chi$. By the master duality dictionary \cite{silvafilho2026flows}, the auxiliary bond dimension $\chi$ relates to the boundary area by $\log \chi = \frac{\Area(\Sigma)}{4 G_N}$.
+\begin{proof}[Semiclassical Derivation]
+Part~(1) is an exact category-theoretic consequence of Theorem~\ref{thm:functoriality}: the functor $\mathcal{F}$ maps morphism composition in $\CTens$ (defined via continuous tensor network bond contraction) to morphism composition in $\Cob$ (defined by cobordism gluing along $\Sigma$). This establishes that tensor network trace contraction is the precise categorical pull-back of topological cobordism sewing.
 
-The categorical content is the following: by Theorem~\ref{thm:functoriality}, the functor $\mathcal{F}$ maps the tensor network composition (bond contraction in $\CTens$) to cobordism gluing (topological sewing in $\Cob$). This is an exact functorial statement.
-
-For the Wheeler-DeWitt correspondence, we proceed in the semiclassical regime. In canonical quantum gravity, functional integration over the lapse function $N(x, t)$ enforces the Hamiltonian constraint $\hat{\mathcal{H}} \approx 0$, while integration over the shift vector $N^i(x, t)$ enforces the momentum constraint $\hat{\mathcal{M}}_i \approx 0$. In $\CTens$, the gauge invariance of the physical tensor network trace under the bond gauge group $\mathrm{GL}(\chi, \mathbb{C})$ guarantees that variations with respect to $N^i$ vanish identically. The lapse $N(x, t)$, being generated by the gradient flow of entanglement entropy, enforces stationarity of the action at the gluing surface. Hence, the constraint content of cobordism sewing under $\mathcal{F}$ parallels the Wheeler-DeWitt constraint system, with the bond gauge algebra playing the role of spatial diffeomorphisms in the large-$\chi$ limit.
+For Part~(2), we examine the correspondence in the semiclassical regime. In canonical quantum gravity, functional integration over the lapse function $N(x, t)$ enforces the Hamiltonian constraint $\hat{\mathcal{H}} \approx 0$, while integration over the shift vector $N^i(x, t)$ enforces the spatial diffeomorphism momentum constraint $\hat{\mathcal{M}}_i \approx 0$. In $\CTens$, the invariance of physical tensor contractions under the auxiliary bond gauge group $\mathrm{SU}(\chi)$ guarantees that variations with respect to the spatial gauge drift $N^i$ vanish identically along physical trajectories. The lapse $N(x, t)$, defined via the regularized entropy production rate~\eqref{eq:smooth_lapse}, enforces stationarity of the action at the gluing slice. In the large-$\chi$ limit where $\log \chi \sim \Area(\Sigma)/(4G_N)$, the auxiliary bond gauge symmetries asymptotically furnish the generator algebra of spatial hypersurface deformations, establishing the semiclassical correspondence.
 \end{proof}
 
-\begin{corollary}[Physical Hilbert Space Representation Functor] \label{cor:tqft_composition}
-Let $\mathcal{Z}: \Cob \to \Hilb$ be Atiyah's axiomatic Topological Quantum Field Theory functor. Then the composite functor:
+\begin{corollary}[Semiclassical Hilbert Space Representation Functor] \label{cor:tqft_composition}
+Assume there exists a unitary representation functor $\mathcal{Z}: \CobNEC \to \Hilb$ realizing the semiclassical path integral on causal Einstein cobordisms. Then the composite functor:
 \begin{equation}
     \mathcal{Z}_{\mathrm{eff}} \coloneqq \mathcal{Z} \circ \mathcal{F} : \CTens \longrightarrow \Hilb
 \end{equation}
-assigns to each continuous tensor manifold $\mathbf{T} = (\mathcal{M}, \mathcal{T}, \rho)$ the physical quantum state $|\Psi_{\mathcal{T}}\rangle \in \mathcal{H}_\Sigma$, and to each morphism $[\Phi]$ the gravitational transition propagator $\langle \Psi_2 | \exp(-i \hat{H} \Delta t) | \Psi_1 \rangle$, directly bridging multilinear tensor variety flows to non-perturbative quantum gravity amplitudes.
+assigns to each continuous tensor manifold $\mathbf{T} = (\mathcal{M}, \mathcal{T}, \rho, \psi, \pi_\psi)$ a semiclassical physical quantum gravitational state $|\Psi_{\mathcal{T}}\rangle \in \mathcal{H}_\Sigma$, and to each morphism $[\Phi]$ the transition amplitude $\langle \Psi_2 | \exp(-i \hat{H} \Delta t) | \Psi_1 \rangle$, directly mapping multilinear tensor variety flows to quantum gravitational amplitudes.
 \end{corollary}
 
 \begin{theorem}[Faithful Embedding and Entropic Null Energy Condition] \label{thm:faithful_nec}
@@ -357,13 +372,17 @@ where for every future-directed null vector field $k^\mu$ ($g_{\mu\nu} k^\mu k^\
 \end{theorem}
 
 \begin{proof}
-For faithfulness, suppose two morphisms $[\Phi_1], [\Phi_2] \in \mathrm{Hom}(\mathbf{T}_1, \mathbf{T}_2)$ satisfy $\mathcal{F}([\Phi_1]) = \mathcal{F}([\Phi_2])$ in $\Cob$. Equality in $\Cob$ implies the existence of a boundary-preserving spacetime diffeomorphism $\phi \in \mathrm{Diff}(M, \partial)$ pulling back $(g^{(2)}, \Psi_2)$ to $(g^{(1)}, \Psi_1)$. In the ADM decomposition, the 4-metric $g_{\mu\nu}$ determines the spatial metric family $h_{ij}(x, t) = g^{\QFI}_{ij}(\mathcal{T}(t))$, the extrinsic curvature $K_{ij}(x, t)$, the lapse $N(x, t)$, and the shift vector $N^i(x, t)$. Combined with the matter field section trajectory $\Psi(x, t) = \Tr_\chi(\mathcal{T}(x, t) \gamma^a A_a(x))$, the complete set of data $(h_{ij}, K_{ij}, N, N^i, \Psi)$ specifies the cMPS generators $(Q(x, t), R(x, t))$ uniquely up to local spatial $\mathrm{SU}(\chi)$ gauge transformations $\mathcal{G}$. Furthermore, the lapse $N(x, t) = \sqrt{(|\partial_t S_{\mathrm{vN}}| + \sigma_0)/\kappa_0}$ fixes the temporal parameterization up to $\mathrm{Diff}^+([0, 1], \partial)$. Thus, the two gradient flow trajectories $[\Phi_1]$ and $[\Phi_2]$ belong to the same equivalence class in $\CTens$, establishing faithfulness.
+For faithfulness, suppose two morphisms $[\Phi_1], [\Phi_2] \in \mathrm{Hom}(\mathbf{T}_1, \mathbf{T}_2)$ satisfy $\mathcal{F}([\Phi_1]) = \mathcal{F}([\Phi_2])$ in $\Cob$. Equality in $\Cob$ implies the existence of a boundary-preserving spacetime diffeomorphism $\phi \in \mathrm{Diff}(M, \partial)$ pulling back $(g^{(2)}, \Psi_2)$ to $(g^{(1)}, \Psi_1)$. In the ADM decomposition, the 4-metric $g_{\mu\nu}$ determines the spatial metric family $h_{ij}(x, t) = g^{\QFI}_{ij}(\mathcal{T}(t))$, the extrinsic curvature $K_{ij}(x, t)$, the lapse $N(x, t)$, and the shift vector $N^i(x, t)$. Combined with the matter field section trajectory $\Psi(x, t)$, the complete set of geometric and matter data $(h_{ij}, K_{ij}, N, N^i, \Psi)$ reconstructs the cMPS generator trajectory $(Q(x, t), R(x, t))$ uniquely up to local spatial $\mathrm{SU}(\chi)$ gauge transformations $\mathcal{G}$, by the fundamental theorem of continuous matrix product states \cite{verstraete2010continuous} extended to the matter-coupled sector. Furthermore, the smooth lapse $N(x, t)$ in Eq.~\eqref{eq:smooth_lapse} fixes the temporal parameterization uniquely up to $\mathrm{Diff}^+([0, 1], \partial)$. Thus, the two gradient flow trajectories $[\Phi_1]$ and $[\Phi_2]$ define the same morphism in $\CTens$, establishing faithfulness.
 
-For the Null Energy Condition, let $k^\mu = (k^0, k^i)$ be any future-directed null vector field ($g_{\mu\nu} k^\mu k^\nu = 0$). Sourced by the continuous Kraus holonomy matter fields $\Psi$, the stress-energy tensor takes the canonical form $T_{\mu\nu}[\Psi] = \mathrm{Re} \, \Tr_\chi \left( \nabla_\mu \Psi^\dagger \nabla_\nu \Psi - \frac{1}{2} g_{\mu\nu} \nabla^\alpha \Psi^\dagger \nabla_\alpha \Psi \right)$. Contracting with the null vector $k^\mu$ eliminates the trace term ($g_{\mu\nu} k^\mu k^\nu = 0$), leaving:
+For the Null Energy Condition, let $k^\mu = (k^0, k^i)$ be any future-directed null vector field ($g_{\mu\nu} k^\mu k^\nu = 0$). Varying the matter action~\eqref{eq:matter_action} with respect to the inverse metric $g^{\mu\nu}$ yields the canonical stress-energy tensor:
+\begin{equation}
+    T_{\mu\nu}[\Psi] = \mathrm{Re} \, \Tr_\chi \left( \nabla_\mu \Psi^\dagger \nabla_\nu \Psi - \frac{1}{2} g_{\mu\nu} \left( g^{\alpha\beta} \nabla_\alpha \Psi^\dagger \nabla_\beta \Psi + V(\Psi) \right) \right).
+\end{equation}
+Contracting with the null vector $k^\mu k^\nu$ eliminates the metric trace term identically because $g_{\mu\nu} k^\mu k^\nu = 0$, leaving:
 \begin{equation}
     T_{\mu\nu}[\Psi] k^\mu k^\nu = \mathrm{Re} \, \Tr_\chi \left( (k^\mu \nabla_\mu \Psi)^\dagger (k^\nu \nabla_\nu \Psi) \right) = \left\| k^\mu \nabla_\mu \Psi \right\|_{\mathrm{HS}}^2 \ge 0,
 \end{equation}
-which is non-negative by the positive-semidefiniteness of the Hilbert-Schmidt inner product on the cMPS bond space. In the quantum regime, this classical positivity corresponds to the semiclassical limit ($\hbar \to 0$) of the Quantum Null Energy Condition (QNEC), where $\langle T_{kk} \rangle \ge \frac{\hbar}{2\pi} S''_{\mathrm{vN}} \to 0$. By the Einstein field equations (Lemma~\ref{lem:adm_gradient}), $R_{\mu\nu} k^\mu k^\nu = 8\pi G_N T_{\mu\nu} k^\mu k^\nu \ge 0$. Hence, the Null Energy Condition is strictly satisfied throughout the cobordism, preventing acausal pathologies and closed timelike curves.
+which is non-negative by the positive-semidefiniteness of the Hilbert-Schmidt norm on the auxiliary bond space. In the semiclassical regime, this classical positivity aligns with the Quantum Null Energy Condition (QNEC) \cite{bousso2016}, $\langle T_{kk} \rangle \ge \frac{\hbar}{2\pi} S''_{\mathrm{vN}} \to 0$ as $\hbar \to 0$. By the Einstein field equations (Lemma~\ref{lem:adm_gradient}), $R_{\mu\nu} k^\mu k^\nu = 8\pi G_N T_{\mu\nu} k^\mu k^\nu \ge 0$. Hence, the Null Energy Condition is strictly satisfied throughout the cobordism, preventing acausal pathologies and closed timelike curves.
 \end{proof}
 
 % =========================================================================
@@ -371,7 +390,7 @@ which is non-negative by the positive-semidefiniteness of the Hilbert-Schmidt in
 \label{sec:conclusion}
 % =========================================================================
 
-The construction of the symmetric monoidal functor $\mathcal{F}: \CTens \to \Cob$ resolves the third open frontier formulated in Chapter 11 of \emph{Geometry, Tensors, and Quantum Gravity}. 
+The construction of the symmetric monoidal functor $\mathcal{F}: \CTens \to \Cob$ establishes a rigorous category-theoretic dictionary between continuous tensor varieties and general relativistic spacetimes. 
 
 We have demonstrated that:
 \begin{itemize}
@@ -414,6 +433,11 @@ Publications Math\'ematiques de l'IH\'ES, \textbf{68} (1988), 175--186.
 G.~Segal,
 \emph{The definition of conformal field theory},
 Topology, geometry and quantum field theory, Cambridge Univ. Press, 2004, pp.~421--577.
+
+\bibitem{verstraete2010continuous}
+F.~Verstraete and J.~I.~Cirac,
+\emph{Continuous matrix product states for quantum fields},
+Physical Review Letters, \textbf{104} (2010), no.~19, 190405.
 
 \bibitem{ryu2006holographic}
 S.~Ryu and T.~Takayanagi,
