@@ -18,11 +18,48 @@
 *.vrb
 *.dvi
 
+# Lean 4 build artifacts
+.lake/
+*.olean
+*.ilean
+*.trace
+*.c.o
+*.c.o.noexport
+*.o
 
 # Python cache
 __pycache__/
 *.pyc
+*.pyo
+
+# Internal audit reports, ledgers, and scratch scripts
+*AUDIT*.md
+*LEDGER*.md
+CLAUDE*.md
+ADVERSARIAL*.md
+*SKELETON*.md
+*CHECK_STATE*.json
+*STRUCTURE*.md
+*.png
+*.jpg
+*.jpeg
+*.svg
+*.ps1
+audit_chapter.py
+run_claude_audit.py
+test.txt
+scratch/
+
+# Draft & auxiliary paper folders (code is inside formal_proofs_*)
+paper_yang_mills_mass_gap/
+paper_standard_model_masses/
+paper_geometric_measures_functional_tensors/
+paper_functorial_tensor_field_theory/
+navier_stokes_analytical/
+thesis_defense/
 
 # OS generated
 Thumbs.db
 .DS_Store
+
+
