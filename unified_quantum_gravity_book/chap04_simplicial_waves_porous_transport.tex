@@ -39,6 +39,7 @@
 
 
 \DeclareMathOperator*{\argmin}{argmin}
+\providecommand{\doi}[1]{\href{https://doi.org/#1}{\texttt{doi:#1}}}
 \providecommand{\Hyp}{\mathbb{H}}
 \providecommand{\Sph}{\mathbb{S}}
 \providecommand{\II}{\mathrm{II}}
@@ -107,13 +108,14 @@ The operator $-\Delta_{\Delta_m}^\alpha$ is linear, symmetric, and positive semi
 \end{proposition}
 
 \begin{proof}
-Expanding the inner product $\langle u, -\Delta_{\Delta_m}^\alpha u \rangle_{L^2} = \int_{\mathbb{R}^{m-1}} u(\mathbf{x}) (-\Delta_{\Delta_m}^\alpha u(\mathbf{x})) d\mathbf{x}$:
+Expanding the inner product $\langle u, -\Delta_{\Delta_m}^\alpha u \rangle_{L^2} = \int_{\mathbb{R}^{m-1}} u^*(\mathbf{x}) (-\Delta_{\Delta_m}^\alpha u(\mathbf{x})) d\mathbf{x}$:
 \begin{align*}
-\langle u, -\Delta_{\Delta_m}^\alpha u \rangle &= \frac{1}{2\alpha^2 I_m(\alpha)}\int_{\Delta_{m-1}(\alpha)} \binom{\alpha}{\mathbf{y}} \left[ \int_{\mathbb{R}^{m-1}} \Big(2|u(\mathbf{x})|^2 - u(\mathbf{x})u(\mathbf{x}+\mathbf{y}) - u(\mathbf{x})u(\mathbf{x}-\mathbf{y})\Big) d\mathbf{x} \right] d\mathbf{y}.
+\langle u, -\Delta_{\Delta_m}^\alpha u \rangle &= \frac{1}{2\alpha^2 I_m(\alpha)}\int_{\Delta_{m-1}(\alpha)} \binom{\alpha}{\mathbf{y}} \notag \\
+&\quad \times \left[ \int_{\mathbb{R}^{m-1}} \Big(2|u(\mathbf{x})|^2 - u^*(\mathbf{x})u(\mathbf{x}+\mathbf{y}) - u^*(\mathbf{x})u(\mathbf{x}-\mathbf{y})\Big) d\mathbf{x} \right] d\mathbf{y}.
 \end{align*}
-Using the translation invariance $\int u(\mathbf{x})u(\mathbf{x}\pm\mathbf{y})d\mathbf{x} = \int u(\mathbf{x}\mp\mathbf{y})u(\mathbf{x})d\mathbf{x}$:
+Using the translation invariance $\int u^*(\mathbf{x})u(\mathbf{x}-\mathbf{y})d\mathbf{x} = \int u^*(\mathbf{x}+\mathbf{y})u(\mathbf{x})d\mathbf{x}$:
 \begin{equation}
-\int_{\mathbb{R}^{m-1}} \Big(2|u(\mathbf{x})|^2 - 2u(\mathbf{x})u(\mathbf{x}+\mathbf{y})\Big) d\mathbf{x} = \int_{\mathbb{R}^{m-1}} |u(\mathbf{x}+\mathbf{y}) - u(\mathbf{x})|^2 d\mathbf{x}.
+\int_{\mathbb{R}^{m-1}} \Big(2|u(\mathbf{x})|^2 - u^*(\mathbf{x})u(\mathbf{x}+\mathbf{y}) - u(\mathbf{x})u^*(\mathbf{x}+\mathbf{y})\Big) d\mathbf{x} = \int_{\mathbb{R}^{m-1}} |u(\mathbf{x}+\mathbf{y}) - u(\mathbf{x})|^2 d\mathbf{x}.
 \end{equation}
 Since $\binom{\alpha}{\mathbf{y}} > 0$ on the interior of $\Delta_{m-1}(\alpha)$, the integral is strictly non-negative, vanishing if and only if $u$ is constant.
 \end{proof}
@@ -148,9 +150,9 @@ where $\mathbf{A}_{m-1}$ is the $(m-1)\times(m-1)$ Cartan matrix of the simple L
 We formulate the Cauchy problem for the non-local Fractional Simplicial NLSE on $\mathbb{R}^{m-1} \times \mathbb{R}^+$:
 \begin{equation}
 \label{eq:nlse_main}
-i \hbar \frac{\partial \psi(\mathbf{x}, t)}{\partial t} = -\frac{\hbar^2}{2M}\Delta_{\Delta_m}^\alpha \psi(\mathbf{x}, t) + V(\mathbf{x})\psi(\mathbf{x}, t) - \kappa |\psi(\mathbf{x}, t)|^{2\sigma}\psi(\mathbf{x}, t),
+i \hbar \frac{\partial \psi(\mathbf{x}, t)}{\partial t} = -\frac{\hbar^2}{2M}\Delta_{\Delta_m}^\alpha \psi(\mathbf{x}, t) + V(\mathbf{x})\psi(\mathbf{x}, t) - \kappa |\psi(\mathbf{x}, t)|^{2p}\psi(\mathbf{x}, t),
 \end{equation}
-where $M > 0$ is the effective mass, $V(\mathbf{x})$ is an external real-valued potential, $\kappa \in \mathbb{R}$ is the non-linear coupling constant ($\kappa > 0$ focusing, $\kappa < 0$ defocusing), and $\sigma > 0$ is the non-linearity exponent.
+where $M > 0$ is the effective mass, $V(\mathbf{x})$ is an external real-valued potential, $\kappa \in \mathbb{R}$ is the non-linear coupling constant ($\kappa > 0$ focusing, $\kappa < 0$ defocusing), and $p > 0$ is the non-linearity exponent.
 
 \subsection{Fundamental Conservation Laws}
 
@@ -164,7 +166,7 @@ Let $\psi(\mathbf{x}, t)$ be a smooth solution to \eqref{eq:nlse_main} decaying 
     \item \textbf{Conservation of Simplicial Energy (Hamiltonian):}
     \begin{align}
     \mathcal{E}[\psi(t)] &\coloneqq \frac{\hbar^2}{2M}\int_{\mathbb{R}^{m-1}} \sigma_{\Delta_m}^\alpha(\mathbf{k}) |\widehat{\psi}(\mathbf{k}, t)|^2 d\mathbf{k} + \int_{\mathbb{R}^{m-1}} V(\mathbf{x})|\psi(\mathbf{x}, t)|^2 d\mathbf{x} \nonumber\\
-    &\quad - \frac{\kappa}{\sigma+1}\int_{\mathbb{R}^{m-1}} |\psi(\mathbf{x}, t)|^{2\sigma+2} d\mathbf{x} = \mathcal{E}[\psi(0)].
+    &\quad - \frac{\kappa}{p+1}\int_{\mathbb{R}^{m-1}} |\psi(\mathbf{x}, t)|^{2p+2} d\mathbf{x} = \mathcal{E}[\psi(0)].
     \end{align}
 \end{enumerate}
 \end{theorem}
@@ -184,7 +186,7 @@ Let $\psi(\mathbf{x}, t)$ be a smooth solution to \eqref{eq:nlse_main} decaying 
     
     \item Differentiating $\mathcal{E}[\psi(t)]$ with respect to $t$:
     \begin{equation}
-    \frac{d\mathcal{E}}{dt} = 2\operatorname{Re}\int_{\mathbb{R}^{m-1}} \psi_t^* \left[ -\frac{\hbar^2}{2M}\Delta_{\Delta_m}^\alpha \psi + V(\mathbf{x})\psi - \kappa |\psi|^{2\sigma}\psi \right] d\mathbf{x}.
+    \frac{d\mathcal{E}}{dt} = 2\operatorname{Re}\int_{\mathbb{R}^{m-1}} \psi_t^* \left[ -\frac{\hbar^2}{2M}\Delta_{\Delta_m}^\alpha \psi + V(\mathbf{x})\psi - \kappa |\psi|^{2p}\psi \right] d\mathbf{x}.
     \end{equation}
     Substituting the equation of motion $i\hbar \psi_t = \mathcal{H}\psi$:
     \begin{equation}
@@ -195,7 +197,7 @@ Let $\psi(\mathbf{x}, t)$ be a smooth solution to \eqref{eq:nlse_main} decaying 
 
 \subsection{Modulational Instability on Simplicial Torus}
 
-Consider a uniform plane-wave background state with amplitude $\psi_0(\mathbf{x}, t) = \sqrt{\rho_0} e^{-i \mu_0 t / \hbar}$, where the chemical potential is $\mu_0 = -\kappa \rho_0^\sigma$. We perturb the background as
+Consider a uniform plane-wave background state with amplitude $\psi_0(\mathbf{x}, t) = \sqrt{\rho_0} e^{-i \mu_0 t / \hbar}$, where the chemical potential is $\mu_0 = -\kappa \rho_0^p$. We perturb the background as
 \begin{equation}
 \psi(\mathbf{x}, t) = \left(\sqrt{\rho_0} + \delta u(\mathbf{x}, t) + i \delta v(\mathbf{x}, t)\right) e^{-i \mu_0 t / \hbar}.
 \end{equation}
@@ -203,13 +205,13 @@ Consider a uniform plane-wave background state with amplitude $\psi_0(\mathbf{x}
 \begin{theorem}[Simplicial Modulational Instability]
 Linearizing \eqref{eq:nlse_main} with respect to perturbations $(\delta u, \delta v) \propto e^{i(\mathbf{k}\cdot\mathbf{x} - \Omega t)}$, the perturbation frequency satisfies the dispersion relation:
 \begin{equation}
-\hbar^2 \Omega^2(\mathbf{k}) = \frac{\hbar^2 \sigma_{\Delta_m}^\alpha(\mathbf{k})}{2M} \left[ \frac{\hbar^2 \sigma_{\Delta_m}^\alpha(\mathbf{k})}{2M} - 2\kappa\sigma \rho_0^\sigma \right].
+\hbar^2 \Omega^2(\mathbf{k}) = \frac{\hbar^2 \sigma_{\Delta_m}^\alpha(\mathbf{k})}{2M} \left[ \frac{\hbar^2 \sigma_{\Delta_m}^\alpha(\mathbf{k})}{2M} - 2\kappa p \rho_0^p \right].
 \end{equation}
 In the focusing regime ($\kappa > 0$), the plane wave is modulationally unstable ($\Omega^2 < 0$) for wavevectors satisfying
 \begin{equation}
-\sigma_{\Delta_m}^\alpha(\mathbf{k}) < \frac{4M\kappa\sigma \rho_0^\sigma}{\hbar^2},
+\sigma_{\Delta_m}^\alpha(\mathbf{k}) < \frac{4M\kappa p \rho_0^p}{\hbar^2},
 \end{equation}
-with maximum instability growth rate $\gamma_{\max} = \frac{\kappa\sigma \rho_0^\sigma}{\hbar}$ attained on the simplicial resonant manifold.
+with maximum instability growth rate $\gamma_{\max} = \frac{\kappa p \rho_0^p}{\hbar}$ attained on the simplicial resonant manifold.
 \end{theorem}
 
 \subsection{Simplicial Solitary Waves and Anisotropic Solitons}
@@ -217,7 +219,7 @@ with maximum instability growth rate $\gamma_{\max} = \frac{\kappa\sigma \rho_0^
 For stationary solitary wave states $\psi(\mathbf{x}, t) = e^{-i\mu t/\hbar} \phi(\mathbf{x})$ with $\mu < 0$:
 \begin{equation}
 \label{eq:soliton_profile}
--\frac{\hbar^2}{2M}\Delta_{\Delta_m}^\alpha \phi(\mathbf{x}) + (V(\mathbf{x}) - \mu)\phi(\mathbf{x}) = \kappa |\phi(\mathbf{x})|^{2\sigma}\phi(\mathbf{x}).
+-\frac{\hbar^2}{2M}\Delta_{\Delta_m}^\alpha \phi(\mathbf{x}) + (V(\mathbf{x}) - \mu)\phi(\mathbf{x}) = \kappa |\phi(\mathbf{x})|^{2p}\phi(\mathbf{x}).
 \end{equation}
 
 \begin{theorem}[Symmetry of Simplicial Solitons]
@@ -313,11 +315,35 @@ Prior to this formulation, anomalous diffusion in anisotropic media with non-Euc
 In this paper, we have formulated and analyzed the physical dynamics governed by the Fractional Simplicial Laplacian introduced in \cite{silvafilho2026simplex}. We established the conservation laws and anisotropic solitary wave solutions of the Nonlinear Simplicial Schr\"odinger Equation, and derived the exact Mittag-Leffler propagator and Cartan permeability tensor for anomalous porous diffusion. Future research will explore split-step Fourier numerical solvers and experimental transport validation in lithographic microfluidic rock networks.
 
 \begin{thebibliography}{99}
-\bibitem{silvafilho2026simplex} Reinaldo Maia Silva-Filho, \emph{Analytic Continuation of Pascal's Simplex: Continuous Multinomial Integrals, Polytope Boundary Recurrences, and Simplicial Fractional Calculus}, Paper I of the Series, 2026.
-\bibitem{podlubny1998} I. Podlubny, \emph{Fractional Differential Equations}, Academic Press, San Diego, 1998.
-\bibitem{samko1993} S. G. Samko, A. A. Kilbas, and O. I. Marichev, \emph{Fractional Integrals and Derivatives: Theory and Applications}, Gordon and Breach, Yverdon, 1993.
-\bibitem{metzler2000} R. Metzler and J. Klafter, \emph{The random walk's guide to anomalous diffusion: a fractional dynamics approach}, Physics Reports, 339(1), 1--77, 2000.
-\bibitem{laskin2000} N. Laskin, \emph{Fractional quantum mechanics and L\'evy path integrals}, Physics Letters A, 268(4--6), 298--305, 2000.
+
+\bibitem{silvafilho2026simplex}
+R.~M. Silva-Filho,
+\emph{Analytic Continuation of Pascal's Simplex: Continuous Multinomial Integrals, Polytope Boundary Recurrences, and Simplicial Fractional Calculus},
+Treatise Chapter~03, Universidade Federal de Lavras, 2026.
+
+\bibitem{podlubny1998}
+I.~Podlubny,
+\emph{Fractional Differential Equations: An Introduction to Fractional Derivatives, Fractional Differential Equations, to Methods of Their Solution and Some of Their Applications},
+Mathematics in Science and Engineering, Vol.~198, Academic Press, San Diego, 1999,
+\doi{10.1016/S0076-5392(99)X8001-5}.
+
+\bibitem{samko1993}
+S.~G. Samko, A.~A. Kilbas, and O.~I. Marichev,
+\emph{Fractional Integrals and Derivatives: Theory and Applications},
+Gordon and Breach Science Publishers, Yverdon, 1993, ISBN~978-2-88124-864-1.
+
+\bibitem{metzler2000}
+R.~Metzler and J.~Klafter,
+\emph{The random walk's guide to anomalous diffusion: a fractional dynamics approach},
+Physics Reports, \textbf{339} (2000), no.~1, 1--77,
+\doi{10.1016/S0370-1573(00)00070-3}.
+
+\bibitem{laskin2000}
+N.~Laskin,
+\emph{Fractional quantum mechanics and L\'evy path integrals},
+Physics Letters A, \textbf{268} (2000), no.~4--6, 298--305,
+\doi{10.1016/S0375-9601(00)00201-2}.
+
 \end{thebibliography}
 
 \end{document}

@@ -73,7 +73,7 @@ In modern analysis and mathematical physics, linear differential and integral op
     \item \textbf{Geometric Data Science on Hypergraphs:} Dimensionality reduction of higher-order multi-way relational structures (simplicial complexes) into Euclidean visual spaces.
 \end{enumerate}
 
-Classical fractional calculus operates via endomorphic Riesz multipliers $|\mathbf{k}|^\alpha$ on $\mathbb{R}^d$. In this paper, we construct and analyze an inter-dimensional family of non-local operators based on the continuous multinomial Beta-kernel on the standard $(m-1)$-simplex:
+Classical fractional calculus operates via endomorphic Riesz multipliers $|\mathbf{k}|^\alpha$ on $\mathbb{R}^d$ \cite{samko1993}. In this paper, we construct and analyze an inter-dimensional family of non-local operators based on the continuous multinomial Beta-kernel on the standard $(m-1)$-simplex \cite{silvafilho2026simplex, silvafilho2026waves}:
 \begin{equation}
 \Delta_{m-1}(\alpha) \coloneqq \left\{\mathbf{y} \in \mathbb{R}_{\ge 0}^{m-1} \;\middle|\; \sum_{j=1}^{m-1} y_j \le \alpha\right\}, \quad \binom{\alpha}{\mathbf{y}} = \frac{\Gamma(\alpha+1)}{\prod_{j=1}^m \Gamma(y_j+1)}.
 \end{equation}
@@ -88,7 +88,7 @@ Let $m > n \ge 1$ be positive integers. Let $\mathbf{P} \in \mathbb{R}^{n \times
 \end{equation}
 
 \begin{definition}[Fractional Radon--Beta Transform]
-For fractional order $\alpha > 0$ and $f \in \mathcal{S}(\mathbb{R}^m)$, the Fractional Radon--Beta Transform $\mathcal{R}_{m \to n}^\alpha : \mathcal{S}(\mathbb{R}^m) \to \mathcal{S}(\mathbb{R}^n)$ is defined by
+Generalizing classical integral geometry and Radon projections \cite{helgason2011}, for fractional order $\alpha > 0$ and $f \in \mathcal{S}(\mathbb{R}^m)$, the Fractional Radon--Beta Transform $\mathcal{R}_{m \to n}^\alpha : \mathcal{S}(\mathbb{R}^m) \to \mathcal{S}(\mathbb{R}^n)$ is defined by
 \begin{equation}
 \label{eq:radon_beta_def}
 \mathcal{R}_{m \to n}^\alpha f(\mathbf{z}) \coloneqq \frac{1}{I_m(\alpha)} \int_{\Delta_{m-1}(\alpha)} \binom{\alpha}{\mathbf{y}} f\left(\mathbf{P}^+ \mathbf{z} + \mathbf{y}\right) d\mathbf{y}, \quad \mathbf{z} \in \mathbb{R}^n,
@@ -99,17 +99,21 @@ where $I_m(\alpha) = \int_{\Delta_{m-1}(\alpha)} \binom{\alpha}{\mathbf{y}} d\ma
 \begin{proposition}[Fourier Multiplier Representation]
 Let $\boldsymbol{\xi} \in \mathbb{R}^n$ denote the dual frequency coordinates. The Fourier transform $\mathcal{F}_{\mathbb{R}^n}\{\mathcal{R}_{m \to n}^\alpha f\}(\boldsymbol{\xi})$ satisfies:
 \begin{equation}
-\widehat{\mathcal{R}_{m \to n}^\alpha f}(\boldsymbol{\xi}) = \widehat{\mathcal{K}}_\alpha(\mathbf{P}^T \boldsymbol{\xi}) \cdot \int_{\operatorname{ker}(\mathbf{P})} \widehat{f}\left(\mathbf{P}^T \boldsymbol{\xi} + \boldsymbol{\eta}\right) d\boldsymbol{\eta},
+\widehat{\mathcal{R}_{m \to n}^\alpha f}(\boldsymbol{\xi}) = (2\pi)^{n-m} \sqrt{\det(\mathbf{P}\mathbf{P}^T)} \int_{\operatorname{ker}(\mathbf{P})} \widehat{f}\left(\mathbf{P}^T \boldsymbol{\xi} + \boldsymbol{\eta}\right) \widehat{\mathcal{K}}_\alpha\left(-\mathbf{P}^T \boldsymbol{\xi} - \boldsymbol{\eta}\right) d\boldsymbol{\eta},
 \end{equation}
 where $\widehat{\mathcal{K}}_\alpha(\mathbf{k}) = \left(\frac{1}{m}\sum_{j=1}^m e^{-ik_j}\right)^\alpha$ is the continuous simplicial Beta-kernel Fourier symbol.
 \end{proposition}
 
 \begin{proof}
-Applying the definition of the Fourier transform on $\mathbb{R}^n$:
+Applying the definition of the Fourier transform on $\mathbb{R}^n$ and expanding $f$ via the inverse Fourier transform on $\mathbb{R}^m$:
 \begin{equation}
 \widehat{\mathcal{R}_{m \to n}^\alpha f}(\boldsymbol{\xi}) = \int_{\mathbb{R}^n} e^{-i\boldsymbol{\xi}\cdot\mathbf{z}} \left[ \frac{1}{I_m(\alpha)}\int_{\Delta_{m-1}(\alpha)} \binom{\alpha}{\mathbf{y}} f(\mathbf{P}^+ \mathbf{z} + \mathbf{y}) d\mathbf{y} \right] d\mathbf{z}.
 \end{equation}
-Changing variables $\mathbf{x} = \mathbf{P}^+ \mathbf{z} + \mathbf{y} \in \mathbb{R}^m$, decomposing $\mathbb{R}^m = \operatorname{range}(\mathbf{P}^+) \oplus \operatorname{ker}(\mathbf{P})$, and utilizing the projection property $\mathbf{P} \mathbf{P}^+ = \mathbf{I}_n$, the integration in the kernel factorizes into the product of $\widehat{\mathcal{K}}_\alpha(\mathbf{P}^T \boldsymbol{\xi})$ and the transverse fiber integral of $\widehat{f}$.
+Substituting $f(\mathbf{P}^+\mathbf{z} + \mathbf{y}) = (2\pi)^{-m}\int_{\mathbb{R}^m} \widehat{f}(\mathbf{k}) e^{i\mathbf{k}\cdot(\mathbf{P}^+\mathbf{z} + \mathbf{y})} d\mathbf{k}$ and exchanging the order of integration:
+\begin{equation}
+\widehat{\mathcal{R}_{m \to n}^\alpha f}(\boldsymbol{\xi}) = \frac{1}{(2\pi)^m}\int_{\mathbb{R}^m} \widehat{f}(\mathbf{k}) \left[\int_{\mathbb{R}^n} e^{i((\mathbf{P}^+)^T\mathbf{k} - \boldsymbol{\xi})\cdot\mathbf{z}} d\mathbf{z}\right] \left[\frac{1}{I_m(\alpha)}\int_{\Delta_{m-1}(\alpha)} \binom{\alpha}{\mathbf{y}} e^{i\mathbf{k}\cdot\mathbf{y}} d\mathbf{y}\right] d\mathbf{k}.
+\end{equation}
+The $\mathbf{z}$-integral yields $(2\pi)^n \delta((\mathbf{P}^+)^T\mathbf{k} - \boldsymbol{\xi})$, enforcing $\mathbf{k} = \mathbf{P}^T\boldsymbol{\xi} + \boldsymbol{\eta}$ for $\boldsymbol{\eta} \in \operatorname{ker}(\mathbf{P})$, with Jacobian factor $(2\pi)^{n-m}\sqrt{\det(\mathbf{P}\mathbf{P}^T)}$. The $\mathbf{y}$-integral identifies as the continuous Beta-kernel Fourier symbol $\widehat{\mathcal{K}}_\alpha(-\mathbf{k}) = \widehat{\mathcal{K}}_\alpha(-\mathbf{P}^T\boldsymbol{\xi} - \boldsymbol{\eta})$, yielding the asserted coupled fiber integral.
 \end{proof}
 
 % ==============================================================================
@@ -118,7 +122,7 @@ Changing variables $\mathbf{x} = \mathbf{P}^+ \mathbf{z} + \mathbf{y} \in \mathb
 
 \begin{theorem}[Sharp Fractional Sobolev Trace Theorem]
 \label{thm:sobolev_trace}
-Let $s \in \mathbb{R}$ and $\alpha > 0$. For any $m > n$, the Fractional Radon--Beta operator extends to a bounded linear operator between fractional Sobolev spaces:
+Extending classical trace theory for Sobolev embeddings \cite{adams2003}, let $s \in \mathbb{R}$ and $\alpha > 0$. For any $m > n$, the Fractional Radon--Beta operator extends to a bounded linear operator between fractional Sobolev spaces:
 \begin{equation}
 \mathcal{R}_{m \to n}^\alpha : H^s(\mathbb{R}^m) \longrightarrow H^{s + \alpha - \frac{m-n}{2}}(\mathbb{R}^n),
 \end{equation}
@@ -133,22 +137,23 @@ By definition of the Sobolev norm on $H^\sigma(\mathbb{R}^n)$:
 \begin{equation}
 \|\mathcal{R}_{m \to n}^\alpha f\|_{H^{s + \alpha - \frac{m-n}{2}}}^2 = \int_{\mathbb{R}^n} (1 + |\boldsymbol{\xi}|^2)^{s + \alpha - \frac{m-n}{2}} |\widehat{\mathcal{R}_{m \to n}^\alpha f}(\boldsymbol{\xi})|^2 d\boldsymbol{\xi}.
 \end{equation}
-Using the Cauchy--Schwarz inequality on the fiber integral over $\boldsymbol{\eta} \in \operatorname{ker}(\mathbf{P}) \cong \mathbb{R}^{m-n}$:
+Using the Cauchy--Schwarz inequality on the transverse fiber integral over $\boldsymbol{\eta} \in \operatorname{ker}(\mathbf{P}) \cong \mathbb{R}^{m-n}$, with the algebraic decay of the Beta-kernel $|\widehat{\mathcal{K}}_\alpha(-\mathbf{P}^T\boldsymbol{\xi} - \boldsymbol{\eta})| \le C(1 + |\mathbf{P}^T\boldsymbol{\xi} + \boldsymbol{\eta}|^2)^{-\alpha/2}$:
+\begin{align*}
+\left|\widehat{\mathcal{R}_{m \to n}^\alpha f}(\boldsymbol{\xi})\right|^2 &\le C \left(\int_{\mathbb{R}^{m-n}} (1 + |\mathbf{P}^T\boldsymbol{\xi} + \boldsymbol{\eta}|^2)^{-s - \alpha} d\boldsymbol{\eta}\right) \\
+&\quad \times \int_{\mathbb{R}^{m-n}} (1 + |\mathbf{P}^T\boldsymbol{\xi} + \boldsymbol{\eta}|^2)^s |\widehat{f}(\mathbf{P}^T\boldsymbol{\xi} + \boldsymbol{\eta})|^2 d\boldsymbol{\eta}.
+\end{align*}
+Evaluating the transverse integral for $s + \alpha > \frac{m-n}{2}$:
 \begin{equation}
-\left| \int_{\operatorname{ker}(\mathbf{P})} \widehat{f}(\mathbf{P}^T\boldsymbol{\xi} + \boldsymbol{\eta}) d\boldsymbol{\eta} \right|^2 \le \left(\int_{\mathbb{R}^{m-n}} (1 + |\mathbf{P}^T\boldsymbol{\xi} + \boldsymbol{\eta}|^2)^{-s} d\boldsymbol{\eta}\right) \cdot \int_{\mathbb{R}^{m-n}} (1 + |\mathbf{P}^T\boldsymbol{\xi} + \boldsymbol{\eta}|^2)^s |\widehat{f}(\dots)|^2 d\boldsymbol{\eta}.
+\int_{\mathbb{R}^{m-n}} (1 + |\boldsymbol{\xi}|^2 + |\boldsymbol{\eta}|^2)^{-s - \alpha} d\boldsymbol{\eta} \le C (1 + |\boldsymbol{\xi}|^2)^{-(s + \alpha) + \frac{m-n}{2}}.
 \end{equation}
-Evaluating the transverse integral:
-\begin{equation}
-\int_{\mathbb{R}^{m-n}} (1 + |\boldsymbol{\xi}|^2 + |\boldsymbol{\eta}|^2)^{-s} d\boldsymbol{\eta} \le C (1 + |\boldsymbol{\xi}|^2)^{-s + \frac{m-n}{2}}.
-\end{equation}
-Combining this with the algebraic decay of the Beta-kernel symbol $|\widehat{\mathcal{K}}_\alpha(\mathbf{P}^T\boldsymbol{\xi})|^2 \le C (1 + |\boldsymbol{\xi}|^2)^{-\alpha}$:
+Multiplying by the Sobolev weight $(1 + |\boldsymbol{\xi}|^2)^{s + \alpha - \frac{m-n}{2}}$ produces exact exponent cancellation:
 \begin{align*}
 \|\mathcal{R}_{m \to n}^\alpha f\|_{H^{s+\alpha-\frac{m-n}{2}}}^2 
-&\le C \int_{\mathbb{R}^n} (1+|\boldsymbol{\xi}|^2)^{s+\alpha-\frac{m-n}{2}} (1+|\boldsymbol{\xi}|^2)^{-\alpha} (1+|\boldsymbol{\xi}|^2)^{-s+\frac{m-n}{2}} \notag \\
-&\quad \times \left[\int_{\mathbb{R}^{m-n}} (1+|\mathbf{P}^T\boldsymbol{\xi}+\boldsymbol{\eta}|^2)^s |\widehat{f}|^2 d\boldsymbol{\eta}\right] d\boldsymbol{\xi} \\
+&\le C \int_{\mathbb{R}^n} (1+|\boldsymbol{\xi}|^2)^{s+\alpha-\frac{m-n}{2}} (1+|\boldsymbol{\xi}|^2)^{-(s+\alpha)+\frac{m-n}{2}} \notag \\
+&\quad \times \left[\int_{\mathbb{R}^{m-n}} (1+|\mathbf{P}^T\boldsymbol{\xi}+\boldsymbol{\eta}|^2)^s |\widehat{f}(\mathbf{P}^T\boldsymbol{\xi}+\boldsymbol{\eta})|^2 d\boldsymbol{\eta}\right] d\boldsymbol{\xi} \\
 &= C \int_{\mathbb{R}^m} (1 + |\mathbf{k}|^2)^s |\widehat{f}(\mathbf{k})|^2 d\mathbf{k} = C \|f\|_{H^s(\mathbb{R}^m)}^2,
 \end{align*}
-which establishes the sharp boundedness.
+which establishes the sharp Sobolev continuity.
 \end{proof}
 
 \begin{corollary}[Critical Isomorphic Trace Parameter]
@@ -173,7 +178,7 @@ For dimensional elevation ($m < n$), the dual adjoint operator $\mathcal{E}_{m \
 Consider a multiscale coupled physical system consisting of a 3D bulk domain $\Omega \subset \mathbb{R}^3$, an active 2D interface membrane $\Gamma \subset \mathbb{R}^2$, and a 1D conductive filament $\Sigma \subset \mathbb{R}^1$. Let $u(\mathbf{x}, t)$, $v(\mathbf{y}, t)$, and $w(z, t)$ denote the respective state fields.
 
 \begin{definition}[Coupled Inter-Dimensional Transport System]
-We formulate the transmission-coupled dynamical system:
+Adapting transmission boundary conditions and multiscale interface parabolic systems \cite{evans2010}, we formulate the transmission-coupled dynamical system:
 \begin{equation}
 \label{eq:coupled_system}
 \begin{cases}
@@ -221,11 +226,11 @@ Combining with the negative-definite Dirichlet integrals yields monotonic dissip
 Let $\operatorname{Gr}(n, m)$ denote the Grassmannian manifold of $n$-dimensional subspaces in $\mathbb{R}^m$. For projection matrix $\mathbf{P}_\theta$, let $g_\theta(\mathbf{z}) = \mathcal{R}_{m \to n, \theta}^\alpha f(\mathbf{z})$ be the observed simplicial projection.
 
 \begin{theorem}[Exact Dual Inversion Formula and Gibbs Suppression]
-For any test function $f \in \mathcal{S}(\mathbb{R}^m)$, $f$ is uniquely and stably reconstructed from $\{g_\theta\}_{\theta \in \operatorname{Gr}(n, m)}$ via:
+For any test function $f \in \mathcal{S}(\mathbb{R}^m)$, $f$ is uniquely and stably reconstructed from the family of simplicial projections $\{g_\theta\}_{\theta \in \operatorname{Gr}(n, m)}$ via:
 \begin{equation}
-f(\mathbf{x}) = \frac{1}{(2\pi)^m}\int_{\operatorname{Gr}(n, m)} d\mu(\theta) \int_{\mathbb{R}^n} e^{i \boldsymbol{\xi}\cdot \mathbf{P}_\theta \mathbf{x}} |\boldsymbol{\xi}|^{m-n} \frac{\widehat{g}_\theta(\boldsymbol{\xi})}{\widehat{\mathcal{K}}_\alpha(\mathbf{P}_\theta^T \boldsymbol{\xi})} \, d\boldsymbol{\xi}.
+f(\mathbf{x}) = \frac{1}{(2\pi)^m}\int_{\mathbb{R}^m} e^{i \mathbf{k}\cdot \mathbf{x}} \frac{1}{\widehat{\mathcal{K}}_\alpha(-\mathbf{k})} \mathcal{F}_{\mathbb{R}^m}\left\{ \int_{\operatorname{Gr}(n, m)} d\mu(\theta) \int_{\mathbb{R}^n} e^{i \boldsymbol{\xi}\cdot \mathbf{P}_\theta (\cdot)} |\boldsymbol{\xi}|^{m-n} \widehat{g}_\theta(\boldsymbol{\xi}) \, d\boldsymbol{\xi} \right\}(\mathbf{k}) \, d\mathbf{k}.
 \end{equation}
-Furthermore, because $\widehat{\mathcal{K}}_\alpha(\mathbf{k})$ decays smoothly as $\mathcal{O}(|\mathbf{k}|^{-\alpha})$ without discontinuity, reconstruction of discontinuous edge profiles avoids Gibbs ringing phenomena, providing unconditional $L^2$-error bounds.
+Furthermore, because $\widehat{\mathcal{K}}_\alpha(\mathbf{k})$ decays smoothly as $\mathcal{O}(|\mathbf{k}|^{-\alpha})$ without jump discontinuities, the deconvolution filter avoids Gibbs ringing phenomena across sharp interfaces, providing unconditional $L^2$-error bounds.
 \end{theorem}
 
 % ==============================================================================
@@ -249,22 +254,22 @@ where $\operatorname{dist}_{\Delta}$ denotes the barycentric Wasserstein metric.
 Let $\operatorname{Sym}_m^+(\mathbb{R})$ denote the open convex cone of $m \times m$ real symmetric positive-definite matrices.
 
 \begin{definition}[Siegel--Wishart Matrix Beta Operator]
-For matrix parameters $\mathbf{A}, \mathbf{B} \in \operatorname{Sym}_m^+(\mathbb{R})$ with $\mathbf{A}, \mathbf{B} > \frac{m-1}{2}\mathbf{I}_m$, the matrix Beta operator acting on $F: \operatorname{Sym}_m^+(\mathbb{R}) \to \mathbb{R}$ is defined by
+Extending multivariate hypergeometric distributions and Wishart random matrices \cite{muirhead2009}, for scalar shape parameters $a, b \in \mathbb{R}$ with $a, b > \frac{m-1}{2}$, the matrix Beta operator acting on $F: \operatorname{Sym}_m^+(\mathbb{R}) \to \mathbb{R}$ is defined by
 \begin{equation}
-\mathcal{G}_{\mathbf{A}, \mathbf{B}} F(\mathbf{X}) \coloneqq \frac{1}{\mathrm{B}_m(\mathbf{A}, \mathbf{B})} \int_{\mathbf{0} < \mathbf{Y} < \mathbf{I}_m} (\det \mathbf{Y})^{\mathbf{A} - \frac{m+1}{2}} (\det(\mathbf{I}_m - \mathbf{Y}))^{\mathbf{B} - \frac{m+1}{2}} F\left(\mathbf{X}^{1/2} \mathbf{Y} \mathbf{X}^{1/2}\right) d\mathbf{Y},
+\mathcal{G}_{a, b} F(\mathbf{X}) \coloneqq \frac{1}{\mathrm{B}_m(a, b)} \int_{\mathbf{0} < \mathbf{Y} < \mathbf{I}_m} (\det \mathbf{Y})^{a - \frac{m+1}{2}} (\det(\mathbf{I}_m - \mathbf{Y}))^{b - \frac{m+1}{2}} F\left(\mathbf{X}^{1/2} \mathbf{Y} \mathbf{X}^{1/2}\right) d\mathbf{Y},
 \end{equation}
 where the multivariate Siegel Beta normalization is given by
 \begin{equation}
-\mathrm{B}_m(\mathbf{A}, \mathbf{B}) \coloneqq \frac{\Gamma_m(\mathbf{A})\Gamma_m(\mathbf{B})}{\Gamma_m(\mathbf{A}+\mathbf{B})}, \quad \Gamma_m(\mathbf{A}) \coloneqq \pi^{m(m-1)/4}\prod_{j=1}^m \Gamma\left(\mathbf{A} - \frac{j-1}{2}\right).
+\mathrm{B}_m(a, b) \coloneqq \frac{\Gamma_m(a)\Gamma_m(b)}{\Gamma_m(a+b)}, \quad \Gamma_m(a) \coloneqq \pi^{m(m-1)/4}\prod_{j=1}^m \Gamma\left(a - \frac{j-1}{2}\right).
 \end{equation}
 \end{definition}
 
 \begin{theorem}[Invariance and Spherical Harmonic Eigenfunctions]
-The operator $\mathcal{G}_{\mathbf{A}, \mathbf{B}}$ is invariant under the congruence action of the orthogonal group $\mathrm{O}(m)$ ($\mathbf{X} \mapsto \mathbf{U}\mathbf{X}\mathbf{U}^T$). Furthermore, for any zonal spherical polynomial $Z_\lambda(\mathbf{X})$ associated with partition $\lambda$:
+The operator $\mathcal{G}_{a, b}$ is invariant under the congruence action of the orthogonal group $\mathrm{O}(m)$ ($\mathbf{X} \mapsto \mathbf{U}\mathbf{X}\mathbf{U}^T$). Furthermore, for any zonal spherical polynomial $Z_\lambda(\mathbf{X})$ associated with partition $\lambda$:
 \begin{equation}
-\mathcal{G}_{\mathbf{A}, \mathbf{B}} Z_\lambda(\mathbf{X}) = \frac{[\mathbf{A}]_\lambda}{[\mathbf{A}+\mathbf{B}]_\lambda} Z_\lambda(\mathbf{X}),
+\mathcal{G}_{a, b} Z_\lambda(\mathbf{X}) = \frac{(a)_\lambda}{(a+b)_\lambda} Z_\lambda(\mathbf{X}),
 \end{equation}
-where $[\mathbf{A}]_\lambda = \prod_{j=1}^m \frac{\Gamma(a_j + \lambda_j)}{\Gamma(a_j)}$ denotes the multivariate generalized Pochhammer symbol.
+where $(a)_\lambda \coloneqq \prod_{j=1}^m \frac{\Gamma\left(a - \frac{j-1}{2} + \lambda_j\right)}{\Gamma\left(a - \frac{j-1}{2}\right)}$ denotes the multivariate generalized Pochhammer symbol.
 \end{theorem}
 
 % ==============================================================================
@@ -274,13 +279,13 @@ where $[\mathbf{A}]_\lambda = \prod_{j=1}^m \frac{\Gamma(a_j + \lambda_j)}{\Gamm
 We have established a comprehensive functional-analytic theory of dimension-changing non-local operators $\mathcal{T}_{m \to n}^\alpha$. We proved the sharp Sobolev trace mapping theorem, formulated conservative coupled 3D--2D--1D interface dynamical systems, demonstrated Gibbs-free tomographic reconstruction, established barycentric preservation in hypergraph data science, and generalized the theory to matrix Grassmannians. Future work will investigate numerical finite-element schemes for inter-dimensional multiscale PDEs.
 
 \begin{thebibliography}{99}
-\bibitem{silvafilho2026simplex} Reinaldo Maia Silva-Filho, \emph{Analytic Continuation of Pascal's Simplex: Continuous Multinomial Integrals, Polytope Boundary Recurrences, and Simplicial Fractional Calculus}, Paper I of the Series, 2026.
-\bibitem{silvafilho2026waves} Reinaldo Maia Silva-Filho, \emph{Nonlinear Simplicial Waves and Anomalous Porous Transport Induced by Beta-Kernel Fractional Laplacians}, Paper II of the Series, 2026.
-\bibitem{helgason2011} S. Helgason, \emph{Integral Geometry and Radon Transforms}, Springer, New York, 2011.
-\bibitem{samko1993} S. G. Samko, A. A. Kilbas, and O. I. Marichev, \emph{Fractional Integrals and Derivatives: Theory and Applications}, Gordon and Breach, Yverdon, 1993.
-\bibitem{adams2003} R. A. Adams and J. J. F. Fournier, \emph{Sobolev Spaces}, Academic Press, New York, 2003.
-\bibitem{muirhead2009} R. J. Muirhead, \emph{Aspects of Multivariate Statistical Theory}, John Wiley \& Sons, Hoboken, 2009.
-\bibitem{evans2010} L. C. Evans, \emph{Partial Differential Equations}, American Mathematical Society, Providence, 2010.
+\bibitem{silvafilho2026simplex} R. M. Silva-Filho, \emph{Analytic Continuation of Pascal's Simplex: Continuous Multinomial Integrals, Polytope Boundary Recurrences, and Simplicial Fractional Calculus}, Treatise Chapter 03, 2026.
+\bibitem{silvafilho2026waves} R. M. Silva-Filho, \emph{Nonlinear Simplicial Waves and Anomalous Porous Transport Induced by Beta-Kernel Fractional Laplacians}, Treatise Chapter 04, 2026.
+\bibitem{helgason2011} S. Helgason, \emph{Integral Geometry and Radon Transforms}, Springer, New York, 2011, \href{https://doi.org/10.1007/978-1-4419-6055-9}{doi:10.1007/978-1-4419-6055-9}.
+\bibitem{samko1993} S. G. Samko, A. A. Kilbas, and O. I. Marichev, \emph{Fractional Integrals and Derivatives: Theory and Applications}, Gordon and Breach, Yverdon, 1993, ISBN 978-2-88124-864-1.
+\bibitem{adams2003} R. A. Adams and J. J. F. Fournier, \emph{Sobolev Spaces}, 2nd ed., Pure and Applied Mathematics, vol. 140, Academic Press, New York, 2003, ISBN 978-0-12-044143-3.
+\bibitem{muirhead2009} R. J. Muirhead, \emph{Aspects of Multivariate Statistical Theory}, John Wiley \& Sons, Hoboken, 2009, \href{https://doi.org/10.1002/9780470316559}{doi:10.1002/9780470316559}.
+\bibitem{evans2010} L. C. Evans, \emph{Partial Differential Equations}, 2nd ed., Graduate Studies in Mathematics, vol. 19, American Mathematical Society, Providence, 2010, \href{https://doi.org/10.1090/gsm/019}{doi:10.1090/gsm/019}.
 \end{thebibliography}
 
 \end{document}

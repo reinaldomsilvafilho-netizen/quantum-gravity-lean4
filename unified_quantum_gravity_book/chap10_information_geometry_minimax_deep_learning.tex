@@ -3,6 +3,7 @@
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
 \usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage{xcolor}
 \usepackage{geometry}
 \geometry{a4paper, margin=1in}
 \usepackage{hyperref}
@@ -10,7 +11,7 @@
     colorlinks=true,
     linkcolor=blue,
     citecolor=red,
-    urlcolor=teal
+    urlcolor=blue
 }
 \usepackage{microtype}
 \usepackage{booktabs}
@@ -84,7 +85,7 @@ We prove four foundational theorems:
 \subsection{Curvature and the Geometry of Deep Learning}
 Modern deep neural networks operate in non-convex, high-dimensional parameter spaces $\Theta \cong \R^D$ ($D \sim 10^7 - 10^{11}$). Empirical successes depend crucially on the geometry of the optimization path. While conventional first-order methods (SGD, Adam) follow local gradient flow, they traverse regions of high metric distortion, resulting in training instability, loss spikes, and poor out-of-distribution generalization.
 
-In information geometry \cite{amari2000}, parameter space is conventionally viewed as a Riemannian manifold. However, in heavily overparameterized deep networks ($D \gg N$), the Fisher Information Matrix (FIM) is fundamentally rank-deficient, possessing zero eigenvalues. The scalar Tikhonov regularizer $\lambda_0 \delta_{ij}$ modifies this underlying geometry. Instead, the geometric structure of deep learning is modeled as a \textbf{Sub-Riemannian Manifold} endowed with a \textbf{Carnot-Carathéodory Metric}. We restrict allowable trajectories to the horizontal distribution spanned by the principal eigenvectors of the FIM, computing pseudo-inverses analytically.
+In information geometry \cite{amari2000}, parameter space is conventionally viewed as a Riemannian manifold. However, in heavily overparameterized deep networks ($D \gg N$), the Fisher Information Matrix (FIM) is fundamentally rank-deficient, possessing zero eigenvalues. The scalar Tikhonov regularizer modifies this underlying geometry, yielding the regularized Fisher metric $\tilde{g}^{\Fisher}_{\mu\nu} = g^{\Fisher}_{\mu\nu} + \lambda_0 \delta_{\mu\nu}$. Furthermore, in singular overparameterized regimes, the geometric structure of deep learning is modeled as a \textbf{Sub-Riemannian Manifold} endowed with a \textbf{Carnot-Carath\'eodory Metric}. We restrict allowable trajectories to the horizontal distribution spanned by the principal eigenvectors of the FIM, computing pseudo-inverses analytically \cite{amari1998}.
 
 Furthermore, computing exact geodesics on a $D \times D$ Fisher matrix requires $\mathcal{O}(D^3)$ operations, establishing a significant computational barrier. We address this via \textbf{Kronecker-factored Approximate Curvature (K-FAC)} \cite{martens2015}. By approximating the FIM via block-diagonal Kronecker products over network layers (under the assumption of independence between layer inputs and pre-activation gradients), we collapse the metric inversion and connection evaluation from $\mathcal{O}(D^3)$ to linear time $\mathcal{O}(D)$. While this acts as a geometric preconditioner rather than an exact Riemannian tensor inversion, it makes information-geometric routing computationally tractable for large-scale architectures.
 
@@ -92,7 +93,7 @@ Furthermore, computing exact geodesics on a $D \times D$ Fisher matrix requires 
 Let $\mathcal{O}_{\mathrm{sing}} = \{ \theta \in \Theta : \operatorname{cond}(\tilde{g}^{\Fisher}(\theta)) > \Lambda_{\max} \}$ define the ill-conditioned caustic obstacle locus where directional gradients experience stiffness, and let $\Sigma^* = \{ \theta \in \Theta : \Loss(\theta) \le \epsilon \}$ denote the target manifold of global empirical minimizers.
 
 \begin{definition}[Information Minimax Curvature]
-The optimal training trajectory is the regular path $\gamma: [0, L] \to \Theta \setminus \mathcal{O}_{\mathrm{sing}}$ with $\gamma(0) = \theta_0$ and $\gamma(L) \in \Sigma^*$ that minimizes the peak covariant curvature:
+Generalizing the obstacle minimax framework of Chapter 7 \cite{silvafilho2026minimax, dubins1957}, the optimal training trajectory is the regular path $\gamma: [0, L] \to \Theta \setminus \mathcal{O}_{\mathrm{sing}}$ with $\gamma(0) = \theta_0$ and $\gamma(L) \in \Sigma^*$ that minimizes the peak covariant curvature:
 \begin{equation}
 \kappa^*_{\mathrm{info}} := \inf_{\gamma \in \mathcal{A}(\Theta \setminus \mathcal{O}_{\mathrm{sing}}, \theta_0, \Sigma^*)} \operatorname{ess\,sup}_{s \in [0, L]} \sqrt{ \tilde{g}^{\Fisher}_{\mu\nu}(\gamma(s)) \left(\frac{D \dot{\gamma}^\mu}{ds}\right) \left(\frac{D \dot{\gamma}^\nu}{ds}\right) }
 \end{equation}
@@ -109,7 +110,7 @@ It is widely observed that convergence to ``flat minima'' correlates strongly wi
 \begin{theorem}[Wasserstein SGD Dynamics and Sharpness-Aware Minimization]
 \label{thm:generalization_bound}
 Classical optimization models assume Stochastic Gradient Descent (SGD) follows smooth $C^{1,1}$ differential equations. In reality, SGD is a Stochastic Differential Equation (SDE) governed by \textbf{Langevin Dynamics} with infinite quadratic variation (a Brownian motion), rendering classical point-wise trajectory curvature infinite.
-Therefore, the minimax curvature $\kappa^*_{\mathrm{info}}$ must not be applied to the microscopic parameter path, but to the macroscopic \textbf{Wasserstein metric} of the probability distribution over parameters $\rho(\theta, t)$. 
+Therefore, the minimax curvature $\kappa^*_{\mathrm{info}}$ must not be applied to the microscopic parameter path, but to the macroscopic \textbf{2-Wasserstein metric} of the probability distribution over parameters $\rho(\theta, t) \in \mathcal{P}_2(\Theta)$. 
 
 By embedding the minimax geometric constraint as a post-training or parallel regularization term—analogous to \textbf{Sharpness-Aware Minimization (SAM)} \cite{foret2020}—we achieve:
 \begin{enumerate}
@@ -120,7 +121,7 @@ By embedding the minimax geometric constraint as a post-training or parallel reg
     \end{equation}
     \item \textbf{PAC-Bayesian Generalization Bound:} Under PAC-Bayesian perturbation analysis (assuming the empirical loss is strictly sub-Gaussian or bounded in $[0,1]$ to satisfy the Donsker-Varadhan variational formula), the expected generalization gap is bounded:
     \begin{equation}
-    \E_{x \sim \mathcal{D}_{\mathrm{test}}} [\Loss(\theta^*)] - \hat{\Loss}_{\mathrm{train}}(\theta^*) \le \sqrt{ \frac{D \ln\left(1 + \frac{L^2 (\kappa^*_{\mathrm{info}})^2}{2\sigma^2}\right) + \ln(2/\delta)}{2 N} }
+    \E_{\theta \sim \rho^*} \left[ \Loss_{\mathrm{true}}(\theta) - \hat{\Loss}_{\mathrm{train}}(\theta) \right] \le \sqrt{ \frac{D \ln\left(1 + \frac{L^2 (\kappa^*_{\mathrm{info}})^2}{2\sigma^2}\right) + \ln(2/\delta)}{2 N} }
     \end{equation}
 \end{enumerate}
 \end{theorem}
@@ -138,7 +139,7 @@ This creates an impassable ``flat desert'' obstacle $\mathcal{O}_{\mathrm{barren
 \label{thm:barren_plateau_bypass}
 Naive geometric optimization claims that minimizing curvature alone solves the Barren Plateau. However, by \textbf{Levy's Lemma for Concentration of Measure}, in high-dimensional spheres, any Lipschitz function is exponentially concentrated around its mean. The vanishing gradient ($\mathrm{Var}(\nabla \Loss) \sim \mathcal{O}(2^{-n})$) is a fundamental statistical phenomenon, not a mere geometric obstacle. A straight path in an exponentially flat plateau still results in zero progress.
 
-To mathematically bypass the Barren Plateau, the minimax topological constraint must be coupled with \textbf{Dynamical Isometry} and \textbf{Symmetry Breaking}. By initializing the network $\theta_0$ as an exact orthogonal isometry (where the input-output Jacobian $J$ satisfies $J^T J = I$), and strictly restricting the integration path to the symmetric sub-manifold of orthogonal weights $\mathcal{O}(D)$, we break the global Haar randomization. 
+To mathematically bypass the Barren Plateau, the minimax topological constraint must be coupled with \textbf{Dynamical Isometry} and \textbf{Symmetry Breaking}. By initializing the network $\theta_0$ as an exact orthogonal isometry (where the input-output Jacobian $J$ satisfies $J^T J = I$), and strictly restricting the integration path to the symmetric sub-manifold of orthogonal weights $\mathrm{O}(D)$, we break the global Haar randomization. 
 \begin{enumerate}
     \item Direct Euclidean gradient descent ($W = 0$) randomizes the spectrum, destroying isometry and entering the measure-concentrated $\mathcal{O}_{\mathrm{barren}}$, requiring exponential training steps $T \ge \mathcal{O}(2^n)$.
     \item By routing the optimization strictly along the Stiefel manifold of orthogonal matrices (which acts as a geometric boundary wall preventing measure concentration), the quantum/classical Fisher metric spectrum remains non-vanishing ($\lambda_{\min}(\tilde{g}^{\Fisher}) \ge c > 0$), achieving convergence in polynomial training time $T \le \mathcal{O}(n^2 / (\kappa^*_{\mathrm{info}})^2)$ and bypassing the barren plateau identically.
@@ -181,31 +182,56 @@ Natural Gradient (Amari) & Riemannian $(M, g^{\Fisher})$ & Unbounded geodesic cu
 \section{Conclusion and Future Horizons}
 We have theoretically established that the minimax curvature framework extends naturally from Euclidean and relativistic submanifolds to the infinite-dimensional statistical geometry of machine learning. By mapping barren plateaus and singular metrics to geometric obstacles, optimal training boundaries can be synthesized analytically, opening a bridge between differential geometry, optimal control, and the foundational mathematics of Artificial Intelligence. We present these theoretical foundations with the strict understanding that large-scale empirical benchmarks (e.g., training massive transformers under K-FAC Sub-Riemannian dynamics) remain critically necessary to validate these geometric hypotheses against the harsh realities of modern hardware optimization and finite-sample stochasticity.
 \begin{thebibliography}{99}
+
+\bibitem{silvafilho2026minimax}
+R.~M.~Silva-Filho,
+\emph{The $L^\infty$ Minimax Extrinsic Curvature Problem for Submanifolds: Variational Theory, Obstacle Regularity, and Continuous Medial Axis Synthesis},
+Treatise on Multilinear Geometry and Quantum Gravity, Vol.~1, Chap.~7 (2026).
+
 \bibitem{amari2000}
-S.~Amari and H.~Nagaoka, \emph{Methods of Information Geometry}, Translations of Mathematical Monographs, AMS, 2000.
+S.~Amari and H.~Nagaoka,
+\emph{Methods of Information Geometry},
+Translations of Mathematical Monographs, vol. 191, AMS, 2000, \href{https://doi.org/10.1090/mmono/191}{doi:10.1090/mmono/191}.
 
 \bibitem{amari1998}
-S.~Amari, \emph{Natural gradient works efficiently in learning}, Neural Computation \textbf{10} (1998), 251--276.
+S.~Amari,
+\emph{Natural gradient works efficiently in learning},
+Neural Computation \textbf{10} (1998), no. 2, 251--276, \href{https://doi.org/10.1162/089976698300017746}{doi:10.1162/089976698300017746}.
 
 \bibitem{hochreiter1997}
-S.~Hochreiter and J.~Schmidhuber, \emph{Flat minima}, Neural Computation \textbf{9} (1997), 1--42.
+S.~Hochreiter and J.~Schmidhuber,
+\emph{Flat minima},
+Neural Computation \textbf{9} (1997), no. 1, 1--42, \href{https://doi.org/10.1162/neco.1997.9.1.1}{doi:10.1162/neco.1997.9.1.1}.
 
 \bibitem{keskar2016}
-N.~S.~Keskar et al., \emph{On large-batch training for deep learning: Generalization gap and sharp minima}, arXiv:1609.04836, 2016.
+N.~S.~Keskar, D.~Mudigere, J.~Nocedal, M.~Smelyanskiy, and P.~T.~P.~Tang,
+\emph{On large-batch training for deep learning: Generalization gap and sharp minima},
+ICLR 2017, \href{https://doi.org/10.48550/arXiv.1609.04836}{doi:10.48550/arXiv.1609.04836}.
 
 \bibitem{mcclean2018}
-J.~R.~McClean et al., \emph{Barren plateaus in quantum neural network training landscapes}, Nature Communications \textbf{9} (2018), 4812.
+J.~R.~McClean, S.~Boixo, V.~N.~Smelyanskiy, R.~Babbush, and H.~Neven,
+\emph{Barren plateaus in quantum neural network training landscapes},
+Nature Communications \textbf{9} (2018), 4812, \href{https://doi.org/10.1038/s41467-018-07090-4}{doi:10.1038/s41467-018-07090-4}.
 
 \bibitem{dubins1957}
-L.~E.~Dubins, \emph{On curves of minimal length with a constraint on average curvature}, Amer. J. Math. \textbf{79} (1957), 497--516.
+L.~E.~Dubins,
+\emph{On curves of minimal length with a constraint on average curvature},
+Amer. J. Math. \textbf{79} (1957), 497--516, \href{https://doi.org/10.2307/2372560}{doi:10.2307/2372560}.
 
 \bibitem{martens2015}
-J.~Martens and R.~Grosse, \emph{Optimizing neural networks with Kronecker-factored approximate curvature}, ICML 2015, 2408--2417.
+J.~Martens and R.~Grosse,
+\emph{Optimizing neural networks with Kronecker-factored approximate curvature},
+Proceedings of the 32nd International Conference on Machine Learning (ICML 2015), PMLR \textbf{37} (2015), 2408--2417.
 
 \bibitem{foret2020}
-P.~Foret et al., \emph{Sharpness-aware minimization for efficiently improving generalization}, ICLR 2021, arXiv:2010.01412.
+P.~Foret, A.~Kleiner, H.~Mobahi, and B.~Neyshabur,
+\emph{Sharpness-aware minimization for efficiently improving generalization},
+ICLR 2021, \href{https://doi.org/10.48550/arXiv.2010.01412}{doi:10.48550/arXiv.2010.01412}.
+
 \bibitem{dziugaite2017}
-G.~K.~Dziugaite and D.~M.~Roy, \emph{Computing nonvacuous generalization bounds for deep (stochastic) neural networks with many more parameters than training data}, UAI 2017, arXiv:1703.11008.
+G.~K.~Dziugaite and D.~M.~Roy,
+\emph{Computing nonvacuous generalization bounds for deep (stochastic) neural networks with many more parameters than training data},
+UAI 2017, \href{https://doi.org/10.48550/arXiv.1703.11008}{doi:10.48550/arXiv.1703.11008}.
 
 \end{thebibliography}
 

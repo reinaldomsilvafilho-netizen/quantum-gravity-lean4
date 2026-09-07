@@ -1,0 +1,31 @@
+{"synthetic": false,
+ "schemaVersion": "2025-09-10",
+ "outputs":
+ {"o": ["b619edae566cea1b.olean"],
+  "m": false,
+  "i": "090d42e1832c321c.ilean",
+  "c": "ad4d840c90b4598b.c"},
+ "log":
+ [{"message":
+   ".> LEAN_PATH=C:\\Users\\monar\\Documents\\antigravity\\resilient-turing\\formal_proofs_book\\.lake\\build\\lib\\lean c:\\Users\\monar\\.elan\\toolchains\\leanprover--lean4---v4.33.1\\bin\\lean.exe C:\\Users\\monar\\Documents\\antigravity\\resilient-turing\\formal_proofs_book\\Book\\Chap05\\InterdimensionalTransforms.lean -o C:\\Users\\monar\\Documents\\antigravity\\resilient-turing\\formal_proofs_book\\.lake\\build\\lib\\lean\\Book\\Chap05\\InterdimensionalTransforms.olean -i C:\\Users\\monar\\Documents\\antigravity\\resilient-turing\\formal_proofs_book\\.lake\\build\\lib\\lean\\Book\\Chap05\\InterdimensionalTransforms.ilean -c C:\\Users\\monar\\Documents\\antigravity\\resilient-turing\\formal_proofs_book\\.lake\\build\\ir\\Book\\Chap05\\InterdimensionalTransforms.c --setup C:\\Users\\monar\\Documents\\antigravity\\resilient-turing\\formal_proofs_book\\.lake\\build\\ir\\Book\\Chap05\\InterdimensionalTransforms.setup.json --json",
+   "level": "trace"}],
+ "inputs":
+ [["deps",
+   [["UnifiedQuantumGravityBook/Book:extraDep",
+     [["@UnifiedQuantumGravityBook:extraDep", "00000000000006bb"]]],
+    ["imports", "00000000000006bb"]]],
+  ["libs",
+   [["import dynlibs", "00000000000006bb"],
+    ["package external libraries", "00000000000006bb"],
+    ["module dynlibs", "00000000000006bb"],
+    ["module plugins", "00000000000006bb"]]],
+  ["Lean 4.33.1, commit 819816b2e0a3bf405af45ae5c7af2491d8f5bee6",
+   "0051240b7c23c453"],
+  ["C:\\Users\\monar\\Documents\\antigravity\\resilient-turing\\formal_proofs_book\\Book\\Chap05\\InterdimensionalTransforms.lean",
+   "02db3ef2b33250ca"],
+  ["options", "00000000000006bb"],
+  ["isModule: false", "feefd2a0d3a1847e"],
+  ["Module.name: Book.Chap05.InterdimensionalTransforms", "2288228e97a072e7"],
+  ["Package.id?: (some UnifiedQuantumGravityBook)", "83e1b5e1213ea61e"],
+  ["Module.leanArgs: #[]", "00000000000006bb"]],
+ "depHash": "3d80b8de2042ea79"}

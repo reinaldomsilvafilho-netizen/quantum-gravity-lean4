@@ -76,15 +76,10 @@ Lavras, Minas Gerais, Brazil}
 
 
 \DeclareMathOperator*{\argmin}{argmin}
+\providecommand{\doi}[1]{\href{https://doi.org/#1}{\nolinkurl{doi:#1}}}
 \providecommand{\Hyp}{\mathbb{H}}
-\providecommand{\Sph}{\mathbb{S}}
 \providecommand{\II}{\mathrm{II}}
-\providecommand{\R}{\mathbb{R}}
-\providecommand{\Area}{\mathrm{Area}}
 \providecommand{\Hsn}{\mathcal{H}}
-\providecommand{\BV}{\mathrm{BV}}
-\providecommand{\TV}{\mathrm{TV}}
-\providecommand{\cutnorm}[1]{\|#1\|_{\square}}
 
 \begin{document}
 
@@ -408,7 +403,7 @@ Black holes are the most efficient processors of quantum information in the phys
     \lambda_L \le \frac{2\pi k_B T}{\hbar}.
 \end{equation}
 
-In the Sachdev--Ye--Kitaev (SYK) model and random tensor models of Gurau--Witten \cite{verstraete2010continuous}, the black hole horizon is modeled by a $k$-body interaction tensor $\mathcal{J}_{i_1 \dots i_k}$ of Gaussian random variables:
+In the Sachdev--Ye--Kitaev (SYK) model and random tensor models of Gurau--Witten \cite{kitaev2015simple, maldacena2016bound}, the black hole horizon is modeled by a $k$-body interaction tensor $\mathcal{J}_{i_1 \dots i_k}$ of Gaussian random variables:
 \begin{equation}
     H = \sum_{1 \le i_1 < \dots < i_k \le N} \mathcal{J}_{i_1 \dots i_k} \psi_{i_1} \cdots \psi_{i_k}, \quad \mathbb{E}[\mathcal{J}_{i_1 \dots i_k}^2] = \frac{(k-1)! J^2}{N^{k-1}}.
 \end{equation}
@@ -486,6 +481,59 @@ Open mathematical frontiers include:
 
 \begin{thebibliography}{99}
 
+\bibitem{ashtekar2004background}
+A.~Ashtekar and J.~Lewandowski,
+\emph{Background independent quantum gravity: a status report},
+Classical and Quantum Gravity, \textbf{21} (2004), no.~15, R53,
+\doi{10.1088/0264-9381/21/15/R01}.
+
+\bibitem{faulkner2014gravitation}
+T.~Faulkner, M.~Guica, T.~Hartman, R.~C. Myers, and M.~Van~Raamsdonk,
+\emph{Gravitation from entanglement in holographic CFTs},
+Journal of High Energy Physics, \textbf{2014} (2014), no.~3, 51,
+\doi{10.1007/JHEP03(2014)051}.
+
+\bibitem{jacobson1995thermodynamics}
+T.~Jacobson,
+\emph{Thermodynamics of spacetime: the Einstein equation of state},
+Physical Review Letters, \textbf{75} (1995), no.~7, 1260--1263,
+\doi{10.1103/PhysRevLett.75.1260}.
+
+\bibitem{kitaev2015simple}
+A.~Kitaev,
+\emph{A simple model of quantum holography},
+KITP Strings Seminar, 2015.
+
+\bibitem{maldacena1999large}
+J.~Maldacena,
+\emph{The large-$N$ limit of superconformal field theories and supergravity},
+International Journal of Theoretical Physics, \textbf{38} (1999), 1113--1133,
+\doi{10.1023/A:1026654312961}.
+
+\bibitem{maldacena2016bound}
+J.~Maldacena, S.~H. Shenker, and D.~Stanford,
+\emph{A bound on chaos},
+Journal of High Energy Physics, \textbf{2016} (2016), no.~8, 106,
+\doi{10.1007/JHEP08(2016)106}.
+
+\bibitem{pastawski2015holographic}
+F.~Pastawski, B.~Yoshida, D.~Harlow, and J.~Preskill,
+\emph{Holographic quantum error-correcting codes: Toy models for the bulk/boundary correspondence},
+Journal of High Energy Physics, \textbf{2015} (2015), no.~6, 149,
+\doi{10.1007/JHEP06(2015)149}.
+
+\bibitem{rovelli2004quantum}
+C.~Rovelli,
+\emph{Quantum Gravity},
+Cambridge Monographs on Mathematical Physics, Cambridge University Press, 2004,
+\doi{10.1017/CBO9780511755804}.
+
+\bibitem{ryu2006holographic}
+S.~Ryu and T.~Takayanagi,
+\emph{Holographic derivation of entanglement entropy from AdS/CFT},
+Physical Review Letters, \textbf{96} (2006), no.~18, 181602,
+\doi{10.1103/PhysRevLett.96.181602}.
+
 \bibitem{silvafilho2026functional}
 R.~M. Silva-Filho,
 \emph{Beyond the Spectrum: Functional Realizations of Matrices and Tensors, Emerging Invariants, and Geometric Measures},
@@ -496,70 +544,28 @@ R.~M. Silva-Filho,
 \emph{Geometric Flows, Partial Differential Equations, and Variational Dynamics on Matrix and Tensor Manifolds},
 Preprint, Universidade Federal de Lavras, 2026.
 
-\bibitem{ryu2006holographic}
-S.~Ryu and T.~Takayanagi,
-\emph{Holographic derivation of entanglement entropy from AdS/CFT},
-Physical Review Letters, \textbf{96} (2006), no.~18, 181602.
-
-\bibitem{maldacena1999large}
-J.~Maldacena,
-\emph{The large-$N$ limit of superconformal field theories and supergravity},
-International Journal of Theoretical Physics, \textbf{38} (1999), 1113--1133.
-
-\bibitem{jacobson1995thermodynamics}
-T.~Jacobson,
-\emph{Thermodynamics of spacetime: the Einstein equation of state},
-Physical Review Letters, \textbf{75} (1995), no.~7, 1260--1263.
-
-\bibitem{faulkner2014gravitation}
-T.~Faulkner, M.~Guica, T.~Hartman, R.~C. Myers, and M.~Van~Raamsdonk,
-\emph{Gravitation from entanglement in holographic CFTs},
-Journal of High Energy Physics, \textbf{2014} (2014), no.~3, 51.
-
-\bibitem{vanraamsdonk2010building}
-M.~Van~Raamsdonk,
-\emph{Building up spacetime with quantum entanglement},
-General Relativity and Gravitation, \textbf{42} (2010), 2323--2329.
-
-\bibitem{swingle2012entanglement}
-B.~Swingle,
-\emph{Entanglement renormalization and holography},
-Physical Review D, \textbf{86} (2012), no.~6, 065007.
-
-\bibitem{ashtekar2004background}
-A.~Ashtekar and J.~Lewandowski,
-\emph{Background independent quantum gravity: a status report},
-Classical and Quantum Gravity, \textbf{21} (2004), no.~15, R53.
-
-\bibitem{rovelli2004quantum}
-C.~Rovelli,
-\emph{Quantum Gravity},
-Cambridge Monographs on Mathematical Physics, Cambridge University Press, 2004.
-
-\bibitem{verstraete2010continuous}
-F.~Verstraete and J.~I. Cirac,
-\emph{Continuous matrix product states for quantum fields},
-Physical Review Letters, \textbf{104} (2010), no.~19, 190405.
-
-\bibitem{maldacena2016bound}
-J.~Maldacena, S.~H. Shenker, and D.~Stanford,
-\emph{A bound on chaos},
-Journal of High Energy Physics, \textbf{2016} (2016), no.~8, 106.
-
-\bibitem{kitaev2015simple}
-A.~Kitaev,
-\emph{A simple model of quantum holography},
-KITP Strings Seminar, 2015.
-
-\bibitem{pastawski2015holographic}
-F.~Pastawski, B.~Yoshida, D.~Harlow, and J.~Preskill,
-\emph{Holographic quantum error-correcting codes: Toy models for the bulk/boundary correspondence},
-Journal of High Energy Physics, \textbf{2015} (2015), no.~6, 149.
-
 \bibitem{silvafilho2026grand}
 R.~M.~Silva-Filho,
 \emph{A Unified Geometric and Algebraic Theory of Quantum Gravity: From Simplicial Fractional Calculus and Minimax Foliations to Emergent Holographic Spacetime},
 Treatise on Multilinear Geometry and Quantum Gravity, Vol.~1, Chap.~12 (2026).
+
+\bibitem{swingle2012entanglement}
+B.~Swingle,
+\emph{Entanglement renormalization and holography},
+Physical Review D, \textbf{86} (2012), no.~6, 065007,
+\doi{10.1103/PhysRevD.86.065007}.
+
+\bibitem{vanraamsdonk2010building}
+M.~Van~Raamsdonk,
+\emph{Building up spacetime with quantum entanglement},
+General Relativity and Gravitation, \textbf{42} (2010), 2323--2329,
+\doi{10.1007/s10714-010-1034-0}.
+
+\bibitem{verstraete2010continuous}
+F.~Verstraete and J.~I. Cirac,
+\emph{Continuous matrix product states for quantum fields},
+Physical Review Letters, \textbf{104} (2010), no.~19, 190405,
+\doi{10.1103/PhysRevLett.104.190405}.
 
 \end{thebibliography}
 

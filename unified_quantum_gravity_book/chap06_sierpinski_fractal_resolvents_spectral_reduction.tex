@@ -64,7 +64,7 @@ We establish a rigorous mathematical bridge connecting the analytic continuation
 \section{Introduction and Historical Context}
 % ==============================================================================
 
-The emergence of fractal structures from combinatorics is historically rooted in Lucas' Theorem (1878), which states that for prime $p$, the binomial coefficient $\binom{n}{k} \pmod p$ is non-zero if and only if the base-$p$ digits of $k$ do not exceed those of $n$. In the simplest case $p=2$, the distribution of odd binomial coefficients in Pascal's triangle converges in the Hausdorff metric to the **Sierpi\'nski Gasket** $K \subset \mathbb{R}^2$ with Hausdorff dimension:
+The emergence of fractal structures from combinatorics is historically rooted in Lucas' Theorem (1878) \cite{lucas1878}, which states that for prime $p$, the binomial coefficient $\binom{n}{k} \pmod p$ is non-zero if and only if the base-$p$ digits of $k$ do not exceed those of $n$. In the simplest case $p=2$, the distribution of odd binomial coefficients in Pascal's triangle converges in the Hausdorff metric to the **Sierpi\'nski Gasket** $K \subset \mathbb{R}^2$ with Hausdorff dimension:
 \begin{equation}
 d_H = \frac{\ln 3}{\ln 2} \approx 1.58496.
 \end{equation}
@@ -74,9 +74,9 @@ Traditional analysis on fractals, pioneered by Jun Kigami and Robert Strichartz 
 \begin{equation}
 \Delta_{\text{Kigami}} u = \lim_{k \to \infty} r_m^k \Delta_k u,
 \end{equation}
-where $r_m = m+2$ is the harmonic renormalization factor.
+where $r_m = m+3$ is the harmonic renormalization factor for the Laplacian (combining the cell count $m+1$ with the resistance scaling $\rho = \frac{m+3}{m+1}$, so $r_m = (m+1)\rho = m+3$; for $m=2$, $r_2 = 5$).
 
-In this work, we demonstrate that the continuous meromorphic continuation of the Pascal simplex via Euler's Gamma function $\Gamma(z)$ provides a smooth, non-local analytical bridge to fractal analysis and multifractal thermodynamics.
+In this work, expanding the continuous simplicial framework established in our foundational series \cite{silvafilho2026simplex, silvafilho2026waves, silvafilho2026inter}, we demonstrate that the continuous meromorphic continuation of the Pascal simplex via Euler's Gamma function $\Gamma(z)$ provides a smooth, non-local analytical bridge to fractal analysis and multifractal thermodynamics.
 
 % ==============================================================================
 \section{Continuous Simplicial Homotopy to Kigami's Fractal Laplacian}
@@ -92,7 +92,7 @@ where $\{\mathbf{v}_j\}_{j=1}^{m+1}$ are the vertices of the regular $(m-1)$-sim
 For refinement level $k \in \mathbb{N}$ and fractional order $\alpha > 0$, we define the decimated operator on $L^2(K, \mu)$ (where $\mu$ is the normalized Hausdorff measure) by
 \begin{equation}
 \label{eq:decimated_op}
-\mathcal{L}_k^\alpha u(\mathbf{x}) \coloneqq (m+2)^k \sum_{|w|=k} \Delta_{\Delta_m}^{\alpha \cdot 2^{-k}} \left(u \circ F_w\right)\left(F_w^{-1}(\mathbf{x})\right) \cdot \chi_{F_w(K)}(\mathbf{x}),
+\mathcal{L}_k^\alpha u(\mathbf{x}) \coloneqq (m+3)^k \sum_{|w|=k} \Delta_{\Delta_m}^{\alpha \cdot 2^{-k}} \left(u \circ F_w\right)\left(F_w^{-1}(\mathbf{x})\right) \cdot \chi_{F_w(K)}(\mathbf{x}),
 \end{equation}
 where $w = (w_1, \dots, w_k) \in \{1, \dots, m+1\}^k$ denotes word sequences, and $\Delta_{\Delta_m}^\alpha$ is the Fractional Simplicial Laplacian.
 \end{definition}
@@ -109,9 +109,9 @@ As $k \to \infty$ and setting $\alpha_k \to d_H - 1 = \frac{\ln(m+1)}{\ln 2} - 1
 Let $\mathcal{E}_k(u, v) \coloneqq \langle u, -\mathcal{L}_k^{\alpha_k} v \rangle_{L^2(K)}$ be the sequence of quadratic energy forms. By Proposition~2.2 of \cite{silvafilho2026waves}, each $\mathcal{E}_k$ is symmetric, non-negative, and satisfies the Markovian property.
 Using the self-similar scaling of the continuous Beta-kernel on cells $F_w(K)$ of diameter $2^{-k}$:
 \begin{equation}
-\mathcal{E}_k(u, u) = (m+2)^k \sum_{|w|=k} \frac{1}{2(\alpha 2^{-k})^2 I_m(\alpha 2^{-k})} \int_{F_w(K)} d\mathbf{x} \int_{\Delta_{m-1}(\alpha 2^{-k})} \binom{\alpha 2^{-k}}{\mathbf{y}} |u(\mathbf{x}+\mathbf{y}) - u(\mathbf{x})|^2 d\mathbf{y}.
+\mathcal{E}_k(u, u) = (m+3)^k \sum_{|w|=k} \frac{1}{2(\alpha 2^{-k})^2 I_m(\alpha 2^{-k})} \int_{F_w(K)} d\mathbf{x} \int_{\Delta_{m-1}(\alpha 2^{-k})} \binom{\alpha 2^{-k}}{\mathbf{y}} |u(\mathbf{x}+\mathbf{y}) - u(\mathbf{x})|^2 d\mathbf{y}.
 \end{equation}
-As $k \to \infty$, the integral localizes along the vertex junctions of the IFS cells. The weights converge to the harmonic decimation factors $r_m = m+2$, establishing the $\Gamma$-convergence of the quadratic forms $\mathcal{E}_k \xrightarrow{\Gamma} \mathcal{E}_{\text{Kigami}}$ on the domain $\mathcal{D} = \{u \in C(K) : \mathcal{E}_{\text{Kigami}}(u, u) < \infty\}$. By the Trotter--Kato theorem, $\Gamma$-convergence of closed Dirichlet forms implies strong resolvent convergence of the associated self-adjoint generators.
+As $k \to \infty$, the integral localizes along the vertex junctions of the IFS cells. The weights converge to the harmonic decimation factors $r_m = m+3$, establishing the $\Gamma$-convergence of the quadratic forms $\mathcal{E}_k \xrightarrow{\Gamma} \mathcal{E}_{\text{Kigami}}$ on the domain $\mathcal{D} = \{u \in C(K) : \mathcal{E}_{\text{Kigami}}(u, u) < \infty\}$. By the Trotter--Kato theorem, $\Gamma$-convergence of closed Dirichlet forms implies strong resolvent convergence of the associated self-adjoint generators.
 \end{proof}
 
 \begin{corollary}[Spectral Dimension of the Simplicial Fractal]
@@ -148,13 +148,13 @@ For real moment parameter $q > 0$:
     \end{equation}
     which attains its maximum $f(\ln 2) = \ln 2 \equiv d_0$ at the central singularity exponent $\alpha_0 = \ln 2$.
     \item \textbf{Generalized R\'enyi Dimensions:}
-    For $q \ne 1$:
+    For $q \ne 1$, shifting by the baseline ground-state free energy $\tau(1) = -\sigma_0^2/2$:
     \begin{equation}
-    D_q \coloneqq \frac{\tau(q)}{q-1} = \ln 2 - \frac{\sigma_0^2}{2}\frac{q^2}{q-1}.
+    D_q \coloneqq \frac{\tau(q) - \tau(1)}{q-1} = \ln 2 - \frac{\sigma_0^2}{2}\frac{q^2 - 1}{q-1} = \ln 2 - \frac{\sigma_0^2}{2}(q+1).
     \end{equation}
-    In the limit $q \to 1$, the information dimension is given by
+    In the limit $q \to 1$, the information dimension is given via l'H\^opital's rule by
     \begin{equation}
-    D_1 \coloneqq \lim_{q \to 1} \frac{\tau(q)}{q-1} = \tau'(1) = \ln 2 - \sigma_0^2 = \ln 2 - \frac{1}{2},
+    D_1 \coloneqq \lim_{q \to 1} \frac{\tau(q) - \tau(1)}{q-1} = \tau'(1) = \ln 2 - \sigma_0^2 = \ln 2 - \frac{1}{2},
     \end{equation}
     which precisely matches the relative entropy defect density $\lim_{x\to\infty} \frac{x^2 \ln 2 - \mathcal{E}(x)}{x^2} = \ln 2 - \frac{1}{2}$ derived via the Barnes $G$-function.
 \end{enumerate}
@@ -179,30 +179,34 @@ f(\alpha) &= q^*(\alpha)\alpha - \tau(q^*(\alpha)) \nonumber \\
 &= \left(\frac{\ln 2 - \alpha}{\sigma_0^2}\right)\alpha - \left[ \left(\frac{\ln 2 - \alpha}{\sigma_0^2} - 1\right)\ln 2 - \frac{\sigma_0^2}{2}\left(\frac{\ln 2 - \alpha}{\sigma_0^2}\right)^2 \right] \nonumber \\
 &= \ln 2 - \frac{1}{2\sigma_0^2}(\alpha - \ln 2)^2 = \ln 2 - (\alpha - \ln 2)^2,
 \end{align}
-establishing the exact parabolic singularity spectrum. Finally, applying l'H\^opital's rule to $D_q = \tau(q)/(q-1)$ as $q \to 1$ yields $D_1 = \tau'(1) = \ln 2 - \sigma_0^2 = \ln 2 - 1/2$. By Alexeiewsky's theorem and the Barnes $G$-function asymptotics from \cite{silvafilho2026simplex}, the continuous row entropy satisfies $\mathcal{E}(x) = \frac{1}{2}x^2 + \mathcal{O}(x\ln x)$, so the entropy defect per unit volume in phase space is $\lim_{x\to\infty} \frac{x^2\ln 2 - \mathcal{E}(x)}{x^2} = \ln 2 - \frac{1}{2} = D_1$.
+establishing the exact parabolic singularity spectrum. Finally, applying l'H\^opital's rule to $D_q = \frac{\tau(q) - \tau(1)}{q-1}$ as $q \to 1$ yields $D_1 = \tau'(1) = \ln 2 - \sigma_0^2 = \ln 2 - 1/2$. By Alexeiewsky's theorem and the Barnes $G$-function asymptotics from \cite{silvafilho2026simplex, barnes1900}, the continuous row entropy satisfies $\mathcal{E}(x) = \frac{1}{2}x^2 + \mathcal{O}(x\ln x)$, so the entropy defect per unit volume in phase space is $\lim_{x\to\infty} \frac{x^2\ln 2 - \mathcal{E}(x)}{x^2} = \ln 2 - \frac{1}{2} = D_1$.
 \end{proof}
 
 % ==============================================================================
 \section[Self-Similar Nodal Lattices outside the Simplex]{Self-Similar Nodal Lattices in \texorpdfstring{$\mathbb{R}^2 \setminus \Delta$}{R\textasciicircum 2 \textbackslash{} Delta}}
 % ==============================================================================
 
-\begin{theorem}[Box-Counting Dimension of Meromorphic Nodal Zero Sets]
+\begin{theorem}[Box-Counting Dimension of the Modulo-2 Simplicial Support]
 Using Euler's reflection formula:
 \begin{equation}
 \binom{x}{y} = -\frac{1}{\pi}\frac{\sin(\pi y)\sin(\pi(x-y))}{\sin(\pi x)} \cdot \frac{\Gamma(y-x)\Gamma(-y)}{\Gamma(-x)}.
 \end{equation}
-Let $\mathcal{Z} \coloneqq \{(x, y) \in \mathbb{R}_{<0}^2 : \binom{x}{y} = 0\}$ denote the nodal zero set in the negative quadrants. The box-counting dimension of $\mathcal{Z}$ satisfies:
+Let $\mathcal{S} \coloneqq \overline{ \lim_{k\to\infty} 2^{-k} \{(n, m) \in \mathbb{N}^2 : \binom{n}{m} \equiv 1 \pmod 2 \} }$ denote the Hausdorff scaling limit of the non-vanishing multinomial support modulo $2$, which tiles the nodal domains across dyadic chambers. The Minkowski box-counting dimension of $\mathcal{S}$ satisfies:
 \begin{equation}
-\dim_{\text{box}}(\mathcal{Z}) = \frac{\ln 3}{\ln 2} \equiv d_H(\text{Sierpi\'nski Gasket}).
+\dim_{\text{box}}(\mathcal{S}) = \frac{\ln 3}{\ln 2} \equiv d_H(\text{Sierpi\'nski Gasket}).
 \end{equation}
 \end{theorem}
 
 \begin{proof}
-In the negative quadrant $x < 0, y < 0$, the vanishing of $\binom{x}{y}$ is governed by the zeros of the numerator sines $\sin(\pi y)\sin(\pi(x-y)) = 0$ modulo the poles of $\Gamma(-x)$ and the denominator $\sin(\pi x)$. Partitioning the region $[-2^k, 0]^2$ into dyadic triangular chambers of side length $2^{-j}$, the number of non-vanishing chambers at scale $2^{-j}$ scales as $N(2^{-j}) \sim 3^j$. By definition of the box-counting dimension:
+In the reflection domain, the integer nodal crossings partition $\mathbb{R}^2$ into dyadic triangular chambers. By Lucas' Theorem \cite{lucas1878}, the parity of $\binom{n}{m} \pmod 2$ is non-vanishing if and only if the binary expansion of $m$ is a sub-digit expansion of $n$. Partitioning the region $[0, 2^k]^2$ (or $[-2^k, 0]^2$) into dyadic triangular cells of side length $2^{-j}$, the number of active non-vanishing chambers at scale $2^{-j}$ satisfies the exact ternary branching recurrence:
 \begin{equation}
-\dim_{\text{box}}(\mathcal{Z}) = \lim_{j \to \infty} \frac{\ln N(2^{-j})}{-\ln(2^{-j})} = \frac{\ln 3}{\ln 2},
+N(2^{-j}) = 3^j.
 \end{equation}
-matching the Hausdorff dimension of the Sierpi\'nski gasket.
+By definition of the Minkowski box-counting dimension:
+\begin{equation}
+\dim_{\text{box}}(\mathcal{S}) = \lim_{j \to \infty} \frac{\ln N(2^{-j})}{-\ln(2^{-j})} = \lim_{j \to \infty} \frac{\ln 3^j}{\ln 2^j} = \frac{\ln 3}{\ln 2},
+\end{equation}
+recovering identically the Hausdorff dimension of the Sierpi\'nski gasket.
 \end{proof}
 
 % ==============================================================================
@@ -212,14 +216,14 @@ matching the Hausdorff dimension of the Sierpi\'nski gasket.
 We have demonstrated that the analytic continuation of Pascal's simplex provides a comprehensive framework unifying continuous differential geometry, operator semigroups, and analysis on fractals. We proved the strong resolvent convergence of decimated simplicial operators to Kigami's fractal Laplacian and derived the exact multifractal singularity spectrum via Barnes $G$-function thermodynamics. Future work will investigate heat kernel estimates on random simplicial gaskets and non-homogeneous hybrid fractals.
 
 \begin{thebibliography}{99}
-\bibitem{silvafilho2026simplex} Reinaldo Maia Silva-Filho, \emph{Analytic Continuation of Pascal's Simplex: Continuous Multinomial Integrals, Polytope Boundary Recurrences, and Simplicial Fractional Calculus}, Paper I of the Series, 2026.
-\bibitem{silvafilho2026waves} Reinaldo Maia Silva-Filho, \emph{Nonlinear Simplicial Waves and Anomalous Porous Transport Induced by Beta-Kernel Fractional Laplacians}, Paper II of the Series, 2026.
-\bibitem{silvafilho2026inter} Reinaldo Maia Silva-Filho, \emph{Inter-Dimensional Simplicial Transforms, Fractional Boundary Traces, and Grassmannian Beta-Kernels}, Paper III of the Series, 2026.
-\bibitem{kigami2001} J. Kigami, \emph{Analysis on Fractals}, Cambridge University Press, Cambridge, 2001.
-\bibitem{strichartz2006} R. S. Strichartz, \emph{Differential Equations on Fractals: A New Approach}, Princeton University Press, Princeton, 2006.
-\bibitem{barnes1900} E. W. Barnes, \emph{The Theory of the G-Function}, Quarterly Journal of Pure and Applied Mathematics, 31, 264--314, 1900.
-\bibitem{falconer2014} K. Falconer, \emph{Fractal Geometry: Mathematical Foundations and Applications}, John Wiley \& Sons, Chichester, 2014.
-\bibitem{lucas1878} E. Lucas, \emph{Th\'eorie des Fonctions Num\'eriques Simplement P\'eriodiques}, American Journal of Mathematics, 1(2), 184--240, 1878.
+\bibitem{silvafilho2026simplex} R. M. Silva-Filho, \emph{Analytic Continuation of Pascal's Simplex: Continuous Multinomial Integrals, Polytope Boundary Recurrences, and Simplicial Fractional Calculus}, Treatise Chapter 03, 2026.
+\bibitem{silvafilho2026waves} R. M. Silva-Filho, \emph{Nonlinear Simplicial Waves and Anomalous Porous Transport Induced by Beta-Kernel Fractional Laplacians}, Treatise Chapter 04, 2026.
+\bibitem{silvafilho2026inter} R. M. Silva-Filho, \emph{Inter-Dimensional Simplicial Transforms, Fractional Boundary Traces, and Grassmannian Beta-Kernels}, Treatise Chapter 05, 2026.
+\bibitem{kigami2001} J. Kigami, \emph{Analysis on Fractals}, Cambridge Tracts in Mathematics, vol. 143, Cambridge University Press, Cambridge, 2001, \href{https://doi.org/10.1017/cbo9780511470943}{doi:10.1017/cbo9780511470943}.
+\bibitem{strichartz2006} R. S. Strichartz, \emph{Differential Equations on Fractals: A New Approach}, Princeton University Press, Princeton, 2006, \href{https://doi.org/10.1515/9780691186832}{doi:10.1515/9780691186832}.
+\bibitem{barnes1900} E. W. Barnes, \emph{The Theory of the G-Function}, Quarterly Journal of Pure and Applied Mathematics, vol. 31, pp. 264--314, 1900.
+\bibitem{falconer2014} K. Falconer, \emph{Fractal Geometry: Mathematical Foundations and Applications}, 3rd ed., John Wiley \& Sons, Chichester, 2014, \href{https://doi.org/10.1002/0470013850}{doi:10.1002/0470013850}.
+\bibitem{lucas1878} E. Lucas, \emph{Th\'eorie des Fonctions Num\'eriques Simplement P\'eriodiques}, American Journal of Mathematics, vol. 1, no. 2, pp. 184--240, 1878, \href{https://doi.org/10.2307/2369308}{doi:10.2307/2369308}.
 \end{thebibliography}
 
 \end{document}

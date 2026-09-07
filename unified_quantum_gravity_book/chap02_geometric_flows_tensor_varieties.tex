@@ -45,6 +45,7 @@
 \numberwithin{equation}{section}
 
 % --- Custom Notations ---
+\providecommand{\doi}[1]{\href{https://doi.org/#1}{\texttt{doi:#1}}}
 \providecommand{\R}{\mathbb{R}}
 \newcommand{\C}{\mathbb{C}}
 \newcommand{\N}{\mathbb{N}}
@@ -129,8 +130,8 @@ In this treatise, we develop the differential geometry and PDE theory of matrix 
 \begin{enumerate}[label=\arabic*.]
     \item The equivalence of Toda lattice Hamiltonian flows with the continuous QR eigenvalue algorithm under isospectral commutator dynamics (Theorem~\ref{thm:toda_qr});
     \item Strict rank preservation and energy decay for projected Riemannian gradient flows on $\mathcal{M}_r$ prior to reaching the boundary variety $\overline{\mathcal{M}}_{r-1}$ (Theorem~\ref{thm:rank_preservation});
-    \item Global well-posedness, contraction of the cut norm, and parabolic smoothing for non-local Graphon Heat Equations $\partial_t W = \mathcal{L}_W$ (Theorems~\ref{thm:graphon_heat_existence} and \ref{thm:heat_smoothing});
-    \item The existence of finite-time neckpinch singularities in discrete and graphon Ricci flows under Ollivier curvature contraction (Theorem~\ref{thm:ricci_neckpinch});
+    \item Global well-posedness, contraction of the cut norm, and singular support decay for non-local Graphon Heat Equations $\partial_t W = \Delta_\otimes W$ (Theorems~\ref{thm:graphon_heat_existence} and \ref{thm:heat_smoothing});
+    \item The asymptotic neckpinch disconnection in graphon Ricci flows driven by Ollivier curvature concentration (Theorem~\ref{thm:ricci_neckpinch});
     \item The variational convergence of matrix level-set boundaries under discrete mean curvature flows via the Coarea identity (Theorem~\ref{thm:mean_curvature_coarea}).
 \end{enumerate}
 
@@ -178,7 +179,7 @@ Substituting $\gamma(t) = A^{1/2} \exp(t \log(A^{-1/2} B A^{-1/2})) A^{1/2}$ sat
 \end{proof}
 
 \subsection{The Bures-Wasserstein Optimal Transport Metric}
-In quantum mechanics and optimal transport of Gaussian probability measures $\mathcal{N}(0, A)$, the relevant Riemannian structure is the \emph{Bures-Wasserstein metric}:
+In quantum mechanics and optimal transport of Gaussian probability measures $\mathcal{N}(0, A)$ (see Bhatia~\cite{bhatia2009positive} and Villani~\cite{villani2009optimal}), the relevant Riemannian structure is the \emph{Bures-Wasserstein metric}:
 \begin{equation}
     \label{eq:bures_metric}
     g_A^{\mathrm{BW}}(U, V) \coloneqq \frac{1}{2} \Tr(\mathcal{S}_A(U) V),
@@ -187,7 +188,7 @@ where $\mathcal{S}_A(U)$ is the unique symmetric solution to the continuous Lyap
 \begin{equation}
     d_{\mathrm{BW}}^2(A, B) = \Tr(A) + \Tr(B) - 2 \Tr\left((A^{1/2} B A^{1/2})^{1/2}\right),
 \end{equation}
-which is a non-negatively curved metric space.
+which is a non-negatively curved metric space (an Alexandrov space with curvature $\ge 0$).
 
 \subsection{The Fixed-Rank Variety}
 \label{subsec:fixed_rank}
@@ -235,7 +236,7 @@ leaves the tensor $\mathcal{T}$ invariant. To eliminate this redundancy, we impo
 \begin{equation}
     L_\alpha^T L_\alpha = \Id_{r_\alpha}, \quad \text{where } (L_\alpha)_{(\beta, i_\alpha), \gamma} \coloneqq G_\alpha(\beta, i_\alpha, \gamma).
 \end{equation}
-This constrains the first $k-1$ cores to the compact Stiefel manifold $\mathrm{St}(r_\alpha, r_{\alpha-1} d_\alpha)$, while the final core $G_k$ is unconstrained. The differential $\dif \Phi$ has full rank precisely when the $\alpha$-th matricizations of $\mathcal{T}$ have rank $r_\alpha$. By the submersion theorem and quotienting by the gauge group of dimension $\sum_{\alpha=1}^{k-1} r_\alpha^2$, $\mathcal{M}_{\mathbf{r}}^{\mathrm{TT}}$ is an embedded smooth manifold with dimension given by \eqref{eq:tt_dim}.
+This constrains the first $k-1$ cores to the compact Stiefel manifold $\mathrm{St}(r_\alpha, r_{\alpha-1} d_\alpha)$, while the final core $G_k$ is unconstrained. The differential $\dif \Phi$ has full rank precisely when the $\alpha$-th matricizations of $\mathcal{T}$ have rank $r_\alpha$. By the submersion theorem and quotienting by the gauge group of dimension $\sum_{\alpha=1}^{k-1} r_\alpha^2$, $\mathcal{M}_{\mathbf{r}}^{\mathrm{TT}}$ is an embedded smooth manifold with dimension given by \eqref{eq:tt_dim} (see Holtz, Rohwedder, and Schneider~\cite{holtz2012tensor}).
 \end{proof}
 
 \begin{theorem}[Tangent Space Projection and Projected Gradient Flow]
@@ -271,7 +272,7 @@ Statement (i) follows from differentiating the product map \eqref{eq:tt_decompos
 % =========================================================================
 
 \subsection{The Toda Lattice and Continuous QR Eigenvalue Dynamics}
-A fundamental paradigm in numerical linear algebra is that discrete iterative algorithms are stroboscopic time-1 maps of continuous Hamiltonian flows.
+A fundamental paradigm in numerical linear algebra is that discrete iterative algorithms are stroboscopic time-1 maps of continuous Hamiltonian flows (see Flaschka~\cite{flaschka1974toda}, Symes~\cite{symes1982qr}, and Deift, Nanda, and Tomei~\cite{deift1983ode}).
 
 Let $A \in \operatorname{Sym}_n(\R)$. Any matrix $X$ can be uniquely decomposed into $X = \Pi_{\mathfrak{so}}(X) + \Pi_{\mathfrak{b}}(X)$, where $\Pi_{\mathfrak{so}}(X) = X_{\mathrm{skew}} = X_{<0} - X_{<0}^T$ is skew-symmetric and $\Pi_{\mathfrak{b}}(X)$ is upper triangular.
 
@@ -365,7 +366,7 @@ Finally, the boundary of $\mathcal{M}_r$ in $\R^{m \times n}$ consists of matric
 \label{sec:graphon_pdes}
 % =========================================================================
 
-When the ambient dimension $n \to \infty$, discrete network dynamics converge to partial differential equations on continuous kernels. Let $\mathcal{W}_0 \coloneqq \{W \in L^2([0, 1]^2) \colon W(x, y) = W(y, x)\}$. Recall the cut norm:
+When the ambient dimension $n \to \infty$, discrete network dynamics converge to partial differential equations on continuous kernels (see Lov\'asz~\cite{lovasz2012large}). Let $\mathcal{W}_0 \coloneqq \{W \in L^2([0, 1]^2) \colon W(x, y) = W(y, x)\}$. Recall the cut norm:
 \begin{equation}
     \label{eq:cut_norm_def_paper2}
     \cutnorm{W} \coloneqq \sup_{S, T \subseteq [0, 1]} \left| \int_{S \times T} W(x, y) \dif x \dif y \right|.
@@ -406,30 +407,40 @@ where $\Delta_\otimes W(x, y) \coloneqq \int_0^1 (W(x, z) + W(z, y) - 2 W(x, y))
 
 \begin{theorem}[Global Well-Posedness and Semigroup Generation]
 \label{thm:graphon_heat_existence}
-Let $W_0 \in L^\infty([0, 1]^2)$. The non-local heat equation \eqref{eq:graphon_heat} generates a strongly continuous contraction semigroup $e^{t \Delta_\otimes}$ on $L^p([0, 1]^2)$ for all $1 \le p \le \infty$. The explicit solution is:
+Let $W_0 \in L^\infty([0, 1]^2)$. The non-local heat equation \eqref{eq:graphon_heat} generates a strongly continuous contraction semigroup $e^{t \Delta_\otimes}$ on $L^p([0, 1]^2)$ for all $1 \le p \le \infty$. The explicit short-time solution is:
 \begin{equation}
-    W(t, x, y) = e^{-2t} W_0(x, y) + (1 - e^{-2t}) \int_0^1 (W_0(x, z) + W_0(z, y)) \dif z + \mathcal{R}(t, x, y),
+    W(t, x, y) = e^{-2t} W_0(x, y) + (e^{-t} - e^{-2t}) \int_0^1 (W_0(x, z) + W_0(z, y)) \dif z + \mathcal{R}(t, x, y),
 \end{equation}
 where $\|\mathcal{R}(t, \cdot, \cdot)\|_{L^\infty} \le C t^2 \|W_0\|_{L^\infty}$.
 \end{theorem}
 
-\begin{theorem}[Parabolic Smoothing and Cut-Norm Contraction]
+\begin{theorem}[Cut-Norm Contraction and Decay of Singular Supports]
 \label{thm:heat_smoothing}
-Let $W(t) = e^{t \Delta_\otimes} W_0$. The cut norm of the evolving graphon is strictly non-increasing:
-\begin{equation}
-    \cutnorm{W(t)} \le \cutnorm{W_0}, \quad \forall t \ge 0.
-\end{equation}
-Furthermore, even if $W_0$ is a discontinuous step function (e.g., associated with an adjacency matrix), for every $t > 0$, $W(t, \cdot, \cdot)$ satisfies the integral Lipschitz condition:
-\begin{equation}
-    \int_0^1 |W(t, x, y) - W(t, x', y)| \dif y \le \frac{C}{\sqrt{t}} \|W_0\|_{L^2} |x - x'|.
-\end{equation}
+Let $W(t) = e^{t \Delta_\otimes} W_0$ solve the non-local graphon heat equation.
+\begin{enumerate}[label=(\roman*)]
+    \item \textbf{Cut-Norm Contraction:} The cut norm of the evolving graphon is strictly non-increasing:
+    \begin{equation}
+        \cutnorm{W(t)} \le \cutnorm{W_0}, \quad \forall t \ge 0.
+    \end{equation}
+    \item \textbf{Singular Support Decay:} Unlike classical local parabolic equations, the bounded non-local operator $\Delta_\otimes = \mathcal{K} - 2\mathcal{I}$ does not exhibit instantaneous regularization: if $W_0$ has jump discontinuities, $W(t, \cdot, \cdot)$ remains discontinuous for every $t \ge 0$, with the singular support decaying exponentially at rate $e^{-2t}$:
+    \begin{equation}
+        W(t, x, y) = e^{-2t} W_0(x, y) + \mathcal{K}_t[W_0](x, y),
+    \end{equation}
+    where $\mathcal{K}_t[W_0] \in C^0([0, 1]^2)$ whenever the integrated degree functions $d_{W_0} \in C^0([0, 1])$.
+\end{enumerate}
 \end{theorem}
 \begin{proof}
 By definition of the cut norm \eqref{eq:cut_norm_def_paper2}:
 \begin{equation}
     \cutnorm{W(t)} = \sup_{S, T} \left| \int_{S \times T} (e^{t \Delta_\otimes} W_0)(x, y) \dif x \dif y \right|.
 \end{equation}
-The integral operator $e^{t \Delta_\otimes}$ is a Markov operator (preserving positivity and constants). By the Riesz-Thorin interpolation theorem and duality with $L^\infty \to L^1$, the operator norm satisfies $\|e^{t \Delta_\otimes}\|_{L^\infty \to L^1} \le 1$. Applying Theorem~4.5 of \cite{silvafilho2026functional} yields $\cutnorm{W(t)} \le \cutnorm{W_0}$. The smoothing estimate follows from spectral decomposition in the Hilbert-Schmidt eigenbasis of $\Delta_\otimes$.
+The integral operator $e^{t \Delta_\otimes}$ is a Markov operator (preserving positivity and constants). By the Riesz-Thorin interpolation theorem and duality with $L^\infty \to L^1$, the operator norm satisfies $\|e^{t \Delta_\otimes}\|_{L^\infty \to L^1} \le 1$. Applying Grothendieck duality and Theorem~4.5 of \cite{silvafilho2026functional} yields $\cutnorm{W(t)} \le \cutnorm{W_0}$, proving (i).
+
+To prove (ii), write $\Delta_\otimes = \mathcal{K} - 2\mathcal{I}$, where $(\mathcal{K} W)(x, y) = \int_0^1 (W(x, z) + W(z, y)) \dif z$. By Duhamel's formula:
+\begin{equation}
+    e^{t \Delta_\otimes} = e^{-2t} \mathcal{I} + \int_0^t e^{-2(t-s)} \mathcal{K} e^{s \Delta_\otimes} \dif s.
+\end{equation}
+Because $\mathcal{K}$ is an integral operator, the convolution term $\mathcal{K}_t[W_0] = \int_0^t e^{-2(t-s)} \mathcal{K} W(s) \dif s$ inherits the continuity of the integrated marginals $d_W(x)$. However, the unperturbed initial profile $W_0$ persists scaled by $e^{-2t}$, so any jump discontinuity in $W_0$ remains present for all $t > 0$ with amplitude $e^{-2t} \Delta W_0$, vanishing asymptotically only as $t \to \infty$.
 \end{proof}
 
 % =========================================================================
@@ -447,15 +458,15 @@ where $W_1$ is the 1-Wasserstein distance between neighborhood random walk steps
 For a continuous graphon $W \in \mathcal{W}_0$, define the neighborhood probability density $m_x(z) \coloneqq \frac{W(x, z)}{d_W(x)}$.
 
 \begin{definition}[Continuous Graphon Ricci Flow]
-The \emph{Graphon Ricci Flow} is the non-linear evolution equation:
+The \emph{Graphon Ricci Flow} for edge connection densities is the non-linear evolution equation:
 \begin{equation}
     \label{eq:graphon_ricci}
-    \partial_t W(t, x, y) = -2 \kappa_W(t, x, y) W(t, x, y),
+    \partial_t W(t, x, y) = 2 \kappa_W(t, x, y) W(t, x, y),
 \end{equation}
 where $\kappa_W$ is the continuous Ollivier curvature field associated with the kernel $W$.
 \end{definition}
 
-\begin{theorem}[Neckpinch Singularity and Community Disconnection]
+\begin{theorem}[Neckpinch and Asymptotic Community Disconnection]
 \label{thm:ricci_neckpinch}
 Consider an initial graphon $W_0$ representing two dense communities connected by a thin bottleneck of width $\epsilon > 0$:
 \begin{equation}
@@ -464,19 +475,29 @@ Consider an initial graphon $W_0$ representing two dense communities connected b
 Then, under the Graphon Ricci Flow \eqref{eq:graphon_ricci}:
 \begin{enumerate}[label=(\roman*)]
     \item Inside each community, the Ricci curvature is strictly positive: $\kappa_W \ge c_1 > 0$.
-    \item Across the bottleneck, the Ricci curvature is strictly negative: $\kappa_W \le -c_2 / \epsilon < 0$.
-    \item Consequently, the bottleneck contracts to zero in finite time $T_{\mathrm{sing}} = \mathcal{O}(\epsilon \log(1/\epsilon))$, producing a topological neckpinch where the graphon disconnects into two orthogonal components:
+    \item Across the bottleneck, the Ricci curvature is strictly negative: $\kappa_W \le -c_2 < 0$.
+    \item Across the bottleneck, the connection density decays exponentially to zero without finite-time breakdown:
     \begin{equation}
-        \lim_{t \to T_{\mathrm{sing}}} W(t, x, y) = \mathbf{1}_{[0, 1/2]^2}(x, y) + \mathbf{1}_{[1/2, 1]^2}(x, y).
+        W(t, x, y) \le \epsilon e^{-2 c_2 t} \xrightarrow{t \to \infty} 0, \quad \forall (x, y) \in [0, 1/2] \times [1/2, 1],
+    \end{equation}
+    producing an asymptotic neckpinch where the graphon dynamically disconnects into two orthogonal invariant components:
+    \begin{equation}
+        \lim_{t \to \infty} W(t, x, y) = \mathbf{1}_{[0, 1/2]^2}(x, y) + \mathbf{1}_{[1/2, 1]^2}(x, y).
     \end{equation}
 \end{enumerate}
 \end{theorem}
 \begin{proof}
-Within each cluster, $m_x$ and $m_y$ overlap significantly, so $W_1(m_x, m_y) < d(x, y)$, giving $\kappa > 0$. Across the bridge between $x \in [0, 1/2]$ and $y \in [1/2, 1]$, mass must travel a distance $\ge 1/2$ while $d(x, y)$ is small, forcing $W_1(m_x, m_y) > d(x, y)$, whence $\kappa < 0$. Under $\partial_t W = -2\kappa W$, negative curvature exponentially suppresses the cross-terms: $\partial_t W(t, x, y) \le -2 |c_2| W(t, x, y)$, driving $W(t, x, y) \to 0$ as $t \to T_{\mathrm{sing}}$.
+Within each cluster, the random walk step measures $m_x$ and $m_y$ have substantial measure-theoretic overlap, yielding $W_1(m_x, m_y) < d(x, y)$, whence $\kappa_W(x, y) = 1 - \frac{W_1(m_x, m_y)}{d(x, y)} \ge c_1 > 0$. Across the bridge between $x \in [0, 1/2]$ and $y \in [1/2, 1]$, probability mass must be transported across the cluster separation while the geodesic distance $d(x, y)$ is small, forcing $W_1(m_x, m_y) > d(x, y)$ and therefore $\kappa_W(x, y) \le -c_2 < 0$. 
+
+Integrating $\partial_t W(t, x, y) = 2 \kappa_W(t, x, y) W(t, x, y)$ yields:
+\begin{equation}
+    W(t, x, y) = W_0(x, y) \exp\left( 2 \int_0^t \kappa_W(s, x, y) \dif s \right).
+\end{equation}
+Because $W_1(m_x, m_y)$ is bounded above by the diameter of the unit square, $\kappa_W$ is uniformly bounded from below ($\kappa_W \ge -C$). Thus $W(t, x, y) \ge \epsilon e^{-2Ct} > 0$ for all finite $t$, precluding any finite-time vanishing singularity. Instead, the negative curvature across the bridge guarantees exponential damping $\partial_t W \le -2 c_2 W$, ensuring $\lim_{t \to \infty} W(t, x, y) = 0$ across the bridge while intra-community densities are reinforced, establishing asymptotic topological neckpinch separation.
 \end{proof}
 
 \subsection{Matrix Level-Set Mean Curvature Flow}
-In \cite{silvafilho2026functional}, we proved the Coarea formula $\TV(W_A) = \int_{-\infty}^\infty \mathcal{H}^1(\partial^* E_t) \dif t$. We now dynamically evolve these level sets.
+In \cite{silvafilho2026functional}, we proved the Coarea formula $\TV(W_A) = \int_{-\infty}^\infty \mathcal{H}^1(\partial^* E_t) \dif t$. We now dynamically evolve these level sets via the viscosity level-set Mean Curvature Flow formulated by Evans and Spruck~\cite{evans1991mcf}.
 
 \begin{theorem}[Dissipation of Level-Set Perimeter under MCF]
 \label{thm:mean_curvature_coarea}
@@ -503,7 +524,7 @@ By the Coarea formula, $\TV(u(t)) = \int_{-\infty}^\infty \mathcal{H}^1(\partial
 In quantum many-body physics and multilinear analysis, contracted tensor chains such as Matrix Product States (MPS) provide compact representations of entangled states on discrete lattices. Here we establish the exact continuum limit of contracted tensor chains as the number of sites $k \to \infty$, demonstrating that high-order tensor contractions converge rigorously to non-Abelian path-ordered Wilson loops in gauge theory.
 
 \subsection{Continuous Matrix Product States and Gradient Flows}
-Let $\mathcal{H} = \int_0^L (\partial_x \psi^\dagger \partial_x \psi + c \psi^\dagger \psi^\dagger \psi \psi) \dif x$ be the Lieb-Liniger Hamiltonian for interacting bosons in 1D. Under the continuous Matrix Product State (cMPS) formalism \cite{verstraete2010continuous}, a field wave functional is parametrized by matrix functions $Q(x), R(x) \in \C^{r \times r}$:
+Let $\mathcal{H} = \int_0^L (\partial_x \psi^\dagger \partial_x \psi + c \psi^\dagger \psi^\dagger \psi \psi) \dif x$ be the Lieb-Liniger Hamiltonian for interacting bosons in 1D. Under the continuous Matrix Product State (cMPS) formalism (see Verstraete and Cirac~\cite{verstraete2010continuous} and Haegeman et al.~\cite{haegeman2011tdvp}), a field wave functional is parametrized by matrix functions $Q(x), R(x) \in \C^{r \times r}$:
 \begin{equation}
     \label{eq:cmps_state}
     |\Psi(Q, R)\rangle = \Tr\left( \mathcal{P} \exp\left( \int_0^L [Q(x) \otimes \Id + R(x) \otimes \psi^\dagger(x)] \dif x \right) \right) |0\rangle.
@@ -556,12 +577,12 @@ Let $\mathcal{A} \in C^1([0, 1], \mathfrak{gl}(r))$ be a continuous gauge potent
     \item \textbf{Error Bound:} The finite-$k$ approximation error satisfies:
     \begin{equation}
         \label{eq:dyson_error_bound}
-        \left| Z_k - \Tr\left( \mathcal{P} \exp\left( \oint_0^1 \mathcal{A}(s) \dif s \right) \right) \right| \le \frac{r}{k} \left( \|\mathcal{A}\|_{C^1} + M \right) \exp\left( \|\mathcal{A}\|_{L^1} \right).
+        \left| Z_k - \Tr\left( \mathcal{P} \exp\left( \oint_0^1 \mathcal{A}(s) \dif s \right) \right) \right| \le \frac{r}{k} \left( \|\mathcal{A}\|_{C^1} + \|\mathcal{A}\|_\infty^2 + M \right) \exp\left( \|\mathcal{A}\|_{L^1} \right).
     \end{equation}
     \item \textbf{Gauge Invariance:} Let $\Omega \in C^2([0, 1], GL(r))$ be a periodic gauge transformation ($\Omega(0) = \Omega(1)$). Under the local gauge transformation of tensor cores:
     \begin{equation}
         \label{eq:continuous_gauge_field}
-        \mathcal{A}(s) \mapsto \mathcal{A}^\Omega(s) \coloneqq \Omega(s)^{-1} \mathcal{A}(s) \Omega(s) + \Omega(s)^{-1} \partial_s \Omega(s),
+        \mathcal{A}(s) \mapsto \mathcal{A}^\Omega(s) \coloneqq \Omega(s)^{-1} \mathcal{A}(s) \Omega(s) - \Omega(s)^{-1} \partial_s \Omega(s),
     \end{equation}
     the path-ordered holonomy transforms by conjugation:
     \begin{equation}
@@ -630,7 +651,7 @@ Tensor-Train Truncation & TT-Projected Flow $\dot{\mathcal{T}} = -\mathcal{P}_{T
 Tensor Ring Contraction & Holonomy PDE $\dif U = \mathcal{A}(s) U \dif s$ & Gauge Loop $\mathcal{P} \exp(\oint \mathcal{A})$ & Wilson Loop Invariance \\
 Covariance Filtering & Affine-Invariant Flow $\dot{A} = -A (\log A) A$ & Cone $(\mathcal{S}_{++}^n, g^{\mathrm{AI}})$ & Geodesic dist $d_{\mathrm{AI}} \searrow 0$ \\
 Graph Consensus & Graphon Heat PDE $\partial_t W = \Delta_\otimes W$ & Unit Square $L^2([0,1]^2)$ & Cut norm $\cutnorm{W(t)} \searrow$ \\
-Community Detection & Graphon Ricci Flow $\partial_t W = -2\kappa W$ & Moduli Space $\widetilde{\mathcal{W}}$ & Neckpinch width $\epsilon(t) \to 0$ \\
+Community Detection & Graphon Ricci Flow $\partial_t W = 2\kappa W$ & Moduli Space $\widetilde{\mathcal{W}}$ & Neckpinch width $\epsilon(t) \searrow 0$ \\
 TV Denoising & Level-Set MCF $\partial_t u = |\nabla u| \operatorname{div}(\frac{\nabla u}{|\nabla u|})$ & $\BV(\Omega)$ Level Curves & Perimeter $\int \mathcal{H}^1(\partial^* E_t) \searrow$ \\
 \bottomrule
 \end{tabularx}
@@ -657,37 +678,78 @@ Open problems include:
 \bibitem{silvafilho2026functional}
 R.~M. Silva-Filho,
 \emph{Beyond the Spectrum: Functional Realizations of Matrices and Tensors, Emerging Invariants, and Geometric Measures},
-Preprint, Universidade Federal de Lavras, 2026.
-
-\bibitem{bhatia2009positive}
-R.~Bhatia,
-\emph{Positive Definite Matrices},
-Princeton Series in Applied Mathematics, Princeton University Press, Princeton, NJ, 2009.
-
-\bibitem{ollivier2009ricci}
-Y.~Ollivier,
-\emph{Ricci curvature of metric spaces},
-Journal of Functional Analysis, \textbf{256} (2009), no.~3, 810--864.
-
-\bibitem{verstraete2010continuous}
-F.~Verstraete and J.~I. Cirac,
-\emph{Continuous matrix product states for quantum fields},
-Physical Review Letters, \textbf{104} (2010), no.~19, 190405.
-
-\bibitem{deimling2010nonlinear}
-K.~Deimling,
-\emph{Nonlinear Functional Analysis},
-Springer Science \& Business Media, Berlin, 2010.
-
-\bibitem{evans2015measure}
-L.~C. Evans and R.~F. Gariepy,
-\emph{Measure Theory and Fine Properties of Functions},
-Revised Edition, CRC Press, Boca Raton, FL, 2015.
+Treatise Chapter~01, Universidade Federal de Lavras, 2026.
 
 \bibitem{absil2009optimization}
 P.-A. Absil, R.~Mahony, and R.~Sepulchre,
 \emph{Optimization Algorithms on Matrix Manifolds},
-Princeton University Press, Princeton, NJ, 2009.
+Princeton University Press, Princeton, NJ, 2008,
+\doi{10.1515/9781400830244}.
+
+\bibitem{bhatia2009positive}
+R.~Bhatia,
+\emph{Positive Definite Matrices},
+Princeton Series in Applied Mathematics, Princeton University Press, Princeton, NJ, 2009,
+\doi{10.1515/9781400827787}.
+
+\bibitem{deift1983ode}
+P.~Deift, T.~Nanda, and C.~Tomei,
+\emph{Ordinary differential equations and the symmetric eigenvalue problem},
+SIAM Journal on Numerical Analysis, \textbf{20} (1983), no.~1, 1--22,
+\doi{10.1137/0720001}.
+
+\bibitem{evans1991mcf}
+L.~C. Evans and J.~Spruck,
+\emph{Motion of level sets by mean curvature. I},
+Journal of Differential Geometry, \textbf{33} (1991), no.~3, 635--681,
+\doi{10.4310/jdg/1214446559}.
+
+\bibitem{flaschka1974toda}
+H.~Flaschka,
+\emph{The Toda lattice. II. Existence of integrals},
+Physical Review B, \textbf{9} (1974), no.~4, 1924--1925,
+\doi{10.1103/PhysRevB.9.1924}.
+
+\bibitem{haegeman2011tdvp}
+J.~Haegeman, J.~I. Cirac, T.~J. Osborne, I.~Pi{\v{z}}orn, H.~Verschelde, and F.~Verstraete,
+\emph{Time-dependent variational principle for quantum lattices},
+Physical Review Letters, \textbf{107} (2011), no.~7, 070601,
+\doi{10.1103/PhysRevLett.107.070601}.
+
+\bibitem{holtz2012tensor}
+S.~Holtz, T.~Rohwedder, and R.~Schneider,
+\emph{On manifolds of tensors of fixed TT-rank},
+Numerische Mathematik, \textbf{120} (2012), no.~4, 701--741,
+\doi{10.1007/s00211-011-0419-7}.
+
+\bibitem{lovasz2012large}
+L.~Lov{\'a}sz,
+\emph{Large Networks and Graph Limits},
+AMS Colloquium Publications, Vol.~60, AMS, Providence, RI, 2012.
+
+\bibitem{ollivier2009ricci}
+Y.~Ollivier,
+\emph{Ricci curvature of Markov chains on metric spaces},
+Journal of Functional Analysis, \textbf{256} (2009), no.~3, 810--864,
+\doi{10.1016/j.jfa.2008.11.001}.
+
+\bibitem{symes1982qr}
+W.~W. Symes,
+\emph{The QR algorithm and scattering for the finite nonperiodic Toda lattice},
+Physica D: Nonlinear Phenomena, \textbf{4} (1982), no.~2, 275--280,
+\doi{10.1016/0167-2789(82)90069-0}.
+
+\bibitem{verstraete2010continuous}
+F.~Verstraete and J.~I. Cirac,
+\emph{Continuous matrix product states for quantum fields},
+Physical Review Letters, \textbf{104} (2010), no.~19, 190405,
+\doi{10.1103/PhysRevLett.104.190405}.
+
+\bibitem{villani2009optimal}
+C.~Villani,
+\emph{Optimal Transport: Old and New},
+Grundlehren der mathematischen Wissenschaften, Band 338, Springer-Verlag, Berlin, 2009,
+\doi{10.1007/978-3-540-71050-9}.
 
 \end{thebibliography}
 

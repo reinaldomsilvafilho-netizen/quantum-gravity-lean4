@@ -1,0 +1,31 @@
+{"synthetic": false,
+ "schemaVersion": "2025-09-10",
+ "outputs":
+ {"o": ["0ba1b8c5f4169052.olean"],
+  "m": false,
+  "i": "adf61de2308bc0ed.ilean",
+  "c": "3954f7fc31ad1888.c"},
+ "log":
+ [{"message":
+   ".> LEAN_PATH=C:\\Users\\monar\\Documents\\antigravity\\resilient-turing\\formal_proofs_book\\.lake\\build\\lib\\lean c:\\Users\\monar\\.elan\\toolchains\\leanprover--lean4---v4.33.1\\bin\\lean.exe C:\\Users\\monar\\Documents\\antigravity\\resilient-turing\\formal_proofs_book\\Book\\Chap11\\EmergentSpacetime.lean -o C:\\Users\\monar\\Documents\\antigravity\\resilient-turing\\formal_proofs_book\\.lake\\build\\lib\\lean\\Book\\Chap11\\EmergentSpacetime.olean -i C:\\Users\\monar\\Documents\\antigravity\\resilient-turing\\formal_proofs_book\\.lake\\build\\lib\\lean\\Book\\Chap11\\EmergentSpacetime.ilean -c C:\\Users\\monar\\Documents\\antigravity\\resilient-turing\\formal_proofs_book\\.lake\\build\\ir\\Book\\Chap11\\EmergentSpacetime.c --setup C:\\Users\\monar\\Documents\\antigravity\\resilient-turing\\formal_proofs_book\\.lake\\build\\ir\\Book\\Chap11\\EmergentSpacetime.setup.json --json",
+   "level": "trace"}],
+ "inputs":
+ [["deps",
+   [["UnifiedQuantumGravityBook/Book:extraDep",
+     [["@UnifiedQuantumGravityBook:extraDep", "00000000000006bb"]]],
+    ["imports", "00000000000006bb"]]],
+  ["libs",
+   [["import dynlibs", "00000000000006bb"],
+    ["package external libraries", "00000000000006bb"],
+    ["module dynlibs", "00000000000006bb"],
+    ["module plugins", "00000000000006bb"]]],
+  ["Lean 4.33.1, commit 819816b2e0a3bf405af45ae5c7af2491d8f5bee6",
+   "0051240b7c23c453"],
+  ["C:\\Users\\monar\\Documents\\antigravity\\resilient-turing\\formal_proofs_book\\Book\\Chap11\\EmergentSpacetime.lean",
+   "68f6862a8db30303"],
+  ["options", "00000000000006bb"],
+  ["isModule: false", "feefd2a0d3a1847e"],
+  ["Module.name: Book.Chap11.EmergentSpacetime", "056d067308f80d36"],
+  ["Package.id?: (some UnifiedQuantumGravityBook)", "83e1b5e1213ea61e"],
+  ["Module.leanArgs: #[]", "00000000000006bb"]],
+ "depHash": "d28e9adc25a6216c"}

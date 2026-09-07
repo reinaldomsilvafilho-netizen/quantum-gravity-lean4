@@ -1,0 +1,18 @@
+{"synthetic": false,
+ "schemaVersion": "2025-09-10",
+ "outputs": "978302dd38e2789e.o",
+ "log":
+ [{"message":
+   ".> c:\\Users\\monar\\.elan\\toolchains\\leanprover--lean4---v4.33.1\\bin\\clang.exe -c -o C:\\Users\\monar\\Documents\\antigravity\\resilient-turing\\formal_proofs_book\\.lake\\build\\ir\\Book\\Chap05\\InterdimensionalTransforms.c.o.noexport C:\\Users\\monar\\Documents\\antigravity\\resilient-turing\\formal_proofs_book\\.lake\\build\\ir\\Book\\Chap05\\InterdimensionalTransforms.c -I c:\\Users\\monar\\.elan\\toolchains\\leanprover--lean4---v4.33.1\\include -fstack-clash-protection -ffp-contract=off -fdata-sections -ffunction-sections -Wno-unused-command-line-argument --sysroot c:\\Users\\monar\\.elan\\toolchains\\leanprover--lean4---v4.33.1 -nostdinc -isystem c:\\Users\\monar\\.elan\\toolchains\\leanprover--lean4---v4.33.1/include/clang -O3 -DNDEBUG",
+   "level": "trace"}],
+ "inputs":
+ [["Book.Chap05.InterdimensionalTransforms:c",
+   [["C:\\Users\\monar\\Documents\\antigravity\\resilient-turing\\formal_proofs_book\\.lake\\build\\ir\\Book\\Chap05\\InterdimensionalTransforms.c",
+     "ad4d840c90b4598b"],
+    ["Lean 4.33.1, commit 819816b2e0a3bf405af45ae5c7af2491d8f5bee6",
+     "0051240b7c23c453"]]],
+  ["Lean 4.33.1, commit 819816b2e0a3bf405af45ae5c7af2491d8f5bee6",
+   "0051240b7c23c453"],
+  ["traceArgs: #[-O3, -DNDEBUG]", "6c7bb0eeabd8f74a"],
+  ["x86_64-w64-windows-gnu", "360db333d006d911"]],
+ "depHash": "d866a1328f5fd52e"}

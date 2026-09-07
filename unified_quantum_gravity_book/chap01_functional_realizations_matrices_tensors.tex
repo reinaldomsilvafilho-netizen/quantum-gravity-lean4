@@ -300,20 +300,24 @@ The homogeneous Dirichlet energy under normalized measure $\dif\mu(x) = \frac{\d
 
 \begin{theorem}[Spectral Blindness to Spatial Energy]
 \label{thm:dirichlet_blindness}
-Let $A \in \R^{n \times n} \setminus \{0\}$. The Dirichlet energy of the realization $f_A$ is given explicitly by:
+For any matrix $A \in \R^{n \times n}$, the Dirichlet energy of the realization $f_A$ is given explicitly by:
 \begin{equation}
     \label{eq:dirichlet_energy_formula}
     \mathcal{E}(f_A) = \sum_{k_1=1}^n \sum_{k_2=1}^n (k_1^2 + k_2^2) |a_{k_1 k_2}|^2.
 \end{equation}
-Consequently, there exist orthogonal permutation matrices $P_1, P_2 \in \mathcal{S}_n$ such that $A_1 = P_1 A P_1^T$ and $A_2 = P_2 A P_2^T$ satisfy:
+Moreover, there exist non-zero symmetric matrices $A \in \operatorname{Sym}_n(\R)$ and orthogonal permutation matrices $P_1, P_2 \in \mathcal{S}_n$ such that $A_1 = P_1 A P_1^T$ and $A_2 = P_2 A P_2^T$ satisfy:
 \begin{equation}
-    \sigma(A_1) = \sigma(A_2) \quad \text{and} \quad \|A_1\|_F = \|A_2\|_F,
+    \sigma(A_1) = \sigma(A_2) \quad \text{and} \quad \|A_1\|_F = \|A_2\|_F = \|A\|_F,
 \end{equation}
-yet the ratio of their functional Dirichlet energies satisfies:
+yet the ratio of their functional Dirichlet energies scales as:
 \begin{equation}
     \frac{\mathcal{E}(f_{A_2})}{\mathcal{E}(f_{A_1})} = \Theta(n^2).
 \end{equation}
 \end{theorem}
+
+\begin{remark}[Isotropic Invariance vs Anisotropic Discrepancy]
+For isotropic matrices such as $A = c I_n$ (scalar multiples of the identity) or $A = c J_n$ (the all-ones matrix), any permutation matrix satisfies $P A P^T = A$, yielding an energy ratio $\mathcal{E}(f_{A_2})/\mathcal{E}(f_{A_1}) = 1$. The maximal quadratic amplification $\Theta(n^2)$ is achieved by anisotropic and localized configurations, such as projectors and rank-one forms.
+\end{remark}
 
 \begin{proof}
 Direct differentiation of $f_A$ yields:
@@ -341,7 +345,11 @@ This completes the proof.
 \end{proof}
 
 \begin{example}[The Checkerboard Matrix Pathology]
-Consider the checkerboard array $A \in \R^{n \times n}$ given by $a_{ij} = (-1)^{i+j}$. In discrete linear algebra, $A = v v^T$ with $v = (1, -1, 1, -1, \dots)^T$ is an elementary rank-1 matrix with spectrum $\sigma(A) = \{n, 0, \dots, 0\}$. Pure algebra classifies $A$ as structurally simple. However, under the harmonic realization, the frequency mass sits at $(n, n)$, yielding an explosive Dirichlet energy $\mathcal{E}(f_A) = \Theta(n^3)$. Functionally, the matrix represents the maximally rough spatial signal.
+Consider the checkerboard array $A \in \R^{n \times n}$ given by $a_{ij} = (-1)^{i+j}$. In discrete linear algebra, $A = v v^T$ with $v = (1, -1, 1, -1, \dots)^T$ is an elementary rank-1 matrix with spectrum $\sigma(A) = \{n, 0, \dots, 0\}$. Pure algebra classifies $A$ as structurally simple. However, under the harmonic realization, every entry has $|a_{k_1 k_2}|^2 = 1$, yielding by \eqref{eq:dirichlet_energy_formula} an explosive Dirichlet energy:
+\begin{equation}
+    \mathcal{E}(f_A) = \sum_{k_1=1}^n \sum_{k_2=1}^n (k_1^2 + k_2^2) \cdot 1 = 2n \sum_{k=1}^n k^2 = 2n \cdot \frac{n(n+1)(2n+1)}{6} = \frac{2}{3} n^4 + \mathcal{O}(n^3) = \Theta(n^4).
+\end{equation}
+Functionally, the matrix represents the maximally rough spatial signal.
 \end{example}
 
 \subsection{Geometric Measure Theory: Bounded Variation and the Coarea Formula}
@@ -399,7 +407,7 @@ For any $t \in \R$, define the continuous sub-level set $E_t \coloneqq \{(x, y) 
 where $\partial^* E_t$ is the essential boundary of $E_t$ in the sense of De Giorgi.
 \end{theorem}
 \begin{proof}
-Since $W_A \in \BV((0,1)^2)$ by Theorem~\ref{thm:tv_matrix}, De Giorgi's structure theorem guarantees that for almost every $t \in \R$, $E_t$ is a Caccioppoli set of finite perimeter and the classical Federer Coarea Identity holds (see \cite{evans2015measure}).
+Since $W_A \in \BV((0,1)^2)$ by Theorem~\ref{thm:tv_matrix}, De Giorgi's structure theorem guarantees that for almost every $t \in \R$, $E_t$ is a Caccioppoli set of finite perimeter and the classical Federer Coarea Identity holds (see Federer~\cite{federer1969geometric}, Ambrosio, Fusco, and Pallara~\cite{ambrosio2000functions}, and Evans and Gariepy~\cite{evans2015measure}).
 \end{proof}
 
 \subsection{Differential Topology: Morse Theory and Landscape Homology}
@@ -462,7 +470,7 @@ Since $\lambda_1 < \dots < \lambda_n$:
 \end{itemize}
 Thus, $\ker(\operatorname{Hess}_{\Sph^{n-1}} f_A(v_i)) = \{0\}$ and the Morse index is $\gamma(\pm v_i) = i - 1$. 
 
-The Morse polynomial evaluates to $P_{-1}(f_A) = 2 \sum_{i=1}^n (-1)^{i-1} = 2 \cdot \frac{1 - (-1)^n}{2} = 1 - (-1)^n$. This exactly matches the Euler characteristic $\chi(\Sph^{n-1})$ obtained from singular homology $H_*(\Sph^{n-1})$.
+The Morse polynomial evaluates to $P_{-1}(f_A) = 2 \sum_{i=1}^n (-1)^{i-1} = 2 \cdot \frac{1 - (-1)^n}{2} = 1 - (-1)^n$. By classical Morse theory (see Milnor~\cite{milnor1963morse}), this alternating sum of Morse indices exactly recovers the Euler characteristic $\chi(\Sph^{n-1})$ obtained from singular homology $H_*(\Sph^{n-1})$.
 \end{proof}
 
 \begin{remark}[The Degenerate Morse-Bott Regime]
@@ -504,7 +512,7 @@ Taking the supremum establishes the upper bound. The lower bound $\cutnorm{W} \l
 
 \begin{theorem}[Compactness of the Continuum Moduli Space]
 \label{thm:graphon_compactness}
-Let $\bar{\mathcal{W}}$ be the space of symmetric graphons $W \colon [0, 1]^2 \to [0, 1]$, and let $\bar{\Pi}$ be the group of measure-preserving bijections. The quotient metric space $(\widetilde{\mathcal{W}}, \delta_\square) \coloneqq (\bar{\mathcal{W}} / \bar{\Pi}, \delta_\square)$ is \emph{compact}. Consequently, every sequence of matrices $\{A_n\}_{n=1}^\infty$ with bounded entries has a subsequence whose functional realizations $W_{A_{n_k}}$ converge in the cut metric to a continuous limit graphon $W \in \widetilde{\mathcal{W}}$.
+Let $\bar{\mathcal{W}}$ be the space of symmetric graphons $W \colon [0, 1]^2 \to [0, 1]$, and let $\bar{\Pi}$ be the group of measure-preserving bijections. The quotient metric space $(\widetilde{\mathcal{W}}, \delta_\square) \coloneqq (\bar{\mathcal{W}} / \bar{\Pi}, \delta_\square)$ is \emph{compact}. Consequently, every sequence of symmetric matrices $\{A_n\}_{n=1}^\infty$ with entries uniformly bounded in a compact interval $[m, M]$ (under standard affine normalization $a_{ij} \mapsto \frac{a_{ij} - m}{M - m} \in [0, 1]$) has a subsequence whose step realizations $W_{A_{n_k}}$ converge in the cut metric to a limit graphon $W \in \widetilde{\mathcal{W}}$.
 \end{theorem}
 \begin{proof}
 See Lov\'asz and Szegedy \cite{lovasz2006limits}. The compactness is a functional-analytic manifestation of the Szemer\'edi Regularity Lemma.
@@ -552,7 +560,7 @@ is smooth: $\Phi_{\mathrm{multi}}(\mathcal{T}) \in C^\infty(\mathcal{M})$. Conse
         \label{eq:tensor_critical}
         \mathcal{T}(u^{(1)}, \dots, u^{(\alpha-1)}, \cdot, u^{(\alpha+1)}, \dots, u^{(k)}) = \sigma u^{(\alpha)}, \quad \forall \alpha \in \{1, \dots, k\},
     \end{equation}
-    which unconditionally recover the Lim--Qi singular value equations without diverging factor weights.
+    which unconditionally recover the Lim--Qi singular value equations~\cite{lim2005singular,qi2005eigenvalues} without diverging factor weights.
 \end{enumerate}
 \end{theorem}
 \begin{proof}
@@ -603,7 +611,7 @@ where $\bar{\Pi}$ is the group of measure-preserving bijections of $[0, 1]$. The
 \end{enumerate}
 \end{theorem}
 \begin{proof}
-The proof generalizes Theorem~\ref{thm:grothendieck_cutnorm}. Decomposing each test function $u^{(\alpha)} \in L^\infty([0, 1])$ with $\|u^{(\alpha)}\|_\infty \le 1$ into positive and negative parts $u_+^{(\alpha)} - u_-^{(\alpha)}$, the multilinear integral splits into $2^k$ signed orthant integrals, each bounded by $\|W\|_{\square, k}$. The compactness of $\widetilde{\mathcal{W}}_k$ follows from the hypergraph regularity lemma of Gowers \cite{lovasz2012large}.
+The proof generalizes Theorem~\ref{thm:grothendieck_cutnorm}. Decomposing each test function $u^{(\alpha)} \in L^\infty([0, 1])$ with $\|u^{(\alpha)}\|_\infty \le 1$ into positive and negative parts $u_+^{(\alpha)} - u_-^{(\alpha)}$, the multilinear integral splits into $2^k$ signed orthant integrals, each bounded by $\|W\|_{\square, k}$. The compactness of $\widetilde{\mathcal{W}}_k$ follows from the hypergraph regularity lemma of Gowers~\cite{gowers2007hypergraph} (see also Lov{\'a}sz~\cite{lovasz2012large}).
 \end{proof}
 
 \subsection{Multivariate Sobolev Regularization on Transformer Attention Tensors}
@@ -616,10 +624,11 @@ In modern deep learning architectures (Transformers), self-attention computes an
 
 \begin{theorem}[Dirichlet Stability of Attention Fields]
 \label{thm:attention_sobolev}
-Let $f_{\mathcal{A}_{b,h}}(x, y) \in H^2(\Tor^2)$ be the harmonic realization of the attention slice $\mathcal{A}_{b, h, :, :}$. If the network training loss includes the multilinear Sobolev penalty:
-\begin{equation}
-    \mathcal{R}_{\mathrm{Attn}}(\mathcal{A}) \coloneqq \sum_{b=1}^B \sum_{h=1}^H \iint_{\Tor^2} \left( \|\nabla f_{\mathcal{A}_{b,h}}(x, y)\|_2^2 + \lambda \|\Delta f_{\mathcal{A}_{b,h}}(x, y)\|_2^2 \right) \dif x \dif y,
-\end{equation}
+Let $f_{\mathcal{A}_{b,h}}(x, y) \in H^2(\Tor^2)$ be the harmonic realization of the attention slice $\mathcal{A}_{b, h, :, :}$. If the network training loss includes the multilinear Sobolev penalty controlling the full $H^2(\Tor^2)$ norm:
+\begin{align}
+    \mathcal{R}_{\mathrm{Attn}}(\mathcal{A}) &\coloneqq \sum_{b=1}^B \sum_{h=1}^H \iint_{\Tor^2} \left( |f_{\mathcal{A}_{b,h}}|^2 + \|\nabla f_{\mathcal{A}_{b,h}}\|_2^2 + \lambda |\Delta f_{\mathcal{A}_{b,h}}|^2 \right) \dif x \dif y \notag \\
+    &= \sum_{b=1}^B \sum_{h=1}^H \|f_{\mathcal{A}_{b,h}}\|_{H^2(\Tor^2)}^2,
+\end{align}
 then the attention maps satisfy a uniform Sobolev embedding $H^2(\Tor^2) \hookrightarrow C^{0, \alpha}(\Tor^2)$ ($\alpha \in (0, 1)$). Consequently, isolated adversarial attention spikes are bounded by:
 \begin{equation}
     \sup_{(x, y) \in \Tor^2} |f_{\mathcal{A}_{b,h}}(x, y)| \le C_{\mathrm{Sobolev}} \sqrt{\mathcal{R}_{\mathrm{Attn}}(\mathcal{A})},
@@ -627,11 +636,11 @@ then the attention maps satisfy a uniform Sobolev embedding $H^2(\Tor^2) \hookri
 which mathematically suppresses attention hallucination across ultra-long token sequences ($N \to \infty$).
 \end{theorem}
 \begin{proof}
-In dimension 2, the Sobolev embedding theorem guarantees that $H^2(\Tor^2)$ embeds continuously into the H\"older space $C^{0, \alpha}(\Tor^2)$. By Morrey's inequality:
+In dimension 2, the Sobolev embedding theorem guarantees that the Sobolev space $H^2(\Tor^2)$ embeds continuously into the H\"older space $C^{0, \alpha}(\Tor^2)$ for all $\alpha \in (0, 1)$. By Morrey's inequality and elliptic Sobolev theory:
 \begin{equation}
-    \|f\|_{L^\infty(\Tor^2)} \le C \left( \|f\|_{L^2} + \|\Delta f\|_{L^2} \right).
+    \|f\|_{L^\infty(\Tor^2)} \le C_{\mathrm{Sobolev}} \|f\|_{H^2(\Tor^2)} = C_{\mathrm{Sobolev}} \left( \|f\|_{L^2}^2 + \|\nabla f\|_{L^2}^2 + \lambda \|\Delta f\|_{L^2}^2 \right)^{1/2}.
 \end{equation}
-Applying this to the Fourier realization $f_{\mathcal{A}}$ completes the bound.
+Furthermore, because each row of the discrete attention matrix $\mathcal{A}_{b,h,:,:}$ is normalized via softmax ($\sum_{j=1}^N \mathcal{A}_{b,h,i,j} = 1$ with entries $\mathcal{A}_{b,h,i,j} \in [0,1]$), the $L^2$-norm $\|f_{\mathcal{A}}\|_{L^2} = \|\mathcal{A}\|_F \le \sqrt{N}$ is bounded by the stochastic nature of the attention weights. Combining the full $H^2$ penalty with the Sobolev embedding constant $C_{\mathrm{Sobolev}}$ yields the claimed bound on the supremum.
 \end{proof}
 
 \subsection{Complexity of the High-Dimensional Tensor Morse Landscape}
@@ -645,7 +654,15 @@ Let $\mathcal{T} \in \operatorname{Sym}^d(\R^n)$ be a random Gaussian symmetric 
 \end{equation}
 \end{theorem}
 \begin{proof}
-This result is established via the Kac-Rice formula for random fields on Riemannian manifolds (see Auffinger, Ben Arous, and C\'erny \cite{auffinger2013random}). The Hessian of $f_{\mathcal{T}}$ on the tangent space is distributed as a Gaussian Orthogonal Ensemble (GOE) shifted by the radial field, yielding an exponential density of saddles across index bands $\gamma \in \{1, \dots, n-1\}$.
+By the Kac-Rice formula for random fields on Riemannian manifolds (see Adler and Taylor~\cite{adler2007random}), the expected number of critical points is given by:
+\begin{equation}
+    \mathbb{E}[|\operatorname{Crit}(f_{\mathcal{T}})|] = \int_{\Sph^{n-1}} \mathbb{E}\left[ |\det(\nabla^2 f_{\mathcal{T}}(x))| \;\middle|\; \nabla f_{\mathcal{T}}(x) = 0 \right] p_{\nabla f_{\mathcal{T}}(x)}(0) \dif \sigma(x),
+\end{equation}
+where $\nabla^2 f_{\mathcal{T}}(x)$ is the covariant Riemannian Hessian on $T_x \Sph^{n-1}$ and $p_{\nabla f_{\mathcal{T}}(x)}(0)$ is the marginal density of the gradient at zero. Under the spherical symmetry of the covariance kernel $K(x, y) = \frac{1}{d} (x \cdot y)^d$, the field $f_{\mathcal{T}}$ and its gradient are isotropic. Conditional on $\nabla f_{\mathcal{T}}(x) = 0$, the covariant Hessian splits into:
+\begin{equation}
+    \nabla^2 f_{\mathcal{T}}(x) = H_0 - (d-1) f_{\mathcal{T}}(x) I_{n-1},
+\end{equation}
+where $H_0$ is an $(n-1) \times (n-1)$ Gaussian Orthogonal Ensemble (GOE) matrix independent of $f_{\mathcal{T}}(x)$. By Wigner's semicircle law and the large deviations principle for the empirical spectral measure of GOE matrices, the expected absolute determinant scales asymptotically as $\exp(n \Sigma(d))$ where $\Sigma(d) = \frac{1}{2} \log(d-1) - \frac{d-2}{2(d-1)} > 0$ for $d \ge 3$ (Auffinger, Ben Arous, and C\'erny~\cite{auffinger2013random}, Theorem 1.1). Integrating across the sphere of volume $\operatorname{Vol}(\Sph^{n-1})$ and over the energy levels yields the exponential growth $\sim C(d) \exp(n \, \Theta(d))$.
 \end{proof}
 
 \subsection{Critical Scaling and Measure Concentration in Infinite Dimensions (\texorpdfstring{$d \to \infty$}{d -> infty})}
@@ -655,14 +672,14 @@ A central dilemma in high-dimensional tensor analysis is establishing the exact 
 
 \begin{theorem}[Critical Multilinear Scaling and Sub-Gaussian Concentration]
 \label{thm:critical_scaling}
-Let $\mathcal{T} \in (\R^d)^{\otimes k}$ be a random tensor whose entries are centered, independent, and identically distributed with unit variance. Define the normalized functional realization:
+Let $\mathcal{T} \in (\R^d)^{\otimes k}$ be a random Gaussian tensor whose entries are independent standard normal variables: $\mathcal{T}_{j_1 \dots j_k} \stackrel{\mathrm{i.i.d.}}{\sim} \mathcal{N}(0, 1)$. Define the normalized functional realization on unit spheres:
 \begin{equation}
     \label{eq:renorm_tensor_form}
-    \widehat{f}_{\mathcal{T}}(u^{(1)}, \dots, u^{(k)}) \coloneqq \frac{1}{d^{(k-1)/2}} \sum_{j_1, \dots, j_k = 1}^d \mathcal{T}_{j_1 \dots j_k} u_{j_1}^{(1)} \dots u_{j_k}^{(k)}, \quad u^{(\alpha)} \in \Sph^{d-1}.
+    \widehat{f}_{\mathcal{T}}(u^{(1)}, \dots, u^{(k)}) \coloneqq \frac{1}{\sqrt{d}} \sum_{j_1, \dots, j_k = 1}^d \mathcal{T}_{j_1 \dots j_k} u_{j_1}^{(1)} \dots u_{j_k}^{(k)}, \quad u^{(\alpha)} \in \Sph^{d-1}.
 \end{equation}
 Then:
 \begin{enumerate}[label=(\roman*)]
-    \item The normalization exponent $\alpha_k = \frac{k-1}{2}$ is the unique critical scaling ensuring that the operator norm remains bounded and non-trivial:
+    \item The normalization exponent $\alpha = 1/2$ is the unique critical scaling ensuring that the operator norm over unit spheres remains bounded and non-trivial:
     \begin{equation}
         \mathbb{E}\left[ \sup_{u^{(\alpha)} \in \Sph^{d-1}} |\widehat{f}_{\mathcal{T}}(u^{(1)}, \dots, u^{(k)})| \right] = \Theta(1) \quad \text{as } d \to \infty.
     \end{equation}
@@ -674,22 +691,35 @@ Then:
     where $c_k > 0$ is a universal dimensional constant depending only on $k$.
 \end{enumerate}
 \end{theorem}
+
+\begin{remark}[Spin-Glass Extensive Scaling vs Geometric Operator Norm]
+In the statistical physics of spherical $p$-spin glasses ($p = k$), spin vectors are traditionally normalized to length $\|\sigma^{(\alpha)}\|_2 = \sqrt{d}$ so that each spin coordinate has variance $1$. In that convention, the multilinear sum pulls out a factor of $(\sqrt{d})^k = d^{k/2}$. The Hamiltonian is normalized by $d^{-(k-1)/2}$, yielding an extensive Hamiltonian $H_k(\sigma) = d^{-(k-1)/2} \sum \mathcal{T}_{j_1 \dots j_k} \sigma_{j_1}^{(1)} \dots \sigma_{j_k}^{(k)} = \sqrt{d} \sum \mathcal{T} u^{(1)} \dots u^{(k)}$. The intensive energy per particle $\frac{1}{d} H_k(\sigma) = \frac{1}{\sqrt{d}} \sum \mathcal{T} u^{(1)} \dots u^{(k)} = \widehat{f}_{\mathcal{T}}(u)$ is of order $\Theta(1)$, reconciling the physical Hamiltonian exponent $(k-1)/2$ with the geometric unit-sphere normalization factor $1/\sqrt{d}$.
+\end{remark}
+
 \begin{proof}
-To prove (i), let $u^{(\alpha)} \in \Sph^{d-1}$ be fixed unit vectors. The multilinear sum $X \coloneqq \sum_j \mathcal{T}_{j_1 \dots j_k} u_{j_1}^{(1)} \dots u_{j_k}^{(k)}$ consists of independent centered variables with variance:
+To prove (i), let $\mathcal{M} = \prod_{\alpha=1}^k \Sph^{d-1}$ be the product manifold of unit spheres. For an arbitrary fixed tuple $v \in \mathcal{M}$, the multilinear evaluation:
 \begin{equation}
-    \operatorname{Var}(X) = \sum_{j_1, \dots, j_k} (u_{j_1}^{(1)})^2 \dots (u_{j_k}^{(k)})^2 = \prod_{\alpha=1}^k \|u^{(\alpha)}\|_2^2 = 1.
+    X(v) \coloneqq \sum_{j_1, \dots, j_k = 1}^d \mathcal{T}_{j_1 \dots j_k} v_{j_1}^{(1)} \dots v_{j_k}^{(k)}
 \end{equation}
-By classical $\epsilon$-net discretization arguments on the product manifold $\mathcal{M} = \prod_{\alpha=1}^k \Sph^{d-1}$, an $\epsilon$-net requires at least $(C/\epsilon)^{k d}$ balls. Union bounding over the net yields a supremum of order $\sqrt{k d \log(1/\epsilon)}$. Factoring out the volume growth of coordinates scales the expected maximum precisely as $d^{(k-1)/2}$, establishing uniqueness of the critical scaling.
+is an exact linear combination of independent standard Gaussian random variables with variance:
+\begin{equation}
+    \operatorname{Var}(X(v)) = \sum_{j_1, \dots, j_k = 1}^d (v_{j_1}^{(1)})^2 \dots (v_{j_k}^{(k)})^2 = \prod_{\alpha=1}^k \|v^{(\alpha)}\|_2^2 = 1.
+\end{equation}
+Hence $X(v) \sim \mathcal{N}(0, 1)$ is identically a standard normal scalar for every $v \in \mathcal{M}$. Let $\mathcal{N}_\epsilon$ be an optimal $\epsilon$-net of $\Sph^{d-1}$ with cardinality $|\mathcal{N}_\epsilon| \le (1 + 2/\epsilon)^d$. The product net $\mathcal{N} \coloneqq \prod_{\alpha=1}^k \mathcal{N}_\epsilon \subset \mathcal{M}$ satisfies $|\mathcal{N}| \le (1 + 2/\epsilon)^{k d}$. By the standard Gaussian maximal inequality over the finite net $\mathcal{N}$:
+\begin{equation}
+    \mathbb{E}\left[ \sup_{v \in \mathcal{N}} |X(v)| \right] \le \sqrt{2 \log(2 |\mathcal{N}|)} \le \sqrt{2 k d \log(1 + 2/\epsilon) + 2\log 2} = C(k, \epsilon) \sqrt{d}.
+\end{equation}
+By multilinear approximation on $\mathcal{M}$, choosing $\epsilon = \frac{1}{2k}$ guarantees that $\sup_{u \in \mathcal{M}} |X(u)| \le \frac{1}{1 - k\epsilon} \sup_{v \in \mathcal{N}} |X(v)| \le 2 \sup_{v \in \mathcal{N}} |X(v)|$. Therefore:
+\begin{equation}
+    \mathbb{E}\left[ \sup_{u \in \mathcal{M}} |X(u)| \right] \le 2 C(k) \sqrt{d} = \mathcal{O}(\sqrt{d}).
+\end{equation}
+Conversely, restricting $u^{(1)} = \dots = u^{(k-1)} = e_1$ yields the Gaussian contraction $\sum_{j_k} \mathcal{T}_{1 \dots 1 j_k} u_{j_k}^{(k)}$. Its supremum over $u^{(k)} \in \Sph^{d-1}$ is the Euclidean norm of the standard Gaussian vector $Z \coloneqq (\mathcal{T}_{1 \dots 1 1}, \dots, \mathcal{T}_{1 \dots 1 d})^T \sim \mathcal{N}(0, I_d)$, which satisfies $\mathbb{E}[\|Z\|_2] = \sqrt{2} \frac{\Gamma((d+1)/2)}{\Gamma(d/2)} = \sqrt{d}(1 - \mathcal{O}(1/d)) = \Omega(\sqrt{d})$. Thus the unnormalized expected supremum is strictly $\Theta(\sqrt{d})$. Dividing by $\sqrt{d} = d^{1/2}$ yields $\mathbb{E}[\sup |\widehat{f}_{\mathcal{T}}|] = \Theta(1)$, establishing uniqueness of the scaling exponent $1/2$ on unit spheres.
 
 To establish (ii), recall that the round sphere $\Sph^{d-1}$ has Ricci curvature $\mathrm{Ric}(\Sph^{d-1}) = (d-2) g_{\Sph}$. By the L\'evy--Gromov isoperimetric theorem and the Bakry--\'Emery criterion, any Lipschitz function $F \colon \Sph^{d-1} \to \R$ with Lipschitz constant $\|F\|_{\Lip} \le L$ satisfies:
 \begin{equation}
     \mathbb{P}\left( |F - \mathbb{E}[F]| > \epsilon \right) \le 2 \exp\left( - \frac{(d-1)\epsilon^2}{2 L^2} \right).
 \end{equation}
-Conditioning on $(u^{(2)}, \dots, u^{(k)})$, the function $u^{(1)} \mapsto \widehat{f}_{\mathcal{T}}(u^{(1)}, \dots, u^{(k)})$ is linear with Lipschitz constant:
-\begin{equation}
-    L_1 = \frac{1}{d^{(k-1)/2}} \left\| \sum_{j_2, \dots, j_k} \mathcal{T}_{:, j_2 \dots j_k} u_{j_2}^{(2)} \dots u_{j_k}^{(k)} \right\|_2.
-\end{equation}
-Taking the product expectation and applying the Herbst argument inductively across all $k$ spheres yields \eqref{eq:concentration_inequality}.
+Conditioning on $(u^{(2)}, \dots, u^{(k)})$, the function $u^{(1)} \mapsto \widehat{f}_{\mathcal{T}}(u^{(1)}, \dots, u^{(k)})$ is linear on $\Sph^{d-1}$ with Lipschitz constant $L_1 = \frac{1}{\sqrt{d}} \|w\|_2$, where $w_i \coloneqq \sum_{j_2, \dots, j_k} \mathcal{T}_{i, j_2 \dots j_k} u_{j_2}^{(2)} \dots u_{j_k}^{(k)}$. Since $\mathcal{T}$ is Gaussian, the coordinates $w_1, \dots, w_d$ are independent centered Gaussian variables with variance $\prod_{\alpha=2}^k \|u^{(\alpha)}\|_2^2 = 1$. Hence $w \sim \mathcal{N}(0, I_d)$ and $\|w\|_2^2 \sim \chi^2(d)$. By the Laurent--Massart tail bound for chi-squared distributions, $\mathbb{P}(\|w\|_2^2 \ge 2d) \le \exp(-d/8)$. On the typical event $\{\|w\|_2^2 \le 2d\}$, the Lipschitz constant satisfies $L_1 \le \sqrt{2}$. Applying the Herbst argument inductively across all $k$ spheres and unconditioning via the exponential chi-squared tail yields \eqref{eq:concentration_inequality}.
 \end{proof}
 
 % =========================================================================
@@ -743,9 +773,9 @@ In multilinear data processing (signal processing, hyper-spectral imaging, quant
 \begin{equation}
     \min_{\rank(\mathcal{X}) \le r} \|\mathcal{T} - \mathcal{X}\|_F
 \end{equation}
-routinely encounters fatal numerical instabilities. In their landmark work, De Silva and Lim \cite{lim2005singular} proved that for tensors of order $k \ge 3$, the variety $\mathcal{S}_r \coloneqq \{\mathcal{X} \colon \rank(\mathcal{X}) \le r\}$ is \emph{not topologically closed} in the Euclidean topology. Consequently, standard algorithms such as Alternating Least Squares (CP-ALS) diverge, with factor weights diverging to $\pm \infty$.
+routinely encounters fatal numerical instabilities. In their landmark work, De Silva and Lim~\cite{desilva2008illposed,lim2005singular} proved that for tensors of order $k \ge 3$, the variety $\mathcal{S}_r \coloneqq \{\mathcal{X} \colon \rank(\mathcal{X}) \le r\}$ is \emph{not topologically closed} in the Euclidean topology. Consequently, standard algorithms such as Alternating Least Squares (CP-ALS) diverge, with factor weights diverging to $\pm \infty$.
 
-Our functional framework circumvents this pathology: by realizing the tensor as a multilinear form $\Phi(\mathcal{T})$ on the compact manifold $\mathcal{M} = \Sph^{n_1-1} \times \dots \times \Sph^{n_k-1}$, the optimization problem transforms into finding critical points of a smooth potential on a compact domain. By the Weierstrass Extreme Value Theorem, the functional extrema are \emph{unconditionally guaranteed to exist}. The variational singular vectors (the Lim--Qi equations \eqref{eq:tensor_critical}) are well-posed, yielding a robust framework for tensor factorizations that never diverges.
+Our functional framework circumvents this pathology: by realizing the tensor as a multilinear form $\Phi(\mathcal{T})$ on the compact manifold $\mathcal{M} = \Sph^{n_1-1} \times \dots \times \Sph^{n_k-1}$, the optimization problem transforms into finding critical points of a smooth potential on a compact domain. By the Weierstrass Extreme Value Theorem, the functional extrema are \emph{unconditionally guaranteed to exist}. The variational singular vectors (the Lim--Qi equations~\cite{lim2005singular,qi2005eigenvalues} \eqref{eq:tensor_critical}) are well-posed, yielding a robust framework for tensor factorizations that never diverges.
 
 % -------------------------------------------------------------------------
 \subsection{Biomedical Imaging: Hausdorff Perimeters and Minimal Surface Level Curves}
@@ -756,7 +786,7 @@ By Theorem~\ref{thm:coarea_linkage}, the Total Variation $\TV(W_A)$ of the matri
 \begin{equation}
     \TV(W_A) = \int_{-\infty}^\infty \mathcal{H}^1(\partial^* \{W_A > t\}) \dif t.
 \end{equation}
-This establishes that discrete Total Variation regularization (such as the Rudin--Osher--Fatemi model) is not merely a heuristic filter, but a precise variational minimal-surface formulation. Matrices with identical pixel histograms possess wildly divergent level-set perimeters, providing a quantitative metric for measuring the fractal geometric boundary complexity of pathological tissue lesions directly from raw array data.
+This establishes that discrete Total Variation regularization (such as the Rudin--Osher--Fatemi model~\cite{rudin1992nonlinear}) is not merely a heuristic filter, but a precise variational minimal-surface formulation. Matrices with identical pixel histograms possess wildly divergent level-set perimeters, providing a quantitative metric for measuring the fractal geometric boundary complexity of pathological tissue lesions directly from raw array data.
 
 % =========================================================================
 \section{Synthesis and Comparison Table}
@@ -800,15 +830,40 @@ Several fundamental open problems invite future research:
 
 \begin{thebibliography}{99}
 
+\bibitem{adler2007random}
+R.~J. Adler and J.~E. Taylor,
+\emph{Random Fields and Geometry},
+Springer Monographs in Mathematics, Springer, New York, 2007.
+
+\bibitem{ambrosio2000functions}
+L.~Ambrosio, N.~Fusco, and D.~Pallara,
+\emph{Functions of Bounded Variation and Free Discontinuity Problems},
+Oxford Mathematical Monographs, Oxford University Press, Oxford, 2000.
+
 \bibitem{auffinger2013random}
 A.~Auffinger, G.~Ben Arous, and J.~{\v{C}}ern{\`y},
 \emph{Random matrices and complexity of spin glasses},
 Communications on Pure and Applied Mathematics, \textbf{66} (2013), no.~2, 165--201.
 
+\bibitem{desilva2008illposed}
+V.~De Silva and L.-H. Lim,
+\emph{Tensor rank and the ill-posedness of the best low-rank approximation problem},
+SIAM Journal on Matrix Analysis and Applications, \textbf{30} (2008), no.~3, 1084--1127.
+
 \bibitem{evans2015measure}
 L.~C. Evans and R.~F. Gariepy,
 \emph{Measure Theory and Fine Properties of Functions},
 Revised Edition, CRC Press, Boca Raton, FL, 2015.
+
+\bibitem{federer1969geometric}
+H.~Federer,
+\emph{Geometric Measure Theory},
+Die Grundlehren der mathematischen Wissenschaften, Band 153, Springer-Verlag, New York, 1969.
+
+\bibitem{gowers2007hypergraph}
+W.~T. Gowers,
+\emph{Hypergraph regularity and the multidimensional Szemer{\'e}di theorem},
+Annals of Mathematics, \textbf{166} (2007), no.~3, 897--946.
 
 \bibitem{lovasz2006limits}
 L.~Lov{\'a}sz and B.~Szegedy,
@@ -825,6 +880,11 @@ L.-H. Lim,
 \emph{Singular values and eigenvalues of tensors: a variational approach},
 in \emph{1st IEEE International Workshop on Computational Advances in Multi-Sensor Adaptive Processing}, 2005, pp.~129--132.
 
+\bibitem{milnor1963morse}
+J.~Milnor,
+\emph{Morse Theory},
+Annals of Mathematics Studies, No.~51, Princeton University Press, Princeton, NJ, 1963.
+
 \bibitem{qi2005eigenvalues}
 L.~Qi,
 \emph{Eigenvalues of a real supersymmetric tensor},
@@ -834,11 +894,6 @@ Journal of Symbolic Computation, \textbf{40} (2005), no.~6, 1302--1324.
 L.~I. Rudin, S.~Osher, and E.~Fatemi,
 \emph{Nonlinear total variation based noise removal algorithms},
 Physica D: Nonlinear Phenomena, \textbf{60} (1992), no.~1-4, 259--268.
-
-\bibitem{milnor1963morse}
-J.~Milnor,
-\emph{Morse Theory},
-Annals of Mathematics Studies, No.~51, Princeton University Press, Princeton, NJ, 1963.
 
 \end{thebibliography}
 

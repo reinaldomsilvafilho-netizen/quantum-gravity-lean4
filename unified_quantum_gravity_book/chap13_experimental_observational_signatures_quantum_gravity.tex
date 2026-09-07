@@ -26,18 +26,14 @@
 \newcommand{\dif}{\,\mathrm{d}}
 \providecommand{\Area}{\operatorname{Area}}
 \newcommand{\norm}[1]{\left\|#1\right\|}
-
-
 \DeclareMathOperator*{\argmin}{argmin}
 \providecommand{\Hyp}{\mathbb{H}}
-\providecommand{\Sph}{\mathbb{S}}
 \providecommand{\II}{\mathrm{II}}
-\providecommand{\R}{\mathbb{R}}
-\providecommand{\Area}{\mathrm{Area}}
 \providecommand{\Hsn}{\mathcal{H}}
 \providecommand{\BV}{\mathrm{BV}}
 \providecommand{\TV}{\mathrm{TV}}
 \providecommand{\cutnorm}[1]{\|#1\|_{\square}}
+\providecommand{\doi}[1]{\href{https://doi.org/#1}{\nolinkurl{doi:#1}}}
 
 \begin{document}
 
@@ -95,7 +91,7 @@ Graviton wavepackets consequently propagate with an energy-dependent group veloc
 \begin{equation}
     v_g(k) = \frac{\dif \omega}{\dif k} \approx c \left( 1 + \frac{3}{2}\xi \ell_P^2 k^2 \right).
 \end{equation}
-Over a cosmological propagation distance $D_L(z) = \frac{c}{H_0} \int_0^z \frac{\dif z'}{\sqrt{\Omega_m(1+z')^3 + \Omega_\Lambda}}$, two frequency components $f_1$ and $f_2$ emitted simultaneously by a catastrophic source (such as an intermediate-mass or supermassive binary black hole merger) experience a cumulative differential arrival time delay:
+Over a cosmological propagation distance $D_L(z) = (1+z)\frac{c}{H_0} \int_0^z \frac{\dif z'}{\sqrt{\Omega_m(1+z')^3 + \Omega_\Lambda}}$, two frequency components $f_1$ and $f_2$ emitted simultaneously by a catastrophic source (such as an intermediate-mass or supermassive binary black hole merger) experience a cumulative differential arrival time delay:
 \begin{equation}
     \label{eq:delta_t}
     \Delta t_{\mathrm{disp}} = \frac{6 \pi^2 \xi \ell_P^2}{c^3} D_L(z) \left( f_2^2 - f_1^2 \right).
@@ -174,90 +170,101 @@ This research was financed in part by the Coordena\c{c}\~ao de Aperfei\c{c}oamen
 
 \begin{thebibliography}{99}
 
+\bibitem{abazajian2016cmb}
+K.~N. Abazajian et~al.,
+\emph{CMB-S4 Science Book, First Edition},
+arXiv:1610.02743 (2016),
+\doi{10.48550/arXiv.1610.02743}.
+
+\bibitem{abe2021matter}
+M.~Abe et~al.,
+\emph{Matter-wave atomic gradiometer interferometric sensor (MAGIS-100)},
+Quantum Sci. Technol., \textbf{6} (2021), 044003,
+\doi{10.1088/2058-9565/abf719}.
+
+\bibitem{amaro2017laser}
+P.~Amaro-Seoane et~al.,
+\emph{Laser Interferometer Space Antenna},
+arXiv:1702.00786 (2017),
+\doi{10.48550/arXiv.1702.00786}.
+
+\bibitem{ambjorn2005spectral}
+J.~Ambj{\o}rn, J.~Jurkiewicz, and R.~Loll,
+\emph{Spectral dimension of the universe},
+Phys. Rev. Lett., \textbf{95} (2005), 171301,
+\doi{10.1103/PhysRevLett.95.171301}.
+
+\bibitem{badurina2020aion}
+L.~Badurina et~al.,
+\emph{AION: An Atom Interferometer Observatory and Network},
+J. Cosmol. Astropart. Phys., \textbf{2020} (2020), 011,
+\doi{10.1088/1475-7516/2020/05/011}.
+
+\bibitem{ebadi2021quantum}
+S.~Ebadi et~al.,
+\emph{Quantum phases of matter on a 256-atom programmable quantum simulator},
+Nature, \textbf{595} (2021), 227--232,
+\doi{10.1038/s41586-021-03582-4}.
+
 \bibitem{goroff1986ultraviolet}
 M.~H. Goroff and A.~Sagnotti,
 \emph{The ultraviolet behavior of Einstein gravity},
-Nuclear Physics B, \textbf{266} (1986), no.~3-4, 709--736.
+Nuclear Physics B, \textbf{266} (1986), no.~3-4, 709--736,
+\doi{10.1016/0550-3213(86)90193-8}.
 
-\bibitem{silvafilho2026grand}
-R.~M.~Silva-Filho,
-\emph{A Unified Geometric and Algebraic Theory of Quantum Gravity: From Simplicial Fractional Calculus and Minimax Foliations to Emergent Holographic Spacetime},
-Treatise on Multilinear Geometry and Quantum Gravity, Vol.~1, Chap.~12 (2026).
+\bibitem{hazumi2019litebird}
+M.~Hazumi et~al.,
+\emph{LiteBIRD: A satellite for the studies of B-mode polarization and Inflation from cosmic background radiation detection},
+J. Low Temp. Phys., \textbf{194} (2019), 443--452,
+\doi{10.1007/s10909-019-02150-1}.
 
-\bibitem{silvafilho2026functional}
-R.~M. Silva-Filho,
-\emph{Beyond the Spectrum: Functional Realizations of Matrices and Tensors},
-Preprint, Universidade Federal de Lavras, 2026.
+\bibitem{maldacena2016bound}
+J.~Maldacena, S.~H. Shenker, and D.~Stanford,
+\emph{A bound on chaos},
+J. High Energ. Phys., \textbf{2016} (2016), 106,
+\doi{10.1007/JHEP08(2016)106}.
+
+\bibitem{punturo2010einstein}
+M.~Punturo et~al.,
+\emph{The Einstein Telescope: a third-generation gravitational wave observatory},
+Class. Quantum Grav., \textbf{27} (2010), 194002,
+\doi{10.1088/0264-9381/27/19/194002}.
+
+\bibitem{reitze2019cosmic}
+D.~Reitze et~al.,
+\emph{Cosmic Explorer: The U.S. contribution to gravitational-wave astronomy beyond LIGO},
+Bull. Am. Astron. Soc., \textbf{51} (2019), 035,
+\doi{10.48550/arXiv.1907.04833}.
 
 \bibitem{silvafilho2026flows}
 R.~M. Silva-Filho,
 \emph{Geometric Flows, Partial Differential Equations, and Variational Dynamics on Matrix and Tensor Manifolds},
 Preprint, Universidade Federal de Lavras, 2026.
 
-\bibitem{silvafilho2026spacetime}
+\bibitem{silvafilho2026functional}
 R.~M. Silva-Filho,
-\emph{Emergent Spacetime and Quantum Geometry: Unifying General Relativity and Quantum Field Theory},
+\emph{Beyond the Spectrum: Functional Realizations of Matrices and Tensors},
 Preprint, Universidade Federal de Lavras, 2026.
 
-\bibitem{silvafilho2026pascal}
+\bibitem{silvafilho2026grand}
 R.~M.~Silva-Filho,
-\emph{Analytic Continuation of Pascal's Simplex: Continuous Multinomial Integrals and Simplicial Fractional Calculus},
-Treatise on Multilinear Geometry and Quantum Gravity, Vol.~1, Chap.~3 (2026).
+\emph{A Unified Geometric and Algebraic Theory of Quantum Gravity: From Simplicial Fractional Calculus and Minimax Foliations to Emergent Holographic Spacetime},
+Treatise on Multilinear Geometry and Quantum Gravity, Vol.~1, Chap.~12 (2026).
 
 \bibitem{silvafilho2026noneuclidean}
 R.~M.~Silva-Filho,
 \emph{Minimax Extrinsic Curvature in Non-Euclidean Geometries and General Relativity: Variational Theory, Space Forms, and ADM Spacetime Slicings},
 Treatise on Multilinear Geometry and Quantum Gravity, Vol.~1, Chap.~8 (2026).
 
-\bibitem{ambjorn2005spectral}
-J.~Ambj{\o}rn, J.~Jurkiewicz, and R.~Loll,
-\emph{Spectral dimension of the universe},
-Phys. Rev. Lett., \textbf{95} (2005), 171301.
+\bibitem{silvafilho2026pascal}
+R.~M.~Silva-Filho,
+\emph{Analytic Continuation of Pascal's Simplex: Continuous Multinomial Integrals and Simplicial Fractional Calculus},
+Treatise on Multilinear Geometry and Quantum Gravity, Vol.~1, Chap.~3 (2026).
 
-\bibitem{punturo2010einstein}
-M.~Punturo et~al.,
-\emph{The Einstein Telescope: a third-generation gravitational wave observatory},
-Class. Quantum Grav., \textbf{27} (2010), 194002.
-
-\bibitem{reitze2019cosmic}
-D.~Reitze et~al.,
-\emph{Cosmic Explorer: The U.S. contribution to gravitational-wave astronomy beyond LIGO},
-Bull. Am. Astron. Soc., \textbf{51} (2019), 035.
-
-\bibitem{amaro2017laser}
-P.~Amaro-Seoane et~al.,
-\emph{Laser Interferometer Space Antenna},
-arXiv:1702.00786 (2017).
-
-\bibitem{hazumi2019litebird}
-M.~Hazumi et~al.,
-\emph{LiteBIRD: A satellite for the studies of B-mode polarization and Inflation from cosmic background radiation detection},
-J. Low Temp. Phys., \textbf{194} (2019), 443--452.
-
-\bibitem{abazajian2016cmb}
-K.~N. Abazajian et~al.,
-\emph{CMB-S4 Science Book, First Edition},
-arXiv:1610.02743 (2016).
-
-\bibitem{ebadi2021quantum}
-S.~Ebadi et~al.,
-\emph{Quantum phases of matter on a 256-atom programmable quantum simulator},
-Nature, \textbf{595} (2021), 227--232.
-
-\bibitem{maldacena2016bound}
-J.~Maldacena, S.~H. Shenker, and D.~Stanford,
-\emph{A bound on chaos},
-J. High Energ. Phys., \textbf{2016} (2016), 106.
-
-\bibitem{abe2021matter}
-M.~Abe et~al.,
-\emph{Matter-wave atomic gradiometer interferometric sensor (MAGIS-100)},
-Quantum Sci. Technol., \textbf{6} (2021), 044003.
-
-\bibitem{badurina2020aion}
-L.~Badurina et~al.,
-\emph{AION: An Atom Interferometer Observatory and Network},
-J. Cosmol. Astropart. Phys., \textbf{2020} (2020), 011.
+\bibitem{silvafilho2026spacetime}
+R.~M. Silva-Filho,
+\emph{Emergent Spacetime and Quantum Geometry: Unifying General Relativity and Quantum Field Theory},
+Preprint, Universidade Federal de Lavras, 2026.
 
 \end{thebibliography}
 

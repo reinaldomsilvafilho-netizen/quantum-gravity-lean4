@@ -1,0 +1,46 @@
+{"synthetic": false,
+ "schemaVersion": "2025-09-10",
+ "outputs":
+ {"o": ["dc30d18a057f48dc.olean"],
+  "m": false,
+  "i": "6dd3d2988342a119.ilean",
+  "c": "14c5689f769ced3b.c"},
+ "log":
+ [{"message":
+   ".> LEAN_PATH=C:\\Users\\monar\\Documents\\antigravity\\resilient-turing\\formal_proofs_book\\.lake\\build\\lib\\lean c:\\Users\\monar\\.elan\\toolchains\\leanprover--lean4---v4.33.1\\bin\\lean.exe C:\\Users\\monar\\Documents\\antigravity\\resilient-turing\\formal_proofs_book\\Book\\Chap09\\GlobalHomotopy.lean -o C:\\Users\\monar\\Documents\\antigravity\\resilient-turing\\formal_proofs_book\\.lake\\build\\lib\\lean\\Book\\Chap09\\GlobalHomotopy.olean -i C:\\Users\\monar\\Documents\\antigravity\\resilient-turing\\formal_proofs_book\\.lake\\build\\lib\\lean\\Book\\Chap09\\GlobalHomotopy.ilean -c C:\\Users\\monar\\Documents\\antigravity\\resilient-turing\\formal_proofs_book\\.lake\\build\\ir\\Book\\Chap09\\GlobalHomotopy.c --setup C:\\Users\\monar\\Documents\\antigravity\\resilient-turing\\formal_proofs_book\\.lake\\build\\ir\\Book\\Chap09\\GlobalHomotopy.setup.json --json",
+   "level": "trace"},
+  {"message":
+   "Book/Chap09/GlobalHomotopy.lean:105:3: Variable name `h_base` is not explicitly referenced.\n\nHint: The binding can be removed (if unused) or named `_` (if used implicitly). Alternatively, prefix the name with `_` to silence this warning:\n  [apply] _h_base\n\nNote: This linter can be disabled with `set_option linter.unusedVariables false`",
+   "level": "warning"},
+  {"message":
+   "Book/Chap09/GlobalHomotopy.lean:156:3: Variable name `h_inf` is not explicitly referenced.\n\nHint: The binding can be removed (if unused) or named `_` (if used implicitly). Alternatively, prefix the name with `_` to silence this warning:\n  [apply] _h_inf\n\nNote: This linter can be disabled with `set_option linter.unusedVariables false`",
+   "level": "warning"},
+  {"message":
+   "Book/Chap09/GlobalHomotopy.lean:157:3: Variable name `h_sup` is not explicitly referenced.\n\nHint: The binding can be removed (if unused) or named `_` (if used implicitly). Alternatively, prefix the name with `_` to silence this warning:\n  [apply] _h_sup\n\nNote: This linter can be disabled with `set_option linter.unusedVariables false`",
+   "level": "warning"},
+  {"message":
+   "Book/Chap09/GlobalHomotopy.lean:172:3: Variable name `h_lin` is not explicitly referenced.\n\nHint: The binding can be removed (if unused) or named `_` (if used implicitly). Alternatively, prefix the name with `_` to silence this warning:\n  [apply] _h_lin\n\nNote: This linter can be disabled with `set_option linter.unusedVariables false`",
+   "level": "warning"},
+  {"message":
+   "Book/Chap09/GlobalHomotopy.lean:173:3: Variable name `h_sat` is not explicitly referenced.\n\nHint: The binding can be removed (if unused) or named `_` (if used implicitly). Alternatively, prefix the name with `_` to silence this warning:\n  [apply] _h_sat\n\nNote: This linter can be disabled with `set_option linter.unusedVariables false`",
+   "level": "warning"}],
+ "inputs":
+ [["deps",
+   [["UnifiedQuantumGravityBook/Book:extraDep",
+     [["@UnifiedQuantumGravityBook:extraDep", "00000000000006bb"]]],
+    ["imports", "00000000000006bb"]]],
+  ["libs",
+   [["import dynlibs", "00000000000006bb"],
+    ["package external libraries", "00000000000006bb"],
+    ["module dynlibs", "00000000000006bb"],
+    ["module plugins", "00000000000006bb"]]],
+  ["Lean 4.33.1, commit 819816b2e0a3bf405af45ae5c7af2491d8f5bee6",
+   "0051240b7c23c453"],
+  ["C:\\Users\\monar\\Documents\\antigravity\\resilient-turing\\formal_proofs_book\\Book\\Chap09\\GlobalHomotopy.lean",
+   "f3d8829d365df35e"],
+  ["options", "00000000000006bb"],
+  ["isModule: false", "feefd2a0d3a1847e"],
+  ["Module.name: Book.Chap09.GlobalHomotopy", "58490641b39a22ec"],
+  ["Package.id?: (some UnifiedQuantumGravityBook)", "83e1b5e1213ea61e"],
+  ["Module.leanArgs: #[]", "00000000000006bb"]],
+ "depHash": "ef5420e6fb18580f"}
