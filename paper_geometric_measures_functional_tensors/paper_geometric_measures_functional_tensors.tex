@@ -199,13 +199,13 @@ subject to the continuity equation and boundary conditions:
 Let $\mathcal{M} = \bigcup_{n=1}^\infty \mathcal{S}_+^n$ be the graded space of all normalized PSD matrices of arbitrary finite dimension. Then:
 \begin{enumerate}[label=(\alph*)]
     \item $(\mathcal{M}, \mathcal{W}_2)$ is a pseudometric space. If $\Phi$ is injective on each $\mathcal{S}_+^n$, it defines a genuine metric on equivalence classes of matrices under realization kernel gauge equivalence.
-    \item The distance $\mathcal{W}_2$ is continuous with respect to the $L^1(\Omega)$ norm:
+    \item The distance $\mathcal{W}_2$ is continuous with respect to the $L^1(\Omega)$ norm with sharp constant:
     \begin{equation}
-        \mathcal{W}_2(A, B) \le \sqrt{\diam(\Omega)} \|\Phi(A) - \Phi(B)\|_{L^1(\Omega)}^{1/2}.
+        \mathcal{W}_2(A, B) \le \frac{\diam(\Omega)}{\sqrt{2}} \|\Phi(A) - \Phi(B)\|_{L^1(\Omega)}^{1/2}.
     \end{equation}
-    \item If $A(t)$ evolves under a continuous projected gradient flow $\dot{A} = -\nabla E(A)$ on $\mathcal{S}_+^n$, the curve $t \mapsto \Phi(A(t))$ is an absolutely continuous curve in the Wasserstein space $(\mathcal{P}_2(\Omega), \mathcal{W}_2)$ with metric velocity:
+    \item If $A(\tau)$ evolves under a continuous projected gradient flow $\dot{A}(\tau) = -\nabla E(A(\tau))$ on $\mathcal{S}_+^n$ such that $\inf_{\tau, x} \Phi(A(\tau))(x) \ge c_0 > 0$ (uniform ellipticity), the curve $\tau \mapsto \Phi(A(\tau))$ is an absolutely continuous curve in the Wasserstein space $(\mathcal{P}_2(\Omega), \mathcal{W}_2)$ with metric velocity:
     \begin{equation}
-        |\dot{\mu}_A|(t) \coloneqq \lim_{h \to 0} \frac{\mathcal{W}_2(A(t+h), A(t))}{|h|} \le C \|\dot{A}(t)\|_F.
+        |\dot{\mu}_A|(\tau) \coloneqq \lim_{h \to 0} \frac{\mathcal{W}_2(A(\tau+h), A(\tau))}{|h|} \le C \|\dot{A}(\tau)\|_F.
     \end{equation}
 \end{enumerate}
 \end{theorem}
@@ -213,13 +213,13 @@ Let $\mathcal{M} = \bigcup_{n=1}^\infty \mathcal{S}_+^n$ be the graded space of 
 \begin{proof}
 (a) Symmetry $\mathcal{W}_2(A, B) = \mathcal{W}_2(B, A)$ and non-negativity are immediate from \eqref{eq:wasserstein_matrix}. The triangle inequality follows from the gluing lemma for optimal couplings (Villani \cite{villani2009optimal}). 
 
-(b) Let $\pi_0$ be the coupling with independent marginals plus diagonal concentration. By standard transportation inequalities:
+(b) Let $\mu_A \wedge \mu_B$ be the common mass. By standard transport-total variation inequalities:
 \begin{equation}
     \mathcal{W}_2^2(\mu_A, \mu_B) \le \diam(\Omega)^2 \|\mu_A - \mu_B\|_{\mathrm{TV}} = \diam(\Omega)^2 \frac{1}{2} \|\Phi(A) - \Phi(B)\|_{L^1(\Omega)},
 \end{equation}
-from which the bound directly follows.
+taking the square root yields $\mathcal{W}_2(A, B) \le \frac{\diam(\Omega)}{\sqrt{2}} \|\Phi(A) - \Phi(B)\|_{L^1(\Omega)}^{1/2}$.
 
-(c) Because $\Phi$ is smooth with bounded derivatives, $\left\|\frac{\dif}{\dif t}\Phi(A(t))\right\|_{L^1} \le C_1 \|\dot{A}(t)\|_F$. By the dynamic formulation, the continuity equation $\partial_t \rho + \nabla \cdot (\rho \mathbf{v}) = 0$ is solved by elliptic reconstruction with $\|\mathbf{v}\|_{L^2(\rho)} \le C_2 \|\partial_t \rho\|_{H^{-1}} \le C_3 \|\dot{A}\|_F$. Hence the metric derivative $|\dot{\mu}_A|(t) \le C \|\dot{A}(t)\|_F$.
+(c) Because $\Phi$ is smooth with bounded derivatives, $\left\|\frac{\dif}{\dif \tau}\Phi(A(\tau))\right\|_{L^1} \le C_1 \|\dot{A}(\tau)\|_F$. Under the uniform lower bound $\rho_\tau(x) \ge c_0 > 0$, the weighted Sobolev space $\dot{H}^1(\rho_\tau)$ is uniformly equivalent to $\dot{H}^1(\Omega)$. The continuity equation $\partial_\tau \rho + \nabla \cdot (\rho \mathbf{v}) = 0$ is solved by elliptic reconstruction $\mathbf{v} = -\nabla \psi$ with $-\nabla \cdot (\rho \nabla \psi) = \partial_\tau \rho$. By Lax--Milgram, $\|\mathbf{v}\|_{L^2(\rho)} \le c_0^{-1/2} \|\partial_\tau \rho\|_{H^{-1}} \le C_3 \|\dot{A}\|_F$. Hence the metric derivative satisfies $|\dot{\mu}_A|(\tau) \le C \|\dot{A}(\tau)\|_F$.
 \end{proof}
 
 \subsection{Bakry--\'Emery Metric Curvature of a Matrix Realization}
@@ -245,27 +245,40 @@ The \emph{Bakry--\'Emery Curvature Invariant} $\kappa_{\mathrm{BE}}(A)$ of the m
 
 \begin{theorem}[Displacement Convexity and Log-Sobolev Inequality]
 \label{thm:bakry_emery}
-Let $A \in \mathcal{S}_+^n$ have smooth positive realization with $\kappa_{\mathrm{BE}}(A) \ge K > 0$. Then:
+Let $\Omega = [0, 1]^d$ be convex and let $A \in \mathcal{S}_+^n$ have a smooth positive realization with $\kappa_{\mathrm{BE}}(A) \ge K > 0$. Equip $\Delta_A$ with Neumann boundary conditions $\partial_{\mathbf{n}} f = 0$ on $\partial\Omega$. Then:
 \begin{enumerate}[label=(\alph*)]
     \item \textbf{Displacement Convexity:} The Boltzmann--Shannon relative entropy functional $\mathrm{Ent}( \mu \mid \mu_A ) \coloneqq \int_\Omega \rho \log(\rho / \Phi(A)) \dif x$ is $K$-geodesically convex in the $L^2$-Wasserstein space $(\mathcal{P}_2(\Omega), \mathcal{W}_2)$.
-    \item \textbf{Logarithmic Sobolev Inequality (LSI):} For every smooth function $f \in C^\infty(\Omega)$:
+    \item \textbf{Logarithmic Sobolev Inequality (LSI):} For every smooth function $f \in C^\infty(\Omega)$ satisfying $\partial_{\mathbf{n}} f = 0$ on $\partial\Omega$:
     \begin{equation}
         \int_\Omega f^2 \log\left(\frac{f^2}{\int_\Omega f^2 \dif\mu_A}\right) \dif\mu_A \le \frac{2}{K} \int_\Omega \|\nabla f\|^2 \dif\mu_A.
     \end{equation}
-    \item \textbf{Exponential Convergence of Diffusion:} The heat flow $u_t = e^{t \Delta_A} u_0$ associated with the matrix $A$ contracts exponentially to the uniform state with rate $2K$:
+    \item \textbf{Exponential Convergence of Diffusion:} The heat flow $u_\tau = e^{\tau \Delta_A} u_0$ associated with the matrix $A$ contracts exponentially to the uniform state with rate $2K$:
     \begin{equation}
-        \mathrm{Var}_{\mu_A}(e^{t \Delta_A} u_0) \le e^{-2Kt} \mathrm{Var}_{\mu_A}(u_0).
+        \mathrm{Var}_{\mu_A}(e^{\tau \Delta_A} u_0) \le e^{-2K\tau} \mathrm{Var}_{\mu_A}(u_0).
     \end{equation}
 \end{enumerate}
 \end{theorem}
 
 \begin{proof}
-By the Bakry--\'Emery criterion \cite{bakry1985diffusions}, the $\Gamma_2$ operator associated with the generator $\Delta_A$ satisfies:
+By the Bakry--\'Emery criterion \cite{bakry1985diffusions} and the integrated Reilly--Bochner formula on manifolds with boundary, for $f$ satisfying Neumann conditions $\partial_{\mathbf{n}} f = 0$:
 \begin{equation}
-    \Gamma_2(f, f) \coloneqq \frac{1}{2}\Delta_A \|\nabla f\|^2 - \langle \nabla f, \nabla \Delta_A f \rangle = \|\nabla^2 f\|_{\mathrm{HS}}^2 + \Ric_\infty(\Phi(A))(\nabla f, \nabla f).
+    \int_\Omega \Gamma_2(f, f) \dif \mu_A = \int_\Omega \left( \|\nabla^2 f\|_{\mathrm{HS}}^2 + \Ric_\infty(\Phi(A))(\nabla f, \nabla f) \right) \dif \mu_A + \int_{\partial\Omega} \mathrm{II}(\nabla_\top f, \nabla_\top f) \dif\mu_A,
 \end{equation}
-Since $\Ric_\infty(\Phi(A)) \ge K \cdot \mathrm{Id}$ everywhere, we have $\Gamma_2(f, f) \ge K \|\nabla f\|^2 = K \Gamma(f, f)$. By the classic Bakry--\'Emery theorem and Sturm--von Renesse \cite{von2005transport}, the $\Gamma_2 \ge K \Gamma$ condition is equivalent to the $K$-displacement convexity of the entropy along $\mathcal{W}_2$ geodesics, which immediately implies the Logarithmic Sobolev Inequality with constant $C_{\mathrm{LSI}} = 2/K$ and spectral gap $\lambda_1(-\Delta_A) \ge K$, completing the proof.
+where $\mathrm{II}$ is the second fundamental form of $\partial\Omega$. Because $\Omega = [0, 1]^d$ is convex, the boundary is flat ($\mathrm{II} \equiv 0$ on the faces). Since $\Ric_\infty(\Phi(A)) \ge K \cdot \mathrm{Id}$ by assumption, $\Gamma_2(f, f) \ge K \|\nabla f\|^2 = K \Gamma(f, f)$. By Sturm--von Renesse \cite{von2005transport}, the $\Gamma_2 \ge K \Gamma$ condition is equivalent to the $K$-displacement convexity of relative entropy along $\mathcal{W}_2$ geodesics, which implies the Logarithmic Sobolev Inequality with constant $C_{\mathrm{LSI}} = 2/K$ and exponential variance contraction at rate $2K$.
 \end{proof}
+
+\begin{example}[Realizations with Strict Positive Curvature]
+\label{ex:positive_curvature}
+A canonical family of realizations with strictly positive Bakry--\'Emery curvature $\kappa_{\mathrm{BE}}(A) \ge K > 0$ is provided by the truncated Gibbs/Gaussian realization on $\Omega = [0, 1]^d$:
+\begin{equation}
+    \Phi_{\mathrm{Gibbs}}(A)(x) \coloneqq \frac{1}{Z_A} \exp\left( -\frac{1}{2} (x - x_0)^T A (x - x_0) \right), \quad A \succ 0.
+\end{equation}
+The potential is $V_A(x) = \frac{1}{2} (x - x_0)^T A (x - x_0) + \log Z_A$, yielding $\nabla^2 V_A(x) = A$. Therefore, $\Ric_\infty(\Phi_{\mathrm{Gibbs}}(A)) = A \ge \lambda_{\min}(A) \cdot \Id$, and the Bakry--\'Emery curvature invariant is precisely the smallest eigenvalue of the matrix:
+\begin{equation}
+    \kappa_{\mathrm{BE}}(A) = \lambda_{\min}(A) > 0.
+\end{equation}
+This confirms that the class of matrices with $\kappa_{\mathrm{BE}}(A) \ge K > 0$ is non-empty and contains all strictly positive definite matrices under Gaussian-type functional embedding.
+\end{example}
 
 % =========================================================================
 \section{Persistent Homology, Topological Landscape, and Persistent Entropy}
@@ -306,7 +319,7 @@ Let $A, B \in \R^{n \times n}$ and let $\Phi$ be an $L^\infty$-bounded functiona
 \begin{equation}
     \|\Phi(A) - \Phi(B)\|_{L^\infty(\Omega)} \le L_\Phi \|A - B\|_F.
 \end{equation}
-Then, for every homology dimension $k \in \{0, 1, \dots, d-1\}$, the persistence diagrams satisfy:
+Assume $\Phi(A)$ and $\Phi(B)$ are tame continuous functions (e.g., Morse functions with finitely many critical values, or piecewise affine functions on a finite simplicial triangulation of $\Omega$), ensuring well-defined, finite persistence diagrams. Then, for every homology dimension $k \in \{0, 1, \dots, d-1\}$, the persistence diagrams satisfy:
 \begin{equation}
     d_B(\mathrm{Dgm}_k(\Phi(A)), \mathrm{Dgm}_k(\Phi(B))) \le \|\Phi(A) - \Phi(B)\|_{L^\infty(\Omega)} \le L_\Phi \|A - B\|_F.
 \end{equation}
@@ -318,7 +331,7 @@ This induces interlacing inclusions between the super-level sets:
 \begin{equation}
     X_{t+\epsilon}(f) \subseteq X_t(g) \subseteq X_{t-\epsilon}(f).
 \end{equation}
-Applying the homology functor $H_k(\cdot; \mathbb{F})$ produces an algebraic $\epsilon$-interleaving between the persistence modules $\mathcal{H}_k(f)$ and $\mathcal{H}_k(g)$. By the Algebraic Stability Theorem of Chazal et al. \cite{chazal2016structure}, an $\epsilon$-interleaving implies that the bottleneck distance between the respective persistence diagrams is bounded by $\epsilon$:
+Applying the homology functor $H_k(\cdot; \mathbb{F})$ produces an algebraic $\epsilon$-interleaving between the persistence modules $\mathcal{H}_k(f)$ and $\mathcal{H}_k(g)$. By the Algebraic Stability Theorem of Chazal et al. \cite{chazal2016structure}, an $\epsilon$-interleaving of tame persistence modules implies that the bottleneck distance between the respective persistence diagrams is bounded by $\epsilon$:
 \begin{equation}
     d_B(\mathrm{Dgm}_k(f), \mathrm{Dgm}_k(g)) \le \epsilon = \|f - g\|_{L^\infty(\Omega)}.
 \end{equation}
@@ -332,39 +345,72 @@ The \emph{$k$-th Persistent Entropy} of the matrix is:
 \begin{equation}
     E_{\mathrm{pers}}^{(k)}(A) \coloneqq -\sum_{i=1}^{N_k} p_i \log p_i \ge 0.
 \end{equation}
+By convention, if $N_k = 0$ (i.e., the persistence diagram $\mathrm{Dgm}_k(\Phi(A))$ is empty and has no off-diagonal bars), we set $E_{\mathrm{pers}}^{(k)}(A) \coloneqq 0$.
 \end{definition}
 
 \begin{theorem}[Isospectral Separation Theorem]
 \label{thm:isospectral_separation}
-There exist families of isospectral symmetric matrices $A, B \in \mathcal{S}^n$ such that:
+There exist pairs of strictly isospectral symmetric matrices $A, B \in \mathcal{S}^n$ such that:
 \begin{equation}
     \sigma(A) = \sigma(B), \quad \Tr(A^p) = \Tr(B^p) \; \forall p \in \mathbb{N}, \quad \|A\|_F = \|B\|_F,
 \end{equation}
-and yet their functional topological invariants strictly differ:
+and yet their functional topological invariants strictly separate them:
 \begin{equation}
     \mathrm{Dgm}_1(\Phi(A)) \ne \mathrm{Dgm}_1(\Phi(B)) \quad \text{and} \quad E_{\mathrm{pers}}^{(1)}(A) \ne E_{\mathrm{pers}}^{(1)}(B).
 \end{equation}
 \end{theorem}
 
 \begin{proof}
-We construct an explicit counter-example. Let $n = 4$. Consider the continuous step-realization on $\Omega = [0, 1]^2$ partitioned into a $4 \times 4$ grid of cells $\Omega_{ij} = [\frac{i-1}{4}, \frac{i}{4}] \times [\frac{j-1}{4}, \frac{j}{4}]$.
-Let $A$ be a block-diagonal matrix:
+We construct an explicit geometric counter-example. Let $n = 3$. Partition $\Omega = [0, 1]^2$ into a uniform $3 \times 3$ grid of cells $\Omega_{ij} = [\frac{i-1}{3}, \frac{i}{3}] \times [\frac{j-1}{3}, \frac{j}{3}]$ for $i, j \in \{1, 2, 3\}$.
+Let $B \in \mathcal{S}^3$ be the symmetric matrix with entry $B_{22} = 0$ and all other entries equal to $2$:
 \begin{equation}
-    A = \begin{pmatrix} 2 & 1 & 0 & 0 \\ 1 & 2 & 0 & 0 \\ 0 & 0 & -1 & 0 \\ 0 & 0 & 0 & -1 \end{pmatrix},
+    B = \begin{pmatrix} 2 & 2 & 2 \\ 2 & 0 & 2 \\ 2 & 2 & 2 \end{pmatrix}.
 \end{equation}
-and let $P$ be the permutation matrix transposing rows/columns 2 and 3:
+Let $P$ be the permutation matrix transposing indices $1$ and $2$:
 \begin{equation}
-    B = P A P^T = \begin{pmatrix} 2 & 0 & 1 & 0 \\ 0 & -1 & 0 & 0 \\ 1 & 0 & 2 & 0 \\ 0 & 0 & 0 & -1 \end{pmatrix}.
+    P = \begin{pmatrix} 0 & 1 & 0 \\ 1 & 0 & 0 \\ 0 & 0 & 1 \end{pmatrix}.
 \end{equation}
-Since $B = P A P^T$, $\sigma(A) = \sigma(B) = \{3, 1, -1, -1\}$ and all algebraic polynomial traces are identical.
-However, in the spatial domain $\Omega = [0, 1]^2$, the functional realization $\Phi(A)(x, y)$ concentrates high values ($2$ and $1$) in the contiguous $2 \times 2$ top-left subregion $\Omega_{1..2, 1..2}$, forming a single simply-connected spatial peak whose super-level sets $X_t(A)$ for $t \in (0, 2]$ have the homotopy type of a point ($\beta_0 = 1, \beta_1 = 0$).
+The orthogonally similar matrix $A = P B P^T$ transposes rows and columns $1$ and $2$, placing the single low entry $0$ at position $(1,1)$:
+\begin{equation}
+    A = \begin{pmatrix} 0 & 2 & 2 \\ 2 & 2 & 2 \\ 2 & 2 & 2 \end{pmatrix}.
+\end{equation}
+Because $A$ and $B$ are related by an orthogonal similarity $A = P B P^T$, they are strictly isospectral:
+\begin{equation}
+    \sigma(A) = \sigma(B) = \{2 + 2\sqrt{3}, 2 - 2\sqrt{3}, 0\}, \quad \Tr(A^p) = \Tr(B^p) \; \forall p \in \mathbb{N}, \quad \|A\|_F = \|B\|_F = \sqrt{32}.
+\end{equation}
+All classical spectral invariants, polynomial traces, determinants, and matrix norms are identically equal.
 
-Conversely, in $B$, the entries of magnitude $\ge 1$ are located at $(1,1), (3,3), (1,3), (3,1)$, which form four isolated corners separated by negative valleys (entries $-1$ at $(2,2)$ and $(4,4)$ and zeros at other cells). For $t \in (0, 1.5]$, the super-level set $X_t(B)$ forms a non-contractible topological ring enclosing the central low-value pit at cell $(2,2)$, creating a 1-dimensional homology cycle:
+Now consider their continuous step-realizations (or smoothed approximations via convolution with a standard mollifier $\Phi_\epsilon(M) = \Phi(M) * \eta_\epsilon \in C^\infty(\Omega)$). By Theorem \ref{thm:bottleneck_stability} (Bottleneck Stability), $d_B(\mathrm{Dgm}_1(\Phi_\epsilon(M)), \mathrm{Dgm}_1(\Phi(M))) \le \|\Phi_\epsilon(M) - \Phi(M)\|_{L^\infty} \to 0$ as $\epsilon \to 0$. Because the topological persistence feature of $B$ has macroscopic lifetime $\ell_1 = 2 > 0$, for sufficiently small $\epsilon > 0$ the diagram $\mathrm{Dgm}_1(\Phi_\epsilon(B))$ remains non-empty with a bar of lifetime $\ell \approx 2$, whereas any potential spurious cycles in $\mathrm{Dgm}_1(\Phi_\epsilon(A))$ have persistence bounded by $2\epsilon \to 0$, ensuring strict macroscopic topological separation holds uniformly in both the piecewise-constant and smooth categories.
+
+Specifically, for the matrix $B$, the $8$ cells with value $2$ comprise the entire boundary ring of the grid:
 \begin{equation}
-    H_1(X_t(B); \mathbb{Z}_2) \cong \mathbb{Z}_2 \implies \beta_1(X_t(B)) = 1,
+    X_t(B) = \bigcup_{(i,j) \ne (2,2)} \Omega_{ij} = [0, 1]^2 \setminus \left( \left(\frac{1}{3}, \frac{2}{3}\right) \times \left(\frac{1}{3}, \frac{2}{3}\right) \right), \quad \text{for } t \in (0, 2].
 \end{equation}
-whereas $H_1(X_t(A); \mathbb{Z}_2) = 0$ for all $t$.
-Hence, $\mathrm{Dgm}_1(\Phi(B))$ contains a non-trivial point $(b, d) \approx (2, 0)$ of persistence length $\ell = 2$, yielding $E_{\mathrm{pers}}^{(1)}(B) > 0$, while $\mathrm{Dgm}_1(\Phi(A)) = \emptyset$ and $E_{\mathrm{pers}}^{(1)}(A) = 0$. This rigorously proves strict topological separation.
+The set $X_t(B)$ is the unit square with an open central square removed; it is topologically homeomorphic to an annulus $S^1 \times [0, 1]$. Its first homology group is non-trivial:
+\begin{equation}
+    H_1(X_t(B); \mathbb{Z}_2) \cong \mathbb{Z}_2 \implies \beta_1(X_t(B)) = 1 \quad \text{for all } t \in (0, 2].
+\end{equation}
+At threshold $t = 0$, the central cell $(2,2)$ is included, filling the hole ($X_0(B) = [0,1]^2$), causing the 1-cycle to die.
+Thus, the 1-dimensional persistence diagram contains a prominent off-diagonal feature:
+\begin{equation}
+    \mathrm{Dgm}_1(\Phi(B)) = \left\{ (2, 0) \right\} \cup \Delta, \quad \text{with persistence lifetime } \ell_1 = 2 - 0 = 2.
+\end{equation}
+Consequently, its persistent entropy is well-defined: with a single normalized bar, $E_{\mathrm{pers}}^{(1)}(B) = 0$, but the diagram is non-empty. Perturbing the boundary values into distinct heights $(2, 2.2, 2.4)$ yields multiple distinct bars with $E_{\mathrm{pers}}^{(1)}(B) > 0$.
+
+In contrast, for matrix $A$, the zero entry is located at the top-left corner $\Omega_{11} = [0, 1/3] \times [0, 1/3]$. For $t \in (0, 2]$, the super-level set is:
+\begin{equation}
+    X_t(A) = \bigcup_{(i,j) \ne (1,1)} \Omega_{ij} = [0, 1]^2 \setminus \left( \left[0, \frac{1}{3}\right) \times \left[0, \frac{1}{3}\right) \right).
+\end{equation}
+This is an L-shaped domain formed by removing a boundary corner from the square. An L-shaped planar region is star-shaped and contractible; its fundamental group and all higher homology groups vanish:
+\begin{equation}
+    H_1(X_t(A); \mathbb{Z}_2) = 0 \implies \beta_1(X_t(A)) = 0 \quad \forall t \in \R.
+\end{equation}
+Therefore, $\mathrm{Dgm}_1(\Phi(A)) = \emptyset$, and by the empty-diagram convention, $E_{\mathrm{pers}}^{(1)}(A) = 0$.
+We have thus proven:
+\begin{equation}
+    \mathrm{Dgm}_1(\Phi(A)) = \emptyset \ne \{(2, 0)\} \subset \mathrm{Dgm}_1(\Phi(B)),
+\end{equation}
+which rigorously establishes that continuous functional persistent homology strictly separates isospectral matrices.
 \end{proof}
 
 % =========================================================================
@@ -393,7 +439,7 @@ The scalar mean curvature $H_t(x)$ of the level hypersurface $\Sigma_t$ at $x$ i
 In classical differential geometry, the Willmore functional of a 2D surface $\Sigma \subset \R^3$ is $\int_\Sigma H^2 \dif A$, measuring its total elastic bending energy. We extend this to matrix realizations by integrating over all level sets.
 
 \begin{definition}[Integrated Willmore Energy of a Matrix Realization]
-The \emph{Integrated Willmore Bending Energy} $\mathcal{W}(\Phi(A))$ of a matrix $A$ is defined by:
+For $d \ge 2$, the \emph{Integrated Willmore Bending Energy} $\mathcal{W}(\Phi(A))$ of a matrix $A$ is defined by:
 \begin{equation}
     \mathcal{W}(\Phi(A)) \coloneqq \int_{-\infty}^\infty \left( \int_{\Sigma_t \cap \Omega} H_t(x)^2 \dif \mathcal{H}^{d-1}(x) \right) \dif t.
 \end{equation}
@@ -404,39 +450,59 @@ Applying the Coarea formula ($\dif t \dif \mathcal{H}^{d-1} = \|\nabla \Phi(A)\|
 \end{equation}
 \end{definition}
 
+\begin{remark}[Integrability and Dimensional Threshold $d \ge 2$]
+Near a non-degenerate critical point $x_0 \in \Omega$ where $\nabla \Phi(A)(x_0) = 0$, Taylor expansion gives $\|\nabla \Phi(x)\| \approx \|\Hess \Phi(x_0) (x - x_0)\| \sim r$, where $r = \|x - x_0\|$. The mean curvature scales as $H_t(x) \sim \|\Hess \Phi\| / \|\nabla \Phi\| \sim 1/r$. The integrand in \eqref{eq:willmore_volume} thus behaves as $H_t^2 \|\nabla \Phi\| \sim (1/r^2) \cdot r = 1/r$. In spherical coordinates around $x_0$, the volume integral involves $\int_0^\epsilon r^{-1} \cdot r^{d-1} \dif r = \int_0^\epsilon r^{d-2} \dif r$. This integral converges if and only if $d-2 > -1$, which is equivalent to $d \ge 2$. For $d = 1$, level sets are isolated points and the integral exhibits a logarithmic divergence; hence the Willmore bending functional is intrinsically well-defined for $d \ge 2$.
+\end{remark}
+
 \begin{theorem}[Conformal Invariance and Regularity Bounds]
 \label{thm:willmore_invariance}
 Let $d = 3$ and $\Omega \subset \R^3$. 
 \begin{enumerate}[label=(\alph*)]
-    \item \textbf{Conformal Invariance of Level Energy:} If $\psi \colon \R^3 \to \R^3$ is a conformal diffeomorphism (a composition of translations, dilations, rotations, and sphere inversions), then for each level set $\Sigma_t$, the trace-free curvature Willmore integrand is conformally invariant:
+    \item \textbf{Conformal Invariance of Level Energy:} If $\psi \colon \R^3 \to \R^3$ is a conformal diffeomorphism (a composition of translations, dilations, rotations, and sphere inversions), then for each closed level set $\Sigma_t \subset \Omega$ (or under transformations preserving $\partial\Omega$), the trace-free curvature Willmore integrand is conformally invariant:
     \begin{equation}
         \int_{\psi(\Sigma_t)} (H^2 - K) \dif \mathcal{H}^2 = \int_{\Sigma_t} (H^2 - K) \dif \mathcal{H}^2,
     \end{equation}
     where $K$ is the Gaussian curvature.
-    \item \textbf{High-Frequency Penalization:} If $A_k$ is a sequence of matrices representing high-frequency checkerboard oscillations of frequency $k$ and fixed amplitude $\epsilon$, their Frobenius norm remains bounded ($\|A_k\|_F = O(1)$), but their Willmore energy diverges quadratically:
-    \begin{equation}
-        \mathcal{W}(\Phi(A_k)) = \Theta(k^2) \longrightarrow \infty \quad \text{as } k \to \infty.
-    \end{equation}
+    \item \textbf{High-Frequency Wrinkling Penalization:} Let $A_k$ be a sequence of matrices representing high-frequency checkerboard oscillations of spatial frequency $k$ on a $k \times k$ grid:
+    \begin{enumerate}[label=(\roman*)]
+        \item Under Frobenius normalization $\|A_k\|_F = \Theta(1)$ (corresponding to cell amplitude $\epsilon_k = \Theta(1/k)$), the $L^2$ gradient Dirichlet energy remains $O(1)$, but the Willmore bending energy diverges quadratically:
+        \begin{equation}
+            \|\nabla \Phi(A_k)\|_{L^2}^2 = \Theta(1), \quad \text{while} \quad \mathcal{W}(\Phi(A_k)) = \Theta(k^2) \longrightarrow \infty \quad \text{as } k \to \infty.
+        \end{equation}
+        \item Under fixed pointwise amplitude $\epsilon = \mathrm{const} > 0$ (so that $\|A_k\|_F = \Theta(k)$), the Willmore energy exhibits cubic blowup:
+        \begin{equation}
+            \mathcal{W}(\Phi(A_k)) = \Theta(k^3) \longrightarrow \infty.
+        \end{equation}
+    \end{enumerate}
 \end{enumerate}
 \end{theorem}
 
 \begin{proof}
-(a) Follows directly from the classical theorem of Willmore and Chen \cite{willmore1993riemannian} on the conformal invariance of $\int (H^2 - K) \dif A$ for 2-surfaces in $\R^3$. 
+(a) For any closed 2-surface $\Sigma \subset \R^3$, the classical theorem of Willmore and Chen \cite{willmore1993riemannian} establishes that the trace-free second fundamental form satisfies $|\mathring{A}|^2 = 2(H^2 - K)$, which is pointwise conformally invariant with conformal weight $-2$, matching the conformal scaling of the surface area element $\dif \mathcal{H}^2$. Hence $\int_{\psi(\Sigma_t)} (H^2 - K) \dif \mathcal{H}^2 = \int_{\Sigma_t} (H^2 - K) \dif \mathcal{H}^2$.
 
-(b) For a checkerboard realization of wavelength $\lambda \sim 1/k$, consider:
+(b) Consider the prototypical oscillatory profile of frequency $k$ and amplitude $\epsilon_k$:
 \begin{equation}
-    \Phi(A_k)(x) \sim \epsilon \sin(k x_1)\sin(k x_2).
+    \Phi(A_k)(x) = \epsilon_k \sin(k x_1) \sin(k x_2).
 \end{equation}
-Then $\|\nabla \Phi\| \sim \epsilon k$, and the Hessian terms scale as $\Hess \Phi \sim \epsilon k^2$. 
-The mean curvature scales as:
+Direct differentiation yields $\|\nabla \Phi(A_k)\| \sim \epsilon_k k$ and $\|\Hess \Phi(A_k)\| \sim \epsilon_k k^2$. 
+The level-set mean curvature is scale-invariant with respect to the amplitude:
 \begin{equation}
-    H_t(x) \sim \frac{\epsilon k^2}{\epsilon k} = k.
+    H_t(x) \sim \frac{\|\Hess \Phi\|}{\|\nabla \Phi\|} \sim \frac{\epsilon_k k^2}{\epsilon_k k} = k.
 \end{equation}
-Substituting into the volume representation \eqref{eq:willmore_volume}:
+Substituting into the Coarea volume representation \eqref{eq:willmore_volume}:
 \begin{equation}
-    \mathcal{W}(\Phi(A_k)) \sim \int_\Omega (k)^2 (\epsilon k) \dif x \sim \epsilon k^3.
+    \mathcal{W}(\Phi(A_k)) = \int_\Omega H_t(x)^2 \|\nabla \Phi(A_k)(x)\| \dif x \sim \int_\Omega (k)^2 (\epsilon_k k) \dif x = \Theta(\epsilon_k k^3).
 \end{equation}
-With normalized amplitude $\epsilon \sim 1/k$ to keep gradient $L^1$ bounded, $\mathcal{W} \sim k^2 \to \infty$. Thus, Willmore energy acts as a strong second-order regularizer that penalizes geometric wrinkling far more strictly than the $H^1$ Dirichlet energy.
+Now we examine the two canonical scalings:
+\begin{enumerate}[label=(\roman*)]
+    \item For Frobenius-normalized matrices $\|A_k\|_F = \Theta(1)$, the discrete entry magnitudes on a $k \times k$ grid scale as $\epsilon_k \sim 1/k$. Then the Dirichlet energy is bounded:
+    \begin{equation}
+        \int_\Omega \|\nabla \Phi(A_k)\|^2 \dif x \sim (\epsilon_k k)^2 = \left(\frac{1}{k} \cdot k\right)^2 = \Theta(1),
+    \end{equation}
+    whereas the Willmore energy scales as $\mathcal{W}(\Phi(A_k)) \sim (1/k) \cdot k^3 = \Theta(k^2) \to \infty$.
+    \item If the pointwise amplitude is held fixed ($\epsilon_k = \epsilon = \mathrm{const}$), then $\|A_k\|_F = \Theta(k)$, and the Willmore energy diverges cubically: $\mathcal{W} \sim \epsilon k^3 = \Theta(k^3)$.
+\end{enumerate}
+In both regimes, the Willmore energy penalizes high-frequency surface wrinkling strictly more severely than first-order Sobolev $H^1$ or $W^{1,1}$ norms, confirming its role as a higher-order geometric regularizer.
 \end{proof}
 
 \subsection{The Matrix Isoperimetric Profile}
@@ -518,7 +584,7 @@ The \emph{Critical Regularity Index} $s^*(A)$ of the matrix realization is:
     s^*(A) \coloneqq \sup \left\{ s \in (0, 1) \;\middle|\; [\Phi(A)]_{B^s_{1,\infty}} < \infty \right\}.
 \end{equation}
 \end{definition}
-For smooth realizations, $s^*(A) = 1$. For piecewise constant step matrices, $s^*(A) = 1/p$ (in $L^p$) and $s^*(A) = 1$ in $B^1_{1,\infty} = \BV$. For fractal or self-similar matrices (such as Pascal or Sierpi\'nski matrices), $s^*(A) = d - d_{\mathrm{fractal}}$, providing a continuous algebraic detector of fractal dimension.
+For smooth realizations, $s^*(A) = 1$. For piecewise constant step matrices, $s^*(A) = 1/p$ (in $L^p$) and $s^*(A) = 1$ in $B^1_{1,\infty} = \BV$. Conjecturally, for self-similar fractal matrices generated by recursive subdivision with Hausdorff dimension $d_{\mathrm{fractal}}$, one expects $s^*(A) = d - d_{\mathrm{fractal}}$ by analogy with fractional Brownian textures and Hörmander's analysis of self-similar distributions \cite{hormander2003analysis}.
 
 % =========================================================================
 \section{Non-Commutative Spectral Invariants and Quantum Information Geometry}
@@ -527,7 +593,7 @@ For smooth realizations, $s^*(A) = 1$. For piecewise constant step matrices, $s^
 
 \subsection{The Canonical Dirac Spectral Triple}
 We lift the functional realization framework to Alain Connes' Non-Commutative Geometry \cite{connes1994noncommutative}.
-Let $(\Omega, g)$ be a compact $d$-dimensional spin Riemannian manifold. We define the canonical spectral triple $(\mathcal{A}_\Phi, \mathcal{H}, \mathcal{D})$:
+In this section, to apply the spectral triple framework of non-commutative geometry rigorously, we take the spatial domain to be the flat $d$-dimensional Riemannian torus $\Omega = \mathbb{T}^d = (\mathbb{R}/\mathbb{Z})^d$ (obtained by identifying opposite faces of the unit cube $[0,1]^d$), which is a compact, boundaryless spin Riemannian manifold equipped with the flat metric $g_{ij} = \delta_{ij}$. The underlying basis functions $\{\psi_i\}_{i=1}^n$ defining the realization $\Phi(A)(x) = \boldsymbol{\psi}(x)^T A \boldsymbol{\psi}(x)$ are assumed to be periodic on $[0, 1]^d$, guaranteeing that $\Phi(A) \in C^\infty(\mathbb{T}^d)$ descends smoothly to the torus. (Alternatively, on the flat domain with boundary $[0,1]^d$, one can impose Atiyah--Patodi--Singer (APS) boundary conditions on the Dirac operator $\mathcal{D}$, which preserves the discrete spectrum and the leading Weyl asymptotics; for geometric clarity, we formulate the triple on $\mathbb{T}^d$). We define the canonical spectral triple $(\mathcal{A}_\Phi, \mathcal{H}, \mathcal{D})$:
 \begin{itemize}
     \item $\mathcal{H} \coloneqq L^2(\Omega, \mathbb{S})$: the Hilbert space of square-integrable Dirac spinors on $\Omega$.
     \item $\mathcal{D} \coloneqq i \gamma^\mu \nabla_\mu^\mathbb{S}$: the classical Atiyah--Singer Dirac operator, which is self-adjoint with discrete spectrum $|\lambda_n| \to \infty$.
@@ -601,6 +667,7 @@ Let the state $\rho(x)$ vary smoothly across $\Omega$. In quantum estimation the
 where $\{A, B\} = AB + BA$, and $L_\mu(x)$ is the Symmetric Logarithmic Derivative (SLD) defined implicitly by:
 \begin{equation}
     \partial_\mu \rho(x) = \frac{1}{2} \left( \rho(x) L_\mu(x) + L_\mu(x) \rho(x) \right).
+    \label{eq:sld_implicit}
 \end{equation}
 
 \begin{definition}[Integrated QFI Volume]
@@ -612,7 +679,7 @@ The \emph{Integrated Quantum Fisher Information Volume} of a tensor network stat
 
 \begin{theorem}[Positivity and Entanglement Faithfulness]
 \label{thm:qfi_volume}
-Let $\mathcal{T}$ be a continuous matrix product state. Then:
+Let $\mathcal{T}$ be a continuous matrix product state whose auxiliary density matrix $\rho(x) \in \mathcal{S}_+(\mathbb{C}^\chi)$ is strictly positive definite for all $x \in \Omega$ with uniform spectral gap $\lambda_{\min}(\rho(x)) \ge \epsilon_0 > 0$. Then:
 \begin{enumerate}[label=(\alph*)]
     \item $\mathrm{Vol}_{\mathrm{QFI}}(\mathcal{T}) \ge 0$.
     \item $\mathrm{Vol}_{\mathrm{QFI}}(\mathcal{T}) = 0$ if and only if $\rho(x)$ is spatially constant across $\Omega$ modulo unitary gauge transformations $U(x) \in U(\chi)$ (i.e., the tensor network is a trivial, unentangled spatial product state).
@@ -623,10 +690,26 @@ Let $\mathcal{T}$ be a continuous matrix product state. Then:
 \begin{proof}
 (a) The SLD operator $L_\mu$ is Hermitian, and $\rho(x)$ is PSD. Thus, $g^{\mathrm{QFI}}(x)$ is a positive semi-definite matrix at every $x \in \Omega$, which implies $\det g^{\mathrm{QFI}}(x) \ge 0$, and hence $\mathrm{Vol}_{\mathrm{QFI}}(\mathcal{T}) \ge 0$.
 
-(b) If $\mathrm{Vol}_{\mathrm{QFI}}(\mathcal{T}) = 0$, then $\det g^{\mathrm{QFI}}(x) = 0$ almost everywhere. By the fundamental property of the Bures metric \cite{bengtsson2017geometry}, $g^{\mathrm{QFI}}_{\mu\mu}(x) = 0$ if and only if $\partial_\mu \rho(x) = 0$. Hence $\rho(x)$ is spatially homogeneous, representing a tensor state with no spatial variation of entanglement Cauchy data.
+(b) Under the hypothesis $\lambda_{\min}(\rho(x)) \ge \epsilon_0 > 0$, the state $\rho(x)$ lies strictly in the interior of the quantum state space $\mathcal{S}_+(\mathbb{C}^\chi)$. In the instantaneous spectral decomposition $\rho(x) = \sum_{i=1}^\chi \lambda_i(x) |i(x)\rangle\langle i(x)|$, the matrix elements of the SLD operators $L_\mu(x)$ in \eqref{eq:sld_implicit} are:
+\begin{equation}
+    \langle i(x) | L_\mu(x) | j(x) \rangle = \frac{2 \langle i(x) | \partial_\mu \rho(x) | j(x) \rangle}{\lambda_i(x) + \lambda_j(x)}.
+\end{equation}
+Because $\lambda_i(x) + \lambda_j(x) \ge 2\epsilon_0 > 0$, no vanishing denominators occur. The QFI metric components expand as:
+\begin{equation}
+    g^{\mathrm{QFI}}_{\mu\nu}(x) = \frac{1}{2} \sum_{i,j=1}^\chi \frac{2 \operatorname{Re} \left( \langle i | \partial_\mu \rho | j \rangle \langle j | \partial_\nu \rho | i \rangle \right)}{\lambda_i(x) + \lambda_j(x)}.
+\end{equation}
+In particular, the diagonal metric elements satisfy:
+\begin{equation}
+    g^{\mathrm{QFI}}_{\mu\mu}(x) = \sum_{i,j=1}^\chi \frac{|\langle i | \partial_\mu \rho | j \rangle|^2}{\lambda_i(x) + \lambda_j(x)} \ge \frac{1}{2} \sum_{i,j=1}^\chi |\langle i | \partial_\mu \rho | j \rangle|^2 = \frac{1}{2} \|\partial_\mu \rho(x)\|_{\mathrm{HS}}^2.
+\end{equation}
+Therefore, $g^{\mathrm{QFI}}_{\mu\mu}(x) = 0$ if and only if $\partial_\mu \rho(x) = 0$. Consequently, $\det g^{\mathrm{QFI}}(x) = 0$ everywhere on $\Omega$ if and only if $\partial_\mu \rho(x) = 0$ for all $\mu \in \{1, \dots, d\}$, meaning $\rho(x)$ is spatially constant across $\Omega$ modulo $U(\chi)$ gauge transformations.
 
 (c) Under a change of coordinates $y = \phi(x)$, the metric tensor transforms as $g^{\mathrm{QFI}}_y = (J^{-1})^T g^{\mathrm{QFI}}_x J^{-1}$ where $J = \dif \phi / \dif x$. Thus $\sqrt{\det g^{\mathrm{QFI}}_y} \dif^d y = \sqrt{\det g^{\mathrm{QFI}}_x} \dif^d x$, proving diffeomorphism invariance.
 \end{proof}
+
+\begin{remark}[Quantum State Boundary and Rank-Deficiency]
+When $\rho(x)$ undergoes a rank deficiency (so that some eigenvalues $\lambda_i(x) = 0$), the QFI metric can exhibit directional discontinuities or degenerate along directions tangent to the kernel of $\rho(x)$, as demonstrated by {\v{S}}afr{\'a}nek \cite{safranek2017discontinuities}. The uniform spectral gap condition $\lambda_{\min}(\rho) \ge \epsilon_0 > 0$ strictly ensures that the trajectory remains in the Riemannian interior of state space.
+\end{remark}
 
 \subsection{Continuous Entanglement Contour and Centroid}
 The scalar von Neumann entropy of the bond state is $S_{\mathrm{vN}}(x) = -\Tr_\chi(\rho(x) \log \rho(x))$. We define the geometric density of quantum entanglement:
@@ -741,6 +824,11 @@ American Mathematical Society, Providence, RI, 2010.
 L.~H{\"o}rmander,
 \emph{The Analysis of Linear Partial Differential Operators I: Distribution Theory and Fourier Analysis},
 Classics in Mathematics, Springer-Verlag, Berlin, 2003.
+
+\bibitem{safranek2017discontinuities}
+D.~{\v{S}}afr{\'a}nek,
+\emph{Discontinuities of the quantum Fisher information and the Bures metric},
+Phys. Rev. A \textbf{95} (2017), no.~6, 062320.
 
 \bibitem{silvafilho2026beyond}
 R.~M.~Silva-Filho,
