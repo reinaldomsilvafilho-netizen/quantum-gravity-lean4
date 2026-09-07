@@ -1,4 +1,9 @@
-﻿# LaTeX temporary compilation files
+# Manuscript and document binaries / LaTeX source (published on Zenodo)
+*.pdf
+*.tex
+*.bib
+*.sty
+*.cls
 *.aux
 *.bbl
 *.blg
@@ -12,6 +17,7 @@
 *.toc
 *.vrb
 *.dvi
+
 
 # Python cache
 __pycache__/
