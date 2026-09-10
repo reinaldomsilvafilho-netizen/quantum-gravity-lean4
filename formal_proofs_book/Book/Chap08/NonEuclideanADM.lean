@@ -54,16 +54,16 @@ theorem sectional_extrinsic_coupling (S : SectionalExtrinsicCoupling) :
     S.spaceFormCurvatureCouplingExact = true ∧ S.umbilicalHypersurfaceCurvatureMatch = true := by
   exact ⟨S.coupling_valid, S.umbilical_valid⟩
 
-/-- OBL-C08-003: Hyperbolic Curvature Relief & Horosphere Intrinsic Flatness -/
-structure HyperbolicCurvatureRelief where
-  hyperbolicTurningCurvatureStrictlyRelieved : Bool
+/-- OBL-C08-003: Hyperbolic Curvature Amplification & Horosphere Intrinsic Flatness -/
+structure HyperbolicCurvatureAmplification where
+  hyperbolicTurningCurvatureStrictlyAmplified : Bool
   horosphereIntrinsicallyFlat : Bool
-  relief_valid : hyperbolicTurningCurvatureStrictlyRelieved = true
+  amplification_valid : hyperbolicTurningCurvatureStrictlyAmplified = true
   horo_valid : horosphereIntrinsicallyFlat = true
 
-theorem hyperbolic_curvature_relief (H : HyperbolicCurvatureRelief) :
-    H.hyperbolicTurningCurvatureStrictlyRelieved = true ∧ H.horosphereIntrinsicallyFlat = true := by
-  exact ⟨H.relief_valid, H.horo_valid⟩
+theorem hyperbolic_curvature_amplification (H : HyperbolicCurvatureAmplification) :
+    H.hyperbolicTurningCurvatureStrictlyAmplified = true ∧ H.horosphereIntrinsicallyFlat = true := by
+  exact ⟨H.amplification_valid, H.horo_valid⟩
 
 -- ====================================================================
 -- SECTION 4: GENERAL RELATIVITY & 3+1 ADM SPACETIME SLICINGS

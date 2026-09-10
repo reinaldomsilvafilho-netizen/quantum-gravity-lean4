@@ -45,7 +45,7 @@ def test_battery_2_cmb_tensor_tilt_running():
     print("--- Running Battery 2: Scale-Dependent Running of the CMB Tensor Tilt ---")
     
     k_over_MP = np.logspace(-6, 3, 100)
-    ds = 2.0 + 2.0 / (1.0 + k_over_MP)
+    ds = 2.0 + 2.0 / (1.0 + (k_over_MP**2))
     alpha_t = 0.5 * (ds - 4.0)
     
     alpha_t_ir = alpha_t[0]

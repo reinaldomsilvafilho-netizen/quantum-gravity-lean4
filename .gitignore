@@ -50,7 +50,17 @@ run_claude_audit.py
 test.txt
 scratch/
 
-# Draft & auxiliary paper folders (code is inside formal_proofs_*)
+# Temporary and Deep Audit Sandbox directories
+quantum_gravity_deep_audit_sandbox/
+beyond_the_spectrum_files/
+famous_papers_cnis/
+research_isomorphic_mathematical_symbology/
+unified_quantum_gravity_book/*.txt
+unified_quantum_gravity_book/*.md
+unified_quantum_gravity_book/engineer_advanced_math_proof_skills.py
+unified_quantum_gravity_book/run_claude_cli.py
+
+# Draft & auxiliary paper folders (LaTeX source reserved for Zenodo)
 paper_yang_mills_mass_gap/
 paper_standard_model_masses/
 paper_geometric_measures_functional_tensors/
@@ -61,5 +71,6 @@ thesis_defense/
 # OS generated
 Thumbs.db
 .DS_Store
+
 
 

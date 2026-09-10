@@ -1,4 +1,4 @@
-# Unified Quantum Gravity and Multilinear Differential Geometry
+# Geometry, Tensors, and Quantum Gravity: The Unified Grand Synthesis Treatise
 ## Machine-Checked Formal Verification & Type-Theoretic Specification Suite in Lean 4
 
 [![Lean 4](https://img.shields.io/badge/Lean_4-v4.29.0%20%2F%20v4.33.1-blue.svg)](https://github.com/leanprover/lean4)
@@ -16,9 +16,9 @@
 
 This repository hosts the machine-checked interactive formalization suite in **Lean 4** accompanying the 13-chapter research monograph:
 
-> **"Cânone Unificado de Gravitação Quântica e Geometria Multilinear"**  
-> *(Unified Canon of Quantum Gravity and Multilinear Geometry: Continuous Tensor Varieties, Simplicial Fractional Calculus, and Emergent Spacetime)*  
-> Consolidating 164 pages across 5 thematic parts and 13 chapters (PDF deposited on Zenodo: [DOI: 10.5281/zenodo.22290043](https://doi.org/10.5281/zenodo.22290043)).
+> **"Geometry, Tensors, and Quantum Gravity: The Unified Grand Synthesis Treatise"**  
+> *(Cânone Unificado de Gravitação Quântica e Geometria Multilinear: Continuous Tensor Varieties, Simplicial Fractional Calculus, and Emergent Spacetime)*  
+> Consolidating 171 pages across 5 thematic parts and 13 chapters (PDF deposited on Zenodo: [DOI: 10.5281/zenodo.22290043](https://doi.org/10.5281/zenodo.22290043)).
 
 The verification architecture is structured into a rigorous **tripartite epistemic framework**:
 

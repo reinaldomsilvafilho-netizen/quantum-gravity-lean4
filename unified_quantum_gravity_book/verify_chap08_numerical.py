@@ -49,27 +49,32 @@ def battery_1_space_forms_coupling():
     print("  [PASS] Gauss-Codazzi coupling verified for all space forms and horospheres.")
     return True
 
-def battery_2_hyperbolic_curvature_relief():
-    """Battery 2: Hyperbolic Curvature Relief kappa*_H = sqrt((2/w)^2 - c^2) < 2/w."""
-    print("--- Battery 2: Hyperbolic Curvature Relief & U-Turn Simulation ---")
-    widths = [0.5, 1.0, 2.0, 4.0]
-    c_vals = [0.1, 0.5, 0.8, 1.2]
+def battery_2_hyperbolic_curvature_amplification_and_spherical_relief():
+    """Battery 2: Hyperbolic Amplification kappa*_H = c*coth(cw/2) > 2/w and Spherical Relief kappa*_S = c*cot(cw/2) < 2/w."""
+    print("--- Battery 2: Hyperbolic Curvature Amplification & Spherical Relief ---")
+    widths = [0.5, 1.0, 2.0, 3.0]
+    c_vals = [0.2, 0.5, 1.0, 1.5]
     
     for w in widths:
         kappa_euclid = 2.0 / w
         for c in c_vals:
-            if kappa_euclid > c:
-                kappa_hyp = np.sqrt(kappa_euclid**2 - c**2)
-                relief_ratio = kappa_hyp / kappa_euclid
-                assert relief_ratio < 1.0, f"Hyperbolic curvature not strictly less than Euclidean: {kappa_hyp} >= {kappa_euclid}"
-                assert np.isclose(kappa_hyp**2 + c**2, kappa_euclid**2, atol=1e-12)
+            # Hyperbolic case: c * coth(c*w / 2) > 2/w (since x*coth(x) > 1 for all x > 0)
+            x_hyp = c * w / 2.0
+            kappa_hyp = c * (1.0 / np.tanh(x_hyp))
+            assert kappa_hyp > kappa_euclid, f"Hyperbolic curvature not strictly greater than Euclidean: {kappa_hyp} <= {kappa_euclid}"
+            
+            # Spherical case: c * cot(c*w / 2) < 2/w for c*w/2 < pi/2 (since x*cot(x) < 1)
+            if x_hyp < (np.pi / 2.0):
+                kappa_sph = c * (1.0 / np.tan(x_hyp))
+                assert kappa_sph < kappa_euclid, f"Spherical curvature not strictly less than Euclidean: {kappa_sph} >= {kappa_euclid}"
                 
     c_0 = 1.0
     w = 1.5
     kappa_E = 2.0 / w
-    kappa_H = np.sqrt(kappa_E**2 - c_0**2)
-    print(f"  Width w={w}: Euclidean kappa*={kappa_E:.4f}, Hyperbolic kappa*={kappa_H:.4f} (Relief: {(1-kappa_H/kappa_E)*100:.1f}%)")
-    print("  [PASS] Hyperbolic curvature relief verified across all widths and ambient scales.")
+    kappa_H = c_0 / np.tanh(c_0 * w / 2.0)
+    kappa_S = c_0 / np.tan(c_0 * w / 2.0)
+    print(f"  Width w={w}, c={c_0}: Euclidean kappa*={kappa_E:.4f}, Hyperbolic kappa*={kappa_H:.4f} (+{(kappa_H/kappa_E - 1)*100:.1f}%), Spherical kappa*={kappa_S:.4f} (-{(1 - kappa_S/kappa_E)*100:.1f}%)")
+    print("  [PASS] Hyperbolic curvature amplification and spherical relief validated across all scales.")
     return True
 
 def battery_3_adm_shear_minimization():
@@ -215,7 +220,7 @@ if __name__ == "__main__":
     print("=" * 70)
     
     b1 = battery_1_space_forms_coupling()
-    b2 = battery_2_hyperbolic_curvature_relief()
+    b2 = battery_2_hyperbolic_curvature_amplification_and_spherical_relief()
     b3 = battery_3_adm_shear_minimization()
     b4 = battery_4_horizons_and_wormhole_exotic_matter()
     b5 = battery_5_timelike_navigation_covariant_acceleration()
