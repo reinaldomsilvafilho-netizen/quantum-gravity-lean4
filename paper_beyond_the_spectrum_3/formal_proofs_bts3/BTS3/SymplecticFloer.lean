@@ -1,7 +1,7 @@
 /-
   BTS-3: Symplectic & Floer Invariants of Functional Realizations (Patched)
   Obligations: OBL-001, OBL-002, OBL-003
-  Author: Reinaldo M. Silva-Filho (PPGEEAA/DES, UFLA)
+  Author: Reinaldo M. Silva-Filho (PPGEE/DES, UFLA)
 -/
 
 namespace BTS3.SymplecticFloer

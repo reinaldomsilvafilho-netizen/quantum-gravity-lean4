@@ -1,7 +1,7 @@
 /-
   Formal Verification: Category-Theoretic Foundations (Lean 4)
   Treatise: "A Functorial Bridge from Continuous Tensor Manifolds to 4-Dimensional Spacetime Cobordisms"
-  Author: Reinaldo M. Silva-Filho (PPGEEAA/DES, UFLA)
+  Author: Reinaldo M. Silva-Filho (PPGEE/DES, UFLA)
 -/
 
 namespace QuantumGravity

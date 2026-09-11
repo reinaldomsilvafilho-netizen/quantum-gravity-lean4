@@ -2,7 +2,7 @@
   Formal Verification: Master Verification Suite (Lean 4)
   Treatise: "A Functorial Bridge from Continuous Tensor Manifolds to 4-Dimensional Spacetime Cobordisms"
   Monograph: "Unified Quantum Gravity and Multilinear Differential Geometry"
-  Author: Reinaldo M. Silva-Filho (PPGEEAA/DES, UFLA, 2026)
+  Author: Reinaldo M. Silva-Filho (PPGEE/DES, UFLA, 2026)
 -/
 
 import «Category»

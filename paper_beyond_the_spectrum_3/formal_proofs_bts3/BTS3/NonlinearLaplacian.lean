@@ -1,7 +1,7 @@
 /-
   BTS-3: Nonlinear Spectral & Metric Geometry
   Obligations: OBL-007, OBL-008, OBL-009
-  Author: Reinaldo M. Silva-Filho (PPGEEAA/DES, UFLA)
+  Author: Reinaldo M. Silva-Filho (PPGEE/DES, UFLA)
 -/
 
 namespace BTS3.NonlinearLaplacian

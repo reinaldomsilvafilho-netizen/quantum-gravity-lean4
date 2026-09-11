@@ -1,6 +1,6 @@
 /-
   Formal Verification: Tier 4 — Analytical Running of Spectral Dimension
-  Treatise: Chapters 06 & 13 (Silva-Filho, PPGEEAA/DES, UFLA, 2026)
+  Treatise: Chapters 06 & 13 (Silva-Filho, PPGEE/DES, UFLA, 2026)
   Paper: "Observational Signatures and Experimental Testbeds of Unified Quantum Gravity"
   Results: Exact IR limit d_s = 4, exact UV limit d_s = 2, strict monotonicity,
            primordial tensor tilt running, and quadratic cancellation in heat kernel.

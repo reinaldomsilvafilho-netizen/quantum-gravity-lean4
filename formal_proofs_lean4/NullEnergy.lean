@@ -1,7 +1,7 @@
 /-
   Formal Verification: Theorem 5.6 — Entropic Null Energy Condition (Lean 4)
   Treatise: "A Functorial Bridge from Continuous Tensor Manifolds to 4-Dimensional Spacetime Cobordisms"
-  Author: Reinaldo M. Silva-Filho (PPGEEAA/DES, UFLA)
+  Author: Reinaldo M. Silva-Filho (PPGEE/DES, UFLA)
 
   Mathematical Foundation:
   The contracted stress-energy tensor along any future-directed null vector k^mu satisfies:

@@ -1,7 +1,7 @@
 /-
   BTS-3: Microlocal Sheaves & Stratified Rank Cycles
   Obligations: OBL-004, OBL-005, OBL-006
-  Author: Reinaldo M. Silva-Filho (PPGEEAA/DES, UFLA)
+  Author: Reinaldo M. Silva-Filho (PPGEE/DES, UFLA)
 -/
 
 namespace BTS3.MicrolocalSheaves

@@ -1,7 +1,7 @@
 /-
   BTS-3: Non-Equilibrium Thermodynamics & Stochastic Flows (Patched)
   Obligations: OBL-010, OBL-011, OBL-012
-  Author: Reinaldo M. Silva-Filho (PPGEEAA/DES, UFLA)
+  Author: Reinaldo M. Silva-Filho (PPGEE/DES, UFLA)
 -/
 
 namespace BTS3.NonEquilibriumThermo

@@ -1,7 +1,7 @@
 /-
   BTS-3: Federer Reach & Medial Axis Geometry (Patched)
   Obligations: OBL-020, OBL-021
-  Author: Reinaldo M. Silva-Filho (PPGEEAA/DES, UFLA)
+  Author: Reinaldo M. Silva-Filho (PPGEE/DES, UFLA)
 -/
 
 namespace BTS3.FedererReach

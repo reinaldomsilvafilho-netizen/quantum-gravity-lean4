@@ -10,7 +10,7 @@ This repository contains the machine-checked formal verification in **Lean 4** o
 > **"Unified Quantum Gravity and Multilinear Differential Geometry: A Treatise on Continuous Tensor Manifolds, Simplicial Fractional Calculus, and Emergent Spacetime"** ([DOI: 10.5281/zenodo.22290043](https://doi.org/10.5281/zenodo.22290043))  
 > **"A Functorial Bridge from Continuous Tensor Manifolds to 4-Dimensional Spacetime Cobordisms"** ([DOI: 10.5281/zenodo.22441676](https://doi.org/10.5281/zenodo.22441676))  
 > *Author:* Reinaldo M. Silva-Filho  
-> *Affiliation:* Universidade Federal de Lavras (PPGEEAA/DES)
+> *Affiliation:* Universidade Federal de Lavras (PPGEE/DES)
 
 ---
 

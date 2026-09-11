@@ -1,7 +1,7 @@
 /-
   BTS-3: Simplicial Pascal Simplex & Barnes-Kigami Residue Spectrum (Patched)
   Obligations: OBL-017, OBL-018, OBL-019
-  Author: Reinaldo M. Silva-Filho (PPGEEAA/DES, UFLA)
+  Author: Reinaldo M. Silva-Filho (PPGEE/DES, UFLA)
 -/
 
 namespace BTS3.SimplicialResidues

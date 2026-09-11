@@ -7,7 +7,7 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 **Author:** Reinaldo Maia Silva-Filho  
-**Affiliation:** Universidade Federal de Lavras (PPGEEAA/DES)  
+**Affiliation:** Universidade Federal de Lavras (PPGEE/DES)  
 **Permanent Repository:** [quantum-gravity-lean4](https://github.com/reinaldomsilvafilho-netizen/quantum-gravity-lean4)
 
 ---

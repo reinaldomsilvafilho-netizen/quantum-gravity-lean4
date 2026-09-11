@@ -1,7 +1,7 @@
 /-
   BTS-3: Bipartite Kernel Operators & Holographic Entanglement Duals (Patched)
   Obligations: OBL-013, OBL-014, OBL-015, OBL-016
-  Author: Reinaldo M. Silva-Filho (PPGEEAA/DES, UFLA)
+  Author: Reinaldo M. Silva-Filho (PPGEE/DES, UFLA)
 -/
 
 namespace BTS3.BipartiteKernelHolography

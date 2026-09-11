@@ -1,6 +1,6 @@
 /-
   Formal Verification: Tier 3 — Discrete Simplicial Calculus & Combinatorial Hodge Laplacians
-  Treatise: Chapters 04, 05 & 06 (Silva-Filho, PPGEEAA/DES, UFLA, 2026)
+  Treatise: Chapters 04, 05 & 06 (Silva-Filho, PPGEE/DES, UFLA, 2026)
   Framework: Combinatorial Exterior Calculus, Chain Complexes, Hodge Decomposition, and Resolvents
 -/
 

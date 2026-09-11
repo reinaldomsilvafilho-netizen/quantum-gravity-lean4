@@ -1,6 +1,6 @@
 /-
   Formal Verification: Tier 5 — Semiclassical Wheeler-DeWitt & Minimax Foliation Constraints
-  Treatise: Chapters 07, 08 & 09 (Silva-Filho, PPGEEAA/DES, UFLA, 2026)
+  Treatise: Chapters 07, 08 & 09 (Silva-Filho, PPGEE/DES, UFLA, 2026)
   Framework: ADM 3+1 Cauchy Foliation, Shear-Trace Decomposition, and Hamiltonian Constraint Stationarity
 -/
 
