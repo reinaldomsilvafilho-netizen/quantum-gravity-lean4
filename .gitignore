@@ -106,17 +106,8 @@ research_master_universe_lagrangian/*.md
 research_master_universe_lagrangian/*.tex
 research_invariants_linear_algebra/*.md
 
-geometric_statistics_research/**/*.pdf
-geometric_statistics_research/**/*.tex
-geometric_statistics_research/**/*.aux
-geometric_statistics_research/**/*.log
-geometric_statistics_research/**/*.out
-geometric_statistics_research/**/*.toc
-geometric_statistics_research/**/*.bbl
-geometric_statistics_research/**/*.blg
-geometric_statistics_research/**/*.synctex.gz
-geometric_statistics_research/**/*.md
-!geometric_statistics_research/**/README.md
+# Unpublished research folders (reserved)
+geometric_statistics_research/
 
 # OS generated
 Thumbs.db

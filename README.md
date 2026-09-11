@@ -31,8 +31,6 @@ This repository hosts the **complete open-science machine-checked interactive fo
    *Beyond the Spectrum: Functional Realizations, Simplicial Residues, and Geometric Measures on Matrix and Tensor Manifolds*
 4. **Millennium Prize Track:**  
    *Yang-Mills Mass Gap and Quark Confinement via Non-Perturbative Simplicial Holonomies and Federer Reach*
-5. **Geometric Statistics & High-Dimensional MCMC Series:**  
-   *Curvature, Ergodicity, and Fractional Operators on Statistical Manifolds* (5 Papers)
 
 ### The Tri-Pillar Epistemic Framework
 
@@ -108,10 +106,6 @@ Beyond the main treatise, this repository houses formal kernels and testbeds for
   Folder: [`paper_yang_mills_mass_gap/`](paper_yang_mills_mass_gap/)  
   Lean 4 proofs: [`paper_yang_mills_mass_gap/formal_proofs_yang_mills/`](paper_yang_mills_mass_gap/formal_proofs_yang_mills/) (7 modules: `HilbertSpace`, `FloerVacuum`, `GribovCurvature`, `ReflectionPositivity`, `MassGap`, `FedererReachConfinement`, `SpectralReduction`).  
   Python numerical solvers: `verify_yang_mills_numerical.py`, `verify_yang_mills_inverse.py`.
-- **Geometric Statistics & High-Dimensional MCMC Series (5 Papers):**  
-  Folder: [`geometric_statistics_research/`](geometric_statistics_research/)  
-  Lean 4 proofs: [`geometric_statistics_research/formal_proofs/`](geometric_statistics_research/formal_proofs/) (5 modules: `BakryEmery`, `FedererReach`, `RiemannianREML`, `SimplicialFractionalGAMM`, `TensorTrainDOE`).  
-  Python verification suites: `verify_paper1_numerical.py` through `verify_paper5_numerical.py`.
 
 ---
 
@@ -150,14 +144,7 @@ lake build
 lake exe bts
 ```
 
-### 5. Build the Geometric Statistics Suite
-```bash
-cd geometric_statistics_research/formal_proofs
-lake build
-lake exe geom_stats
-```
-
-### 6. Execute Python Numerical Testbeds
+### 5. Execute Python Numerical Testbeds
 ```bash
 cd unified_quantum_gravity_book
 python verify_chap01_numerical.py
