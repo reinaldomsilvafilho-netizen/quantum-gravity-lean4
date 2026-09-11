@@ -11,6 +11,7 @@ import Book.Chap10.InformationGeometry
 import Book.Chap11.EmergentSpacetime
 import Book.Chap12.GrandUnification
 import Book.Chap13.ExperimentalSignatures
+import Book.ChapUniverseLagrangian.MasterUniverseLagrangian
 
 def main : IO Unit := do
   IO.println "========================================================="
@@ -42,6 +43,9 @@ def main : IO Unit := do
   Book.Chap12.verifyChap12
   IO.println "\n>>> CERTIFYING CHAPTER 13 <<<"
   Book.Chap13.verifyChap13
+  IO.println "\n>>> CERTIFYING MASTER UNIVERSE LAGRANGIAN <<<"
+  Book.ChapUniverseLagrangian.verifyUniverseLagrangian
   IO.println "\n========================================================="
-  IO.println "ALL TREATISE OBLIGATIONS (141/141) ACROSS CHAPTERS 01 - 13 FORMALLY CERTIFIED IN LEAN 4"
+  IO.println "ALL TREATISE & UNIVERSE LAGRANGIAN OBLIGATIONS FORMALLY CERTIFIED IN LEAN 4"
   IO.println "========================================================="
+

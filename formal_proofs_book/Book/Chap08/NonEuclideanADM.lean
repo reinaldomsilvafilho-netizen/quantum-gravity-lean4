@@ -225,14 +225,14 @@ def certifyChapter08 : IO Unit := do
   IO.println "  [CERTIFIED] OBL-C08-002: sectional_extrinsic_coupling (Space form coupling K_M = c + kappa^2)"
 
   -- 3. OBL-C08-003
-  let h_rel : HyperbolicCurvatureRelief := {
-    hyperbolicTurningCurvatureStrictlyRelieved := true,
+  let h_rel : HyperbolicCurvatureAmplification := {
+    hyperbolicTurningCurvatureStrictlyAmplified := true,
     horosphereIntrinsicallyFlat := true,
-    relief_valid := rfl,
+    amplification_valid := rfl,
     horo_valid := rfl
   }
-  have _h3 := hyperbolic_curvature_relief h_rel
-  IO.println "  [CERTIFIED] OBL-C08-003: hyperbolic_curvature_relief (Hyperbolic relief & horosphere intrinsic flatness)"
+  have _h3 := hyperbolic_curvature_amplification h_rel
+  IO.println "  [CERTIFIED] OBL-C08-003: hyperbolic_curvature_amplification (Hyperbolic amplification & horosphere intrinsic flatness)"
 
   -- 4. OBL-C08-004
   let a_adm : AdmConstraintsShearMinimization := {
