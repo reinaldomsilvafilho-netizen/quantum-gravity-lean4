@@ -68,10 +68,20 @@ paper_geometric_measures_functional_tensors/
 paper_functorial_tensor_field_theory/
 navier_stokes_analytical/
 thesis_defense/
+study_guide_quantum_gravity_qa/
+*FOUNDATIONS*.md
+*ALGORITHM*.md
+*COVER_LETTER*.md
+*NATURE*.md
+*CHECKLIST*.md
+research_master_universe_lagrangian/*.md
+research_master_universe_lagrangian/*.tex
+research_invariants_linear_algebra/*.md
 
 # OS generated
 Thumbs.db
 .DS_Store
+
 
 
 
