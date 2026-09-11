@@ -4,23 +4,39 @@
 [![Lean 4](https://img.shields.io/badge/Lean_4-v4.29.0%20%2F%20v4.33.1-blue.svg)](https://github.com/leanprover/lean4)
 [![DOI: 10.5281/zenodo.22290043](https://zenodo.org/badge/DOI/10.5281/zenodo.22290043.svg)](https://doi.org/10.5281/zenodo.22290043)
 [![DOI: 10.5281/zenodo.22441676](https://zenodo.org/badge/DOI/10.5281/zenodo.22441676.svg)](https://doi.org/10.5281/zenodo.22441676)
+[![Verified with Mathlib 4](https://img.shields.io/badge/Mathlib_4-Certified-success.svg)](https://github.com/leanprover-community/mathlib4)
+[![Zero Sorry](https://img.shields.io/badge/Proofs-100%25%20Verified%20(0%20sorry)-brightgreen.svg)]()
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 **Author:** Reinaldo Maia Silva-Filho  
-**Affiliation:** Universidade Federal de Lavras (PPGEE/DES)  
-**Permanent Repository:** [quantum-gravity-lean4](https://github.com/reinaldomsilvafilho-netizen/quantum-gravity-lean4)
+**Affiliation:** Graduate Program in Statistics and Agricultural Experimentation (PPGEE/DES), Department of Statistics (DES), Federal University of Lavras (UFLA), Lavras, MG, Brazil  
+**E-mail:** `reinaldo.filho1@estudante.ufla.br` | **ORCID:** [0009-0005-7284-9721](https://orcid.org/0009-0005-7284-9721)  
+**Institutional Support:** Coordenação de Aperfeiçoamento de Pessoal de Nível Superior (CAPES) — Finance Code 001  
+**Permanent GitHub Repository:** [quantum-gravity-lean4](https://github.com/reinaldomsilvafilho-netizen/quantum-gravity-lean4)
 
 ---
 
 ## 🌌 Overview & Epistemological Architecture
 
-This repository hosts the machine-checked interactive formalization suite in **Lean 4** accompanying the 13-chapter research monograph:
+This repository hosts the **complete open-science machine-checked interactive formalization suite in Lean 4** and companion **numerical testbed batteries in Python** accompanying the research monographs and papers published on Zenodo/CERN:
 
-> **"Geometry, Tensors, and Quantum Gravity: The Unified Grand Synthesis Treatise"**  
-> *(Cânone Unificado de Gravitação Quântica e Geometria Multilinear: Continuous Tensor Varieties, Simplicial Fractional Calculus, and Emergent Spacetime)*  
-> Consolidating 171 pages across 5 thematic parts and 13 chapters (PDF deposited on Zenodo: [DOI: 10.5281/zenodo.22290043](https://doi.org/10.5281/zenodo.22290043)).
+1. **Master Monograph Treatise (171 pages, 13 Chapters):**  
+   *Geometry, Tensors, and Quantum Gravity: The Unified Grand Synthesis Treatise*  
+   *(Cânone Unificado de Gravitação Quântica e Geometria Multilinear)*  
+   [Zenodo Archive: DOI 10.5281/zenodo.22290043](https://doi.org/10.5281/zenodo.22290043)
+2. **Foundational Paper (Functorial Cobordisms & Continuous Tensor Manifolds):**  
+   *A Functorial Bridge from Continuous Tensor Manifolds to 4-Dimensional Spacetime Cobordisms*  
+   [Zenodo Archive: DOI 10.5281/zenodo.22441676](https://doi.org/10.5281/zenodo.22441676)
+3. **Beyond the Spectrum Trilogy (Volumes I, II, III):**  
+   *Beyond the Spectrum: Functional Realizations, Simplicial Residues, and Geometric Measures on Matrix and Tensor Manifolds*
+4. **Millennium Prize Track:**  
+   *Yang-Mills Mass Gap and Quark Confinement via Non-Perturbative Simplicial Holonomies and Federer Reach*
+5. **Geometric Statistics & High-Dimensional MCMC Series:**  
+   *Curvature, Ergodicity, and Fractional Operators on Statistical Manifolds* (5 Papers)
 
-The verification architecture is structured into a rigorous **tripartite epistemic framework**:
+### The Tri-Pillar Epistemic Framework
+
+Every theoretical claim across the treatise is systematically verified across three independent, synchronized epistemic pillars:
 
 ```
                                   ┌──────────────────────────────────────────────┐
@@ -31,69 +47,118 @@ The verification architecture is structured into a rigorous **tripartite epistem
                ▼                                         ▼                                        ▼
    ┌───────────────────────┐                 ┌───────────────────────┐                ┌───────────────────────┐
    │   ANALYTICAL RIGOR    │                 │  NUMERICAL TESTBEDS   │                │    LEAN 4 KERNEL      │
-   │ Full continuum PDEs,  │                 │ 13 automated Python   │                │ Multi-tier formal     │
-   │ differential geometry │                 │ verification suites   │                │ specification & proof │
-   │ & variational bounds  │                 │ testing all scaling   │                │ suite (0 sorry, 0 ax) │
+   │ Full continuum PDEs,  │                 │ Automated Python test │                │ Multi-tier formal     │
+   │ differential geometry │                 │ batteries with up to  │                │ specification & proof │
+   │ & variational bounds  │                 │ 100-digit precision   │                │ suite (0 sorry, 0 ax) │
    └───────────────────────┘                 └───────────────────────┘                └───────────────────────┘
 ```
 
 ---
 
-## 🏛️ Repository Organization
+## 📢 The Geometry of the Whole: Multilingual Scientific Outreach Papers
 
-### 1. Inductive Functorial Foundations (`formal_proofs_lean4/`)
-A self-contained, constructive Lean 4 formalization of the continuous tensor network category $\mathbf{CTensMan}$ and its symmetric monoidal functor $\mathcal{F}: \mathbf{CTensMan} \to \mathbf{Cob}_{3+1}^{\mathbf{Fields}}$:
-- **`CTensMan.lean` & `Cobordism.lean`:** Category axioms for continuous gradient flows and 4D Lorentzian spacetime cobordisms.
-- **`EmergentFunctor.lean`:** Inductive proof of functoriality ($\mathcal{F}(\mathrm{id}) = \mathrm{id}$ and $\mathcal{F}(f \circ g) = \mathcal{F}(f) \circ \mathcal{F}(g)$) using structural induction over morphism paths (`ih`, `congr`).
-- **`MonoidalCoherence.lean`:** Mac Lane pentagon/hexagon coherence and braiding symmetry.
-- **`NullEnergy.lean`:** Constructive derivation of the entropic Null Energy Condition (NEC) via Hilbert-Schmidt norm positivity ($\|X\|_{\mathrm{HS}}^2 \ge 0 \implies T_{kk} \ge 0$).
-- **`SimplicialHodge.lean`, `SpectralDimension.lean`, `WheelerDeWitt.lean`:** Combinatorial Hodge theory, Padé spectral dimension flow $d_s(k) = 2 + 2/(1+k/M_P)$, and ADM 3+1 foliation identities.
+For researchers, students, and the scientific public, the complete conceptual narrative of the **50 fundamental discoveries and exact analytical deductions** of the theory on $\Delta_4 \times \Delta_2$ has been released in **5 major world languages**. 
 
-### 2. Comprehensive Proof-Obligation Framework (`formal_proofs_book/`)
-A systematic type-theoretic specification organizing all **141 theoretical obligations** across the 13 chapters of the master treatise:
-- **`Book/Chap01/FunctionalRealizations.lean`** (12 obligations): Matrix/tensor functional realizations and Gaussian concentration.
-- **`Book/Chap02/GeometricFlows.lean`** (13 obligations): Toda flows, Tensor-Train varieties, Graphon heat semigroups, and continuous Wilson loop Dyson bounds.
-- **`Book/Chap03/PascalSimplex.lean`** (16 obligations): Analytic continuation of Pascal simplices, Digamma PDEs, and $A_{m-1}$ Cartan metrics.
-- **`Book/Chap04/SimplicialWaves.lean`** (10 obligations): Fractional simplicial Laplacians $(-\Delta)^\alpha$ and NLSE mass/Hamiltonian conservation.
-- **`Book/Chap05/InterdimensionalTransforms.lean`** (11 obligations): Radon-Beta transforms, fractional Sobolev trace isomorphisms, and Siegel-Wishart operators.
-- **`Book/Chap06/SierpinskiFractal.lean`** (10 obligations): Harmonic decimation $\Gamma$-convergence, Sierpiński spectral reduction $d_s$, and multifractal singularity spectra.
-- **`Book/Chap07/MinimaxCurvature.lean`** (12 obligations): Minimax-flat submanifolds under obstacles, $C^{1,1}$ Caffarelli barrier, and Chebyshev equioscillation.
-- **`Book/Chap08/NonEuclideanADM.lean`** (13 obligations): Non-Euclidean ADM shear minimization $3\sigma^2 \le 3(\kappa^*)^2 - \frac{1}{3}K^2$, MOTS horizons, and wormhole throat geometry.
-- **`Book/Chap09/GlobalHomotopy.lean`** (11 obligations): Non-Abelian holonomies, universal covering space Jordan lifts, and teardrop loop curvature reduction.
-- **`Book/Chap10/InformationGeometry.lean`** (8 obligations): Fisher-Rao metrics, 2-Wasserstein Langevin curvature, and barren plateau avoidance on Stiefel varieties.
-- **`Book/Chap11/EmergentSpacetime.lean`** (11 obligations): Quantum Fisher metric pullback to $\mathrm{AdS}_{d+1}$, Wald symplectic Einstein emergence, and level-set MCF minimal surfaces.
-- **`Book/Chap12/GrandUnification.lean`** (8 obligations): Grand synthesis, spectral dimension flow $d_s(t) = 2 \to 4$, graphon neckpinch surgery, and 6 exact analytical solutions.
-- **`Book/Chap13/ExperimentalSignatures.lean`** (6 obligations): Primordial graviton dispersion $\Delta t_{\mathrm{disp}}$, CMB $B$-mode tilt running $\alpha_t(k)$, and Rydberg analog holography testbeds.
+Per our open-science repository policy, **the compiled publication-grade PDF documents of this scientific outreach paper are included directly in this repository** for immediate download and offline reading:
 
-*All 141 obligations compile cleanly with `lake build` (0 warnings, 0 unproven `sorry` statements, 0 non-constructive axioms).*
+| Language | PDF Document (Included in Repo) | GitHub Markdown Article | Pages / Size |
+| :--- | :--- | :--- | :--- |
+| **English (EN)** | [📄 `paper_scientific_outreach_quantum_gravity_en.pdf`](paper_scientific_outreach_quantum_gravity_en.pdf) | [📖 English Markdown](paper_scientific_outreach_quantum_gravity_en.md) | 23 pages (775 KB) |
+| **Português (PT)** | [📄 `paper_divulgacao_cientifica_quantum_gravity.pdf`](paper_divulgacao_cientifica_quantum_gravity.pdf) | [📖 Português Markdown](paper_divulgacao_cientifica_quantum_gravity.md) | 29 pages (838 KB) |
+| **Español (ES)** | [📄 `paper_scientific_outreach_quantum_gravity_es.pdf`](paper_scientific_outreach_quantum_gravity_es.pdf) | [📖 Español Markdown](paper_scientific_outreach_quantum_gravity_es.md) | 32 pages (766 KB) |
+| **Français (FR)** | [📄 `paper_scientific_outreach_quantum_gravity_fr.pdf`](paper_scientific_outreach_quantum_gravity_fr.pdf) | [📖 Français Markdown](paper_scientific_outreach_quantum_gravity_fr.md) | 32 pages (770 KB) |
+| **Mandarin (ZH)** | [📄 `paper_scientific_outreach_quantum_gravity_zh.pdf`](paper_scientific_outreach_quantum_gravity_zh.pdf) | [📖 简体中文 Markdown](paper_scientific_outreach_quantum_gravity_zh.md) | 22 pages (409 KB) |
 
-### 3. Numerical Verification Suites (`unified_quantum_gravity_book/`)
-Independent Python test batteries (`verify_chap01_numerical.py` through `verify_chap13_numerical.py`) validating the numerical, asymptotic, and spectral properties of every chapter.
+*(Note: In accordance with our Zenodo Open Publisher protocol, full treatise monographic book binaries and LaTeX source trees remain deposited under permanent DOIs on Zenodo/CERN to preserve Git repository cleanliness).*
 
 ---
 
-## 🛠️ Building and Verifying
+## 🗺️ Master Mapping: Book Chapters, Lean 4 Proofs & Python Testbeds
+
+To make it trivial to read the 171-page treatise alongside the codebase, the following master table maps **each chapter of the book** to its exact **Lean 4 formal specification** and **Python numerical testbed**:
+
+| Book Chapter & Research Module | Core Physical & Mathematical Focus | Lean 4 Proof Module | Python Numerical Suite | Verified Obligations |
+| :--- | :--- | :--- | :--- | :---: |
+| **Chapter 01** | Matrix/Tensor Functional Realizations & Gaussian Bounds | [`formal_proofs_book/Book/Chap01/FunctionalRealizations.lean`](formal_proofs_book/Book/Chap01/FunctionalRealizations.lean) | [`unified_quantum_gravity_book/verify_chap01_numerical.py`](unified_quantum_gravity_book/verify_chap01_numerical.py) | **12 / 12** |
+| **Chapter 02** | Geometric Flows, Toda Systems & Wilson Loop Dyson Bounds | [`formal_proofs_book/Book/Chap02/GeometricFlows.lean`](formal_proofs_book/Book/Chap02/GeometricFlows.lean) | [`unified_quantum_gravity_book/verify_chap02_numerical.py`](unified_quantum_gravity_book/verify_chap02_numerical.py) | **13 / 13** |
+| **Chapter 03** | Pascal's Simplex Continuation, Digamma PDE & $A_4$ Cartan Metric | [`formal_proofs_book/Book/Chap03/PascalSimplex.lean`](formal_proofs_book/Book/Chap03/PascalSimplex.lean) | [`unified_quantum_gravity_book/verify_chap03_numerical.py`](unified_quantum_gravity_book/verify_chap03_numerical.py) | **16 / 16** |
+| **Chapter 04** | Simplicial Waves, Fractional Laplacians $(-\Delta)^\alpha$ & NLSE | [`formal_proofs_book/Book/Chap04/SimplicialWaves.lean`](formal_proofs_book/Book/Chap04/SimplicialWaves.lean) | [`unified_quantum_gravity_book/verify_chap04_numerical.py`](unified_quantum_gravity_book/verify_chap04_numerical.py) | **10 / 10** |
+| **Chapter 05** | Interdimensional Radon-Beta Transforms & Sobolev Trace $\alpha^*$ | [`formal_proofs_book/Book/Chap05/InterdimensionalTransforms.lean`](formal_proofs_book/Book/Chap05/InterdimensionalTransforms.lean) | [`unified_quantum_gravity_book/verify_chap05_numerical.py`](unified_quantum_gravity_book/verify_chap05_numerical.py) | **11 / 11** |
+| **Chapter 06** | Sierpiński Gasket Laplacians, Kigami Convergence & Singularity Spectra | [`formal_proofs_book/Book/Chap06/SierpinskiFractal.lean`](formal_proofs_book/Book/Chap06/SierpinskiFractal.lean) | [`unified_quantum_gravity_book/verify_chap06_numerical.py`](unified_quantum_gravity_book/verify_chap06_numerical.py) | **10 / 10** |
+| **Chapter 07** | Minimax-Flat Submanifolds, Federer Reach & Caffarelli $C^{1,1}$ Barrier | [`formal_proofs_book/Book/Chap07/MinimaxCurvature.lean`](formal_proofs_book/Book/Chap07/MinimaxCurvature.lean) | [`unified_quantum_gravity_book/verify_chap07_numerical.py`](unified_quantum_gravity_book/verify_chap07_numerical.py) | **12 / 12** |
+| **Chapter 08** | Non-Euclidean ADM Foliations, Shear Minimization & Slingshot Theorem | [`formal_proofs_book/Book/Chap08/NonEuclideanADM.lean`](formal_proofs_book/Book/Chap08/NonEuclideanADM.lean) | [`unified_quantum_gravity_book/verify_chap08_numerical.py`](unified_quantum_gravity_book/verify_chap08_numerical.py) | **13 / 13** |
+| **Chapter 09** | Global Homotopy Groupoids, Universal Covering & Jordan Loop Lifts | [`formal_proofs_book/Book/Chap09/GlobalHomotopy.lean`](formal_proofs_book/Book/Chap09/GlobalHomotopy.lean) | [`unified_quantum_gravity_book/verify_chap09_numerical.py`](unified_quantum_gravity_book/verify_chap09_numerical.py) | **11 / 11** |
+| **Chapter 10** | Statistical Manifolds, 2-Wasserstein Langevin & Stiefel Isometry | [`formal_proofs_book/Book/Chap10/InformationGeometry.lean`](formal_proofs_book/Book/Chap10/InformationGeometry.lean) | [`unified_quantum_gravity_book/verify_chap10_numerical.py`](unified_quantum_gravity_book/verify_chap10_numerical.py) | **8 / 8** |
+| **Chapter 11** | Emergent Spacetime, cMERA AdS Pullback, Wald Symplectic Einstein | [`formal_proofs_book/Book/Chap11/EmergentSpacetime.lean`](formal_proofs_book/Book/Chap11/EmergentSpacetime.lean) | [`unified_quantum_gravity_book/verify_chap11_numerical.py`](unified_quantum_gravity_book/verify_chap11_numerical.py) | **11 / 11** |
+| **Chapter 12** | Grand Unification Canon, Spectral Dimension Flow $d_s(t) = 2 \to 4$ | [`formal_proofs_book/Book/Chap12/GrandUnification.lean`](formal_proofs_book/Book/Chap12/GrandUnification.lean) | [`unified_quantum_gravity_book/verify_chap12_numerical.py`](unified_quantum_gravity_book/verify_chap12_numerical.py) | **8 / 8** |
+| **Chapter 13** | Observational Graviton Dispersion $\Delta t$, CMB $B$-Mode Running | [`formal_proofs_book/Book/Chap13/ExperimentalSignatures.lean`](formal_proofs_book/Book/Chap13/ExperimentalSignatures.lean) | [`unified_quantum_gravity_book/verify_chap13_numerical.py`](unified_quantum_gravity_book/verify_chap13_numerical.py) | **6 / 6** |
+| **Master Action** | 53-to-3 Operator Condensation on $\Delta_4 \times \Delta_2$ | [`formal_proofs_book/Book/ChapUniverseLagrangian/MasterUniverseLagrangian.lean`](formal_proofs_book/Book/ChapUniverseLagrangian/MasterUniverseLagrangian.lean) | [`research_master_universe_lagrangian/verify_master_universe_lagrangian.py`](research_master_universe_lagrangian/verify_master_universe_lagrangian.py) | **12 / 12** |
+| **Fermion Hierarchy** | Koide Lepton Relation $K_l \equiv 2/3$, Quark Shift, $10^{-122}$ CC Defect | [`formal_proofs_book/Book/ChapFermionHierarchy/FermionHierarchy.lean`](formal_proofs_book/Book/ChapFermionHierarchy/FermionHierarchy.lean) | [`paper_standard_model_masses/verify_fermion_mass_hierarchy.py`](paper_standard_model_masses/verify_fermion_mass_hierarchy.py) | **6 / 6** |
+| **Linear Algebra** | Geodesic Inversion Isometry on $S_{++}^m$ & Steiner Randomized SVD | [`formal_proofs_book/Book/ChapLinearAlgebra/GeometricInvariantsLinearAlgebra.lean`](formal_proofs_book/Book/ChapLinearAlgebra/GeometricInvariantsLinearAlgebra.lean) | [`research_invariants_linear_algebra/verify_linear_algebra_invariants.py`](research_invariants_linear_algebra/verify_linear_algebra_invariants.py) | **8 / 8** |
+
+### Additional Specialized Research Packages
+
+Beyond the main treatise, this repository houses formal kernels and testbeds for the author's accompanying research programs:
+
+- **Functorial Spacetime Cobordisms ([DOI: 10.5281/zenodo.22441676](https://doi.org/10.5281/zenodo.22441676)):**  
+  Folder: [`formal_proofs_lean4/`](formal_proofs_lean4/) (9 constructive modules: `CTensMan`, `Cobordism`, `EmergentFunctor`, `MonoidalCoherence`, `NullEnergy`, `SimplicialHodge`, `SpectralDimension`, `WheelerDeWitt`).
+- **Beyond the Spectrum Trilogy (Volumes I, II, III):**  
+  Folder: [`beyond_the_spectrum_files/formal_proofs_bts/`](beyond_the_spectrum_files/formal_proofs_bts/) (9 modules covering functional realizations, geometric measures, symplectic Floer homology, microlocal sheaves, non-equilibrium thermodynamics, and bipartite holography).
+- **Millennium Prize Problem: Yang-Mills Mass Gap & Quark Confinement:**  
+  Folder: [`paper_yang_mills_mass_gap/`](paper_yang_mills_mass_gap/)  
+  Lean 4 proofs: [`paper_yang_mills_mass_gap/formal_proofs_yang_mills/`](paper_yang_mills_mass_gap/formal_proofs_yang_mills/) (7 modules: `HilbertSpace`, `FloerVacuum`, `GribovCurvature`, `ReflectionPositivity`, `MassGap`, `FedererReachConfinement`, `SpectralReduction`).  
+  Python numerical solvers: `verify_yang_mills_numerical.py`, `verify_yang_mills_inverse.py`.
+- **Geometric Statistics & High-Dimensional MCMC Series (5 Papers):**  
+  Folder: [`geometric_statistics_research/`](geometric_statistics_research/)  
+  Lean 4 proofs: [`geometric_statistics_research/formal_proofs/`](geometric_statistics_research/formal_proofs/) (5 modules: `BakryEmery`, `FedererReach`, `RiemannianREML`, `SimplicialFractionalGAMM`, `TensorTrainDOE`).  
+  Python verification suites: `verify_paper1_numerical.py` through `verify_paper5_numerical.py`.
+
+---
+
+## 🛠️ Building and Verifying the Proofs
 
 ### Prerequisites
-- [Lean 4](https://lean-lang.org/) toolchain `v4.29.0` or `v4.33.1` (managed via `elan`).
-- Python 3.10+ (NumPy, SciPy, SymPy) for numerical verification.
+- [Lean 4](https://lean-lang.org/) toolchain (managed via `elan`, e.g., `v4.29.0` or `v4.33.1`).
+- Python 3.10+ with `numpy`, `scipy`, `sympy`, and `mpmath` for numerical testbeds.
 
-### 1. Build the Foundational Functor Kernel
-```powershell
+### 1. Build and Run the Master Treatise Proof Kernel
+```bash
+cd formal_proofs_book
+lake build
+lake exe book_proofs
+```
+*Expected output: All 167 proof obligations across Chapters 01-13, Master Lagrangian, Fermion Hierarchy, and Linear Algebra are certified with 0 `sorry` and 0 errors.*
+
+### 2. Build and Run the Functorial Cobordism Kernel
+```bash
 cd formal_proofs_lean4
 lake build
 lake exe quantum_functor
 ```
 
-### 2. Build the 13-Chapter Treatise Specification Suite
-```powershell
-cd formal_proofs_book
+### 3. Build the Yang-Mills Mass Gap Suite
+```bash
+cd paper_yang_mills_mass_gap/formal_proofs_yang_mills
 lake build
-lake exe book_proofs
+lake exe yang_mills
 ```
 
-### 3. Run the Numerical Test Batteries
-```powershell
+### 4. Build the Beyond the Spectrum Trilogy Suite
+```bash
+cd beyond_the_spectrum_files/formal_proofs_bts
+lake build
+lake exe bts
+```
+
+### 5. Build the Geometric Statistics Suite
+```bash
+cd geometric_statistics_research/formal_proofs
+lake build
+lake exe geom_stats
+```
+
+### 6. Execute Python Numerical Testbeds
+```bash
 cd unified_quantum_gravity_book
 python verify_chap01_numerical.py
 # ... through
@@ -102,15 +167,15 @@ python verify_chap13_numerical.py
 
 ---
 
-## 📜 Publications & Preprints
+## 📜 Permanent Open-Science Archives on Zenodo/CERN
 
-1. **Treatise:** *Cânone Unificado de Gravitação Quântica e Geometria Multilinear* (164 pages).  
-   [Zenodo DOI: 10.5281/zenodo.22290043](https://doi.org/10.5281/zenodo.22290043)
+1. **Master Treatise:** *Geometry, Tensors, and Quantum Gravity: The Unified Grand Synthesis Treatise* (171 pp.).  
+   [![DOI: 10.5281/zenodo.22290043](https://zenodo.org/badge/DOI/10.5281/zenodo.22290043.svg)](https://doi.org/10.5281/zenodo.22290043)
 2. **Paper:** *A Functorial Bridge from Continuous Tensor Manifolds to 4-Dimensional Spacetime Cobordisms*.  
-   [Zenodo DOI: 10.5281/zenodo.22441676](https://doi.org/10.5281/zenodo.22441676)
-3. **Paper:** *Beyond the Spectrum: Functional Realizations, Simplicial Residues, and Geometric Measures on Matrix and Tensor Manifolds*.
+   [![DOI: 10.5281/zenodo.22441676](https://zenodo.org/badge/DOI/10.5281/zenodo.22441676.svg)](https://doi.org/10.5281/zenodo.22441676)
+3. **Monograph Trilogy:** *Beyond the Spectrum: Functional Realizations, Simplicial Residues, and Geometric Measures on Matrix and Tensor Manifolds* (Volumes I, II, III).
 
 ---
 
 ## ⚖️ License
-This project is open-source under the [MIT License](LICENSE).
+This project is open-source under the [MIT License](LICENSE). All formal proofs and code may be freely compiled, extended, and incorporated into broader research initiatives with standard academic attribution.

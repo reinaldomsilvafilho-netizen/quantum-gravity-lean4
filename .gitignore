@@ -1,5 +1,16 @@
-# Manuscript and document binaries / LaTeX source (published on Zenodo)
+# ==============================================================================
+# Git Ignore Configuration: Open Formal Proofs & Scientific Outreach
+# ==============================================================================
+
+# Global PDF rule: ignore all compiled PDFs EXCEPT the Scientific Outreach Paper in all 5 languages
 *.pdf
+!paper_divulgacao_cientifica_quantum_gravity.pdf
+!paper_scientific_outreach_quantum_gravity_en.pdf
+!paper_scientific_outreach_quantum_gravity_es.pdf
+!paper_scientific_outreach_quantum_gravity_fr.pdf
+!paper_scientific_outreach_quantum_gravity_zh.pdf
+
+# LaTeX sources and build auxiliaries (monograph LaTeX sources deposited on Zenodo)
 *.tex
 *.bib
 *.sty
@@ -32,7 +43,7 @@ __pycache__/
 *.pyc
 *.pyo
 
-# Internal audit reports, ledgers, and scratch scripts
+# Internal audit reports, scratch scripts and logs
 *AUDIT*.md
 *LEDGER*.md
 CLAUDE*.md
@@ -53,7 +64,6 @@ scratch/
 # Temporary and Deep Audit Sandbox directories
 quantum_gravity_deep_audit_sandbox/
 beyond_the_spectrum_audit_sandbox/
-beyond_the_spectrum_files/
 famous_papers_cnis/
 research_isomorphic_mathematical_symbology/
 unified_quantum_gravity_book/*.txt
@@ -61,9 +71,27 @@ unified_quantum_gravity_book/*.md
 unified_quantum_gravity_book/engineer_advanced_math_proof_skills.py
 unified_quantum_gravity_book/run_claude_cli.py
 
-# Draft & auxiliary paper folders (LaTeX source reserved for Zenodo)
-paper_yang_mills_mass_gap/
-paper_standard_model_masses/
+# Archive folders: ignore monograph binaries/LaTeX, but allow formal proofs & verification scripts
+beyond_the_spectrum_files/*.pdf
+beyond_the_spectrum_files/*.zip
+
+paper_yang_mills_mass_gap/*.pdf
+paper_yang_mills_mass_gap/*.tex
+paper_yang_mills_mass_gap/*.aux
+paper_yang_mills_mass_gap/*.log
+paper_yang_mills_mass_gap/*.out
+paper_yang_mills_mass_gap/*.toc
+paper_yang_mills_mass_gap/*.zip
+paper_yang_mills_mass_gap/*.txt
+paper_yang_mills_mass_gap/autonomous_*.py
+
+paper_standard_model_masses/*.pdf
+paper_standard_model_masses/*.tex
+paper_standard_model_masses/*.aux
+paper_standard_model_masses/*.log
+paper_standard_model_masses/*.out
+paper_standard_model_masses/*.toc
+
 paper_geometric_measures_functional_tensors/
 paper_functorial_tensor_field_theory/
 navier_stokes_analytical/
@@ -78,10 +106,18 @@ research_master_universe_lagrangian/*.md
 research_master_universe_lagrangian/*.tex
 research_invariants_linear_algebra/*.md
 
+geometric_statistics_research/**/*.pdf
+geometric_statistics_research/**/*.tex
+geometric_statistics_research/**/*.aux
+geometric_statistics_research/**/*.log
+geometric_statistics_research/**/*.out
+geometric_statistics_research/**/*.toc
+geometric_statistics_research/**/*.bbl
+geometric_statistics_research/**/*.blg
+geometric_statistics_research/**/*.synctex.gz
+geometric_statistics_research/**/*.md
+!geometric_statistics_research/**/README.md
+
 # OS generated
 Thumbs.db
 .DS_Store
-
-
-
-

@@ -12,6 +12,8 @@ import Book.Chap11.EmergentSpacetime
 import Book.Chap12.GrandUnification
 import Book.Chap13.ExperimentalSignatures
 import Book.ChapUniverseLagrangian.MasterUniverseLagrangian
+import Book.ChapFermionHierarchy.FermionHierarchy
+import Book.ChapLinearAlgebra.GeometricInvariantsLinearAlgebra
 
 def main : IO Unit := do
   IO.println "========================================================="
@@ -45,7 +47,12 @@ def main : IO Unit := do
   Book.Chap13.verifyChap13
   IO.println "\n>>> CERTIFYING MASTER UNIVERSE LAGRANGIAN <<<"
   Book.ChapUniverseLagrangian.verifyUniverseLagrangian
+  IO.println "\n>>> CERTIFYING FERMION MASS HIERARCHY & COSMOLOGICAL CONSTANT <<<"
+  Book.ChapFermionHierarchy.verifyFermionHierarchy
+  IO.println "\n>>> CERTIFYING GEOMETRIC INVARIANTS OF LINEAR ALGEBRA <<<"
+  Book.ChapLinearAlgebra.verifyLinearAlgebra
   IO.println "\n========================================================="
-  IO.println "ALL TREATISE & UNIVERSE LAGRANGIAN OBLIGATIONS FORMALLY CERTIFIED IN LEAN 4"
+  IO.println "ALL TREATISE & COMPANION RESEARCH OBLIGATIONS FORMALLY CERTIFIED IN LEAN 4"
   IO.println "========================================================="
+
 
