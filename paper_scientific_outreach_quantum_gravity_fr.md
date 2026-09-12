@@ -670,22 +670,15 @@ Le Tableau~\ref{tab:master_summary} récapitule de façon synthétique les 50 av
 | **49** | **Audit Mathématique Adversarial** | Évaluation par les pairs usuelle | Audit contradictoire triadique aveugle validé avec consensus unanime. |
 | **50** | **Science Ouverte et Reproductibilité** | Codes et calculs privés | **Archivé avec DOI pérenne au CERN/Zenodo et code libre sur GitHub**. |
 
-# Conclusions et Horizons Empiriques
+# Conclusion : Le Modèle, la Matière et le Travail Social de la Science
 
-Le Canon Unifié de la Gravitation Quantique Simpliciale sur $\Delta_4 \times \Delta_2$ démontre que le vœu historique d'Albert Einstein —une formulation mathématique unifiée, géométrique et rigoureuse de toutes les forces et de la matière— n'exigeait ni la postulation de dimensions microscopiques inobservables ni le renoncement à la réfutabilité scientifique au sein du multivers.
+La physique théorique a passé les dernières décennies empêtrée dans des constructions métaphysiques qui traitaient les constantes fondamentales comme des accidents arbitraires ou des énigmes insolubles sans recourir à des hypothèses invérifiables. Inversement, elle a souvent sombré dans l'illusion idéaliste de concevoir les mathématiques comme une essence mystique préexistant au monde matériel.
 
-En formulant la physique comme la géométrie non locale continue d'une variété simpliciale compacte gouvernée par le Laplacien fractionnaire Bêta et confinée par la portée extrinsèque de Federer, les 19 paramètres empiriques du Modèle Standard et les singularités infinies de la Relativité Générale se dissolvent simultanément et naturellement.
+La formulation sur $\Delta_4 \times \Delta_2$ développée ici rejette catégoriquement le scepticisme arbitraire et la métaphysique idéaliste. La physique dans l'abstrait n'existe pas. Ce qui existe objectivement, c'est la réalité matérielle en transformation, et les modèles conceptuels que nous, êtres humains, construisons pour comprendre les régularités de ce que nous observons, agir sur la nature et communiquer les uns avec les autres. Ce travail ne prétend pas ériger une vérité absolue, statique ou dogmatique gravée dans la pierre : il propose un modèle formel, parcimonieux et prédictif, démontrant que le gouffre apparent entre la gravitation et la théorie quantique résultait de l'utilisation de coordonnées artificielles et d'outils analytiques limités.
 
-> [!TIP]
-> **Épistémologie du Modèle : Un Outil Prédictif Optimal**
->
-Nous réaffirmons le principe épistémologique fondamental : ce cadre ne se présente pas comme une vérité ontologique immuable, mais comme le modèle mathématique le plus puissant, économique et prédictif élaboré à ce jour pour décrire la réalité physique connue. Sa valeur repose sur trois piliers inébranlables :
+L'histoire est faite par les êtres humains, à travers leurs rapports matériels concrets. Aucun progrès scientifique n'est l'œuvre d'un individu isolé ou d'un intellect abstrait. Ce modèle est la condensation et la cristallisation de l'effort historique accumulé de l'humanité : le travail direct de millions de scientifiques, mathématiciens, philosophes et chercheurs qui, au fil des siècles, ont forgé les instruments de la pensée critique, du calcul et de l'expérimentation ; et le travail social indirect de milliards d'hommes et de femmes de la classe laborieuse qui, génération après génération, produisent la vie matérielle, bâtissent les laboratoires et les villes, fabriquent les ordinateurs et rendent possible le temps social indispensable à l'épanouissement de la science.
 
-    * **Zéro paramètre libre ajusté à la main :** Toutes les constantes fondamentales émanent de la géométrie pure.
-    * **Vérification formelle par ordinateur :** Démonstrations scellées mécaniquement dans Lean 4 sans marge d'erreur humaine.
-    * **Prédictions empiriques falsifiables :** Signatures concrètes pour les observatoires d'ondes gravitationnelles (LISA), les satellites de polarisation du CMB (LiteBIRD, CMB-S4) et les simulateurs quantiques de Rydberg en laboratoire.
-
-La communauté scientifique internationale est chaleureusement invitée à examiner, vérifier de façon indépendante et soumettre à l'épreuve empirique l'ensemble des résultats présentés dans ce traité.
+Condenser cet immense héritage historique collectif dans une structure mathématique formellement vérifiée et prédictive est une tâche que j'assume avec une profonde gratitude et un respect absolu envers tout ce travail social partagé. Le modèle appartient désormais à la communauté scientifique et à l'examen rigoureux de l'observation empirique --- dans le ciel et dans les laboratoires de la Terre. Car, en dernière analyse, c'est toujours dans la pratique matérielle des êtres humains et dans l'épreuve de la réalité concrète que se décide la validité de toute représentation scientifique.
 
 
 
