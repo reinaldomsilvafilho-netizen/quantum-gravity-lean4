@@ -3,7 +3,7 @@
 
 **Auteur :** Reinaldo Maia Silva-Filho  
 **Affiliation Institutionnelle :** Programme de Troisième Cycle en Statistique et Expérimentation Agronomique (PPGEE/DES), Département de Statistique (DES), Université Fédérale de Lavras (UFLA), Lavras, MG, Brésil  
-**Courriel :** `reinaldo.filho1@estudante.ufla.br` | **ORCID :** [0009-0005-7284-9721](https://orcid.org/0009-0005-7284-9721)  
+**Courriel :** `reinaldo.filho1@estudante.ufla.br` | **ORCID :** [0009-0003-8068-3330](https://orcid.org/0009-0003-8068-3330)  
 **Soutien Institutionnel :** Coordenação de Aperfeiçoamento de Pessoal de Nível Superior (CAPES) -- Code de Financement 001  
 **Archives Scientifiques Permanentes et Dépôts :**  
 - *Monographie Complète sur Zenodo (171 pages) :* [DOI: 10.5281/zenodo.22290043](https://doi.org/10.5281/zenodo.22290043)  

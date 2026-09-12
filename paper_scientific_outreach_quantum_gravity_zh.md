@@ -3,7 +3,7 @@
 
 **作者：** 雷纳尔多·迈亚·席尔瓦-菲略 (Reinaldo Maia Silva-Filho)  
 **所属机构：** 巴西拉夫拉斯联邦大学 (UFLA) 统计系 (DES)，统计与农业试验研究生项目 (PPGEE/DES)  
-**电子邮箱：** `reinaldo.filho1@estudante.ufla.br` | **ORCID:** [0009-0005-7284-9721](https://orcid.org/0009-0005-7284-9721)  
+**电子邮箱：** `reinaldo.filho1@estudante.ufla.br` | **ORCID:** [0009-0003-8068-3330](https://orcid.org/0009-0003-8068-3330)  
 **机构资助支持：** 巴西高等教育人员促进协调机构 (CAPES) —— 资助代码 001  
 **永久学术档案与代码库：**  
 - *Zenodo 专著论文集 (171 页):* [DOI: 10.5281/zenodo.22290043](https://doi.org/10.5281/zenodo.22290043)  
