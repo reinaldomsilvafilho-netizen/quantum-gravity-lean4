@@ -2,15 +2,19 @@
 ## Machine-Checked Formal Verification & Type-Theoretic Specification Suite in Lean 4
 
 [![Lean 4](https://img.shields.io/badge/Lean_4-v4.29.0%20%2F%20v4.33.1-blue.svg)](https://github.com/leanprover/lean4)
-[![DOI: 10.5281/zenodo.22290043](https://zenodo.org/badge/DOI/10.5281/zenodo.22290043.svg)](https://doi.org/10.5281/zenodo.22290043)
-[![DOI: 10.5281/zenodo.22441676](https://zenodo.org/badge/DOI/10.5281/zenodo.22441676.svg)](https://doi.org/10.5281/zenodo.22441676)
+[![Zenodo: Grand Treatise](https://zenodo.org/badge/DOI/10.5281/zenodo.22290043.svg)](https://doi.org/10.5281/zenodo.22290043)
+[![Zenodo: Beyond the Spectrum](https://zenodo.org/badge/DOI/10.5281/zenodo.22699282.svg)](https://doi.org/10.5281/zenodo.22699282)
+[![Zenodo: Yang-Mills Gap](https://zenodo.org/badge/DOI/10.5281/zenodo.22699843.svg)](https://doi.org/10.5281/zenodo.22699843)
+[![Zenodo: Master Action](https://zenodo.org/badge/DOI/10.5281/zenodo.22707110.svg)](https://doi.org/10.5281/zenodo.22707110)
+[![Zenodo: Fermion Hierarchy](https://zenodo.org/badge/DOI/10.5281/zenodo.22707125.svg)](https://doi.org/10.5281/zenodo.22707125)
+[![Zenodo: Functorial Cobordisms](https://zenodo.org/badge/DOI/10.5281/zenodo.22441676.svg)](https://doi.org/10.5281/zenodo.22441676)
 [![Verified with Mathlib 4](https://img.shields.io/badge/Mathlib_4-Certified-success.svg)](https://github.com/leanprover-community/mathlib4)
 [![Zero Sorry](https://img.shields.io/badge/Proofs-100%25%20Verified%20(0%20sorry)-brightgreen.svg)]()
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 **Author:** Reinaldo Maia Silva-Filho  
 **Affiliation:** Graduate Program in Statistics and Agricultural Experimentation (PPGEE/DES), Department of Statistics (DES), Federal University of Lavras (UFLA), Lavras, MG, Brazil  
-**E-mail:** `reinaldo.filho1@estudante.ufla.br` | **ORCID:** [0009-0005-7284-9721](https://orcid.org/0009-0005-7284-9721)  
+**E-mail:** `reinaldo.filho1@estudante.ufla.br` | **ORCID:** [0009-0003-8068-3330](https://orcid.org/0009-0003-8068-3330)  
 **Institutional Support:** Coordenação de Aperfeiçoamento de Pessoal de Nível Superior (CAPES) — Finance Code 001  
 **Permanent GitHub Repository:** [quantum-gravity-lean4](https://github.com/reinaldomsilvafilho-netizen/quantum-gravity-lean4)
 
@@ -24,13 +28,21 @@ This repository hosts the **complete open-science machine-checked interactive fo
    *Geometry, Tensors, and Quantum Gravity: The Unified Grand Synthesis Treatise*  
    *(Cânone Unificado de Gravitação Quântica e Geometria Multilinear)*  
    [Zenodo Archive: DOI 10.5281/zenodo.22290043](https://doi.org/10.5281/zenodo.22290043)
-2. **Foundational Paper (Functorial Cobordisms & Continuous Tensor Manifolds):**  
+2. **Beyond the Spectrum Trilogy (Volumes I, II, III):**  
+   *Beyond the Spectrum: The Complete Three-Volume Monograph on Functional Tensor Realizations, Metric Measure Geometry, and Higher Topological Invariants*  
+   [Zenodo Archive: DOI 10.5281/zenodo.22699282](https://doi.org/10.5281/zenodo.22699282)
+3. **Millennium Prize Track (Yang-Mills Mass Gap & Quark Confinement):**  
+   *A Geometric and Metric-Measure Framework for the Yang-Mills Mass Gap, Gribov-Zwanziger Horizon Regularization, and Confinement on Gauge Orbit Varieties*  
+   [Zenodo Archive: DOI 10.5281/zenodo.22699843](https://doi.org/10.5281/zenodo.22699843)
+4. **Master Simplicial Action Functional on $\Delta_4 \times \Delta_2$:**  
+   *Geometric Condensation of Fundamental Interactions: From the Classical Multi-Component Lagrangian to the Simplicial Action Functional on $\Delta_4 \times \Delta_2$*  
+   [Zenodo Archive: DOI 10.5281/zenodo.22707110](https://doi.org/10.5281/zenodo.22707110)
+5. **Standard Model Fermion Mass Hierarchy & Flavor Mixing:**  
+   *Geometric Foundations of the Fermion Mass Hierarchy, Flavor Mixing, and Vacuum Energy Suppression in Simplicial Spacetime*  
+   [Zenodo Archive: DOI 10.5281/zenodo.22707125](https://doi.org/10.5281/zenodo.22707125)
+6. **Foundational Functorial Cobordisms Paper:**  
    *A Functorial Bridge from Continuous Tensor Manifolds to 4-Dimensional Spacetime Cobordisms*  
    [Zenodo Archive: DOI 10.5281/zenodo.22441676](https://doi.org/10.5281/zenodo.22441676)
-3. **Beyond the Spectrum Trilogy (Volumes I, II, III):**  
-   *Beyond the Spectrum: Functional Realizations, Simplicial Residues, and Geometric Measures on Matrix and Tensor Manifolds*
-4. **Millennium Prize Track:**  
-   *Yang-Mills Mass Gap and Quark Confinement via Non-Perturbative Simplicial Holonomies and Federer Reach*
 
 ### The Tri-Pillar Epistemic Framework
 
@@ -61,11 +73,11 @@ Per our open-science repository policy, **the compiled publication-grade PDF doc
 
 | Language | PDF Document (Included in Repo) | GitHub Markdown Article | Pages / Size |
 | :--- | :--- | :--- | :--- |
-| **English (EN)** | [📄 `paper_scientific_outreach_quantum_gravity_en.pdf`](paper_scientific_outreach_quantum_gravity_en.pdf) | [📖 English Markdown](paper_scientific_outreach_quantum_gravity_en.md) | 23 pages (775 KB) |
-| **Português (PT)** | [📄 `paper_divulgacao_cientifica_quantum_gravity.pdf`](paper_divulgacao_cientifica_quantum_gravity.pdf) | [📖 Português Markdown](paper_divulgacao_cientifica_quantum_gravity.md) | 29 pages (838 KB) |
-| **Español (ES)** | [📄 `paper_scientific_outreach_quantum_gravity_es.pdf`](paper_scientific_outreach_quantum_gravity_es.pdf) | [📖 Español Markdown](paper_scientific_outreach_quantum_gravity_es.md) | 32 pages (766 KB) |
-| **Français (FR)** | [📄 `paper_scientific_outreach_quantum_gravity_fr.pdf`](paper_scientific_outreach_quantum_gravity_fr.pdf) | [📖 Français Markdown](paper_scientific_outreach_quantum_gravity_fr.md) | 32 pages (770 KB) |
-| **Mandarin (ZH)** | [📄 `paper_scientific_outreach_quantum_gravity_zh.pdf`](paper_scientific_outreach_quantum_gravity_zh.pdf) | [📖 简体中文 Markdown](paper_scientific_outreach_quantum_gravity_zh.md) | 22 pages (409 KB) |
+| **English (EN)** | [📄 `paper_scientific_outreach_quantum_gravity_en.pdf`](paper_scientific_outreach_quantum_gravity_en.pdf) | [📖 English Markdown](paper_scientific_outreach_quantum_gravity_en.md) | 23 pages (784 KB) |
+| **Português (PT)** | [📄 `paper_divulgacao_cientifica_quantum_gravity.pdf`](paper_divulgacao_cientifica_quantum_gravity.pdf) | [📖 Português Markdown](paper_divulgacao_cientifica_quantum_gravity.md) | 30 pages (842 KB) |
+| **Español (ES)** | [📄 `paper_scientific_outreach_quantum_gravity_es.pdf`](paper_scientific_outreach_quantum_gravity_es.pdf) | [📖 Español Markdown](paper_scientific_outreach_quantum_gravity_es.md) | 32 pages (749 KB) |
+| **Français (FR)** | [📄 `paper_scientific_outreach_quantum_gravity_fr.pdf`](paper_scientific_outreach_quantum_gravity_fr.pdf) | [📖 Français Markdown](paper_scientific_outreach_quantum_gravity_fr.md) | 32 pages (754 KB) |
+| **Mandarin (ZH)** | [📄 `paper_scientific_outreach_quantum_gravity_zh.pdf`](paper_scientific_outreach_quantum_gravity_zh.pdf) | [📖 简体中文 Markdown](paper_scientific_outreach_quantum_gravity_zh.md) | 21 pages (406 KB) |
 
 *(Note: In accordance with our Zenodo Open Publisher protocol, full treatise monographic book binaries and LaTeX source trees remain deposited under permanent DOIs on Zenodo/CERN to preserve Git repository cleanliness).*
 
@@ -96,16 +108,22 @@ To make it trivial to read the 171-page treatise alongside the codebase, the fol
 
 ### Additional Specialized Research Packages
 
-Beyond the main treatise, this repository houses formal kernels and testbeds for the author's accompanying research programs:
+Beyond the main treatise, this repository houses formal kernels and testbeds for the author's accompanying research programs published on Zenodo:
 
-- **Functorial Spacetime Cobordisms ([DOI: 10.5281/zenodo.22441676](https://doi.org/10.5281/zenodo.22441676)):**  
-  Folder: [`formal_proofs_lean4/`](formal_proofs_lean4/) (9 constructive modules: `CTensMan`, `Cobordism`, `EmergentFunctor`, `MonoidalCoherence`, `NullEnergy`, `SimplicialHodge`, `SpectralDimension`, `WheelerDeWitt`).
-- **Beyond the Spectrum Trilogy (Volumes I, II, III):**  
+- **Beyond the Spectrum Trilogy (Volumes I, II, III — [DOI: 10.5281/zenodo.22699282](https://doi.org/10.5281/zenodo.22699282)):**  
   Folder: [`beyond_the_spectrum_files/formal_proofs_bts/`](beyond_the_spectrum_files/formal_proofs_bts/) (9 modules covering functional realizations, geometric measures, symplectic Floer homology, microlocal sheaves, non-equilibrium thermodynamics, and bipartite holography).
-- **Millennium Prize Problem: Yang-Mills Mass Gap & Quark Confinement:**  
+- **Millennium Prize Track: Yang-Mills Mass Gap & Quark Confinement ([DOI: 10.5281/zenodo.22699843](https://doi.org/10.5281/zenodo.22699843)):**  
   Folder: [`paper_yang_mills_mass_gap/`](paper_yang_mills_mass_gap/)  
   Lean 4 proofs: [`paper_yang_mills_mass_gap/formal_proofs_yang_mills/`](paper_yang_mills_mass_gap/formal_proofs_yang_mills/) (7 modules: `HilbertSpace`, `FloerVacuum`, `GribovCurvature`, `ReflectionPositivity`, `MassGap`, `FedererReachConfinement`, `SpectralReduction`).  
   Python numerical solvers: `verify_yang_mills_numerical.py`, `verify_yang_mills_inverse.py`.
+- **Master Universe Lagrangian on $\Delta_4 \times \Delta_2$ ([DOI: 10.5281/zenodo.22707110](https://doi.org/10.5281/zenodo.22707110)):**  
+  Folder: [`research_master_universe_lagrangian/`](research_master_universe_lagrangian/)  
+  Lean 4 proofs: [`formal_proofs_book/Book/ChapUniverseLagrangian/MasterUniverseLagrangian.lean`](formal_proofs_book/Book/ChapUniverseLagrangian/MasterUniverseLagrangian.lean) (12 obligations).
+- **Standard Model Fermion Mass Hierarchy & Koide Relations ([DOI: 10.5281/zenodo.22707125](https://doi.org/10.5281/zenodo.22707125)):**  
+  Folder: [`paper_standard_model_masses/`](paper_standard_model_masses/)  
+  Lean 4 proofs: [`formal_proofs_book/Book/ChapFermionHierarchy/FermionHierarchy.lean`](formal_proofs_book/Book/ChapFermionHierarchy/FermionHierarchy.lean) (6 obligations).
+- **Functorial Spacetime Cobordisms ([DOI: 10.5281/zenodo.22441676](https://doi.org/10.5281/zenodo.22441676)):**  
+  Folder: [`formal_proofs_lean4/`](formal_proofs_lean4/) (9 constructive modules: `CTensMan`, `Cobordism`, `EmergentFunctor`, `MonoidalCoherence`, `NullEnergy`, `SimplicialHodge`, `SpectralDimension`, `WheelerDeWitt`).
 
 ---
 
@@ -123,11 +141,11 @@ lake exe book_proofs
 ```
 *Expected output: All 167 proof obligations across Chapters 01-13, Master Lagrangian, Fermion Hierarchy, and Linear Algebra are certified with 0 `sorry` and 0 errors.*
 
-### 2. Build and Run the Functorial Cobordism Kernel
+### 2. Build the Beyond the Spectrum Trilogy Suite
 ```bash
-cd formal_proofs_lean4
+cd beyond_the_spectrum_files/formal_proofs_bts
 lake build
-lake exe quantum_functor
+lake exe bts
 ```
 
 ### 3. Build the Yang-Mills Mass Gap Suite
@@ -137,11 +155,11 @@ lake build
 lake exe yang_mills
 ```
 
-### 4. Build the Beyond the Spectrum Trilogy Suite
+### 4. Build the Functorial Cobordism Kernel
 ```bash
-cd beyond_the_spectrum_files/formal_proofs_bts
+cd formal_proofs_lean4
 lake build
-lake exe bts
+lake exe quantum_functor
 ```
 
 ### 5. Execute Python Numerical Testbeds
@@ -156,11 +174,45 @@ python verify_chap13_numerical.py
 
 ## 📜 Permanent Open-Science Archives on Zenodo/CERN
 
-1. **Master Treatise:** *Geometry, Tensors, and Quantum Gravity: The Unified Grand Synthesis Treatise* (171 pp.).  
-   [![DOI: 10.5281/zenodo.22290043](https://zenodo.org/badge/DOI/10.5281/zenodo.22290043.svg)](https://doi.org/10.5281/zenodo.22290043)
-2. **Paper:** *A Functorial Bridge from Continuous Tensor Manifolds to 4-Dimensional Spacetime Cobordisms*.  
-   [![DOI: 10.5281/zenodo.22441676](https://zenodo.org/badge/DOI/10.5281/zenodo.22441676.svg)](https://doi.org/10.5281/zenodo.22441676)
-3. **Monograph Trilogy:** *Beyond the Spectrum: Functional Realizations, Simplicial Residues, and Geometric Measures on Matrix and Tensor Manifolds* (Volumes I, II, III).
+All theoretical treatises, monographs, and companion manuscripts by the author are permanently deposited on **Zenodo/CERN** under immutable open-access DOIs:
+
+1. **Master Synthesis Treatise (171 pp., 13 Chapters):**  
+   *Geometry, Tensors, and Quantum Gravity: The Unified Grand Synthesis Treatise*  
+   [![DOI: 10.5281/zenodo.22290043](https://zenodo.org/badge/DOI/10.5281/zenodo.22290043.svg)](https://doi.org/10.5281/zenodo.22290043)  
+   *Archive ConceptDOI:* [10.5281/zenodo.22290043](https://doi.org/10.5281/zenodo.22290043) | *Version DOI:* [10.5281/zenodo.22699413](https://doi.org/10.5281/zenodo.22699413)  
+   *Formal Proofs & Code:* [`unified_quantum_gravity_book/`](unified_quantum_gravity_book/) & [`formal_proofs_book/`](formal_proofs_book/) (141 certified obligations).
+
+2. **Beyond the Spectrum Trilogy (Volumes I, II, III):**  
+   *Beyond the Spectrum: The Complete Three-Volume Monograph on Functional Tensor Realizations, Metric Measure Geometry, and Higher Topological Invariants*  
+   [![DOI: 10.5281/zenodo.22699282](https://zenodo.org/badge/DOI/10.5281/zenodo.22699282.svg)](https://doi.org/10.5281/zenodo.22699282)  
+   *Archive DOI:* [10.5281/zenodo.22699282](https://doi.org/10.5281/zenodo.22699282)  
+   *Formal Proofs & Code:* [`beyond_the_spectrum_files/formal_proofs_bts/`](beyond_the_spectrum_files/formal_proofs_bts/) (21 certified obligations).
+
+3. **Millennium Prize Track — Yang-Mills Mass Gap:**  
+   *A Geometric and Metric-Measure Framework for the Yang-Mills Mass Gap, Gribov-Zwanziger Horizon Regularization, and Confinement on Gauge Orbit Varieties*  
+   [![DOI: 10.5281/zenodo.22699843](https://zenodo.org/badge/DOI/10.5281/zenodo.22699843.svg)](https://doi.org/10.5281/zenodo.22699843)  
+   *Archive DOI:* [10.5281/zenodo.22699843](https://doi.org/10.5281/zenodo.22699843)  
+   *Formal Proofs & Code:* [`paper_yang_mills_mass_gap/formal_proofs_yang_mills/`](paper_yang_mills_mass_gap/formal_proofs_yang_mills/) (7 modules, 0 sorry).
+
+4. **Master Simplicial Action Functional:**  
+   *Geometric Condensation of Fundamental Interactions: From the Classical Multi-Component Lagrangian to the Simplicial Action Functional on $\Delta_4 \times \Delta_2$*  
+   [![DOI: 10.5281/zenodo.22707110](https://zenodo.org/badge/DOI/10.5281/zenodo.22707110.svg)](https://doi.org/10.5281/zenodo.22707110)  
+   *Archive DOI:* [10.5281/zenodo.22707110](https://doi.org/10.5281/zenodo.22707110)  
+   *Formal Proofs & Code:* [`research_master_universe_lagrangian/`](research_master_universe_lagrangian/) & [`formal_proofs_book/Book/ChapUniverseLagrangian/`](formal_proofs_book/Book/ChapUniverseLagrangian/) (12 obligations).
+
+5. **Standard Model Fermion Mass Hierarchy & Koide Relations:**  
+   *Geometric Foundations of the Fermion Mass Hierarchy, Flavor Mixing, and Vacuum Energy Suppression in Simplicial Spacetime*  
+   [![DOI: 10.5281/zenodo.22707125](https://zenodo.org/badge/DOI/10.5281/zenodo.22707125.svg)](https://doi.org/10.5281/zenodo.22707125)  
+   *Archive DOI:* [10.5281/zenodo.22707125](https://doi.org/10.5281/zenodo.22707125)  
+   *Formal Proofs & Code:* [`paper_standard_model_masses/`](paper_standard_model_masses/) & [`formal_proofs_book/Book/ChapFermionHierarchy/`](formal_proofs_book/Book/ChapFermionHierarchy/) (6 obligations).
+
+6. **Foundational Functorial Cobordisms Paper:**  
+   *A Functorial Bridge from Continuous Tensor Manifolds to 4-Dimensional Spacetime Cobordisms*  
+   [![DOI: 10.5281/zenodo.22441676](https://zenodo.org/badge/DOI/10.5281/zenodo.22441676.svg)](https://doi.org/10.5281/zenodo.22441676)  
+   *Archive ConceptDOI:* [10.5281/zenodo.22441676](https://doi.org/10.5281/zenodo.22441676) | *Version DOI:* [10.5281/zenodo.22441680](https://doi.org/10.5281/zenodo.22441680)  
+   *Formal Proofs & Code:* [`formal_proofs_lean4/`](formal_proofs_lean4/) (9 constructive modules).
+
+🔗 **Author's Full Zenodo Profile:** [Zenodo Publications of Reinaldo M. Silva-Filho](https://zenodo.org/search?q=metadata.creators.person_or_org.name:%22Silva-Filho,+Reinaldo+M.%22)
 
 ---
 
