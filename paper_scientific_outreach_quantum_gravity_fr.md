@@ -670,30 +670,13 @@ Le Tableau~\ref{tab:master_summary} récapitule de façon synthétique les 50 av
 | **49** | **Audit Mathématique Adversarial** | Évaluation par les pairs usuelle | Audit contradictoire triadique aveugle validé avec consensus unanime. |
 | **50** | **Science Ouverte et Reproductibilité** | Codes et calculs privés | **Archivé avec DOI pérenne au CERN/Zenodo et code libre sur GitHub**. |
 
-# Conclusion : Le Modèle, la Matière et le Travail Social de la Science
+# Conclusion
 
-La physique théorique a passé les dernières décennies empêtrée dans des constructions métaphysiques qui traitaient les constantes fondamentales comme des accidents arbitraires ou des énigmes insolubles sans recourir à des hypothèses invérifiables. Inversement, elle a souvent sombré dans l'illusion idéaliste de concevoir les mathématiques comme une essence mystique préexistant au monde matériel.
+Ce travail a présenté un modèle unifié de la gravité quantique formulé sur le produit simplicial continu $\Delta_4 \times \Delta_2$. L'élimination des singularités et la résolution des 50 problèmes physiques abordés ont été obtenues en remplaçant les coordonnées artificielles par le calcul fractionnaire simplicial et la théorie de la courbure minimax, avec une certification formelle complète dans l'assistant de preuves Lean 4 et des prédictions observationnelles quantitatives pour la décennie à venir.
 
-La formulation sur $\Delta_4 \times \Delta_2$ développée ici rejette catégoriquement le scepticisme arbitraire et la métaphysique idéaliste. La physique dans l'abstrait n'existe pas. Ce qui existe objectivement, c'est la réalité matérielle en transformation, et les modèles conceptuels que nous, êtres humains, construisons pour comprendre les régularités de ce que nous observons, agir sur la nature et communiquer les uns avec les autres. Ce travail ne prétend pas ériger une vérité absolue, statique ou dogmatique gravée dans la pierre : il propose un modèle formel, parcimonieux et prédictif, démontrant que le gouffre apparent entre la gravitation et la théorie quantique résultait de l'utilisation de coordonnées artificielles et d'outils analytiques limités.
+En termes conceptuels, ce cadre ne propose pas de métaphysique et ne prétend pas être une vérité définitive. La physique n'existe pas dans l'abstrait, ni en tant que science ni en tant que phénomène. Le modèle présenté est un outil — le plus cohérent et le plus parcimonieux que nous ayons pu structurer jusqu'à présent pour expliquer les phénomènes physiques connus. Comme toute construction scientifique, il est provisoire et susceptible d'être dépassé par de meilleurs modèles à l'avenir.
 
-L'histoire est faite par les êtres humains, à travers leurs rapports matériels concrets. Aucun progrès scientifique n'est l'œuvre d'un individu isolé ou d'un intellect abstrait. Ce modèle est la condensation et la cristallisation de l'effort historique accumulé de l'humanité : le travail direct de millions de scientifiques, mathématiciens, philosophes et chercheurs qui, au fil des siècles, ont forgé les instruments de la pensée critique, du calcul et de l'expérimentation ; et le travail social indirect de milliards d'hommes et de femmes de la classe laborieuse qui, génération après génération, produisent la vie matérielle, bâtissent les laboratoires et les villes, fabriquent les ordinateurs et rendent possible le temps social indispensable à l'épanouissement de la science.
+L'élaboration de ce travail n'est pas non plus le fruit d'un effort isolé. La science est un processus historique et collectif. Les connaissances ici formalisées représentent la condensation du travail direct de millions de scientifiques et de chercheurs qui ont bâti les fondements des mathématiques et de la physique au fil des générations, et du travail social indirect de milliards de personnes qui rendent possible l'existence des infrastructures, de l'informatique et du temps consacré à la recherche. Je suis reconnaissant de faire partie de ce processus cumulatif et de pouvoir synthétiser cet effort dans une formulation unifiée.
 
-Condenser cet immense héritage historique collectif dans une structure mathématique formellement vérifiée et prédictive est une tâche que j'assume avec une profonde gratitude et un respect absolu envers tout ce travail social partagé. Le modèle appartient désormais à la communauté scientifique et à l'examen rigoureux de l'observation empirique --- dans le ciel et dans les laboratoires de la Terre. Car, en dernière analyse, c'est toujours dans la pratique matérielle des êtres humains et dans l'épreuve de la réalité concrète que se décide la validité de toute représentation scientifique.
+La validité de ce modèle dépend exclusivement de sa confrontation avec la réalité pratique. Il appartient désormais aux expériences et aux observations astronomiques des prochaines années de confirmer, de corriger ou de réfuter ses prédictions.
 
-
-
-
-
----
-
-### Références Bibliographiques
-
-1. **R. M. Silva-Filho**, *A Unified Geometric and Algebraic Theory of Quantum Gravity: From Simplicial Fractional Calculus and Minimax Foliations to Emergent Holographic Spacetime*, Zenodo Monograph Series, [DOI: 10.5281/zenodo.22290043](https://doi.org/10.5281/zenodo.22290043), 2026.
-2. **R. M. Silva-Filho**, *Categorical Cobordisms, Continuous Simplicial Transforms, and Lie-Cartan Symmetries in Quantum Spacetime*, Zenodo Archive, [DOI: 10.5281/zenodo.22441676](https://doi.org/10.5281/zenodo.22441676), 2026.
-3. **R. M. Silva-Filho**, *Lean 4 Formal Proof Repository: Machine-Checked Verification of the 180+ Obligations of Unified Simplicial Quantum Gravity*, GitHub: [`quantum-gravity-lean4`](https://github.com/reinaldomsilvafilho-netizen/quantum-gravity-lean4), 2026.
-4. **Y. Koide**, *A new relation among charged lepton masses*, Phys. Rev. Lett. **47**, 1241 (1981).
-5. **L. A. Caffarelli**, *The obstacle problem revisited*, J. Fourier Anal. Appl. **4**, 383--402 (1998).
-6. **H. Federer**, *Curvature measures*, Trans. Amer. Math. Soc. **93**, 418--491 (1959).
-7. **J. Ambjørn, J. Jurkiewicz, and R. Loll**, *Spectral dimension of the universe*, Phys. Rev. Lett. **95**, 171301 (2005).
-8. **S. Ryu and T. Takayanagi**, *Holographic derivation of entanglement entropy from AdS/CFT*, Phys. Rev. Lett. **96**, 181602 (2006).
-9. **J. Maldacena, S. H. Shenker, and D. Stanford**, *A bound on chaos*, J. High Energ. Phys. **2016**, 106 (2016).

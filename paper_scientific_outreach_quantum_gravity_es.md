@@ -670,30 +670,13 @@ La Tabla~\ref{tab:master_summary} resume de manera condensada los 50 descubrimie
 | **49** | **Auditoría Matemática Adversarial** | Revisión por pares tradicional | Auditoría ciega triádica ultra-rigurosa superada con consenso unánime. |
 | **50** | **Acceso Abierto y Reproducibilidad** | Código y fórmulas privadas | **Archivado con DOI permanente en CERN/Zenodo y código libre en GitHub**. |
 
-# Conclusiones: El Modelo, la Materia y el Trabajo Social de la Ciencia
+# Conclusiones
 
-La física teórica pasó las últimas décadas atrapada en construcciones metafísicas que trataban las constantes fundamentales como accidentes arbitrarios o enigmas insolubles sin recurrir a hipótesis inverificables. Por otra parte, a menudo recayó en la ilusión idealista de concebir las matemáticas como una esencia mística previa al mundo material.
+Este trabajo presentó un modelo unificado para la gravedad cuántica formulado sobre el producto simplicial continuo $\Delta_4 \times \Delta_2$. La eliminación de singularidades y la resolución de los 50 problemas físicos abordados se lograron sustituyendo coordenadas artificiales por el cálculo fraccionario simplicial y la teoría de curvatura minimax, con certificación formal completa en el asistente de pruebas Lean 4 y predicciones observacionales cuantitativas para la próxima década.
 
-La formulación sobre $\Delta_4 \times \Delta_2$ presentada aquí rechaza categóricamente tanto el escepticismo arbitrario como la metafísica idealista. La física en abstracto no existe. Lo que existe objetivamente es la realidad material en transformación, y los modelos conceptuales que nosotros, como seres humanos, construimos para comprender las regularidades de lo que observamos, actuar sobre la naturaleza y comunicarnos entre nosotros. Este trabajo no pretende erigir una verdad absoluta, estática o dogmática grabada en piedra: ofrece un modelo formal, parsimonioso y predictivo, demostrando que el aparente abismo entre la gravitación y la teoría cuántica derivaba del uso de coordenadas artificiales y herramientas analíticas limitadas.
+En términos conceptuales, este marco no propone una metafísica ni pretende ser una verdad definitiva. La física no existe en abstracto, ni en tanto ciencia ni en tanto fenómeno. El modelo presentado es una herramienta — la más consistente y parsimoniosa que hemos logrado estructurar hasta el momento para explicar los fenómenos físicos conocidos. Como toda construcción científica, es provisional y susceptible de ser superada por modelos mejores en el futuro.
 
-La historia la hacen las personas, a través de sus relaciones materiales concretas. Ningún avance científico es obra de un individuo aislado o de un intelecto abstracto. Este modelo es la condensación y la cristalización del esfuerzo histórico acumulado de la humanidad: el trabajo directo de millones de científicos, matemáticos, filósofos e investigadores que a lo largo de los siglos forjaron las herramientas del pensamiento crítico, el cálculo y la experimentación; y el trabajo social indirecto de miles de millones de trabajadores y trabajadoras que, generación tras generación, producen la vida material, construyen laboratorios y ciudades, fabrican computadoras y hacen posible el tiempo social necesario para que el conocimiento científico florezca.
+La elaboración de este trabajo tampoco es fruto de un esfuerzo aislado. La ciencia es un proceso histórico y colectivo. El conocimiento aquí formalizado representa la condensación del trabajo directo de millones de científicos e investigadores que construyeron las bases de la matemática y la física a lo largo de las generaciones, y del trabajo social indirecto de miles de millones de personas que hacen posible la existencia de la infraestructura, la computación y el tiempo dedicado a la investigación. Agradezco formar parte de este proceso acumulativo y poder sintetizar este esfuerzo en una formulación unificada.
 
-Condensar esta inmensa herencia histórica colectiva en una estructura matemática formalmente verificada y predictiva es una tarea que asumo con profunda gratitud y respeto hacia todo ese trabajo social compartido. El modelo pertenece ahora a la comunidad científica y al escrutinio implacable de la observación empírica, en el cielo y en los laboratorios de la Tierra. Pues, en última instancia, es siempre en la práctica material de los seres humanos y en la prueba de la realidad concreta donde se decide la validez de cualquier representación científica.
+La validez de este modelo depende exclusivamente de su confrontación con la realidad práctica. Corresponde ahora a los experimentos y a las observaciones astronómicas de los próximos años confirmar, corregir o refutar sus predicciones.
 
-
-
-
-
----
-
-### Referencias Bibliográficas
-
-1. **R. M. Silva-Filho**, *A Unified Geometric and Algebraic Theory of Quantum Gravity: From Simplicial Fractional Calculus and Minimax Foliations to Emergent Holographic Spacetime*, Zenodo Monograph Series, [DOI: 10.5281/zenodo.22290043](https://doi.org/10.5281/zenodo.22290043), 2026.
-2. **R. M. Silva-Filho**, *Categorical Cobordisms, Continuous Simplicial Transforms, and Lie-Cartan Symmetries in Quantum Spacetime*, Zenodo Archive, [DOI: 10.5281/zenodo.22441676](https://doi.org/10.5281/zenodo.22441676), 2026.
-3. **R. M. Silva-Filho**, *Lean 4 Formal Proof Repository: Machine-Checked Verification of the 180+ Obligations of Unified Simplicial Quantum Gravity*, GitHub: [`quantum-gravity-lean4`](https://github.com/reinaldomsilvafilho-netizen/quantum-gravity-lean4), 2026.
-4. **Y. Koide**, *A new relation among charged lepton masses*, Phys. Rev. Lett. **47**, 1241 (1981).
-5. **L. A. Caffarelli**, *The obstacle problem revisited*, J. Fourier Anal. Appl. **4**, 383--402 (1998).
-6. **H. Federer**, *Curvature measures*, Trans. Amer. Math. Soc. **93**, 418--491 (1959).
-7. **J. Ambjørn, J. Jurkiewicz, and R. Loll**, *Spectral dimension of the universe*, Phys. Rev. Lett. **95**, 171301 (2005).
-8. **S. Ryu and T. Takayanagi**, *Holographic derivation of entanglement entropy from AdS/CFT*, Phys. Rev. Lett. **96**, 181602 (2006).
-9. **J. Maldacena, S. H. Shenker, and D. Stanford**, *A bound on chaos*, J. High Energ. Phys. **2016**, 106 (2016).
