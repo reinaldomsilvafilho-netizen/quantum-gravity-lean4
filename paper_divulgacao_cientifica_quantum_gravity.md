@@ -110,6 +110,18 @@ A Ação Simplicial Universal $\mathcal{S}_{\mathrm{univ}}$ divide as excitaçõ
         * *Gráviton ($g_{\mu\nu}$):* Flutuação quadrupolar de spin 2 da métrica de Fisher--Rao; é a onda de propagação da informação de entrelaçamento quântico no vácuo.
     
 
+### A Unificação das Forças e a Constante de Estrutura Fina ($lpha pprox 1/137$)
+
+Na Ação Simplicial Universal, as quatro forças fundamentais não são fenômenos desconexos inseridos de forma independente. Elas são projeções da **Curvatura Universal 2-Forma** $\boldsymbol{\Omega}$, que toma valores na álgebra de Lie:
+$$\mathfrak{g}_{\mathrm{univ}} = \mathfrak{su}(3) \oplus \mathfrak{su}(2) \oplus \mathfrak{u}(1) \oplus \mathfrak{so}(3,1)$$
+
+* **Unificação na Escala GUT:** No bordo de alta energia do simpléxo ($M_{\mathrm{GUT}} \approx 2 \times 10^{16}\text{ GeV}$), as interações forte, fraca e hiper-carga convergem para uma única constante geométrica de acoplamento:
+  $$\alpha_{\mathrm{GUT}} = \frac{g_{\mathrm{univ}}^2}{4\pi} \approx \frac{1}{24.6}$$
+  ditada diretamente pelas razões de volume da métrica de Cartan $\mathcal{G} = \mathbf{A}_4 \oplus \mathbf{A}_2$.
+* **O Fluxo para a Constante de Estrutura Fina ($\alpha$):** À medida que a escala de energia decai até a física atômica, o fluxo do grupo de renormalização (RG) é impulsionado pelas 3 gerações de multi-espinores de Dirac--Kähler. A polarização do vácuo quântico induz o corrimento contínuo do acoplamento eletromagnético:
+  $$\alpha(M_Z) \approx \frac{1}{128} \quad \xrightarrow{q^2 \to 0} \quad \alpha(0) \approx \frac{1}{137.035999\dots}$$
+O número $1/137$ não é uma constante estática ou misteriosa: é o valor assintótico de baixas energias da curvatura universal projetada através das três gerações fermiônicas.
+
 ## A Origem Mecânica da Quantização: Teoria Espectral em Variedades Compactas
 
 Por que a energia e a matéria aparecem em pacotes discretos ($E = n\hbar\omega$)? Na física convencional, a quantização foi postulada de forma ad-hoc ($[x, p] = i\hbar$).
@@ -141,6 +153,14 @@ Reunimos abaixo a tabela sinóptica consolidando as **50 grandes deduções anal
 | :---: | :--- | :--- | :--- | :--- |
 
 }
+
+### A Eliminação Estrutural do Ajuste Fino
+
+Ao longo das 50 deduções catalogadas nesta tabela, os enigmas clássicos de ajuste fino da física contemporânea são resolvidos de maneira puramente geométrica e dinâmica:
+* **Constante Cosmológica ($\Lambda$):** A discrepância de $10^{120}$ anula-se identicamente pela soma alternada de Euler--Maclaurin em $\Delta_4$ (Resultado 1), com o valor observado de $\rho_\Lambda$ emergindo como resíduo não-perturbativo via função $G$ de Barnes (Resultado 2).
+* **Problema CP Forte ($\theta_{\mathrm{QCD}} < 10^{-10}$):** Eliminado pela simetria de reflexão baricêntrica do 2-simpléxo $\Delta_2$, forçando $\theta_{\mathrm{eff}} \equiv 0$ sem necessidade de áxions (Resultado 17).
+* **Hierarquia Eletrofraca:** A barreira de Caffarelli no bordo de alcance de Federer ($\kappa^* \le 1/\ell_s$) corta naturalmente as divergências quárticas da massa do Higgs (Resultado 18).
+* **Redução Paramétrica:** Os 19 parâmetros livres e 53 termos clássicos condensam-se em apenas 3 termos geométricos invariantes (Resultado 20).
 
 # Parte I: Cosmologia, Energia de Vácuo e a Flecha do Tempo (Resultados 1 a 10)
 

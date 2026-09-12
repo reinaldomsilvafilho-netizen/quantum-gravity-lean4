@@ -105,6 +105,18 @@ En la mecánica cuántica estándar, el dualismo onda-partícula se postula medi
 
     Una onda cuántica es la **propagación no local del núcleo Beta continuo** a través de la red simplicial interconectada. Cuando una partícula se desplaza sin interactuar, su paquete de energía no viaja como una esfera clásica, sino como una perturbación ondulatoria del núcleo fraccionario continuo, extendiéndose por múltiples trayectorias simpliciales simultáneas siguiendo la ecuación fraccionaria de Schrödinger--Mittag-Leffler.
 
+### La Unificación de las Fuerzas y la Constante de Estructura Fina ($lpha pprox 1/137$)
+
+En la Acción Simplicial Universal, las cuatro fuerzas fundamentales no son fenómenos inconexos introducidos de manera independiente. Son proyecciones de la **Curvatura Universal 2-Forma** $\boldsymbol{\Omega}$, que toma valores en el álgebra de Lie:
+$$\mathfrak{g}_{\mathrm{univ}} = \mathfrak{su}(3) \oplus \mathfrak{su}(2) \oplus \mathfrak{u}(1) \oplus \mathfrak{so}(3,1)$$
+
+* **Unificación en la Escala GUT:** En el borde de alta energía del símplice ($M_{\mathrm{GUT}} \approx 2 \times 10^{16}\text{ GeV}$), las interacciones fuerte, débil e hipercarga convergen hacia una única constante geométrica de acoplamento:
+  $$\alpha_{\mathrm{GUT}} = \frac{g_{\mathrm{univ}}^2}{4\pi} \approx \frac{1}{24.6}$$
+  dictada directamente por las razones de volumen de la métrica de Cartan $\mathcal{G} = \mathbf{A}_4 \oplus \mathbf{A}_2$.
+* **Flujo hacia la Constante de Estructura Fina ($\alpha$):** A medida que la escala de energía desciende hacia la física atómica, el flujo del grupo de renormalización (RG) es impulsado por las 3 generaciones de multi-espinores de Dirac--Kähler. La polarización del vacío cuántico induce el corrimiento continuo del acoplamiento electromagnético:
+  $$\alpha(M_Z) \approx \frac{1}{128} \quad \xrightarrow{q^2 \to 0} \quad \alpha(0) \approx \frac{1}{137.035999\dots}$$
+El valor $1/137$ no es una constante estática o misteriosa: es el valor asintótico de bajas energías de la curvatura universal proyectada a través de las tres generaciones fermiónicas.
+
 ## El Efecto de la Cuantización como Propiedad Espectral del Dominio Compacto
 
 ¿Por qué existen cuantos discretos de energía, carga y área en lugar de un continuo de valores?
@@ -669,6 +681,14 @@ La Tabla~\ref{tab:master_summary} resume de manera condensada los 50 descubrimie
 | **48** | **Baterías Numéricas Computacionales** | Pruebas numéricas parciales | **7/7 baterías aprobadas al 100\% con precisión arbitraria ($< 10^{-16}$)**. |
 | **49** | **Auditoría Matemática Adversarial** | Revisión por pares tradicional | Auditoría ciega triádica ultra-rigurosa superada con consenso unánime. |
 | **50** | **Acceso Abierto y Reproducibilidad** | Código y fórmulas privadas | **Archivado con DOI permanente en CERN/Zenodo y código libre en GitHub**. |
+
+### La Eliminación Estructural del Ajuste Fino
+
+A lo largo de las 50 deducciones catalogadas en esta tabla, los enigmas clásicos de ajuste fino de la física contemporánea se resuelven de manera puramente geométrica y dinámica:
+* **Constante Cosmológica ($\Lambda$):** La discrepancia de $10^{120}$ se anula idénticamente mediante la suma alternada de Euler--Maclaurin en $\Delta_4$ (Resultado 1), emergiendo el valor observado de $\rho_\Lambda$ como residuo no perturbativo vía la función $G$ de Barnes (Resultado 2).
+* **Problema CP Fuerte ($\theta_{\mathrm{QCD}} < 10^{-10}$):** Eliminado por la simetría de reflexión baricéntrica del 2-símplice $\Delta_2$, forzando $\theta_{\mathrm{eff}} \equiv 0$ sin necesidad de axiones (Resultado 17).
+* **Jerarquía Electroflaca:** La barrera de Caffarelli en el borde de alcance de Federer ($\kappa^* \le 1/\ell_s$) corta naturalmente las divergencias cuárticas de la masa del Higgs (Resultado 18).
+* **Reducción Paramétrica:** Los 19 parámetros libres y 53 términos clásicos se condensan en sólo 3 términos geométricos invariantes (Resultado 20).
 
 # Conclusiones
 

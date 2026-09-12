@@ -110,6 +110,18 @@ The Universal Simplicial Action $\mathcal{S}_{\mathrm{univ}}$ categorizes excita
         * *Graviton ($g_{\mu\nu}$):* Quadrupolar spin-2 fluctuation of the Fisher--Rao metric; it is the physical propagation wave of quantum entanglement through the vacuum.
     
 
+### Unification of Forces and the Fine-Structure Constant ($lpha pprox 1/137$)
+
+In the Universal Simplicial Action, the four fundamental forces are not disconnected phenomena inserted independently. They are projections of the **Universal Curvature 2-Form** $\boldsymbol{\Omega}$, which takes values in the Lie algebra:
+$$\mathfrak{g}_{\mathrm{univ}} = \mathfrak{su}(3) \oplus \mathfrak{su}(2) \oplus \mathfrak{u}(1) \oplus \mathfrak{so}(3,1)$$
+
+* **GUT Scale Unification:** At the high-energy simplex boundary ($M_{\mathrm{GUT}} \approx 2 \times 10^{16}\text{ GeV}$), the strong, weak, and hypercharge interactions converge into a single geometric coupling constant:
+  $$\alpha_{\mathrm{GUT}} = \frac{g_{\mathrm{univ}}^2}{4\pi} \approx \frac{1}{24.6}$$
+  dictated directly by the volume ratios of the Cartan metric $\mathcal{G} = \mathbf{A}_4 \oplus \mathbf{A}_2$.
+* **Renormalization Flow to the Fine-Structure Constant ($\alpha$):** As energy scales descend toward atomic physics, the renormalization group (RG) flow is driven by the 3 generations of Dirac--Kähler multi-spinors. Quantum vacuum polarization induces the continuous running of the electromagnetic coupling:
+  $$\alpha(M_Z) \approx \frac{1}{128} \quad \xrightarrow{q^2 \to 0} \quad \alpha(0) \approx \frac{1}{137.035999\dots}$$
+The value $1/137$ is neither static nor mysterious: it is the low-energy asymptotic value of the universal curvature projected across the three fermion generations.
+
 ## The Mechanical Origin of Quantization: Spectral Theory on Compact Manifolds
 
 Why are energy and matter quantized in discrete packets ($E = n\hbar\omega$)? In standard physics, quantization was postulated ad-hoc ($[x, p] = i\hbar$).
@@ -141,6 +153,14 @@ Below is the complete synoptic table consolidating all **50 fundamental analytic
 | :---: | :--- | :--- | :--- | :--- |
 
 }
+
+### Structural Elimination of Fine-Tuning
+
+Across the 50 deductions cataloged in this table, the classic fine-tuning puzzles of contemporary physics are resolved in a purely geometric and dynamical manner:
+* **Cosmological Constant ($\Lambda$):** The $10^{120}$ discrepancy cancels identically via the alternating Euler--Maclaurin sum on $\Delta_4$ (Result 1), with the observed value of $\rho_\Lambda$ emerging as a non-perturbative residue via the Barnes $G$-function (Result 2).
+* **Strong CP Problem ($\theta_{\mathrm{QCD}} < 10^{-10}$):** Eliminated by the barycentric reflection symmetry of the 2-simplex $\Delta_2$, enforcing $\theta_{\mathrm{eff}} \equiv 0$ without requiring axions (Result 17).
+* **Electroweak Hierarchy:** The Caffarelli barrier at the Federer reach boundary ($\kappa^* \le 1/\ell_s$) naturally cuts off quadratic divergences of the Higgs mass (Result 18).
+* **Parametric Reduction:** The 19 free parameters and 53 classical terms condense into just 3 invariant geometric terms (Result 20).
 
 # Part I: Cosmology, Vacuum Energy, and the Arrow of Time (Results 1 to 10)
 

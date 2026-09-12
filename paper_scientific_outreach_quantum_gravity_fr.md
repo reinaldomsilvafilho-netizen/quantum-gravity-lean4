@@ -105,6 +105,18 @@ En mécanique quantique standard, la dualité onde-corpuscule est postulée par 
 
     Une onde quantique est la **propagation non locale du noyau Bêta continu** à travers le réseau simplicial interconnecté. Lorsqu'une particule se déplace sans interagir, son paquet d'énergie n'évolue pas comme une sphère classique, mais comme une perturbation ondulatoire du noyau fractionnaire continu, se déployant simultanément le long de multiples trajectoires simpliciales selon l'équation fractionnaire de Schrödinger--Mittag-Leffler.
 
+### L'Unification des Forces et la Constante de Structure Fine ($lpha pprox 1/137$)
+
+Dans l'Action Simpliciale Universelle, les quatre forces fondamentales ne sont pas des phénomènes déconnectés insérés de manière indépendante. Ce sont des projections de la **Courbure Universelle 2-Forme** $\boldsymbol{\Omega}$, qui prend ses valeurs dans l'algèbre de Lie :
+$$\mathfrak{g}_{\mathrm{univ}} = \mathfrak{su}(3) \oplus \mathfrak{su}(2) \oplus \mathfrak{u}(1) \oplus \mathfrak{so}(3,1)$$
+
+* **Unification à l'Échelle GUT :** Au bord de haute énergie du simplexe ($M_{\mathrm{GUT}} \approx 2 \times 10^{16}\text{ GeV}$), les interactions forte, faible et hypercharge convergent vers une unique constante géométrique de couplage :
+  $$\alpha_{\mathrm{GUT}} = \frac{g_{\mathrm{univ}}^2}{4\pi} \approx \frac{1}{24.6}$$
+  dictée directement par les rapports de volume de la métrique de Cartan $\mathcal{G} = \mathbf{A}_4 \oplus \mathbf{A}_2$.
+* **Flux vers la Constante de Structure Fine ($\alpha$) :** À mesure que l'échelle d'énergie décroît vers la physique atomique, le flux du groupe de renormalisation (RG) est entraîné par les 3 générations de multi-spinors de Dirac--Kähler. La polarisation du vide quantique induit la variation continue du couplage électromagnétique :
+  $$\alpha(M_Z) \approx \frac{1}{128} \quad \xrightarrow{q^2 \to 0} \quad \alpha(0) \approx \frac{1}{137.035999\dots}$$
+Le nombre $1/137$ n'est pas une constante statique ou mystérieuse : c'est la valeur asymptotique à basse énergie de la courbure universelle projetée à travers les trois générations fermioniques.
+
 ## L'Effet de Quantification comme Propriété Spectrale d'un Domaine Compact
 
 Pourquoi observe-t-on des quanta discrets d'énergie, de charge et d'aire plutôt qu'un continuum de valeurs ?
@@ -669,6 +681,14 @@ Le Tableau~\ref{tab:master_summary} récapitule de façon synthétique les 50 av
 | **48** | **Batteries Numériques Computationnelles** | Tests numériques partiels | **7/7 batteries validées à 100\% avec précision arbitraire ($< 10^{-16}$)**. |
 | **49** | **Audit Mathématique Adversarial** | Évaluation par les pairs usuelle | Audit contradictoire triadique aveugle validé avec consensus unanime. |
 | **50** | **Science Ouverte et Reproductibilité** | Codes et calculs privés | **Archivé avec DOI pérenne au CERN/Zenodo et code libre sur GitHub**. |
+
+### L'Élimination Structurelle de l'Ajustement Fin
+
+Tout au long des 50 déductions cataloguées dans cette table, les énigmes classiques d'ajustement fin de la physique contemporaine sont résolues de manière purement géométrique et dynamique :
+* **Constante Cosmologique ($\Lambda$) :** L'écart de $10^{120}$ s'annule identiquement par la somme alternée d'Euler--Maclaurin sur $\Delta_4$ (Résultat 1), la valeur observée de $\rho_\Lambda$ émergeant comme résidu non-perturbatif via la fonction $G$ de Barnes (Résultat 2).
+* **Problème CP Fort ($\theta_{\mathrm{QCD}} < 10^{-10}$) :** Éliminé par la symétrie de réflexion barycentrique du 2-simplexe $\Delta_2$, imposant $\theta_{\mathrm{eff}} \equiv 0$ sans recours à des axions (Résultat 17).
+* **Hiérarchie Électrofaible :** La barrière de Caffarelli au bord d'atteinte de Federer ($\kappa^* \le 1/\ell_s$) coupe naturellement les divergences quadratiques de la masse du Higgs (Résultat 18).
+* **Réduction Paramétrique :** Les 19 paramètres libres et 53 termes classiques se condensent en seulement 3 termes géométriques invariants (Résultat 20).
 
 # Conclusion
 
