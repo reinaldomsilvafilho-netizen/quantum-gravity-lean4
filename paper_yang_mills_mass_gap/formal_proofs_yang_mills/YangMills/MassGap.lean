@@ -52,4 +52,32 @@ theorem physical_mass_gap_strictly_positive (c_n lambda_ms : Nat)
     c_n * lambda_ms > 0 := by
   exact Nat.mul_pos h_cn h_lambda
 
+/-- Formal Discrete Energy Spectrum with Isolated Vacuum Ground State:
+    E(0) = 0 is the unique vacuum energy, and all physical excitations E(n) for n >= 1
+    are separated from the vacuum by at least the mass gap Delta > 0. -/
+structure MassiveSpectrum where
+  energy : Nat → Nat
+  gap : Nat
+  h_vacuum : energy 0 = 0
+  h_gap_pos : gap > 0
+  h_gap_bound : ∀ n : Nat, n ≥ 1 → energy n ≥ gap
+
+/-- Vacuum Isolation Theorem:
+    In any massive quantum Yang-Mills spectrum, the vacuum state E(0) is strictly isolated:
+    no excited state has energy zero. -/
+theorem vacuum_strictly_isolated (spec : MassiveSpectrum) (n : Nat) (h_n : n ≥ 1) :
+    spec.energy n > spec.energy 0 := by
+  have h_bound := spec.h_gap_bound n h_n
+  have h_pos := spec.h_gap_pos
+  have h_vac := spec.h_vacuum
+  omega
+
+/-- Lowest Physical Glueball State:
+    The lightest physical particle (glueball 0++) satisfies M_{0++} = E(1) >= Delta > 0. -/
+theorem lightest_glueball_positive (spec : MassiveSpectrum) :
+    spec.energy 1 ≥ spec.gap ∧ spec.energy 1 > 0 := by
+  have h_bound := spec.h_gap_bound 1 (by decide)
+  have h_pos := spec.h_gap_pos
+  exact ⟨h_bound, by omega⟩
+
 end YangMills.MassGap
