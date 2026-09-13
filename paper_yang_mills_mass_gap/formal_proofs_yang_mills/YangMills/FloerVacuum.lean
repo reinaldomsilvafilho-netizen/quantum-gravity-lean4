@@ -35,13 +35,6 @@ theorem standardFloerComplex_non_trivial :
   injection h with h1 h2
   contradiction
 
-/-- Physical tunneling Hamiltonian ground state energy:
-    E(0) = E_0 - 2 * Delta_inst is strictly lower than uncoupled vacua E_0
-    and strictly lower than the maximal dispersion state E(pi) = E_0 + 2 * Delta_inst. -/
-theorem floer_theta_zero_minimization (e_0 delta_inst : Nat)
-    (h_delta : delta_inst > 0) (h_e0 : e_0 ≥ 2 * delta_inst) :
-    e_0 - 2 * delta_inst < e_0 + 2 * delta_inst := by
-  omega
 
 /-- Strict gap between ground state theta = 0 and excited topological configurations -/
 theorem floer_tunneling_gap (e_0 delta_inst : Nat)
