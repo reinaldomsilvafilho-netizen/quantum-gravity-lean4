@@ -21,20 +21,23 @@ structure ReflectionPositiveSpace (Obs : Type) where
 /-- Topological Partition Function on SU(N) Gauge Orbits:
     Z(theta) = sum_{k} w_k * cos(k * theta), where weights w_k >= 0.
     In discrete integer representation:
-    w_0 is the zero-instanton sector weight, and w_pos is the positive-action instanton weight. -/
+    w_0 is the zero-instanton sector weight, and w_pos is the positive-action instanton weight.
+    Domination condition h_dom: w_zero >= w_inst ensures that the positive-action sector
+    does not exceed the perturbative zero-instanton ground state. -/
 structure TopologicalPartition where
   w_zero : Nat
   w_inst : Nat
   h_zero_pos : w_zero > 0
   h_inst_pos : w_inst > 0
+  h_dom : w_zero ≥ w_inst
 
 /-- Partition function at theta = 0: Z(0) = w_zero + w_inst. -/
 def Z_zero (tp : TopologicalPartition) : Nat :=
   tp.w_zero + tp.w_inst
 
 /-- Partition function at theta = pi (maximum destructive interference):
-    Z(pi) = w_zero - w_inst (assuming w_zero >= w_inst). -/
-def Z_pi (tp : TopologicalPartition) (_h_dom : tp.w_zero ≥ tp.w_inst) : Nat :=
+    Z(pi) = w_zero - w_inst. -/
+def Z_pi (tp : TopologicalPartition) : Nat :=
   tp.w_zero - tp.w_inst
 
 /-- OBL-YM-007 (Part 1): Vafa-Witten Theorem — Ground State Energy Minimization at theta = 0:
@@ -42,11 +45,11 @@ def Z_pi (tp : TopologicalPartition) (_h_dom : tp.w_zero ≥ tp.w_inst) : Nat :=
     Consequently, the free energy / vacuum ground-state energy density E(theta) is globally
     minimized at theta = 0 with strict positive tunneling gap:
     Z(0) - Z(pi) = 2 * w_inst > 0. -/
-theorem vafa_witten_partition_maximization (tp : TopologicalPartition)
-    (_h_dom : tp.w_zero ≥ tp.w_inst) :
-    Z_zero tp ≥ Z_pi tp _h_dom ∧ Z_zero tp - Z_pi tp _h_dom = 2 * tp.w_inst := by
+theorem vafa_witten_partition_maximization (tp : TopologicalPartition) :
+    Z_zero tp ≥ Z_pi tp ∧ Z_zero tp - Z_pi tp = 2 * tp.w_inst := by
   dsimp [Z_zero, Z_pi]
   have h_pos := tp.h_inst_pos
+  have h_dom := tp.h_dom
   have h_ge : tp.w_zero + tp.w_inst ≥ tp.w_zero - tp.w_inst := by omega
   have h_diff : (tp.w_zero + tp.w_inst) - (tp.w_zero - tp.w_inst) = 2 * tp.w_inst := by omega
   exact ⟨h_ge, h_diff⟩
@@ -54,10 +57,9 @@ theorem vafa_witten_partition_maximization (tp : TopologicalPartition)
 /-- Energy ordering: Any monotonically decreasing energy proxy E(Z) maps
     the maximum partition function Z(0) to the minimum ground state energy E(0).
     Here modeled by inverted energy gap: Delta_E = Z(0) - Z(pi) = 2 * w_inst > 0. -/
-theorem vafa_witten_ground_state_minimum (tp : TopologicalPartition)
-    (h_dom : tp.w_zero ≥ tp.w_inst) :
-    Z_zero tp - Z_pi tp h_dom > 0 := by
-  have ⟨_, h_diff⟩ := vafa_witten_partition_maximization tp h_dom
+theorem vafa_witten_ground_state_minimum (tp : TopologicalPartition) :
+    Z_zero tp - Z_pi tp > 0 := by
+  have ⟨_, h_diff⟩ := vafa_witten_partition_maximization tp
   rw [h_diff]
   have h_inst := tp.h_inst_pos
   omega
@@ -78,11 +80,12 @@ def physicalQCDPartition : TopologicalPartition where
   w_inst := 1
   h_zero_pos := by decide
   h_inst_pos := by decide
+  h_dom := by decide
 
 theorem physical_qcd_vafa_witten_verified :
     Z_zero physicalQCDPartition = 11 ∧
-    Z_pi physicalQCDPartition (by decide) = 9 ∧
-    Z_zero physicalQCDPartition > Z_pi physicalQCDPartition (by decide) := by
+    Z_pi physicalQCDPartition = 9 ∧
+    Z_zero physicalQCDPartition > Z_pi physicalQCDPartition := by
   dsimp [Z_zero, Z_pi, physicalQCDPartition]
   decide
 

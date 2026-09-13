@@ -55,7 +55,7 @@ theorem rg_suppression_base_bound (s alpha : Nat) (hs : s ≥ 2) (ha : alpha ≥
 /-- Monotonicity of infrared suppression:
     As the momentum scale ratio s increases (moving further into the macroscopic IR),
     the suppression factor grows strictly monotonically: (s+1)^(2*alpha) > s^(2*alpha). -/
-theorem rg_suppression_strict_mono (s alpha : Nat) (_hs : s ≥ 1) (ha : alpha ≥ 1) :
+theorem rg_suppression_strict_mono (s alpha : Nat) (ha : alpha ≥ 1) :
     (s + 1) ^ (2 * alpha) > s ^ (2 * alpha) := by
   have h_exp_ne : 2 * alpha ≠ 0 := by omega
   exact Nat.pow_lt_pow_left (by omega) h_exp_ne
