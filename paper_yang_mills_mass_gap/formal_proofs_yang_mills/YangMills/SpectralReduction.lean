@@ -69,4 +69,11 @@ theorem microcausality_restoration (g_0 s alpha : Nat)
     g_0 / (s ^ (2 * alpha)) = 0 := by
   exact Nat.div_eq_of_lt h_supp
 
+/-- Concrete Inhabited Model: Canonical Scaling Operator with base_dim=4 and alpha=1 (NDWP / Protocol B) -/
+def canonicalScalingOperator : ScalingOperator where
+  base_dim := 4
+  alpha := 1
+  h_dim := rfl
+  h_alpha := by decide
+
 end YangMills.SpectralReduction

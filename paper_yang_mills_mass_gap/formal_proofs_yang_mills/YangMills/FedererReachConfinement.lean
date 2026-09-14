@@ -62,4 +62,9 @@ theorem wilson_linear_confinement (tube : ReachFluxTube) (c_geom R_dist : Nat)
     exact Nat.mul_pos h_sigma this
   exact ⟨h_bound, h_pos⟩
 
+/-- Concrete Inhabited Model: Canonical Reach Flux Tube with kappa*=2 (NDWP / Protocol B) -/
+def canonicalReachFluxTube : ReachFluxTube where
+  kappa_star := 2
+  h_kappa := by decide
+
 end YangMills.FedererReachConfinement

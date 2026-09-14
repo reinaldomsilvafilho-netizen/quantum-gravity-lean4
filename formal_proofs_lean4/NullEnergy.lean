@@ -54,4 +54,8 @@ theorem null_energy_condition (nabla_k_psi : NullMatterContraction) :
   dsimp [nullStressContraction]
   exact hilbert_schmidt_nonneg nabla_k_psi.components
 
+/-- Concrete Inhabited Model: Non-trivial Null Matter Contraction (NDWP / Protocol B) -/
+def canonicalNullMatterContraction : NullMatterContraction where
+  components := [1, -2, 3]
+
 end QuantumGravity

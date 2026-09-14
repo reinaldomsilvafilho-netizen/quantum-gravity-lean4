@@ -36,4 +36,16 @@ instance : Category CauchyHypersurface where
   comp_id p := pathConcat_nil p
   assoc p q r := pathConcat_assoc p q r
 
+/-- Concrete Inhabited Model: Canonical Spatial Cauchy Hypersurface (NDWP / Protocol B) -/
+def canonicalCauchyHypersurface : CauchyHypersurface where
+  name := "Sigma_3"
+  dim := 3
+  positive_definite := true
+
+/-- Concrete Inhabited Model: Canonical Lorentzian Cobordism Step (NDWP / Protocol B) -/
+def canonicalCobordismStep : CobordismStep canonicalCauchyHypersurface canonicalCauchyHypersurface where
+  cobordism_name := "Cob(Cylinder_4D)"
+  adm_lapse_smooth := true
+  einstein_satisfied := true
+
 end QuantumGravity

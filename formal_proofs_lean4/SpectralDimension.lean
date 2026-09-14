@@ -99,4 +99,9 @@ theorem ir_heat_kernel_quadratic_cancellation (asymp : DiffusionAsymptotics) :
 theorem uv_heat_kernel_exact : (1 - 0) + (0 + 1) = (2 : Int) := by
   omega
 
+/-- Concrete Inhabited Model: Canonical Diffusion Asymptotics (NDWP / Protocol B) -/
+def canonicalDiffusionAsymptotics : DiffusionAsymptotics where
+  X := 8
+  tail_error := 0
+
 end QuantumGravity

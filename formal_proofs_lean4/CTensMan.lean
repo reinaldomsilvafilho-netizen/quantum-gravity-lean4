@@ -44,4 +44,23 @@ instance : Category ContinuousTensorVariety where
   comp_id p := pathConcat_nil p
   assoc p q r := pathConcat_assoc p q r
 
+/-- Concrete Inhabited Model: Canonical Spatial Domain (NDWP / Protocol B) -/
+def canonicalSpatialDomain : SpatialDomain where
+  dim := 3
+  connected := true
+  orientable := true
+
+/-- Concrete Inhabited Model: Canonical Continuous Tensor Variety with chi=4 (NDWP / Protocol B) -/
+def canonicalContinuousTensorVariety : ContinuousTensorVariety where
+  M := canonicalSpatialDomain
+  chi := 4
+  chi_ge_two := by decide
+  qfi_nondegenerate := true
+  adm_on_shell := true
+
+/-- Concrete Inhabited Model: Canonical Flow Step (NDWP / Protocol B) -/
+def canonicalFlowStep : FlowStep canonicalContinuousTensorVariety canonicalContinuousTensorVariety where
+  trajectory_name := "gradient_descent_chi4"
+  energy_loss := 0.05
+
 end QuantumGravity

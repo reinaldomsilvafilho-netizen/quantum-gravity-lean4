@@ -218,4 +218,44 @@ theorem shifted_resolvent_energy_nonneg (mu_norm_sq : R) (h_mu : ord.le ord.zero
   · exact h_mu
   · exact hodge_energy_nonneg S x
 
+/-- Concrete Inhabited Model: OrderedScalar on Nat (NDWP / Protocol B) -/
+def canonicalNatOrderedScalar : OrderedScalar Nat where
+  zero := 0
+  add a b := a + b
+  le a b := a ≤ b
+  add_nonneg _ _ := Nat.zero_le _
+  le_refl a := Nat.le_refl a
+
+/-- Concrete Inhabited Model: PreHilbertSpace on Nat (NDWP / Protocol B) -/
+def canonicalNatPreHilbert : PreHilbertSpace Nat canonicalNatOrderedScalar Nat where
+  zero := 0
+  add a b := a + b
+  inner a b := a * b
+  inner_symm a b := Nat.mul_comm a b
+  inner_nonneg a := Nat.zero_le (a * a)
+  inner_zero_right a := Nat.mul_zero a
+  inner_add_left a b c := Nat.add_mul a b c
+
+/-- Concrete Inhabited Model: AdjointPair on Nat (NDWP / Protocol B) -/
+def canonicalAdjointPair : AdjointPair Nat canonicalNatOrderedScalar Nat Nat
+    canonicalNatPreHilbert canonicalNatPreHilbert where
+  op x := x
+  adj x := x
+  adj_property v w := by dsimp [canonicalNatPreHilbert]
+
+/-- Concrete Inhabited Model: SimplicialChainSlice on Nat (NDWP / Protocol B) -/
+def canonicalSimplicialChainSlice : SimplicialChainSlice Nat canonicalNatOrderedScalar Nat Nat Nat
+    canonicalNatPreHilbert canonicalNatPreHilbert canonicalNatPreHilbert where
+  d_high_pair := {
+    op := fun _ => 0
+    adj := fun _ => 0
+    adj_property := fun v w => by dsimp [canonicalNatPreHilbert]; omega
+  }
+  d_low_pair := {
+    op := fun _ => 0
+    adj := fun _ => 0
+    adj_property := fun v w => by dsimp [canonicalNatPreHilbert]; omega
+  }
+  boundary_nilpotency := fun _ => rfl
+
 end QuantumGravity

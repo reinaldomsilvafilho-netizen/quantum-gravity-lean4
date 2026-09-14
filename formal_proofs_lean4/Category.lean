@@ -58,4 +58,20 @@ theorem pathConcat_assoc {Obj : Type u} {Step : Obj → Obj → Type v} {W X Y Z
     dsimp [pathConcat]
     rw [ih]
 
+/-- Concrete Inhabited Model: Indiscrete Category on Nat (NDWP / Protocol B) -/
+instance indiscreteNatCategory : Category Nat where
+  Hom _ _ := Unit
+  id _ := ()
+  comp _ _ := ()
+  id_comp _ := rfl
+  comp_id _ := rfl
+  assoc _ _ _ := rfl
+
+/-- Concrete Inhabited Model: Canonical Shift Functor on Nat (NDWP / Protocol B) -/
+def canonicalIdentityFunctor : Functor Nat Nat where
+  obj x := x + 1
+  map _ := ()
+  map_id _ := rfl
+  map_comp _ _ := rfl
+
 end QuantumGravity

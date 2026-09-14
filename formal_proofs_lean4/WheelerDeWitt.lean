@@ -125,4 +125,29 @@ theorem shift_stationarity (v : ShiftVariation) :
   · intro h
     rw [h, Int.mul_zero]
 
+/-- Concrete Inhabited Model: Extrinsic Curvature Data (NDWP / Protocol B) -/
+def canonicalExtrinsicCurvatureData : ExtrinsicCurvatureData where
+  tr_K := 0
+  shear_sq := 4
+  shear_nonneg := by omega
+
+/-- Concrete Inhabited Model: ADM Hamiltonian Data (NDWP / Protocol B) -/
+def canonicalADMHamiltonianData : ADMHamiltonianData where
+  R_scalar_x3 := 12
+  rho_matter_x3 := 0
+  curv := canonicalExtrinsicCurvatureData
+  rho_nonneg := by omega
+
+/-- Concrete Inhabited Model: Lapse Variation (NDWP / Protocol B) -/
+def canonicalLapseVariation : LapseVariation where
+  volume_factor := 2
+  H_val := 0
+  vol_pos := by omega
+
+/-- Concrete Inhabited Model: Shift Variation (NDWP / Protocol B) -/
+def canonicalShiftVariation : ShiftVariation where
+  volume_factor := 2
+  M_val := 0
+  vol_pos := by omega
+
 end QuantumGravity
