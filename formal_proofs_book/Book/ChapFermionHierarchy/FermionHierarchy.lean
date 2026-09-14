@@ -32,6 +32,17 @@ theorem lepton_koide_ratio_exact (L : LeptonKoideModel) :
     L.sum_masses_scaled * 3 = L.sum_sqrt_masses_sq_scaled * 2 := by
   exact L.h_koide_ratio
 
+/-- Concrete model of Lepton Koide ratio (sum_masses = 2000, sum_sqrt_sq = 3000, ratio 2/3). -/
+def canonicalLeptonKoideInstance : LeptonKoideModel where
+  sum_masses_scaled := 2000
+  sum_sqrt_masses_sq_scaled := 3000
+  h_koide_ratio := by rfl
+
+theorem canonical_lepton_koide_certified :
+  canonicalLeptonKoideInstance.sum_masses_scaled * 3 =
+  canonicalLeptonKoideInstance.sum_sqrt_masses_sq_scaled * 2 := by
+  decide
+
 -- ====================================================================
 -- 2. Pillar II: Quark Koide Shift via Color-Flavor Entanglement
 -- ====================================================================
@@ -44,10 +55,22 @@ structure QuarkKoideModel where
   h_shift : K_q_scaled = K_l_scaled + (K_l_scaled * alpha_s_scaled) / 1732
 
 /-- OBL-SM-002 (Thm 2.2): Color-Flavor Entanglement strictly increases quark Koide ratio -/
-theorem quark_koide_shift_strictly_positive (Q : QuarkKoideModel) (_hKl : Q.K_l_scaled > 0) :
+theorem quark_koide_shift_strictly_positive (Q : QuarkKoideModel) :
     Q.K_q_scaled ≥ Q.K_l_scaled := by
   rw [Q.h_shift]
   omega
+
+/-- Concrete model of Quark Koide shift with alpha_s = 0.118 (scaled by 1000). -/
+def canonicalQuarkKoideInstance : QuarkKoideModel where
+  alpha_s_scaled := 118
+  alpha_s_pos := by decide
+  K_l_scaled := 6667
+  K_q_scaled := 6667 + (6667 * 118) / 1732
+  h_shift := by rfl
+
+theorem canonical_quark_koide_certified :
+  canonicalQuarkKoideInstance.K_q_scaled ≥ canonicalQuarkKoideInstance.K_l_scaled := by
+  decide
 
 -- ====================================================================
 -- 3. Pillar III: Geometric Cabibbo Angle from Simplex Projection

@@ -101,10 +101,19 @@ structure QuarkKoideModel where
   h_shift : K_q_scaled = K_l_scaled + (K_l_scaled * alpha_s_scaled) / 1732
 
 /-- OBL-UNIV-005: Gluon color-flavor entanglement strictly increases quark Koide ratio above 2/3 -/
-theorem quark_koide_shift_positive (Q : QuarkKoideModel) (_hKl : Q.K_l_scaled > 0) :
+theorem quark_koide_shift_positive (Q : QuarkKoideModel) :
     Q.K_q_scaled ≥ Q.K_l_scaled := by
   rw [Q.h_shift]
   omega
+
+/-- Concrete model of flavor simplex Delta_2 yielding exactly 3 generations. -/
+def canonicalFlavorSimplexInstance : FlavorSimplexModel where
+  simplex_dimension := 2
+  h_dim := by rfl
+
+theorem canonical_flavor_generations_certified :
+    num_generations canonicalFlavorSimplexInstance = 3 := by
+  decide
 
 -- ====================================================================
 -- 6. Obligation 006: Federer Normal Bundle Reach Electroweak Symmetry Breaking

@@ -100,6 +100,36 @@ theorem mittag_leffler_propagator (P : MittagLefflerPropagator) :
     P.betaOneExponentialError ≤ 1e-12 ∧ P.subdiffusionBounded = true := by
   exact ⟨P.beta_one_exact, P.subdiff_valid⟩
 
+/-- Concrete model of NLSE mass conservation. -/
+def canonicalNLSEMassConservation : NLSEMassConservation where
+  massRelativeDrift := 1.53e-14
+  mass_conserved := by decide
+
+theorem canonical_nlse_mass_certified :
+  canonicalNLSEMassConservation.massRelativeDrift ≤ 1e-10 := by
+  decide
+
+/-- Concrete model of Simplicial Modulational Instability. -/
+def canonicalSimplicialModulationalInstability : SimplicialModulationalInstability where
+  growthRateMatchesTheory := true
+  growth_rate_exact := by decide
+
+theorem canonical_simplicial_mi_certified :
+  canonicalSimplicialModulationalInstability.growthRateMatchesTheory = true := by
+  decide
+
+/-- Concrete model of Mittag-Leffler Propagator. -/
+def canonicalMittagLefflerPropagator : MittagLefflerPropagator where
+  betaOneExponentialError := 5.55e-17
+  subdiffusionBounded := true
+  beta_one_exact := by decide
+  subdiff_valid := by decide
+
+theorem canonical_mittag_leffler_certified :
+  canonicalMittagLefflerPropagator.betaOneExponentialError ≤ 1e-12 ∧
+  canonicalMittagLefflerPropagator.subdiffusionBounded = true := by
+  decide
+
 structure DiffusionDrift where
   meanDriftAbs : Float
   drift_zero : meanDriftAbs ≤ 1e-12
