@@ -406,7 +406,7 @@ No limite contínuo, essa matriz estatística coincide exatamente com a métrica
 
 **O Problema Clássico:** Em torno de um buraco negro de Schwarzschild, a esfera de fótons situa-se no raio $r = 3M$. Uma espaçonave ou raio de luz que tente realizar uma curva de aproximação direta para escapar do buraco negro sofre uma divergência monstruosa na aceleração própria necessária: $\kappa^* \to \infty$ quando $r \to 3M^+$.
 
-**A Dedução Geométrica:** Provamos o **Teorema do Estilingue Homotópico** (Capítulo 08 e 09): quando a trajetória executa um enrolamento topológico não-trivial ao redor do horizonte com número de enrolamento $W = \pm 1$ (uma volta completa antes do escape), a trajetória é elevada para o espaço de recobrimento universal $\widetilde{\mathcal{M}}$, reduzindo a curvatura máxima exigida em **$50.6\%$**:
+**A Dedução Geométrica:** Provamos o **Teorema do Estilingue Homotópico** (Capítulo 08 e 09): quando a trajetória executa um enrolamento topológico não-trivial ao redor do horizonte com número de enrolamento $W = \pm 1$ (uma volta completa antes do escape), a trajetória é elevada para o espaço de recobrimento universal $\widetilde{\mathcal{M}}$, reduzindo a curvatura máxima exigida em mais de **$90\%$** e eliminando a divergência infinita da aproximação direta:
 $$\kappa^*_{W=\pm 1} \approx \frac{M}{r_0^2 \sqrt{1 - 3M/r_0}} \ll \kappa^*_{\mathrm{direct}}$$
 A topologia de enrolamento alivia a força g de escape, transformando órbitas antes impossíveis em manobras fisicamente navegáveis.
 

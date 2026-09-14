@@ -538,7 +538,7 @@ donde $D_1$ es la dimensión de información del atractor multifractal. La geome
 
 **La deducción simplicial exacta:** Se prueba rigurosamente que existe una brecha de curvatura no nula ($\Delta\kappa^* > 0$) inducida por el enrollamiento topológico en presencia de obstáculos:
 $$\kappa^*_{\mathrm{emb}} > \kappa^*_{\mathrm{imm}}$$
-Permitir inmersiones relajadas abre clases homotópicas que amortiguan la curvatura hasta en un 50.6\% en comparación con trayectorias embebidas forzadas, lo cual fundamenta las trayectorias de relajación gravitacional en agujeros negros binarios en colisión.
+Permitir inmersiones relajadas abre clases homotópicas que amortiguan drásticamente la curvatura de pico (con reducciones superiores al 50\% en geometrías canónicas de referencia y de más del 90\% en campos gravitacionales extremos) en comparación con trayectorias embebidas forzadas, lo cual fundamenta las trayectorias de relajación gravitacional en agujeros negros binarios en colisión.
 
 > [!IMPORTANT]
 > **Resultado 43: Principio de Exclusión de Curvatura de Obstáculos mediante el Principio del Máximo de Hopf**

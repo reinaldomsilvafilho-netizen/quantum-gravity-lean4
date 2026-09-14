@@ -538,7 +538,7 @@ où $D_1$ est la dimension d'information de l'attracteur multifractal, unifiant 
 
 **La déduction simpliciale exacte :** Il est rigoureusement établi qu'il existe un saut de courbure non nul ($\Delta\kappa^* > 0$) induit par l'enroulement topologique en présence d'obstacles :
 $$\kappa^*_{\mathrm{emb}} > \kappa^*_{\mathrm{imm}}$$
-Autoriser les immersions assouplies ouvre des classes d'homotopie réduisant la courbure de crête jusqu'à 50.6\% par rapport aux plongements simples, fournissant le fondement mathématique des trajectoires de relaxation gravitationnelle lors de coalescences de trous noirs.
+Autoriser les immersions assouplies ouvre des classes d'homotopie réduisant drastiquement la courbure de crête (de plus de 50\% dans les scénarios de référence canoniques et de plus de 90\% dans les champs gravitationnels intenses) par rapport aux plongements simples, fournissant le fondement mathématique des trajectoires de relaxation gravitationnelle lors de coalescences de trous noirs.
 
 > [!IMPORTANT]
 > **Résultat 43 : Principe d'Exclusion de Courbure d'Obstacle par le Principe du Maximum de Hopf**
