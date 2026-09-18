@@ -1,0 +1,3 @@
+import GeometricInference.SimplicialPrior
+import GeometricInference.ReachErgodicity
+import GeometricInference.MinimaxFisher

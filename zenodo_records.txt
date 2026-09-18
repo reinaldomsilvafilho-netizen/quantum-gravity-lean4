@@ -1,0 +1,23 @@
+DOI: 10.5281/zenodo.22290043
+Title: Geometry, Tensors, and Quantum Gravity: The Unified Grand Synthesis Treatise
+Description: <div class="code-line "> <div class="line-content"><span class="">This 171-page comprehensive monograph proposes an exact, non-perturbative mathematical bridge between General Relativity and [...]
+
+DOI: 10.5281/zenodo.22699282
+Title: Beyond the Spectrum: The Complete Three-Volume Monograph on Functional Tensor Realizations, Metric Measure Geometry, and Higher Topological Invariants
+Description: <p>This consolidated monograph unifies the complete three-part mathematical research program **Beyond the Spectrum** (Volumes I, II, and III), establishing a rigorous, non-perturbative [...]
+
+DOI: 10.5281/zenodo.22699843
+Title: A Geometric and Metric-Measure Framework for the Yang-Mills Mass Gap, Gribov-Zwanziger Horizon Regularization, and Confinement on Gauge Orbit Varieties
+Description: <p>### A Geometric and Metric-Measure Framework for the Yang-Mills Mass Gap, Gribov-Zwanziger Horizon Regularization, and Confinement on Gauge Orbit Varieties</p> <p>**Author:** Reinaldo M. [...]
+
+DOI: 10.5281/zenodo.22707110
+Title: Geometric Condensation of Fundamental Interactions: From the Classical Multi-Component Lagrangian to the Simplicial Action Functional on Δ₄ × Δ₂
+Description: <div class="code-line "> <div class="line-content"> <p>The complete Lagrangian describing the Standard Model coupled to Einstein&ndash;Hilbert General Relativity is conventionally formulated as [...]
+
+DOI: 10.5281/zenodo.22707125
+Title: Geometric Foundations of the Fermion Mass Hierarchy, Flavor Mixing, and Vacuum Energy Suppression in Simplicial Spacetime
+Description: <div class="code-line "> <div class="line-content"> <p>The Standard Model of particle physics and General Relativity are fundamentally challenged by two fine-tuning dilemmas: the origin of the [...]
+
+DOI: 10.5281/zenodo.22441676
+Title: A Functorial Bridge from Continuous Tensor Manifolds to 4-Dimensional Spacetime Cobordisms
+Description: <p class="">We resolve the open frontier in emergent spacetime by constructing an exact symmetric monoidal functor&nbsp;<span class="katex"><span class="katex- [...]
