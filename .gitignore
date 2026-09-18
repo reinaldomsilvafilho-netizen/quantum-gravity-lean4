@@ -112,3 +112,6 @@ geometric_statistics_research/
 # OS generated
 Thumbs.db
 .DS_Store
+
+# Temporarily ignore Divulgacao_e_Ensino while it is being updated
+Projeto_Gravidade_Quantica/Divulgacao_e_Ensino/
