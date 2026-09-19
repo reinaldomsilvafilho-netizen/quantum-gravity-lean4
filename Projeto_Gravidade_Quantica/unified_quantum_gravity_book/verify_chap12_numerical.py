@@ -8,7 +8,7 @@ import numpy as np
 import scipy.linalg as la
 import scipy.integrate as integrate
 
-def test_battery_1_spectral_dimension():
+def test_battery_1_spectral_dimension() -> None:
     """Battery 1: Running Spectral Dimension Flow ds(t) = 2 -> 4."""
     print("--- Running Battery 1: Running Spectral Dimension Flow ---")
     
@@ -32,7 +32,7 @@ def test_battery_1_spectral_dimension():
     assert 3.95 <= ds_ir <= 4.05, f"IR spectral dimension out of range: {ds_ir}"
     print("  [PASSED] Battery 1: Running Spectral Dimension Flow (2 -> 4) Verified.\n")
 
-def test_battery_2_cartan_metric():
+def test_battery_2_cartan_metric() -> None:
     """Battery 2: Lie Algebra A_{m-1} Cartan Metric Emergence."""
     print("--- Running Battery 2: Lie Algebra A_{m-1} Cartan Metric Emergence ---")
     
@@ -53,7 +53,7 @@ def test_battery_2_cartan_metric():
     assert killing_scale == 8
     print("  [PASSED] Battery 2: Lie Algebra A_{m-1} Cartan Metric Emergence Verified.\n")
 
-def test_battery_3_minimax_shear_bound():
+def test_battery_3_minimax_shear_bound() -> None:
     """Battery 3: Minimax ADM Shear Dissipation Bound."""
     print("--- Running Battery 3: Minimax ADM Shear Dissipation Bound ---")
     
@@ -71,7 +71,7 @@ def test_battery_3_minimax_shear_bound():
     print(f"  Tested 100 random 3+1 Cauchy hypersurfaces: all satisfy sigma^2 <= 3(kappa*)^2 - (1/3)K^2.")
     print("  [PASSED] Battery 3: Minimax ADM Shear Dissipation Bound Verified.\n")
 
-def test_battery_4_jordan_covering_space():
+def test_battery_4_jordan_covering_space() -> None:
     """Battery 4: Universal Covering Space Lift & Simple Jordan Loops."""
     print("--- Running Battery 4: Universal Covering Space Lift ---")
     
@@ -85,7 +85,7 @@ def test_battery_4_jordan_covering_space():
     print(f"  Curvature along covering sheets k=0..3: {curvatures}")
     print("  [PASSED] Battery 4: Universal Covering Space Lift Verified.\n")
 
-def test_battery_5_wald_symplectic_first_law():
+def test_battery_5_wald_symplectic_first_law() -> None:
     """Battery 5: Wald Symplectic Noether Form & First Law of Entanglement."""
     print("--- Running Battery 5: Wald Symplectic Noether Form & First Law ---")
     
@@ -107,7 +107,7 @@ def test_battery_5_wald_symplectic_first_law():
     assert rel_err < 1e-12, "Wald symplectic conservation violated"
     print("  [PASSED] Battery 5: Wald Symplectic First Law Verified.\n")
 
-def test_battery_6_level_set_mcf():
+def test_battery_6_level_set_mcf() -> None:
     """Battery 6: Level-Set MCF Area Dissipation to Ryu-Takayanagi Minimal Surface."""
     print("--- Running Battery 6: Level-Set MCF Area Dissipation ---")
     
@@ -142,7 +142,7 @@ def test_battery_6_level_set_mcf():
     assert delta_area > 0.05, "Deformed surface must have strictly higher area than RT minimal surface"
     print("  [PASSED] Battery 6: Level-Set MCF Area Dissipation Verified.\n")
 
-def test_battery_7_graphon_neckpinch_and_chaos():
+def test_battery_7_graphon_neckpinch_and_chaos() -> None:
     """Battery 7: Graphon Ricci Neckpinch Surgery & MSS Chaos Bound Saturation."""
     print("--- Running Battery 7: Graphon Neckpinch Surgery & MSS Chaos Bound ---")
     

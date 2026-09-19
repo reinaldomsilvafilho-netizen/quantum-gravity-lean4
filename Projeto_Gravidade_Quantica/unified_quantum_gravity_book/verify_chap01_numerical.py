@@ -23,7 +23,7 @@ if sys.platform == "win32":
 
 np.random.seed(42)
 
-def test_obl_001_spectral_critical():
+def test_obl_001_spectral_critical() -> None:
     """
     OBL-C01-001: Extremes and critical points of x^T A x on S^{n-1}
     coincide with eigenvectors and eigenvalues lambda_i.
@@ -46,7 +46,7 @@ def test_obl_001_spectral_critical():
             
     print("  [PASS] All critical points match eigenvectors; critical values match eigenvalues.")
 
-def test_obl_002_spectral_blindness_and_inverse():
+def test_obl_002_spectral_blindness_and_inverse() -> None:
     """
     OBL-C01-002: Spectral Blindness to Spatial Dirichlet Energy
     Part A: Forward Permutation test (Dirichlet ratio ~ Theta(n^2)).
@@ -125,7 +125,7 @@ def test_obl_002_spectral_blindness_and_inverse():
     print("  [ISOTROPIC] Invariance confirmed: P*I*P^T = I and P*J*P^T = J yield exact ratio 1.00.")
     print("  [PASS] Spectral blindness & inverse realizability certified.")
 
-def test_obl_003_and_004_total_variation_and_coarea():
+def test_obl_003_and_004_total_variation_and_coarea() -> None:
     """
     OBL-C01-003 & OBL-C01-004:
     TV(W_A) of step graphon equals exact boundary jump sum and matches
@@ -154,7 +154,7 @@ def test_obl_003_and_004_total_variation_and_coarea():
     print(f"  TV(W_A) = {tv_formula:.6f} | Coarea Int = {coarea_integral:.6f} | Exact Identity Confirmed (err < 1e-12)")
     print("  [PASS] Coarea linkage holds exactly.")
 
-def test_obl_005_morse_spectrum_and_euler():
+def test_obl_005_morse_spectrum_and_euler() -> None:
     """
     OBL-C01-005: For distinct eigenvalues lambda_1 < ... < lambda_n,
     f_A is strictly Morse with 2n critical points +-v_i, index gamma(v_i) = i - 1,
@@ -180,7 +180,7 @@ def test_obl_005_morse_spectrum_and_euler():
             
     print("  [PASS] Morse indices gamma(v_i) = i - 1 and Euler characteristic chi(S^{n-1}) verified across all dimensions.")
 
-def test_obl_006_cut_norm_duality():
+def test_obl_006_cut_norm_duality() -> None:
     """
     OBL-C01-006: Cut Norm Duality with L^inf -> L^1 operator norm:
     ||W||_cut <= ||T_W||_{L^inf -> L^1} <= 4 * ||W||_cut.
@@ -210,7 +210,7 @@ def test_obl_006_cut_norm_duality():
         
     print("  [PASS] Duality inequalities ||W||_cut <= ||T_W|| <= 4*||W||_cut confirmed on all test graphons.")
 
-def test_checkerboard_exact_scaling():
+def test_checkerboard_exact_scaling() -> None:
     """
     OBL-C01-002 / Example 4.1:
     Verify that the checkerboard matrix a_{ij} = (-1)^{i+j} has Dirichlet energy
@@ -236,7 +236,7 @@ def test_checkerboard_exact_scaling():
         
     print("  [PASS] Checkerboard Dirichlet energy is rigorously confirmed to scale as Theta(n^4).")
 
-def test_tensor_operator_norm_scaling():
+def test_tensor_operator_norm_scaling() -> None:
     """
     OBL-C01-012 (Thm 5.3):
     Verify that for random Gaussian k-tensors, the operator norm on unit spheres

@@ -22,7 +22,7 @@ import scipy.integrate as integrate
 import scipy.optimize as opt
 import sys
 
-def battery_1_space_forms_coupling():
+def battery_1_space_forms_coupling() -> None:
     """Battery 1: Gauss-Codazzi relation K_M = c + kappa^2 in space forms."""
     print("--- Battery 1: Non-Euclidean Space Forms Coupling ---")
     c_vals = [-2.0, -1.0, -0.5, 0.5, 1.0, 2.0]
@@ -49,7 +49,7 @@ def battery_1_space_forms_coupling():
     print("  [PASS] Gauss-Codazzi coupling verified for all space forms and horospheres.")
     return True
 
-def battery_2_hyperbolic_curvature_amplification_and_spherical_relief():
+def battery_2_hyperbolic_curvature_amplification_and_spherical_relief() -> None:
     """Battery 2: Hyperbolic Amplification kappa*_H = c*coth(cw/2) > 2/w and Spherical Relief kappa*_S = c*cot(cw/2) < 2/w."""
     print("--- Battery 2: Hyperbolic Curvature Amplification & Spherical Relief ---")
     widths = [0.5, 1.0, 2.0, 3.0]
@@ -77,7 +77,7 @@ def battery_2_hyperbolic_curvature_amplification_and_spherical_relief():
     print("  [PASS] Hyperbolic curvature amplification and spherical relief validated across all scales.")
     return True
 
-def battery_3_adm_shear_minimization():
+def battery_3_adm_shear_minimization() -> None:
     """Battery 3: 3+1 ADM Hamiltonian/Momentum Constraints & Shear Minimization."""
     print("--- Battery 3: 3+1 ADM Slicing & Shear Minimization ---")
     np.random.seed(42)
@@ -104,7 +104,7 @@ def battery_3_adm_shear_minimization():
     print("  [PASS] ADM constraint decomposition and shear minimization validated.")
     return True
 
-def battery_4_horizons_and_wormhole_exotic_matter():
+def battery_4_horizons_and_wormhole_exotic_matter() -> None:
     """Battery 4: Kerr-Newman Apparent Horizons & Morris-Thorne Wormhole Throat."""
     print("--- Battery 4: Apparent Horizons & Wormhole Throat Curvature ---")
     M = 2.0
@@ -135,7 +135,7 @@ def battery_4_horizons_and_wormhole_exotic_matter():
     print("  [PASS] Kerr-Newman horizon bounds and Morris-Thorne exotic matter floors verified.")
     return True
 
-def battery_5_timelike_navigation_covariant_acceleration():
+def battery_5_timelike_navigation_covariant_acceleration() -> None:
     """Battery 5: Timelike navigation in Schwarzschild: 4-acceleration and operator norm."""
     print("--- Battery 5: Relativistic Timelike Navigation & 4-Acceleration ---")
     M = 1.0
@@ -167,7 +167,7 @@ def battery_5_timelike_navigation_covariant_acceleration():
     print("  [PASS] Covariant 4-acceleration norm and geodesic vanishing certified.")
     return True
 
-def battery_6_relativistic_slingshot_divergence():
+def battery_6_relativistic_slingshot_divergence() -> None:
     """Battery 6: Relativistic Slingshot: W=0 divergence at r=3M vs W=1 boundedness."""
     print("--- Battery 6: Relativistic Slingshot & Winding Homotopy ---")
     M = 1.0
@@ -185,7 +185,7 @@ def battery_6_relativistic_slingshot_divergence():
     print("  [PASS] Relativistic slingshot homotopy reduction certified.")
     return True
 
-def battery_7_inverse_reconstruction_and_bona_masso():
+def battery_7_inverse_reconstruction_and_bona_masso() -> None:
     """Battery 7: Inverse Parameter Reconstruction & Bona-Masso Singularity Freezing."""
     print("--- Battery 7: Inverse Reconstruction & Bona-Masso Slicing ---")
     M_true = 1.41421356

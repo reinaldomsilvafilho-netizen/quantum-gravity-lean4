@@ -241,7 +241,7 @@ def canonicalAdjointPair : AdjointPair Nat canonicalNatOrderedScalar Nat Nat
     canonicalNatPreHilbert canonicalNatPreHilbert where
   op x := x
   adj x := x
-  adj_property v w := by dsimp [canonicalNatPreHilbert]
+  adj_property _ _ := by dsimp [canonicalNatPreHilbert]
 
 /-- Concrete Inhabited Model: SimplicialChainSlice on Nat (NDWP / Protocol B) -/
 def canonicalSimplicialChainSlice : SimplicialChainSlice Nat canonicalNatOrderedScalar Nat Nat Nat
@@ -249,12 +249,12 @@ def canonicalSimplicialChainSlice : SimplicialChainSlice Nat canonicalNatOrdered
   d_high_pair := {
     op := fun _ => 0
     adj := fun _ => 0
-    adj_property := fun v w => by dsimp [canonicalNatPreHilbert]; omega
+    adj_property := fun _ _ => by dsimp [canonicalNatPreHilbert]; omega
   }
   d_low_pair := {
     op := fun _ => 0
     adj := fun _ => 0
-    adj_property := fun v w => by dsimp [canonicalNatPreHilbert]; omega
+    adj_property := fun _ _ => by dsimp [canonicalNatPreHilbert]; omega
   }
   boundary_nilpotency := fun _ => rfl
 

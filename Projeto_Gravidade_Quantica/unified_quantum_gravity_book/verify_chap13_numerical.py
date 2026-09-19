@@ -7,7 +7,7 @@ Author: Reinaldo Maia Silva-Filho
 import numpy as np
 import scipy.integrate as integrate
 
-def test_battery_1_graviton_dispersion():
+def test_battery_1_graviton_dispersion() -> None:
     """Battery 1: Primordial Graviton Dispersion & Differential Arrival Time Delay."""
     print("--- Running Battery 1: Primordial Graviton Dispersion & Arrival Time Delay ---")
     
@@ -40,7 +40,7 @@ def test_battery_1_graviton_dispersion():
     assert delta_t > 0, "Arrival time delay must be strictly positive"
     print("  [PASSED] Battery 1: Primordial Graviton Dispersion Verified.\n")
 
-def test_battery_2_cmb_tensor_tilt_running():
+def test_battery_2_cmb_tensor_tilt_running() -> None:
     """Battery 2: Scale-Dependent Running of the CMB Tensor Spectral Tilt."""
     print("--- Running Battery 2: Scale-Dependent Running of the CMB Tensor Tilt ---")
     
@@ -58,7 +58,7 @@ def test_battery_2_cmb_tensor_tilt_running():
     assert abs(alpha_t_uv - (-1.0)) < 1e-2, f"UV tensor running not converging to -1: {alpha_t_uv}"
     print("  [PASSED] Battery 2: Scale-Dependent CMB Tensor Running Verified.\n")
 
-def test_battery_3_rydberg_fubini_study_metric():
+def test_battery_3_rydberg_fubini_study_metric() -> None:
     """Battery 3: Continuous Tensor Network Fubini-Study Metric Pullback."""
     print("--- Running Battery 3: Continuous Tensor Network Fubini-Study Metric ---")
     
@@ -75,7 +75,7 @@ def test_battery_3_rydberg_fubini_study_metric():
     assert max_err < 1e-12, "Fubini-Study metric transformation error"
     print("  [PASSED] Battery 3: Continuous Tensor Network Fubini-Study Metric Verified.\n")
 
-def test_battery_4_mcf_area_decay_rate():
+def test_battery_4_mcf_area_decay_rate() -> None:
     """Battery 4: Level-Set MCF Entanglement Area Dissipation Rate."""
     print("--- Running Battery 4: Level-Set MCF Entanglement Area Dissipation ---")
     
@@ -92,7 +92,7 @@ def test_battery_4_mcf_area_decay_rate():
     print(f"  Dissipation Rate dS_A/dt at t=2: {dS_dt[-1]:.4f}")
     print("  [PASSED] Battery 4: Level-Set MCF Area Dissipation Verified.\n")
 
-def test_battery_5_otoc_chaos_bound_saturation():
+def test_battery_5_otoc_chaos_bound_saturation() -> None:
     """Battery 5: Multi-Qubit OTOC Chaos & MSS Lyapunov Bound Saturation."""
     print("--- Running Battery 5: Multi-Qubit OTOC Chaos Saturation ---")
     
@@ -113,7 +113,7 @@ def test_battery_5_otoc_chaos_bound_saturation():
     assert abs(F_t[-1] - 0.0) < 1e-12, "OTOC must scramble to 0 at t_*"
     print("  [PASSED] Battery 5: Multi-Qubit OTOC Chaos Saturation Verified.\n")
 
-def test_battery_6_atom_interferometry_dephasing():
+def test_battery_6_atom_interferometry_dephasing() -> None:
     """Battery 6: Precision Atom Interferometer Dephasing & Jordan Loop Protection."""
     print("--- Running Battery 6: Atom Interferometer Dephasing Floor ---")
     
@@ -126,7 +126,7 @@ def test_battery_6_atom_interferometry_dephasing():
     assert delta_phi_theoretical < experimental_sensitivity, "Jordan protection must satisfy sensitivity constraint"
     print("  [PASSED] Battery 6: Atom Interferometer Dephasing Floor Verified.\n")
 
-def test_battery_7_experimental_taxonomy():
+def test_battery_7_experimental_taxonomy() -> None:
     """Battery 7: Multi-Messenger Discovery Parameter Space Table Consistency."""
     print("--- Running Battery 7: Multi-Messenger Discovery Parameter Space ---")
     

@@ -33,40 +33,72 @@ all_tests_passed = True
 # ==============================================================================
 banner("BATTERY 1: M-Minimax Pipeline & 4-Zone Decomposition (OBL-C07-002, 003)")
 
-def test_m_minimax_pipeline():
+def test_m_minimax_pipeline() -> None:
     global all_tests_passed
-    # Consider a 2D obstacle navigation problem around a disk of radius R = 1.0 centered at (0, 0).
-    # Boundary endpoints: P_start = (-3, -1.5), P_end = (3, -1.5).
+    # Consider a 2D obstacle navigation problem around a disk of radius R = 1.25 centered at (0, 0).
+    # Boundary endpoints: P_start = (-3, -0.5), P_end = (3, -0.5).
     # Constructive Dubins/Weingarten envelope: Straight segment -> Circular arc (radius R_arc = 1.25) -> Straight segment
-    # Minimax curvature kappa* = 1 / R_arc = 1 / 1.25 = 0.8000
+    # The true variational problem minimizes energy int |gamma'|^2 dt subject to obstacle avoidance.
     R_arc = 1.25
     kappa_star_true = 1.0 / R_arc
     
-    # Parametrize the synthetic path s in [0, L]
-    # Zone 1: Flat segment (kappa = 0)
-    # Zone 2: Saturated circular arc (kappa = kappa*)
-    # Zone 3: Flat segment (kappa = 0)
-    s_grid = np.linspace(0, 10, 1000)
-    # Curvature profile:
-    s_arc_start = 2.5
-    s_arc_end = 2.5 + (np.pi * R_arc) # semi-circular bypass
+    N = 100
+    P_start = np.array([-3.0, -0.5])
+    P_end   = np.array([3.0, -0.5])
     
-    curvatures = np.zeros_like(s_grid)
-    in_arc = (s_grid >= s_arc_start) & (s_grid <= s_arc_end)
-    curvatures[in_arc] = kappa_star_true
+    # Initial guess: straight line, pushed down to avoid circle
+    X0 = np.zeros((N, 2))
+    X0[:, 0] = np.linspace(P_start[0], P_end[0], N)
+    X0[:, 1] = np.linspace(P_start[1], P_end[1], N)
+    for i in range(1, N-1):
+        if X0[i, 0]**2 + X0[i, 1]**2 < R_arc**2:
+            X0[i, 1] = -np.sqrt(R_arc**2 - X0[i, 0]**2)
+            
+    def energy(X_flat):
+        X = X_flat.reshape((N-2, 2))
+        X_full = np.vstack([P_start, X, P_end])
+        diff = X_full[1:] - X_full[:-1]
+        return np.sum(diff**2) # Dirichlet energy ensures constant parameterization
+        
+    def constraint_fun(X_flat):
+        X = X_flat.reshape((N-2, 2))
+        return np.sum(X**2, axis=1) - R_arc**2 # Must be outside the obstacle
+        
+    cons = ({'type': 'ineq', 'fun': constraint_fun})
+    res = opt.minimize(energy, X0[1:-1].flatten(), constraints=cons, options={'maxiter': 1000})
     
-    # Measure of saturated zone
-    meas_sat = np.sum(in_arc) * (s_grid[1] - s_grid[0])
-    peak_curv = np.max(curvatures)
+    X_opt = res.x.reshape((N-2, 2))
+    X_full = np.vstack([P_start, X_opt, P_end])
+    
+    # Compute emergent discrete curvature
+    diff = X_full[1:] - X_full[:-1]
+    L = np.sqrt(np.sum(diff**2, axis=1))
+    
+    kappas = []
+    saturated_count = 0
+    for i in range(1, N-1):
+        v1 = diff[i-1]
+        v2 = diff[i]
+        cross = np.abs(v1[0]*v2[1] - v1[1]*v2[0])
+        dot = np.dot(v1, v2)
+        theta = np.arctan2(cross, dot)
+        ds = 0.5 * (L[i-1] + L[i])
+        k = theta / ds
+        kappas.append(k)
+        if k > 0.95 * kappa_star_true:
+            saturated_count += 1
+            
+    peak_curv = np.max(kappas)
     curv_err = abs(peak_curv - kappa_star_true)
+    meas_sat = saturated_count / N # Normalized measure of saturated zone
     
     print(f"  Target Minimax Curvature kappa*: {kappa_star_true:.6f}")
-    print(f"  Synthesized Peak Curvature:       {peak_curv:.6f}")
+    print(f"  Emergent Peak Curvature (Solver): {peak_curv:.6f}")
     print(f"  Measure of Saturated Zone M_sat: {meas_sat:.6f} (Theory > 0)")
     print(f"  Curvature synthesis error:       {curv_err:.4e}")
     
-    if curv_err < 1e-12 and meas_sat > 0.5:
-        print("  [PASS] OBL-C07-002 & OBL-C07-003: M-Minimax pipeline and positive saturated zone verified.")
+    if curv_err < 1e-2 and meas_sat >= 0.1:
+        print("  [PASS] OBL-C07-002 & OBL-C07-003: M-Minimax pipeline and positive saturated zone verified via true numerical optimization.")
     else:
         print("  [FAIL] OBL-C07-002 / 003")
         all_tests_passed = False
@@ -78,7 +110,7 @@ test_m_minimax_pipeline()
 # ==============================================================================
 banner("BATTERY 2: Obstacle Curvature Exclusion & Lower Bounds (OBL-C07-004, 005)")
 
-def test_obstacle_exclusion_and_bounds():
+def test_obstacle_exclusion_and_bounds() -> None:
     global all_tests_passed
     # Obstacle with radius R_obs in {0.5, 1.0, 2.0} => kappa_obs in {2.0, 1.0, 0.5}
     R_obs_list = [0.5, 1.0, 2.0]
@@ -120,7 +152,7 @@ test_obstacle_exclusion_and_bounds()
 # ==============================================================================
 banner("BATTERY 3: Chebyshev Equioscillation in Channels (OBL-C07-006)")
 
-def test_chebyshev_equioscillation():
+def test_chebyshev_equioscillation() -> None:
     global all_tests_passed
     # In an S-channel (two alternating obstacles of radius R1 = R2 = 1.0),
     # the optimal minimax curve alternates between two circular arcs:
@@ -154,7 +186,7 @@ test_chebyshev_equioscillation()
 # ==============================================================================
 banner("BATTERY 4: Regularity Invariance & Moreau Regularization (OBL-C07-007, 008)")
 
-def test_regularity_invariance_moreau():
+def test_regularity_invariance_moreau() -> None:
     global all_tests_passed
     # Test Moreau envelope / mollification of a saturated C^{1,1} profile:
     # A C^{1,1} profile with curvature jump from 0 to kappa* = 1.0 at x = 0:
@@ -194,7 +226,7 @@ test_regularity_invariance_moreau()
 # ==============================================================================
 banner("BATTERY 5: Discrete Exterior Calculus (DEC) Shape Operator (OBL-C07-009)")
 
-def test_dec_shape_operator():
+def test_dec_shape_operator() -> None:
     global all_tests_passed
     # Discretize a cylinder of radius R = 2.0 (principal curvatures k1 = 1/2 = 0.5, k2 = 0)
     # Shape operator eigenvalues: lambda1 = 0.5, lambda2 = 0.0
@@ -235,7 +267,7 @@ test_dec_shape_operator()
 # ==============================================================================
 banner("BATTERY 6: Codimension Scaling & Calibrated Cycle Isotropy (OBL-C07-010, 012)")
 
-def test_codimension_scaling_and_calibration():
+def test_codimension_scaling_and_calibration() -> None:
     global all_tests_passed
     # 1. Dimensional Monotonicity:
     # Curvature bounds in codimension c = n - k for multi-planar obstacles:
@@ -282,7 +314,7 @@ test_codimension_scaling_and_calibration()
 # ==============================================================================
 banner("BATTERY 7: Inverse Process Parameter Reconstruction Engine")
 
-def test_inverse_parameter_reconstruction():
+def test_inverse_parameter_reconstruction() -> None:
     global all_tests_passed
     # Problem 1: Reconstruct obstacle radius R_obs from observed minimax curvature kappa*:
     # kappa* = 1 / R_obs  =>  R_obs = 1 / kappa*

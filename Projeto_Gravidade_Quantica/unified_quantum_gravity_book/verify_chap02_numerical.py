@@ -21,7 +21,7 @@ if sys.platform == "win32":
 
 np.random.seed(42)
 
-def test_obl_001_affine_invariant_cone():
+def test_obl_001_affine_invariant_cone() -> None:
     """
     OBL-C02-001: Affine-Invariant Cone Geodesics on S_{++}^n.
     Geodesic gamma(t) = A^{1/2} (A^{-1/2} B A^{-1/2})^t A^{1/2} satisfies
@@ -66,7 +66,7 @@ def test_obl_001_affine_invariant_cone():
         
     print("  [PASS] Geodesic ODE ddot{gamma} = dot{gamma} gamma^{-1} dot{gamma} and metric symmetry confirmed.")
 
-def test_obl_002_and_006_projected_gradient_rank():
+def test_obl_002_and_006_projected_gradient_rank() -> None:
     """
     OBL-C02-002 & 006: Tangent Projection on M_r and Rank-Preserving Gradient Flow.
     P_{T_A M_r}(Z) = U U^T Z + Z V V^T - U U^T Z V V^T.
@@ -155,7 +155,7 @@ def test_obl_002_and_006_projected_gradient_rank():
         
     print(f"  [PASS] Tangent projection idempotent, self-adjoint; rank {r} strictly preserved, loss strictly dissipated ({losses[0]:.2f} -> {losses[-1]:.2f}).")
 
-def test_obl_005_toda_lattice_qr_interpolation():
+def test_obl_005_toda_lattice_qr_interpolation() -> None:
     """
     OBL-C02-005: Continuous Toda Lattice Flow & Discrete QR Interpolation.
     dot{A} = [A, Pi_{so}(A)] has constant spectrum sigma(A(t)) = sigma(A_0),
@@ -206,7 +206,7 @@ def test_obl_005_toda_lattice_qr_interpolation():
     assert diff < 1e-4, f"Toda flow diverged from QR interpolation: diff={diff}"
     print("  [PASS] Isospectrality and continuous QR interpolation certified.")
 
-def test_obl_007_008_009_graphon_heat_cutnorm():
+def test_obl_007_008_009_graphon_heat_cutnorm() -> None:
     """
     OBL-C02-007, 008, 009: Graphon Laplacian & Heat Contraction.
     Cut norm ||W(t)||_square is non-increasing under self-diffusion Delta_otimes W.
@@ -250,53 +250,72 @@ def test_obl_007_008_009_graphon_heat_cutnorm():
     print(f"  Cut norm evolution: {cuts[0]:.4f} -> {cuts[4]:.4f} -> {cuts[-1]:.4f} (Monotonically non-increasing)")
     print("  [PASS] Graphon heat flow cut-norm contraction certified.")
 
-def test_obl_010_ollivier_ricci_neckpinch():
+def test_obl_010_ollivier_ricci_neckpinch() -> None:
     """
     OBL-C02-010: Graphon Ricci Flow & Neckpinch Singularity.
     Two dense communities connected by a bottleneck epsilon.
     Cross-curvature kappa < 0 causes bottleneck to contract to zero.
     """
     print("[TEST 5/6] OBL-C02-010: Ollivier-Wasserstein Ricci Curvature & Neckpinch...")
-    eps = 0.08
-    # 2-community barbell graphon matrix
+    from scipy.sparse.csgraph import shortest_path
+    from scipy.optimize import linprog
+
+    # 2-community barbell graph (unweighted adjacency)
     n_half = 4
-    W = np.ones((2 * n_half, 2 * n_half))
-    W[:n_half, n_half:] = eps
-    W[n_half:, :n_half] = eps
+    n = 2 * n_half
+    W = np.zeros((n, n))
+    # Cliques
+    W[:n_half, :n_half] = 1.0
+    W[n_half:, n_half:] = 1.0
+    np.fill_diagonal(W, 1.0) # Self-loops for lazy random walk
     
-    # Community edge curvature vs bridge edge curvature
-    # For a dense cluster, random walk measures overlap strongly -> kappa > 0
-    # For a bridge edge connecting the clusters, measures are concentrated in disjoint halves -> W1 > d -> kappa < 0
-    d_within = 1.0 # normalized graph distance
-    d_between = 2.0
+    # Bottleneck bridge
+    W[n_half-1, n_half] = 1.0
+    W[n_half, n_half-1] = 1.0
+
+    # True shortest path metric
+    D = shortest_path(W, directed=False, unweighted=True)
     
-    # Simple discrete Ollivier curvature estimate:
-    # m_x(z) = W[x, z] / deg(x)
+    # Random walk transition probabilities
     degs = np.sum(W, axis=1)
     m = W / degs[:, None]
     
-    # Wasserstein-1 distance between row 0 (community 1) and row 1 (community 1)
-    # L1 distance as upper bound on metric graph
-    w1_within = 0.5 * np.sum(np.abs(m[0] - m[1]))
-    kappa_within = 1.0 - w1_within
+    def wasserstein1(p, q, D):
+        n = len(p)
+        c = D.flatten()
+        A_eq = []
+        b_eq = []
+        for i in range(n):
+            row = np.zeros((n, n))
+            row[i, :] = 1
+            A_eq.append(row.flatten())
+            b_eq.append(p[i])
+        for j in range(n):
+            row = np.zeros((n, n))
+            row[:, j] = 1
+            A_eq.append(row.flatten())
+            b_eq.append(q[j])
+        # Solve Earth Mover's Distance
+        res = linprog(c, A_eq=A_eq, b_eq=b_eq, bounds=(0, None), method='highs')
+        return res.fun
     
-    # Wasserstein-1 distance between row 0 (community 1) and row n_half (community 2)
-    # Almost all mass of m[0] is in 0..n_half-1, all mass of m[n_half] is in n_half..2*n_half-1
-    w1_bridge = 0.5 * np.sum(np.abs(m[0] - m[n_half])) * 2.0 # distance across bridge
-    kappa_bridge = 1.0 - w1_bridge
+    # Curvature within community
+    w1_within = wasserstein1(m[0], m[1], D)
+    kappa_within = 1.0 - w1_within / D[0, 1]
+    
+    # Curvature across bottleneck bridge
+    x, y = n_half-1, n_half
+    w1_bridge = wasserstein1(m[x], m[y], D)
+    kappa_bridge = 1.0 - w1_bridge / D[x, y]
     
     print(f"  Ollivier curvature within community: kappa_int = {kappa_within:.2f} > 0")
     print(f"  Ollivier curvature across bottleneck: kappa_ext = {kappa_bridge:.2f} < 0")
     assert kappa_within > 0.1, "Internal community curvature should be strictly positive!"
     assert kappa_bridge < -0.1, "Bottleneck bridge curvature should be strictly negative!"
     
-    # Evolve under Ricci flow: d/dt W_bridge = -2 * kappa_ext * W_bridge
-    # Since kappa_bridge < 0, if sign convention is dot{W} = -2*(-|kappa|) W = +... wait!
-    # In Ricci flow: dg/dt = -2 Ric. High positive Ricci shrinks metric distance, negative expands metric distance.
-    # In network weight convention: W = 1/d, so negative curvature contracts conductance to 0!
-    print("  [PASS] Neckpinch negative curvature sign confirmed; topological disconnection verified.")
+    print("  [PASS] Neckpinch negative curvature sign confirmed via true Optimal Transport;")
 
-def test_obl_013_tensor_ring_wilson_loop():
+def test_obl_013_tensor_ring_wilson_loop() -> None:
     """
     OBL-C02-013: Contracted Tensor Ring Continuum Limit to Non-Abelian Wilson Loop.
     Z_k = Tr(A_1 ... A_k) converges to Tr(P exp(oint A(s) ds)) with rate O(1/k).

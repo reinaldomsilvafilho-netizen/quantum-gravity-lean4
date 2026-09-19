@@ -19,7 +19,11 @@ def mittag_leffler(beta, z, terms=60):
             break
     return res
 
-def test_simplicial_laplacian_symbol_and_cartan():
+def test_simplicial_laplacian_symbol_and_cartan() -> None:
+
+    """
+    Battery 1: Testing Simplicial Dispersion Symbol & Cartan Metric Emergence...
+    """
     print("Battery 1: Testing Simplicial Dispersion Symbol & Cartan Metric Emergence...")
     m = 3
     alpha = 1.5
@@ -47,7 +51,11 @@ def test_simplicial_laplacian_symbol_and_cartan():
     assert rel_diff < 1e-4, f"Cartan metric convergence failed: {rel_diff}"
     print("  [PASS] Emergence of A_{m-1} Cartan metric in long-wavelength limit verified.")
 
-def test_simplicial_laplacian_self_adjoint():
+def test_simplicial_laplacian_self_adjoint() -> None:
+
+    """
+    \nBattery 2: Testing Self-Adjointness and Positivity of Simplicial Laplacian...
+    """
     print("\nBattery 2: Testing Self-Adjointness and Positivity of Simplicial Laplacian...")
     # Discrete grid test in 2D
     N = 16
@@ -91,7 +99,11 @@ def test_simplicial_laplacian_self_adjoint():
     print(f"  Energy <u, -Delta u> = {energy_u:.4e} >= 0")
     print("  [PASS] Self-adjointness and positive semi-definiteness verified.")
 
-def test_nlse_conservation_laws():
+def test_nlse_conservation_laws() -> None:
+
+    """
+    \nBattery 3: Testing Global Conservation of Mass and Energy in Simplicial NLSE...
+    """
     print("\nBattery 3: Testing Global Conservation of Mass and Energy in Simplicial NLSE...")
     # Time-stepping simulation of 1D Simplicial NLSE: i hbar psi_t = -hbar^2/(2M) Delta psi - kappa |psi|^(2*sigma) psi
     N = 64
@@ -153,7 +165,11 @@ def test_nlse_conservation_laws():
     assert d_energy < 1e-4, f"Energy conservation violated: {d_energy}"
     print("  [PASS] Mass and Hamiltonian energy conserved identically.")
 
-def test_modulational_instability():
+def test_modulational_instability() -> None:
+
+    """
+    \nBattery 4: Testing Simplicial Modulational Instability...
+    """
     print("\nBattery 4: Testing Simplicial Modulational Instability...")
     hbar = 1.0
     M = 1.0
@@ -179,7 +195,11 @@ def test_modulational_instability():
     assert abs(growth_rate - gamma_max_theory) < 1e-12, "Max growth rate mismatch"
     print("  [PASS] Modulational instability criterion and maximum growth rate verified.")
 
-def test_mittag_leffler_anomalous_diffusion():
+def test_mittag_leffler_anomalous_diffusion() -> None:
+
+    """
+    \nBattery 5: Testing Mittag-Leffler Propagator & Subdiffusive Scaling...
+    """
     print("\nBattery 5: Testing Mittag-Leffler Propagator & Subdiffusive Scaling...")
     # Test beta = 1: should reduce to exact standard exponential e^(-a t)
     beta_1 = 1.0
@@ -197,7 +217,11 @@ def test_mittag_leffler_anomalous_diffusion():
     assert 0.0 < ml_half < 1.0, "Subdiffusive propagator out of physical bounds"
     print("  [PASS] Mittag-Leffler anomalous diffusion propagator verified.")
 
-def test_anisotropic_msd_covariance_tensor():
+def test_anisotropic_msd_covariance_tensor() -> None:
+
+    """
+    \nBattery 6: Testing Anisotropic MSD Covariance Tensor Scaling...
+    """
     print("\nBattery 6: Testing Anisotropic MSD Covariance Tensor Scaling...")
     m = 3
     alpha = 1.2
@@ -225,7 +249,11 @@ def test_anisotropic_msd_covariance_tensor():
     print(f"  Principal dispersion axis ratio = {eval_ratio:.4f} (Matches exact A_2 root system 3:1)")
     print("  [PASS] Anisotropic MSD covariance tensor rigorously verified.")
 
-def test_inverse_permeability_reconstruction():
+def test_inverse_permeability_reconstruction() -> None:
+
+    """
+    \nBattery 7: Testing Inverse Engine (Permeability & Memory Parameter Inversion)...
+    """
     print("\nBattery 7: Testing Inverse Engine (Permeability & Memory Parameter Inversion)...")
     m_true = 3
     alpha_true = 1.45

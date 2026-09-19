@@ -21,7 +21,7 @@ all_tests_passed = True
 # ==============================================================================
 banner("BATTERY 1: Fourier Multiplier Representation (OBL-C05-001)")
 
-def test_fourier_multiplier():
+def test_fourier_multiplier() -> None:
     global all_tests_passed
     m, n = 3, 2
     alpha = 1.5
@@ -96,7 +96,7 @@ test_fourier_multiplier()
 # ==============================================================================
 banner("BATTERY 2: Sharp Sobolev Regularity Shift & Critical Parameter (OBL-C05-002, 003)")
 
-def test_sobolev_trace_shift():
+def test_sobolev_trace_shift() -> None:
     global all_tests_passed
     m, n = 3, 2
     dim_penalty = (m - n) / 2.0  # = 0.5
@@ -146,7 +146,7 @@ test_sobolev_trace_shift()
 # ==============================================================================
 banner("BATTERY 3: Dual Simplicial Extension Operator Adjointness (OBL-C05-004)")
 
-def test_adjoint_duality():
+def test_adjoint_duality() -> None:
     global all_tests_passed
     # We verify the L^2 duality: <R_{3->2}^alpha u, v>_{L^2(R^2)} = <u, E_{2->3}^alpha v>_{L^2(R^3)}
     # Discretize on a compact box in R^3 and R^2
@@ -199,7 +199,7 @@ test_adjoint_duality()
 # ==============================================================================
 banner("BATTERY 4: Coupled 3D-2D-1D Mass Conservation & Energy Dissipation (OBL-C05-005, 006)")
 
-def test_coupled_system():
+def test_coupled_system() -> None:
     global all_tests_passed
     # Simulate a discrete coupled transmission system:
     # u(x, y, z): 3D Bulk (N x N x N) on [0, L]^3
@@ -297,7 +297,7 @@ test_coupled_system()
 # ==============================================================================
 banner("BATTERY 5: Tomographic Inversion & Gibbs Ringing Suppression (OBL-C05-007, 008)")
 
-def test_tomography_and_gibbs():
+def test_tomography_and_gibbs() -> None:
     global all_tests_passed
     # Compare standard sharp Fourier filter (which produces Gibbs oscillations at a step edge)
     # vs Beta-kernel smooth roll-off K_alpha(k) ~ (1 + |k|^2)^{-alpha/2}
@@ -352,7 +352,7 @@ test_tomography_and_gibbs()
 # ==============================================================================
 banner("BATTERY 6: Barycentric Ratio Preservation on Simplicial Hypergraphs (OBL-C05-009)")
 
-def test_barycentric_preservation():
+def test_barycentric_preservation() -> None:
     global all_tests_passed
     # Two points in Delta_{m-1}: x1, x2 with barycentric coordinates c_j >= 0, sum c_j = 1
     m = 4
@@ -393,7 +393,7 @@ test_barycentric_preservation()
 # ==============================================================================
 banner("BATTERY 7: Siegel-Wishart Matrix Beta Operator & Zonal Harmonics (OBL-C05-010, 011)")
 
-def test_siegel_wishart_zonal():
+def test_siegel_wishart_zonal() -> None:
     global all_tests_passed
     m = 2
     # Matrix parameters A, B > (m-1)/2 * I_m = 0.5 * I_2

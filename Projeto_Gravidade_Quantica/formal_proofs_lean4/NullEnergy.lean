@@ -13,8 +13,11 @@
 
 namespace QuantumGravity
 
-/-- Lemma: Every squared integer is non-negative, derived constructively from natural absolute value. -/
-theorem sq_nonneg (a : Int) : a * a ≥ 0 := by
+/-- Lemma: The square of every integer is non-negative, derived constructively from the
+    natural-number absolute value (`Int.natAbs`) rather than assumed as an axiom.
+    Named `mul_self_nonneg` (not `sq_nonneg`) since the statement is about `a * a`,
+    matching the naming convention used when no `HPow`/`sq` notation is involved. -/
+theorem mul_self_nonneg (a : Int) : a * a ≥ 0 := by
   rw [← Int.natAbs_mul_self]
   omega
 
@@ -32,9 +35,9 @@ theorem hilbert_schmidt_nonneg (components : List Int) :
   | nil =>
     dsimp [hilbertSchmidtNormSq]
     omega
-  | cons x xs ih =>
+  | cons x xs _ =>
     dsimp [hilbertSchmidtNormSq]
-    have hx := sq_nonneg x
+    have hx := mul_self_nonneg x
     omega
 
 /-- Structure representing a contracted matter gradient vector k^mu nabla_mu Psi in End(C^chi). -/

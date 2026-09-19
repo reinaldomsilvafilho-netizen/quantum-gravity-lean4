@@ -8,7 +8,11 @@ Author: Reinaldo Maia Silva-Filho
 import numpy as np
 import math
 
-def battery1_de_rham_winding():
+def battery1_de_rham_winding() -> None:
+
+    """
+    === Battery 1: De Rham Logarithmic 1-Forms & Integer Winding ===
+    """
     print("=== Battery 1: De Rham Logarithmic 1-Forms & Integer Winding ===")
     # W = 1/(2pi) \oint ( -(y-y0)dx + (x-x0)dy ) / ((x-x0)^2 + (y-y0)^2)
     obstacle = np.array([2.0, 3.0])
@@ -42,7 +46,11 @@ def battery1_de_rham_winding():
         assert err < 1e-4, f"Battery 1 failed for k={k}"
     print("Battery 1 PASSED: 100% exact integer winding recovery.\n")
 
-def battery2_nonabelian_holonomy():
+def battery2_nonabelian_holonomy() -> None:
+
+    """
+    === Battery 2: Non-Abelian Flat Holonomy & Commutator Distinction ===
+    """
     print("=== Battery 2: Non-Abelian Flat Holonomy & Commutator Distinction ===")
     # su(2) generators: i * Pauli matrices / 2
     sigma_x = np.array([[0, 1], [1, 0]], dtype=complex)
@@ -80,7 +88,11 @@ def battery2_nonabelian_holonomy():
     assert dist_identity > 0.5, "Non-abelian holonomy must detect commutator loop"
     print("Battery 2 PASSED: Non-abelian holonomy strictly separates commutator loops from trivial loops.\n")
 
-def battery3_medial_axis_bch_stability():
+def battery3_medial_axis_bch_stability() -> None:
+
+    """
+    === Battery 3: Medial Axis Gauge Retraction & BCH Stability ===
+    """
     print("=== Battery 3: Medial Axis Gauge Retraction & BCH Stability ===")
     # Connection A(r) ~ alpha / r.
     # When r -> 0 (near obstacle), ||A|| -> infty, BCH diverges unless ds < pi / ||A||
@@ -103,7 +115,11 @@ def battery3_medial_axis_bch_stability():
     assert step_ratio > 1000, "Medial axis must provide massive step stabilization"
     print("Battery 3 PASSED: Medial axis eliminates BCH series singularity divergence.\n")
 
-def battery4_gauss_bonnet_compactification():
+def battery4_gauss_bonnet_compactification() -> None:
+
+    """
+    === Battery 4: Gauss-Bonnet Angular Accumulation & Winding Cutoff K_max ===
+    """
     print("=== Battery 4: Gauss-Bonnet Angular Accumulation & Winding Cutoff K_max ===")
     D_omega = 10.0 # Domain diameter
     kappa_direct = 0.8
@@ -132,7 +148,11 @@ def battery4_gauss_bonnet_compactification():
             assert kappa_tight > kappa_direct, f"Winding k={k} should exceed direct curvature"
     print(f"Battery 4 PASSED: Infinite search tree is compactified to finite set |k| <= {K_max}.\n")
 
-def battery5_covering_space_unfolding():
+def battery5_covering_space_unfolding() -> None:
+
+    """
+    === Battery 5: Universal Covering Space Lift & Immersion Unfolding ===
+    """
     print("=== Battery 5: Universal Covering Space Lift & Immersion Unfolding ===")
     # Figure-8 immersed curve in R^2: gamma(t) = (sin(t), sin(2t)), t in [0, 2*pi]
     # Self-intersection occurs at t = 0 and t = pi where (x, y) = (0, 0)
@@ -175,7 +195,11 @@ def battery5_covering_space_unfolding():
     assert dist_4d > 0.5, "Must be separated in universal covering space"
     print("Battery 5 PASSED: Irreducible immersion unfolds into an injective simple embedding in covering space.\n")
 
-def battery6_frenet_chebyshev_convexification():
+def battery6_frenet_chebyshev_convexification() -> None:
+
+    """
+    === Battery 6: Intrinsic Frenet-Chebyshev Convexification vs Knot Runge Oscillations ===
+    """
     print("=== Battery 6: Intrinsic Frenet-Chebyshev Convexification vs Knot Runge Oscillations ===")
     # Compare direct curvature control vs Cartesian spline
     # On a circular contact arc of radius R = 2.0, exact optimal curvature is kappa(s) = 1/R = 0.5
@@ -203,7 +227,11 @@ def battery6_frenet_chebyshev_convexification():
     assert dev_frenet < 1e-3, "Frenet representation must yield exact flat Chebyshev plateau"
     print("Battery 6 PASSED: Frenet convexification completely eliminates Cartesian knot oscillations.\n")
 
-def battery7_teardrop_loop_benchmark():
+def battery7_teardrop_loop_benchmark() -> None:
+
+    """
+    === Battery 7: Quantitative Teardrop Loop Benchmark (Hairpin Turn) ===
+    """
     print("=== Battery 7: Quantitative Teardrop Loop Benchmark (Hairpin Turn) ===")
     # Obstacle at (0, 0) with radius R_obs = 1.0. Corridor width w = 0.5.
     # Hairpin turn from (-2, -1) to (-2, 1).

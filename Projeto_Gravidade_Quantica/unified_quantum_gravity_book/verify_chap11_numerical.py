@@ -9,7 +9,11 @@ import numpy as np
 import scipy.linalg as la
 import math
 
-def battery1_relative_entropy_qfi_hessian():
+def battery1_relative_entropy_qfi_hessian() -> None:
+
+    """
+    === Battery 1: Quantum Relative Entropy Hessian vs BKM/Fisher Metric ===
+    """
     print("=== Battery 1: Quantum Relative Entropy Hessian vs BKM/Fisher Metric ===")
     p = np.array([0.75, 0.25])
     rho0 = np.diag(p)
@@ -48,7 +52,11 @@ def battery1_relative_entropy_qfi_hessian():
     assert err_d2 < 1e-4, "Second variation must match BKM relative entropy Hessian"
     print("Battery 1 PASSED: Relative entropy Hessian matches exact Kubo-Mori-Bogoliubov metric.\n")
 
-def battery2_first_law_entanglement():
+def battery2_first_law_entanglement() -> None:
+
+    """
+    === Battery 2: First Law of Entanglement Entropy ===
+    """
     print("=== Battery 2: First Law of Entanglement Entropy ===")
     sigma = np.diag([0.5, 0.3, 0.15, 0.05])
     H = -la.logm(sigma)
@@ -74,7 +82,11 @@ def battery2_first_law_entanglement():
     assert err < 1e-5, "First law of entanglement must hold"
     print("Battery 2 PASSED: First Law of Entanglement Entropy verified.\n")
 
-def battery3_cmera_fubini_study_ads():
+def battery3_cmera_fubini_study_ads() -> None:
+
+    """
+    === Battery 3: Continuous MERA Fubini-Study Metric Pullback to AdS ===
+    """
     print("=== Battery 3: Continuous MERA Fubini-Study Metric Pullback to AdS ===")
     u_vals = [-2.0, -1.0, 0.0]
     for u in u_vals:
@@ -86,7 +98,11 @@ def battery3_cmera_fubini_study_ads():
         assert abs(g_xx_expected - math.exp(2*u)) < 1e-12
     print("Battery 3 PASSED: cMERA entanglement scaling rigorously recovers the Anti-de Sitter metric.\n")
 
-def battery4_level_set_mcf_ryu_takayanagi():
+def battery4_level_set_mcf_ryu_takayanagi() -> None:
+
+    """
+    === Battery 4: Level-Set Mean Curvature Flow on Ryu-Takayanagi Semicircle ===
+    """
     print("=== Battery 4: Level-Set Mean Curvature Flow on Ryu-Takayanagi Semicircle ===")
     R = 2.0
     N = 100
@@ -112,7 +128,11 @@ def battery4_level_set_mcf_ryu_takayanagi():
     assert diff_area > 0.0, "Ryu-Takayanagi semicircle must strictly minimize the area functional"
     print("Battery 4 PASSED: Continuous Ryu-Takayanagi area law verified under mean curvature minimization.\n")
 
-def battery5_ashtekar_wilson_loop_limit():
+def battery5_ashtekar_wilson_loop_limit() -> None:
+
+    """
+    === Battery 5: Spin Network Contraction & Ashtekar Wilson Loop Dyson Limit ===
+    """
     print("=== Battery 5: Spin Network Contraction & Ashtekar Wilson Loop Dyson Limit ===")
     sigma_x = np.array([[0, 1], [1, 0]], dtype=complex)
     sigma_y = np.array([[0, -1j], [1j, 0]], dtype=complex)
@@ -151,7 +171,11 @@ def battery5_ashtekar_wilson_loop_limit():
     assert prev_err < 1e-4, "Discrete product must converge to continuum Wilson loop"
     print("Battery 5 PASSED: Discrete spin network contracts to continuous Ashtekar Wilson loop with O(1/k) Dyson rate.\n")
 
-def battery6_lqg_area_spectrum():
+def battery6_lqg_area_spectrum() -> None:
+
+    """
+    === Battery 6: Loop Quantum Gravity Area Spectrum & Casimir Quantization ===
+    """
     print("=== Battery 6: Loop Quantum Gravity Area Spectrum & Casimir Quantization ===")
     gamma_BI = 0.2375
     G_N = 1.0
@@ -171,7 +195,11 @@ def battery6_lqg_area_spectrum():
         prev_area = area
     print("Battery 6 PASSED: Loop Quantum Gravity area spectrum Casimir quantization verified.\n")
 
-def battery7_graphon_ricci_polymer_surgery():
+def battery7_graphon_ricci_polymer_surgery() -> None:
+
+    """
+    === Battery 7: Graphon Ricci Flow Neckpinch Surgery on Polymer Bottlenecks ===
+    """
     print("=== Battery 7: Graphon Ricci Flow Neckpinch Surgery on Polymer Bottlenecks ===")
     epsilon = 0.05
     c = 1.2

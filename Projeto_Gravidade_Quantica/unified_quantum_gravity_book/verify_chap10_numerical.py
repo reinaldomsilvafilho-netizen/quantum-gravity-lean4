@@ -8,7 +8,11 @@ Author: Reinaldo Maia Silva-Filho
 import numpy as np
 import math
 
-def battery1_fisher_rao_connection():
+def battery1_fisher_rao_connection() -> None:
+
+    """
+    === Battery 1: Regularized Fisher-Rao Information Metric & Christoffel Symbols ===
+    """
     print("=== Battery 1: Regularized Fisher-Rao Information Metric & Christoffel Symbols ===")
     mu, sigma = 1.5, 0.8
     lambda0 = 1e-3
@@ -32,7 +36,11 @@ def battery1_fisher_rao_connection():
     assert err < 1e-4, "Battery 1 failed on Christoffel symbol"
     print("Battery 1 PASSED: Fisher-Rao metric and connection compatibility verified.\n")
 
-def battery2_kfac_kronecker_factorization():
+def battery2_kfac_kronecker_factorization() -> None:
+
+    """
+    === Battery 2: K-FAC Block-Diagonal Kronecker Factorization ===
+    """
     print("=== Battery 2: K-FAC Block-Diagonal Kronecker Factorization ===")
     d_in, d_out = 32, 16
     D = d_in * d_out # 512 parameters
@@ -57,7 +65,11 @@ def battery2_kfac_kronecker_factorization():
     assert err < 1e-10, "K-FAC Kronecker inverse failed"
     print("Battery 2 PASSED: K-FAC linear complexity inversion matches exact dense tensor inversion.\n")
 
-def battery3_wasserstein_langevin_regularity():
+def battery3_wasserstein_langevin_regularity() -> None:
+
+    """
+    === Battery 3: Microscopic Langevin SDE vs Macroscopic Wasserstein Flow ===
+    """
     print("=== Battery 3: Microscopic Langevin SDE vs Macroscopic Wasserstein Flow ===")
     # Under Fokker-Planck equation, the macroscopic density mean evolves smoothly:
     # d/dt E[theta] = - E[theta] -> E[theta](t) = theta_0 * exp(-t)
@@ -88,7 +100,11 @@ def battery3_wasserstein_langevin_regularity():
     assert micro_quad_var > 1.0, "Microscopic flow must exhibit Brownian diffusion"
     print("Battery 3 PASSED: Macroscopic Wasserstein framing resolves the microscopic infinite curvature paradox.\n")
 
-def battery4_hessian_trace_flat_minima():
+def battery4_hessian_trace_flat_minima() -> None:
+
+    """
+    === Battery 4: Terminal Loss Hessian Trace Bound via Minimax Curvature ===
+    """
     print("=== Battery 4: Terminal Loss Hessian Trace Bound via Minimax Curvature ===")
     D = 100
     lambda_max_F = 2.5
@@ -101,7 +117,11 @@ def battery4_hessian_trace_flat_minima():
         assert empirical_trace <= theoretical_bound, "Hessian trace bound violated"
     print("Battery 4 PASSED: Minimax curvature strictly bounds terminal Hessian sharpness.\n")
 
-def battery5_pac_bayesian_generalization():
+def battery5_pac_bayesian_generalization() -> None:
+
+    """
+    === Battery 5: PAC-Bayesian Generalization Gap Bounds ===
+    """
     print("=== Battery 5: PAC-Bayesian Generalization Gap Bounds ===")
     D = 500
     N = 10000
@@ -120,7 +140,11 @@ def battery5_pac_bayesian_generalization():
         prev_bound = gen_gap_bound
     print("Battery 5 PASSED: Generalization error bound monotonically tightens as minimax curvature decreases.\n")
 
-def battery6_barren_plateau_isometry_bypass():
+def battery6_barren_plateau_isometry_bypass() -> None:
+
+    """
+    === Battery 6: Barren Plateau Bypass via Dynamical Isometry on Stiefel Manifold ===
+    """
     print("=== Battery 6: Barren Plateau Bypass via Dynamical Isometry on Stiefel Manifold ===")
     n_qubits = 8
     dim = 2**n_qubits # 256
@@ -140,7 +164,11 @@ def battery6_barren_plateau_isometry_bypass():
     assert ratio > 50.0, "Dynamical isometry must preserve gradient variance"
     print("Battery 6 PASSED: Stiefel submanifold routing prevents Haar measure concentration.\n")
 
-def battery7_frenet_natural_gradient_chebyshev():
+def battery7_frenet_natural_gradient_chebyshev() -> None:
+
+    """
+    === Battery 7: Frenet Natural Gradient Scheduling & Chebyshev Equioscillation ===
+    """
     print("=== Battery 7: Frenet Natural Gradient Scheduling & Chebyshev Equioscillation ===")
     N_steps = 100
     s = np.linspace(0, 1, N_steps)

@@ -10,21 +10,29 @@ namespace QuantumGravity
 
 open Category
 
+axiom emergentMetricMap : AbstractMetric → LorentzianMetric
+axiom emergentPosDefMap : ∀ g, QFI_NonDegenerate g → PositiveDefinite3D (emergentMetricMap g)
+axiom emergentCobordismMetric : String → LorentzianMetric
+axiom emergentLapseMap : ∀ s, ADM_Lapse_Smooth (emergentCobordismMetric s)
+axiom emergentEinsteinMap : ∀ s, Einstein_Equations_Satisfied (emergentCobordismMetric s)
+
 /-- Assignment on Objects: maps Continuous Tensor Varieties to Cauchy Hypersurfaces via QFI. -/
-def objectMap (T : ContinuousTensorVariety) : CauchyHypersurface :=
+noncomputable def objectMap (T : ContinuousTensorVariety) : CauchyHypersurface :=
   { name := "Sigma(" ++ toString (repr T.M) ++ ")",
-    dim := 3,
-    positive_definite := T.qfi_nondegenerate }
+    dim := T.M.dim,
+    metric := emergentMetricMap T.metric,
+    positive_definite := emergentPosDefMap T.metric T.qfi_nondegenerate }
 
 /-- Assignment on elementary gradient flow steps to elementary Lorentzian cobordisms. -/
-def stepMap {T1 T2 : ContinuousTensorVariety}
+noncomputable def stepMap {T1 T2 : ContinuousTensorVariety}
     (step : FlowStep T1 T2) : CobordismStep (objectMap T1) (objectMap T2) :=
   { cobordism_name := "Cob(" ++ step.trajectory_name ++ ")",
-    adm_lapse_smooth := true,
-    einstein_satisfied := true }
+    metric_4d := emergentCobordismMetric step.trajectory_name,
+    adm_lapse_smooth := emergentLapseMap step.trajectory_name,
+    einstein_satisfied := emergentEinsteinMap step.trajectory_name }
 
 /-- Assignment on morphism paths via recursive functorial mapping. -/
-def mapPath {T1 T2 : ContinuousTensorVariety} :
+noncomputable def mapPath {T1 T2 : ContinuousTensorVariety} :
     FlowMorphism T1 T2 → CobordismMorphism (objectMap T1) (objectMap T2)
   | .nil _ => .nil _
   | .cons e p => .cons (stepMap e) (mapPath p)
@@ -51,7 +59,7 @@ theorem map_comp_preservation {T1 T2 T3 : ContinuousTensorVariety}
     exact ih q
 
 /-- The Emergent Spacetime Functor F: CTensMan -> Cob(3+1). -/
-def EmergentSpacetimeFunctor : Functor ContinuousTensorVariety CauchyHypersurface where
+noncomputable def EmergentSpacetimeFunctor : Functor ContinuousTensorVariety CauchyHypersurface where
   obj := objectMap
   map := mapPath
   map_id := map_id_preservation

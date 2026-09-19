@@ -9,13 +9,14 @@ import numpy as np
 import scipy.special as sp
 import scipy.integrate as integrate
 
-def binom_cont(x, y):
+def binom_cont(x: float, y: float) -> float:
     """Continuous binomial coefficient using gammaln for numerical stability."""
     if y < 0 or y > x:
         return 0.0
     return np.exp(sp.gammaln(x + 1.0) - sp.gammaln(y + 1.0) - sp.gammaln(x - y + 1.0))
 
-def test_stifel_and_digamma_pde():
+def test_stifel_and_digamma_pde() -> None:
+    """Test Stifel recurrence and Digamma PDE system."""
     print("Battery 1: Testing Global Stifel Recurrence & Digamma PDE System...")
     x, y = 4.7, 2.3
     
@@ -39,7 +40,8 @@ def test_stifel_and_digamma_pde():
     assert err_dy < 1e-5, f"Digamma PDE in y failed: rel_err={err_dy}"
     print(f"  [PASS] Digamma PDEs verified: err_x = {err_dx:.2e}, err_y = {err_dy:.2e}")
 
-def test_row_integral_and_trigonometric():
+def test_row_integral_and_trigonometric() -> None:
+    """Test 2D continuous row integral and trigonometric factorization."""
     print("\nBattery 2: Testing 2D Continuous Row Integral & Trigonometric Factorization...")
     for x in [2.0, 5.0, 10.0]:
         # Direct quadrature
@@ -60,7 +62,8 @@ def test_row_integral_and_trigonometric():
         print(f"  x = {x:4.1f} | I_quad = {I_quad:9.4f} | I_trig = {I_trig:9.4f} | J(x) = {J_val:.5f} | rel_err = {err:.2e}")
     print("  [PASS] Asymptotic convergence J(x) -> 1 as x -> infty confirmed.")
 
-def test_euler_maclaurin_defect():
+def test_euler_maclaurin_defect() -> None:
+    """Test simplicial Euler-Maclaurin face defect recurrence."""
     print("\nBattery 3: Testing Simplicial Euler-Maclaurin Face Defect Recurrence...")
     for n in [3, 5, 8]:
         I2, _ = integrate.quad(lambda y: binom_cont(n, y), 0, n)
@@ -72,7 +75,11 @@ def test_euler_maclaurin_defect():
         assert abs(I2 - model_2) < 1.0, "Defect model out of bound"
     print("  [PASS] Simplicial face defect relation verified.")
 
-def test_fibonacci_diagonals_and_laplace():
+def test_fibonacci_diagonals_and_laplace() -> None:
+
+    """
+    \nBattery 4: Testing Continuous Fibonacci Diagonals & Laplace Method...
+    """
     print("\nBattery 4: Testing Continuous Fibonacci Diagonals & Laplace Method...")
     phi = (1.0 + np.sqrt(5.0)) / 2.0
     for x in [4.0, 8.0, 12.0]:
@@ -83,7 +90,11 @@ def test_fibonacci_diagonals_and_laplace():
     assert abs(ratio - 1.0) < 0.05, f"Fibonacci asymptotic scaling ratio {ratio} deviates from 1"
     print("  [PASS] Continuous Fibonacci diagonal scaling phi^(x+1)/sqrt(5) verified.")
 
-def test_alternating_row_integral():
+def test_alternating_row_integral() -> None:
+
+    """
+    \nBattery 5: Testing Alternating Row Integrals & Odd Integer Vanishing...
+    """
     print("\nBattery 5: Testing Alternating Row Integrals & Odd Integer Vanishing...")
     for k in [0, 1, 2, 3]:
         x_odd = 2 * k + 1
@@ -92,7 +103,11 @@ def test_alternating_row_integral():
         assert abs(A_val) < 1e-12, f"Alternating row integral did not vanish for odd x={x_odd}: {A_val}"
     print("  [PASS] Alternating row integrals vanish to machine precision for odd integers.")
 
-def test_simplex_moments_and_cartan_metric():
+def test_simplex_moments_and_cartan_metric() -> None:
+
+    """
+    \nBattery 6: Testing Simplex Moments & Emergence of A_{m-1} Cartan Metric...
+    """
     print("\nBattery 6: Testing Simplex Moments & Emergence of A_{m-1} Cartan Metric...")
     x = 6.0
     m = 3
@@ -132,7 +147,11 @@ def test_simplex_moments_and_cartan_metric():
     print(f"  Cartan Matrix A_2 Gram identity: k^T A_2 k = {quad_form:.6f} == sum k_j^2 = {sum_sq:.6f} (diff = {err_cartan:.2e})")
     print("  [PASS] Simplex moments and Cartan Lie algebra metric verified.")
 
-def test_inverse_layer_reconstruction():
+def test_inverse_layer_reconstruction() -> None:
+
+    """
+    \nBattery 7: Testing Inverse Process Engine (State / Layer Reconstruction)...
+    """
     print("\nBattery 7: Testing Inverse Process Engine (State / Layer Reconstruction)...")
     x_true = 7.4285
     I_target, _ = integrate.quad(lambda y: binom_cont(x_true, y), 0, x_true)
@@ -149,6 +168,8 @@ def test_inverse_layer_reconstruction():
         val_p, _ = integrate.quad(lambda y: binom_cont(x_est + eps, y), 0, x_est + eps)
         val_m, _ = integrate.quad(lambda y: binom_cont(x_est - eps, y), 0, x_est - eps)
         dval = (val_p - val_m) / (2 * eps)
+        if abs(dval) < 1e-12:
+            break
         x_est -= res / dval
         
     recon_err = abs(x_est - x_true)

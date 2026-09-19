@@ -20,7 +20,7 @@ structure ExtrinsicCurvatureData where
 def contracted_extrinsic_x3 (data : ExtrinsicCurvatureData) : Int :=
   3 * data.shear_sq + data.tr_K * data.tr_K
 
-/-- Theorem 5.1 (Shear-Trace Decomposition Identity):
+/-- Theorem 5.1 (Algebraic Reduction of Shear-Trace Decomposition Identity):
     3 * (K^2 - K_{ij} K^{ij}) = 2 * K^2 - 3 * ||sigma||^2.
     Proves the exact algebraic reduction of the kinetic ADM gravitational energy. -/
 theorem shear_trace_decomposition (data : ExtrinsicCurvatureData) :
@@ -46,7 +46,7 @@ def hamiltonian_constraint_x3 (adm : ADMHamiltonianData) : Int :=
 def is_maximal_slicing (adm : ADMHamiltonianData) : Prop :=
   adm.curv.tr_K = 0
 
-/-- Theorem 5.2 (Minimax Shear Under Maximal Slicing):
+/-- Theorem 5.2 (Algebraic Reduction of Minimax Shear Under Maximal Slicing):
     If a Cauchy surface satisfies maximal slicing (Tr(K) = 0) and the on-shell
     Hamiltonian constraint 3 * H = 0, then the gravitational shear is exactly bounded:
     3 * ||sigma||^2 = 3 * R - rho_matter_x3 <= 3 * R. -/
@@ -59,7 +59,7 @@ theorem minimax_shear_maximal_slicing (adm : ADMHamiltonianData)
   rw [h_max] at h_onshell
   omega
 
-/-- Theorem 5.3 (Gravitational Shear Bounded by Spatial Curvature):
+/-- Theorem 5.3 (Algebraic Reduction of Gravitational Shear Bounded by Spatial Curvature):
     Under maximal slicing and non-negative matter density (rho >= 0),
     the gravitational shear satisfies 3 * ||sigma||^2 <= 3 * R. -/
 theorem shear_bounded_by_curvature (adm : ADMHamiltonianData)
@@ -80,7 +80,7 @@ structure LapseVariation where
 def lapse_variation_x2 (v : LapseVariation) : Int :=
   - (v.volume_factor * v.H_val)
 
-/-- Theorem 5.4 (Wheeler-DeWitt Stationarity Equivalence):
+/-- Theorem 5.4 (Algebraic Reduction of Wheeler-DeWitt Stationarity Equivalence):
     Stationarity with respect to lapse variation vanishes if and only if
     the on-shell Hamiltonian constraint vanishes:
     delta S / delta N = 0 <-> H = 0. -/
@@ -108,7 +108,7 @@ structure ShiftVariation where
 def shift_variation (v : ShiftVariation) : Int :=
   v.volume_factor * v.M_val
 
-/-- Theorem 5.5 (Diffeomorphism Constraint Stationarity Equivalence):
+/-- Theorem 5.5 (Algebraic Reduction of Diffeomorphism Constraint Stationarity Equivalence):
     Stationarity with respect to shift variation vanishes if and only if
     the on-shell momentum constraint vanishes:
     delta S / delta N^i = 0 <-> M_i = 0. -/

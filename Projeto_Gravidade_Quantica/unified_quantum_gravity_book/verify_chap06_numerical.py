@@ -32,7 +32,7 @@ all_tests_passed = True
 # ==============================================================================
 banner("BATTERY 1: Harmonic Decimation & Resolvent Convergence (OBL-C06-001, 002)")
 
-def test_harmonic_decimation():
+def test_harmonic_decimation() -> None:
     global all_tests_passed
     u_V0 = np.array([0.0, 1.0, 2.0])
     E0 = (u_V0[0] - u_V0[1])**2 + (u_V0[1] - u_V0[2])**2 + (u_V0[2] - u_V0[0])**2
@@ -80,7 +80,7 @@ test_harmonic_decimation()
 # ==============================================================================
 banner("BATTERY 2: Fractal Dimensions & Weyl Eigenvalue Law (OBL-C06-003, 004)")
 
-def test_fractal_dimensions_weyl():
+def test_fractal_dimensions_weyl() -> None:
     global all_tests_passed
     test_dims = [2, 3, 4]
     
@@ -146,7 +146,7 @@ test_fractal_dimensions_weyl()
 # ==============================================================================
 banner("BATTERY 3: Thermodynamic Multifractal Free Energy tau(q) (OBL-C06-005)")
 
-def test_multifractal_free_energy():
+def test_multifractal_free_energy() -> None:
     global all_tests_passed
     sigma0_sq = 0.5
     
@@ -176,7 +176,7 @@ test_multifractal_free_energy()
 # ==============================================================================
 banner("BATTERY 4: Exact Legendre Singularity Spectrum f(alpha) (OBL-C06-006)")
 
-def test_legendre_spectrum():
+def test_legendre_spectrum() -> None:
     global all_tests_passed
     sigma0_sq = 0.5
     alpha0 = np.log(2.0)
@@ -219,7 +219,7 @@ test_legendre_spectrum()
 # ==============================================================================
 banner("BATTERY 5: Renyi Dimensions & Barnes G-Function Entropy Defect (OBL-C06-007, 008)")
 
-def test_renyi_and_barnes_entropy():
+def test_renyi_and_barnes_entropy() -> None:
     global all_tests_passed
     sigma0_sq = 0.5
     D1_analytic = np.log(2.0) - 0.5
@@ -264,7 +264,7 @@ test_renyi_and_barnes_entropy()
 # ==============================================================================
 banner("BATTERY 6: Meromorphic Nodal Zero Lattice & Box Dimension (OBL-C06-009, 010)")
 
-def test_nodal_zero_lattice():
+def test_nodal_zero_lattice() -> None:
     global all_tests_passed
     scales_j = np.array([2, 3, 4, 5, 6, 7])
     box_sizes = 2.0**(-scales_j)
@@ -294,7 +294,7 @@ test_nodal_zero_lattice()
 # ==============================================================================
 banner("BATTERY 7: Inverse Process Parameter Reconstruction Engine")
 
-def test_inverse_parameter_reconstruction():
+def test_inverse_parameter_reconstruction() -> None:
     global all_tests_passed
     target_m = 2.0
     observed_ds = 2.0 * np.log(target_m + 1.0) / np.log(target_m + 3.0)
