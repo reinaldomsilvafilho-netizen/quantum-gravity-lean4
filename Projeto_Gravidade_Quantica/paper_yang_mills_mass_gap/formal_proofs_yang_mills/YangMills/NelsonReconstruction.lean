@@ -5,7 +5,7 @@
   Author: Reinaldo M. Silva-Filho (PPGEE/DES, UFLA)
 -/
 
-namespace UnconditionalYM.NelsonReconstruction
+namespace YangMills.NelsonReconstruction
 
 /-- OBL-U3-001: GNS State Norm Positivity on Gauge-Invariant Algebra. -/
 structure GNSState where
@@ -32,4 +32,4 @@ theorem nelson_parisi_wu_isomorphism (lambda_1 : Nat) (h : lambda_1 > 0) :
 theorem unconditional_relativistic_mass_gap (C_N Lambda_MS : Nat) (hC : C_N > 0) (hL : Lambda_MS > 0) :
     C_N * Lambda_MS > 0 := Nat.mul_pos hC hL
 
-end UnconditionalYM.NelsonReconstruction
+end YangMills.NelsonReconstruction

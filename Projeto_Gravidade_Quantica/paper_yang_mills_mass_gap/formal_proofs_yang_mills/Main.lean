@@ -1,4 +1,4 @@
-import UnconditionalYM
+import YangMills
 
 def main : IO Unit := do
   IO.println "============================================================"

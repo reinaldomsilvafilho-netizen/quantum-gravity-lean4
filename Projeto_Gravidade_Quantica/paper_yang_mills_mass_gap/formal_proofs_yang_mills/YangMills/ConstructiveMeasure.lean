@@ -5,7 +5,7 @@
   Author: Reinaldo M. Silva-Filho (PPGEE/DES, UFLA)
 -/
 
-namespace UnconditionalYM.ConstructiveMeasure
+namespace YangMills.ConstructiveMeasure
 
 /-- OBL-U1-001: Simplicial Gribov-Zwanziger Dirichlet Form Positivity. -/
 structure SimplicialDirichletForm where
@@ -47,4 +47,4 @@ structure RadonBesovMeasure where
 theorem sigma_additive_measure_existence (μ : RadonBesovMeasure) :
     μ.moment_fourth > 0 := μ.moment_finite
 
-end UnconditionalYM.ConstructiveMeasure
+end YangMills.ConstructiveMeasure

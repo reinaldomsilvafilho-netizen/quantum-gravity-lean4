@@ -5,7 +5,7 @@
   Author: Reinaldo M. Silva-Filho (PPGEE/DES, UFLA)
 -/
 
-namespace UnconditionalYM.EntropicRepulsion
+namespace YangMills.EntropicRepulsion
 
 /-- OBL-U2-001: Gribov Horizon Obstacle Definition. -/
 structure GribovObstacle where
@@ -51,4 +51,4 @@ theorem unconditional_bakry_emery_positivity (n gamma_sq : Nat) (hn : n ≥ 2) (
   have h_prod : 2 * (2 * n - (n - 1)) > 0 := by omega
   exact Nat.mul_pos h_prod hg
 
-end UnconditionalYM.EntropicRepulsion
+end YangMills.EntropicRepulsion
