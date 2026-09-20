@@ -1,0 +1,7 @@
+{"plugins": [],
+ "package": "SpectralGraphBeyondSpectrum",
+ "options": {},
+ "name": "SpectralGraph.SimplicialBetaLaplacian",
+ "isModule": false,
+ "importArts": {},
+ "dynlibs": []}

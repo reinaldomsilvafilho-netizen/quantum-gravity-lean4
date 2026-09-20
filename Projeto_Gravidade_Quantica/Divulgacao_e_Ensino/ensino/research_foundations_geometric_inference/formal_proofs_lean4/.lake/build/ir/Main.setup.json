@@ -1,0 +1,13 @@
+{"plugins": [],
+ "package": "GeometricInference",
+ "options": {},
+ "name": "Main",
+ "isModule": false,
+ "importArts":
+ {"GeometricInference.SimplicialPrior":
+  [["C:\\Users\\monar\\Documents\\antigravity\\resilient-turing\\research_foundations_geometric_inference\\formal_proofs_lean4\\.lake\\build\\lib\\lean\\GeometricInference\\SimplicialPrior.olean"]],
+  "GeometricInference.ReachErgodicity":
+  [["C:\\Users\\monar\\Documents\\antigravity\\resilient-turing\\research_foundations_geometric_inference\\formal_proofs_lean4\\.lake\\build\\lib\\lean\\GeometricInference\\ReachErgodicity.olean"]],
+  "GeometricInference.MinimaxFisher":
+  [["C:\\Users\\monar\\Documents\\antigravity\\resilient-turing\\research_foundations_geometric_inference\\formal_proofs_lean4\\.lake\\build\\lib\\lean\\GeometricInference\\MinimaxFisher.olean"]]},
+ "dynlibs": []}

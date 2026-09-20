@@ -1,0 +1,27 @@
+{"plugins": [],
+ "package": "BeyondTheSpectrum",
+ "options": {},
+ "name": "Main",
+ "isModule": false,
+ "importArts":
+ {"BTS.Volume2_GeometricMeasures":
+  [["C:\\Users\\monar\\Documents\\antigravity\\resilient-turing\\beyond_the_spectrum_files\\formal_proofs_bts\\.lake\\build\\lib\\lean\\BTS\\Volume2_GeometricMeasures.olean"]],
+  "BTS.Volume1_FunctionalRealizations":
+  [["C:\\Users\\monar\\Documents\\antigravity\\resilient-turing\\beyond_the_spectrum_files\\formal_proofs_bts\\.lake\\build\\lib\\lean\\BTS\\Volume1_FunctionalRealizations.olean"]],
+  "BTS.SymplecticFloer":
+  [["C:\\Users\\monar\\Documents\\antigravity\\resilient-turing\\beyond_the_spectrum_files\\formal_proofs_bts\\.lake\\build\\lib\\lean\\BTS\\SymplecticFloer.olean"]],
+  "BTS.SimplicialResidues":
+  [["C:\\Users\\monar\\Documents\\antigravity\\resilient-turing\\beyond_the_spectrum_files\\formal_proofs_bts\\.lake\\build\\lib\\lean\\BTS\\SimplicialResidues.olean"]],
+  "BTS.NonlinearLaplacian":
+  [["C:\\Users\\monar\\Documents\\antigravity\\resilient-turing\\beyond_the_spectrum_files\\formal_proofs_bts\\.lake\\build\\lib\\lean\\BTS\\NonlinearLaplacian.olean"]],
+  "BTS.NonEquilibriumThermo":
+  [["C:\\Users\\monar\\Documents\\antigravity\\resilient-turing\\beyond_the_spectrum_files\\formal_proofs_bts\\.lake\\build\\lib\\lean\\BTS\\NonEquilibriumThermo.olean"]],
+  "BTS.MicrolocalSheaves":
+  [["C:\\Users\\monar\\Documents\\antigravity\\resilient-turing\\beyond_the_spectrum_files\\formal_proofs_bts\\.lake\\build\\lib\\lean\\BTS\\MicrolocalSheaves.olean"]],
+  "BTS.FedererReach":
+  [["C:\\Users\\monar\\Documents\\antigravity\\resilient-turing\\beyond_the_spectrum_files\\formal_proofs_bts\\.lake\\build\\lib\\lean\\BTS\\FedererReach.olean"]],
+  "BTS.BipartiteKernelHolography":
+  [["C:\\Users\\monar\\Documents\\antigravity\\resilient-turing\\beyond_the_spectrum_files\\formal_proofs_bts\\.lake\\build\\lib\\lean\\BTS\\BipartiteKernelHolography.olean"]],
+  "BTS":
+  [["C:\\Users\\monar\\Documents\\antigravity\\resilient-turing\\beyond_the_spectrum_files\\formal_proofs_bts\\.lake\\build\\lib\\lean\\BTS.olean"]]},
+ "dynlibs": []}

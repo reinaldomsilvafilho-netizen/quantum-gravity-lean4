@@ -1,0 +1,1 @@
+You've hit your session limit · resets 4:40pm (America/Sao_Paulo)

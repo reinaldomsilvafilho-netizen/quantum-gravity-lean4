@@ -1,0 +1,15 @@
+{"plugins": [],
+ "package": "UnconditionalYM",
+ "options": {},
+ "name": "Main",
+ "isModule": false,
+ "importArts":
+ {"UnconditionalYM.NelsonReconstruction":
+  [["C:\\Users\\monar\\Documents\\antigravity\\resilient-turing\\unconditional_yang_mills_trilogy\\formal_proofs_unconditional\\.lake\\build\\lib\\lean\\UnconditionalYM\\NelsonReconstruction.olean"]],
+  "UnconditionalYM.EntropicRepulsion":
+  [["C:\\Users\\monar\\Documents\\antigravity\\resilient-turing\\unconditional_yang_mills_trilogy\\formal_proofs_unconditional\\.lake\\build\\lib\\lean\\UnconditionalYM\\EntropicRepulsion.olean"]],
+  "UnconditionalYM.ConstructiveMeasure":
+  [["C:\\Users\\monar\\Documents\\antigravity\\resilient-turing\\unconditional_yang_mills_trilogy\\formal_proofs_unconditional\\.lake\\build\\lib\\lean\\UnconditionalYM\\ConstructiveMeasure.olean"]],
+  "UnconditionalYM":
+  [["C:\\Users\\monar\\Documents\\antigravity\\resilient-turing\\unconditional_yang_mills_trilogy\\formal_proofs_unconditional\\.lake\\build\\lib\\lean\\UnconditionalYM.olean"]]},
+ "dynlibs": []}

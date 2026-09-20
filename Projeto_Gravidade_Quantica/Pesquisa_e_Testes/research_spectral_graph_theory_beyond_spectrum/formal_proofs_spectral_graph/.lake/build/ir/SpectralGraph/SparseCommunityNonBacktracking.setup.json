@@ -1,0 +1,7 @@
+{"plugins": [],
+ "package": "SpectralGraphBeyondSpectrum",
+ "options": {},
+ "name": "SpectralGraph.SparseCommunityNonBacktracking",
+ "isModule": false,
+ "importArts": {},
+ "dynlibs": []}
