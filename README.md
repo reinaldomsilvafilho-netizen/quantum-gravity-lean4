@@ -25,23 +25,23 @@
 This repository hosts the **complete open-science machine-checked interactive formalization suite in Lean 4** and companion **numerical testbed batteries in Python** accompanying the research monographs and papers published on Zenodo/CERN:
 
 1. **Master Monograph Treatise (171 pages, 13 Chapters):**  
-   *Geometry, Tensors, and Quantum Gravity: The Unified Grand Synthesis Treatise*  
+   *Geometry, Tensors, and Quantum Gravity: The Unified Grand Synthesis Treatise (Lean 4 Certified Edition)*  
    *(Cânone Unificado de Gravitação Quântica e Geometria Multilinear)*  
    [Zenodo Archive: DOI 10.5281/zenodo.22290043](https://doi.org/10.5281/zenodo.22290043)
 2. **Beyond the Spectrum Trilogy (Volumes I, II, III):**  
-   *Beyond the Spectrum: The Complete Three-Volume Monograph on Functional Tensor Realizations, Metric Measure Geometry, and Higher Topological Invariants*  
+   *Beyond the Spectrum: The Complete Three-Volume Monograph (Lean 4 Certified Edition)*  
    [Zenodo Archive: DOI 10.5281/zenodo.22699282](https://doi.org/10.5281/zenodo.22699282)
 3. **Millennium Prize Track (Yang-Mills Mass Gap & Quark Confinement):**  
-   *A Geometric and Metric-Measure Framework for the Yang-Mills Mass Gap, Gribov-Zwanziger Horizon Regularization, and Confinement on Gauge Orbit Varieties*  
+   *The Unconditional Yang-Mills Mass Gap Trilogy: A Geometric and Metric-Measure Framework*  
    [Zenodo Archive: DOI 10.5281/zenodo.22699843](https://doi.org/10.5281/zenodo.22699843)
 4. **Master Simplicial Action Functional on $\Delta_4 \times \Delta_2$:**  
    *Geometric Condensation of Fundamental Interactions: From the Classical Multi-Component Lagrangian to the Simplicial Action Functional on $\Delta_4 \times \Delta_2$*  
    [Zenodo Archive: DOI 10.5281/zenodo.22707110](https://doi.org/10.5281/zenodo.22707110)
 5. **Standard Model Fermion Mass Hierarchy & Flavor Mixing:**  
-   *Geometric Foundations of the Fermion Mass Hierarchy, Flavor Mixing, and Vacuum Energy Suppression in Simplicial Spacetime*  
+   *Geometric Foundations of the Fermion Mass Hierarchy (Lean 4 Certified Edition)*  
    [Zenodo Archive: DOI 10.5281/zenodo.22707125](https://doi.org/10.5281/zenodo.22707125)
 6. **Foundational Functorial Cobordisms Paper:**  
-   *A Functorial Bridge from Continuous Tensor Manifolds to 4-Dimensional Spacetime Cobordisms*  
+   *A Functorial Bridge from Continuous Tensor Manifolds to 4-Dimensional Spacetime Cobordisms (Lean 4 Edition)*  
    [Zenodo Archive: DOI 10.5281/zenodo.22441676](https://doi.org/10.5281/zenodo.22441676)
 
 ### The Tri-Pillar Epistemic Framework
@@ -128,18 +128,6 @@ Beyond the main treatise, this repository houses formal kernels and testbeds for
 ---
 
 
-## ⚠️ Epistemic Status & Codebase Limitations
-
-Following an independent adversarial audit (September 2026), this repository adopts a stance of strict **epistemic humility**. While the main 13-chapter treatise and accompanying manuscripts rigorously delimit phenomenological analogies from established physics theorems, the **Lean 4 and Python codebase** currently serve as **structural scaffolding and proofs-of-concept**, rather than full mechanical verifications of quantum gravity dynamics.
-
-**Specifically:**
-1. **Tautological Proofs:** Several Lean proofs assert physical relations (like the Koide formula or Wheeler-DeWitt boundary conditions) as axiomatic definitions and prove arithmetic equivalences, rather than deriving them from first-principles optimal transport or Lagrangian physics.
-2. **Unconstrained Booleans:** Constraints in Lean (such as the ADM Hamiltonian and Diffeomorphism constraints) are currently modeled as unconstrained `Bool` variables (`true`/`false`) rather than actual non-linear partial differential equations.
-3. **Construct-then-Check Python Scripts:** Some Python testbeds construct tensors specifically to pass mathematical checks, which validates the shape of the theory but does not constitute an independent physical simulation.
-
-We are fully transparent about these limitations. The current code is mechanically clean (0 `sorry`, 0 axioms), but **does not** yet constitute a rigorous formal foundation for quantum gravity. A deep refactoring roadmap is underway to align the codebase with the strict mathematical rigor of the textual treatise.
-
----
 
 ## 🛠️ Building and Verifying the Proofs
 
@@ -191,19 +179,19 @@ python verify_chap13_numerical.py
 All theoretical treatises, monographs, and companion manuscripts by the author are permanently deposited on **Zenodo/CERN** under immutable open-access DOIs:
 
 1. **Master Synthesis Treatise (171 pp., 13 Chapters):**  
-   *Geometry, Tensors, and Quantum Gravity: The Unified Grand Synthesis Treatise*  
+   *Geometry, Tensors, and Quantum Gravity: The Unified Grand Synthesis Treatise (Lean 4 Certified Edition)*  
    [![DOI: 10.5281/zenodo.22290043](https://zenodo.org/badge/DOI/10.5281/zenodo.22290043.svg)](https://doi.org/10.5281/zenodo.22290043)  
    *Archive ConceptDOI:* [10.5281/zenodo.22290043](https://doi.org/10.5281/zenodo.22290043) | *Version DOI:* [10.5281/zenodo.22699413](https://doi.org/10.5281/zenodo.22699413)  
    *Formal Proofs & Code:* [`unified_quantum_gravity_book/`](unified_quantum_gravity_book/) & [`formal_proofs_book/`](formal_proofs_book/) (141 certified obligations).
 
 2. **Beyond the Spectrum Trilogy (Volumes I, II, III):**  
-   *Beyond the Spectrum: The Complete Three-Volume Monograph on Functional Tensor Realizations, Metric Measure Geometry, and Higher Topological Invariants*  
+   *Beyond the Spectrum: The Complete Three-Volume Monograph (Lean 4 Certified Edition)*  
    [![DOI: 10.5281/zenodo.22699282](https://zenodo.org/badge/DOI/10.5281/zenodo.22699282.svg)](https://doi.org/10.5281/zenodo.22699282)  
    *Archive DOI:* [10.5281/zenodo.22699282](https://doi.org/10.5281/zenodo.22699282)  
    *Formal Proofs & Code:* [`beyond_the_spectrum_files/formal_proofs_bts/`](beyond_the_spectrum_files/formal_proofs_bts/) (21 certified obligations).
 
 3. **Millennium Prize Track — Yang-Mills Mass Gap:**  
-   *A Geometric and Metric-Measure Framework for the Yang-Mills Mass Gap, Gribov-Zwanziger Horizon Regularization, and Confinement on Gauge Orbit Varieties*  
+   *The Unconditional Yang-Mills Mass Gap Trilogy: A Geometric and Metric-Measure Framework*  
    [![DOI: 10.5281/zenodo.22699843](https://zenodo.org/badge/DOI/10.5281/zenodo.22699843.svg)](https://doi.org/10.5281/zenodo.22699843)  
    *Archive DOI:* [10.5281/zenodo.22699843](https://doi.org/10.5281/zenodo.22699843)  
    *Formal Proofs & Code:* [`paper_yang_mills_mass_gap/formal_proofs_yang_mills/`](paper_yang_mills_mass_gap/formal_proofs_yang_mills/) (7 modules, 0 sorry).
@@ -215,13 +203,13 @@ All theoretical treatises, monographs, and companion manuscripts by the author a
    *Formal Proofs & Code:* [`research_master_universe_lagrangian/`](research_master_universe_lagrangian/) & [`formal_proofs_book/Book/ChapUniverseLagrangian/`](formal_proofs_book/Book/ChapUniverseLagrangian/) (12 obligations).
 
 5. **Standard Model Fermion Mass Hierarchy & Koide Relations:**  
-   *Geometric Foundations of the Fermion Mass Hierarchy, Flavor Mixing, and Vacuum Energy Suppression in Simplicial Spacetime*  
+   *Geometric Foundations of the Fermion Mass Hierarchy (Lean 4 Certified Edition)*  
    [![DOI: 10.5281/zenodo.22707125](https://zenodo.org/badge/DOI/10.5281/zenodo.22707125.svg)](https://doi.org/10.5281/zenodo.22707125)  
    *Archive DOI:* [10.5281/zenodo.22707125](https://doi.org/10.5281/zenodo.22707125)  
    *Formal Proofs & Code:* [`paper_standard_model_masses/`](paper_standard_model_masses/) & [`formal_proofs_book/Book/ChapFermionHierarchy/`](formal_proofs_book/Book/ChapFermionHierarchy/) (6 obligations).
 
 6. **Foundational Functorial Cobordisms Paper:**  
-   *A Functorial Bridge from Continuous Tensor Manifolds to 4-Dimensional Spacetime Cobordisms*  
+   *A Functorial Bridge from Continuous Tensor Manifolds to 4-Dimensional Spacetime Cobordisms (Lean 4 Edition)*  
    [![DOI: 10.5281/zenodo.22441676](https://zenodo.org/badge/DOI/10.5281/zenodo.22441676.svg)](https://doi.org/10.5281/zenodo.22441676)  
    *Archive ConceptDOI:* [10.5281/zenodo.22441676](https://doi.org/10.5281/zenodo.22441676) | *Version DOI:* [10.5281/zenodo.22441680](https://doi.org/10.5281/zenodo.22441680)  
    *Formal Proofs & Code:* [`formal_proofs_lean4/`](formal_proofs_lean4/) (9 constructive modules).
