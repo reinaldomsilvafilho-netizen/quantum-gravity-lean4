@@ -129,6 +129,17 @@ Beyond the main treatise, this repository houses formal kernels and testbeds for
 
 
 
+## ⚠️ Scope of the Lean 4 Codebase (Logical Scaffolding)
+
+The mathematical and geometric theory presented in the PDFs (such as the Unconditional Yang-Mills Framework and the Master Treatise) is designed for advanced theoretical physics and functional analysis. 
+
+To ensure the architecture of these theoretical proposals is internally consistent, this repository utilizes **Lean 4**. It is important to clarify the scope of this formalization for peer reviewers:
+The current Lean codebase serves as a **Structural Proof-of-Concept** and a **Logical Dependency Graph**, rather than a full, continuous mechanical simulation of the physical dynamics (such as deriving the mass gap from Wightman axioms). 
+
+Specifically, the code rigorously verifies algebraic equivalences, structural relations, and the absence of circular definitions (achieving `0 sorry`), using discrete proxy types to map the geometric properties. The deep transition to fully continuous `Mathlib` functional analysis (e.g., real metric-measure spaces and non-linear PDEs) is the long-term roadmap of the project.
+
+---
+
 ## 🛠️ Building and Verifying the Proofs
 
 ### Prerequisites
