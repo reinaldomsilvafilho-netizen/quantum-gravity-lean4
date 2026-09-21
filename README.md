@@ -24,8 +24,8 @@
 
 This repository hosts the **complete open-science machine-checked interactive formalization suite in Lean 4** and companion **numerical testbed batteries in Python** accompanying the research monographs and papers published on Zenodo/CERN:
 
-1. **Master Monograph Treatise (171 pages, 13 Chapters):**  
-   *Geometry, Tensors, and Quantum Gravity: The Unified Grand Synthesis Treatise (Lean 4 Certified Edition)*  
+1. **Master Monograph Treatise (181 pages, 13 Chapters):**  
+   *Geometry, Tensors, and Quantum Gravity:*  
    *(Cânone Unificado de Gravitação Quântica e Geometria Multilinear)*  
    [Zenodo Archive: DOI 10.5281/zenodo.22290043](https://doi.org/10.5281/zenodo.22290043)
 2. **Beyond the Spectrum Trilogy (Volumes I, II, III):**  
@@ -67,21 +67,7 @@ Every theoretical claim across the treatise is systematically verified across th
 
 ## 📢 The Geometry of the Whole: Multilingual Scientific Outreach Papers
 
-For researchers, students, and the scientific public, the complete conceptual narrative of the **50 fundamental discoveries and exact analytical deductions** of the theory on $\Delta_4 \times \Delta_2$ has been released in **5 major world languages**. 
 
-Per our open-science repository policy, **the compiled publication-grade PDF documents of this scientific outreach paper are included directly in this repository** for immediate download and offline reading:
-
-| Language | PDF Document (Included in Repo) | GitHub Markdown Article | Pages / Size |
-| :--- | :--- | :--- | :--- |
-| **English (EN)** | [📄 `paper_scientific_outreach_quantum_gravity_en.pdf`](paper_scientific_outreach_quantum_gravity_en.pdf) | [📖 English Markdown](paper_scientific_outreach_quantum_gravity_en.md) | 23 pages (784 KB) |
-| **Português (PT)** | [📄 `paper_divulgacao_cientifica_quantum_gravity.pdf`](paper_divulgacao_cientifica_quantum_gravity.pdf) | [📖 Português Markdown](paper_divulgacao_cientifica_quantum_gravity.md) | 30 pages (842 KB) |
-| **Español (ES)** | [📄 `paper_scientific_outreach_quantum_gravity_es.pdf`](paper_scientific_outreach_quantum_gravity_es.pdf) | [📖 Español Markdown](paper_scientific_outreach_quantum_gravity_es.md) | 32 pages (749 KB) |
-| **Français (FR)** | [📄 `paper_scientific_outreach_quantum_gravity_fr.pdf`](paper_scientific_outreach_quantum_gravity_fr.pdf) | [📖 Français Markdown](paper_scientific_outreach_quantum_gravity_fr.md) | 32 pages (754 KB) |
-| **Mandarin (ZH)** | [📄 `paper_scientific_outreach_quantum_gravity_zh.pdf`](paper_scientific_outreach_quantum_gravity_zh.pdf) | [📖 简体中文 Markdown](paper_scientific_outreach_quantum_gravity_zh.md) | 21 pages (406 KB) |
-
-*(Note: In accordance with our Zenodo Open Publisher protocol, full treatise monographic book binaries and LaTeX source trees remain deposited under permanent DOIs on Zenodo/CERN to preserve Git repository cleanliness).*
-
----
 
 ## 🗺️ Master Mapping: Book Chapters, Lean 4 Proofs & Python Testbeds
 
@@ -131,7 +117,7 @@ Beyond the main treatise, this repository houses formal kernels and testbeds for
 
 ## ⚠️ Scope of the Lean 4 Codebase (Logical Scaffolding)
 
-The mathematical and geometric theory presented in the PDFs (such as the Unconditional Yang-Mills Framework and the Master Treatise) is designed for advanced theoretical physics and functional analysis. 
+The mathematical and geometric theory presented in the PDFs (Yang-Mills Framework and the Quantum Gravity Treatise) is designed for advanced theoretical physics and functional analysis. 
 
 To ensure the architecture of these theoretical proposals is internally consistent, this repository utilizes **Lean 4**. It is important to clarify the scope of this formalization for peer reviewers:
 The current Lean codebase serves as a **Structural Proof-of-Concept** and a **Logical Dependency Graph**, rather than a full, continuous mechanical simulation of the physical dynamics (such as deriving the mass gap from Wightman axioms). 
@@ -189,7 +175,7 @@ python verify_chap13_numerical.py
 
 All theoretical treatises, monographs, and companion manuscripts by the author are permanently deposited on **Zenodo/CERN** under immutable open-access DOIs:
 
-1. **Master Synthesis Treatise (171 pp., 13 Chapters):**  
+1. **Master Synthesis Treatise (181 pp., 13 Chapters):**  
    *Geometry, Tensors, and Quantum Gravity: The Unified Grand Synthesis Treatise (Lean 4 Certified Edition)*  
    [![DOI: 10.5281/zenodo.22290043](https://zenodo.org/badge/DOI/10.5281/zenodo.22290043.svg)](https://doi.org/10.5281/zenodo.22290043)  
    *Archive ConceptDOI:* [10.5281/zenodo.22290043](https://doi.org/10.5281/zenodo.22290043) | *Version DOI:* [10.5281/zenodo.22699413](https://doi.org/10.5281/zenodo.22699413)  
@@ -202,7 +188,7 @@ All theoretical treatises, monographs, and companion manuscripts by the author a
    *Formal Proofs & Code:* [`beyond_the_spectrum_files/formal_proofs_bts/`](beyond_the_spectrum_files/formal_proofs_bts/) (21 certified obligations).
 
 3. **Millennium Prize Track — Yang-Mills Mass Gap:**  
-   *The Unconditional Yang-Mills Mass Gap Trilogy: A Geometric and Metric-Measure Framework*  
+   *Yang-Mills Mass Gap Trilogy: A Geometric and Metric-Measure Framework*  
    [![DOI: 10.5281/zenodo.22699843](https://zenodo.org/badge/DOI/10.5281/zenodo.22699843.svg)](https://doi.org/10.5281/zenodo.22699843)  
    *Archive DOI:* [10.5281/zenodo.22699843](https://doi.org/10.5281/zenodo.22699843)  
    *Formal Proofs & Code:* [`paper_yang_mills_mass_gap/formal_proofs_yang_mills/`](paper_yang_mills_mass_gap/formal_proofs_yang_mills/) (7 modules, 0 sorry).
