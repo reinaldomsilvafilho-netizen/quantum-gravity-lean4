@@ -22,7 +22,7 @@
 
 ## 🌌 Overview & Epistemological Architecture
 
-This repository hosts the **complete open-science machine-checked interactive formalization suite in Lean 4** and companion **numerical testbed batteries in Python** accompanying the research monographs and papers published on Zenodo/CERN:
+This repository hosts the **complete open-science machine-checked interactive formalization suite in Lean 4** and companion **numerical testbed batteries in Python** accompanying the research monographs and papers published on Zenodo/CERN. This is the first round of publications and still in development, any suggestions and critiques are welcome and will be credited, the next step will be to share in arXiv:
 
 1. **Master Monograph Treatise (181 pages, 13 Chapters):**  
    *Geometry, Tensors, and Quantum Gravity:*  
