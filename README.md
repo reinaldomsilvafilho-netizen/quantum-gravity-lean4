@@ -7,7 +7,7 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 **Author:** Reinaldo Maia Silva-Filho
-**Affiliation:** Graduate Program in Statistics and Agricultural Experimentation (PPGEE/DES), Federal University of Lavras (UFLA), Lavras, MG, Brazil
+**Affiliation:** Master's student, Postgraduate Program in Statistics and Agricultural Experimentation (PPGEE/DES), Federal University of Lavras (UFLA), Lavras, MG, Brazil
 **E-mail:** `reinaldo.filho1@estudante.ufla.br` | **ORCID:** [0009-0003-8068-3330](https://orcid.org/0009-0003-8068-3330)
 **Funding:** CAPES, Finance Code 001
 
