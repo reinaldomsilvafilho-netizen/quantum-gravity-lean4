@@ -30,7 +30,9 @@ Compact state for any model continuing this project. Read this first, then `Proj
   - `scripts/` and `verify/scripts/`: independent checks
 - `submission_package_jhep_scipost/`, `Manuscritos_Avulsos/`: companion papers, each with `CORRECTIONS_2026-09-25.md`.
 - `build_pdfs_safe.py`: compiles everything and replaces a PDF only on success.
-- `zenodo_upload_AAAA-MM-DD/`: release bundle (PDFs, notes, descriptions).
+- `releases/AAAA-MM-DD/`: release bundle (PDFs, notes, descriptions), outside git except the notes.
+- `_arquivo/`: superseded material, with a `MANIFESTO.tsv` of every move (outside git). Layout and versioning rules: `ORGANIZACAO_E_VERSOES.md`.
+- Each paper lives in one folder under `Manuscritos_Avulsos/`, holding its `.tex`, notes, scripts and Lean.
 - The author's Claude Docs:
   - *Árvore de Conjecturas*: open conjectures, proof routes, relevance
   - *Guia do Projeto*: full workflow, gates, stop criteria
@@ -50,7 +52,7 @@ Compact state for any model continuing this project. Read this first, then `Proj
 - **Audit coverage:** all 13 chapters and 3 companion papers are audited. Chapters 1–13 are corrected and have had layer-2 re-checks.
 - **Findings:** 21 are verified in WORKPLAN.
 - **Build:** clean; the master volume has 191 pages.
-- **Release:** v2.3 is bundled in `zenodo_upload_2026-09-26/` and pushed to GitHub (commit 45a2dbc).
+- **Release:** v2.3 is bundled in `releases/2026-09-26/` and pushed to GitHub (commit 45a2dbc).
 - **Key facts to keep straight:**
   - The d_s(τ) erfc closed form is prior art: Sotiriou–Visser–Weinfurtner, PRD 84 (2011) 104018.
   - Observational effects are 10⁵⁶ times or more below reach.

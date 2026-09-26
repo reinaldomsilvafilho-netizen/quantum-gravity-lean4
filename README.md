@@ -63,7 +63,7 @@ Outcomes:
 | [`Projeto_Gravidade_Quantica/Manuscritos_Avulsos/`](Projeto_Gravidade_Quantica/Manuscritos_Avulsos/) | LaTeX sources, corrections notes and check scripts of the Yang–Mills and fermion-mass papers |
 | [`Projeto_Gravidade_Quantica/formal_proofs_book/`](Projeto_Gravidade_Quantica/formal_proofs_book/) | Lean 4 files named after the monograph chapters (naming skeleton, see below) |
 | [`Projeto_Gravidade_Quantica/formal_proofs_lean4/`](Projeto_Gravidade_Quantica/formal_proofs_lean4/) | Lean 4 files for the functorial-cobordism paper (same status) |
-| [`Projeto_Gravidade_Quantica/paper_yang_mills_mass_gap/`](Projeto_Gravidade_Quantica/paper_yang_mills_mass_gap/) | Numerical scripts and Lean 4 files for the Yang–Mills paper (same status) |
+| [`Projeto_Gravidade_Quantica/Manuscritos_Avulsos/paper_yang_mills_mass_gap/`](Projeto_Gravidade_Quantica/Manuscritos_Avulsos/paper_yang_mills_mass_gap/) | Numerical scripts and Lean 4 files for the Yang–Mills paper (same status) |
 
 ### What still needs updating
 

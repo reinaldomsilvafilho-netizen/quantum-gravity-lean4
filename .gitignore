@@ -14,3 +14,11 @@ Scripts_Utilitarios/
 *.tar.gz
 !README.md
 submission_package_jhep_scipost/
+
+# organização (ver Projeto_Gravidade_Quantica/ORGANIZACAO_E_VERSOES.md)
+_arquivo/
+_staging/
+*.synctex.gz
+*.toc
+*.fls
+*.fdb_latexmk
