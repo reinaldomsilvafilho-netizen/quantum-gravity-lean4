@@ -15,27 +15,39 @@
 
 ## About
 
-This repository accompanies a research monograph and several companion papers archived on Zenodo. It contains the Python scripts used to check formulas and numbers in the monograph and Lean 4 files that are an early, incomplete step towards a formalization.
+This repository accompanies a research monograph and several companion papers archived on Zenodo. It contains:
+- the LaTeX sources;
+- the records of an independent audit of the whole text;
+- the Python scripts used to check formulas and numbers;
+- Lean 4 files that are an early, incomplete step towards a formalization.
 
 This is ongoing work by a single author. Comments, criticism and corrections are welcome and will be credited.
 
-## Current status (September 2026)
+## Current status (26 September 2026)
 
-The monograph and the companion papers are being revised after an independent audit. Every theorem, proposition and numerical claim is re-checked by a referee that did not write the text. Corrections are then made in a separate pass, and each correction is checked again. As a result:
+All 13 chapters of the monograph and three companion papers have been through an independent audit, carried out in three steps:
 
-- Several statements in earlier versions were **wrong** and are being corrected or withdrawn. Others turned out to be conjectures and are now labelled as such.
-- **None of the papers claims a solution of the Yang–Mills mass-gap problem.** The corrected Yang–Mills paper states a *conditional* result: a gap follows from hypotheses that are not established.
-- **The Lean 4 code does not verify the mathematics** (see below).
-- The corrected versions will be uploaded to Zenodo as new versions of the same records. The Zenodo *concept* DOIs below always resolve to the latest version. Each new version will carry a note listing what changed.
+1. **Blind referee review.** A referee who did not write the text checks every theorem, proposition and numerical claim. The referee has not seen earlier reviews.
+2. **Separate correction.** A different pass corrects what the referee found.
+3. **Targeted re-check.** Each correction is checked again.
+
+The protocol is in [`audit/verify/PROTOCOL.md`](Projeto_Gravidade_Quantica/unified_quantum_gravity_book/audit/verify/PROTOCOL.md). The status of every finding is tracked in [`WORKPLAN.md`](Projeto_Gravidade_Quantica/unified_quantum_gravity_book/WORKPLAN.md).
+
+Outcomes:
+
+- **Errors in earlier versions.** Several statements were **wrong**. They have been corrected or withdrawn, and others are now labelled as conjectures. The corrected versions are released as new Zenodo versions. Each carries a note listing what changed and what still needs updating.
+- **New proofs.** The audit also produced new proofs. Examples: the asymptotics of continuous multinomial integrals, an inversion formula for the Radon–Beta transform, and U-turn curvature bounds in constant-curvature spaces.
+- **Yang–Mills.** **None of the papers claims a solution of the Yang–Mills mass-gap problem.** The Yang–Mills paper states a *conditional* result: a gap follows from hypotheses that are not established.
+- **Lean 4.** **The Lean 4 code does not verify the mathematics** (see below).
 
 ## Works
 
 | Work | Zenodo (concept DOI, always the latest version) | Status |
 |---|---|---|
-| *Geometry, Tensors, and Quantum Gravity* (monograph, 13 chapters) | [10.5281/zenodo.22290043](https://doi.org/10.5281/zenodo.22290043) | Under revision; all 13 chapters audited, corrections being verified |
-| *Simplicial Quantum Gravity on Δ₄ × Δ₂* (companion paper) | [10.5281/zenodo.22704111](https://doi.org/10.5281/zenodo.22704111) | Corrected against the monograph; new version pending |
-| *A Geometric and Metric-Measure Framework for the Yang–Mills Mass Gap* | [10.5281/zenodo.22301093](https://doi.org/10.5281/zenodo.22301093) | Corrected: conditional result only; new version pending |
-| *An S₃-Circulant Parametrization of Fermion Masses and Mixing* | [10.5281/zenodo.22373916](https://doi.org/10.5281/zenodo.22373916) | Corrected: fits and relations with an explicit parameter count; new version pending |
+| *Geometry, Tensors, and Quantum Gravity* (monograph, 13 chapters) | [10.5281/zenodo.22290043](https://doi.org/10.5281/zenodo.22290043) | Audited and corrected (September 2026); final consistency pass awaiting re-check |
+| *Simplicial Quantum Gravity on Δ₄ × Δ₂* (companion paper) | [10.5281/zenodo.22704111](https://doi.org/10.5281/zenodo.22704111) | Corrected against the monograph; second check pending |
+| *A Geometric and Metric-Measure Framework for the Yang–Mills Mass Gap* | [10.5281/zenodo.22301093](https://doi.org/10.5281/zenodo.22301093) | Corrected: conditional result only; second check pending |
+| *An S₃-Circulant Parametrization of Fermion Masses and Mixing* | [10.5281/zenodo.22373916](https://doi.org/10.5281/zenodo.22373916) | Corrected: fits and relations with an explicit parameter count; second check pending |
 | *Beyond the Spectrum* (three-volume monograph) | [10.5281/zenodo.22644743](https://doi.org/10.5281/zenodo.22644743) | Not yet audited |
 | *A Functorial Bridge from Continuous Tensor Manifolds to 4-Dimensional Spacetime Cobordisms* | [10.5281/zenodo.22441676](https://doi.org/10.5281/zenodo.22441676) | Not yet audited |
 
@@ -84,7 +96,12 @@ Requirements: Python 3.10+ with `numpy`, `scipy`, `sympy` and `mpmath`. Lean 4 i
 cd Projeto_Gravidade_Quantica/unified_quantum_gravity_book
 python verify_chap12_numerical.py
 python verify_chap13_numerical.py
+python audit/verify/scripts/L2_ch03_laplace_rays_table.py   # example of an audit check
 ```
+
+Each audit script compares a claim against an independent computation. It also runs a negative control: a deliberately altered formula that must fail the check.
+
+To rebuild the PDFs you need a LaTeX distribution with `pdflatex`. Run `python Projeto_Gravidade_Quantica/build_pdfs_safe.py`. It compiles every chapter, the dictionary, the master volume and the three papers, and it replaces a PDF only if the compilation succeeds.
 
 The Lean projects can be built with `lake build` inside each Lean folder. A successful build shows that the files type-check. For the reasons above, it does not show that the mathematics is correct.
 
