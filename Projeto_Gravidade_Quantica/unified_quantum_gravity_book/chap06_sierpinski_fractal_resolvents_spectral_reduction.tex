@@ -1,0 +1,215 @@
+\documentclass[11pt,a4paper]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[margin=0.9in]{geometry}
+\usepackage{amsmath,amssymb,amsthm,amsfonts}
+\usepackage{mathtools}
+\usepackage{hyperref}
+\usepackage{booktabs}
+\usepackage{cite}
+\usepackage{microtype}
+\usepackage{array}
+
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    citecolor=red,
+    urlcolor=blue
+}
+
+% Theorem Environments
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{problem}[theorem]{Problem}
+
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{assumption}[theorem]{Assumption}
+\newtheorem{example}[theorem]{Example}
+
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+\numberwithin{equation}{section}
+
+\title{\textbf{Continuous Pascal Simplexes, Sierpi\'nski Gasket Laplacians, and Multifractal Singularity Spectra}}
+\author{\textbf{Reinaldo Maia Silva-Filho} \\ \textit{Universidade Federal de Lavras (UFLA)}}
+\date{\today}
+
+
+\DeclareMathOperator*{\argmin}{argmin}
+\providecommand{\Hyp}{\mathbb{H}}
+\providecommand{\Sph}{\mathbb{S}}
+\providecommand{\II}{\mathrm{II}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\Area}{\mathrm{Area}}
+\providecommand{\Hsn}{\mathcal{H}}
+\providecommand{\BV}{\mathrm{BV}}
+\providecommand{\TV}{\mathrm{TV}}
+\providecommand{\cutnorm}[1]{\|#1\|_{\square}}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+We examine connections between the analytic continuation of Pascal's $m$-simplex and analysis on post-critically finite (p.c.f.) self-similar fractals. We recall Kigami's Laplacian on the Sierpi\'nski $m$-simplex, derive its renormalization factor $m+3$ from the level-one network, and recall the resulting spectral dimension $d_s = \frac{2\ln(m+1)}{\ln(m+3)}$ (Kigami--Lapidus). We then pose, as an explicitly specified open problem, whether non-local forms built from the Beta-kernel of Chapter~3 converge to Kigami's form; the naive construction is ill-defined, for reasons we make explicit. Using the Barnes $G$-function representation of the continuous row entropy, we prove its asymptotic expansion $\mathcal{E}(x) = \frac{x^2}{2} - \frac{x}{2}\ln x + (1 - \frac{1}{2}\ln 2\pi)x - \frac16\ln x + 2\zeta'(-1) - \frac1{12} - \frac{1}{180x^2} + \mathcal{O}(x^{-4})$, and we discuss a heuristic parabolic multifractal parametrization. Finally, we recall the classical fact that Pascal's triangle modulo $2$ has the Sierpi\'nski gasket as its scaling limit, with box-counting dimension $\ln 3/\ln 2$.
+\end{abstract}
+
+\tableofcontents
+\newpage
+
+% ==============================================================================
+\section{Introduction and Historical Context}
+% ==============================================================================
+
+The emergence of fractal structures from combinatorics is historically rooted in Lucas' Theorem (1878) \cite{lucas1878}, which states that for prime $p$, the binomial coefficient $\binom{n}{k} \pmod p$ is non-zero if and only if the base-$p$ digits of $k$ do not exceed those of $n$. In the simplest case $p=2$, the distribution of odd binomial coefficients in Pascal's triangle converges in the Hausdorff metric to the \textbf{Sierpi\'nski Gasket} $K \subset \mathbb{R}^2$ with Hausdorff dimension:
+\begin{equation}
+d_H = \frac{\ln 3}{\ln 2} \approx 1.58496.
+\end{equation}
+More generally, the Pascal $m$-pyramid modulo $2$ (layer index together with $m-1$ free multinomial indices) generates the \textbf{Sierpi\'nski $m$-Simplex} in $\mathbb{R}^{m}$, with $m+1$ self-similar pieces and Hausdorff dimension $d_H = \frac{\ln(m+1)}{\ln 2}$.
+
+Traditional analysis on fractals, pioneered by Jun Kigami and Robert Strichartz \cite{kigami2001, strichartz2006}, constructs Laplacians on self-similar sets via discrete graph Laplacians on sequence networks:
+\begin{equation}
+\Delta_{\text{Kigami}} u = \lim_{k \to \infty} r_m^k \Delta_k u,
+\end{equation}
+where $r_m = m+3$ is the harmonic renormalization factor: the cell count $m+1$ times the resistance scaling $\rho = \frac{m+3}{m+1}$ (Proposition~\ref{assump:kigami_decimation}; for $m=2$, $r_2 = 5$).
+
+In this work, expanding the continuous simplicial framework established in our foundational series \cite{silvafilho2026simplex, silvafilho2026waves, silvafilho2026inter}, we examine which links between the continuation of the Pascal simplex via Euler's Gamma function $\Gamma(z)$ and analysis on fractals can be proved. Our findings are mixed. The spectral dimension of the Sierpi\'nski simplex is Kigami's classical result, and we only recall it. A derivation of Kigami's Laplacian from the Beta-kernel operators of Chapter~3 remains open (Problem~\ref{thm:kigami_convergence}). The new result proved here is the asymptotic expansion of the continuous row entropy (Proposition~\ref{thm:multifractal}). The multifractal parametrization is a heuristic.
+
+% ==============================================================================
+\section{Beta-Kernel Decimations and Kigami's Fractal Laplacian}
+% ==============================================================================
+
+Let $K \subset \mathbb{R}^{m}$ be the regular Sierpi\'nski $m$-simplex generated by the Iterated Function System (IFS) $\mathcal{F} = \{F_1, \dots, F_{m+1}\}$ with contraction factor $r = 1/2$:
+\begin{equation}
+F_j(\mathbf{x}) = \frac{1}{2}\mathbf{x} + \frac{1}{2}\mathbf{v}_j, \quad j=1,\dots,m+1,
+\end{equation}
+where $\{\mathbf{v}_j\}_{j=1}^{m+1}$ are the vertices of a regular $m$-simplex.
+
+\begin{definition}[Decimated Simplicial Fractional Operator]
+For refinement level $k \in \mathbb{N}$ and fractional order $\alpha > 0$, we consider the \emph{formal} decimated operator on $L^2(K, \mu)$ (where $\mu$ is the normalized Hausdorff measure)
+\begin{equation}
+\label{eq:decimated_op}
+\mathcal{L}_k^\alpha u(\mathbf{x}) \coloneqq (m+3)^k \sum_{|w|=k} \Delta_{\Delta_m}^{\alpha \cdot 2^{-k}} \left(u \circ F_w\right)\left(F_w^{-1}(\mathbf{x})\right) \cdot \chi_{F_w(K)}(\mathbf{x}),
+\end{equation}
+where $w = (w_1, \dots, w_k) \in \{1, \dots, m+1\}^k$ denotes word sequences, and $\Delta_{\Delta_m}^\alpha$ is the Fractional Simplicial Laplacian. Chapter~3 defines $\Delta^\alpha_{\Delta_m}$ on $L^2(\mathbb{R}^{m-1})$, with kernel on $\Delta_{m-1}(\alpha) \subset \mathbb{R}^{m-1}$. Since $K \subset \mathbb{R}^m$, here we use the same construction one dimension higher, with the kernel on $\Delta_m(\alpha) \subset \mathbb{R}^m$ ($m+1$ parts), acting on functions on $\mathbb{R}^m$. The expression is formal, because such an operator acts on functions on $\mathbb{R}^m$, not on $K$ (see Remark~\ref{rem:naive_fails}).
+\end{definition}
+
+\begin{proposition}[Harmonic Decimation Renormalization Factor]
+\label{assump:kigami_decimation}
+Let $\Gamma_0$ be the complete graph on the vertices $p_1, \dots, p_{m+1}$ of $K$ with unit conductances. Let $\Gamma_1$ be the level-one network: its vertices are the $p_i$ and the midpoints $p_{ij} = p_{ji}$ ($i \ne j$), and each cell $F_i(K)$ carries a complete graph with unit conductances on $\{p_i\} \cup \{p_{ij} : j \ne i\}$. The trace (Schur complement) of $\Gamma_1$ on $\{p_1, \dots, p_{m+1}\}$ is the complete graph with conductances $\frac{m+1}{m+3}$. Hence the resistance scaling is $\rho = \frac{m+3}{m+1}$, and the Laplacian renormalization factor with respect to the self-similar measure (weights $\frac{1}{m+1}$) is $r_m = (m+1)\rho = m+3$. For $m = 2$, $r_2 = 5$.
+\end{proposition}
+\begin{proof}
+By symmetry the trace is a complete graph with a common conductance $c$. Impose $u(p_1) = 1$ and $u(p_j) = 0$ for $j \ne 1$, and extend $u$ harmonically. By symmetry $u(p_{1j}) = a$ for $j \ne 1$ and $u(p_{jk}) = b$ for $j, k \ne 1$. The vertex $p_{1j}$ has $m$ neighbours in each of the cells $1$ and $j$, so harmonicity gives $2ma = 1 + (m-1)a + 0 + (m-1)b$. The vertex $p_{jk}$ gives $2mb = 2a + 2(m-2)b$. Hence $b = a/2$ and $a = \frac{2}{m+3}$. The current leaving $p_1$ is $m(1 - a) = \frac{m(m+1)}{m+3}$, which equals $mc$ for the trace network, so $c = \frac{m+1}{m+3}$. This is the classical computation behind Kigami's harmonic structure on the Sierpi\'nski simplex \cite{kigami2001}.
+\end{proof}
+
+\begin{problem}[Beta-Kernel Forms and Kigami's Laplacian]
+\label{thm:kigami_convergence}
+Let $\widetilde{\mathcal{K}}_\alpha$ be the normalized Beta-kernel on $\Delta_m(\alpha) \subset \mathbb{R}^m$, let $\kappa_\alpha(\mathbf{z}) \coloneqq \frac12\big(\widetilde{\mathcal{K}}_\alpha(\mathbf{z}) + \widetilde{\mathcal{K}}_\alpha(-\mathbf{z})\big)$ be its symmetrization, and for $u \in L^2(K, \mu)$ define
+\begin{equation}
+\label{eq:beta_forms}
+\mathcal{E}_k(u) \coloneqq c_k \iint_{K \times K} \kappa_{\alpha_k}\big(2^k(\mathbf{x} - \mathbf{y})\big)\, |u(\mathbf{x}) - u(\mathbf{y})|^2 \, d\mu(\mathbf{x})\, d\mu(\mathbf{y}).
+\end{equation}
+Do there exist orders $\alpha_k > 0$ and constants $c_k > 0$ such that $\mathcal{E}_k$ converges in the sense of Mosco on $L^2(K, \mu)$ to Kigami's energy form $\mathcal{E}_K$, so that the associated generators converge to $\Delta_{\text{Kigami}}$ in the strong resolvent sense?
+\end{problem}
+
+The forms \eqref{eq:beta_forms} are integrated against $\mu$ and evaluate $u$ only on $K$, so they avoid the defects listed below. Since $\kappa_{\alpha_k}$ is bounded, each $\mathcal{E}_k$ is a bounded quadratic form on $L^2(K,\mu)$. The kernel $\kappa_{\alpha_k}(2^k(\mathbf{x}-\mathbf{y}))$ vanishes unless $2^k(\mathbf{x}-\mathbf{y}) \in \Delta_m(\alpha_k) \cup (-\Delta_m(\alpha_k))$, so only pairs at distance of order $\alpha_k 2^{-k}$ interact, and these include pairs in neighbouring level-$k$ cells. The coupling across cells is essential. If the integral were restricted to pairs lying in the same level-$k$ cell $F_w(K)$, then for $u = \mathbf{1}_{F_1(K)}$ every $\mathcal{E}_k(u)$ would vanish, since each level-$k$ cell with $k \ge 1$ lies in a single level-one cell. But $u$ is not in the domain of $\mathcal{E}_K$: for the gasket its level-$n$ renormalized graph energies equal $4(5/3)^n$. The Mosco inequality $\liminf_k \mathcal{E}_k(u_k) \ge \mathcal{E}_K(u)$ would then fail for $u_k = u$ and every choice of $\alpha_k, c_k$. For the forms \eqref{eq:beta_forms}, by contrast, $\mathcal{E}_k(\mathbf{1}_{F_1(K)}) > 0$, because pairs on opposite sides of the junction points of $F_1(K)$ interact.
+
+The Beta-kernel enters through the fixed jump kernel $\kappa_{\alpha_k}$, which may not be replaced by an arbitrary one. Without this requirement the question would be answered by Kigami's own discrete approximations. For fixed $\alpha_k = \alpha$, a scaling count suggests $c_k \asymp \big((m+1)(m+3)\big)^k$: the factor $(m+3)^k$ is the renormalization of Proposition~\ref{assump:kigami_decimation}, and $(m+1)^k$ compensates the $\mu \otimes \mu$ mass, of order $(m+1)^{-k}$, of the pairs at distance $\mathcal{O}(2^{-k})$. Non-local approximating forms with indicator kernels $\mathbf{1}_{\{|\mathbf{x}-\mathbf{y}|<r\}}$ and their subsequential $\Gamma$-limits on fractals are studied by Kumagai and Sturm \cite{kumagaisturm2005}. Two points separate Problem~\ref{thm:kigami_convergence} from that setting: Mosco convergence of the whole sequence to $\mathcal{E}_K$ itself is required, not comparability with $\mathcal{E}_K$ or convergence of a subsequence; and the support of $\kappa_\alpha$ is not invariant under the symmetry group of the simplex, so the edge directions of $K$ are weighted differently while $\mathcal{E}_K$ is invariant. We have no evidence either way.
+
+\begin{remark}[Why the naive construction fails]
+\label{rem:naive_fails}
+The direct choice, with $\alpha_k \to d_H - 1$ and the energy forms
+$\mathcal{E}_k(u,u) = (m+3)^k \sum_{|w|=k} c_k \int_{F_w(K)} d\mathbf{x}\int_{\Delta_{m}(\alpha 2^{-k})} \binom{\alpha 2^{-k}}{\mathbf{y}}|u(\mathbf{x}+\mathbf{y}) - u(\mathbf{x})|^2 d\mathbf{y}$, with Lebesgue measure $d\mathbf{x}$ on $\mathbb{R}^m$ and the kernel on $\Delta_m(\alpha 2^{-k}) \subset \mathbb{R}^m$. That construction does not work, for three reasons.
+(a) $K$ has Lebesgue measure zero, so $\int_{F_w(K)} d\mathbf{x} = 0$ and the forms vanish identically.
+(b) For $\mathbf{x} \in K$ the translate $\mathbf{x} + \mathbf{y}$ generally leaves $K$, where $u$ is undefined.
+(c) Nothing forces the weights to converge to the harmonic factors, and the choice $\alpha_k \to d_H - 1$ has no justification.
+Any positive answer requires a construction on $(K,\mu)$ itself, such as \eqref{eq:beta_forms}, for example via Mosco convergence as in \cite{kigami2001}. The renormalization factor $m+3$ is then given by Proposition~\ref{assump:kigami_decimation}.
+\end{remark}
+
+\begin{theorem}[Spectral Dimension of the Sierpi\'nski Simplex; Kigami--Lapidus \cite{kigamilapidus1993}, see also \cite{kigami2001}]
+The eigenvalue counting function of Kigami's Laplacian on the Sierpi\'nski $m$-simplex satisfies the fractal Weyl law
+\begin{equation}
+c_1 \lambda^{d_s / 2} \le N(\lambda) \le c_2 \lambda^{d_s / 2} \quad \text{for } \lambda \ge 1,
+\end{equation}
+where the spectral dimension $d_s$ is given analytically by
+\begin{equation}
+d_s = \frac{2 d_H}{d_w} = \frac{2\ln(m+1)}{\ln(m+3)}, \qquad d_w = \log_2(m+3).
+\end{equation}
+with constants $0 < c_1 \le c_2$. In general $N(\lambda)/\lambda^{d_s/2}$ has no limit: for the gasket it oscillates log-periodically. This is a classical result about Kigami's Laplacian. It does not depend on Problem~\ref{thm:kigami_convergence}.
+\end{theorem}
+
+% ==============================================================================
+\section[Multifractal Formalism via Barnes G-Function]{Multifractal Formalism \\ via the Barnes \texorpdfstring{$G$}{G}-Function}
+% ==============================================================================
+
+In the multifractal formalism of Halsey et al.\ \cite{halsey1986} (see also \cite{falconer2014}), the $L^q$-scaling exponents $\tau(q)$ and the singularity spectrum $f(\alpha)$ are defined for a \emph{measure}. One would like to define them through the moments $\int_0^x \binom{x}{y}^q dy$, but no measure with these moments has been constructed. We therefore prove only an asymptotic statement about the derivative of these moments at $q = 0$, which is the row entropy $\mathcal{E}(x)$, and keep the multifractal reading as a heuristic.
+
+\begin{proposition}[Asymptotics of the Continuous Row Entropy]
+\label{thm:multifractal}
+The continuous row entropy $\mathcal{E}(x) \coloneqq \int_0^x \ln\binom{x}{y}\,dy = x(x+1) - x\ln(2\pi) - x\ln\Gamma(x+1) + 2\ln G(x+1)$ (Chapter~3) satisfies, as $x \to \infty$,
+\begin{equation}
+\mathcal{E}(x) = \frac{1}{2}x^2 - \frac{1}{2}x\ln x + \left(1 - \frac{1}{2}\ln(2\pi)\right)x - \frac{1}{6}\ln x + 2\zeta'(-1) - \frac{1}{12} - \frac{1}{180\,x^2} + \mathcal{O}(x^{-4}).
+\end{equation}
+In particular $\mathcal{E}(x)/x^2 \to \frac12$, which is the integral $\int_0^1 H(t)\,dt$ of the binary entropy in nats.
+\end{proposition}
+
+\begin{proof}
+Insert Stirling's series $\ln\Gamma(x+1) = x\ln x - x + \frac{1}{2}\ln(2\pi x) + \frac{1}{12x} - \frac{1}{360x^3} + \mathcal{O}(x^{-5})$ and the Barnes asymptotic series $\ln G(x+1) = \frac{x^2}{2}\ln x - \frac{3x^2}{4} + \frac{x}{2}\ln(2\pi) - \frac{1}{12}\ln x + \zeta'(-1) - \frac{1}{240x^2} + \mathcal{O}(x^{-4})$ \cite{barnes1900}, whose $x^{-2}$ coefficient is $B_4/8$. The $x^2\ln x$ terms cancel between $-x\ln\Gamma(x+1)$ and $2\ln G(x+1)$. The term $\frac{1}{12x}$ contributes $-\frac{1}{12}$ at order $x^0$. At order $x^{-2}$, $-x \cdot (-\frac{1}{360x^3}) + 2 \cdot (-\frac{1}{240x^2}) = -\frac{1}{180x^2}$. Collecting the remaining terms gives the expansion. Numerically, $x^2$ times the difference between $\mathcal{E}(x)$ and the terms up to order $x^0$ tends to $-0.005556 = -1/180$. Replacing $-\frac16\ln x$ by $-\frac1{12}\ln x$ leaves an error of $0.77$ at $x = 10^4$.
+\end{proof}
+
+\begin{remark}[A heuristic parabolic multifractal parametrization]
+If one \emph{postulates} a Gaussian (log-normal) cascade approximation for the normalized continuous binomial density on dyadic scales, the $L^q$-exponents take the parabolic form $\tau(q) = (q-1)\ln 2 - \frac{\sigma_0^2}{2}q^2$. Its Legendre transform is $f(\alpha) = \ln 2 - \frac{(\alpha - \ln 2)^2}{2\sigma_0^2}$ for all real $\alpha$. This is not a theorem. No multifractal measure has been constructed from the continuous binomial coefficients, the value $\sigma_0^2 = \frac12$ is chosen rather than derived, and with this normalization $\tau(1) = -\sigma_0^2/2 \neq 0$, which departs from the standard convention $\tau(1) = 0$ for probability measures. Here the exponents are in nats per dyadic scale; the value $D_1 = \tau'(1) = \ln 2 - \frac12$ becomes a dimension in the usual sense only after division by $\ln 2$, giving $1 - \frac{1}{2\ln 2}$. The agreement of $D_1 = \ln 2 - \frac12$ with the entropy defect $\lim_{x\to\infty}(x^2\ln 2 - \mathcal{E}(x))/x^2 = \ln 2 - \frac12$ is not independent evidence: both quantities are fixed by the same value $\int_0^1 H = \frac12$ used to choose $\sigma_0^2$.
+\end{remark}
+
+\section[Self-Similar Nodal Lattices outside the Simplex]{Self-Similar Nodal Lattices in \texorpdfstring{$\mathbb{R}^2 \setminus \Delta$}{R\textasciicircum 2 \textbackslash{} Delta}}
+% ==============================================================================
+
+The binomial coefficient extends off the integers through Euler's reflection formula,
+\begin{equation}
+\label{eq:reflection}
+\binom{x}{y} = -\frac{1}{\pi}\frac{\sin(\pi y)\sin(\pi(x-y))}{\sin(\pi x)} \cdot \frac{\Gamma(y-x)\Gamma(-y)}{\Gamma(-x)},
+\end{equation}
+valid for $x \notin \mathbb{Z}$ and $y, x-y \notin \mathbb{Z}_{\ge 0}$ (by the removable-singularity convention it extends continuously to those lines). For $x \notin \mathbb{Z}$ the zeros of $\binom{x}{y}$ lie only on the lines $y \in \mathbb{Z}_{<0}$ and $x - y \in \mathbb{Z}_{<0}$. At the other integer values of $y$ and $x - y$ the zeros of the sines cancel against poles of the Gamma factors; for instance $\binom{0.5}{1} = 0.5$, while $\binom{0.5}{-1} = \binom{0.5}{1.5} = 0$. The two families of nodal lines are each parallel, so by themselves they cut the plane into parallelograms. Triangular chambers appear only when the pole lines $x \in \mathbb{Z}_{<0}$ of $\Gamma(x+1)$ are added. The formula plays no role in the dimension count below. At negative integer upper index the coefficients are $\binom{-a}{j} = (-1)^j\binom{a+j-1}{j}$ for $a \ge 1$, $j \ge 0$, so the parity pattern there is an affine image of the one at positive upper index.
+
+\begin{proposition}[Box-counting dimension of Pascal's triangle modulo $2$; classical]
+\label{prop:pascal_mod2}
+Let $P_k \coloneqq \{2^{-k}(n, j) : 0 \le j \le n < 2^k,\ \binom{n}{j} \equiv 1 \pmod 2\}$. Then $P_k$ converges in the Hausdorff metric to a set $\mathcal{S}$ affinely equivalent to the Sierpi\'nski gasket, and
+\begin{equation}
+\dim_{\text{box}}(\mathcal{S}) = \dim_H(\mathcal{S}) = \frac{\ln 3}{\ln 2}.
+\end{equation}
+The same holds for the rescaled parity pattern of $\binom{-a}{j}$, $1 \le a \le 2^k$, $0 \le j$, $a + j \le 2^k$.
+\end{proposition}
+
+\begin{proof}
+By Lucas' theorem \cite{lucas1878}, $\binom{n}{j}$ is odd if and only if every binary digit of $j$ is at most the corresponding digit of $n$. Hence the rows $0 \le n < 2^{k}$ split into three blocks, rows $n < 2^{k-1}$ and the two copies of that block translated by $(2^{k-1}, 0)$ and $(2^{k-1}, 2^{k-1})$, with the middle block (all entries even) removed. So $P_k = \bigcup_{i=1}^3 \Phi_i(P_{k-1})$ with the three contractions $\Phi_1(z) = z/2$, $\Phi_2(z) = z/2 + (\frac12, 0)$, $\Phi_3(z) = z/2 + (\frac12, \frac12)$. By Hutchinson's theorem the $P_k$ converge in the Hausdorff metric to the attractor of $\{\Phi_1, \Phi_2, \Phi_3\}$. This attractor is the image of the Sierpi\'nski gasket under the linear map sending the equilateral triangle to the triangle with vertices $(0,0), (1,0), (1,1)$. The open set condition holds (take the interior of that triangle), so the box and Hausdorff dimensions are both equal to the similarity dimension $s$ with $3 \cdot 2^{-s} = 1$, i.e.\ $s = \ln 3/\ln 2$ \cite{falconer2014}. Equivalently, $\#P_k = 3^k$ (checked for $k \le 8$). The statement for negative upper index follows from $\binom{-a}{j} = (-1)^j\binom{a+j-1}{j}$ and the affine change of variables $(a, j) \mapsto (a + j - 1, j)$.
+\end{proof}
+
+% ==============================================================================
+\section{Conclusion}
+% ==============================================================================
+
+The chapter has one new proved result: the asymptotic expansion of the continuous row entropy through the Barnes $G$-function, with remainder $-\frac{1}{180x^2} + \mathcal{O}(x^{-4})$ (Proposition~\ref{thm:multifractal}). The renormalization factor $m+3$ (Proposition~\ref{assump:kigami_decimation}), the spectral dimension of the Sierpi\'nski simplex (Kigami--Lapidus) and the fractal limit of Pascal's triangle modulo $2$ (Proposition~\ref{prop:pascal_mod2}) are classical; we have derived the first and recalled the others. Two links remain open: whether Beta-kernel forms on $(K,\mu)$ converge to Kigami's form (Problem~\ref{thm:kigami_convergence}), and a multifractal measure whose $L^q$-spectrum is governed by the continuous binomial coefficients, for which we give only a heuristic parabolic parametrization.
+
+\input{declarations_chapter}
+
+\begin{thebibliography}{99}
+\bibitem{silvafilho2026simplex} R.~M. Silva-Filho, \emph{Analytic Continuation of Pascal's Simplex: Continuous Multinomial Integrals, Polytope Boundary Recurrences, and Simplicial Fractional Calculus}, Chapter~3 of \emph{Geometry, Tensors, and Quantum Gravity}, Universidade Federal de Lavras, 2026.
+\bibitem{silvafilho2026waves} R.~M. Silva-Filho, \emph{Nonlinear Simplicial Waves and Anomalous Porous Transport Induced by Beta-Kernel Fractional Laplacians}, Chapter~4 of \emph{Geometry, Tensors, and Quantum Gravity}, Universidade Federal de Lavras, 2026.
+\bibitem{silvafilho2026inter} R.~M. Silva-Filho, \emph{Inter-Dimensional Simplicial Transforms, Fractional Boundary Traces, and Matrix Beta-Kernels}, Chapter~5 of \emph{Geometry, Tensors, and Quantum Gravity}, Universidade Federal de Lavras, 2026.
+\bibitem{kigamilapidus1993} J. Kigami and M. L. Lapidus, \emph{Weyl's problem for the spectral distribution of Laplacians on p.c.f.\ self-similar fractals}, Communications in Mathematical Physics, vol. 158, no. 1, pp. 93--125, 1993, \href{https://doi.org/10.1007/BF02097233}{doi:10.1007/BF02097233}.
+\bibitem{kumagaisturm2005} T. Kumagai and K.-T. Sturm, \emph{Construction of diffusion processes on fractals, $d$-sets, and general metric measure spaces}, Journal of Mathematics of Kyoto University, vol. 45, no. 2, pp. 307--327, 2005, \href{https://doi.org/10.1215/kjm/1250281992}{doi:10.1215/kjm/1250281992}.
+\bibitem{kigami2001} J. Kigami, \emph{Analysis on Fractals}, Cambridge Tracts in Mathematics, vol. 143, Cambridge University Press, Cambridge, 2001, \href{https://doi.org/10.1017/cbo9780511470943}{doi:10.1017/cbo9780511470943}.
+\bibitem{strichartz2006} R. S. Strichartz, \emph{Differential Equations on Fractals: A New Approach}, Princeton University Press, Princeton, 2006, \href{https://doi.org/10.1515/9780691186832}{doi:10.1515/9780691186832}.
+\bibitem{barnes1900} E. W. Barnes, \emph{The Theory of the G-Function}, Quarterly Journal of Pure and Applied Mathematics, vol. 31, pp. 264--314, 1900, \href{https://zbmath.org/?q=an:31.0425.01}{JFM 31.0425.01}.
+\bibitem{halsey1986} T. C. Halsey, M. H. Jensen, L. P. Kadanoff, I. Procaccia, B. I. Shraiman, \emph{Fractal measures and their singularities: The characterization of strange sets}, Physical Review A, vol. 33, no. 2, pp. 1141--1151, 1986, \href{https://doi.org/10.1103/PhysRevA.33.1141}{doi:10.1103/PhysRevA.33.1141}.
+\bibitem{falconer2014} K. Falconer, \emph{Fractal Geometry: Mathematical Foundations and Applications}, 3rd ed., John Wiley \& Sons, Chichester, 2014, ISBN~978-1-119-94239-9.
+\bibitem{lucas1878} E. Lucas, \emph{Th\'eorie des Fonctions Num\'eriques Simplement P\'eriodiques}, American Journal of Mathematics, vol. 1, no. 2, pp. 184--240, 1878, \href{https://doi.org/10.2307/2369308}{doi:10.2307/2369308}.
+\end{thebibliography}
+
+\end{document}

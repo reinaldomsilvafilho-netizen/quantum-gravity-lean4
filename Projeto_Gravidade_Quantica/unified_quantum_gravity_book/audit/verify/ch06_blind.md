@@ -1,0 +1,44 @@
+# Cap. 6: reauditoria cega (camada 1)
+
+Arquivo auditado: `chap06_sierpinski_fractal_resolvents_spectral_reduction.tex`. Do cap. 3 li só o que o cap. 6 cita: o teorema da forma fechada de $\mathcal E(x)$ via Barnes $G$ e a definição de $\Delta^\alpha_{\Delta_m}$.
+Script: `audit/verify/scripts/ch06_blind_checks.py`, com os blocos A–E. O argumento opcional escolhe blocos; por exemplo, `python ch06_blind_checks.py CDE`.
+Não li ledgers, WORKPLAN, CHANGELOG, baseline nem `check_*.py`. Em particular, não abri o `audit/scripts/check_ch06_b.py` citado no texto e refiz as contas de forma independente.
+
+Numeração usada: Def 2.1, Assumption 2.2, Conj 2.3, Rem 2.4, Thm 2.5, Prop 3.1, Rem 3.2, Prop 4.1.
+
+| Item | Enunciado | Rótulo honesto? | Veredito | Evidência/observação |
+|---|---|---|---|---|
+| Intro: Lucas, $d_H=\ln3/\ln2\approx1.58496$ | Os ímpares de Pascal convergem ao gasket | clássico | CONFIRMA | $\ln3/\ln2=1.5849625$. O box-counting no bloco D dá 1.5850 nas escalas $2^{-4}$ a $2^{-7}$. |
+| Intro: pirâmide $m$ mod 2 | Gera o $m$-simplexo de Sierpiński, com $m+1$ peças e $d_H=\ln(m+1)/\ln2$ | clássico, sem prova | CONFIRMA | Bloco D: o número de multinomiais ímpares com $m$ partes nas camadas $n<2^k$ é exatamente $(m+1)^k$ para $m=3,4$ e $k\le4$. |
+| Intro / Assumption 2.2 | $r_m=(m+1)\rho=m+3$, com $\rho=(m+3)/(m+1)$ | “imported assumption” | CONFIRMA; rótulo fraco demais (B) | Bloco B: pelo traço de Schur da rede de nível 1, $\rho=1.666667,\ 1.5,\ 1.4,\ 1.333333$ para $m=2..5$, igual a $(m+3)/(m+1)$. O controle $(m+2)/m$ não bate. Além disso, $\lambda_1(k)/\lambda_1(k+1)$ do laplaciano de grafo tende a 4.975 ($m=2$, alvo 5) e a 5.969 ($m=3$, alvo 6). É um fato demonstrável em poucas linhas (Δ–Y / traço de rede), não precisa ser “assumption”. |
+| Def 2.1 | Operador decimado formal $\mathcal L_k^\alpha$ | definição “formal”, com a ressalva explícita | CONFIRMA (honesto), com nota (B) | O texto diz que $\Delta^\alpha_{\Delta_m}$ “acts on functions on $\mathbb R^m$”. Pelo cap. 3 (Def. do laplaciano simplicial), ele age em $L^2(\mathbb R^{m-1})$, enquanto $K\subset\mathbb R^m$. Na Rem 2.4 aparece a mesma incompatibilidade de dimensões: translação por $\mathbf y\in\Delta_{m-1}\subset\mathbb R^{m-1}$ de $\mathbf x\in\mathbb R^m$. |
+| Conj 2.3 | Existem $\alpha_k$ e “a well-defined version” das formas decimadas com $\mathcal L_k^{\alpha_k}\to\Delta_{\rm Kigami}$ em resolvente forte | conjectura | PROBLEMA (M) | O enunciado não é falsificável como está. “A well-defined version … with integrals against $\mu$ and translations replaced by cell maps” não especifica o operador. Com essa liberdade, basta tomar as formas discretas renormalizadas de Kigami, cuja convergência já é um teorema clássico, e a conjectura se torna trivialmente verdadeira sem usar o núcleo Beta. Falta dizer que papel o núcleo Beta de ordem $\alpha_k$ deve ter no operador. |
+| Rem 2.4 | Três razões para a construção ingênua falhar | observação | CONFIRMA | (a) $K$ tem medida de Lebesgue nula: correto. (b) As translações saem de $K$: correto. (c) Correto. |
+| Thm 2.5 | Weyl fractal $c_1\lambda^{d_s/2}\le N(\lambda)\le c_2\lambda^{d_s/2}$, $d_s=2\ln(m+1)/\ln(m+3)$, com oscilação log-periódica no gasket | clássico citado (Kigami–Lapidus) | CONFIRMA; citação (B) | $d_s=2d_H/d_w$ com $d_w=\log_2(m+3)$ bate com o fator verificado no bloco B. Para $m=2$, $d_s=1.3652$. A não existência do limite para o gasket é clássica (autofunções localizadas). Citação: o artigo original, Kigami–Lapidus, Comm. Math. Phys. 158 (1993), não está na bibliografia; só aparece o livro de Kigami (2001), cap. 4, que cobre o resultado. |
+| Prop 3.1 | $\mathcal E(x)=\frac{x^2}2-\frac x2\ln x+(1-\frac12\ln2\pi)x-\frac16\ln x+2\zeta'(-1)-\frac1{12}+O(x^{-1})$ | provado aqui | CONFIRMA | Bloco A: a forma fechada do cap. 3 coincide com a quadratura direta de $\int_0^x\ln\binom xy dy$ (diferença de $10^{-40}$ em $x=0.5,1,3.7,10$). O resto $R=\mathcal E-{\rm asym}$ satisfaz $x^2R\to-0.0055556=-1/180$, ou seja, o resto é na verdade $O(x^{-2})$ e o $O(x^{-1})$ declarado é correto, mas não ótimo. Controles negativos: com $-\frac1{12}\ln x$ o erro é 0.7675 em $10^4$, reproduzindo o 0.77 do texto; sem a constante, o erro é −0.414. $\mathcal E/x^2\to\frac12=\int_0^1H$ (bloco E: $\int H=0.5$). A cadeia de Stirling/Barnes da prova foi refeita à mão e confere, inclusive o cancelamento de $x^2\ln x$ e o termo $-\frac1{12}$. |
+| Abstract: “prove … $+O(\ln x)$” | Versão mais fraca da Prop 3.1 | — | CONFIRMA | — |
+| Rem 3.2 | Parábola: $\tau(q)=(q-1)\ln2-\frac{\sigma_0^2}2q^2$, $f(\alpha)=\ln2-\frac{(\alpha-\ln2)^2}{2\sigma_0^2}$, $\tau(1)=-\sigma_0^2/2$, $D_1=\ln2-\frac12$ | heurística, declarada como tal | CONFIRMA; nota (B) | Bloco E: o Legendre numérico coincide com a fórmula. A restrição “valid for $\alpha<\ln2$” é desnecessária: a fórmula vale para todo $\alpha$ (em $\alpha=1$ e $1.5$, com $q^*<0$, o Legendre numérico ainda coincide). $\tau(1)=-0.25$ e $\tau'(1)=0.19315=\ln2-\frac12$. A confissão de circularidade é honesta. Nota: “$D_1=\ln2-\frac12$” está em nats por escala diádica e não foi dividido por $\ln2$, então não é uma dimensão no sentido usual. |
+| Eq. (4.1), reflexão | $\binom xy=-\frac1\pi\frac{\sin\pi y\,\sin\pi(x-y)}{\sin\pi x}\frac{\Gamma(y-x)\Gamma(-y)}{\Gamma(-x)}$ | afirmado | CONFIRMA | Bloco C: em 200 pontos aleatórios de $[-6,6]^2$, erro relativo máximo de $3\times10^{-38}$; com o sinal trocado, o erro é 2. Refeito também à mão pela reflexão de $\Gamma$. |
+| §4, “integer nodal lines $y\in\mathbb Z$, $x-y\in\mathbb Z$ cut the plane into triangular chambers” | Linhas nodais | afirmado | PROBLEMA (B) | Os zeros de $\binom xy$ para $x\notin\mathbb Z$ ficam só em $y\in\mathbb Z_{<0}$ ou $x-y\in\mathbb Z_{<0}$. Nos demais inteiros, os zeros de $\sin$ se cancelam com polos de $\Gamma$. Contraexemplo (bloco C): $\binom{0.5}{1}=0.5\neq0$ e $\binom{2.3}{1}=2.3$, enquanto $\binom{0.5}{-1}=\binom{0.5}{1.5}=\binom{0.5}{2.5}=0$. Além disso, duas famílias de retas paralelas cortam o plano em paralelogramos, não em triângulos; só com a família de polos $x\in\mathbb Z$ surgem triângulos. O texto diz que isso não afeta o resto do capítulo, e de fato não afeta. |
+| §4, $\binom{-a}j=(-1)^j\binom{a+j-1}j$ | Identidade clássica | — | CONFIRMA | Bloco D: a contagem dos ímpares com índice negativo é $3^k$. |
+| Prop 4.1 | $P_k\to\mathcal S$ (imagem afim do gasket) na métrica de Hausdorff, com $\dim_{box}=\dim_H=\ln3/\ln2$, e o mesmo para índice superior negativo | clássico, com prova | CONFIRMA | Bloco D: a recursão $P_k=\bigcup_i\Phi_i(P_{k-1})$ foi verificada conjunto a conjunto para $k\le9$, e $\#P_k=3^k$. Os pontos fixos dos $\Phi_i$ são $(0,0),(1,0),(1,1)$. A condição de conjunto aberto vale com o interior do triângulo. A mudança $(a,j)\mapsto(a+j-1,j)$ é uma bijeção para $\{0\le j\le n<2^k\}$. |
+| Abstract / Intro: status | “recall” Kigami, conjectura, “new result proved here” é a Prop 3.1, multifractal “heuristic” | — | CONFIRMA | O abstract e a introdução afirmam só o que o corpo prova. O único resultado “novo” é uma expansão assintótica de rotina. |
+| Conclusão | Idem | — | CONFIRMA | Coerente com o corpo. |
+| Prova da Prop 3.1 e §4 citando `audit/scripts/check_ch06_b.py` | Referência a script interno de auditoria dentro do texto do livro | — | PROBLEMA (B) | É uma referência editorial imprópria para uma monografia, porque o leitor não tem acesso ao script. Deveria virar um apêndice ou um repositório citado. |
+
+## Resumo dos PROBLEMAS por gravidade
+
+**A (erro matemático):** nenhum encontrado.
+
+**M (lacuna ou rótulo)**
+1. **Conj 2.3 mal formulada.** “Existe uma versão bem definida” das formas decimadas, sem fixar o papel do núcleo Beta, torna o enunciado trivialmente satisfeito pelas próprias aproximações discretas de Kigami. Como conjectura, é vazia até especificar o operador.
+
+**B (redação/citação)**
+2. §4: as “integer nodal lines $y\in\mathbb Z$, $x-y\in\mathbb Z$” estão erradas. Os zeros ficam só nos inteiros negativos de $y$ e de $x-y$; por exemplo, $\binom{0.5}{1}=0.5$. As retas também não formam “triangular chambers”.
+3. Def 2.1 e Rem 2.4: incompatibilidade de dimensões. $\Delta^\alpha_{\Delta_m}$ e $\Delta_{m-1}(\alpha)$ vivem em $\mathbb R^{m-1}$ (cap. 3), mas $K\subset\mathbb R^m$, e o texto diz “functions on $\mathbb R^m$”.
+4. A Assumption 2.2 é um fato provável e verificado (bloco B). O rótulo “imported assumption” é mais fraco que o necessário.
+5. Thm 2.5: falta citar o artigo original de Kigami–Lapidus (1993).
+6. Rem 3.2: a restrição “valid for $\alpha<\ln2$” é desnecessária, e “$D_1$” em nats não é uma dimensão normalizada.
+7. Referências a `audit/scripts/check_ch06_b.py` no corpo do livro.
+
+Itens verificados: 17 linhas da tabela: 8 enunciados numerados, eq. (4.1), 2 afirmações do §4, 3 afirmações da introdução, abstract/status, conclusão e a referência a script.

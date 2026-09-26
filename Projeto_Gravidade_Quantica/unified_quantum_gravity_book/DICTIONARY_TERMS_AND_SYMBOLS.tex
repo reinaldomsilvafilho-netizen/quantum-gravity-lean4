@@ -1,0 +1,203 @@
+\documentclass[11pt,a4paper,oneside]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath,amssymb,amsfonts,amsthm,mathtools}
+\usepackage{mathrsfs}
+\usepackage{microtype}
+\usepackage{booktabs}
+\usepackage{tabularx}
+\usepackage{array}
+\usepackage[dvipsnames]{xcolor}
+\usepackage{hyperref}
+\usepackage{geometry}
+\usepackage{enumitem}
+\usepackage{tcolorbox}
+
+\geometry{top=2.5cm, bottom=2.5cm, left=2.5cm, right=2.5cm}
+
+\newcommand{\II}{\mathrm{II}}
+\newcommand{\BV}{\mathrm{BV}}
+
+\hypersetup{
+  colorlinks=true,
+  linkcolor=NavyBlue,
+  citecolor=Mahogany,
+  urlcolor=TealBlue,
+  pdftitle={Dictionary of Terms, Symbols, and Core Mathematical Formulations},
+  pdfauthor={Reinaldo M. Silva-Filho}
+}
+
+\tcbuselibrary{skins,breakable}
+
+\newtcolorbox{conceptbox}[1]{
+  enhanced,
+  colback=NavyBlue!5!white,
+  colframe=NavyBlue!80!black,
+  fonttitle=\bfseries,
+  title={#1},
+  arc=2mm,
+  breakable
+}
+
+\begin{document}
+
+\begin{center}
+    {\LARGE \textbf{Geometry, Tensors, and Quantum Gravity}}\\[0.3cm]
+    {\Large \textbf{Comprehensive Dictionary of Terms, Symbols, and Core Formulations}}\\[0.4cm]
+    {\normalsize \textbf{Author:} Reinaldo Maia Silva-Filho}\\[0.2cm]
+    {\footnotesize \textit{Universidade Federal de Lavras (UFLA) $\cdot$ PPGEE/DES $\cdot$ CAPES Finance Code 001}}
+\end{center}
+
+\vspace{0.4cm}
+\hrule
+\vspace{0.4cm}
+
+\section*{Preface \& Architectural Overview}
+This dictionary provides an exhaustive, typed, and cross-referenced master ontology for the 13-chapter treatise on Quantum Geometry and Gravitation. It is organized into four parts: (I) Master Typed Symbol Lexicon; (II) Core Formulations, each marked as \emph{proved}, \emph{conjectural} or \emph{phenomenological ansatz} in accordance with the chapters; (III) Verification Status; and (IV) Cross-Disciplinary Translation Matrix, whose entries are analogies rather than equivalences. Where this dictionary and a chapter differ, the chapter is authoritative.
+
+\section{Master Typed Symbol Lexicon}
+
+\subsection{Greek Symbols}
+\begin{table}[!htbp]
+\centering
+\scriptsize
+\renewcommand{\arraystretch}{1.2}
+\begin{tabularx}{\textwidth}{@{} c p{3.2cm} p{2.8cm} X c @{}}
+\toprule
+\textbf{Symbol} & \textbf{Formal Type / Domain} & \textbf{Codomain / Range} & \textbf{Physical / Mathematical Interpretation} & \textbf{Origin} \\
+\midrule
+$\alpha$ & $\mathbb{R}_{>0}$ & Scale Parameter & Fractional order of simplicial Laplacian $\Delta_{\Delta_m}^\alpha$; Sobolev trace shift. & Ch. 3, 5 \\
+$\gamma$ & $\mathbb{R}_{\ge 0}$ & Decay Rate & Fourier decay rate of the trace kernel; the Sobolev gain of $\mathcal{R}_{m\to n}^\alpha$ ($\gamma = 1$ exactly for the Beta-kernel, for every $\alpha$). & Ch. 5 \\
+$\alpha_t$ & $p \in \mathbb{R}_{>0} \to \mathbb{R}$ & Dimensionless & Ansatz for the tensor-tilt running: $\alpha_t = \frac{1}{2}(d_s(p) - 4) = -\frac{(p/M_\ast)^2}{1 + (p/M_\ast)^2}$, $p = H_{\mathrm{inf}}$ at horizon exit; $|\alpha_t| \lesssim 1.5 \times 10^{-11}$ for $M_\ast = M_P$ (Box~7). & Ch. 12, 13 \\
+$\beta$ & $\mathbb{R}_{>0}$ & Time-Fractional & Caputo time-fractional order in anomalous porous diffusion $\partial_t^\beta u$. & Ch. 4 \\
+$\gamma_{\mathrm{BI}}$ & $\mathbb{R}_{>0}$ & Barbero-Immirzi & Quantum geometric parameter scaling the Ashtekar discrete area operator spectrum. & Ch. 11 \\
+$\Gamma^\mu_{\alpha\beta}$ & $T^*M \otimes TM \otimes TM$ & Christoffel & Levi-Civita affine connection coefficients on pseudo-Riemannian manifold $(M, g)$. & Ch. 8 \\
+$\delta S_A$ & $\mathcal{H}_A \to \mathbb{R}$ & Entropy Variation & First variation of modular entanglement entropy for spherical subregions. & Ch. 11 \\
+$\Delta_{\Delta_m}^\alpha$ & $L^2(\mathbb{R}^{m-1}) \to L^2$ & Bounded Operator & Fractional Simplicial Laplacian: Beta-kernel average of second differences; self-adjoint, symbol in $[0, 2/\alpha^2]$. & Ch. 3, 4 \\
+$\Delta_{\mathrm{Kigami}}$ & $\mathcal{D}(\Delta) \to L^2(K)$ & Fractal Laplacian & Kigami's Laplacian on the Sierpi\'nski simplex; factor $m+3$ proved; Beta-kernel approximation open (Ch.~6 Problem~2.3). & Ch. 6 \\
+$\kappa^*$ & $\mathbb{R}_{>0}$ & Minimax Bound & Inf-sup extrinsic curvature bound: $\kappa^* = \inf_{M} \operatorname{ess\,sup}_{x \in M} \|\II_M(x)\|_{\mathrm{op}}$. & Ch. 7, 8 \\
+$\kappa_W$ & $[0,1]^2 \to \mathbb{R}$ & Ollivier-Ricci & Coarse Ollivier-Wasserstein Ricci curvature of continuous graphon $([0,1], W)$. & Ch. 2, 11 \\
+$\lambda_L$ & $\mathbb{R}_{>0}$ & Lyapunov Exponent & Quantum chaotic OTOC scrambling rate satisfying MSS bound $\lambda_L \le 2\pi k_B T / \hbar$. & Ch. 11, 13 \\
+$\Lambda$ & $\mathbb{R}$ & Cosmological Const & Dark energy curvature coupling in Einstein equations: $G_{\mu\nu} + \Lambda g_{\mu\nu} = \kappa T_{\mu\nu}$. & Ch. 8, 12 \\
+$\xi$ & $\mathbb{R}$ & Dispersion Param & Free quartic coefficient of the graviton dispersion ansatz, not fixed by the diffusion model; estimates use $\xi = 1/2$. & Ch. 12, 13 \\
+$\theta(k)$ & $k \in \{2, 3, \dots\}$ & Complexity & Kac--Rice complexity of the isotropic spherical $k$-spin landscape: $\frac12\log(k-1)$ for $k \ge 3$ (Auffinger--Ben~Arous--\v{C}ern\'y); $2N$ critical points for $k = 2$. & Ch. 1, 11, 12 \\
+$\sigma_{\Delta_m}^\alpha(\mathbf{k})$ & $\mathbb{R}^{m-1} \to [0, 2/\alpha^2]$ & Fourier Symbol & Symbol of the simplicial Laplacian, $\frac{1}{2\alpha^2}\mathbf{k}^T\mathbf{M}_2\mathbf{k} + \mathcal{O}(|\mathbf{k}|^4)$; not the $A_{m-1}$ Gram form (Box~1). & Ch. 3, 4 \\
+$\sigma_{ij}$ & $T^*\Sigma \otimes T^*\Sigma$ & Extrinsic Shear & Trace-free part of the 3D spatial hypersurface extrinsic curvature: $K_{ij} - \frac{1}{3}K\gamma_{ij}$. & Ch. 8 \\
+$\tau(q)$ & $\mathbb{R} \to \mathbb{R}$ & Free Energy & Heuristic (postulated log-normal) multifractal exponent $\tau(q) = (q-1)\ln 2 - \frac{\sigma_0^2}{2}q^2$; no underlying measure constructed. & Ch. 6 \\
+$\Phi_{\mathrm{David}}$ & $\mathbb{R}^2 \to \mathbb{R}$ & Log-Binomial & $\ln\binom{x}{y} = f(x) + g(y) + h(x-y)$; this split gives the Star-of-David identity. & Ch. 3 \\
+$\psi(z)$ & $\mathbb{C} \setminus -\mathbb{N} \to \mathbb{C}$ & Digamma Function & Logarithmic derivative of Gamma function: $\psi(z) = \Gamma'(z)/\Gamma(z)$. & Ch. 3, 5 \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\subsection{Latin \& Calligraphic Symbols}
+\begin{table}[!htbp]
+\centering
+\scriptsize
+\renewcommand{\arraystretch}{1.2}
+\begin{tabularx}{\textwidth}{@{} c p{3.2cm} p{2.8cm} X c @{}}
+\toprule
+\textbf{Symbol} & \textbf{Formal Type / Space} & \textbf{Codomain / Range} & \textbf{Physical / Mathematical Interpretation} & \textbf{Origin} \\
+\midrule
+$\mathbf{A}_{m-1}$ & $\mathbb{R}^{(m-1)\times(m-1)}$ & Cartan Matrix & Cartan matrix of $\mathfrak{sl}(m)$ (Gram matrix of simple roots); the barycentric multinomial Hessian equals $\frac{m}{2x}\mathbf{c}^T\mathbf{A}_{m-1}\mathbf{c}$ in root coordinates (Ch.~12, Prop.~2.2). & Ch. 3, 4, 12 \\
+$d_s$ & Dimensionless & Spectral Dimension & $d_s(\tau) = -2\,\mathrm{d}\ln P(\tau;\mathbf{x},\mathbf{x})/\mathrm{d}\ln\tau$ for the heat-kernel diagonal $P$; closed form for the symbol $k^2 + \ell_P^2k^4$ in Box~6 ($d_s = 2 \to 4$). The momentum form $d_s(p) = 2 + 2/(1 + (p/M_\ast)^2)$ used for $\alpha_t$ is a two-point Pad\'e interpolation with the same limits, not that closed form. On the Sierpi\'nski $m$-simplex, $d_s = 2\ln(m+1)/\ln(m+3)$ is the Weyl-law exponent. & Ch. 6, 12, 13 \\
+$\mathcal{E}_{m \to n}^\alpha$ & $H^t \to H^{t+\gamma-\frac{n-m}{2}}$, $t < 0$ & Dual Operator & Dual Simplicial Extension Operator ($m < n$), the $L^2$-adjoint of the trace $\mathcal{R}_{n \to m}^\alpha$. & Ch. 5 \\
+$E_\beta(z)$ & Entire Function & $\mathbb{C} \to \mathbb{C}$ & Mittag-Leffler generalized exponential function for fractional diffusion. & Ch. 4 \\
+$g^F_\theta$ & Statistical Metric & Symmetric Matrix & Fisher-Rao information metric: $\mathbb{E}[\partial_i \ln p_\theta \partial_j \ln p_\theta]$. & Ch. 10, 11 \\
+$G(z)$ & Entire Function & $\mathbb{C} \to \mathbb{C}$ & Barnes double Gamma function satisfying $G(z+1) = \Gamma(z)G(z)$. & Ch. 3, 5, 6 \\
+$G_{\mu\nu}$ & $(0,2)$-Tensor & Spacetime Curvature & Divergence-free Einstein tensor: $G_{\mu\nu} = R_{\mu\nu} - \frac{1}{2}Rg_{\mu\nu}$. & Ch. 8, 11 \\
+$I_m(x)$ & $\mathbb{R}_{>0} \to \mathbb{R}$ & Partition Sum & Integral of the continuous multinomial over $\Delta_{m-1}(x)$. With $\mathcal{J}_m(x) \coloneqq m^{-x}I_m(x)$, $\mathcal{J}_m(x) \to 1$ (Laplace's method), so $I_m(x) \sim m^x$; a trigonometric integral for $\mathcal{J}_2$ exists only for $m = 2$. & Ch. 3, 12 \\
+$K_{ij}$ & $(0,2)$-Tensor & Extrinsic Curvature & 3D spatial hypersurface extrinsic curvature tensor in ADM 3+1 slicing. & Ch. 8 \\
+$\ell_P$ & Physical Constant & $\approx 1.616 \times 10^{-35}\text{ m}$ & Planck length: $\ell_P = \sqrt{\hbar G / c^3}$. & Ch. 11, 13 \\
+$\mathrm{reach}(M)$ & $\mathbb{R}_{>0}$ & Normal Bundle Reach & Federer reach: infimum distance from submanifold to normal cut locus. & Ch. 7 \\
+$\mathcal{R}_{m \to n}^\alpha$ & $H^s \to H^{s+\gamma-\frac{m-n}{2}}$ & Trace Operator & Inter-Dimensional Simplicial Trace: convolution with the reflected Beta-kernel followed by restriction to an $n$-plane. & Ch. 5 \\
+$S_{ab}$ & $(0,2)$-Tensor & Surface Stress & Israel thin-shell junction surface stress-energy tensor. & Ch. 8 \\
+$W(x, y)$ & $[0,1]^2 \to [0, 1]$ & Graphon Kernel & Symmetric measurable function representing dense graph limit. & Ch. 1, 2, 11 \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\clearpage
+
+\section{Core Mathematical Formulations and Structural Theorems}
+
+\begin{conceptbox}{{1. Simplicial Fractional Laplacian ($-\Delta_{\Delta_m}^\alpha$) \& $A_{m-1}$ Root Metric (Ch. 3, 4, 12)}}
+\textbf{Definition:} bounded self-adjoint operator on $L^2(\mathbb{R}^{m-1})$, the symmetric second difference averaged against the continuous multinomial kernel on $\Delta_{m-1}(\alpha)$:
+$$\Delta_{\Delta_m}^\alpha u(\mathbf{x}) = \frac{1}{2\alpha^2 I_m(\alpha)}\int_{\Delta_{m-1}(\alpha)} \binom{\alpha}{\mathbf{y}} \big[u(\mathbf{x}+\mathbf{y}) - 2u(\mathbf{x}) + u(\mathbf{x}-\mathbf{y})\big]\, d\mathbf{y}.$$
+\textbf{Long-Wavelength Dispersion (proved, Ch.~3 Thm.~7.2):} the symbol lies in $[0,2/\alpha^2]$, and
+$$\sigma_{\Delta_m}^\alpha(\mathbf{k}) = \frac{1}{2\alpha^2} \mathbf{k}^T \mathbf{M}_2(\alpha) \mathbf{k} + \mathcal{O}(|\mathbf{k}|^4), \qquad \mathbf{M}_2 = a\,\mathrm{Id} + b\,\mathbf{1}\mathbf{1}^T.$$
+The form $\mathbf{k}^T\mathbf{M}_2\mathbf{k}$ is invariant under permutations of $k_1, \dots, k_{m-1}$ and under $\mathbf{k} \mapsto -\mathbf{k}$, but not under the full group $S_m$ (Ch.~3 Rem.~7.3). The $A_{m-1}$ Gram form $\frac{1}{2m\alpha}\mathbf{k}^T\mathbf{G}_{m-1}\mathbf{k}$ is not the leading term; it would arise only under the constraint $\sum_j k_j = 0$. The Cartan matrix does appear, exactly, in the Hessian of $\log\binom{x}{\mathbf{t}}$ at the barycenter written in simple-root coordinates (Ch.~12 Prop.~2.2), as a consequence of the $S_m$ symmetry of the multinomial.\\
+\textbf{Lattice only:} the closed form $(\frac1m\sum e^{-ik_j})^\alpha$ and the semigroup law hold for the lattice (Gr\"unwald--Letnikov) construction, not the continuous kernel; the operator is bounded, so there is no Weyl law at $\lambda \to \infty$.
+\end{conceptbox}
+
+\begin{conceptbox}{{2. Inter-Dimensional Trace Operator $\mathcal{R}_{m \to n}^\alpha$ (Ch. 5)}}
+\textbf{Definition:} $\mathcal{R}_{m \to n}^\alpha f(\mathbf{z}) = \int_{\Delta_m(\alpha)} \mathcal{K}_\alpha(\mathbf{y})\, f(\mathbf{P}^+\mathbf{z} + \mathbf{y})\, d\mathbf{y}$, i.e.\ convolution with the reflected kernel followed by restriction to the $n$-plane $\operatorname{ran}\mathbf{P}^+$. In the Fourier domain,
+$$\widehat{\mathcal{R}_{m \to n}^\alpha f}(\boldsymbol{\xi}) = (2\pi)^{n-m}\sqrt{\det(\mathbf{P}\mathbf{P}^T)} \int_{\operatorname{ker}(\mathbf{P})} \widehat{f}(\mathbf{P}^T \boldsymbol{\xi} + \boldsymbol{\eta})\, \widehat{\mathcal{K}}_\alpha(-\mathbf{P}^T \boldsymbol{\xi} - \boldsymbol{\eta})\, d\boldsymbol{\eta}.$$
+\textbf{Trace estimate (proved, Ch.~5):} $\mathcal{R}_{m\to n}^\alpha : H^s(\mathbb{R}^m) \to H^{s+\gamma-\frac{m-n}{2}}(\mathbb{R}^n)$, where $\gamma$ is the Fourier decay rate of the kernel. For the Beta-kernel $\gamma = 1$ exactly, independently of $\alpha$.\\
+\textbf{Inversion (proved, Ch.~5):} a single trace is never injective, but the family of traces $g_\theta$ over all $n$-planes $\theta$ determines the smoothed field $h(\mathbf{x}) = g_\theta(\mathbf{P}_\theta\mathbf{x})$ ($\mathbf{x} \in \theta$), and, if $\widehat{\mathcal{K}}_\alpha$ has no zeros, $f = \mathcal{F}^{-1}[\widehat{h}(\mathbf{k})/\widehat{\mathcal{K}}_\alpha(-\mathbf{k})]$. The data are restrictions, not $n$-plane integrals, so filtered backprojection does not apply; the deconvolution is ill-posed of order one.\\
+\textbf{Note:} in general $\gamma \ne \alpha$.
+\end{conceptbox}
+
+\begin{conceptbox}{{3. Minimax Curvature $\kappa^*$, Curvature Loci \& $C^{1,1}$ Regularity (Ch. 7, 8)}}
+\textbf{Definition:} $\kappa^*(\mathcal{C}) = \inf_{M \in \mathcal{C}} \operatorname{ess\,sup}_{x \in M} \|\II_M(x)\|_{\mathrm{op}, g}$. The flat, saturated, transition and contact loci $M_0, M_{\mathrm{sat}}, M_{\mathrm{trans}}, M_{\mathrm{obs}}$ are defined by the value of $\|\II\|_{\mathrm{op}}$; positivity of $M_{\mathrm{sat}}$ is a conjecture (Ch.~7).
+\textbf{Proved (Ch.~7):} existence of $C^{1,1}$ minimizers for curves; contact principle $\|\II_M\| \ge \lambda_k(h_{\partial\Omega})$ (only obstacle boundaries curving towards $\Omega$ constrain); planar U-turn bound $2/w$; knot gap $\ge 2\pi/L$. \textbf{Conjectural:} regularity invariance $\kappa^*_{C^r} = \kappa^*_{C^{1,1}}$; $C^{1,1}$ as the optimal class in general.
+\textbf{Global search (Ch.~9):} with a length bound only finitely many homotopy classes are admissible (proved); $\Gamma$-convergence of the spline discretization is a conjecture.
+\textbf{ADM consequence (proved, Ch.~8 Cor.~4.2, Ch.~12 Thm.~3.1):} on a slice with $\|K\|_{\mathrm{op}} \le \kappa$, $K_{ij}K^{ij} \le 3\kappa^2$ and $16\pi G\rho - 6\kappa^2 \le R^{(\gamma)} - 2\Lambda \le 16\pi G\rho + 2\kappa^2$. Whether slices with finite $\kappa^*$ exist and avoid singularities is \emph{not} established.
+\end{conceptbox}
+
+\begin{conceptbox}{{4. Winding Classes, Slingshot, and Jordan Loops (Ch. 8, 9, 12)}}
+\textbf{Topology (proved, Ch.~8):} $\mathbb{R}^3$ minus disjoint balls is simply connected, so winding numbers about horizons are homotopy invariants only for motion confined to a plane, where $\pi_1 \cong \mathbb{F}_m$.
+\textbf{Planar slingshot (conjecture, Ch.~8):} for planar worldlines, some winding classes $W = \pm 1$ reduce the minimax acceleration relative to $W = 0$.
+\textbf{Chronology (proved, Ch.~12 Prop.~4.1):} timelike curves in stably causal spacetimes are injective. \textbf{Jordan-loop sector of LQG (conjecture, Ch.~12 Conj.~4.3):} a regularization preserving Jordan-loop states with a closing constraint algebra exists. Chronology does not restrict the spacelike loops of LQG.
+\end{conceptbox}
+
+\begin{conceptbox}{{5. Graphon Ricci Flow and Condensation (Ch. 2, 12)}}
+\textbf{Flow:} $\partial_t W = 2\kappa_W W$ on graphon kernels ($W$ a connection strength). Ollivier curvature is bounded below ($\kappa \ge -2$ in the graph setting).
+\textbf{Proved (Ch.~12 Prop.~6.1):} if $\kappa_W \le -c < 0$ on a set $B$, then $W \le W_0 e^{-2ct}$ on $B$. The decay is exponential, not a finite-time pinch-off (cf.\ Ch.~2).
+\textbf{Conjecture:} condensation of the remaining clusters to a smooth 4-geometry. A graphon limit carries no dimension or metric without an additional reconstruction map.
+\end{conceptbox}
+
+\begin{conceptbox}{{6. Running Spectral Dimension $d_s = 2 \to 4$ (Ch. 12, 13)}}
+\textbf{Proved:} for the symbol $|k|^{2\alpha}$ on $\mathbb{R}^m$, $d_s = m/\alpha$ (constant). For the two-scale symbol $k^2 + \ell_P^2 k^4$ in four dimensions,
+$$d_s(\tau) = 1 - \frac{\tau}{2\ell_P^2} + \left[ 1 - \frac{\sqrt{\pi \tau}}{2\ell_P} e^{\tau/4\ell_P^2} \operatorname{erfc}\!\left( \frac{\sqrt{\tau}}{2\ell_P} \right) \right]^{-1}, \qquad d_s: 2 \ (\tau \to 0) \to 4 \ (\tau \to \infty).$$
+\textbf{Context:} a closed form for a behaviour known from CDT fits (Sotiriou--Visser--Weinfurtner 2011) and Ho\v{r}ava--Lifshitz gravity (Ho\v{r}ava 2009). Its relation to UV finiteness is heuristic.
+\end{conceptbox}
+
+\begin{conceptbox}{{7. Graviton Dispersion \& Tensor-Tilt Running (Ch. 12, 13) --- phenomenological ansatz}}
+\textbf{Relations:} $\omega^2 = c^2 k^2 (1 + \xi \ell_\ast^2 k^2)$; $d_s(p) = 2 + \frac{2}{1 + (p/M_\ast)^2}$ (two-point Pad\'e interpolation with the limits of Box~6) and $\alpha_t = \frac{1}{2}(d_s(p) - 4) = -\frac{(p/M_\ast)^2}{1 + (p/M_\ast)^2}$, where $p = H_{\mathrm{inf}}$ is the physical momentum of the tensor mode at horizon exit.\\
+\textbf{Magnitudes (Ch.~12, 13):} for $\ell_\ast = \ell_P$ and $\xi = 1/2$, $|\Delta t_{\mathrm{disp}}| = \frac{6\pi^2 \xi \ell_\ast^2}{c^3} D_2(z) (f_2^2 - f_1^2) \approx 6 \times 10^{-62}$--$1.2 \times 10^{-60}$\,s for $10$\,Hz--$1$\,kHz and $z = 1$--$8$, $56$--$57$ orders of magnitude below a $10^{-4}$\,s timing benchmark for ET/CE. With $M_\ast = M_P$ and $H_{\mathrm{inf}} \le 4.7 \times 10^{13}$\,GeV, $|\alpha_t| \approx (H_{\mathrm{inf}}/M_P)^2 \lesssim 1.5 \times 10^{-11}$. No observable signature follows at the Planck scale.
+\end{conceptbox}
+
+\clearpage
+
+\section{Verification Status}
+
+The numerical scripts \texttt{verify\_chapXX\_numerical.py} and the auxiliary checking scripts of the repository evaluate formulas of the text against independent computations. They are checks, not proofs. The \textsc{Lean 4} modules in \texttt{formal\_proofs\_book/Book} are a naming skeleton with Boolean/floating-point placeholders and verify no mathematical content of the book. A genuine \textsc{Mathlib} formalization is in progress in \texttt{formal\_proofs\_book/BookReal}. The current status of every result, known issues, and corrections are recorded in the repository file \texttt{WORKPLAN.md}.
+
+\section{Cross-Disciplinary Translation Matrix}
+
+\begin{table}[!htbp]
+\centering
+\scriptsize
+\renewcommand{\arraystretch}{1.25}
+\begin{tabularx}{\textwidth}{@{} p{3.2cm} p{2.8cm} p{2.8cm} p{3cm} X @{}}
+\toprule
+\textbf{Treatise Concept} & \textbf{Pure PDE / Real Analysis} & \textbf{Differential Geometry} & \textbf{Quantum Info / Tensors} & \textbf{Quantum Gravity / Cosmology} \\
+\midrule
+\textbf{Pascal Simplex $\Delta_{m-1}(x)$} & Meromorphic Continuation & Barycentric Simplicial Metric & Tensor Contraction Sum & Pre-geometric Spatial Foam \\
+\textbf{Beta-Laplacian $-\Delta_{\Delta_m}^\alpha$} & Fractional Pseudo-Differential & Reflection Symmetric Laplacian & Dispersive MPS Hamiltonian & Microscopic Kinetic Operator \\
+\textbf{Trace $\mathcal{R}_{m\to n}^\alpha$} & Sobolev Trace $H^s \to H^{s+\gamma-\frac{m-n}{2}}$ & Fiber Bundle Projection & Lossy Compression & Boundary Restriction (analogy) \\
+\textbf{Minimax Curvature $\kappa^*$} & $L^\infty$ Variational Minimizer & Second Fundamental Form Norm & Entanglement Strain Bound & Bounded-Curvature Slicing \\
+\textbf{Winding $W \ne 0$} & Complex Branch Cut & Non-Abelian Holonomy $\pi_1$ & Braided Anyon Knot & Planar Winding (conjectural) \\
+\textbf{Graphon Surgery} & Parabolic Blowup Pinch-off & Negative Ricci Curvature & Bond Dimension Truncation & Bottleneck Decay (condensation conj.) \\
+\textbf{Running $d_s = 2 \to 4$} & Heat Kernel Diagonal Return & Spectral Dimension Transition & RG Flow in Entanglement & UV Dimensional Reduction (heuristic) \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\vfill
+\begin{center}
+    \footnotesize \textbf{Geometry, Tensors, and Quantum Gravity} $\cdot$ \copyright~2026 Reinaldo Maia Silva-Filho $\cdot$ Licensed under CC~BY~4.0
+\end{center}
+
+\end{document}

@@ -1,0 +1,385 @@
+\documentclass[11pt,a4paper]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[margin=0.9in]{geometry}
+\usepackage{amsmath,amssymb,amsthm,amsfonts}
+\usepackage{mathtools}
+\usepackage{hyperref}
+\usepackage{booktabs}
+\usepackage{cite}
+\usepackage{microtype}
+\usepackage{array}
+
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    citecolor=red,
+    urlcolor=blue
+}
+
+% Theorem Environments
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{conjecture}[theorem]{Conjecture}
+
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{example}[theorem]{Example}
+
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+\numberwithin{equation}{section}
+
+\title{\textbf{Nonlinear Simplicial Waves and Anomalous Porous Transport Induced by Beta-Kernel Fractional Laplacians}}
+\author{\textbf{Reinaldo Maia Silva-Filho} \\ \textit{Universidade Federal de Lavras (UFLA)}}
+\date{\today}
+
+
+\DeclareMathOperator*{\argmin}{argmin}
+\providecommand{\doi}[1]{\href{https://doi.org/#1}{\texttt{doi:#1}}}
+\providecommand{\Hyp}{\mathbb{H}}
+\providecommand{\Sph}{\mathbb{S}}
+\providecommand{\II}{\mathrm{II}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\Area}{\mathrm{Area}}
+\providecommand{\Hsn}{\mathcal{H}}
+\providecommand{\BV}{\mathrm{BV}}
+\providecommand{\TV}{\mathrm{TV}}
+\providecommand{\cutnorm}[1]{\|#1\|_{\square}}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+We develop a comprehensive analytical and mathematical physics framework for non-local wave dynamics and subdiffusive transport governed by the \emph{Fractional Simplicial Laplacian} $\Delta_{\Delta_m}^\alpha$, an operator induced by continuous multinomial Beta-kernels on the standard simplex $\Delta_{m-1}(\alpha)$. In the first part of this work, we formulate the \emph{Nonlinear Simplicial Schr\"odinger Equation} (NLSE). We prove the global conservation of particle mass $\mathcal{N}[\psi]$ and simplicial Hamiltonian energy $\mathcal{E}[\psi]$ via the self-adjointness of the continuous Beta-integral kernel. A modulational instability analysis shows that, because the symbol is bounded, the unstable band can cover all non-zero wavevectors, unlike in the local NLSE. Also because the symbol is bounded, the energy at fixed mass is unbounded below in the focusing case, so there are no energy-minimizing ground states; the existence and symmetry of solitary waves are stated as a conjecture. In the second part, we formulate the space-time fractional simplicial diffusion equation for anomalous transport in anisotropic media. Using Fourier--Laplace methods, we give the exact propagator in terms of Mittag-Leffler functions and prove that the mean squared displacement tensor is exactly $\langle \mathbf{x}\mathbf{x}^T \rangle(t) = \frac{\mathcal{K}_{\text{diff}}}{\alpha^2 \Gamma(\beta+1)} \mathbf{M}_2(\alpha)\, t^\beta$, where $\mathbf{M}_2(\alpha) = a\,\mathrm{Id} + b\,\mathbf{1}\mathbf{1}^T$ is the second-moment matrix of the jump kernel.
+\end{abstract}
+
+\tableofcontents
+\newpage
+
+% ==============================================================================
+\section{Introduction and Physical Motivation}
+% ==============================================================================
+
+Non-local partial differential equations (PDEs) and fractional calculus have become foundational tools for describing memory-dependent dynamics, anomalous transport, and non-local wave phenomena across quantum physics, fluid mechanics, and geophysical transport \cite{podlubny1998, samko1993, metzler2000, laskin2000}. In traditional fractional quantum mechanics and anomalous diffusion models, the non-local spatial operator is typically chosen as the isotropic Riesz fractional Laplacian $(-\Delta)^{\alpha/2}$, whose integral representation:
+\begin{equation}
+(-\Delta)^{\alpha/2} u(\mathbf{x}) = C_{d, \alpha} \operatorname{P.V.} \int_{\mathbb{R}^d} \frac{u(\mathbf{x}) - u(\mathbf{y})}{|\mathbf{x} - \mathbf{y}|^{d+\alpha}} \, d\mathbf{y},
+\end{equation}
+is isotropic, radially symmetric under the orthogonal group $O(d)$, and characterized by algebraic power-law tails that extend across the entire space $\mathbb{R}^d$.
+
+However, in many realistic physical media—such as anisotropic fractured rocks, crystalline waveguides, packed colloidal arrays, and simplicial metamaterials—the underlying microstructure imposes two fundamental physical constraints:
+\begin{enumerate}
+    \item \textbf{Directional Geometric Anisotropy:} Transport occurs predominantly along structured interconnected channels with characteristic intersection angles (such as triangular or tetrahedral lattices), breaking continuous rotational symmetry.
+    \item \textbf{Finite Horizon of Non-Local Steps:} Microscopic jump lengths per collision event are geometrically bounded by the pore or cell size, precluding unphysical infinite-velocity jump tails.
+\end{enumerate}
+
+To bridge this fundamental gap, we introduce and analyze dynamical and transport processes governed by the \emph{Fractional Simplicial Laplacian} $\Delta_{\Delta_m}^\alpha$, constructed from the continuous multinomial Beta-kernel on the standard $(m-1)$-simplex $\Delta_{m-1}(\alpha)$.
+
+% ==============================================================================
+\section{The Fractional Simplicial Laplacian and its Metric Geometry}
+% ==============================================================================
+
+Let $\mathbf{x} = (x_1, \dots, x_{m-1}) \in \mathbb{R}^{m-1}$ denote spatial coordinates, and let $\Delta_{m-1}(\alpha) \subset \mathbb{R}_{\ge 0}^{m-1}$ be the standard scaled simplex of size $\alpha > 0$:
+\begin{equation}
+\Delta_{m-1}(\alpha) \coloneqq \left\{\mathbf{y} \in \mathbb{R}_{\ge 0}^{m-1} \;\middle|\; \sum_{j=1}^{m-1} y_j \le \alpha\right\}.
+\end{equation}
+The dependent barycentric coordinate is defined by $y_m \coloneqq \alpha - \sum_{j=1}^{m-1} y_j$. The continuous multinomial Beta-kernel is defined by
+\begin{equation}
+\binom{\alpha}{\mathbf{y}} \coloneqq \frac{\Gamma(\alpha+1)}{\prod_{j=1}^m \Gamma(y_j+1)}, \quad I_m(\alpha) \coloneqq \int_{\Delta_{m-1}(\alpha)} \binom{\alpha}{\mathbf{y}} \, d\mathbf{y}.
+\end{equation}
+
+\begin{definition}[Fractional Simplicial Laplacian]
+For fractional parameter $\alpha > 0$, the Fractional Simplicial Laplacian acting on $u \in L^2(\mathbb{R}^{m-1})$ is defined by
+\begin{equation}
+\label{eq:simplicial_laplacian_def}
+\Delta_{\Delta_m}^\alpha u(\mathbf{x}) \coloneqq \frac{1}{2\alpha^2 I_m(\alpha)}\int_{\Delta_{m-1}(\alpha)} \binom{\alpha}{\mathbf{y}} \Big[u(\mathbf{x}+\mathbf{y}) - 2u(\mathbf{x}) + u(\mathbf{x}-\mathbf{y})\Big] d\mathbf{y}.
+\end{equation}
+\end{definition}
+
+\begin{remark}[Identification of Fractional Order and Support Radius]
+As introduced in the canonical formalism \cite{silvafilho2026simplex}, the parameter $\alpha$ is employed dually as the fractional order of the continuous multinomial coefficient and as the geometric support radius defining the integration domain $\Delta_{m-1}(\alpha)$. This explicitly couples the non-local diffusion strength to its macroscopic geometric extent as a phenomenological ansatz. Generalizing this operator to decouple the combinatorial fractional index from an independent geometric scale parameter remains an open area for future formalization.
+
+\emph{Dimensional convention.} Since $\alpha$ enters $\Gamma(\alpha+1)$, it is dimensionless. Its use as a support radius therefore presupposes a fixed unit of length $\ell_0$: physical positions are $\ell_0\mathbf{x}$, the jump kernel has support radius of order $\alpha\ell_0$, and the symbol $\sigma^\alpha_{\Delta_m}$ is measured in units of $\ell_0^{-2}$. With this convention, $\frac{\hbar^2}{2M}\sigma^\alpha_{\Delta_m}$ is an energy, and \eqref{eq:nlse_main} below is dimensionally consistent. The choice of $\ell_0$ is part of the model and is not fixed by the kernel.
+\end{remark}
+
+\begin{proposition}[Self-Adjointness and Positivity]
+The operator $-\Delta_{\Delta_m}^\alpha$ is linear, symmetric, and positive semi-definite on $L^2(\mathbb{R}^{m-1})$:
+\begin{equation}
+\langle u, -\Delta_{\Delta_m}^\alpha u \rangle_{L^2} = \frac{1}{2\alpha^2 I_m(\alpha)}\int_{\mathbb{R}^{m-1}} d\mathbf{x} \int_{\Delta_{m-1}(\alpha)} \binom{\alpha}{\mathbf{y}} |u(\mathbf{x}+\mathbf{y}) - u(\mathbf{x})|^2 d\mathbf{y} \ge 0.
+\end{equation}
+\end{proposition}
+
+\begin{proof}
+Expanding the inner product $\langle u, -\Delta_{\Delta_m}^\alpha u \rangle_{L^2} = \int_{\mathbb{R}^{m-1}} u^*(\mathbf{x}) (-\Delta_{\Delta_m}^\alpha u(\mathbf{x})) d\mathbf{x}$:
+\begin{align*}
+\langle u, -\Delta_{\Delta_m}^\alpha u \rangle &= \frac{1}{2\alpha^2 I_m(\alpha)}\int_{\Delta_{m-1}(\alpha)} \binom{\alpha}{\mathbf{y}} \notag \\
+&\quad \times \left[ \int_{\mathbb{R}^{m-1}} \Big(2|u(\mathbf{x})|^2 - u^*(\mathbf{x})u(\mathbf{x}+\mathbf{y}) - u^*(\mathbf{x})u(\mathbf{x}-\mathbf{y})\Big) d\mathbf{x} \right] d\mathbf{y}.
+\end{align*}
+Using the translation invariance $\int u^*(\mathbf{x})u(\mathbf{x}-\mathbf{y})d\mathbf{x} = \int u^*(\mathbf{x}+\mathbf{y})u(\mathbf{x})d\mathbf{x}$:
+\begin{equation}
+\int_{\mathbb{R}^{m-1}} \Big(2|u(\mathbf{x})|^2 - u^*(\mathbf{x})u(\mathbf{x}+\mathbf{y}) - u(\mathbf{x})u^*(\mathbf{x}+\mathbf{y})\Big) d\mathbf{x} = \int_{\mathbb{R}^{m-1}} |u(\mathbf{x}+\mathbf{y}) - u(\mathbf{x})|^2 d\mathbf{x}.
+\end{equation}
+Since $\binom{\alpha}{\mathbf{y}} > 0$ on the interior of $\Delta_{m-1}(\alpha)$, the integral is non-negative. It vanishes if and only if $u = 0$ in $L^2$. Indeed, vanishing forces $\int|u(\mathbf{x}+\mathbf{y}) - u(\mathbf{x})|^2d\mathbf{x} = 0$ for almost every $\mathbf{y}$ in the open set $\operatorname{int}\Delta_{m-1}(\alpha)$. By Plancherel, $\widehat{u}(\mathbf{k})(e^{i\mathbf{k}\cdot\mathbf{y}} - 1) = 0$ for almost every $\mathbf{k}$ and all such $\mathbf{y}$. For $\mathbf{k} \ne \mathbf{0}$, $e^{i\mathbf{k}\cdot\mathbf{y}} \ne 1$ for some $\mathbf{y}$ in the open set, so $\widehat{u} = 0$ almost everywhere. (Non-zero constants are not in $L^2(\mathbb{R}^{m-1})$.)
+\end{proof}
+
+\subsection{Boundedness and Relation to Spectral Fractional Laplacians}
+
+\begin{remark}[Boundedness]
+Because $\binom{\alpha}{\mathbf{y}}$ is integrable with compact support, $-\Delta_{\Delta_m}^\alpha$ is a bounded operator on $L^2(\mathbb{R}^{m-1})$ with $0 \le -\Delta_{\Delta_m}^\alpha \le 2/\alpha^2$ \cite{silvafilho2026simplex}. No boundary conditions or domain restrictions are needed to make it self-adjoint.
+\end{remark}
+
+\begin{remark}[Spectral fractional Laplacians on bounded domains are a different object]
+\label{rem:spectral_fractional}
+One may also define, on a bounded domain $\Omega$ (for instance a simplex), the \emph{spectral} fractional Laplacian $(-\Delta_D)^s u = \sum_n \lambda_n^s \langle u, \phi_n\rangle \phi_n$ from the Dirichlet eigenpairs $(\lambda_n,\phi_n)$ of $-\Delta$. Two facts are worth recording.
+(a) For $s \in (0,1)$, the spectral operator does \emph{not} coincide with the restricted singular-integral fractional Laplacian on $\Omega$; the two differ on bounded domains, and even their eigenvalues differ \cite{servadei2014spectrum}.
+(b) For $s = 2$, the domain of $(-\Delta_D)^2$ is $\{u \in \operatorname{Dom}(-\Delta_D) : \Delta u \in \operatorname{Dom}(-\Delta_D)\}$. For a bounded convex domain, and in particular for a simplex, $\operatorname{Dom}(-\Delta_D) = H^2(\Omega) \cap H^1_0(\Omega)$ \cite{grisvard1985elliptic}, so the domain is $\{u \in H^2 \cap H^1_0 : \Delta u \in H^2 \cap H^1_0\}$. This encodes the Navier conditions $u = \Delta u = 0$ on $\partial\Omega$, not the clamped conditions $u = \partial_{\mathbf{n}} u = 0$, which define a different fourth-order operator \cite{gazzola2010polyharmonic}. For smooth $\partial\Omega$ the domain equals $\{u \in H^4(\Omega) : u = \Delta u = 0 \text{ on } \partial\Omega\}$. On polygons this depends on the angles. On a rectangle or an equilateral triangle, where odd reflections across the sides tile the plane, the same equality holds. On a general triangle it fails: near a corner of angle $\omega$ with $\pi/\omega < 3$ not an integer, the Dirichlet problem has the singular solution $r^{\pi/\omega}\sin(\pi\theta/\omega)$, which is not in $H^4$ \cite{grisvard1985elliptic}. Thus on a general simplex $H^4$ regularity fails near edges and vertices.
+Neither operator is the Beta-kernel operator $\Delta_{\Delta_m}^\alpha$ studied in this chapter.
+\end{remark}
+
+\begin{theorem}[Dispersion Symbol and Long-Wavelength Metric; {\cite[Thm.~7.2]{silvafilho2026simplex}}]
+\label{thm:dispersion}
+The Fourier symbol defined by $-\Delta_{\Delta_m}^\alpha e^{i\mathbf{k}\cdot\mathbf{x}} = \sigma_{\Delta_m}^\alpha(\mathbf{k}) e^{i\mathbf{k}\cdot\mathbf{x}}$ is
+\begin{equation}
+\sigma_{\Delta_m}^\alpha(\mathbf{k}) = \frac{1}{\alpha^2 I_m(\alpha)}\int_{\Delta_{m-1}(\alpha)} \binom{\alpha}{\mathbf{y}}\big(1 - \cos(\mathbf{k}\cdot\mathbf{y})\big)\,d\mathbf{y} \in \Big[0, \frac{2}{\alpha^2}\Big],
+\end{equation}
+an even entire function of $\mathbf{k}$ (the Fourier transform of a compactly supported density). As $|\mathbf{k}| \to 0$,
+\begin{equation}
+\sigma_{\Delta_m}^\alpha(\mathbf{k}) = \frac{1}{2\alpha^2}\mathbf{k}^T \mathbf{M}_2(\alpha)\mathbf{k} + \mathcal{O}(|\mathbf{k}|^4), \qquad \mathbf{M}_2(\alpha) = a(\alpha)\,\mathrm{Id}_{m-1} + b(\alpha)\,\mathbf{1}\mathbf{1}^T,
+\end{equation}
+where $\mathbf{M}_2$ is the second-moment matrix of the normalized kernel. (The closed form $\frac{1}{\alpha^2}[1 - R^\alpha\cos(\alpha\Theta)]$ belongs to the lattice multinomial, not to this continuous kernel; see \cite{silvafilho2026simplex}. Even for the lattice multinomial the small-$\mathbf{k}$ limit is $\frac{S^2}{2m^2} + \frac{Q - S^2/m}{2m\alpha}$, with $S = \sum_j k_j$ and $Q = |\mathbf{k}|^2$. It reduces to $\frac{1}{2m\alpha}\mathbf{k}^T\mathbf{A}_{m-1}\mathbf{k}$, with $\mathbf{A}_{m-1} = \mathrm{Id} +\mathbf{1}\mathbf{1}^T$ the Gram matrix of Chapter~3, only on the constraint $\sum_j k_j = 0$. Both forms then equal $\frac{Q}{2m\alpha}$.)
+\end{theorem}
+
+% ==============================================================================
+\section{Nonlinear Simplicial Schr\"odinger Equations (NLSE)}
+% ==============================================================================
+
+We formulate the Cauchy problem for the non-local Fractional Simplicial NLSE on $\mathbb{R}^{m-1} \times \mathbb{R}^+$:
+\begin{equation}
+\label{eq:nlse_main}
+i \hbar \frac{\partial \psi(\mathbf{x}, t)}{\partial t} = -\frac{\hbar^2}{2M}\Delta_{\Delta_m}^\alpha \psi(\mathbf{x}, t) + V(\mathbf{x})\psi(\mathbf{x}, t) - \kappa |\psi(\mathbf{x}, t)|^{2p}\psi(\mathbf{x}, t),
+\end{equation}
+where $M > 0$ is the effective mass, $V(\mathbf{x})$ is an external real-valued potential, $\kappa \in \mathbb{R}$ is the non-linear coupling constant ($\kappa > 0$ focusing, $\kappa < 0$ defocusing), and $p > 0$ is the non-linearity exponent.
+
+\subsection{Fundamental Conservation Laws}
+
+\begin{theorem}[Global Conservation of Mass and Energy]
+Let $V$ be real-valued and independent of $t$, and let $\psi(\mathbf{x}, t)$ be a smooth solution to \eqref{eq:nlse_main} decaying sufficiently fast at spatial infinity. Use the unitary Fourier transform $\widehat{\psi}(\mathbf{k}) = (2\pi)^{-(m-1)/2}\int \psi(\mathbf{x})e^{-i\mathbf{k}\cdot\mathbf{x}}d\mathbf{x}$, so that $\int \sigma |\widehat\psi|^2 d\mathbf{k} = \langle \psi, -\Delta^\alpha_{\Delta_m}\psi\rangle$. Then:
+\begin{enumerate}
+    \item \textbf{Conservation of Total Mass (Particle Number):}
+    \begin{equation}
+    \mathcal{N}[\psi(t)] \coloneqq \int_{\mathbb{R}^{m-1}} |\psi(\mathbf{x}, t)|^2 \, d\mathbf{x} = \mathcal{N}[\psi(0)].
+    \end{equation}
+    \item \textbf{Conservation of Simplicial Energy (Hamiltonian):}
+    \begin{align}
+    \mathcal{E}[\psi(t)] &\coloneqq \frac{\hbar^2}{2M}\int_{\mathbb{R}^{m-1}} \sigma_{\Delta_m}^\alpha(\mathbf{k}) |\widehat{\psi}(\mathbf{k}, t)|^2 d\mathbf{k} + \int_{\mathbb{R}^{m-1}} V(\mathbf{x})|\psi(\mathbf{x}, t)|^2 d\mathbf{x} \nonumber\\
+    &\quad - \frac{\kappa}{p+1}\int_{\mathbb{R}^{m-1}} |\psi(\mathbf{x}, t)|^{2p+2} d\mathbf{x} = \mathcal{E}[\psi(0)].
+    \end{align}
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+\leavevmode
+\begin{enumerate}
+    \item Multiplying \eqref{eq:nlse_main} by $\psi^*$ and taking the imaginary part:
+    \begin{equation}
+    \frac{\hbar}{2}\frac{\partial |\psi|^2}{\partial t} = \operatorname{Im}\left(-\frac{\hbar^2}{2M}\psi^* \Delta_{\Delta_m}^\alpha \psi\right).
+    \end{equation}
+    Integrating over $\mathbb{R}^{m-1}$ and applying the self-adjointness of $\Delta_{\Delta_m}^\alpha$:
+    \begin{equation}
+    \frac{d}{dt}\mathcal{N}[\psi(t)] = -\frac{\hbar}{M}\operatorname{Im}\langle \psi, \Delta_{\Delta_m}^\alpha \psi \rangle_{L^2} = 0,
+    \end{equation}
+    since $\langle \psi, \Delta_{\Delta_m}^\alpha \psi \rangle_{L^2} \in \mathbb{R}$.
+    
+    \item Differentiating $\mathcal{E}[\psi(t)]$ with respect to $t$:
+    \begin{equation}
+    \frac{d\mathcal{E}}{dt} = 2\operatorname{Re}\int_{\mathbb{R}^{m-1}} \psi_t^* \left[ -\frac{\hbar^2}{2M}\Delta_{\Delta_m}^\alpha \psi + V(\mathbf{x})\psi - \kappa |\psi|^{2p}\psi \right] d\mathbf{x}.
+    \end{equation}
+    Substituting the equation of motion $i\hbar \psi_t = \mathcal{H}\psi$:
+    \begin{equation}
+    \frac{d\mathcal{E}}{dt} = 2\operatorname{Re}\int_{\mathbb{R}^{m-1}} \left(\frac{1}{i\hbar}\mathcal{H}\psi\right)^* (\mathcal{H}\psi) \, d\mathbf{x} = 2\operatorname{Re}\left(-\frac{1}{i\hbar}\|\mathcal{H}\psi\|_{L^2}^2\right) = 0.
+    \end{equation}
+\end{enumerate}
+\end{proof}
+
+\subsection{Modulational Instability}
+
+Let $V \equiv 0$. Consider a uniform plane-wave background state with amplitude $\psi_0(\mathbf{x}, t) = \sqrt{\rho_0} e^{-i \mu_0 t / \hbar}$, where the chemical potential is $\mu_0 = -\kappa \rho_0^p$. We perturb the background as
+\begin{equation}
+\psi(\mathbf{x}, t) = \left(\sqrt{\rho_0} + \delta u(\mathbf{x}, t) + i \delta v(\mathbf{x}, t)\right) e^{-i \mu_0 t / \hbar}.
+\end{equation}
+
+\begin{theorem}[Simplicial Modulational Instability]
+Linearizing \eqref{eq:nlse_main} with respect to perturbations $(\delta u, \delta v) \propto e^{i(\mathbf{k}\cdot\mathbf{x} - \Omega t)}$, the perturbation frequency satisfies the dispersion relation:
+\begin{equation}
+\hbar^2 \Omega^2(\mathbf{k}) = \frac{\hbar^2 \sigma_{\Delta_m}^\alpha(\mathbf{k})}{2M} \left[ \frac{\hbar^2 \sigma_{\Delta_m}^\alpha(\mathbf{k})}{2M} - 2\kappa p \rho_0^p \right].
+\end{equation}
+In the focusing regime ($\kappa > 0$), the plane wave is modulationally unstable ($\Omega^2 < 0$) for wavevectors satisfying
+\begin{equation}
+\sigma_{\Delta_m}^\alpha(\mathbf{k}) < \frac{4M\kappa p \rho_0^p}{\hbar^2},
+\end{equation}
+with maximum instability growth rate $\gamma_{\max} = \frac{\kappa p \rho_0^p}{\hbar}$ attained on the resonant set $\{\sigma_{\Delta_m}^\alpha(\mathbf{k}) = 2M\kappa p\rho_0^p/\hbar^2\}$. This set is non-empty when $2M\kappa p\rho_0^p/\hbar^2 < \sup_{\mathbf{k}}\sigma_{\Delta_m}^\alpha$ ($\le 2/\alpha^2$), by continuity of $\sigma$ and $\sigma(\mathbf{0}) = 0$. In the case of equality it is non-empty exactly when the supremum is attained. Since the symbol is bounded, for $4M\kappa p\rho_0^p/\hbar^2 > \sup\sigma$ \emph{every} wavevector $\mathbf{k} \ne \mathbf{0}$ is unstable, unlike the local NLSE ($\mathbf{k} = \mathbf{0}$ gives $\Omega = 0$).
+\end{theorem}
+\begin{proof}
+Linearizing gives $\hbar\,\partial_t \delta u = \varepsilon\,\delta v$ and $\hbar\,\partial_t \delta v = -(\varepsilon - 2\kappa p\rho_0^p)\,\delta u$ in Fourier variables, with $\varepsilon = \hbar^2\sigma/(2M)$. Hence $\hbar^2\Omega^2 = \varepsilon(\varepsilon - 2\kappa p\rho_0^p)$, which is minimized at $\varepsilon = \kappa p\rho_0^p$, giving $\hbar^2\Omega^2 = -(\kappa p\rho_0^p)^2$.
+\end{proof}
+
+\subsection{Simplicial Solitary Waves and Anisotropic Solitons}
+
+For stationary solitary wave states $\psi(\mathbf{x}, t) = e^{-i\mu t/\hbar} \phi(\mathbf{x})$ with $\mu < 0$:
+\begin{equation}
+\label{eq:soliton_profile}
+-\frac{\hbar^2}{2M}\Delta_{\Delta_m}^\alpha \phi(\mathbf{x}) + (V(\mathbf{x}) - \mu)\phi(\mathbf{x}) = \kappa |\phi(\mathbf{x})|^{2p}\phi(\mathbf{x}).
+\end{equation}
+
+\begin{conjecture}[Existence and Symmetry of Simplicial Solitary Waves]
+Let $V \equiv 0$, $\kappa > 0$ and $\mu < 0$. Then \eqref{eq:soliton_profile} has a non-trivial solution $\phi \in L^2(\mathbb{R}^{m-1}) \cap L^\infty(\mathbb{R}^{m-1})$ which, after translation, is invariant under the group generated by the permutations of $x_1, \dots, x_{m-1}$ and $\mathbf{x} \mapsto -\mathbf{x}$. This group, $S_{m-1} \times \mathbb{Z}_2$, preserves $\Delta_{\Delta_m}^\alpha$. The full group $S_m$ does not act linearly: exchanging $y_m$ with $y_j$ is an affine map on $\mathbb{R}^{m-1}$, and it does not preserve the second-moment matrix $\mathbf{M}_2$ \cite[Rem.~7.3]{silvafilho2026simplex}. We do not know whether $S_{m-1} \times \mathbb{Z}_2$ is the whole group of linear symmetries of the operator. Such solutions are not radially symmetric.
+\end{conjecture}
+
+\begin{remark}
+The conjecture cannot be approached by minimizing the energy at fixed mass, because in the focusing case $\kappa > 0$ that infimum is $-\infty$ for every $p > 0$. The kinetic term is bounded, $0 \le \frac{\hbar^2}{2M}\int\sigma|\widehat\psi|^2 \le \frac{\hbar^2}{M\alpha^2}\mathcal{N}[\psi]$, while for $\psi_w(\mathbf{x}) = w^{-(m-1)/2}\phi(\mathbf{x}/w)$ the mass is independent of $w$ and $\int|\psi_w|^{2p+2} = w^{-(m-1)p}\int|\phi|^{2p+2} \to \infty$ as $w \to 0$. Hence ``ground state'' must be understood as a solution of \eqref{eq:soliton_profile} selected by another principle, for instance a least-action solution on a Nehari-type set, and not as an energy minimizer. Neither existence nor symmetry is proved here. For a kernel with compact support, the decay of solitary waves is expected to be exponential rather than algebraic.
+\end{remark}
+
+% ==============================================================================
+\section{Anomalous Diffusion in Anisotropic Porous Media}
+% ==============================================================================
+
+\subsection{Model Formulation}
+
+In heterogeneous porous and fractured geological media, microscopic transport is characterized by: (i) temporal retention in pore dead-ends (subdiffusion), and (ii) anisotropic spatial hopping constrained by simplicial pore geometries.
+
+\begin{definition}[Space-Time Fractional Simplicial Diffusion Equation]
+Let $u(\mathbf{x}, t)$ denote the solute concentration. The governing equation is
+\begin{equation}
+\label{eq:fract_diff}
+\frac{\partial^\beta u(\mathbf{x}, t)}{\partial t^\beta} = \mathcal{K}_{\text{diff}} \Delta_{\Delta_m}^\alpha u(\mathbf{x}, t), \quad \mathbf{x} \in \mathbb{R}^{m-1}, \; t > 0,
+\end{equation}
+with initial condition $u(\mathbf{x}, 0) = u_0(\mathbf{x})$, where $\beta \in (0, 1]$ is the temporal order of the Caputo fractional derivative:
+\begin{equation}
+\frac{\partial^\beta u}{\partial t^\beta}(t) \coloneqq \frac{1}{\Gamma(1-\beta)}\int_0^t (t-\tau)^{-\beta} \frac{\partial u}{\partial \tau}(\tau) \, d\tau.
+\end{equation}
+\end{definition}
+
+\subsection{Exact Propagator via Mittag-Leffler Functions}
+
+\begin{theorem}[Closed-Form Solution in Frequency Domain]
+The spatial Fourier transform of the exact solution to \eqref{eq:fract_diff} is given by
+\begin{equation}
+\widehat{u}(\mathbf{k}, t) = E_\beta\left(-\mathcal{K}_{\text{diff}}\,\sigma_{\Delta_m}^\alpha(\mathbf{k})\,t^\beta\right) \widehat{u}_0(\mathbf{k}),
+\end{equation}
+where $E_\beta(z) \coloneqq \sum_{n=0}^\infty \frac{z^n}{\Gamma(\beta n + 1)}$ is the Mittag-Leffler function. Since $\sigma^\alpha_{\Delta_m}(\mathbf{k}) \to \alpha^{-2}$ as $|\mathbf{k}| \to \infty$, the fundamental solution ($u_0 = \delta$) is not a function. It is a measure with an atom $E_\beta(-\mathcal{K}_{\text{diff}}\,t^\beta/\alpha^2)\,\delta(\mathbf{x})$ at the origin, which decays only slowly in $t$ (like $t^{-\beta}$ for $\beta < 1$), plus the inverse transform of the remainder.
+\end{theorem}
+
+\begin{proof}
+Applying the Laplace transform $\mathcal{L}\{f\}(s) = \int_0^\infty e^{-st}f(t)dt$ to the Caputo derivative yields $\mathcal{L}\{\partial_t^\beta u\}(s) = s^\beta \widetilde{u}(s) - s^{\beta-1}u(0)$. Applying the spatial Fourier transform $\mathbf{x} \to \mathbf{k}$:
+\begin{equation}
+s^\beta \widehat{\widetilde{u}}(\mathbf{k}, s) - s^{\beta-1}\widehat{u}_0(\mathbf{k}) = -\mathcal{K}_{\text{diff}}\,\sigma_{\Delta_m}^\alpha(\mathbf{k})\,\widehat{\widetilde{u}}(\mathbf{k}, s).
+\end{equation}
+Solving algebraically for $\widehat{\widetilde{u}}(\mathbf{k}, s)$:
+\begin{equation}
+\widehat{\widetilde{u}}(\mathbf{k}, s) = \frac{s^{\beta-1}}{s^\beta + \mathcal{K}_{\text{diff}}\,\sigma_{\Delta_m}^\alpha(\mathbf{k})} \widehat{u}_0(\mathbf{k}).
+\end{equation}
+Applying the inverse Laplace transform using the standard identity $\mathcal{L}^{-1}\left\{\frac{s^{\beta-1}}{s^\beta + a}\right\}(t) = E_\beta(-a t^\beta)$ immediately yields the result.
+\end{proof}
+
+\subsection{Mean Squared Displacement (MSD) and Simplicial Permeability Tensor}
+
+\begin{theorem}[Anisotropic Mean Squared Displacement]
+\label{thm:msd}
+Assume a localized initial condition $u_0(\mathbf{x}) = \delta(\mathbf{x})$. The first and second moments of the concentration profile satisfy:
+\begin{enumerate}
+    \item \textbf{Mean Drift:} $\langle \mathbf{x}(t) \rangle = \mathbf{0}$.
+    \item \textbf{Mean Squared Displacement Covariance Tensor:}
+    \begin{equation}
+    \langle \mathbf{x} \mathbf{x}^T \rangle(t) \coloneqq \int_{\mathbb{R}^{m-1}} \mathbf{x}\mathbf{x}^T u(\mathbf{x}, t)\,d\mathbf{x} = \frac{\mathcal{K}_{\text{diff}}}{\alpha^2 \, \Gamma(\beta + 1)} \mathbf{M}_2(\alpha) \cdot t^\beta,
+    \end{equation}
+    exactly for all $t > 0$, where $\mathbf{M}_2(\alpha) = a(\alpha)\mathrm{Id} + b(\alpha)\mathbf{1}\mathbf{1}^T$ is the second-moment matrix of Theorem~\ref{thm:dispersion}.
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+Using moment-generating properties of the Fourier transform:
+\begin{equation}
+\langle x_j \rangle(t) = \left. i \frac{\partial \widehat{u}(\mathbf{k}, t)}{\partial k_j} \right|_{\mathbf{k}=\mathbf{0}} = \left. i E_\beta'\left(-\mathcal{K}_{\text{diff}}\sigma_{\Delta_m}^\alpha t^\beta\right) \left(-\mathcal{K}_{\text{diff}} t^\beta \frac{\partial \sigma_{\Delta_m}^\alpha}{\partial k_j}\right) \right|_{\mathbf{k}=\mathbf{0}} = 0,
+\end{equation}
+since $\sigma_{\Delta_m}^\alpha$ is even in $\mathbf{k}$ (the operator is built from the symmetric second difference), so $\left.\nabla_\mathbf{k}\sigma_{\Delta_m}^\alpha\right|_{\mathbf{k}=\mathbf{0}} = \mathbf{0}$.
+
+For the second moment tensor:
+\begin{equation}
+\langle x_i x_j \rangle(t) = \left. -\frac{\partial^2 \widehat{u}(\mathbf{k}, t)}{\partial k_i \partial k_j} \right|_{\mathbf{k}=\mathbf{0}} = \left. -E_\beta'(0) \left(-\mathcal{K}_{\text{diff}} t^\beta \frac{\partial^2 \sigma_{\Delta_m}^\alpha}{\partial k_i \partial k_j}\right) \right|_{\mathbf{k}=\mathbf{0}}.
+\end{equation}
+Since $E_\beta(z) = \frac{1}{\Gamma(1)} + \frac{z}{\Gamma(\beta+1)} + \mathcal{O}(z^2)$, we have $E_\beta'(0) = \frac{1}{\Gamma(\beta+1)}$. By Theorem~\ref{thm:dispersion}, the Hessian of the symbol at $\mathbf{k}=\mathbf{0}$ is:
+\begin{equation}
+\left. \frac{\partial^2 \sigma_{\Delta_m}^\alpha}{\partial k_i \partial k_j} \right|_{\mathbf{k}=\mathbf{0}} = \frac{1}{\alpha^2}(\mathbf{M}_2(\alpha))_{ij}.
+\end{equation}
+Substituting this yields:
+\begin{equation}
+\langle x_i x_j \rangle(t) = \frac{\mathcal{K}_{\text{diff}}}{\alpha^2 \Gamma(\beta+1)} (\mathbf{M}_2(\alpha))_{ij}\, t^\beta.
+\end{equation}
+Only $E_\beta'(0)$ and the Hessian of $\sigma$ at $\mathbf{0}$ enter, so the identity is exact for all $t$, not only asymptotically.
+\end{proof}
+
+\begin{remark}[Analytical Exact Solution and Simplicial Propagation]
+Fourier--Laplace solutions with Mittag-Leffler propagators are standard for continuous-time random walks and fractional diffusion \cite{metzler2000}. The contribution here is the specific compact, $S_{m-1}$-symmetric jump kernel, whose covariance $\mathbf{M}_2(\alpha)$ fixes the anisotropy of the mean squared displacement.
+\end{remark}
+
+% ==============================================================================
+\section{Conclusion}
+% ==============================================================================
+
+In this paper, we have formulated and analyzed the physical dynamics governed by the Fractional Simplicial Laplacian introduced in \cite{silvafilho2026simplex}. We established the conservation laws and the modulational instability of the Nonlinear Simplicial Schr\"odinger Equation, stated the symmetry of its solitary waves as a conjecture, and derived the exact Mittag-Leffler propagator and simplicial permeability tensor for anomalous porous diffusion. Future research will explore split-step Fourier numerical solvers and experimental transport validation in lithographic microfluidic rock networks.
+
+\input{declarations_chapter}
+
+\begin{thebibliography}{99}
+
+\bibitem{silvafilho2026simplex} R.~M. Silva-Filho, \emph{Analytic Continuation of Pascal's Simplex: Continuous Multinomial Integrals, Polytope Boundary Recurrences, and Simplicial Fractional Calculus}, Chapter~3 of \emph{Geometry, Tensors, and Quantum Gravity}, Universidade Federal de Lavras, 2026.
+
+\bibitem{servadei2014spectrum}
+R.~Servadei and E.~Valdinoci,
+\emph{On the spectrum of two different fractional operators},
+Proceedings of the Royal Society of Edinburgh, Section A, \textbf{144} (2014), no.~4, 831--855,
+\doi{10.1017/S0308210512001783}.
+
+\bibitem{grisvard1985elliptic}
+P.~Grisvard,
+\emph{Elliptic Problems in Nonsmooth Domains},
+Classics in Applied Mathematics, Vol.~69, SIAM, Philadelphia, 2011 (reprint of the 1985 edition),
+\doi{10.1137/1.9781611972030}.
+
+\bibitem{gazzola2010polyharmonic}
+F.~Gazzola, H.-C. Grunau, and G.~Sweers,
+\emph{Polyharmonic Boundary Value Problems},
+Lecture Notes in Mathematics, Vol.~1991, Springer, Berlin, 2010,
+\doi{10.1007/978-3-642-12245-3}.
+
+\bibitem{podlubny1998}
+I.~Podlubny,
+\emph{Fractional Differential Equations: An Introduction to Fractional Derivatives, Fractional Differential Equations, to Methods of Their Solution and Some of Their Applications},
+Mathematics in Science and Engineering, Vol.~198, Academic Press, San Diego, 1999,
+\doi{10.1016/S0076-5392(99)X8001-5}.
+
+\bibitem{samko1993}
+S.~G. Samko, A.~A. Kilbas, and O.~I. Marichev,
+\emph{Fractional Integrals and Derivatives: Theory and Applications},
+Gordon and Breach Science Publishers, Yverdon, 1993, ISBN~978-2-88124-864-1.
+
+\bibitem{metzler2000}
+R.~Metzler and J.~Klafter,
+\emph{The random walk's guide to anomalous diffusion: a fractional dynamics approach},
+Physics Reports, \textbf{339} (2000), no.~1, 1--77,
+\doi{10.1016/S0370-1573(00)00070-3}.
+
+\bibitem{laskin2000}
+N.~Laskin,
+\emph{Fractional quantum mechanics and L\'evy path integrals},
+Physics Letters A, \textbf{268} (2000), no.~4--6, 298--305,
+\doi{10.1016/S0375-9601(00)00201-2}.
+
+\end{thebibliography}
+
+\end{document}

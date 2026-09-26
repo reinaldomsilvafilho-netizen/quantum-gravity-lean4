@@ -1,0 +1,397 @@
+\documentclass[11pt,reqno]{amsart}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage{geometry}
+\geometry{a4paper, margin=1in}
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    citecolor=red,
+    urlcolor=teal
+}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta, calc, decorations.markings}
+\usepackage{microtype}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{tabularx}
+
+% --- Teoremas e Estruturas ---
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{conjecture}[theorem]{Conjecture}
+
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{example}[theorem]{Example}
+\newtheorem{assumption}[theorem]{Assumption}
+\newtheorem{algorithm}[theorem]{Algorithm}
+
+% --- Atalhos e Operadores ---
+\providecommand{\R}{\mathbb{R}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\C}{\mathbb{C}}
+\providecommand{\II}{\mathrm{I\!I}}
+\newcommand{\op}{\mathrm{op}}
+\newcommand{\dist}{\mathrm{dist}}
+\newcommand{\reach}{\mathrm{reach}}
+\newcommand{\medial}{\mathcal{M}}
+\providecommand{\Hsn}{\mathcal{H}}
+\newcommand{\OmegaBar}{\bar{\Omega}}
+\newcommand{\Cover}{\widetilde{\Omega}}
+\newcommand{\piOne}{\pi_1(\Omega \setminus \mathcal{O})}
+
+\numberwithin{equation}{section}
+
+
+\DeclareMathOperator*{\argmin}{argmin}
+\providecommand{\Hyp}{\mathbb{H}}
+\providecommand{\Sph}{\mathbb{S}}
+\providecommand{\II}{\mathrm{II}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\Area}{\mathrm{Area}}
+\providecommand{\Hsn}{\mathcal{H}}
+\providecommand{\BV}{\mathrm{BV}}
+\providecommand{\TV}{\mathrm{TV}}
+\providecommand{\cutnorm}[1]{\|#1\|_{\square}}
+
+\begin{document}
+
+\title[Global Minimax Curvature via Homotopy and Covering Spaces]{Global Minimax Curvature in Multiply-Connected Domains: Homotopy Search, Universal Covering Spaces, and Non-Trivial Loop Dynamics}
+
+\author{Reinaldo Maia Silva-Filho}
+\address{Programa de P\'os-Gradua\c{c}\~ao em Estat\'istica e Experimenta\c{c}\~ao Agropecu\'aria (PPGEE/DES), Universidade Federal de Lavras (UFLA)}
+\email{reinaldo.filho1@estudante.ufla.br}
+
+\date{\today}
+
+\begin{abstract}
+We study the $L^\infty$ minimax curvature problem for curves in multiply-connected planar domains $\Omega \setminus \mathcal{O}$ with obstacles $\mathcal{O}_1, \dots, \mathcal{O}_m$. When the domain and the obstacles are topological disks, the admissible paths split into homotopy classes indexed by the free group $\mathbb{F}_m$, and a local optimizer that deforms a feasible path continuously cannot leave the class of its seed. We prove four results. (i) With a length bound $V$, only finitely many homotopy classes contain admissible curves, and the winding number about each obstacle is at most $(V/\rho_i + |\Delta\theta_i(\gamma_0)|)/2\pi$; it is also at most $(V\|\kappa\|_{L^\infty} + \pi + |\Delta\theta_i(\gamma_0)|)/2\pi$, from the inequality $\int|\theta_i'| \le \int|\kappa| + \pi$. Without a length bound finiteness fails. (ii) Every closed sub-loop of a curve with curvature at most $\kappa$ has diameter at least $2/\kappa$. (iii) An immersed path with no null-homotopic sub-loop lifts to an embedded path in the universal cover. (iv) Flat $SU(2)$ connections with faithful holonomy separate homotopy classes that winding numbers cannot distinguish, such as commutators. We describe a search pipeline (homotopy enumeration, roadmap seeds, $L^p$ continuation) as a heuristic, and we state the $\Gamma$-convergence of its discretization as a conjecture. We also show that the length bound cannot be dropped, that for a generic faithful representation a braid generator does not act on holonomy by conjugation (while for special faithful representations it does), and that in a benchmark channel with a central obstacle every homotopy class has optimal curvature at least $1/H$, with the value $1/H$ attained in the class that turns back before the obstacle and in the classes that go around it a positive number of times, by embedded paths for the winding numbers $w = 0, 1$ and by immersed, self-intersecting paths for $w \ge 2$.
+\end{abstract}
+
+\maketitle
+
+\tableofcontents
+\newpage
+
+\section{Introduction and Theoretical Scope}
+
+\subsection{The Global Minimax Problem in Multiply-Connected Domains}
+Let $\Omega \subset \R^2$ be a bounded Jordan domain (the interior of a Jordan curve, so that $\bar\Omega$ is a closed topological disk) containing $m$ pairwise disjoint obstacles $\mathcal{O} = \bigcup_{i=1}^m \mathcal{O}_i \subset \Omega$, each a closed topological disk (the closure of a Jordan domain). Given boundary data at $p, q$ (points, and optionally unit tangents) and a length bound $V$, we study the \textbf{global $L^\infty$ minimax curvature problem}. It extends the obstacle problem of Chapter~7 \cite{silvafilho2026minimax} and the Dubins problem \cite{dubins1957}:
+\begin{equation}
+\label{eq:global_minimax_problem}
+\kappa^*_{\mathrm{global}}(\Omega, p, q) := \inf_{\gamma \in \mathcal{C}(\Omega \setminus \operatorname{int}\mathcal{O}, p, q)} \|\kappa(\gamma)\|_{L^\infty},
+\end{equation}
+where $\mathcal{C}$ is the class of $C^{1,1}$ curves in $\bar\Omega \setminus \operatorname{int}\mathcal{O}$ with the given boundary data and length at most $V$. For a regular parametrization $\gamma: [0, 1] \to \R^2$ the curvature is
+\begin{equation}
+\kappa(t) = \frac{|\ddot{\gamma}(t) - \langle \ddot{\gamma}(t), \dot{\gamma}(t) \rangle \frac{\dot{\gamma}(t)}{|\dot{\gamma}(t)|^2}|}{|\dot{\gamma}(t)|^2}.
+\end{equation}
+By Proposition~5.1 of Chapter~7 (existence for curves), the infimum is attained whenever $\mathcal{C} \neq \emptyset$.
+
+For $m \ge 1$ the free space has nontrivial topology, and admissible paths split into homotopy classes with fixed endpoints:
+\begin{equation}
+\mathcal{C}(\Omega \setminus \operatorname{int}\mathcal{O}, p, q) = \bigsqcup_{[\alpha] \in \pi_1(\Omega \setminus \mathcal{O}, p, q)} \mathcal{C}_{[\alpha]}.
+\end{equation}
+A continuous deformation that stays in the free space cannot change the class. Local optimizers (gradient descent, sequential quadratic programming, shooting) that deform the path continuously and keep it feasible at every step therefore explore only the class of their seed, and a global method must decide which classes to search. Penalty methods, such as step~4 of Algorithm~\ref{alg:universal_minimax}, and discrete steps can cross thin obstacles and change the class, but in an uncontrolled way.
+
+\subsection{Embedded and Immersed Paths}
+If $\gamma$ must be embedded, it cannot cross itself. If self-intersections are allowed, the path can use loops, for instance a loop around an obstacle or a ``teardrop'' turn, to spread its turning over larger arcs. Whether this lowers $\kappa^*$ depends on the geometry (Section~\ref{sec:benchmark}).
+
+\subsection{Scope and Tameness}
+We work in the plane throughout, under the assumptions of Section~1.1: $\bar\Omega$ and each $\mathcal{O}_i$ are closed topological disks, the $\mathcal{O}_i$ are pairwise disjoint and contained in the open set $\Omega$. The free space $\mathcal{F} = \bar\Omega \setminus \operatorname{int}\mathcal{O}$ is then a compact region bounded by $m+1$ disjoint Jordan curves. By the Schoenflies theorem it is homeomorphic to a closed round disk with $m$ disjoint open round disks removed. In particular $\mathcal{F}$ is compact and locally contractible, it is homotopy equivalent to its interior $\Omega \setminus \mathcal{O}$ (a collar argument), and both deformation retract onto a wedge of $m$ circles. We therefore write $\pi_1(\Omega \setminus \mathcal{O})$ and $\pi_1(\mathcal{F})$ interchangeably. The assumptions cannot simply be dropped: an obstacle with empty interior (a point or a segment) does not change $\pi_1$; an annular obstacle disconnects the free space; and if $\Omega$ is an annulus with a radial slit, $\Omega$ is simply connected but $\bar\Omega$ is not, and $\pi_1(\mathcal{F})$ has rank $m+1$. Positive reach of each obstacle \cite{federer1959} is convenient for the contact analysis of Chapter~7, but it is not needed for the topology.
+
+\begin{remark}[Higher dimensions]
+In dimension $n \ge 3$ the free space does not in general retract onto a $1$-dimensional complex with free fundamental group. Stratified Morse theory \cite{goresky1988} describes how the topology of such spaces is assembled, but it does not reduce it to a graph. The complement of a ball in $\R^3$ is homotopy equivalent to $S^2$, and the complement of a knotted solid torus has the (non-free) knot group as fundamental group. For $n \ge 3$ the homotopy classification of paths must be computed from the actual topology of the free space. For semi-algebraic obstacles, cylindrical algebraic decomposition gives a finite cell decomposition of the free space, hence a finite presentation of its fundamental group, with complexity doubly exponential in $n$. This does not give an algorithm that decides whether two paths are homotopic, which is the word problem for the presented group. For $n \ge 5$ no such algorithm exists in general: every finitely presented group is the fundamental group of a finite $2$-complex, which embeds in $\R^5$; a regular neighbourhood of the embedded complex is a compact semi-algebraic free space with the same fundamental group, and there are finitely presented groups with unsolvable word problem \cite{boone1959}.
+\end{remark}
+
+\subsection{The Free Groupoid and Reduced Words}
+Under the assumptions above, the fundamental group of the free space with basepoint $x_0$ is free of rank $m$ \cite{hatcher2002}:
+\begin{equation}
+\pi_1(\Omega \setminus \mathcal{O}, x_0) \cong \mathbb{F}_m = \langle a_1, a_2, \dots, a_m \rangle,
+\end{equation}
+where $a_i$ is represented by a loop that goes once counterclockwise around $\mathcal{O}_i$ and around no other obstacle; its winding number about any point $c_j \in \operatorname{int}\mathcal{O}_j$ is $\delta_{ij}$. Fix a reference path $\gamma_0$ from $p$ to $q$. The class of a path $\gamma$ from $p$ to $q$ corresponds to the loop $\gamma * \gamma_0^{-1}$, which is represented by a unique \emph{reduced} word
+\begin{equation}
+w(\gamma) = a_{i_1}^{k_1} a_{i_2}^{k_2} \cdots a_{i_\ell}^{k_\ell}, \quad i_j \neq i_{j+1}, \quad k_j \in \Z \setminus \{0\}.
+\end{equation}
+The winding number $w_i(\gamma)$ about $\mathcal{O}_i$ is the exponent sum of $a_i$ in this word. It depends only on the image of the class in $H_1 = \Z^m$.
+
+\subsection{Non-Abelian Holonomy}
+Abelian invariants (winding numbers, integrals of closed $1$-forms) factor through $H_1$, so they vanish on commutators such as $[a_1, a_2] = a_1 a_2 a_1^{-1} a_2^{-1}$. Non-abelian invariants are needed, for example iterated integrals \cite{chen1977} or holonomies of flat connections.
+
+\begin{proposition}[Non-abelian path classification]
+\label{prop:holonomy}
+Let $\rho: \mathbb{F}_m \to SU(2)$ be an injective homomorphism. Such homomorphisms exist, since $SU(2)$ contains free subgroups of every finite rank. Let $A$ be a flat $\mathfrak{su}(2)$-connection on the free space with holonomy representation $\rho$. Then for paths $\gamma, \gamma'$ from $p$ to $q$,
+\begin{equation}
+\operatorname{Hol}(\gamma, A) = \operatorname{Hol}(\gamma', A) \iff [\gamma] = [\gamma'] \text{ in } \pi_1(\Omega \setminus \mathcal{O}, p, q),
+\end{equation}
+where, for $\gamma \colon [0,1] \to \mathcal{F}$, $\operatorname{Hol}(\gamma, A) = \mathcal{P}\exp\big(\int_\gamma A\big)$ is the value $U(1)$ of the solution of $\dot U(t) = U(t)\,A_{\gamma(t)}(\dot\gamma(t))$, $U(0) = I$. With this ordering convention (later parameter values to the right), $\operatorname{Hol}(\gamma * \gamma') = \operatorname{Hol}(\gamma)\operatorname{Hol}(\gamma')$, and the Dyson expansion reads
+\begin{equation*}
+\operatorname{Hol}(\gamma, A) = I + \int_0^1 A_{\gamma(t)}(\dot\gamma(t))\,dt + \iint_{0 < t_1 < t_2 < 1} A_{\gamma(t_1)}(\dot\gamma(t_1))\, A_{\gamma(t_2)}(\dot\gamma(t_2))\,dt_1\,dt_2 + \dots,
+\end{equation*}
+whose terms are Chen's iterated integrals \cite{chen1977}.
+\end{proposition}
+
+\begin{proof}
+Flat connections correspond to representations of $\pi_1$, and parallel transport along $\gamma$ depends only on the homotopy class of $\gamma$ with fixed endpoints. So $\operatorname{Hol}(\gamma,A)\operatorname{Hol}(\gamma',A)^{-1}$ is the holonomy of the loop $\gamma * \gamma'^{-1}$, conjugated by transport to the basepoint. That holonomy is $\rho([\gamma * \gamma'^{-1}])$, which equals $I$ if and only if the loop is null-homotopic, because $\rho$ is injective.
+\end{proof}
+
+\begin{remark}[Deformations and mapping classes]
+Under a diffeomorphism $\phi$ of the free space, holonomy is natural: $\operatorname{Hol}(\phi \circ \gamma, (\phi^{-1})^*A) = \operatorname{Hol}(\gamma, A)$. For a \emph{fixed} connection with holonomy representation $\rho$, a mapping class $M$ acts on $\mathbb{F}_m$ by an automorphism $M_*$, which is in general not inner. For example, the braid generator $\sigma_1 \colon a_1 \mapsto a_1 a_2 a_1^{-1}$, $a_2 \mapsto a_1$ swaps the generators in $H_1$, while inner automorphisms act trivially on $H_1$. Whether $\operatorname{Hol}(M\cdot\gamma, A) = g_M \operatorname{Hol}(\gamma, A) g_M^{-1}$ holds for some $g_M \in SU(2)$ is a different question: it asks whether $\rho \circ M_* = c_{g_M} \circ \rho$ for a conjugation $c_{g_M}$ of $SU(2)$, and $g_M$ need not lie in $\rho(\mathbb{F}_m)$, so it is not decided by whether $M_*$ is inner. The answer depends on $\rho$. Conjugation preserves traces, and $\sigma_1$ maps $a_2$ to $a_1$, so if $\operatorname{tr}\rho(a_1) \ne \operatorname{tr}\rho(a_2)$, which holds for generic $\rho$, then $\sigma_1$ does not act on holonomy by conjugation. On the other hand, let $A, B \in SU(2)$ be lifts of the rotations by $\arccos(1/3)$ about two orthogonal axes, which generate a free group of rank two \cite{swierczkowski1958}. Then $\operatorname{tr}A = \operatorname{tr}B$, and the traces $(\operatorname{tr}A, \operatorname{tr}B, \operatorname{tr}AB)$ are preserved by $\sigma_1$. The pair does not commute, so it is irreducible. Two irreducible representations of a finitely generated group into $SL(2,\mathbb{C})$ with the same character are conjugate \cite{culler1983}, the character of a two-generator group is determined by $(\operatorname{tr}A, \operatorname{tr}B, \operatorname{tr}AB)$ (Fricke; see \cite{goldman2009trace}), and unitary representations that are conjugate in $GL(2,\mathbb{C})$ are conjugate by a unitary matrix. Hence there is $g \in SU(2)$ with $gAg^{-1} = ABA^{-1}$ and $gBg^{-1} = A$. For this faithful $\rho$, $\sigma_1$ does act on holonomy by conjugation (numerical check in the accompanying code repository).
+\end{remark}
+
+\begin{remark}[Numerical evaluation]
+Since holonomy depends only on the homotopy class, it can be evaluated on any representative. For example, one can push the path onto the medial axis of the free space, which has the homotopy type of the free space for bounded open planar sets \cite{lieutier2004} and keeps the path away from the obstacles. The endpoints $p, q$ do not in general lie on the medial axis; one then joins them to it by fixed connecting segments and deforms only the middle part, which preserves the class rel endpoints. This is a numerical convenience.
+\end{remark}
+
+\section{Finiteness of the Relevant Homotopy Classes}
+
+\begin{proposition}[Confinement of closed sub-loops]
+\label{prop:subloop}
+Let $\gamma$ be a planar $C^{1,1}$ curve with $|\kappa| \le K$ a.e.\ for a constant $K > 0$, and let $\gamma|_{[a,b]}$ be a closed sub-loop, i.e.\ $\gamma(a) = \gamma(b)$ with $a < b$. Then $\gamma([a,b])$ has width at least $2/K$ in some direction, so its diameter is at least $2/K$. In particular, a curve in $\bar\Omega$ with a closed sub-loop has $\|\kappa\|_{L^\infty} \ge 2/\operatorname{diam}(\Omega)$.
+\end{proposition}
+
+\begin{proof}
+Since $\int_a^b \dot\gamma\,ds = 0$, the unit tangent $T$ on $[a,b]$ is not contained in any open half-plane. Hence a continuous lift $\varphi$ of its angle has range of length at least $\pi$, and there are $s_1, s_2 \in [a,b]$ with $\varphi(s_2) - \varphi(s_1) = \pm\pi$. Choose them so that $\varphi$ stays strictly between $\varphi(s_1)$ and $\varphi(s_2)$ in between, and let $e$ be the unit vector at angle $\varphi(s_1) + \pi/2$. Then $\langle T, e\rangle = \sin(\varphi - \varphi(s_1))$ has constant sign on $(s_1, s_2)$, and since $|\dot\varphi| \le K$,
+\begin{equation}
+\big|\langle \gamma(s_2) - \gamma(s_1), e\rangle\big| = \int_{s_1}^{s_2} |\sin(\varphi - \varphi(s_1))|\,ds \ge \frac{1}{K}\int_{s_1}^{s_2} |\sin(\varphi - \varphi(s_1))|\,|\dot\varphi|\,ds \ge \frac{2}{K}.
+\end{equation}
+\end{proof}
+
+The bound is sharp: a circle of radius $1/K$ has diameter exactly $2/K$.
+
+\begin{proposition}[Finitely many classes under a length bound]
+\label{thm:loop_bounding}
+Under the assumptions of Section~1.3, let $\mathcal{F} = \bar\Omega \setminus \operatorname{int}\mathcal{O}$ be the free space. Let $V > 0$, and for each $i$ fix a point $c_i$ and a radius $\rho_i > 0$ with $B(c_i, \rho_i) \subset \operatorname{int}\mathcal{O}_i$. Let $\gamma_0$ be a reference path from $p$ to $q$.
+\begin{enumerate}
+    \item Every path $\gamma$ in $\mathcal{F}$ from $p$ to $q$ of length at most $V$ has winding numbers
+    \begin{equation}
+    |w_i(\gamma)| \le \frac{1}{2\pi}\left(\frac{V}{\rho_i} + |\Delta\theta_i(\gamma_0)|\right), \qquad i = 1, \dots, m,
+    \end{equation}
+    where $\theta_i = \arg(\cdot - c_i)$ and $\Delta\theta_i(\gamma_0)$ is its net change along $\gamma_0$.
+    \item Only finitely many homotopy classes in $\pi_1(\mathcal{F}, p, q)$ contain paths of length at most $V$.
+\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+(1) For a unit-speed path, $\theta_i' = \operatorname{Im}\big[\overline{(\gamma - c_i)}\,\dot\gamma\big]/|\gamma - c_i|^2$, so $|\theta_i'| \le 1/|\gamma - c_i| \le 1/\rho_i$. Since $\gamma$ and $\gamma_0$ share endpoints, $\Delta\theta_i(\gamma) - \Delta\theta_i(\gamma_0) = 2\pi w_i(\gamma)$, because $a_j$ winds $\delta_{ij}$ times about $c_i$. Hence $2\pi|w_i(\gamma)| \le |\Delta\theta_i(\gamma)| + |\Delta\theta_i(\gamma_0)| \le V/\rho_i + |\Delta\theta_i(\gamma_0)|$.
+(2) Parametrize paths on $[0,1]$ proportionally to arc length. Paths of length at most $V$ are then $V$-Lipschitz, so by Arzel\`a--Ascoli they form a compact subset of $C^0([0,1], \mathcal{F})$. A compact, locally contractible subset of $\R^2$ is a Euclidean neighbourhood retract \cite[Appendix]{hatcher2002}: there are an open set $U \supset \mathcal{F}$ and a retraction $r \colon U \to \mathcal{F}$. Choose $\delta > 0$ such that the $\delta$-neighbourhood of $\mathcal{F}$ lies in $U$. If two paths in $\mathcal{F}$ with the same endpoints have uniform distance less than $\delta$, the linear homotopy between them stays in $U$, and its composition with $r$ is a homotopy in $\mathcal{F}$ rel endpoints. So each homotopy class is relatively open in this compact set, and finitely many classes cover it.
+\end{proof}
+
+\begin{proposition}[Winding and total curvature]
+\label{prop:winding_total_curvature}
+Let $\gamma \colon [0,\ell] \to \R^2 \setminus \{c\}$ be a unit-speed $C^{1,1}$ curve and $\theta$ a continuous determination of $\arg(\gamma - c)$. Then
+\begin{equation}
+\int_0^\ell |\theta'|\,ds \le \int_0^\ell |\kappa|\,ds + \pi,
+\end{equation}
+and the constant $\pi$ is sharp. Consequently, in the setting of Proposition~\ref{thm:loop_bounding}, every path of length at most $V$ satisfies
+\begin{equation}
+2\pi|w_i(\gamma)| \le V\,\|\kappa\|_{L^\infty} + \pi + |\Delta\theta_i(\gamma_0)|,
+\end{equation}
+a bound that does not depend on $\rho_i$.
+\end{proposition}
+
+\begin{proof}
+Let $r = |\gamma - c| > 0$, let $\varphi$ be a continuous tangent angle, so that $\varphi' = \kappa$ (signed curvature) a.e., and let $\psi = \varphi - \theta$ be the angle between the tangent and the radial direction. Then $r' = \cos\psi$ and $r\theta' = \sin\psi$, and $\psi$ is absolutely continuous with $\psi' = \kappa - \theta'$ a.e. Let $G(x) = \int_0^x \operatorname{sgn}(\sin t)\,dt$, a Lipschitz triangular wave with values in $[0,\pi]$. By the chain rule for Lipschitz functions of absolutely continuous functions, $(G\circ\psi)' = \operatorname{sgn}(\sin\psi)\,\psi'$ a.e. Since $|\theta'| = \operatorname{sgn}(\sin\psi)\,\theta'$,
+\begin{equation*}
+\int_0^\ell |\theta'| = \int_0^\ell \operatorname{sgn}(\sin\psi)\,(\kappa - \psi') \le \int_0^\ell |\kappa| - \big(G(\psi(\ell)) - G(\psi(0))\big) \le \int_0^\ell |\kappa| + \pi.
+\end{equation*}
+For sharpness, a straight line passing at distance $\epsilon$ from $c$ has $\kappa = 0$ and $\int|\theta'| \to \pi$ as its length tends to infinity. The consequence follows from $2\pi|w_i(\gamma)| \le |\Delta\theta_i(\gamma)| + |\Delta\theta_i(\gamma_0)|$, as in the proof of Proposition~\ref{thm:loop_bounding}(1), and $\int|\kappa| \le V\|\kappa\|_{L^\infty}$.
+\end{proof}
+
+\begin{remark}[Why the length bound is needed]
+\label{rem:old_cutoff}
+\leavevmode
+\begin{enumerate}
+    \item[(a)] One cannot restrict competitors to lengths $L \le \min(L_{\mathrm{base}}, \pi D_\Omega)$ on the grounds that longer paths are ``dominated'': using extra length is exactly how loops can lower curvature. Without a length bound the winding is unbounded at fixed curvature: a circle of radius $r$ around an obstacle, traversed $w$ times, has curvature $1/r$ for every $w$, provided it fits in the free space. So the length bound in Proposition~\ref{thm:loop_bounding} cannot be dropped.
+    \item[(b)] Bounding the winding vector $(w_1, \dots, w_m)$ does not bound the number of homotopy classes. The winding vector only sees $H_1$, and the classes $[a_1, a_2]^k$, $k \in \Z$, all have winding vector zero. Part (2) above is the correct finiteness statement.
+    \item[(c)] The total-curvature bound of Proposition~\ref{prop:winding_total_curvature} also needs the length bound: it controls the winding by $\int|\kappa| \le V\|\kappa\|_{L^\infty}$.
+\end{enumerate}
+\end{remark}
+
+\section{Universal Covering Spaces and the Unfolding of Immersions}
+
+\subsection{Construction of the Covering Space \texorpdfstring{$\Cover$}{Omega-tilde}}
+Let $\pi: \Cover \to \Omega \setminus \mathcal{O}$ be the universal covering. It can be realized as the set of homotopy classes of paths starting at a basepoint $p$,
+\begin{equation}
+\Cover = \left\{ [\alpha] : \alpha(0) = p, \, \alpha(t) \in \Omega \setminus \mathcal{O} \right\},
+\end{equation}
+with the standard topology \cite{hatcher2002}.
+
+\begin{definition}[Irreducible immersion]
+An immersed path $\gamma: [0, 1] \looparrowright \Omega \setminus \mathcal{O}$ is called \textbf{irreducible} if it contains no self-intersection $\gamma(t_a) = \gamma(t_b)$, $t_a < t_b$, whose intermediate loop $\gamma|_{[t_a, t_b]}$ is null-homotopic in $\Omega \setminus \mathcal{O}$.
+\end{definition}
+
+\begin{proposition}[Unfolding irreducible immersions]
+\label{thm:unfolding}
+Every lift $\tilde{\gamma}: [0, 1] \to \Cover$ of an irreducible immersed path $\gamma$ is injective, hence an embedding.
+\end{proposition}
+
+\begin{proof}
+If $\tilde{\gamma}(t_a) = \tilde{\gamma}(t_b)$ with $t_a < t_b$, then $\tilde\gamma|_{[t_a, t_b]}$ is a closed loop in the simply connected space $\Cover$, so it is null-homotopic. Its projection $\gamma|_{[t_a, t_b]}$ is then null-homotopic in $\Omega \setminus \mathcal{O}$, contradicting irreducibility. An injective continuous map of the compact interval into a Hausdorff space is an embedding.
+\end{proof}
+
+\begin{remark}
+Minimax minimizers need not be irreducible, for a trivial reason: minimizers are not unique. If a minimizer with value $\kappa^* > 0$ contains a straight piece, its length is at least $2\pi/\kappa^*$ below the length bound, and the free space contains a closed disk of radius $1/\kappa^*$ tangent to that piece, then the boundary circle of that disk can be inserted at the point of tangency. This adds length $2\pi/\kappa^*$ and curvature of absolute value $\kappa^*$, so the result is again admissible and again a minimizer, and it has a null-homotopic sub-loop. Such loops are not unfolded in $\Cover$. Whether a null-homotopic sub-loop (for instance a ``teardrop'' turn) can make the peak curvature \emph{strictly} smaller than that of every irreducible path in the same class is open; see the Conclusion.
+\end{remark}
+
+\section{A Heuristic Search Pipeline}
+
+\subsection{Parametric Representation}
+Unlike graphs $y = f(x)$, which cannot reverse direction or form loops, we use planar parametric B-splines:
+\begin{equation}
+\gamma(t) = \sum_{j=0}^{M} \mathbf{P}_j B_{j, d}(t), \quad \mathbf{P}_j = (X_j, Y_j) \in \R^2, \quad t \in [0, 1],
+\end{equation}
+with B-spline basis functions $B_{j,d}$ of degree $d \ge 3$ and curvature
+\begin{equation}
+\kappa(t) = \frac{|\dot{X}(t)\ddot{Y}(t) - \dot{Y}(t)\ddot{X}(t)|}{\left(\dot{X}(t)^2 + \dot{Y}(t)^2\right)^{3/2}}.
+\end{equation}
+Every graph is a parametric curve, so $\kappa^*_{\mathrm{param}} \le \kappa^*_{\mathrm{graph}}$. The graph class is empty whenever the path must turn by more than $\pi/2$ relative to the $x$-axis.
+
+\begin{algorithm}[Homotopy-aware minimax search]
+\label{alg:universal_minimax}
+Given $\Omega$, boundary data at $p, q$, obstacles $\mathcal{O}_1, \dots, \mathcal{O}_m$ and a length bound $V$:
+\begin{enumerate}
+    \item \textbf{Homotopy enumeration:} list candidate reduced words for the classes that can contain paths of length at most $V$ (finitely many by Proposition~\ref{thm:loop_bounding}(2)). Prune them with the winding bounds of Propositions~\ref{thm:loop_bounding}(1) and \ref{prop:winding_total_curvature} and with the length of the shortest path in each class, when it can be computed. We give no procedure that decides exactly which classes contain a path of length at most $V$; only the finiteness is proved.
+    \item \textbf{Roadmap on the cover:} build a visibility or medial-axis graph on the relevant sheets of $\Cover$, labeling edges by their effect on the word.
+    \item \textbf{Seeds:} for each class, extract a polygonal seed by a graph search whose edge weights penalize turning.
+    \item \textbf{$L^p$ continuation:} optimize the control points under a penetration penalty,
+    \begin{equation}
+    \min_{\mathbf{P}} \left( \frac{1}{L} \int_0^1 |\kappa(t)|^p |\dot{\gamma}(t)|\,dt \right)^{1/p} + \mu \, \mathrm{Pen}(\gamma),
+    \end{equation}
+    increasing $p$ (e.g.\ $8 \to 128$) and $\mu$.
+    \item \textbf{Selection:} check feasibility on a fine collocation grid and keep the class with the smallest peak curvature found.
+\end{enumerate}
+\end{algorithm}
+
+Step~4 is a nonconvex local optimization, and the pipeline does not certify global optimality. A check on a collocation grid does not certify an upper bound either: it can miss penetration of an obstacle between grid points, and it can underestimate the peak curvature. For a nearly cuspidal cubic B\'ezier segment, the maximal curvature on a grid of $200$ points is about $3.7\cdot10^3$, whereas on a grid of $2\cdot10^6$ points it is about $1.2\cdot10^6$. The output is a certified feasible curve, and its peak curvature a certified upper bound for $\kappa^*_{\mathrm{global}}$, only if step~5 is replaced by a rigorous check, for example interval arithmetic on the piecewise polynomial $\gamma$, its derivatives and the obstacle constraints.
+
+\section{\texorpdfstring{$\Gamma$}{Gamma}-Convergence of the Discretization}
+\label{sec:gamma_convergence}
+
+\begin{conjecture}[$\Gamma$-convergence of the discrete functionals]
+\label{thm:gamma_convergence}
+Let the obstacles have $C^{1,1}$ boundaries, let $\mathrm{Pen}(\gamma) = \int \dist(\gamma, \mathcal{F})^2\,|\dot\gamma|\,dt$, and consider the discrete functionals
+\begin{equation}
+F_{M, p, \mu}(\gamma) = \left( \frac{1}{L(\gamma)} \int_0^1 |\kappa_\gamma(t)|^p |\dot{\gamma}(t)|\,dt \right)^{1/p} + \mu\, \mathrm{Pen}(\gamma)
+\end{equation}
+on splines with $M$ control points satisfying the boundary data and length bound. Then along suitable sequences $(M, p, \mu) \to \infty$, $F_{M,p,\mu}$ $\Gamma$-converges in $C^1$ to
+\begin{equation}
+F_\infty(\gamma) = \begin{cases}
+\|\kappa_\gamma\|_{L^\infty} & \text{if } \gamma([0, 1]) \subset \mathcal{F}, \\
++\infty & \text{otherwise,}
+\end{cases}
+\end{equation}
+and the family is equi-coercive. Consequently, the minimum values of $F_{M,p,\mu}$ converge to $\kappa^*_{\mathrm{global}}$ \cite{braides2002}.
+\end{conjecture}
+
+\begin{remark}[Status]
+A proof has to overcome four difficulties.
+\begin{itemize}
+    \item The topological reduction needs the length bound (Remark~\ref{rem:old_cutoff}), which must be built into the discrete functionals.
+    \item The recovery sequence cannot use density of splines in the \emph{norm} of $W^{2,\infty}$, which fails. Smooth functions are not dense in $W^{2,\infty}$. The recovery sequence must go through mollification, which does not increase $\|\gamma''\|_{L^\infty}$, followed by spline approximation in $C^2$, and it must also restore the boundary data and the obstacle constraint. Mollification also shortens the tangent, $|\gamma_\varepsilon'| < 1$ where $\gamma'$ turns, so the curvature $|\gamma_\varepsilon''|/|\gamma_\varepsilon'|^2$ can increase, by a factor $1 + O(\kappa\varepsilon)$; this is an $o(1)$ effect, but it has to be accounted for.
+    \item The penalty must control $\dist(\gamma, \mathcal{F})$ for general $C^{1,1}$ obstacles, not only for disks.
+    \item Equi-coercivity must be established.
+\end{itemize}
+Even with the conjecture established, the conclusion concerns \emph{global} minimizers of $F_{M,p,\mu}$, which the local optimization in Algorithm~\ref{alg:universal_minimax} does not compute.
+\end{remark}
+
+\begin{remark}[Curvature as the control variable]
+If the curvature $\kappa(s)$ is discretized directly, with $\theta(s) = \theta_0 + \int_0^s \kappa$, $X(s) = x_0 + \int_0^s \cos\theta$ and $Y(s) = y_0 + \int_0^s\sin\theta$, then the constraint $|\kappa| \le K$ becomes a box constraint, which is convex. The endpoint and obstacle constraints, however, involve $\cos\theta$ and $\sin\theta$ and remain nonconvex, so this parametrization removes Cartesian oscillations but gives no global guarantee.
+\end{remark}
+
+\section{A Benchmark Channel}
+\label{sec:benchmark}
+
+Consider the channel with a central obstacle
+\begin{equation}
+\Omega_H = \left\{ (x, y) \in \mathbb{R}^2 \;\middle|\; |y| \le H \right\} \setminus B_{R_0}(0),
+\end{equation}
+with $R_0 = 1$ and $H = 1.62$, and a path that enters at the far left on the lower side heading right, $P_{\mathrm{in}} = (-X, -H)$, and must leave at the far left on the upper side heading left, $P_{\mathrm{out}} = (-X, H)$, for large $X$.
+
+\begin{proposition}[No curvature gap in the benchmark]
+\label{prop:corridor_gap}
+Here $\pi_1(\Omega_H) = \Z$, and we index the classes by the winding $w \in \Z$ about the obstacle relative to the class that turns back to the left of it. In $\Omega_H$, every admissible path, in every class, has $\|\kappa\|_{L^\infty} \ge 1/H$. If the length bound $V$ is at least the length of the paths constructed in the proof, the value $1/H$ is attained in the class $w = 0$ and in the class $w = 1$ that goes once around the obstacle, in both cases by an \emph{embedded} path, and in each class $w \ge 2$ by an immersed path.
+\end{proposition}
+
+\begin{proof}
+Every admissible path reverses its direction inside the strip $|y| \le H$ of width $2H$, so the U-turn bound (Chapter~7, Proposition~4.6(3)) gives $\|\kappa\|_{L^\infty} \ge 2/(2H) = 1/H$. For $w = 0$, take the segment $y = -H$ from $P_{\mathrm{in}}$ to $(-c, -H)$, the semicircle of radius $H$ centred at $(-c, 0)$, and the segment back along $y = H$, with $c > H + R_0$. For $w = 1$, use the semicircle of radius $H$ centred at the origin, which avoids $B_{R_0}(0)$ since $H > R_0$. Both paths are embedded, lie in $\Omega_H$, and have curvature $1/H$ on the arc and $0$ elsewhere (numerical check in the accompanying code repository). For $w \ge 2$, insert $w-1$ full turns of the circle of radius $H$ centred at the origin, which lies in the strip and avoids $B_{R_0}(0)$, into the $w = 1$ path; the result is immersed, not embedded, and has the same peak curvature $1/H$.
+\end{proof}
+
+\begin{remark}[No gap in this geometry]
+The class around the obstacle does not need self-intersections: its optimal path is embedded, and the classes $w = 0$ and $w = 1$ have the same optimal value $1/H$. When the ports are at $|y| < H$ and $X$ is large, a path of curvature at most $1/H$ can first move from the port height to $y = -H$, in both classes, before the U-turn, so the conclusion is unchanged; we do not write out the details. A strict gap between embedded and immersed curves does exist for knotted closed curves in $\R^3$ (Chapter~7, Proposition~1.2), but this benchmark does not exhibit one.
+\end{remark}
+
+\section{Conclusion}
+For curves in planar domains with obstacles that are topological disks, the homotopy structure reduces the global problem to finitely many classes once the length is bounded (Proposition~\ref{thm:loop_bounding}), and the winding about each obstacle is bounded in terms of the length and the peak curvature alone (Proposition~\ref{prop:winding_total_curvature}). Non-abelian holonomy separates these classes (Proposition~\ref{prop:holonomy}), and irreducible immersions unfold to embeddings in the universal cover (Proposition~\ref{thm:unfolding}). Sub-loops obey the confinement bound $2/\kappa$ (Proposition~\ref{prop:subloop}). The search pipeline is heuristic. Its $\Gamma$-convergence is conjectural (Conjecture~\ref{thm:gamma_convergence}), and even if proved, it would not certify the local optimizer. The benchmark of Section~\ref{sec:benchmark} shows no gap between the class that turns back and the classes that go around the obstacle. Open problems: explicit geometries in which immersed paths strictly beat embedded ones within the same homotopy class, and the extension to $n \ge 3$, where the topology of the free space is richer.
+
+\input{declarations_chapter}
+
+\begin{thebibliography}{99}
+
+\bibitem{silvafilho2026minimax} R.~M. Silva-Filho, \emph{Minimax-Flat $k$-Submanifolds in Obstacle Environments: Variational Theory, Constructive Heuristics, and Explicit Candidates}, Chapter~7 of \emph{Geometry, Tensors, and Quantum Gravity}, Universidade Federal de Lavras, 2026.
+
+\bibitem{hatcher2002}
+A.~Hatcher,
+\emph{Algebraic Topology},
+Cambridge University Press, 2002, ISBN: 9780521795401.
+
+\bibitem{dubins1957}
+L.~E.~Dubins,
+\emph{On curves of minimal length with a constraint on average curvature, and with prescribed initial and terminal positions and tangents},
+Amer. J. Math. \textbf{79} (1957), 497--516, \href{https://doi.org/10.2307/2372560}{doi:10.2307/2372560}.
+
+\bibitem{federer1959}
+H.~Federer,
+\emph{Curvature measures},
+Trans. Amer. Math. Soc. \textbf{93} (1959), 418--491, \href{https://doi.org/10.1090/s0002-9947-1959-0110078-1}{doi:10.1090/s0002-9947-1959-0110078-1}.
+
+\bibitem{chen1977}
+K.-T.~Chen,
+\emph{Iterated path integrals},
+Bull. Amer. Math. Soc. \textbf{83} (1977), 831--879, \href{https://doi.org/10.1090/s0002-9904-1977-14320-6}{doi:10.1090/s0002-9904-1977-14320-6}.
+
+\bibitem{goresky1988}
+M.~Goresky and R.~MacPherson,
+\emph{Stratified Morse Theory},
+Ergebnisse der Mathematik und ihrer Grenzgebiete, Springer-Verlag, 1988, \href{https://doi.org/10.1007/978-3-642-71714-7}{doi:10.1007/978-3-642-71714-7}.
+
+\bibitem{boone1959}
+W.~W.~Boone,
+\emph{The word problem},
+Ann. of Math. \textbf{70} (1959), no.~2, 207--265, \href{https://doi.org/10.2307/1970103}{doi:10.2307/1970103}.
+
+\bibitem{swierczkowski1958}
+S.~\'Swierczkowski,
+\emph{On a free group of rotations of the Euclidean space},
+Indag. Math. (Proceedings) \textbf{61} (1958), 376--378, \href{https://doi.org/10.1016/S1385-7258(58)50051-1}{doi:10.1016/S1385-7258(58)50051-1}.
+
+\bibitem{culler1983}
+M.~Culler and P.~B.~Shalen,
+\emph{Varieties of group representations and splittings of $3$-manifolds},
+Ann. of Math. \textbf{117} (1983), no.~1, 109--146, \href{https://doi.org/10.2307/2006973}{doi:10.2307/2006973}.
+
+\bibitem{goldman2009trace}
+W.~M.~Goldman,
+\emph{Trace coordinates on Fricke spaces of some simple hyperbolic surfaces},
+in: A.~Papadopoulos (ed.), Handbook of Teichm\"uller Theory, Vol.~II, IRMA Lect. Math. Theor. Phys. \textbf{13}, EMS, Z\"urich, 2009, 611--684, \href{https://doi.org/10.4171/055-1/16}{doi:10.4171/055-1/16}.
+
+\bibitem{lieutier2004}
+A.~Lieutier,
+\emph{Any open bounded subset of $\mathbb{R}^n$ has the same homotopy type as its medial axis},
+Computer-Aided Design \textbf{36} (2004), no.~11, 1029--1046, \href{https://doi.org/10.1016/j.cad.2004.01.011}{doi:10.1016/j.cad.2004.01.011}.
+
+\bibitem{braides2002}
+A.~Braides,
+\emph{$\Gamma$-convergence for Beginners},
+Oxford Lecture Series in Mathematics and its Applications, vol.~22, Oxford University Press, 2002, \href{https://doi.org/10.1093/acprof:oso/9780198507840.001.0001}{doi:10.1093/acprof:oso/9780198507840.001.0001}.
+
+\end{thebibliography}
+
+\end{document}

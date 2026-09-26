@@ -1,0 +1,251 @@
+\documentclass[11pt,reqno]{amsart}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage{xcolor}
+\usepackage{geometry}
+\geometry{a4paper, margin=1in}
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    citecolor=red,
+    urlcolor=blue
+}
+\usepackage{microtype}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{tabularx}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{conjecture}[theorem]{Conjecture}
+
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{algorithm}[theorem]{Algorithm}
+
+\providecommand{\R}{\mathbb{R}}
+\newcommand{\E}{\mathbb{E}}
+\newcommand{\Fisher}{\mathcal{I}}
+\newcommand{\Loss}{\mathcal{L}}
+\newcommand{\W}{\mathcal{W}}
+\newcommand{\M}{\mathcal{M}}
+\providecommand{\II}{\mathrm{I\!I}}
+\newcommand{\op}{\mathrm{op}}
+
+\numberwithin{equation}{section}
+
+
+\DeclareMathOperator*{\argmin}{argmin}
+\providecommand{\Hyp}{\mathbb{H}}
+\providecommand{\Sph}{\mathbb{S}}
+\providecommand{\II}{\mathrm{II}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\Area}{\mathrm{Area}}
+\providecommand{\Hsn}{\mathcal{H}}
+\providecommand{\BV}{\mathrm{BV}}
+\providecommand{\TV}{\mathrm{TV}}
+\providecommand{\cutnorm}[1]{\|#1\|_{\square}}
+
+\begin{document}
+
+\title[Minimax Curvature on Statistical Manifolds]{Minimax Curvature Trajectories on Statistical Manifolds: A Proposal for Deep Learning and Its Limits}
+
+\author{Reinaldo Maia Silva-Filho}
+\address{Programa de P\'os-Gradua\c{c}\~ao em Estat\'istica e Experimenta\c{c}\~ao Agropecu\'aria (PPGEE/DES), Universidade Federal de Lavras (UFLA)}
+\email{reinaldo.filho1@estudante.ufla.br}
+
+\date{\today}
+
+\begin{abstract}
+We transfer the $L^\infty$ minimax curvature problem of Chapters~7--9 to parameter spaces of statistical models with the (regularized) Fisher--Rao metric. Here the training trajectory is a path of bounded length from an initialization $\theta_0$ to a set $\Sigma^*$ of low empirical risk that avoids an ill-conditioned region and minimizes its peak covariant acceleration. We state precisely what this functional can and cannot measure. Its value $\kappa^*_{\mathrm{info}}$ vanishes whenever a Fisher geodesic of admissible length from $\theta_0$ reaches $\Sigma^*$ without meeting the obstacle, so it carries no information about the sharpness of the endpoint (Proposition~\ref{prop:degenerate}); without the length bound it can vanish even when no such geodesic exists (Remark~\ref{rem:length_bound}). As a consequence, ``Hessian trace'' and ``PAC-Bayes'' bounds in terms of $\kappa^*_{\mathrm{info}}$ cannot hold. In Gaussian linear regression with random labels, $\kappa^*_{\mathrm{info}} = 0$, the loss Hessian has positive trace, and the generalization gap is at least $1/2$ for every distribution of the inputs (about $0.70$ for Gaussian inputs with $N = 50$, $D = 200$), against $0.19$ for such a bound (Proposition~\ref{prop:counterexample}). The claims about vanishing gradients, orthogonal initialization and curvature-uniform learning-rate schedules have no proofs. They are recorded as conjectures and proposals, with pointers to the literature on dynamical isometry and sharpness-aware minimization.
+\end{abstract}
+
+\maketitle
+
+\tableofcontents
+\newpage
+
+\section{Introduction and Problem Formulation}
+
+\begin{remark}[Scope within the Broader Monograph]
+This chapter applies the $L^\infty$ minimax curvature framework of Chapters~7--9 to statistical manifolds and deep learning. It makes no physical claim about quantum gravity. Its only proved statements are Propositions~\ref{prop:degenerate} and \ref{prop:counterexample}, which delimit the proposal.
+\end{remark}
+
+\subsection{Setting}
+Let $\Theta \subset \R^D$ be the parameter space of a statistical model. In information geometry \cite{amari2000} it carries the Fisher metric $g^{\Fisher}$. In overparameterized networks ($D \gg N$) the empirical Fisher matrix is rank-deficient, so we use the regularized metric $\tilde{g}^{\Fisher}_{\mu\nu} = g^{\Fisher}_{\mu\nu} + \lambda_0 \delta_{\mu\nu}$ with $\lambda_0 > 0$. The natural gradient \cite{amari1998} preconditions by the full inverse Fisher matrix. Restricting motion to the leading eigen-directions of the Fisher matrix, as low-rank truncations of the natural gradient do, has been described as a sub-Riemannian structure. We do not use this, since the distribution of leading eigenvectors need not have constant rank or be bracket-generating.
+
+Computing with the full $D \times D$ metric costs $\mathcal{O}(D^3)$ per inversion. Kronecker-factored approximate curvature (K-FAC) \cite{martens2015} approximates the Fisher matrix by a block-diagonal matrix with Kronecker-factored blocks. For a layer with $d_{\mathrm{in}}$ inputs and $d_{\mathrm{out}}$ outputs (with $d_{\mathrm{in}}$ counting the bias, if any), the cost per update becomes $\mathcal{O}(d_{\mathrm{in}}^3 + d_{\mathrm{out}}^3)$ for the factor inversions plus $\mathcal{O}(d_{\mathrm{in}} d_{\mathrm{out}}(d_{\mathrm{in}} + d_{\mathrm{out}}))$ for applying them, besides $\mathcal{O}(B(d_{\mathrm{in}}^2 + d_{\mathrm{out}}^2))$ for accumulating the factors over a batch of size $B$. This is far below $\mathcal{O}(D^3)$, though not linear in $D$. K-FAC is a preconditioner. It is not the exact Levi-Civita geometry of $\tilde g^{\Fisher}$.
+
+\subsection{The Information Minimax Problem}
+Let $\mathcal{O}_{\mathrm{sing}} = \{ \theta \in \Theta : \operatorname{cond}(\tilde{g}^{\Fisher}(\theta)) > \Lambda_{\max} \}$ be the ill-conditioned region and $\Sigma^* = \{ \theta \in \Theta : \hat{\Loss}(\theta) \le \epsilon \}$ the set of low empirical risk.
+
+\begin{definition}[Information Minimax Curvature]
+Following Chapter~7 \cite{silvafilho2026minimax} and Dubins \cite{dubins1957}, set
+\begin{equation}
+\kappa^*_{\mathrm{info}} := \inf_{\gamma} \operatorname{ess\,sup}_{s \in [0, L]} \sqrt{ \tilde{g}^{\Fisher}_{\mu\nu}(\gamma(s)) \frac{D \dot{\gamma}^\mu}{ds} \frac{D \dot{\gamma}^\nu}{ds} },
+\end{equation}
+where the infimum runs over $\tilde g^{\Fisher}$-unit-speed $C^{1,1}$ paths $\gamma: [0, L] \to \Theta \setminus \mathcal{O}_{\mathrm{sing}}$ of length $L \le L_{\max}$ with $\gamma(0) = \theta_0$, $\gamma(L) \in \Sigma^*$, and $D/ds$ is the covariant derivative of the Levi-Civita connection of $\tilde{g}^{\Fisher}$. The length bound $L_{\max}$ plays the role of the length bound of Chapter~7.
+\end{definition}
+
+\begin{remark}[The length bound is needed]
+\label{rem:length_bound}
+Without the bound $L \le L_{\max}$ the functional degenerates further, and it can vanish even when the obstacle forces every path to bend. Take the model $y \sim \mathcal{N}(m(\theta), I_3)$, $\theta \in \R^2$, with $m(\theta) = (\theta_1, \theta_2, \psi(\theta))$, where $\psi(\theta) = 10(1 - |\theta - c|^2)^3$ for $|\theta - c| \le 1$, $c = (2,0)$, and $\psi = 0$ otherwise. Its Fisher metric is $I + \nabla\psi\nabla\psi^\top$. With $\lambda_0 = 0.1$ and $\Lambda_{\max} = 1.5$, the set $\mathcal{O}_{\mathrm{sing}}$ is an annulus about $c$ inside the unit disk, approximately $0.012 \le |\theta - c| \le 0.941$. The straight segment from $\theta_0 = 0$ to $\Sigma^* = \bar B((4,0), 0.1)$ passes through $c$, so it crosses the annulus; a numerical shooting of geodesics from $\theta_0$ finds none that reaches $\Sigma^*$ outside $\mathcal{O}_{\mathrm{sing}}$. Nevertheless, the major arcs of the circles through $\theta_0$ and $(4,0)$ with centres $(2,h)$ stay at distance at least $2$ from $c$, hence outside the unit disk about $c$, where the metric is the constant $(1+\lambda_0) I$, so their covariant acceleration is $1/(\sqrt{1+\lambda_0}\,R_h)$ with $R_h = \sqrt{4 + h^2}$. Letting $h \to \infty$ gives $\kappa^*_{\mathrm{info}} = 0$ (not attained), with lengths tending to infinity (numerical check in the accompanying code repository). The argument uses that the metric is a constant multiple of the identity away from the obstacle. We do not claim the same conclusion for a general bounded $\mathcal{O}_{\mathrm{sing}}$: outside $\mathcal{O}_{\mathrm{sing}}$ one knows only $\operatorname{cond}(\tilde g^{\Fisher}) \le \Lambda_{\max}$, which does not control the Christoffel symbols, and hence not the covariant acceleration of large circles.
+\end{remark}
+
+\section{What the Functional Measures}
+
+\begin{proposition}[Degeneracy]
+\label{prop:degenerate}
+If some $\tilde g^{\Fisher}$-geodesic segment of length at most $L_{\max}$ from $\theta_0$ to a point of $\Sigma^*$ stays in $\Theta \setminus \mathcal{O}_{\mathrm{sing}}$, then $\kappa^*_{\mathrm{info}} = 0$.
+\end{proposition}
+
+\begin{proof}
+A geodesic parametrized by arc length has $D\dot\gamma/ds = 0$, and it is admissible by assumption.
+\end{proof}
+
+\begin{remark}
+The functional depends on the loss only through the sublevel set $\Sigma^* = \{\hat\Loss \le \epsilon\}$. The loss Hessian at a minimizer enters only through the shape of $\Sigma^*$: for $\hat\Loss(\theta) \approx \frac{h}{2}|\theta - p|^2$ near $p$, $\Sigma^*$ is approximately a ball of radius $\sqrt{2\epsilon/h}$, so whether the hypothesis of Proposition~\ref{prop:degenerate} holds can depend on $h$. Once it holds, $\kappa^*_{\mathrm{info}} = 0$ whatever the Hessian is.
+\end{remark}
+
+\begin{proposition}[Counterexample to curvature-based generalization bounds]
+\label{prop:counterexample}
+Consider Gaussian linear regression $y = x^\top\theta + \xi$, $\xi \sim \mathcal{N}(0,1)$, with $N$ samples $X \in \R^{N \times D}$, $D > N$. Its Fisher metric is the constant matrix $X^\top X/N$, so $\tilde{g}^{\Fisher}$ is constant and its geodesics are straight lines. Take $\Lambda_{\max} > \operatorname{cond}(\tilde g^{\Fisher})$, so that $\mathcal{O}_{\mathrm{sing}} = \emptyset$, let $\theta_0 = 0$, and let $\theta^* = X^+y$ be the minimum-norm interpolant. If $L_{\max}$ is at least the $\tilde g^{\Fisher}$-length of the segment from $0$ to $\theta^*$, then $\kappa^*_{\mathrm{info}} = 0$, while:
+\begin{enumerate}
+    \item the loss Hessian $H = X^\top X/N$ has $\operatorname{Tr} H > 0$, so the bound $\E[\operatorname{Tr} H_{\Loss}] \le D\,\lambda_{\max}(\tilde g^{\Fisher})\,\kappa^*_{\mathrm{info}}$ fails;
+    \item with labels $y_i \in \{\pm1\}$ drawn uniformly and independently of the inputs, and the squared loss clipped to $[0,1]$, the generalization gap of $\theta^*$ is at least $1/2$, for every distribution of the inputs. A candidate PAC-Bayes-type bound $\sqrt{(D\ln(1 + L^2\kappa^{*2}_{\mathrm{info}}/2\sigma^2) + \ln(2/\delta))/2N}$, with path length $L$ and prior scale $\sigma > 0$, equals $\sqrt{\ln(2/\delta)/2N}$ at $\kappa^*_{\mathrm{info}} = 0$, which is $0.19$ for $N = 50$ and $\delta = 0.05$, and is below $1/2$ for all $N \ge 8$ at $\delta = 0.05$.
+\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+The Fisher information of the Gaussian linear model is $\E[x x^\top]$, estimated by $X^\top X/N$, and it does not depend on $\theta$. A constant metric has vanishing Christoffel symbols, so straight lines are geodesics and Proposition~\ref{prop:degenerate} applies. For $D > N$ and $X$ of full row rank, $\theta^* = X^+ y$ interpolates the data. The trace of $X^\top X/N$ is $\|X\|_F^2/N > 0$.
+For (2), the training loss of an interpolant is $0$. A fresh label $y$ is uniform on $\{\pm1\}$ and independent of the fresh input and of the training sample, so for any prediction $f$, $\E_y \min((y-f)^2, 1) = \frac12\big(\min((1-f)^2,1) + \min((1+f)^2,1)\big) \ge \frac12$, with equality at $f = \pm1$: if $|f| \le 1$ one of the two terms equals $1$, and if $|f| > 1$ one term equals $1$ and the other is nonnegative. Hence the test loss, and the gap, is at least $1/2$. Finally, $\sqrt{\ln 40/2N} < 1/2$ if and only if $N > 2\ln 40 \approx 7.4$. For $x \sim \mathcal{N}(0, I_D)$, $N = 50$, $D = 200$, the observed gap is about $0.70$, and with a linear teacher and $N \gg D$ it is close to $0$ (numerical check in the accompanying code repository). Deep networks can also fit random labels \cite{zhang2021}, so the same obstruction applies to them.
+\end{proof}
+
+\begin{remark}[Paths versus endpoints]
+The observation that SGD paths are rough (in the stochastic-differential-equation approximation of SGD they have nonzero quadratic variation; the discrete iterates are merely jagged), so that curvature should be measured for the evolution of the parameter distribution in $\mathcal{P}_2(\Theta)$ rather than for single paths, is reasonable. Making it precise requires an $L^\infty$ curvature notion for curves in Wasserstein space, which we do not develop. The empirical link between flat minima and generalization \cite{hochreiter1997, keskar2016, dziugaite2017} and sharpness-aware minimization \cite{foret2020} concern the \emph{endpoint}, which $\kappa^*_{\mathrm{info}}$ does not see.
+\end{remark}
+
+\section{Vanishing Gradients and Initialization}
+
+In randomly initialized deep networks, gradients can vanish or explode with depth, depending on the initialization and the activation function. In parametrized quantum circuits that are sufficiently random (approximate unitary $2$-designs), gradient variances decay exponentially in the number of qubits (barren plateaus \cite{mcclean2018}). Orthogonal initialization and \emph{dynamical isometry}, meaning that the singular values of the input--output Jacobian concentrate near $1$, are known to keep gradients well conditioned and to speed up training: for deep linear networks, where orthogonal initialization gives learning times independent of the depth \cite{saxe2014}, and for sigmoid or tanh networks, whereas ReLU networks cannot achieve dynamical isometry \cite{pennington2017}.
+
+\begin{conjecture}[Stiefel-constrained training]
+\label{thm:vanishing_gradient_bypass}
+Consider fully connected tanh networks of width $d \ge 2$ and depth $\ell$, with the square weight matrices constrained to the orthogonal group $O(d)$ (the square Stiefel manifold), trained by Riemannian gradient descent on data for which $\Sigma^*$ meets a connected component $K$ of $O(d)^\ell$. Let the initialization $\theta_0$ be drawn from the normalized Haar measure on $K$, and let $\lambda_+(\theta)$ be the smallest nonzero eigenvalue of the \emph{unregularized} empirical Fisher matrix $g^{\Fisher}(\theta)$ restricted to $T_\theta O(d)^\ell$. Then there is $p > 0$, and for every $\delta \in (0, 1)$ there are $c(\delta), C(\delta) > 0$, all independent of $\ell$, such that, with a suitable constant step size and with probability at least $1 - \delta$ over $\theta_0$, $\lambda_+ \ge c(\delta)\,\ell^{-p}$ along the trajectory and the trajectory reaches $\Sigma^*$ in at most $C(\delta)\,\ell^p$ steps.
+\end{conjecture}
+
+\begin{remark}[On the formulation]
+The conjecture is stated for the unregularized metric because for $\tilde g^{\Fisher} = g^{\Fisher} + \lambda_0 I$ with $g^{\Fisher} \succeq 0$ one has $\lambda_{\min}(\tilde g^{\Fisher}) \ge \lambda_0$ along every trajectory (Weyl's inequality), which says nothing. The hypothesis $\Sigma^* \cap O(d)^\ell \ne \emptyset$ is needed because the constraint can make $\Sigma^*$ unreachable: a deep linear network with square orthogonal layers represents only orthogonal maps, and for the target $2I$ the loss $\|2I - Q\|_F^2 = 5d - 4\operatorname{tr}Q \ge d$ stays bounded away from zero. The weaker condition $\Sigma^* \cap O(d)^\ell \ne \emptyset$ does not suffice. Riemannian gradient descent with small steps stays in the connected component of its initialization, on which each $\det W_i \in \{\pm1\}$ is constant. The symmetries of a tanh network (permuting hidden units, or changing the sign of a hidden unit's incoming and outgoing weights) preserve $\prod_i \det W_i$. So a zero-loss point in another component need not be equivalent to any point of the initial one. For $d = \ell = 2$, $f(x) = W_2 \tanh(W_1 x)$, a teacher with $W_1$ a reflection and $W_2 = I$, and $40$ inputs drawn from $\mathcal{N}(0, 2.25\,I_2)$, the teacher has zero loss on $O(2)^2$. The minimum of the mean squared loss over $SO(2)^2$ equals the minimum over the component with $\det W_1 = \det W_2 = -1$, and it lies between $1.3$ and $2.1$ in the samples we drew. Riemannian gradient descent started in $SO(2)^2$ therefore cannot reach $\Sigma^*$ for small $\epsilon$. For $d = 1$, $T_\theta O(1)^\ell = 0$, so $\lambda_+$ is undefined and the trajectory is constant. For deep linear networks, \cite{saxe2014} already gives depth-independent learning times with orthogonal initialization and no constraint, which is stronger than polynomial growth; the conjecture is of interest only for nonlinear networks.
+\end{remark}
+
+\begin{remark}[Why the initialization is random]
+The conclusion cannot hold for every $\theta_0 \in K$. The component $K$ is compact and the empirical loss $\hat{\Loss}$ is smooth, so $\hat{\Loss}$ attains its maximum on $K$ at some $\theta_{\max}$. There the Riemannian gradient vanishes, and Riemannian gradient descent started at $\theta_{\max}$ is constant; if $\hat{\Loss}(\theta_{\max}) > \epsilon$, it never reaches $\Sigma^*$. This happens already for $d = \ell = 2$: with a teacher in $SO(2)^2$ and $40$ inputs drawn from $\mathcal{N}(0, 2.25\,I_2)$, the loss vanishes at the teacher, while its maximum over $SO(2)^2$ is about $4.18$, at a strict local maximum. Near such a point there is also no uniform bound on the number of steps: at distance $r$ from $\theta_{\max}$ the gradient is of order $r$, so leaving a neighbourhood of $\theta_{\max}$ takes a number of steps of order $\log(1/r)$. In the example, with gradient steps of size $0.05$ in the two rotation angles, starts at distance $10^{-2}$, $10^{-4}$ and $10^{-6}$ from $\theta_{\max}$ need at least about $48$, $72$ and $96$ steps to reach loss below $10^{-3}$; these are minima over the direction of the start, and slower directions need more (numerical check in the accompanying code repository). A random initialization removes both obstructions only in probability. Under the Haar measure a ball of radius $r$ in $K$ has measure of order $r^{\dim K}$; if the critical points with loss at least $\epsilon$ form a closed set of measure zero, a neighbourhood of that set of measure $\delta$ can be excluded, and the admissible number of steps then grows as $\delta \to 0$. This is why the constants $c$ and $C$ depend on $\delta$.
+\end{remark}
+
+\begin{remark}
+A quantitative version cannot be phrased through $\kappa^*_{\mathrm{info}}$: a bound such as $T \le \mathcal{O}(L^2/\kappa^{*2}_{\mathrm{info}})$ is meaningless when $\kappa^*_{\mathrm{info}} = 0$, which is common by Proposition~\ref{prop:degenerate}. L\'evy's concentration lemma, which concerns Lipschitz functions of a uniformly random point on a high-dimensional sphere, is relevant only once the function and the distribution to which it applies are specified.
+\end{remark}
+
+\section{A Curvature-Uniform Schedule (Proposal)}
+
+One can choose a learning-rate and momentum schedule by prescribing the Frenet data of the parameter path in the Fisher metric,
+\begin{equation}
+\dot{\theta}(s) = v(s), \quad \frac{D v}{ds} = \kappa(s) n(s), \quad \frac{D n}{ds} = -\kappa(s) v(s) + \tau(s) b(s),
+\end{equation}
+(written for $D = 3$; in dimension $D$ the Frenet system has $D-1$ curvatures), and asking that the curvature be constant, $\kappa(s) \equiv \kappa_0$, on the arcs where the obstacle constraint is active. This is a design heuristic, and Chapter~7 does not support it as a theorem. There, curvature taking only the values $0$ and $\pm\kappa^*$ is proved only for planar curves \emph{without} obstacles (Dubins paths); with an active obstacle, the existence of saturated arcs is a conjecture of Chapter~7, and along an arc of contact with the obstacle the path follows the obstacle boundary, whose curvature is in general not constant. We have neither a convergence result nor experiments.
+
+\begin{table}[htbp]
+\centering
+\small
+\renewcommand{\arraystretch}{1.3}
+\begin{tabularx}{\textwidth}{@{} >{\raggedright\arraybackslash}p{2.8cm} >{\raggedright\arraybackslash}p{3.0cm} >{\raggedright\arraybackslash}X >{\raggedright\arraybackslash}X @{}}
+\toprule
+\textbf{Method} & \textbf{Metric} & \textbf{Path curvature} & \textbf{Status of generalization claims} \\
+\midrule
+SGD & Euclidean $\R^D$ & rough (nonzero quadratic variation in the SDE approximation) & empirical correlations with flatness \cite{keskar2016} \\
+Natural gradient \cite{amari1998} & Fisher $g^{\Fisher}$ & not controlled & none from the geometry alone \\
+Minimax information path (proposal) & $\tilde g^{\Fisher}$ with obstacle $\mathcal{O}_{\mathrm{sing}}$ & peak covariant acceleration is the objective; its infimum is often $0$ and may not be attained & \emph{none}: $\kappa^*_{\mathrm{info}}$ does not see the endpoint (Prop.~\ref{prop:counterexample}) \\
+\bottomrule
+\end{tabularx}
+\caption{Comparison of optimization methods. The last row is a proposal, not a validated method.}
+\end{table}
+
+\section{Conclusion}
+The minimax curvature functional transfers formally to Fisher--Rao parameter spaces, but the transfer has a structural limitation. Paths of zero covariant acceleration (geodesics) are optimal whenever they avoid the obstacle within the length budget, so with the length bound the functional measures only how much the obstacle and the length budget force a trajectory to bend; without the length bound it can vanish even when every path must bend (Remark~\ref{rem:length_bound}). It does not measure the geometry of the minimum reached. Consequently, no nontrivial generalization bound that depends only on $(\kappa^*_{\mathrm{info}}, N, \delta)$ and is smaller than $1/2$ at $\kappa^*_{\mathrm{info}} = 0$ can hold (Proposition~\ref{prop:counterexample}); bounds that also depend on other quantities, such as $D/N$, are not affected by this example. What remains are a conjecture on Stiefel-constrained training, which should be compared with the dynamical-isometry literature, and a scheduling heuristic, both untested. A useful variant would have to couple the path functional to an endpoint quantity, for example by adding a sharpness term at $\gamma(L)$.
+
+\input{declarations_chapter}
+
+\begin{thebibliography}{99}
+
+\bibitem{silvafilho2026minimax} R.~M. Silva-Filho, \emph{Minimax-Flat $k$-Submanifolds in Obstacle Environments: Variational Theory, Constructive Heuristics, and Explicit Candidates}, Chapter~7 of \emph{Geometry, Tensors, and Quantum Gravity}, Universidade Federal de Lavras, 2026.
+
+\bibitem{amari2000}
+S.~Amari and H.~Nagaoka,
+\emph{Methods of Information Geometry},
+Translations of Mathematical Monographs, vol. 191, AMS, 2000, ISBN: 978-0-8218-0531-2, \href{https://doi.org/10.1090/mmono/191}{doi:10.1090/mmono/191}.
+
+\bibitem{amari1998}
+S.~Amari,
+\emph{Natural gradient works efficiently in learning},
+Neural Computation \textbf{10} (1998), no. 2, 251--276, \href{https://doi.org/10.1162/089976698300017746}{doi:10.1162/089976698300017746}.
+
+\bibitem{hochreiter1997}
+S.~Hochreiter and J.~Schmidhuber,
+\emph{Flat minima},
+Neural Computation \textbf{9} (1997), no. 1, 1--42, \href{https://doi.org/10.1162/neco.1997.9.1.1}{doi:10.1162/neco.1997.9.1.1}.
+
+\bibitem{keskar2016}
+N.~S.~Keskar, D.~Mudigere, J.~Nocedal, M.~Smelyanskiy, and P.~T.~P.~Tang,
+\emph{On large-batch training for deep learning: Generalization gap and sharp minima},
+ICLR 2017, \href{https://doi.org/10.48550/arXiv.1609.04836}{doi:10.48550/arXiv.1609.04836}.
+
+\bibitem{mcclean2018}
+J.~R.~McClean, S.~Boixo, V.~N.~Smelyanskiy, R.~Babbush, and H.~Neven,
+\emph{Barren plateaus in quantum neural network training landscapes},
+Nature Communications \textbf{9} (2018), 4812, \href{https://doi.org/10.1038/s41467-018-07090-4}{doi:10.1038/s41467-018-07090-4}.
+
+\bibitem{dubins1957}
+L.~E.~Dubins,
+\emph{On curves of minimal length with a constraint on average curvature, and with prescribed initial and terminal positions and tangents},
+Amer. J. Math. \textbf{79} (1957), 497--516, \href{https://doi.org/10.2307/2372560}{doi:10.2307/2372560}.
+
+\bibitem{martens2015}
+J.~Martens and R.~Grosse,
+\emph{Optimizing neural networks with Kronecker-factored approximate curvature},
+Proceedings of the 32nd International Conference on Machine Learning (ICML 2015), PMLR \textbf{37} (2015), 2408--2417,
+\href{https://doi.org/10.48550/arXiv.1503.05671}{doi:10.48550/arXiv.1503.05671}.
+
+\bibitem{foret2020}
+P.~Foret, A.~Kleiner, H.~Mobahi, and B.~Neyshabur,
+\emph{Sharpness-aware minimization for efficiently improving generalization},
+ICLR 2021, \href{https://doi.org/10.48550/arXiv.2010.01412}{doi:10.48550/arXiv.2010.01412}.
+
+\bibitem{dziugaite2017}
+G.~K.~Dziugaite and D.~M.~Roy,
+\emph{Computing nonvacuous generalization bounds for deep (stochastic) neural networks with many more parameters than training data},
+UAI 2017, \href{https://doi.org/10.48550/arXiv.1703.11008}{doi:10.48550/arXiv.1703.11008}.
+
+\bibitem{zhang2021}
+C.~Zhang, S.~Bengio, M.~Hardt, B.~Recht, and O.~Vinyals,
+\emph{Understanding deep learning (still) requires rethinking generalization},
+Communications of the ACM \textbf{64} (2021), no. 3, 107--115, \href{https://doi.org/10.1145/3446776}{doi:10.1145/3446776}.
+
+\bibitem{saxe2014}
+A.~M.~Saxe, J.~L.~McClelland, and S.~Ganguli,
+\emph{Exact solutions to the nonlinear dynamics of learning in deep linear neural networks},
+ICLR 2014, \href{https://doi.org/10.48550/arXiv.1312.6120}{doi:10.48550/arXiv.1312.6120}.
+
+\bibitem{pennington2017}
+J.~Pennington, S.~S.~Schoenholz, and S.~Ganguli,
+\emph{Resurrecting the sigmoid in deep learning through dynamical isometry: theory and practice},
+NeurIPS 2017, \href{https://doi.org/10.48550/arXiv.1711.04735}{doi:10.48550/arXiv.1711.04735}.
+
+\end{thebibliography}
+
+\end{document}

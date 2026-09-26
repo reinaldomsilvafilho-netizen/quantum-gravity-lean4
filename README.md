@@ -45,12 +45,22 @@ The monograph and the companion papers are being revised after an independent au
 
 | Folder | Content |
 |---|---|
-| [`Projeto_Gravidade_Quantica/unified_quantum_gravity_book/`](Projeto_Gravidade_Quantica/unified_quantum_gravity_book/) | `verify_chapXX_numerical.py`: numerical checks for chapters 1–13 of the monograph |
+| [`Projeto_Gravidade_Quantica/unified_quantum_gravity_book/`](Projeto_Gravidade_Quantica/unified_quantum_gravity_book/) | LaTeX sources of the 13 chapters, the dictionary and the master volume; `verify_chapXX_numerical.py`; `CHANGELOG.md`; `WORKPLAN.md` (register of every finding and its status) |
+| [`…/unified_quantum_gravity_book/audit/`](Projeto_Gravidade_Quantica/unified_quantum_gravity_book/audit/) | Audit records: per-chapter claim ledgers, blind referee reports and correction logs (`audit/verify/`), and the scripts used as independent checks |
+| [`Projeto_Gravidade_Quantica/submission_package_jhep_scipost/`](Projeto_Gravidade_Quantica/submission_package_jhep_scipost/) | LaTeX source, corrections note and check scripts of *Simplicial Quantum Gravity on Δ₄ × Δ₂* |
+| [`Projeto_Gravidade_Quantica/Manuscritos_Avulsos/`](Projeto_Gravidade_Quantica/Manuscritos_Avulsos/) | LaTeX sources, corrections notes and check scripts of the Yang–Mills and fermion-mass papers |
 | [`Projeto_Gravidade_Quantica/formal_proofs_book/`](Projeto_Gravidade_Quantica/formal_proofs_book/) | Lean 4 files named after the monograph chapters (naming skeleton, see below) |
 | [`Projeto_Gravidade_Quantica/formal_proofs_lean4/`](Projeto_Gravidade_Quantica/formal_proofs_lean4/) | Lean 4 files for the functorial-cobordism paper (same status) |
 | [`Projeto_Gravidade_Quantica/paper_yang_mills_mass_gap/`](Projeto_Gravidade_Quantica/paper_yang_mills_mass_gap/) | Numerical scripts and Lean 4 files for the Yang–Mills paper (same status) |
 
-The LaTeX sources, the audit records (findings, referee reports, correction logs) and the scripts used in the audit are not yet in this repository. They will be added with the next release.
+### What still needs updating
+
+- **Lean 4.** The files remain a skeleton. A real formalization in Mathlib is not started beyond a few lemmas, and `formal_proofs_lean4/SpectralDimension.lean` states a formula that differs from the monograph.
+- **Python checks for chapters 1–11.** These scripts predate the audit and do not yet follow the independent-oracle standard. The checks used during the audit are in `audit/scripts/` and `audit/verify/scripts/`.
+- **Final consistency check.** The last integration pass (titles, cross-references, notation) has not yet had its own independent re-check.
+- **Build.** The master volume is still assembled from per-chapter PDFs rather than compiled from a single source.
+- **Other works.** *Beyond the Spectrum* and the functorial-cobordism paper have not been audited.
+- **Open conjectures.** They are listed, with suggested proof strategies, in the monograph and in `WORKPLAN.md`.
 
 ## Status of the Lean 4 code
 

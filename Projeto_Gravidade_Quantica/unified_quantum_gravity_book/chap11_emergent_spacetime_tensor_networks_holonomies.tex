@@ -1,0 +1,604 @@
+\documentclass[11pt,a4paper,reqno]{amsart}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath,amssymb,amsfonts,amsthm,mathtools}
+\usepackage{mathrsfs}
+\usepackage{microtype}
+\usepackage{booktabs}
+\usepackage[dvipsnames]{xcolor}
+\usepackage{hyperref}
+\usepackage{geometry}
+\usepackage{enumitem}
+\usepackage{cite}
+
+\geometry{
+  top=3cm,
+  bottom=3cm,
+  left=2.8cm,
+  right=2.8cm,
+  headheight=14pt
+}
+
+\hypersetup{
+  colorlinks=true,
+  linkcolor=NavyBlue,
+  citecolor=Mahogany,
+  urlcolor=TealBlue,
+  pdfauthor={Reinaldo M. Silva-Filho},
+  pdftitle={Emergent Spacetime and Quantum Geometry: Tensor Networks, Holonomies, and Entanglement---Established Results and Conjectures}
+}
+
+% --- Theorem Environments ---
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{conjecture}[theorem]{Conjecture}
+
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{example}[theorem]{Example}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{axiom}[theorem]{Axiom}
+
+\numberwithin{equation}{section}
+
+% --- Custom Notations ---
+\providecommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\providecommand{\Sph}{\mathbb{S}}
+\newcommand{\Tor}{\mathbb{T}}
+\newcommand{\Id}{\mathrm{Id}}
+\newcommand{\Tr}{\operatorname{Tr}}
+\newcommand{\rank}{\operatorname{rank}}
+\newcommand{\supp}{\operatorname{supp}}
+\newcommand{\Lip}{\operatorname{Lip}}
+\providecommand{\BV}{\operatorname{BV}}
+\providecommand{\TV}{\operatorname{TV}}
+\providecommand{\Area}{\operatorname{Area}}
+\newcommand{\Ric}{\operatorname{Ric}}
+\providecommand{\cutnorm}[1]{\|#1\|_{\square}}
+\newcommand{\norm}[1]{\left\|#1\right\|}
+\newcommand{\inner}[2]{\left\langle #1, #2 \right\rangle}
+\newcommand{\dif}{\,\mathrm{d}}
+\newcommand{\abs}[1]{\left|#1\right|}
+
+\title[Emergent Spacetime and Quantum Geometry]{Emergent Spacetime and Quantum Geometry:\\ Tensor Networks, Holonomies, and Entanglement\\ (Established Results and Conjectures)}
+
+\author{Reinaldo Maia Silva-Filho}
+\address{PPGEE/DES, Universidade Federal de Lavras (UFLA) \\
+Lavras, Minas Gerais, Brazil}
+\email{reinaldo.filho1@estudante.ufla.br}
+\thanks{This research was financed in part by the Coordena\c{c}\~ao de Aperfei\c{c}oamento de Pessoal de N\'ivel Superior -- Brasil (CAPES) -- Finance Code 001.}
+\date{\today}
+
+
+\DeclareMathOperator*{\argmin}{argmin}
+\providecommand{\doi}[1]{\href{https://doi.org/#1}{\nolinkurl{doi:#1}}}
+\providecommand{\Hyp}{\mathbb{H}}
+\providecommand{\II}{\mathrm{II}}
+\providecommand{\Hsn}{\mathcal{H}}
+
+\begin{document}
+
+\begin{abstract}
+We review and organize the mathematical links between quantum information, tensor networks and gravitational geometry that this treatise uses. For each link we separate established results, which we state with sources and short proofs, from conjectures.
+
+Established: (i) the Hessian of quantum relative entropy is the Kubo--Mori metric, which differs from the symmetric-logarithmic-derivative (SLD) quantum Fisher metric unless the perturbation commutes with the state; (ii) the first law of entanglement, and, assuming the Ryu--Takayanagi formula, the \emph{linearized} Einstein equations in the bulk (Faulkner--Guica--Hartman--Myers--Van Raamsdonk), with a second-order extension by Faulkner et al.\ for states prepared by sources in the Euclidean path integral, to second order in the sources; (iii) the min-cut bound $S_A \le (\#\text{cut bonds})\log\chi$ for tensor networks, and monotonicity of area along smooth mean curvature flow; (iv) spin-network states are contracted tensor networks, and the kinematical LQG area spectrum $8\pi\gamma\ell_P^2\sum\sqrt{j(j+1)}$ for edges crossing a surface, with free Barbero--Immirzi parameter $\gamma$.
+
+Conjectural: a hyperbolic metric on the space of scales and positions of continuous MERA (the spatial slice of AdS), the Ryu--Takayanagi formula for continuum tensor networks with mean curvature flow as a search procedure for extremal cuts, condensation of graphons into $4$-dimensional geometries under Ricci flow, and an identification of Kac--Rice complexity with horizon entropy. We also point out that relative-entropy positivity yields inequalities, not the nonlinear Einstein equations.
+\end{abstract}
+
+\maketitle
+
+\tableofcontents
+\newpage
+
+% =========================================================================
+\section{Introduction}
+\label{sec:intro}
+% =========================================================================
+
+General Relativity (GR) describes gravity as the curvature of a pseudo-Riemannian metric governed by
+\begin{equation}
+    \label{eq:einstein_classical}
+    G_{\mu\nu} + \Lambda g_{\mu\nu} = 8\pi G_N T_{\mu\nu},
+\end{equation}
+while Quantum Field Theory (QFT) describes matter by operator algebras on Hilbert spaces over a fixed background. Three well-known difficulties separate them:
+\begin{enumerate}[label=(\roman*)]
+    \item \textbf{Perturbative non-renormalizability:} the perturbative quantization of $h_{\mu\nu} = g_{\mu\nu} - \eta_{\mu\nu}$ is non-renormalizable by power counting; pure gravity is finite on shell at one loop, but at two loops it has a divergence that cannot be absorbed into the Einstein--Hilbert action \cite{goroff1986}.
+    \item \textbf{Background independence:} the canonical Hamiltonian of a closed universe is a combination of constraints, including the Wheeler--DeWitt equation $\mathcal{H}|\Psi\rangle = 0$.
+    \item \textbf{Information and horizons:} the thermality of Hawking radiation is in tension with unitary evolution.
+\end{enumerate}
+
+A line of work starting with Jacobson \cite{jacobson1995thermodynamics}, Ryu--Takayanagi \cite{ryu2006holographic}, Van Raamsdonk \cite{vanraamsdonk2010building} and Swingle \cite{swingle2012entanglement} relates geometry to entanglement. This chapter collects the parts of that line which the treatise uses, and it connects them with the functional realizations and flows of Chapters~1 and~2 \cite{silvafilho2026functional, silvafilho2026flows}. We do \emph{not} claim that spacetime has been derived from entanglement in general, nor that GR and QFT have been reconciled. Section~\ref{sec:status} lists what is established and what is conjectural.
+
+% =========================================================================
+\section{The Quantum State Manifold and Information Geometry}
+\label{sec:quantum_info_geom}
+% =========================================================================
+
+Let $\mathscr{H}$ be a separable Hilbert space and $\mathcal{S}(\mathscr{H}) \coloneqq \{\rho \in \mathcal{B}_1(\mathscr{H}) \colon \rho = \rho^\dagger, \ \rho \ge 0, \ \Tr(\rho) = 1\}$ the convex set of density operators, where $\mathcal{B}_1(\mathscr{H})$ is the trace class with norm $\|\rho\|_1 = \Tr\sqrt{\rho^\dagger \rho}$. In this section $\mathscr{H}$ is finite-dimensional and states are full rank.
+
+\subsection{Relative Entropy and Monotone Metrics}
+The \emph{quantum relative entropy} is
+\begin{equation}
+    \label{eq:relative_entropy}
+    S(\rho \| \sigma) \coloneqq \Tr(\rho \log \rho) - \Tr(\rho \log \sigma) \ge 0,
+\end{equation}
+with equality if and only if $\rho = \sigma$ (Klein's inequality).
+
+\begin{definition}[SLD quantum Fisher metric]
+For a smooth family $\rho(\theta)$ of full-rank states, let $\mathcal{L}_i$ be the symmetric logarithmic derivative, $\partial_i \rho = \frac{1}{2}(\rho \mathcal{L}_i + \mathcal{L}_i \rho)$. The \emph{SLD quantum Fisher information} is
+\begin{equation}
+    \label{eq:qfi_metric}
+    g_{ij}^{\mathrm{SLD}}(\theta) \coloneqq \frac{1}{2} \Tr\left( \rho \{ \mathcal{L}_i, \mathcal{L}_j \} \right) = \Tr\left( \mathcal{L}_i\, \partial_j \rho \right).
+\end{equation}
+The Bures metric is $\frac14 g^{\mathrm{SLD}}$. The Bures distance on density matrices coincides with the Bures--Wasserstein distance of Chapter~2 \cite{silvafilho2026flows}.
+\end{definition}
+
+\begin{proposition}[Hessian of relative entropy]
+\label{prop:relative_entropy_hessian}
+Let $\rho(\lambda) = \rho_0 + \lambda X$ with $X = X^\dagger$, $\Tr X = 0$. Then
+\begin{align}
+    \left. \frac{\dif}{\dif \lambda} S(\rho(\lambda) \| \rho_0) \right|_{\lambda=0} &= 0, &
+    \left. \frac{\dif^2}{\dif \lambda^2} S(\rho(\lambda) \| \rho_0) \right|_{\lambda=0} &= g^{\mathrm{BKM}}_{\rho_0}(X, X),
+\end{align}
+where $g^{\mathrm{BKM}}_{\rho}(X,Y) = \Tr\big(X\, \dif\log(\rho)[Y]\big) = \int_0^\infty \Tr\big(X (s+\rho)^{-1} Y (s+\rho)^{-1}\big)\dif s$ is the Kubo--Mori (Bogoliubov) metric.
+\end{proposition}
+\begin{proof}
+$\frac{\dif}{\dif\lambda}S = \Tr\big(X(\log\rho(\lambda) - \log\rho_0)\big) + \Tr\big(\rho(\lambda)\,\dif\log(\rho(\lambda))[X]\big)$. The second term equals $\Tr X = 0$, since $\Tr(\rho\,\dif\log(\rho)[X]) = \Tr X$ by the integral formula. The first term vanishes at $\lambda = 0$. Differentiating once more at $\lambda = 0$, only $\Tr(X\,\dif\log(\rho_0)[X])$ survives.
+\end{proof}
+
+\begin{remark}[SLD versus Kubo--Mori]
+\label{rem:sld_vs_bkm}
+$g^{\mathrm{SLD}}$ and $g^{\mathrm{BKM}}$ are both monotone metrics in Petz's classification \cite{petz1996}. In an eigenbasis $\rho_0 = \sum_i p_i |i\rangle\langle i|$, $g^{\mathrm{SLD}}(X,X) = \sum_{ij} \frac{2}{p_i + p_j}|X_{ij}|^2$ and $g^{\mathrm{BKM}}(X,X) = \sum_{ij} \frac{\log p_i - \log p_j}{p_i - p_j}|X_{ij}|^2$ (read as $1/p_i$ when $p_i = p_j$). Since the logarithmic mean of two distinct positive numbers is smaller than their arithmetic mean, $g^{\mathrm{BKM}}(X,X) \ge g^{\mathrm{SLD}}(X,X)$, with equality if and only if $X_{ij} = 0$ whenever $p_i \ne p_j$, i.e.\ $[\rho_0, X] = 0$; in that case both reduce to the classical Fisher--Rao metric $\sum_i X_{ii}^2/p_i$. The ratio $g^{\mathrm{BKM}}/g^{\mathrm{SLD}}$ is unbounded: for $X_{ij} \ne 0$ with $p_i \to 0$ and $p_j$ fixed, the logarithmic mean of $p_i$ and $p_j$ tends to $0$ while their arithmetic mean tends to $p_j/2$. For qutrit states drawn from the Hilbert--Schmidt measure, with random traceless Hermitian $X$, its median is about $1.16$, and $95\%$ of the samples lie below $1.6$ (numerical check in the accompanying code repository). The same distinction is expected for perturbations of the vacuum restricted to a Rindler wedge that do not commute with the modular Hamiltonian; this is heuristic, since the local algebras of quantum field theory are of type~III and have no density matrices, so the statement refers to regularized versions. Where the literature identifies relative-entropy Hessians with ``quantum Fisher information'' (e.g.\ \cite{lashkari2016canonical}), the metric meant is the Kubo--Mori one.
+\end{remark}
+
+% =========================================================================
+\section{Entanglement and the Linearized Einstein Equations}
+\label{sec:einstein_derivation}
+% =========================================================================
+
+\subsection{Modular Hamiltonians and the First Law of Entanglement}
+For a faithful state $\sigma$, the \emph{modular Hamiltonian} is $H_\sigma \coloneqq -\log \sigma$, up to an additive constant. For the vacuum of a CFT$_d$ restricted to a ball $A$ of radius $R$ centered at $x_0$, the Bisognano--Wichmann theorem \cite{bisognano1976} and a conformal map \cite{casini2011} give the local form
+\begin{equation}
+    \label{eq:local_modular_ham}
+    H_A = 2\pi \int_A \frac{R^2 - |x - x_0|^2}{2 R} T_{00}(x) \dif^{d-1} x.
+\end{equation}
+
+\begin{proposition}[First law of entanglement]
+\label{thm:first_law_entanglement}
+For $\rho_A = \sigma_A + \delta \rho_A$ with $\Tr\delta\rho_A = 0$, the first-order variation of the von Neumann entropy is $\delta S_A = \Tr(\delta \rho_A H_A) \eqqcolon \delta\langle H_A\rangle$.
+\end{proposition}
+\begin{proof}
+$\delta S = -\Tr(\delta \rho \log \sigma) - \Tr(\sigma\,\dif\log(\sigma)[\delta\rho]) = \Tr(\delta \rho H_\sigma) - \Tr(\delta \rho) = \Tr(\delta\rho H_\sigma)$.
+\end{proof}
+
+The proof is for finite-dimensional, full-rank states, as fixed in Section~\ref{sec:quantum_info_geom}. For a ball in a CFT, reduced density matrices and their entropies require a regularization (for instance a lattice or an ultraviolet cutoff), and the first law is applied to the regularized quantities, as in the literature cited below.
+
+\subsection{The Linearized Einstein Equations}
+Let the bulk be asymptotically AdS$_{d+1}$ with Fefferman--Graham form $\dif s^2 = \frac{L^2}{z^2}\left( \dif z^2 + g_{ab}(x, z) \dif x^a \dif x^b \right)$.
+
+\begin{theorem}[Faulkner--Guica--Hartman--Myers--Van Raamsdonk \cite{faulkner2014gravitation}]
+\label{thm:einstein_emergence}
+Assume that the Ryu--Takayanagi formula $S_A = \Area(\gamma_A)/4G_N$ holds for all boundary balls $A$ in a family of states near the vacuum of a holographic CFT, with $\gamma_A$ the extremal surface anchored at $\partial A$, and that the first law holds for all balls. Then the bulk metric perturbation $h_{\mu\nu} = g_{\mu\nu} - g^{\mathrm{AdS}}_{\mu\nu}$ satisfies the \emph{linearized} vacuum Einstein equations
+\begin{equation}
+    \label{eq:einstein_emergent}
+    \delta\!\left(G_{\mu\nu} + \Lambda g_{\mu\nu}\right) = 0.
+\end{equation}
+\end{theorem}
+
+With bulk matter, Swingle and Van Raamsdonk \cite{swingle2014universality} argue that, for semiclassical bulk states and with the quantum corrections of Faulkner--Lewkowycz--Maldacena (FLM) \cite{faulkner2013quantum} to the entanglement formula, the source term $8\pi G_N\langle T_{\mu\nu}\rangle$ appears on the right of the linearized equations. This extension is not part of the theorem above.
+
+\begin{proof}[Sketch]
+Let $\xi$ be the bulk Killing field that generates the modular flow of the ball and vanishes on $\gamma_A$. Let $\chi$ be the Iyer--Wald form $\chi = \delta \mathbf{Q}[\xi] - \xi \cdot \boldsymbol{\theta}(g, \delta g)$ on the region $\Sigma_A$ between $A$ and $\gamma_A$. Its integral over $A$ gives $\delta\langle H_A\rangle$ (holographic stress tensor), and its integral over $\gamma_A$ gives $\delta\Area/4G_N = \delta S_A$. The first law then gives $\int_{\Sigma_A}\dif\chi = 0$. For on-shell backgrounds, $\dif\chi$ is proportional to $\xi^\mu\,\delta E_{\mu\nu}\,\boldsymbol{\epsilon}^\nu$, where $E_{\mu\nu}$ is the Einstein tensor combination. Vanishing for all balls, of all radii and centers, and in all boosted frames, implies $\delta E_{\mu\nu} = 0$. See \cite{faulkner2014gravitation} for the details, including the components not reached by the $tt$-argument.
+\end{proof}
+
+\begin{remark}[Beyond first order]
+The argument above is linear in $h$. At second order, the relative entropy of balls equals the bulk canonical energy \cite{lashkari2016canonical}. Faulkner et al.\ \cite{faulkner2017nonlinear} derived the bulk gravitational equations at second order for a restricted class of states, namely those prepared by turning on sources in the Euclidean path integral, to second order in the sources. Positivity of relative entropy gives positivity of canonical energy, which is an inequality (a stability statement), and it does not fix higher-order terms. Dong and Lewkowycz \cite{dong2018entropy} derived quantum extremality from the gravitational path integral to all orders in $G_N$, and they commented on how these ideas can be used to derive an integrated version of the equations of motion linearized around arbitrary states. The nonlinear, all-orders statement for general states is open.
+\end{remark}
+
+% =========================================================================
+\section{Tensor Networks and the Ryu--Takayanagi Formula}
+\label{sec:ryu_takayanagi}
+% =========================================================================
+
+The Multi-scale Entanglement Renormalization Ansatz (MERA) and continuous matrix product states (cMPS) \cite{verstraete2010continuous} organize states by scale. Swingle \cite{swingle2012entanglement} observed that the MERA graph is a discretized hyperbolic space.
+
+\subsection{Continuous MERA and an Emergent Metric}
+A continuous MERA (cMERA) state is generated by a scale-dependent disentangler $K(u)$ and the dilatation $L$:
+\begin{equation}
+    \label{eq:cmera_state}
+    |\Psi(u)\rangle = \mathcal{P} \exp\left( -i \int_{u_{\mathrm{IR}}}^u [K(s) + L] \dif s \right) |\Psi_{\mathrm{IR}}\rangle, \qquad u = \log(z_0/z).
+\end{equation}
+
+\begin{conjecture}[Hyperbolic metric from cMERA]
+\label{thm:tensor_network_metric}
+For the cMERA of a CFT$_d$ there is a natural information metric on the $d$-dimensional space of scales $u$ and spatial positions $x \in \R^{d-1}$ whose form is
+\begin{equation}
+    \label{eq:ads_metric_cmera}
+    \dif s_{\mathrm{TN}}^2 = c_1\,\dif u^2 + c_2\,e^{2u} \sum_{i=1}^{d-1} (\dif x^i)^2,
+\end{equation}
+with $c_1 = L^2$ and $c_2 = L^2/z_0^2$ for some $L > 0$. In the coordinate $z = z_0 e^{-u}$ this is $L^2(\dif z^2 + \sum_i (\dif x^i)^2)/z^2$, the metric of the hyperbolic space $\mathbb{H}^d$ of radius $L$, which is a constant-time slice of the Poincar\'e patch of AdS$_{d+1}$.
+\end{conjecture}
+
+\begin{remark}[Status]
+The metric \eqref{eq:ads_metric_cmera} has no time direction, so it can at most reproduce a spatial slice of AdS$_{d+1}$, not AdS$_{d+1}$ itself. Nozaki, Ryu and Takayanagi \cite{nozaki2012holographic} proposed a metric component $g_{uu}$ in the extra holographic direction, built from the cMERA data. Miyaji, Numasawa, Shiba, Takayanagi and Watanabe \cite{miyaji2015cmera} defined a metric on positions and scales from the information metric (fidelity) of locally excited states in cMERA, and obtained for $d = 2$ the metric of $\mathbb{H}^2$, the time slice of AdS$_3$. Pulling back the Fubini--Study metric of $|\Psi(u)\rangle$ to the coordinates $(x, u)$ does not work: for a translation-invariant state, $|\Psi(u)\rangle$ does not depend on $x$, so the pullback has no $\dif x^i$ component. For every $c_2 > 0$ the metric \eqref{eq:ads_metric_cmera} is hyperbolic with scalar curvature $-d(d-1)/c_1$, since the rescaling $x \mapsto \sqrt{c_2}\,x$ removes $c_2$. So the invariant content of the conjecture is $c_1 = L^2$, which fixes the curvature radius $L$. The value $c_2 = L^2/z_0^2$ only states that $x$ is the unrescaled boundary coordinate when $z = z_0 e^{-u}$.
+\end{remark}
+
+\subsection{Cuts, Minimal Surfaces, and Mean Curvature Flow}
+
+\begin{proposition}[Min-cut bound]
+\label{prop:mincut}
+Let $|\Psi\rangle$ be a tensor network state on a graph whose internal bonds have dimension $\chi$, and let $A$ be a set of open legs. For every cut $C$ (set of bonds) separating $A$ from its complement, $S_A \le |C|\log\chi$. Hence $S_A \le \log\chi \cdot \min_C |C|$.
+\end{proposition}
+\begin{proof}
+Contracting the network on each side of $C$ writes $|\Psi\rangle = \sum_{\alpha \in [\chi]^{|C|}} |\phi_\alpha\rangle_A \otimes |\psi_\alpha\rangle_{\bar A}$, so the Schmidt rank across $A : \bar A$ is at most $\chi^{|C|}$, and the von Neumann entropy is at most the logarithm of the Schmidt rank.
+\end{proof}
+
+Equality does not hold in general. It holds for connected boundary regions in holographic codes built from perfect tensors on tilings of nonpositive curvature \cite{pastawski2015holographic}, but can fail there for other regions, for instance disconnected ones; and it holds approximately, for large bond dimension, in random tensor networks \cite{hayden2016random}.
+
+\begin{proposition}[Area monotonicity under mean curvature flow]
+\label{prop:mcf_area}
+If $\gamma(t)$ is a smooth family of compact hypersurfaces with fixed boundary moving by $\partial_t \gamma = \mathbf{H}_\gamma$, then $\frac{\dif}{\dif t}\Area(\gamma(t)) = -\int_{\gamma(t)}\|\mathbf{H}\|^2\,\dif\Area \le 0$.
+\end{proposition}
+\begin{proof}
+This is the first variation of area, $\delta\Area = -\int \langle \mathbf{H}, V\rangle$, with $V = \mathbf{H}$. The boundary term vanishes because the boundary is fixed.
+\end{proof}
+
+\begin{conjecture}[Continuum Ryu--Takayanagi; mean curvature flow as a search procedure]
+\label{thm:continuous_rt}
+Call a cut \emph{admissible} if it is a hypersurface anchored at $\partial A$ and homologous to $A$, and let $\Area_\epsilon$ denote its area cut off at distance $\epsilon$ from the asymptotic boundary, with the $\epsilon$-divergent part (which depends only on $\partial A$) subtracted. For a suitable family of continuum tensor networks with emergent metric $g_{\mathrm{TN}}$:
+\begin{enumerate}
+    \item $S_A = \lim_{\epsilon \to 0}\inf_\gamma \Area_\epsilon(\gamma)/4G_N$, the infimum over admissible cuts;
+    \item the level-set mean curvature flow with boundary fixed at $\partial A$, started from any admissible cut, converges to an admissible extremal cut ($\mathbf{H} = 0$), and the minimizer in (1) is the extremal cut of least regularized area among these limits.
+\end{enumerate}
+\end{conjecture}
+
+\begin{remark}
+A related statement appears as Conjecture~5.2 of Chapter~12 \cite{silvafilho2026grand}. The Schmidt decomposition alone gives only the inequality of Proposition~\ref{prop:mincut}. Part (2) does not assert that every initial cut flows to the minimizer, and it could not: mean curvature flow is the gradient flow of area, so every extremal cut is a fixed point, minimizing or not. For example, in $\mathbb{H}^2$ (the time slice of AdS$_3$, radius $1$), let $A = [0,1] \cup [1+\delta, 2+\delta]$ on the boundary. Both the pair of geodesics over the two intervals and the pair over $[0, 2+\delta]$ and $[1, 1+\delta]$ are admissible and have $\mathbf{H} = 0$. Their regularized lengths are $4\log(1/\epsilon)$ and $2\log((2+\delta)/\epsilon) + 2\log(\delta/\epsilon)$; the second is smaller exactly when $\delta(2+\delta) < 1$, i.e.\ $\delta < \sqrt2 - 1$. For such $\delta$ the flow started from the first pair does not move, although that pair is not the minimizer. Convergence itself can also fail: mean curvature flow can develop singularities, which is why the level-set formulation is used.
+\end{remark}
+
+% =========================================================================
+\section{Loop Quantum Gravity, Spin Networks, and Holonomies}
+\label{sec:lqg_spin_networks}
+% =========================================================================
+
+In loop quantum gravity (LQG) \cite{rovelli2004quantum, ashtekar2004background}, the canonical variables are the Ashtekar--Barbero $SU(2)$ connection $A_a^i$ and the densitized triad $E_i^a$, with
+\begin{equation}
+    \{A_a^i(x), E_j^b(y)\} = 8\pi G_N \gamma_{\mathrm{BI}} \, \delta_a^b \delta_j^i \delta^3(x - y),
+\end{equation}
+where $\gamma_{\mathrm{BI}}$ is the Barbero--Immirzi parameter.
+
+\subsection{Spin Networks as Contracted Tensor Networks}
+A \emph{spin network} $|\Gamma, \mathbf{j}, \boldsymbol{\iota}\rangle$ is an oriented graph $\Gamma = (V, E)$ embedded in a $3$-manifold $\Sigma$. Each edge $e$ carries a nontrivial irreducible representation $j_e \in \{\frac12, 1, \frac32, \dots\}$ of dimension $2j_e + 1$, and each vertex carries an intertwiner
+\begin{equation}
+    \iota_v \in \operatorname{Inv}_{SU(2)}\Big( \textstyle\bigotimes_{e \in \mathrm{in}(v)} \mathcal{H}_{j_e} \otimes \bigotimes_{e' \in \mathrm{out}(v)} \mathcal{H}_{j_{e'}}^* \Big).
+\end{equation}
+
+\begin{proposition}[Spin networks are contracted tensor networks; classical]
+\label{thm:spin_net_tensor_equiv}
+The spin network function $\Psi_{\Gamma, \mathbf{j}, \boldsymbol{\iota}}(A)$ is the full contraction
+\begin{equation}
+    \label{eq:spin_net_contraction}
+    \Psi_{\Gamma, \mathbf{j}, \boldsymbol{\iota}}(A) = \Big( \textstyle\bigotimes_{v \in V} \iota_v \Big) \cdot \Big( \bigotimes_{e \in E} D^{j_e}\big(h_e(A)\big) \Big),
+\end{equation}
+where $h_e(A) = \mathcal{P} \exp( \int_e A ) \in SU(2)$ and $D^{j}$ is the spin-$j$ representation. It is invariant under gauge transformations $h_e \mapsto g(s(e))\, h_e\, g(t(e))^{-1}$.
+\end{proposition}
+\begin{proof}
+This is the definition of spin network functions \cite{rovelli2004quantum}, written as a tensor contraction. Each $D^{j_e}(h_e)$ is a matrix with one index at each end of $e$, and the intertwiners contract the indices meeting at each vertex. Gauge invariance holds because each $g(v)$ acts on all indices at $v$ through the tensor product representation, which fixes $\iota_v$.
+\end{proof}
+
+\begin{proposition}[Discrete holonomies and the area spectrum; classical]
+\label{thm:ashtekar_limit}
+\leavevmode
+\begin{enumerate}
+    \item If a smooth loop $\gamma \colon [0,1] \to \Sigma$ is subdivided into $k$ arcs of equal parameter length and $h_e$ is replaced by $\exp\big(A(\gamma(s_e))\,\dot\gamma(s_e)/k\big)$ at the midpoints $s_e$, then $\Tr\prod_e h_e \to \Tr\,\mathcal{P}\exp\oint_\gamma A$ with error $\mathcal{O}(k^{-2})$, where the product is taken in the order of the arcs along $\gamma$, with the same ordering convention as the path-ordered exponential (Chapter~2, tensor-ring limit).
+    \item For a surface $\mathcal{S}$ crossed transversally by edges of $\Gamma$ (not at vertices), the area operator acts as
+    \begin{equation}
+        \label{eq:area_spectrum}
+        \widehat{\Area}(\mathcal{S}) |\Gamma, \mathbf{j}, \boldsymbol{\iota}\rangle = 8\pi \gamma_{\mathrm{BI}} \ell_P^2 \sum_{e \cap \mathcal{S}} \sqrt{j_e(j_e + 1)} \, |\Gamma, \mathbf{j}, \boldsymbol{\iota}\rangle, \qquad \ell_P^2 = G_N\hbar.
+    \end{equation}
+\end{enumerate}
+\end{proposition}
+\begin{proof}[Comments]
+(1) By the Magnus expansion, the exact transport along an arc of parameter length $h = 1/k$ is $\exp(\Omega)$ with $\Omega = \int A(\dot\gamma) + \mathcal{O}(h^3)$, the commutator term being $\mathcal{O}(h^3)$; the midpoint rule gives $\int A(\dot\gamma) = h\,A(\gamma(s_e))\dot\gamma(s_e) + \mathcal{O}(h^3)$. So each factor differs from the exact transport by $\mathcal{O}(k^{-3})$, and since there are $k$ factors, all in the compact group $SU(2)$, the total error is $\mathcal{O}(k^{-2})$ (a numerical check gives observed order $2$). (2) Discreteness of area was derived by Rovelli and Smolin \cite{rovellismolin1995} and by Ashtekar and Lewandowski \cite{ashtekarlewandowski1997}, without the Barbero--Immirzi parameter; the dependence on $\gamma_{\mathrm{BI}}$ and the prefactor $8\pi\gamma_{\mathrm{BI}}\ell_P^2$ in the form above are due to Immirzi \cite{immirzi1997} and Rovelli--Thiemann \cite{rovelli1998immirzi}, see also \cite{rovelli2004quantum}. The result is kinematical: it concerns the spectrum of the area operator on the kinematical Hilbert space of LQG, with $\gamma_{\mathrm{BI}}$ a free parameter. The triad acts as $\widehat{E}_i^a = -i\,8\pi\gamma_{\mathrm{BI}}\ell_P^2\,\delta/\delta A_a^i$, which on the holonomy of a crossing edge inserts the generator $J_i$. The regularized area operator then reduces to the Casimir $\sqrt{J^2} = \sqrt{j(j+1)}$ of each \emph{edge} crossing $\mathcal{S}$. Vertices lying on $\mathcal{S}$ give a more complicated spectrum \cite{ashtekarlewandowski1997}. The spectrum comes from the edges, not from the Casimirs of the nodes.
+\end{proof}
+
+% =========================================================================
+\section{Graphon Ricci Flow and the Condensation Problem}
+\label{sec:pre_geometry}
+% =========================================================================
+
+Discrete approaches to quantum gravity (causal dynamical triangulations, random tensor models) face the \emph{condensation problem}: explaining how a random discrete structure produces a macroscopic $4$-dimensional geometry rather than a branched-polymer or crumpled phase.
+
+Let $\mathcal{W}_0$ be the space of symmetric measurable kernels $W \colon [0, 1]^2 \to [0, 1]$. Chapter~2 \cite{silvafilho2026flows} defines the graphon Ricci flow
+\begin{equation}
+    \label{eq:graphon_ricci_flow_sec}
+    \partial_t W(t, x, y) = 2 \kappa_W(t, x, y) W(t, x, y),
+\end{equation}
+starting from $W(0) = W_0 \in \mathcal{W}_0$, where $\kappa_W$ is an Ollivier-type curvature \cite{ollivier2009ricci} and $W$ is a connection strength, so negatively curved entries decrease. The curvature $\kappa_W$ is computed with respect to a metric $d$ on $[0,1]$ that has to be specified, and it depends on this choice; with the discrete metric, for instance, $\kappa_W \ge 0$ (Chapter~2). The flow does not preserve $\mathcal{W}_0$: Chapter~2 shows that entries can grow beyond $1$, so the flow acts on nonnegative kernels rather than on graphons. Proposition~6.1 of Chapter~12 \cite{silvafilho2026grand} gives the exponential decay $W(t,x,y) \le W_0(x,y) e^{-2ct}$ at points $(x,y)$ where $\kappa_W(s,x,y) \le -c < 0$ for all $s \in [0,t]$, i.e.\ along the whole flow, not only at the initial time.
+
+\begin{conjecture}[Geometric condensation]
+\label{thm:geometric_condensation}
+Starting from a random kernel modelling a branched-polymer phase, the graphon Ricci flow disconnects one-dimensional bottlenecks, and the remaining clusters with $4$-dimensional volume growth converge, after rescaling, to the kernel of a smooth $4$-dimensional Einstein geometry.
+\end{conjecture}
+
+The corresponding conjecture of Chapter~12 does not require the limit to be Einstein; the version above is stronger.
+
+\begin{remark}[Why this is not a theorem]
+Three obstacles stand in the way. First, the hypothesis $\kappa_W \le -c/\epsilon$ with $\epsilon \to 0$ on bottlenecks is impossible for the graph distance with the random walk on neighbours, where Ollivier curvature satisfies $\kappa \ge -2$. On general metric spaces the lower bound is $\kappa(x,y) \ge -(J(x) + J(y))/d(x,y)$, with $J$ the mean jump length of the random walk, which becomes unbounded only if $d(x,y) \to 0$ with fixed jumps; in that regime the hypothesis would need a separate justification. Second, cut-metric limits of graphons carry no dimension or metric tensor unless a reconstruction map is specified. Third, the Ollivier expansion $\kappa(x,y) = \frac{r^2}{2(N+2)}\Ric(v,v) + \mathcal{O}(r^3)$ \cite{ollivier2009ricci} relates the flow to Ricci flow only formally. Even for Ricci flow on $4$-manifolds, convergence to an Einstein metric is known only under strong curvature hypotheses, such as positive curvature operator \cite{hamilton1986}, not in general.
+\end{remark}
+
+% =========================================================================
+\section{Random Tensors, Complexity, and Horizons}
+\label{sec:horizon_scrambling}
+% =========================================================================
+
+The Maldacena--Shenker--Stanford bound \cite{maldacena2016bound} states that out-of-time-order correlators in a thermal system grow at most with Lyapunov exponent $\lambda_L \le 2\pi k_B T/\hbar$. Black holes in Einstein gravity saturate it. The SYK model \cite{kitaev2015simple} of $N$ Majorana fermions with random $q$-body couplings, $\mathbb{E}[\mathcal{J}^2_{i_1\dots i_q}] = (q-1)!J^2/N^{q-1}$, approaches the bound only as $\beta J \to \infty$ \cite{maldacena2016remarks}.
+
+A different random object is the spherical $k$-spin landscape $X(u) = \sum \mathcal{J}_{i_1 \dots i_k} u_{i_1}\cdots u_{i_k}$ on $\Sph^{N-1}$ with Gaussian couplings.
+
+\begin{proposition}[Landscape complexity and concentration; classical]
+\label{thm:horizon_complexity}
+\leavevmode
+\begin{enumerate}
+    \item For $k \ge 3$, $\lim_{N\to\infty}\frac1N\log\mathbb{E}[\mathcal{N}_{\mathrm{crit}}] = \frac12\log(k-1)$ \cite{auffinger2013random}. For $k = 2$ the landscape is a quadratic form, and its critical points on the sphere are the $2N$ unit eigenvectors $\pm v_i$ (for a generic coupling matrix).
+    \item Lipschitz functions of a uniformly random point on $\Sph^{N-1}$ concentrate: $\mathbb{P}(|f - \mathbb{E} f| > \epsilon) \le 2\exp(-c N\epsilon^2/\mathrm{Lip}(f)^2)$ for a universal constant $c > 0$ (L\'evy; see \cite{ledoux2001}).
+\end{enumerate}
+\end{proposition}
+
+\begin{remark}[The horizon reading]
+The identification of $\log\mathcal{N}_{\mathrm{crit}}$ with the Bekenstein--Hawking entropy, and the claim that concentration ``guarantees'' scrambling at $\lambda_L = 2\pi/\beta$, are not consequences of (1)--(2). Critical points of a classical landscape are not quantum microstates, and concentration does not determine Lyapunov exponents. These readings are Conjecture~7.1 of Chapter~12 \cite{silvafilho2026grand}.
+\end{remark}
+
+% =========================================================================
+\section{A Dictionary of Correspondences}
+\label{sec:master_dictionary}
+% =========================================================================
+
+Table~\ref{tab:grand_dictionary} lists the correspondences used in the treatise, each with its status.
+
+\begin{table}[htbp]
+\centering
+\scriptsize
+\renewcommand{\arraystretch}{1.35}
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{@{}llll@{}}
+\toprule
+\textbf{Tensor networks / multilinear algebra} & \textbf{Quantum information / QFT} & \textbf{Gravity} & \textbf{Status} \\
+\midrule
+Bond dimension $\chi$, min-cut $|C|$ & $S_A \le |C|\log\chi$ & RT area $\Area/4G_N$ & bound (Prop.~\ref{prop:mincut}); equality conjectural \\
+cMPS / cMERA & many-body state $|\Psi\rangle$ & Cauchy slice $\Sigma$ & analogy \\
+RG scale $u$ & cutoff $\Lambda_{\mathrm{UV}} \to \Lambda_{\mathrm{IR}}$ & radial coordinate $z = z_0 e^{-u}$ of $\mathbb{H}^d$ & conjecture (Conj.~\ref{thm:tensor_network_metric}) \\
+Relative-entropy Hessian & Kubo--Mori metric $g^{\mathrm{BKM}}$ & canonical energy & established (Prop.~\ref{prop:relative_entropy_hessian}, \cite{lashkari2016canonical}) \\
+First law $\delta S = \delta\langle H\rangle$ & modular Hamiltonian & linearized Einstein eqs. & established given RT (Thm.~\ref{thm:einstein_emergence}) \\
+Tensor-ring trace $\Tr(\prod A_j)$ & Wilson loop $\Tr\,\mathcal{P}\exp\oint A$ & Ashtekar holonomy & established (Prop.~\ref{thm:ashtekar_limit}) \\
+Spin network contraction & gauge-invariant state & LQG area spectrum & established within LQG, kinematical, $\gamma_{\mathrm{BI}}$ free (Props.~\ref{thm:spin_net_tensor_equiv}, \ref{thm:ashtekar_limit}) \\
+Graphon Ricci flow $\partial_t W = 2\kappa W$ & coarse-graining & condensation to $4$D geometry & conjecture (Conj.~\ref{thm:geometric_condensation}) \\
+MCF on cuts & entanglement minimization & RT minimal surface & conjecture (Conj.~\ref{thm:continuous_rt}); extremal cuts are fixed points \\
+Kac--Rice complexity & SYK-type models & horizon entropy & conjecture (Ch.~12 \cite{silvafilho2026grand}) \\
+\bottomrule
+\end{tabular}%
+}
+\caption{Correspondences between tensor networks, quantum information and gravity. These are correspondences with the stated status, not isomorphisms.}
+\label{tab:grand_dictionary}
+\end{table}
+
+% =========================================================================
+\section{Status and Open Problems}
+\label{sec:status}
+% =========================================================================
+
+\textbf{Established} (with sources): the relative-entropy Hessian is the Kubo--Mori metric; the first law of entanglement; the linearized Einstein equations from the first law and the Ryu--Takayanagi formula (FGHMV), and the second-order extension of Faulkner et al.\ for states prepared by Euclidean path-integral sources, to second order in the sources; the min-cut bound; area monotonicity under smooth mean curvature flow; spin networks as tensor contractions and the kinematical LQG area spectrum, with free Barbero--Immirzi parameter; landscape complexity $\frac12\log(k-1)$ (Auffinger--Ben Arous--\v{C}ern\'y).
+
+\textbf{Conjectural}: the hyperbolic metric (spatial slice of AdS) from cMERA; the continuum Ryu--Takayanagi formula, with mean curvature flow as a search procedure for extremal cuts (not every initial cut flows to the minimizer); graphon condensation into $4$-dimensional geometry; the identification of landscape complexity with horizon entropy.
+
+We do not claim a reconciliation of GR and QFT. Open problems include the nonlinear (all-orders) version of Theorem~\ref{thm:einstein_emergence}, a Lorentzian version of the graphon flow, topology change, and a precise construction of the functor from continuous tensor manifolds to $4$-dimensional cobordisms discussed elsewhere in this project.
+
+\input{declarations_chapter}
+
+\begin{thebibliography}{99}
+
+\bibitem{ashtekar2004background}
+A.~Ashtekar and J.~Lewandowski,
+\emph{Background independent quantum gravity: a status report},
+Classical and Quantum Gravity, \textbf{21} (2004), no.~15, R53,
+\doi{10.1088/0264-9381/21/15/R01}.
+
+\bibitem{faulkner2014gravitation}
+T.~Faulkner, M.~Guica, T.~Hartman, R.~C. Myers, and M.~Van~Raamsdonk,
+\emph{Gravitation from entanglement in holographic CFTs},
+Journal of High Energy Physics, \textbf{2014} (2014), no.~3, 51,
+\doi{10.1007/JHEP03(2014)051}.
+
+\bibitem{jacobson1995thermodynamics}
+T.~Jacobson,
+\emph{Thermodynamics of spacetime: the Einstein equation of state},
+Physical Review Letters, \textbf{75} (1995), no.~7, 1260--1263,
+\doi{10.1103/PhysRevLett.75.1260}.
+
+\bibitem{kitaev2015simple} A.~Kitaev, \emph{A simple model of quantum holography}, KITP Strings Seminar, 2015, \href{http://online.kitp.ucsb.edu/online/entangled15/kitaev/}{KITP: entangled15/kitaev}.
+
+\bibitem{maldacena2016bound}
+J.~Maldacena, S.~H. Shenker, and D.~Stanford,
+\emph{A bound on chaos},
+Journal of High Energy Physics, \textbf{2016} (2016), no.~8, 106,
+\doi{10.1007/JHEP08(2016)106}.
+
+\bibitem{pastawski2015holographic}
+F.~Pastawski, B.~Yoshida, D.~Harlow, and J.~Preskill,
+\emph{Holographic quantum error-correcting codes: Toy models for the bulk/boundary correspondence},
+Journal of High Energy Physics, \textbf{2015} (2015), no.~6, 149,
+\doi{10.1007/JHEP06(2015)149}.
+
+\bibitem{rovelli2004quantum}
+C.~Rovelli,
+\emph{Quantum Gravity},
+Cambridge Monographs on Mathematical Physics, Cambridge University Press, 2004,
+ISBN: 978-0-521-71596-5,
+\doi{10.1017/CBO9780511755804}.
+
+\bibitem{ryu2006holographic}
+S.~Ryu and T.~Takayanagi,
+\emph{Holographic derivation of entanglement entropy from the anti-de Sitter space/conformal field theory correspondence},
+Physical Review Letters, \textbf{96} (2006), no.~18, 181602,
+\doi{10.1103/PhysRevLett.96.181602}.
+
+\bibitem{silvafilho2026functional} R.~M. Silva-Filho, \emph{Functional Realizations of Matrices and Hypertensors: Emergent Invariants and Geometric Measures}, Chapter~1 of \emph{Geometry, Tensors, and Quantum Gravity}, Universidade Federal de Lavras, 2026.
+
+\bibitem{silvafilho2026flows} R.~M. Silva-Filho, \emph{Geometric Flows, Partial Differential Equations, and Variational Dynamics on Matrix and Tensor Manifolds}, Chapter~2 of \emph{Geometry, Tensors, and Quantum Gravity}, Universidade Federal de Lavras, 2026.
+
+\bibitem{silvafilho2026grand} R.~M. Silva-Filho, \emph{Emergent Spacetime, Holographic Entanglement, and Quantum Geometry: Proved Results, Conjectures, and Observational Limits}, Chapter~12 of \emph{Geometry, Tensors, and Quantum Gravity}, Universidade Federal de Lavras, 2026.
+
+\bibitem{swingle2012entanglement}
+B.~Swingle,
+\emph{Entanglement renormalization and holography},
+Physical Review D, \textbf{86} (2012), no.~6, 065007,
+\doi{10.1103/PhysRevD.86.065007}.
+
+\bibitem{vanraamsdonk2010building}
+M.~Van~Raamsdonk,
+\emph{Building up spacetime with quantum entanglement},
+General Relativity and Gravitation, \textbf{42} (2010), 2323--2329,
+\doi{10.1007/s10714-010-1034-0}.
+
+\bibitem{verstraete2010continuous}
+F.~Verstraete and J.~I. Cirac,
+\emph{Continuous matrix product states for quantum fields},
+Physical Review Letters, \textbf{104} (2010), no.~19, 190405,
+\doi{10.1103/PhysRevLett.104.190405}.
+
+\bibitem{faulkner2017nonlinear}
+T.~Faulkner, F.~M. Haehl, E.~Hijano, O.~Parrikar, C.~Rabideau, and M.~Van~Raamsdonk,
+\emph{Nonlinear gravity from entanglement in conformal field theories},
+Journal of High Energy Physics, \textbf{2017} (2017), no.~8, 57,
+\doi{10.1007/JHEP08(2017)057}.
+
+\bibitem{lashkari2016canonical}
+N.~Lashkari and M.~Van~Raamsdonk,
+\emph{Canonical energy is quantum Fisher information},
+Journal of High Energy Physics, \textbf{2016} (2016), no.~4, 153,
+\doi{10.1007/JHEP04(2016)153}.
+
+\bibitem{maldacena2016remarks}
+J.~Maldacena and D.~Stanford,
+\emph{Remarks on the Sachdev--Ye--Kitaev model},
+Physical Review D, \textbf{94} (2016), 106002,
+\doi{10.1103/PhysRevD.94.106002}.
+
+\bibitem{swingle2014universality}
+B.~Swingle and M.~Van~Raamsdonk,
+\emph{Universality of gravity from entanglement},
+preprint (2014),
+\doi{10.48550/arXiv.1405.2933}.
+
+\bibitem{nozaki2012holographic}
+M.~Nozaki, S.~Ryu, and T.~Takayanagi,
+\emph{Holographic geometry of entanglement renormalization in quantum field theories},
+Journal of High Energy Physics, \textbf{2012} (2012), no.~10, 193,
+\doi{10.1007/JHEP10(2012)193}.
+
+\bibitem{rovellismolin1995}
+C.~Rovelli and L.~Smolin,
+\emph{Discreteness of area and volume in quantum gravity},
+Nuclear Physics B, \textbf{442} (1995), 593--619,
+\doi{10.1016/0550-3213(95)00150-Q}.
+
+\bibitem{ashtekarlewandowski1997}
+A.~Ashtekar and J.~Lewandowski,
+\emph{Quantum theory of geometry I: Area operators},
+Classical and Quantum Gravity, \textbf{14} (1997), A55--A81,
+\doi{10.1088/0264-9381/14/1A/006}.
+
+\bibitem{ollivier2009ricci}
+Y.~Ollivier,
+\emph{Ricci curvature of Markov chains on metric spaces},
+Journal of Functional Analysis, \textbf{256} (2009), no.~3, 810--864,
+\doi{10.1016/j.jfa.2008.11.001}.
+
+\bibitem{hamilton1986}
+R.~S.~Hamilton,
+\emph{Four-manifolds with positive curvature operator},
+Journal of Differential Geometry, \textbf{24} (1986), no.~2, 153--179,
+\doi{10.4310/jdg/1214440433}.
+
+\bibitem{auffinger2013random}
+A.~Auffinger, G.~Ben Arous, and J.~{\v{C}}ern{\'y},
+\emph{Random matrices and complexity of spin glasses},
+Communications on Pure and Applied Mathematics, \textbf{66} (2013), no.~2, 165--201,
+\doi{10.1002/cpa.21422}.
+
+\bibitem{goroff1986}
+M.~H.~Goroff and A.~Sagnotti,
+\emph{The ultraviolet behavior of Einstein gravity},
+Nuclear Physics B, \textbf{266} (1986), 709--736,
+\doi{10.1016/0550-3213(86)90193-8}.
+
+\bibitem{petz1996}
+D.~Petz,
+\emph{Monotone metrics on matrix spaces},
+Linear Algebra and its Applications, \textbf{244} (1996), 81--96,
+\doi{10.1016/0024-3795(94)00211-8}.
+
+\bibitem{bisognano1976}
+J.~J.~Bisognano and E.~H.~Wichmann,
+\emph{On the duality condition for quantum fields},
+Journal of Mathematical Physics, \textbf{17} (1976), 303--321,
+\doi{10.1063/1.522898}.
+
+\bibitem{casini2011}
+H.~Casini, M.~Huerta, and R.~C.~Myers,
+\emph{Towards a derivation of holographic entanglement entropy},
+Journal of High Energy Physics, \textbf{2011} (2011), no.~5, 36,
+\doi{10.1007/JHEP05(2011)036}.
+
+\bibitem{faulkner2013quantum}
+T.~Faulkner, A.~Lewkowycz, and J.~Maldacena,
+\emph{Quantum corrections to holographic entanglement entropy},
+Journal of High Energy Physics, \textbf{2013} (2013), no.~11, 74,
+\doi{10.1007/JHEP11(2013)074}.
+
+\bibitem{dong2018entropy}
+X.~Dong and A.~Lewkowycz,
+\emph{Entropy, extremality, euclidean variations, and the equations of motion},
+Journal of High Energy Physics, \textbf{2018} (2018), no.~1, 81,
+\doi{10.1007/JHEP01(2018)081}.
+
+\bibitem{miyaji2015cmera}
+M.~Miyaji, T.~Numasawa, N.~Shiba, T.~Takayanagi, and K.~Watanabe,
+\emph{Continuous multiscale entanglement renormalization ansatz as holographic surface-state correspondence},
+Physical Review Letters, \textbf{115} (2015), 171602,
+\doi{10.1103/PhysRevLett.115.171602}.
+
+\bibitem{hayden2016random}
+P.~Hayden, S.~Nezami, X.-L.~Qi, N.~Thomas, M.~Walter, and Z.~Yang,
+\emph{Holographic duality from random tensor networks},
+Journal of High Energy Physics, \textbf{2016} (2016), no.~11, 9,
+\doi{10.1007/JHEP11(2016)009}.
+
+\bibitem{immirzi1997}
+G.~Immirzi,
+\emph{Quantum gravity and Regge calculus},
+Nuclear Physics B -- Proceedings Supplements, \textbf{57} (1997), 65--72,
+\doi{10.1016/S0920-5632(97)00354-X}.
+
+\bibitem{rovelli1998immirzi}
+C.~Rovelli and T.~Thiemann,
+\emph{Immirzi parameter in quantum general relativity},
+Physical Review D, \textbf{57} (1998), 1009--1014,
+\doi{10.1103/PhysRevD.57.1009}.
+
+\bibitem{ledoux2001}
+M.~Ledoux,
+\emph{The Concentration of Measure Phenomenon},
+Mathematical Surveys and Monographs, vol.~89, American Mathematical Society, 2001,
+\doi{10.1090/surv/089}.
+
+\end{thebibliography}
+
+\end{document}

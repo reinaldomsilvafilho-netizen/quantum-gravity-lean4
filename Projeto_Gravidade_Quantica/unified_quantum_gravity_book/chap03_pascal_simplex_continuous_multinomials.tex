@@ -1,0 +1,663 @@
+\documentclass[11pt,a4paper]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[margin=0.9in]{geometry}
+\usepackage{amsmath,amssymb,amsthm,amsfonts}
+\usepackage{mathtools}
+\usepackage{hyperref}
+\usepackage{booktabs}
+\usepackage{cite}
+\usepackage{microtype}
+\usepackage{array}
+\usepackage{tabularx}
+
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    citecolor=red,
+    urlcolor=blue
+}
+
+% Theorem Environments
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{example}[theorem]{Example}
+
+\newtheorem{conjecture}[theorem]{Conjecture}
+
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+\numberwithin{equation}{section}
+
+\title{\textbf{Analytic Continuation of Pascal's Simplex: Continuous Multinomial Integrals, Polytope Boundary Recurrences, and Simplicial Fractional Calculus}}
+\author{\textbf{Reinaldo Maia Silva-Filho} \\ \textit{Universidade Federal de Lavras (UFLA)}}
+\date{\today}
+
+
+\DeclareMathOperator*{\argmin}{argmin}
+\providecommand{\doi}[1]{\href{https://doi.org/#1}{\texttt{doi:#1}}}
+\providecommand{\Hyp}{\mathbb{H}}
+\providecommand{\Sph}{\mathbb{S}}
+\providecommand{\II}{\mathrm{II}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\Id}{\mathrm{Id}}
+\providecommand{\Area}{\mathrm{Area}}
+\providecommand{\Hsn}{\mathcal{H}}
+\providecommand{\BV}{\mathrm{BV}}
+\providecommand{\TV}{\mathrm{TV}}
+\providecommand{\cutnorm}[1]{\|#1\|_{\square}}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+We develop an analytic continuation of Pascal's triangle and its higher-dimensional generalization, the Pascal $m$-simplex, extending the discrete factorial domain via Euler's Gamma function. We prove that the continuous volume integral over the $(m-1)$-dimensional standard simplex $\Delta_{m-1}(x)$ satisfies $I_m(x) \sim m^x$ as $x \to \infty$, by a Laplace-method (local limit) argument. This is the continuous analogue of the discrete multinomial identity $\sum \binom{n}{\mathbf{k}} = m^n$. For $m = 2$ we give an exact trigonometric representation $I(x) = 2^x\mathcal{J}(x)$ and prove $\mathcal{J}(x) = 1 + \mathcal{O}(x^{-1/2})$; numerically $2^x - I(x)$ stays bounded. The analogous torus representation fails for $m \ge 3$. We discuss the boundary defect $m^n - I_m(n)$ via the lattice-polytope Euler--Maclaurin formula \cite{berline2007} and show numerically that its first-order facet approximation is not quantitatively reliable.
+
+We translate classical combinatorial identities into continuous statements: (i) a continuous Star of David product identity; (ii) continuous Fibonacci diagonals scaling as $\phi^{x+1}/\sqrt{5}$ and general ray integrals with explicit rate and constant, via Laplace's method; (iii) $L^p$ row norms; (iv) the leading-order moments of the continuous multinomial measure; (v) a numerically supported conjecture relating a continuous Dixon cubic integral to the central trinomial coefficient \cite{dixon1891}; and (vi) the continuous row logarithmic entropy in closed form via the Barnes $G$-function \cite{barnes1900}.
+
+Finally, we introduce \emph{Simplicial Beta-Kernel} averaging operators and prove their identity limit and their action on exponentials. We show that, unlike the lattice multinomial (Gr\"unwald--Letnikov) construction, the continuous kernel does \emph{not} satisfy a closed-form multinomial symbol or a semigroup law. For the resulting \emph{Fractional Simplicial Laplacian} $\Delta_{\Delta_m}^\alpha$, a bounded operator with spectrum in $[0, 2/\alpha^2]$, we derive the Fourier symbol and its long-wavelength quadratic form, which is invariant under the permutations of the first $m-1$ coordinates.
+\end{abstract}
+
+\tableofcontents
+\newpage
+
+% ==============================================================================
+\section{Introduction and Foundational Definitions}
+% ==============================================================================
+
+The classical binomial coefficient is defined for non-negative integers $n, k \in \mathbb{N}_0$ by
+\begin{equation}
+\binom{n}{k} = \frac{n!}{k!(n-k)!}.
+\end{equation}
+By replacing factorials with Euler's Gamma function, $\Gamma(z) = \int_0^\infty t^{z-1}e^{-t}\,dt$, we obtain a meromorphic function of $(x,y) \in \mathbb{C}^2$, studied in topological and visual contexts by Fowler \cite{fowler1996}. As a function of two variables it has points of indeterminacy, where a pole of $\Gamma(x+1)$ meets a zero of $1/(\Gamma(y+1)\Gamma(x-y+1))$ (for example $x = y = -1$), and there the limit depends on the direction of approach.
+
+\begin{definition}[Continuous Binomial Coefficient]
+For $x \in \mathbb{C} \setminus \{-1, -2, -3, \dots\}$ and $y \in \mathbb{C}$, the continuous binomial coefficient is defined by
+\begin{equation}
+\binom{x}{y} \coloneqq \Gamma(x+1)\cdot\frac{1}{\Gamma(y+1)}\cdot\frac{1}{\Gamma(x-y+1)},
+\end{equation}
+where $1/\Gamma$ denotes the entire reciprocal Gamma function. For fixed $x$ the coefficient is thus an entire function of $y$, and it vanishes when $y$ or $x - y$ is a negative integer. When neither $y+1$ nor $x-y+1$ is a non-positive integer, $\binom{x}{y} = \frac{1}{(x+1)\,\mathrm{B}(y+1,\, x-y+1)}$, where $\mathrm{B}(a, b) = \frac{\Gamma(a)\Gamma(b)}{\Gamma(a+b)}$ denotes the Euler Beta function.
+\end{definition}
+
+\begin{proposition}[Global Stifel Recurrence]
+For all $x, y \in \mathbb{C}$ where the functions are defined,
+\begin{equation}
+\binom{x-1}{y} + \binom{x-1}{y-1} = \binom{x}{y}.
+\end{equation}
+\end{proposition}
+\begin{proof}
+Using the fundamental recurrence $\Gamma(z+1) = z\Gamma(z)$, we compute directly:
+\begin{align*}
+\frac{\Gamma(x)}{\Gamma(y+1)\Gamma(x-y)} + \frac{\Gamma(x)}{\Gamma(y)\Gamma(x-y+1)} 
+&= \frac{\Gamma(x)}{\Gamma(y+1)\Gamma(x-y+1)}\Big[(x-y) + y\Big] \\
+&= \frac{x\Gamma(x)}{\Gamma(y+1)\Gamma(x-y+1)} = \binom{x}{y}.
+\end{align*}
+\end{proof}
+
+\begin{proposition}[Digamma Partial Differential Equation System]
+Let $\psi(z) \coloneqq \frac{d}{dz}\ln \Gamma(z) = \frac{\Gamma'(z)}{\Gamma(z)}$ be the Digamma function \cite{olver1997}. The continuous binomial surface satisfies the first-order system of PDEs:
+\begin{align}
+\frac{\partial}{\partial x}\binom{x}{y} &= \binom{x}{y}\Big[\psi(x+1) - \psi(x-y+1)\Big], \label{eq:pde_x}\\
+\frac{\partial}{\partial y}\binom{x}{y} &= \binom{x}{y}\Big[\psi(x-y+1) - \psi(y+1)\Big]. \label{eq:pde_y}
+\end{align}
+Summing \eqref{eq:pde_x} and \eqref{eq:pde_y} yields the advective transport equation:
+\begin{equation}
+\left(\frac{\partial}{\partial x} + \frac{\partial}{\partial y}\right)\binom{x}{y} = \binom{x}{y}\Big[\psi(x+1) - \psi(y+1)\Big].
+\end{equation}
+\end{proposition}
+
+\begin{proposition}[Global Meromorphic Extension and Zero Loci]
+Using Euler's reflection formula $\Gamma(z)\Gamma(1-z) = \frac{\pi}{\sin(\pi z)}$, the continuous binomial coefficient admits the representation:
+\begin{equation}
+\binom{x}{y} = -\frac{1}{\pi}\frac{\sin(\pi y)\sin(\pi(x-y))}{\sin(\pi x)} \frac{\Gamma(y-x)\Gamma(-y)}{\Gamma(-x)}.
+\end{equation}
+For $x \in \mathbb{R}^+$ and $y \in [0, x]$, the coefficient is strictly positive; the apparent zeros of the sine functions at integer coordinates are exactly removed by matching poles of the numerator Gamma functions. For $x \notin \mathbb{Z}_{<0}$ the coefficient vanishes on the lines $y \in \mathbb{Z}_{<0}$ and $x - y \in \mathbb{Z}_{<0}$, corresponding to the zeros of the reciprocal Gamma functions $1/\Gamma(y+1)$ and $1/\Gamma(x-y+1)$.
+\end{proposition}
+
+% ==============================================================================
+\section{Continuous Row Integrals and Fourier Representation (2D Case)}
+% ==============================================================================
+
+In the discrete setting, row summation yields $\sum_{k=0}^n \binom{n}{k} = 2^n$. We now analyze the continuous row integral $I(x) = \int_0^x \binom{x}{y}\,dy$.
+
+\begin{theorem}[Exact Trigonometric Representation of Row Integral]
+\label{thm:2d_row_integral}
+For all real $x > 0$, the continuous row integral admits the exact factorization:
+\begin{equation}
+I(x) \coloneqq \int_0^x \binom{x}{y}\,dy = 2^x \cdot \mathcal{J}(x),
+\end{equation}
+where $\mathcal{J}(x)$ is the modulated trigonometric integral:
+\begin{equation}
+\mathcal{J}(x) \coloneqq \frac{2}{\pi}\int_0^{\pi/2} \frac{\cos^x(\phi)\,\sin(x\phi)}{\phi}\,d\phi.
+\end{equation}
+Moreover, for $x \ge 1$,
+\begin{equation}
+\label{eq:J_rate}
+\Big|\mathcal{J}(x) - \tfrac{2}{\pi}\operatorname{Si}\!\big(\tfrac{\pi x}{2}\big)\Big| \le \frac{C}{\sqrt{x}}, \qquad \operatorname{Si}(z) \coloneqq \int_0^z \frac{\sin t}{t}\,dt,
+\end{equation}
+with an absolute constant $C$. Hence $\mathcal{J}(x) = 1 + \mathcal{O}(x^{-1/2})$ and $I(x) \sim 2^x$.
+\end{theorem}
+
+\begin{remark}
+The rate in \eqref{eq:J_rate} is far from sharp. Numerically $2^x - I(x)$ lies in $(0.44, 0.83)$ for $x \in [1, 30]$ (Table~\ref{tab:numerical_verification}), which indicates $1 - \mathcal{J}(x) = \mathcal{O}(2^{-x})$; we have no proof of this.
+\end{remark}
+
+\begin{proof}
+The classical integral $\int_0^{\pi/2} \cos^{x} t\, \cos(bt)\,dt = \frac{\pi\,\Gamma(x+1)}{2^{x+1}\,\Gamma(1 + \frac{x+b}{2})\,\Gamma(1 + \frac{x-b}{2})}$, valid for $x > -1$ and all real $b$ \cite[\S 3.631]{gradshteyn2015}, with $b = x - 2y$ and $t = \theta/2$ gives, for every real $y$,
+\begin{equation}
+\binom{x}{y} = \frac{1}{\pi}\int_0^\pi \left(2\cos\frac{\theta}{2}\right)^x \cos\left(\frac{(x-2y)\theta}{2}\right)\,d\theta.
+\end{equation}
+(For integer $y$ this is also Cauchy's coefficient formula for $(1+t)^x$ on $|t| = 1$. For non-integer $y$ that argument does not apply, because $t^{-y-1}$ has a branch cut.)
+Integrating with respect to $y \in [0, x]$:
+\begin{equation}
+\int_0^x \cos\left(\frac{(x-2y)\theta}{2}\right)dy = \left[-\frac{1}{\theta}\sin\left(\frac{(x-2y)\theta}{2}\right)\right]_0^x = \frac{2}{\theta}\sin\left(\frac{x\theta}{2}\right).
+\end{equation}
+Substituting $\phi = \theta/2$ with $d\theta = 2\,d\phi$:
+\begin{equation}
+I(x) = \frac{1}{\pi}\int_0^\pi 2^x \cos^x\left(\frac{\theta}{2}\right) \frac{2}{\theta}\sin\left(\frac{x\theta}{2}\right)\,d\theta = 2^x \cdot \frac{2}{\pi}\int_0^{\pi/2} \frac{\cos^x(\phi)\,\sin(x\phi)}{\phi}\,d\phi.
+\end{equation}
+For the limit, write $\mathcal{J}(x) = \frac{2}{\pi}\int_0^{\pi/2}\frac{\sin(x\phi)}{\phi}\,d\phi + \frac{2}{\pi}\int_0^{\pi/2} G(\phi)\sin(x\phi)\,d\phi$ with $G(\phi) \coloneqq (\cos^x\phi - 1)/\phi$. The first term is $\frac{2}{\pi}\operatorname{Si}(\frac{\pi x}{2})$. The function $G$ is $C^1$ on $(0, \pi/2]$, with $G(0^+) = 0$ and $G(\pi/2) = -2/\pi$. Integration by parts gives
+\[
+\int_0^{\pi/2} G(\phi)\sin(x\phi)\,d\phi = -\frac{G(\pi/2)\cos(\pi x/2)}{x} + \frac{1}{x}\int_0^{\pi/2} G'(\phi)\cos(x\phi)\,d\phi .
+\]
+Now $G'(\phi) = -x\cos^{x-1}\phi\,\frac{\sin\phi}{\phi} + \frac{1-\cos^x\phi}{\phi^2}$. Since $\sin\phi \le \phi$, the first part has absolute integral at most $x\int_0^{\pi/2}\cos^{x-1}\phi\,d\phi = \frac{\sqrt{\pi}}{2}\,\frac{x\,\Gamma(x/2)}{\Gamma((x+1)/2)} = \mathcal{O}(\sqrt{x})$. For the second, Bernoulli's inequality ($x \ge 1$) gives $1 - \cos^x\phi \le x(1 - \cos\phi) \le x\phi^2/2$, so $\int_0^{\pi/2} \min(1, x\phi^2/2)\,\phi^{-2}\,d\phi \le \sqrt{2x}$. Hence the second term of $\mathcal{J}$ is $\mathcal{O}(x^{-1/2})$, which is \eqref{eq:J_rate}. Finally $\frac{2}{\pi}\operatorname{Si}(\frac{\pi x}{2}) = 1 + \mathcal{O}(x^{-1})$.
+\end{proof}
+
+% ==============================================================================
+\section{Generalization to the Pascal \texorpdfstring{$m$}{m}-Simplex}
+% ==============================================================================
+
+Let $x > 0$ be the continuous scaling layer, and let $\mathbf{y} = (y_1, y_2, \dots, y_{m-1}) \in \mathbb{R}_{\ge 0}^{m-1}$ denote independent coordinates, with the dependent coordinate $y_m \coloneqq x - \sum_{j=1}^{m-1} y_j$.
+
+\begin{definition}[Continuous Multinomial Coefficient on Simplex]
+The continuous multinomial coefficient is defined on the standard scaled $(m-1)$-simplex $\Delta_{m-1}(x) = \left\{\mathbf{y} \in \mathbb{R}_{\ge 0}^{m-1} \;\middle|\; \sum_{j=1}^{m-1} y_j \le x\right\}$ by
+\begin{equation}
+\binom{x}{y_1, y_2, \dots, y_m} \coloneqq \frac{\Gamma(x+1)}{\prod_{j=1}^m \Gamma(y_j+1)}.
+\end{equation}
+The continuous simplex volume integral is denoted by
+\begin{equation}
+I_m(x) \coloneqq \int_{\Delta_{m-1}(x)} \binom{x}{y_1, \dots, y_m} \, dy_1 \cdots dy_{m-1}.
+\end{equation}
+\end{definition}
+
+\begin{theorem}[Leading Asymptotics of the Simplex Volume]
+\label{thm:simplex_integral}
+For every integer $m \ge 2$, define $\mathcal{J}_m(x) \coloneqq m^{-x} I_m(x)$ for $x > 0$ (for $m = 2$ this is the function $\mathcal{J}$ of Theorem~\ref{thm:2d_row_integral}). Then $\lim_{x\to\infty}\mathcal{J}_m(x) = 1$, i.e.
+\begin{equation}
+I_m(x) \sim m^x \quad \text{as } x \to \infty.
+\end{equation}
+\end{theorem}
+
+\begin{proof}
+Write $\boldsymbol{\delta} = \mathbf{y} - \frac{x}{m}\mathbf{1}$ (all $m$ coordinates, $\sum_j \delta_j = 0$) and $p(\mathbf{y}) \coloneqq m^{-x}\binom{x}{\mathbf{y}}$. Let $\varphi_x$ be the density on $\mathbb{R}^{m-1}$ of the Gaussian law with mean $\frac{x}{m}\mathbf{1}$ and covariance $\Sigma_x = x(\frac{1}{m}\Id_{m-1} - \frac{1}{m^2}\mathbf{1}\mathbf{1}^T)$. A direct computation gives $\Sigma_x^{-1} = \frac{m}{x}(\Id + \mathbf{1}\mathbf{1}^T)$ and $\det\Sigma_x = x^{m-1}m^{-m}$, so
+\[
+\varphi_x(\mathbf{y}) = (2\pi x)^{-\frac{m-1}{2}}\, m^{m/2} \exp\Big(-\frac{m}{2x}\sum_{j=1}^m \delta_j^2\Big).
+\]
+\emph{Central region} $|\boldsymbol{\delta}| \le x^{3/5}$. There every $y_j \ge x/(2m)$ for large $x$, and Stirling's formula $\ln\Gamma(z+1) = z\ln z - z + \frac12\ln(2\pi z) + \mathcal{O}(1/z)$ applies uniformly. Expanding $\sum_j y_j\ln y_j = x\ln\frac{x}{m} + \frac{m}{2x}\sum_j\delta_j^2 + \mathcal{O}(|\boldsymbol{\delta}|^3/x^2)$ and $\ln y_j = \ln\frac{x}{m} + \mathcal{O}(x^{-2/5})$ gives $p = \varphi_x\,(1 + o(1))$ uniformly on the central region. Since $x^{3/5}$ is much larger than the standard deviation $\mathcal{O}(\sqrt{x})$, $\int_{\mathrm{central}}\varphi_x \to 1$.
+\emph{Outer region.} Let $c_0 \coloneqq \min_{[1,2]}\Gamma > 0.88$. Then $\Gamma(z+1) \ge c_0 (z/e)^z$ for all $z \ge 0$: for $z \ge 1/(2\pi)$ this follows from $\Gamma(z+1) \ge \sqrt{2\pi z}\,(z/e)^z$, and for smaller $z$ from $(z/e)^z \le 1$. Together with $\Gamma(x+1) \le \sqrt{2\pi x}(x/e)^x e^{1/(12x)}$ this gives $p(\mathbf{y}) \le c_0^{-m} e^{1/(12x)}\sqrt{2\pi x}\,\exp(-x\,D(\mathbf{y}/x))$ on the whole simplex. Here $D(\boldsymbol{\xi}) = \sum_j \xi_j\ln(m\xi_j)$ is the Kullback--Leibler divergence from the uniform distribution. Pinsker's inequality gives $D(\boldsymbol{\xi}) \ge \frac12\|\boldsymbol{\xi} - \frac1m\mathbf{1}\|_1^2 \ge \frac12|\boldsymbol{\delta}|^2/x^2$. On the outer region $|\boldsymbol{\delta}| > x^{3/5}$ this gives $p \le C\sqrt{x}\,e^{-x^{1/5}/2}$. The region has volume at most $x^{m-1}/(m-1)!$, so its contribution tends to $0$.
+Hence $\mathcal{J}_m(x) = \int_{\Delta_{m-1}(x)} p \to 1$.
+\end{proof}
+
+\begin{remark}[The torus representation does not extend to $m \ge 3$]
+For $m = 2$ the representation of Theorem~\ref{thm:2d_row_integral} holds for all real $y$. The formal analogue for $m \ge 3$,
+\[
+\binom{x}{\mathbf{y}} \overset{?}{=} \frac{1}{(2\pi)^{m-1}}\int_{[-\pi, \pi]^{m-1}} \Big(1 + \sum_{j=1}^{m-1}e^{i\theta_j}\Big)^x e^{-i\mathbf{y}\cdot\boldsymbol{\theta}}\,d\boldsymbol{\theta},
+\]
+holds for integer $\mathbf{y}$ and integer $x$, but fails for non-integer $\mathbf{y}$ even when $x$ is an integer. For $x = n \in \mathbb{N}$ the right-hand side equals $\sum_{\mathbf{k}}\binom{n}{\mathbf{k}}\prod_{j<m}\operatorname{sinc}(\pi(k_j - y_j))$ with $\operatorname{sinc}(t) = \sin t/t$. For $m = 3$, $n = 2$, $\mathbf{y} = (\frac12, \frac12)$ this is $\frac{76}{3\pi^2} \approx 2.5668$, whereas $\binom{2}{\frac12, \frac12, 1} = \frac{8}{\pi} \approx 2.5465$. More generally, the right-hand side vanishes at $y_1 = n+1$ for every $y_2$, while $\binom{n}{n+1, y_2, -1-y_2} = 1/\big((n+1)\Gamma(y_2+1)\Gamma(-y_2)\big) \neq 0$ for non-integer $y_2$. Consequently $I_m(x)$ is not obtained by integrating this torus formula over the simplex, whose Fourier transform $\sum_{j=1}^m e^{-ix\theta_j}/\prod_{k \ne j} i(\theta_k - \theta_j)$ (with $\theta_m = 0$) is entire. Theorem~\ref{thm:simplex_integral} is proved by the real-variable argument above instead. Numerically the relative defect $1 - \mathcal{J}_m(x)$ decays roughly like $((m-1)/m)^x$ (Table~\ref{tab:numerical_verification}).
+\end{remark}
+
+% ==============================================================================
+\section{Simplicial Euler--Maclaurin Polytope Decomposition}
+% ==============================================================================
+
+\begin{remark}[First-Order Euler--Maclaurin Heuristic for the Boundary Defect]
+For integer $n$, the discrete multinomial sum $m^n = \sum_{\mathbf{k} \in \Delta_{m-1}(n) \cap \mathbb{Z}^{m-1}} \binom{n}{\mathbf{k}}$ and the continuous integral $I_m(n)$ differ by a boundary defect $m^n - I_m(n)$. Keeping only the first-order facet term of the lattice-polytope Euler--Maclaurin formula suggests
+\begin{equation}
+m^n - I_m(n) \approx \frac{m}{2}\,I_{m-1}(n).
+\end{equation}
+This is \emph{not} an exact relation, and the coefficient is not reliable: the omitted terms include normal derivatives across the facets, which are themselves codimension-one contributions and are large because $\partial_{y_j}\binom{n}{\mathbf{y}}$ grows like $\log n$ at the boundary. Numerically, for $m = 3$ the ratio $(3^n - I_3(n))/I_2(n)$ is $1.06, 0.95, 0.89$ for $n = 6, 10, 14$, not $3/2$. An error term $\mathcal{O}(m^n/n)$ would be useless here: since $m^n/n \gg (m-1)^n$, it absorbs the facet term entirely.
+\end{remark}
+
+\begin{proof}[Derivation of the heuristic]
+By the Euler--Maclaurin summation formula on convex lattice polytopes $\mathcal{P} \subset \mathbb{R}^{d}$ developed by Berline and Vergne \cite{berline2007}, the sum of a smooth function $f$ over the lattice points $\mathcal{P} \cap \mathbb{Z}^d$ is given by
+\begin{equation}
+\sum_{\mathbf{k} \in \mathcal{P} \cap \mathbb{Z}^d} f(\mathbf{k}) = \int_{\mathcal{P}} f(\mathbf{y})\,d\mathbf{y} + \frac{1}{2}\sum_{F \in \mathcal{F}_1(\mathcal{P})} \int_F f\,d\sigma + \mathcal{R}(f),
+\end{equation}
+where $\mathcal{F}_1(\mathcal{P})$ denotes the set of codimension-1 facets of $\mathcal{P}$ (with lattice-normalized measure), and $\mathcal{R}(f)$ contains higher-order differential boundary operators on faces of all codimensions, including normal derivatives across facets.
+
+For the standard $(m-1)$-simplex $\Delta_{m-1}(n)$, there are exactly $m$ symmetric facets, each obtained by setting one coordinate $y_j = 0$. On each such facet, the continuous multinomial coefficient collapses identically to the continuous multinomial coefficient of dimension $m-1$:
+\begin{equation}
+\binom{n}{y_1, \dots, y_{j-1}, 0, y_{j+1}, \dots, y_m} = \binom{n}{y_1, \dots, y_{j-1}, y_{j+1}, \dots, y_m}.
+\end{equation}
+Consequently, with the lattice-normalized facet measure, each facet integral equals $I_{m-1}(n)$, and the first-order term is $\frac{m}{2}I_{m-1}(n)$. The remainder $\mathcal{R}(f)$ is not controlled here; see the remark above.
+\end{proof}
+
+% ==============================================================================
+\section{Extended Continuous Combinatorial Theorems}
+% ==============================================================================
+
+\subsection{Continuous Star of David Theorem}
+
+\begin{theorem}[Continuous Star of David Theorem]
+\label{thm:star_of_david}
+For real $n, k$ with all six coefficients below defined, the continuous binomial coefficient satisfies the hexagon identity
+\begin{equation}
+\label{eq:sod_product}
+\binom{n-1}{k-1}\binom{n}{k+1}\binom{n+1}{k} = \binom{n-1}{k}\binom{n}{k-1}\binom{n+1}{k+1},
+\end{equation}
+extending the discrete Star-of-David product identity of Hoggatt and Hansell \cite{hoggatt1971} to real-valued $(n,k)$. (The companion greatest-common-divisor property of the same hexagon is due to Gould \cite{gould1972}.)
+\end{theorem}
+
+\begin{proof}
+Applying $\Gamma(z+1) = z\Gamma(z)$ termwise, each side of \eqref{eq:sod_product} reduces to the identical symmetric expression
+\begin{multline}
+\binom{n-1}{k-1}\binom{n}{k+1}\binom{n+1}{k} = \binom{n-1}{k}\binom{n}{k-1}\binom{n+1}{k+1} \\ = \frac{\Gamma(n)\,\Gamma(n+1)\,\Gamma(n+2)}{\Gamma(k)\,\Gamma(k+1)\,\Gamma(k+2)\,\Gamma(n-k)\,\Gamma(n-k+1)\,\Gamma(n-k+2)},
+\end{multline}
+which is immediate upon expanding all six factors via the definition $\binom{x}{y}=\Gamma(x+1)/(\Gamma(y+1)\Gamma(x-y+1))$: both products draw exactly one factor of $\Gamma(k)$, $\Gamma(k+1)$, $\Gamma(k+2)$ from the $y$-arguments and exactly one factor of $\Gamma(n-k)$, $\Gamma(n-k+1)$, $\Gamma(n-k+2)$ from the $(x-y)$-arguments, against the common numerator $\Gamma(n)\Gamma(n+1)\Gamma(n+2)$.
+\end{proof}
+
+\begin{remark}[Why the identity holds]
+Let $\Phi(x,y) \coloneqq \ln\binom{x}{y} = \ln\Gamma(x+1) - \ln\Gamma(y+1) - \ln\Gamma(x-y+1)$. Identity \eqref{eq:sod_product} says that the alternating sum of $\Phi$ over the six hexagon points vanishes. This holds because $\Phi$ is a sum of a function of $x$, a function of $y$ and a function of $x - y$, and each of the three triples of arguments $\{n-1, n, n+1\}$, $\{k-1, k, k+1\}$ and $\{n-k-1, n-k, n-k+1\}$ occurs once on each side. The fact that $\nabla\Phi$ is a gradient field does not by itself imply the identity: for $\Phi = x^2 y$ the same alternating sum equals $-2$.
+\end{remark}
+
+\subsection{Continuous Fibonacci Diagonals and Generalized Ray Integrals}
+
+\begin{theorem}[Continuous Fibonacci Scaling and Ray Integrals]
+\label{thm:fibonacci}
+Let $\phi = \frac{1+\sqrt{5}}{2}$ denote the Golden Ratio. The continuous diagonal integral along slope $\alpha = 1$ satisfies:
+\begin{equation}
+F_{\text{cont}}(x) \coloneqq \int_0^{x/2} \binom{x-y}{y}\,dy \sim \frac{\phi^{x+1}}{\sqrt{5}} = \frac{\phi}{\sqrt{5}}\phi^x \quad \text{as } x \to \infty.
+\end{equation}
+More generally, for any arbitrary ray slope $\alpha > 0$:
+\begin{equation}
+\int_0^{\frac{x}{1+\alpha}} \binom{x-\alpha y}{y}\,dy \sim C_\alpha \lambda_\alpha^x,
+\end{equation}
+where $\lambda_\alpha > 1$ is the unique real root $z > 1$ of $z^{\alpha+1} - z^\alpha - 1 = 0$, and
+\begin{equation}
+\label{eq:ray_constant}
+C_\alpha = \sqrt{\frac{u_*}{\xi_* w_* |S_\alpha''(\xi_*)|}}, \qquad u_* = 1 - \alpha\xi_*, \quad w_* = 1 - (\alpha+1)\xi_*,
+\end{equation}
+with $\xi_* \in (0, \frac{1}{1+\alpha})$ the unique solution of $w_*^{\alpha+1} = \xi_* u_*^\alpha$ and $S_\alpha'' = \alpha^2/u - 1/\xi - (\alpha+1)^2/w$. For $\alpha = 1$, $C_1 = \phi/\sqrt5$ and $\lambda_1 = \phi$.
+\end{theorem}
+
+\begin{proof}
+Writing $y = x\xi$ with $\xi \in [0, 1/2]$, Stirling's approximation on the integrand yields:
+\begin{equation}
+\binom{x(1-\xi)}{x\xi} = \exp\left(x S(\xi) - \frac{1}{2}\ln x + \mathcal{O}(1)\right),
+\end{equation}
+where the entropy potential is given by:
+\begin{equation}
+S(\xi) = (1-\xi)\ln(1-\xi) - \xi\ln\xi - (1-2\xi)\ln(1-2\xi).
+\end{equation}
+Differentiating with respect to $\xi$:
+\begin{equation}
+S'(\xi) = -\ln(1-\xi) - \ln\xi + 2\ln(1-2\xi) = \ln\left(\frac{(1-2\xi)^2}{\xi(1-\xi)}\right).
+\end{equation}
+Setting $S'(\xi^*) = 0$ yields the quadratic equation $(1-2\xi^*)^2 = \xi^*(1-\xi^*)$, which has the unique root in $[0, 1/2]$:
+\begin{equation}
+\xi^* = \frac{5 - \sqrt{5}}{10}.
+\end{equation}
+Evaluating $S(\xi^*)$ gives $S(\xi^*) = \ln\phi$. The second derivative at the saddle point is:
+\begin{equation}
+S''(\xi^*) = \frac{1}{1-\xi^*} - \frac{1}{\xi^*} - \frac{4}{1-2\xi^*} = -\sqrt{5} - 4\sqrt{5} = -5\sqrt{5}.
+\end{equation}
+Applying Laplace's method for Gaussian integration around $\xi^*$ \cite{olver1997, wong2001}:
+\begin{equation}
+\int_0^{x/2} \binom{x-y}{y}dy = x \int_0^{1/2} \binom{x(1-\xi)}{x\xi}d\xi \sim x \cdot \frac{e^{x S(\xi^*)}}{\sqrt{2\pi x \xi^*(1-2\xi^*)/(1-\xi^*)}} \cdot \sqrt{\frac{2\pi}{x |S''(\xi^*)|}} = \frac{\phi^{x+1}}{\sqrt{5}},
+\end{equation}
+since $\sqrt{\frac{1-\xi^*}{\xi^*(1-2\xi^*) |S''(\xi^*)|}} = \sqrt{\frac{\phi^2}{5}} = \frac{\phi}{\sqrt{5}}$. Laplace's method is justified as in the proof of Theorem~\ref{thm:simplex_integral}. Stirling's formula holds uniformly on $|\xi - \xi^*| \le x^{-2/5}$, and outside this window the Stirling-type bounds used there give an integrand of size at most $C\sqrt{x}\,e^{x(S(\xi^*) - c x^{-4/5})}$, which is negligible.
+
+For general $\alpha > 0$ the same computation applies with
+\[
+S_\alpha(\xi) = u\ln u - \xi\ln\xi - w\ln w, \qquad u = 1 - \alpha\xi, \quad w = 1 - (\alpha+1)\xi, \qquad \xi \in \big(0, \tfrac{1}{1+\alpha}\big),
+\]
+and $S_\alpha'(\xi) = -\alpha\ln u - \ln\xi + (\alpha+1)\ln w$. Since $u = w + \xi$, the Cauchy--Schwarz inequality gives $\frac{(\alpha+2)^2}{u} \le \frac{1}{\xi} + \frac{(\alpha+1)^2}{w}$, hence $S_\alpha'' < 0$. Moreover $S_\alpha' \to +\infty$ at $\xi \to 0$ and $S_\alpha' \to -\infty$ at $\xi \to \frac{1}{1+\alpha}$, so there is a unique maximizer $\xi_*$, characterized by $w_*^{\alpha+1} = \xi_* u_*^\alpha$. Using this relation, $S_\alpha(\xi_*) = (u_* + \alpha\xi_*)\ln u_* - ((\alpha+1)\xi_* + w_*)\ln w_* = \ln(u_*/w_*)$. The number $z = u_*/w_*$ satisfies $z^\alpha(z-1) = u_*^\alpha\xi_*/w_*^{\alpha+1} = 1$, so $\lambda_\alpha = u_*/w_*$. The Stirling prefactor $\sqrt{u/(2\pi x\xi w)}$ and the Gaussian integral $\sqrt{2\pi/(x|S_\alpha''|)}$, multiplied by the Jacobian $x$, give \eqref{eq:ray_constant}. For $\alpha = 1$ this reduces to the computation above.
+\end{proof}
+
+\subsection{\texorpdfstring{$L^p$}{Lp}-Norms and Gaussian Asymptotic Profile}
+
+\begin{theorem}[$L^p$ Row Norms of the Continuous Pascal Triangle]
+\label{thm:lp_rows}
+For any $p > 0$, the $L^p$-norm of row $x$ satisfies:
+\begin{equation}
+\int_0^x \left[\binom{x}{y}\right]^p dy \sim \frac{2^{px}}{\left(\frac{\pi x}{2}\right)^{(p-1)/2}\sqrt{p}} \quad \text{as } x \to \infty.
+\end{equation}
+In particular, for $p=2$ (sum of squares):
+\begin{equation}
+\int_0^x \left[\binom{x}{y}\right]^2 dy \sim \binom{2x}{x} \sim \frac{4^x}{\sqrt{\pi x}}.
+\end{equation}
+\end{theorem}
+\begin{proof}
+This is the case $m = 2$ of the argument proving Theorem~\ref{thm:simplex_integral}, applied to the $p$-th power. On the central region $|y - x/2| \le x^{3/5}$, $\binom{x}{y} = 2^x\sqrt{2/(\pi x)}\,e^{-2(y - x/2)^2/x}(1 + o(1))$ uniformly, so the $p$-th power integrates to $2^{px}(2/(\pi x))^{p/2}\sqrt{\pi x/(2p)}\,(1 + o(1))$, which is the stated expression. On the outer region the $p$-th power of the bound $C\sqrt{x}\,2^x e^{-2(y-x/2)^2/x}$ (Pinsker's inequality) is negligible. For $p = 2$ the right-hand side equals $4^x/\sqrt{\pi x}$, which is also the asymptotics of $\binom{2x}{x}$.
+\end{proof}
+
+\subsection{Continuous Dixon Cubic Integral and Projection to 3-Simplex}
+
+\begin{conjecture}[Continuous Dixon Integral]
+\label{conj:dixon}
+The continuous oscillatory cubic integral satisfies:
+\begin{equation}
+\int_{-x}^x \cos(\pi t) \left[\binom{2x}{x+t}\right]^3 dt \sim \frac{1}{2}\binom{3x}{x, x, x} = \frac{1}{2}\frac{\Gamma(3x+1)}{(\Gamma(x+1))^3} \sim \frac{\sqrt{3}}{4\pi x} 27^x \qquad (x \to \infty).
+\end{equation}
+Numerically, the ratio of the left-hand side to $\frac12\binom{3x}{x,x,x}$ is $1.0000005$ at $x = 5$, $1 - 5 \times 10^{-11}$ at $x = 7.5$, and $1$ to double precision at $x = 10$ and $x = 20$. We have no proof.
+\end{conjecture}
+
+\begin{remark}[Relation with Dixon's identity]
+The conjecture is an asymptotic, not an exact, counterpart of Dixon's 1891 summation formula $\sum_{k=-n}^n (-1)^k \binom{2n}{n+k}^3 = \frac{(3n)!}{(n!)^3}$ \cite{dixon1891}. A heuristic mechanism is Poisson summation. For $f(t) = \binom{2x}{x+t}^3$ on $[-x, x]$ (extended by $0$) and $\hat f(\xi) = \int f(t)e^{-i\xi t}\,dt$, one has $\sum_k (-1)^k f(k) = \sum_{\nu \in \mathbb{Z}} \hat f((2\nu+1)\pi)$ at integer $x$. Since $f$ is even, the terms $\nu = 0, -1$ add up to $2\int\cos(\pi t) f(t)\,dt$. The conjecture thus says that the remaining Poisson terms are negligible. The Gaussian approximation $f(t) \approx (4^x/\sqrt{\pi x})^3 e^{-3t^2/x}$ does not decide the question. Inserted into the integral it gives a quantity of order $64^x e^{-\pi^2 x/12}/x$, which is exponentially \emph{larger} than $27^x$ because $\ln 64 - \pi^2/12 > \ln 27$. The answer therefore depends on the shape of $f$ beyond the Gaussian approximation.
+\end{remark}
+
+\subsection{Continuous Alternating Row Integrals (Zero Sum)}
+
+\begin{theorem}[Alternating Row Integrals]
+For all $x > 0$:
+\begin{equation}
+A(x) \coloneqq \int_0^x \cos(\pi y) \binom{x}{y}\,dy.
+\end{equation}
+If $x = 2k+1$ ($k \in \mathbb{N}_0$) is an odd integer, then $A(x) = 0$.
+\end{theorem}
+\begin{proof}
+Under $y \mapsto x - y$, $\binom{x}{y}$ is invariant, while $\cos(\pi(x-y)) = \cos(\pi x)\cos(\pi y) + \sin(\pi x)\sin(\pi y) = -\cos(\pi y)$ for odd integer $x$. The integrand is therefore antisymmetric about $x/2$.
+\end{proof}
+\begin{remark}
+For other $x$ the integral does not vanish; numerically $A(4) = -0.401$, $A(10.3) = -0.167$ and $A(20.5) = -0.048$, consistent with decay but without a proved rate.
+\end{remark}
+
+\subsection{Continuous Hockey-Stick Identity (Longitudinal Integrals)}
+
+\begin{proposition}[Continuous Longitudinal Column Integral]
+\label{prop:hockey}
+For fixed $r > 0$, as $x \to \infty$,
+\begin{equation}
+\int_r^x \binom{t}{r}\,dt = \binom{x+1}{r+1} + \mathcal{O}(x^r),
+\end{equation}
+while both terms are of order $x^{r+1}$: each equals $\frac{x^{r+1}}{\Gamma(r+2)}(1 + \mathcal{O}(x^{-1}))$. Thus the continuous hockey-stick integral agrees with the discrete sum $\sum_{t=r}^{n}\binom{t}{r} = \binom{n+1}{r+1}$ to leading order, with relative error $\mathcal{O}(x^{-1})$.
+\end{proposition}
+\begin{proof}
+$\binom{t}{r} = \frac{\Gamma(t+1)}{\Gamma(r+1)\Gamma(t-r+1)} = \frac{t^r}{\Gamma(r+1)}(1 + \mathcal{O}(t^{-1}))$ for $t \to \infty$, and $\binom{t}{r}$ is continuous on $[r, \infty)$. Integrating gives $\frac{x^{r+1}}{\Gamma(r+2)} + \mathcal{O}(x^r)$. Likewise $\binom{x+1}{r+1} = \frac{(x+1)^{r+1}}{\Gamma(r+2)}(1 + \mathcal{O}(x^{-1})) = \frac{x^{r+1}}{\Gamma(r+2)} + \mathcal{O}(x^r)$.
+\end{proof}
+Numerically, for $r = 1.5$ the difference divided by $x^r$ is $-0.3763, -0.3760, -0.3761$ at $x = 50, 200, 800$, so the error term is of exact order $x^r$.
+
+\subsection{Moments and Complete Covariance Matrix on the Simplex}
+
+\begin{theorem}[Simplex Moments and Covariance Structure]
+\label{thm:moments}
+Let $\langle \cdot \rangle$ denote the expectation with respect to the probability measure $I_m(x)^{-1}\binom{x}{\mathbf{y}}\,d\mathbf{y}$ on $\Delta_{m-1}(x)$, with $y_m = x - \sum_{j<m} y_j$.
+\begin{enumerate}
+    \item \textbf{First Moment (Centroid):} For every $x > 0$ and every coordinate $j \in \{1, \dots, m\}$:
+    \begin{equation}
+    \langle y_j \rangle = \frac{x}{m}.
+    \end{equation}
+    \item \textbf{Second Moments and Covariance Matrix:} As $x \to \infty$, for all $j \ne k$ in $\{1,\dots,m\}$:
+    \begin{equation}
+    \mathrm{Cov}(y_j, y_k) = -\frac{x}{m^2}\,(1 + o(1)), \qquad
+    \mathrm{Var}(y_j) = \frac{(m-1)x}{m^2}\,(1 + o(1)).
+    \end{equation}
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+(1) A permutation of the $m$ coordinates $(y_1, \dots, y_m)$ acts on $(y_1, \dots, y_{m-1})$ by an affine map of determinant $\pm 1$ that preserves $\Delta_{m-1}(x)$. The density $\binom{x}{\mathbf{y}}$ is symmetric in the $m$ coordinates, so all $\langle y_j \rangle$ are equal, and they sum to $x$.
+(2) In the proof of Theorem~\ref{thm:simplex_integral}, $m^{-x}\binom{x}{\mathbf{y}} = \varphi_x(\mathbf{y})(1 + o(1))$ uniformly on the central region, and the outer region contributes $\mathcal{O}(x^{m+3/2}e^{-x^{1/5}/2})$ even after multiplication by $|\boldsymbol{\delta}|^2 \le x^2$. Hence the second moments of $\boldsymbol{\delta}$ under the normalized measure equal those of $\varphi_x$ up to a factor $1 + o(1)$, i.e.\ $\Sigma_x(1 + o(1))$, which has diagonal $\frac{(m-1)x}{m^2}$ and off-diagonal $-\frac{x}{m^2}$. By the symmetry in (1) this extends to the pairs involving $y_m$.
+\end{proof}
+
+\begin{remark}
+The absorption identity $y_j y_k \binom{x}{\mathbf{y}} = x(x-1)\binom{x-2}{\dots, y_j - 1, \dots, y_k - 1, \dots}$ does not give sharper error terms by itself. After the shift of variables the domain of integration is no longer $\Delta_{m-1}(x-2)$, and the relative error in $I_m(x-2)/I_m(x) = m^{-2}(1 + o(1))$ must be $o(x^{-1})$ to control the $\mathcal{O}(x)$ term. Numerically the corrections are $\mathcal{O}(1)$ and decreasing: for $m = 3$, $\mathrm{Var}(y_1) - \frac{2x}{9} = -0.273, -0.151$ and $\mathrm{Cov}(y_1, y_2) + \frac{x}{9} = 0.137, 0.076$ at $x = 4, 8$; for $m = 2$, $\mathrm{Var}(y_1) - \frac{x}{4} = -0.12, -4.5 \times 10^{-5}$ at $x = 5, 20$. We do not prove a bound $\mathcal{O}(1)$.
+\end{remark}
+
+\subsection{Continuous Row Entropy via the Barnes \texorpdfstring{$G$}{G}-Function}
+
+\begin{theorem}[Closed Form for Continuous Row Log-Product]
+The continuous row entropy $\mathcal{E}(x) \coloneqq \int_0^x \ln \binom{x}{y}\,dy$ is given explicitly by
+\begin{equation}
+\mathcal{E}(x) = x(x+1) - x\ln(2\pi) - x\ln\Gamma(x+1) + 2\ln G(x+1),
+\end{equation}
+where $G(z)$ is the Barnes $G$-function \cite{barnes1900} satisfying $G(z+1) = \Gamma(z)G(z)$ and $G(1) = 1$, evaluated via Alexeiewsky's theorem:
+\begin{equation}
+\int_0^x \ln\Gamma(y+1)\,dy = x\ln\Gamma(x+1) - \ln G(x+1) + \frac{x}{2}\ln(2\pi) - \frac{x(x+1)}{2}.
+\end{equation}
+\end{theorem}
+
+\subsection{Dictionary of Discrete vs. Continuous Combinatorial Identities}
+
+To facilitate cross-disciplinary reading, Table~\ref{tab:dictionary} provides a comprehensive dictionary mapping classical discrete identities on Pascal's triangle and simplex to their continuous integral counterparts established in this work.
+
+\begin{table}[htbp]
+\centering
+\small
+\caption{Dictionary of Discrete Combinatorial Identities and Continuous Simplicial Theorems.}
+\label{tab:dictionary}
+\begin{tabularx}{\textwidth}{lXX}
+\toprule
+\textbf{Property / Law} & \textbf{Discrete Combinatorial Form} & \textbf{Continuous Analytic Theorem} \\
+\midrule
+\textbf{Row / Simplex Sum} & $\sum_{k=0}^n \binom{n}{k} = 2^n$ & $I(x) = 2^x \mathcal{J}(x) \sim 2^x$ (Thm.~\ref{thm:2d_row_integral}) \\
+\textbf{$m$-Simplex Volume} & $\sum_{\mathbf{k}} \binom{n}{\mathbf{k}} = m^n$ & $I_m(x) \sim m^x$ (Thm.~\ref{thm:simplex_integral}) \\
+\textbf{Polytope Recurrence} & Discrete Lattice Sum $= m^n$ & heuristic $m^n - I_m(n) \approx \frac{m}{2}I_{m-1}(n)$ (not quantitative; see remark) \\
+\textbf{Stifel Recurrence} & $\binom{n-1}{k} + \binom{n-1}{k-1} = \binom{n}{k}$ & $\binom{x-1}{y} + \binom{x-1}{y-1} = \binom{x}{y}$ (Prop.~1.2) \\
+\textbf{Local Symmetry} & Star of David Product \cite{hoggatt1971} & Same product identity for real $(n,k)$ (Thm.~\ref{thm:star_of_david}) \\
+\textbf{Fibonacci Diagonals} & $\sum \binom{n-k}{k} = F_{n+1} \sim \phi^{n+1}/\sqrt{5}$ & $\int_0^{x/2} \binom{x-y}{y}dy \sim \phi^{x+1}/\sqrt{5}$ (Thm.~\ref{thm:fibonacci}) \\
+\textbf{Sum of Squares ($L^2$)} & $\sum \binom{n}{k}^2 = \binom{2n}{n}$ & $\int_0^x \binom{x}{y}^2 dy \sim \binom{2x}{x} \sim \frac{4^x}{\sqrt{\pi x}}$ (Thm.~\ref{thm:lp_rows}) \\
+\textbf{Hockey-Stick Identity} & $\sum_{t=r}^n \binom{t}{r} = \binom{n+1}{r+1}$ & $\int_r^x \binom{t}{r}dt = \binom{x+1}{r+1} + \mathcal{O}(x^r)$ (Prop.~\ref{prop:hockey}) \\
+\textbf{Absorption Law} & $k\binom{n}{k} = n\binom{n-1}{k-1}$ & $\langle y_j \rangle = \frac{x}{m}$, $\mathrm{Var}(y_j) \sim \frac{m-1}{m^2}x$ (Thm.~\ref{thm:moments}) \\
+\textbf{Alternating Sum} & $\sum (-1)^k \binom{n}{k} = 0$ & $\int_0^x \cos(\pi y)\binom{x}{y}dy = 0$ ($x \in 2\mathbb{N}+1$) \\
+\textbf{Cubic Sum (Dixon)} & $\sum (-1)^k \binom{2n}{n+k}^3 = \frac{(3n)!}{(n!)^3}$ \cite{dixon1891} & Conjecture~\ref{conj:dixon}: $\int_{-x}^x \cos(\pi t)\binom{2x}{x+t}^3 dt \sim \frac{1}{2}\binom{3x}{x,x,x}$ \\
+\textbf{Row Term Product} & $\prod_{k=0}^n \binom{n}{k} = \frac{(n!)^{n+1}}{\mathrm{sf}(n)^2}$, $\mathrm{sf}(n) = \prod_{k=0}^n k! = G(n+2)$ & $\int_0^x \ln\binom{x}{y}dy = \mathcal{E}(x)$ via Barnes $G(x+1)$ \cite{barnes1900} \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+% ==============================================================================
+\section{Beta-Kernel and Simplicial Fractional Calculus}
+% ==============================================================================
+
+In classical fractional analysis, the Grünwald--Letnikov derivative is defined by taking discrete difference limits along Pascal rows \cite{podlubny1998, samko1993}. We now formalize the continuous operator.
+
+\begin{definition}[1D Beta-Kernel Averaging Operator]
+For $\alpha > 0$, we define the normalized Beta-kernel operator on bounded continuous functions $f \colon \mathbb{R} \to \mathbb{R}$ by
+\begin{equation}
+\mathcal{D}^\alpha f(x) \coloneqq \frac{1}{I(\alpha)}\int_0^\alpha \binom{\alpha}{y} f(x - y)\,dy,
+\end{equation}
+where $I(\alpha) = \int_0^\alpha \binom{\alpha}{y}\,dy$. This is an average of $f$ against a probability density, not a derivative: $\mathcal{D}^\alpha \to \Id$ as $\alpha \to 0$ (Proposition~\ref{prop:fractional_props}). The word ``fractional'' refers to the real order $\alpha$ of the kernel. Derivative-type operators are obtained from differences of averages in Section~7.
+\end{definition}
+
+\begin{definition}[Simplicial Beta-Kernel Averaging Operator]
+For a scalar field $f: \mathbb{R}^{m-1} \to \mathbb{R}$ and fractional order $\alpha > 0$, the $m$-simplicial fractional operator is defined by
+\begin{equation}
+\mathcal{D}_{\Delta_m}^\alpha f(\mathbf{x}) \coloneqq \frac{1}{I_m(\alpha)}\int_{\Delta_{m-1}(\alpha)} \frac{\Gamma(\alpha+1)}{\prod_{j=1}^m \Gamma(y_j+1)} f(\mathbf{x} - \mathbf{y})\,dy_1 \cdots dy_{m-1}.
+\end{equation}
+\end{definition}
+
+\begin{remark}[Identification of Fractional Order and Support Radius]
+In this canonical formulation, the parameter $\alpha$ is employed dually as the fractional order of the continuous multinomial coefficient and as the geometric support radius defining the integration domain $\Delta_{m-1}(\alpha)$. This constitutes a phenomenological ansatz that explicitly couples the strength of the non-local diffusion to its macroscopic geometric extent. Generalizing this operator to decouple the combinatorial fractional index from an independent geometric scale parameter $\rho > 0$ remains an open area for future formalization.
+\end{remark}
+
+\begin{proposition}[Properties of the Simplicial Operator]
+\label{prop:fractional_props}
+Let $\mathcal{K}_\alpha(\mathbf{y}) \coloneqq \frac{\Gamma(\alpha+1)}{\prod_{j=1}^m \Gamma(y_j+1)}$ on $\Delta_{m-1}(\alpha)$ and $\widetilde{\mathcal{K}}_\alpha \coloneqq \mathcal{K}_\alpha / I_m(\alpha)$ its normalization. The operator $\mathcal{D}_{\Delta_m}^\alpha f = \widetilde{\mathcal{K}}_\alpha * f$ satisfies:
+\begin{enumerate}
+    \item \textbf{Non-Singularity:} $\mathcal{K}_\alpha$ is $C^\infty$ and strictly positive on the interior of $\Delta_{m-1}(\alpha)$, with $\mathcal{K}_\alpha(\mathbf{0}) = 1$.
+    \item \textbf{Identity Limit:} For any bounded uniformly continuous $f$, $\lim_{\alpha \to 0^+} \mathcal{D}_{\Delta_m}^\alpha f(\mathbf{x}) = f(\mathbf{x})$.
+    \item \textbf{Action on Exponentials:} For $f(\mathbf{x}) = e^{\boldsymbol{\lambda}\cdot\mathbf{x}}$, $\boldsymbol{\lambda} \in \mathbb{C}^{m-1}$,
+    \begin{equation}
+    \mathcal{D}_{\Delta_m}^\alpha \left(e^{\boldsymbol{\lambda}\cdot\mathbf{x}}\right) = e^{\boldsymbol{\lambda}\cdot\mathbf{x}}\; \mathcal{G}_\alpha(\boldsymbol{\lambda}), \qquad \mathcal{G}_\alpha(\boldsymbol{\lambda}) \coloneqq \int_{\Delta_{m-1}(\alpha)} \widetilde{\mathcal{K}}_\alpha(\mathbf{y})\, e^{-\boldsymbol{\lambda}\cdot\mathbf{y}}\, d\mathbf{y},
+    \end{equation}
+    where $\mathcal{G}_\alpha$ is entire and $\mathcal{G}_\alpha(\mathbf{0}) = 1$.
+\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+\leavevmode
+\begin{enumerate}
+    \item Smoothness follows from the analyticity of $1/\Gamma$. At $\mathbf{y} = \mathbf{0}$ one has $y_m = \alpha$, so $\mathcal{K}_\alpha(\mathbf{0}) = \Gamma(\alpha+1)/\Gamma(\alpha+1) = 1$.
+    \item $\widetilde{\mathcal{K}}_\alpha$ is a probability density supported in $\Delta_{m-1}(\alpha)$, which shrinks to $\{\mathbf{0}\}$, so $|\mathcal{D}_{\Delta_m}^\alpha f(\mathbf{x}) - f(\mathbf{x})| \le \sup_{\mathbf{y} \in \Delta_{m-1}(\alpha)} |f(\mathbf{x}-\mathbf{y}) - f(\mathbf{x})| \to 0$.
+    \item Substitute $f$ into the convolution; $\mathcal{G}_\alpha$ is the Laplace transform of a compactly supported density, hence entire.
+\end{enumerate}
+\end{proof}
+
+\begin{remark}[The discrete multinomial identity does not transfer to the continuous kernel]
+\label{rem:no_semigroup}
+The \emph{lattice} multinomial measure $\mu_n = m^{-n}\sum_{\mathbf{k}} \binom{n}{\mathbf{k}} \delta_{\mathbf{k}}$, $n \in \mathbb{N}$, has Laplace transform $\big(\tfrac{1}{m}(1 + \sum_{j=1}^{m-1} e^{-\lambda_j})\big)^n$, and $\mu_n * \mu_{n'} = \mu_{n+n'}$ (Chu--Vandermonde). With the generalized binomial series this extends to signed lattice measures of real order $\alpha$; that is the Gr\"unwald--Letnikov construction. The \emph{continuous} kernel $\widetilde{\mathcal{K}}_\alpha$ has neither property. For $m = 2$, $\alpha = 1$, $\lambda = i$ one finds $\mathcal{G}_1(i) = 0.8437 - 0.4609\,i$, whereas $\tfrac12(1+e^{-i}) = 0.7702 - 0.4207\,i$. Likewise $(\widetilde{\mathcal{K}}_{1.5} * \widetilde{\mathcal{K}}_{2})(0.5) = 0.1281 \ne \widetilde{\mathcal{K}}_{3.5}(0.5) = 0.2055$. Hence the closed form and the semigroup law $\mathcal{D}^\alpha\mathcal{D}^\beta = \mathcal{D}^{\alpha+\beta}$ hold for the lattice operator but fail for the continuous one.
+\end{remark}
+
+% ==============================================================================
+\section{The Fractional Simplicial Laplacian and its Spectrum}
+% ==============================================================================
+
+In non-local analysis and anomalous transport theory, the generator of diffusion is induced by the symmetric difference between the non-local averaging operator and the identity.
+
+\begin{definition}[Symmetric Fractional Simplicial Laplacian]
+For fractional order $\alpha > 0$, we define the self-adjoint Fractional Simplicial Laplacian on $L^2(\mathbb{R}^{m-1})$ by
+\begin{equation}
+\Delta_{\Delta_m}^\alpha u(\mathbf{x}) \coloneqq \frac{1}{2\alpha^2 I_m(\alpha)}\int_{\Delta_{m-1}(\alpha)} \binom{\alpha}{\mathbf{y}} \Big[u(\mathbf{x}+\mathbf{y}) - 2u(\mathbf{x}) + u(\mathbf{x}-\mathbf{y})\Big] d\mathbf{y}.
+\end{equation}
+\end{definition}
+
+\begin{theorem}[Fourier Symbol and Long-Wavelength Expansion]
+\label{thm:laplacian_symbol}
+For $\mathbf{k} \in \mathbb{R}^{m-1}$, $\Delta_{\Delta_m}^\alpha e^{i\mathbf{k}\cdot\mathbf{x}} = -\sigma_{\Delta_m}^\alpha(\mathbf{k})\, e^{i\mathbf{k}\cdot\mathbf{x}}$ with
+\begin{equation}
+\sigma_{\Delta_m}^\alpha(\mathbf{k}) = \frac{1}{\alpha^2}\Big[1 - \operatorname{Re}\,\mathcal{G}_\alpha(i\mathbf{k})\Big] = \frac{1}{\alpha^2}\int_{\Delta_{m-1}(\alpha)} \widetilde{\mathcal{K}}_\alpha(\mathbf{y})\big(1 - \cos(\mathbf{k}\cdot\mathbf{y})\big)\,d\mathbf{y} \in \Big[0, \frac{2}{\alpha^2}\Big].
+\end{equation}
+As $|\mathbf{k}| \to 0$,
+\begin{equation}
+\sigma_{\Delta_m}^\alpha(\mathbf{k}) = \frac{1}{2\alpha^2}\,\mathbf{k}^T \mathbf{M}_2(\alpha)\,\mathbf{k} + \mathcal{O}(|\mathbf{k}|^4), \qquad \mathbf{M}_2(\alpha) \coloneqq \int \widetilde{\mathcal{K}}_\alpha(\mathbf{y})\, \mathbf{y}\mathbf{y}^T d\mathbf{y},
+\end{equation}
+and, by the $S_m$-symmetry of the multinomial density, $\mathbf{M}_2(\alpha) = a(\alpha)\,\Id_{m-1} + b(\alpha)\,\mathbf{1}\mathbf{1}^T$ for scalars $a(\alpha) > 0$, $b(\alpha)$.
+\end{theorem}
+
+\begin{proof}
+Substituting $u = e^{i\mathbf{k}\cdot\mathbf{x}}$ gives the bracket $e^{i\mathbf{k}\cdot\mathbf{y}} - 2 + e^{-i\mathbf{k}\cdot\mathbf{y}} = -2(1 - \cos \mathbf{k}\cdot\mathbf{y})$, hence the integral formula and the bounds $0 \le 1 - \cos \le 2$. Expanding $1 - \cos t = t^2/2 + \mathcal{O}(t^4)$ with $|\mathbf{y}| \le \sqrt{2}\alpha$ on the support gives the quadratic term. The joint law of $(y_1,\dots,y_m)$ is invariant under permutations of all $m$ coordinates, so $\mathbb{E}[y_j^2]$ and $\mathbb{E}[y_jy_k]$ ($j \ne k$) are independent of the indices, which gives the stated form of $\mathbf{M}_2$.
+\end{proof}
+
+\begin{remark}[On the $A_{m-1}$ Gram structure]
+The matrix $a\,\Id + b\,\mathbf{1}\mathbf{1}^T$ with $a = b$ is the Gram matrix $\mathbf{G}_{m-1}$ (diagonal $2$, off-diagonal $1$) of the $A_{m-1}$ roots $\mathbf{e}_j - \mathbf{e}_m$, which is integrally congruent to the Cartan matrix (tridiagonal $2,-1$). The limit is \emph{not} $\frac{1}{2m\alpha}\mathbf{k}^T\mathbf{G}_{m-1}\mathbf{k}$: that form arises only if one imposes a zero-sum constraint $\sum_j k_j = 0$ on the wavevector, which suppresses the contribution of the mean $\mathbb{E}[\mathbf{y}] = \frac{\alpha}{m}\mathbf{1}$. Already for $m = 2$ the leading term is $\frac{k^2}{2\alpha^2}\mathbb{E}[y^2] = k^2\,\frac{1+\alpha}{8\alpha}\,(1 + o(1))$ for large $\alpha$, not $\frac{k^2}{2\alpha}$. The coefficients $a(\alpha), b(\alpha)$ are given by the second moments above. The quadratic form $\mathbf{k}^T\mathbf{M}_2\mathbf{k}$ and the symbol are invariant under the permutations of the first $m-1$ coordinates, which act linearly on $\mathbb{R}^{m-1}$, and under $\mathbf{k} \mapsto -\mathbf{k}$. They are \emph{not} invariant under the full group $S_m$. A transposition $y_j \leftrightarrow y_m$ acts on $(y_1, \dots, y_{m-1})$ by an affine map $\mathbf{y} \mapsto L\mathbf{y} + \alpha\mathbf{e}_j$. It preserves the covariance, $L\,\mathrm{Cov}\,L^T = \mathrm{Cov}$, but not $\mathbf{M}_2 = \mathrm{Cov} + \frac{\alpha^2}{m^2}\mathbf{1}\mathbf{1}^T$. Since $L\,\mathrm{Cov}\,L^T = \mathrm{Cov}$, one has $L\mathbf{M}_2L^T - \mathbf{M}_2 = \frac{\alpha^2}{m^2}\big(L\mathbf{1}\mathbf{1}^TL^T - \mathbf{1}\mathbf{1}^T\big)$. For $m = 3$, $\alpha = 4$ and $j = 1$ this is $\frac{16}{9}\begin{psmallmatrix} 3 & -3 \\ -3 & 0 \end{psmallmatrix}$, whose largest entry in absolute value is $\frac{16}{3} \approx 5.33$ and whose spectral norm is $\frac{8}{3}(1+\sqrt5) \approx 8.63$.
+\end{remark}
+
+\begin{remark}[Spectrum: no Weyl law at infinity]
+\label{rem:weyl}
+Because the kernel is integrable with compact support, $-\Delta_{\Delta_m}^\alpha$ is a \emph{bounded} self-adjoint operator with $0 \le -\Delta_{\Delta_m}^\alpha \le 2/\alpha^2$. On a bounded domain $\Omega$ with exterior Dirichlet condition, its spectrum therefore lies in $[0, 2/\alpha^2]$ and cannot contain eigenvalues $\lambda_n \to \infty$. In particular there is no Weyl law $N(\lambda) \sim C\lambda^{(m-1)/2}$ as $\lambda \to \infty$. More precisely, $-\Delta^\alpha_{\Delta_m} = \alpha^{-2}(\Id - \mathcal{S})$, where $\mathcal{S}$ is convolution with the symmetrized kernel $\frac12(\widetilde{\mathcal{K}}_\alpha(\mathbf{y}) + \widetilde{\mathcal{K}}_\alpha(-\mathbf{y}))$. Its compression to $L^2(\Omega)$ is Hilbert--Schmidt, because the kernel is bounded with compact support and $\Omega$ is bounded. Hence the essential spectrum of the operator on $\Omega$ is $\{\alpha^{-2}\}$, and eigenvalues can accumulate only there. On $\mathbb{R}^{m-1}$, $\sigma(\mathbf{k}) \to \alpha^{-2}$ as $|\mathbf{k}| \to \infty$ by the Riemann--Lebesgue lemma. For $|\Omega|^{1/(m-1)} \gg \alpha$ and $\lambda \ll \alpha^{-2}$, the quadratic approximation of $\sigma$ suggests a semiclassical counting $N(\lambda) \approx (2\pi)^{-(m-1)}\,|\{(\mathbf{x},\mathbf{k}) \in \Omega \times \mathbb{R}^{m-1} : \frac{1}{2\alpha^2}\mathbf{k}^T\mathbf{M}_2\mathbf{k} \le \lambda\}|$ for the low-lying spectrum. We state this as a heuristic; it has not been proved here.
+\end{remark}
+
+\section{Numerical Verification and Error Analysis}
+% ==============================================================================
+
+Table~\ref{tab:numerical_verification} presents numerical evaluations of the continuous simplex volume integral $I_m(x)$, compared with the asymptotic scaling $m^x$ and with the first-order Euler--Maclaurin defect heuristic, for $m = 2, 3, 4$. Two independent methods were used and agree to the digits shown: adaptive nested Gauss--Kronrod quadrature, and the representation $I_m(x) = \Gamma(x+1)\,(g^{*m})(x)$ with $g(s) = 1/\Gamma(s+1)$ on $[0, x]$, the $m$-fold convolution being computed by an extrapolated trapezoidal rule. The last column shows that the heuristic is not quantitatively accurate (e.g.\ for $m = 3$, $x = 10$ it errs by $563$, while $3^x - I_3$ is $972$).
+
+\begin{table}[htbp]
+\centering
+\small
+\caption{Numerical verification of continuous simplex integrals $I_m(x)$ versus theoretical models.}
+\label{tab:numerical_verification}
+\begin{tabular}{cccccc}
+\toprule
+$m$ & Layer $x$ & Numerical $I_m(x)$ & Asymptotic $m^x$ & Error (\%) & Defect Model $m^x - \frac{m}{2}I_{m-1}(x)$ \\
+\midrule
+2 & 1.0 & 1.1790 & 2.0 & 41.05\% & 1.0000 \\
+2 & 2.0 & 3.2608 & 4.0 & 18.48\% & 3.0000 \\
+2 & 5.0 & 31.3749 & 32.0 & 1.95\% & 31.0000 \\
+2 & 10.0 & 1023.4546 & 1024.0 & 0.05\% & 1023.0000 \\
+\midrule
+3 & 1.0 & 0.6438 & 3.0 & 78.54\% & 1.2315 \\
+3 & 2.0 & 4.2483 & 9.0 & 52.80\% & 4.1088 \\
+3 & 5.0 & 208.3429 & 243.0 & 14.26\% & 195.9376 \\
+3 & 10.0 & 58076.7465 & 59049.0 & 1.65\% & 57513.8181 \\
+\midrule
+4 & 1.0 & 0.2270 & 4.0 & 94.33\% & 2.7124 \\
+4 & 2.0 & 3.3626 & 16.0 & 78.98\% & 7.5034 \\
+4 & 5.0 & 662.6556 & 1024.0 & 35.29\% & 607.3142 \\
+4 & 10.0 & 967463.2 & 1048576.0 & 7.74\% & 932422.5 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+% ==============================================================================
+\section{Conclusion and Future Research}
+% ==============================================================================
+
+We have developed the analytic continuation of Pascal's triangle and the Pascal $m$-simplex: an exact trigonometric representation of the row integral for $m = 2$ (which has no analogue on the torus for $m \ge 3$), exact continuous identities (Stifel, Star of David, Barnes $G$), asymptotic counterparts of classical identities (Fibonacci, $L^p$ norms, hockey stick, moments), a numerically supported conjecture for Dixon's cubic sum, the leading asymptotics $I_m(x) \sim m^x$, and Beta-kernel operators with their Fourier symbols. Two structural facts distinguish the continuous theory from the lattice one. First, the continuous kernel does not inherit the multinomial generating function or the semigroup law of the lattice construction. Second, the resulting Laplacian is bounded, so it has no Weyl law at high energies. Establishing the precise boundary defect $m^n - I_m(n)$, the exponential rate of $1 - \mathcal{J}_m(x)$, the $\mathcal{O}(1)$ corrections to the moments, and the continuous Dixon asymptotics remains open. Future research includes studying nonlinear simplicial Schrödinger equations and investigating applications to anomalous diffusion in anisotropic porous media.
+
+\input{declarations_chapter}
+
+\begin{thebibliography}{99}
+
+\bibitem{fowler1996}
+D.~Fowler,
+\emph{The Binomial Coefficient Function},
+The American Mathematical Monthly, \textbf{103} (1996), no.~1, 1--17,
+\doi{10.1080/00029890.1996.12004694}.
+
+\bibitem{berline2007}
+N.~Berline and M.~Vergne,
+\emph{Local Euler--Maclaurin formula for polytopes},
+Moscow Mathematical Journal, \textbf{7} (2007), no.~3, 355--386,
+\doi{10.17323/1609-4514-2007-7-3-355-386}.
+
+\bibitem{barnes1900}
+E.~W. Barnes,
+\emph{The Theory of the G-Function},
+Quarterly Journal of Pure and Applied Mathematics, \textbf{31} (1900), 264--314,
+JFM~30.0389.01.
+
+\bibitem{podlubny1998}
+I.~Podlubny,
+\emph{Fractional Differential Equations: An Introduction to Fractional Derivatives, Fractional Differential Equations, to Methods of Their Solution and Some of Their Applications},
+Mathematics in Science and Engineering, Vol.~198, Academic Press, San Diego, 1999,
+ISBN: 978-0-12-558840-9,
+\doi{10.1016/S0076-5392(99)X8001-5}.
+
+\bibitem{dixon1891}
+A.~C. Dixon,
+\emph{On the Sum of the Cubes of the Coefficients in a Certain Expansion by the Binomial Theorem},
+Messenger of Mathematics, \textbf{20} (1891), 79--80,
+JFM~23.0259.01.
+
+\bibitem{gould1972}
+H.~W. Gould,
+\emph{A New Greatest Common Divisor Property of the Binomial Coefficients},
+Fibonacci Quarterly, \textbf{10} (1972), no.~6, 579--584,
+\doi{10.1080/00150517.1972.12430879}.
+
+\bibitem{hoggatt1971}
+V.~E. Hoggatt, Jr. and W.~Hansell,
+\emph{The Hidden Hexagon Squares},
+Fibonacci Quarterly, \textbf{9} (1971), no.~2, 120,
+\doi{10.1080/00150517.1971.12431015}.
+
+\bibitem{gradshteyn2015}
+I.~S. Gradshteyn and I.~M. Ryzhik,
+\emph{Table of Integrals, Series, and Products},
+8th ed., D.~Zwillinger and V.~Moll (eds.), Academic Press, Amsterdam, 2015,
+\doi{10.1016/C2010-0-64839-5}.
+
+\bibitem{wong2001}
+R.~Wong,
+\emph{Asymptotic Approximations of Integrals},
+SIAM Classics in Applied Mathematics, Vol.~34, SIAM, Philadelphia, 2001,
+ISBN: 978-0-89871-497-5,
+\doi{10.1137/1.9780898719260}.
+
+\bibitem{samko1993}
+S.~G. Samko, A.~A. Kilbas, and O.~I. Marichev,
+\emph{Fractional Integrals and Derivatives: Theory and Applications},
+Gordon and Breach Science Publishers, Yverdon, 1993,
+ISBN: 978-2-88124-864-1.
+
+
+\bibitem{olver1997}
+F.~W.~J. Olver,
+\emph{Asymptotics and Special Functions},
+A K Peters, Wellesley, 1997,
+ISBN: 978-1-56881-069-0,
+\doi{10.1201/9781439864548}.
+
+\end{thebibliography}
+
+\end{document}

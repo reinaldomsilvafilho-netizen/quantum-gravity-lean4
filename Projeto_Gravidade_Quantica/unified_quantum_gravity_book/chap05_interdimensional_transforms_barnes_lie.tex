@@ -1,0 +1,337 @@
+\documentclass[11pt,a4paper]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[margin=0.9in]{geometry}
+\usepackage{amsmath,amssymb,amsthm,amsfonts}
+\usepackage{mathtools}
+\usepackage{hyperref}
+\usepackage{booktabs}
+\usepackage{cite}
+\usepackage{microtype}
+\usepackage{array}
+
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    citecolor=red,
+    urlcolor=blue
+}
+
+% Theorem Environments
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{example}[theorem]{Example}
+
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+\numberwithin{equation}{section}
+
+\title{\textbf{Inter-Dimensional Simplicial Transforms, Fractional Boundary Traces, and Matrix Beta-Kernels}}
+\author{\textbf{Reinaldo Maia Silva-Filho} \\ \textit{Universidade Federal de Lavras (UFLA)}}
+\date{\today}
+
+
+\DeclareMathOperator*{\argmin}{argmin}
+\providecommand{\Hyp}{\mathbb{H}}
+\providecommand{\Sph}{\mathbb{S}}
+\providecommand{\II}{\mathrm{II}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\Area}{\mathrm{Area}}
+\providecommand{\Hsn}{\mathcal{H}}
+\providecommand{\BV}{\mathrm{BV}}
+\providecommand{\TV}{\mathrm{TV}}
+\providecommand{\cutnorm}[1]{\|#1\|_{\square}}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+We develop a comprehensive mathematical theory of dimension-changing non-local operators $\mathcal{T}_{m \to n}^\alpha : L^p(\mathbb{R}^m) \to L^q(\mathbb{R}^n)$ induced by continuous multinomial Beta-kernels on simplices. For dimensional reduction ($m > n$), we introduce the \emph{Fractional Radon--Beta Transform} $\mathcal{R}_{m \to n}^\alpha$ and prove the Sobolev trace estimate $\mathcal{R}_{m \to n}^\alpha : H^s(\mathbb{R}^m) \to H^{s + \gamma - (m-n)/2}(\mathbb{R}^n)$, where $\gamma$ is the Fourier decay rate of the kernel. We show that for the Beta-kernel $\gamma = 1$ exactly, independently of $\alpha$, and that no choice of order makes the trace an isomorphism. For dimensional elevation ($m < n$), the dual \emph{Simplicial Extension Operator} $\mathcal{E}_{m \to n}^\alpha$ loses $(n-m)/2$ derivatives, up to the kernel gain.
+
+We discuss four applications: (i) \textbf{Coupled Multiscale PDEs:} a coupled 3D bulk / 2D surface / 1D filament transport system with mass conservation and energy dissipation, as a formal computation under an explicit geometric condition on the interfaces; (ii) \textbf{Reconstruction:} the transform restricts a smoothed field to planes through the origin, so the data determine the smoothed field directly, and recovering $f$ reduces to a deconvolution, which is ill-posed and requires regularization; (iii) \textbf{Barycentric Maps:} a Lipschitz bound, with sharp constant $\alpha/(\alpha+m)$, for an affine map of barycentric coordinates defined by Dirichlet posterior means; no lower (bi-Lipschitz) bound holds; and (iv) \textbf{Matrix Beta Operators:} we recall the Siegel--Wishart matrix Beta operators on the cone $\operatorname{Sym}_m^+(\mathbb{R})$ and their zonal-polynomial eigenfunctions.
+\end{abstract}
+
+\tableofcontents
+\newpage
+
+% ==============================================================================
+\section{Introduction and Problem Formulation}
+% ==============================================================================
+
+In modern analysis and mathematical physics, linear differential and integral operators predominantly map within a fixed-dimensional space ($L^p(\mathbb{R}^d) \to L^q(\mathbb{R}^d)$). However, many cutting-edge physical systems inherently couple phenomena across distinct spatial dimensions:
+\begin{enumerate}
+    \item \textbf{Multiscale Interface Dynamics:} Mass, heat, and charge exchange between a 3D bulk fluid, a 2D elastic boundary membrane, and 1D embedded filamentary networks (e.g., graphene on substrates, cellular electrophysiology, and fluid-structure interactions).
+    \item \textbf{Integral Geometry and Medical Imaging:} The reconstruction of higher-dimensional $m$-dimensional volume fields from lower-dimensional $n$-dimensional planar projection scans ($n < m$).
+    \item \textbf{Geometric Data Science on Hypergraphs:} Dimensionality reduction of higher-order multi-way relational structures (simplicial complexes) into Euclidean visual spaces.
+\end{enumerate}
+
+Classical fractional calculus operates via endomorphic Riesz multipliers $|\mathbf{k}|^\alpha$ on $\mathbb{R}^d$ \cite{samko1993}. In this paper, we construct and analyze an inter-dimensional family of non-local operators based on the continuous multinomial Beta-kernel on the standard $(m-1)$-simplex \cite{silvafilho2026simplex, silvafilho2026waves}:
+\begin{equation}
+\Delta_{m-1}(\alpha) \coloneqq \left\{\mathbf{y} \in \mathbb{R}_{\ge 0}^{m-1} \;\middle|\; \sum_{j=1}^{m-1} y_j \le \alpha\right\}, \quad \binom{\alpha}{\mathbf{y}} = \frac{\Gamma(\alpha+1)}{\prod_{j=1}^m \Gamma(y_j+1)}, \quad y_m \coloneqq \alpha - \sum_{j=1}^{m-1} y_j .
+\end{equation}
+In Section~2 the kernel is used one dimension higher: on $\Delta_m(\alpha) \subset \mathbb{R}^m$, with $m+1$ parts $y_1, \dots, y_m$ and $y_{m+1} = \alpha - \sum_{j \le m} y_j$, so that it lives in the same space $\mathbb{R}^m$ as the functions it acts on.
+
+% ==============================================================================
+\section{The Fractional Radon--Beta Transform \texorpdfstring{($\mathbb{R}^m \to \mathbb{R}^n$)}{(Rm -> Rn)}}
+% ==============================================================================
+
+Let $m > n \ge 1$ be positive integers. Let $\mathbf{P} \in \mathbb{R}^{n \times m}$ be a full-rank surjective linear projection matrix ($\operatorname{rank}(\mathbf{P}) = n$). Its Moore--Penrose pseudoinverse $\mathbf{P}^+ \in \mathbb{R}^{m \times n}$ is given by
+\begin{equation}
+\mathbf{P}^+ \coloneqq \mathbf{P}^T (\mathbf{P} \mathbf{P}^T)^{-1}.
+\end{equation}
+
+\begin{definition}[Fractional Radon--Beta Transform]
+\label{def:radon_beta}
+Generalizing classical integral geometry and Radon projections \cite{helgason2011}, let $\mathcal{K}_\alpha$ denote the normalized continuous multinomial Beta-kernel of order $\alpha > 0$ on the $m$-dimensional simplex $\Delta_m(\alpha) \subset \mathbb{R}^m_{\ge 0}$, so that the kernel lives in the same space as $f$. For $f \in \mathcal{S}(\mathbb{R}^m)$, the Fractional Radon--Beta Transform $\mathcal{R}_{m \to n}^\alpha : \mathcal{S}(\mathbb{R}^m) \to C^\infty(\mathbb{R}^n)$ is
+\begin{equation}
+\label{eq:radon_beta_def}
+\mathcal{R}_{m \to n}^\alpha f(\mathbf{z}) \coloneqq \int_{\Delta_m(\alpha)} \mathcal{K}_\alpha(\mathbf{y})\, f\left(\mathbf{P}^+ \mathbf{z} + \mathbf{y}\right) d\mathbf{y}, \quad \mathbf{z} \in \mathbb{R}^n,
+\end{equation}
+that is, convolution with the reflected kernel followed by restriction to the $n$-plane $\operatorname{ran}(\mathbf{P}^+)$. In particular $\mathcal{R}_{m\to n}^\alpha(1) \equiv 1$.
+\end{definition}
+
+\begin{proposition}[Fourier Representation]
+\label{prop:fourier_rep}
+Let $\boldsymbol{\xi} \in \mathbb{R}^n$ denote the dual frequency coordinates. Then
+\begin{equation}
+\widehat{\mathcal{R}_{m \to n}^\alpha f}(\boldsymbol{\xi}) = (2\pi)^{n-m} \sqrt{\det(\mathbf{P}\mathbf{P}^T)} \int_{\operatorname{ker}(\mathbf{P})} \widehat{f}\left(\mathbf{P}^T \boldsymbol{\xi} + \boldsymbol{\eta}\right) \widehat{\mathcal{K}}_\alpha\left(-\mathbf{P}^T \boldsymbol{\xi} - \boldsymbol{\eta}\right) d\boldsymbol{\eta},
+\end{equation}
+where $\widehat{\mathcal{K}}_\alpha(\mathbf{k}) = \int \mathcal{K}_\alpha(\mathbf{y}) e^{-i\mathbf{k}\cdot\mathbf{y}}d\mathbf{y}$ is the Fourier transform of the kernel, with $|\widehat{\mathcal{K}}_\alpha| \le 1$. (It is not given by the lattice closed form $(\frac{1}{m}\sum_j e^{-ik_j})^\alpha$; see Chapter~3, Remark~6.5.)
+\end{proposition}
+
+\begin{proof}
+Applying the definition of the Fourier transform on $\mathbb{R}^n$ and expanding $f$ via the inverse Fourier transform on $\mathbb{R}^m$:
+\begin{equation}
+\widehat{\mathcal{R}_{m \to n}^\alpha f}(\boldsymbol{\xi}) = \frac{1}{(2\pi)^m}\int_{\mathbb{R}^m} \widehat{f}(\mathbf{k}) \left[\int_{\mathbb{R}^n} e^{i((\mathbf{P}^+)^T\mathbf{k} - \boldsymbol{\xi})\cdot\mathbf{z}} d\mathbf{z}\right] \left[\int \mathcal{K}_\alpha(\mathbf{y}) e^{i\mathbf{k}\cdot\mathbf{y}} d\mathbf{y}\right] d\mathbf{k}.
+\end{equation}
+The $\mathbf{z}$-integral yields $(2\pi)^n \delta((\mathbf{P}^+)^T\mathbf{k} - \boldsymbol{\xi})$, enforcing $\mathbf{k} = \mathbf{P}^T\boldsymbol{\xi} + \boldsymbol{\eta}$ for $\boldsymbol{\eta} \in \operatorname{ker}(\mathbf{P})$, with Jacobian factor $(2\pi)^{n-m}\sqrt{\det(\mathbf{P}\mathbf{P}^T)}$. The $\mathbf{y}$-integral is $\widehat{\mathcal{K}}_\alpha(-\mathbf{k})$.
+\end{proof}
+
+% ==============================================================================
+\section{Fractional Sobolev Trace and Extension Theorems}
+% ==============================================================================
+
+\begin{theorem}[Sobolev Trace Theorem with Kernel Smoothing]
+\label{thm:sobolev_trace}
+Let $m > n$ and suppose the kernel satisfies the Fourier decay bound
+\begin{equation}
+\label{eq:decay_gamma}
+|\widehat{\mathcal{K}}_\alpha(\mathbf{k})| \le C (1 + |\mathbf{k}|^2)^{-\gamma/2}, \qquad \mathbf{k} \in \mathbb{R}^m,
+\end{equation}
+for some $\gamma \ge 0$. Then for every $s \in \mathbb{R}$ with $s + \gamma > \frac{m-n}{2}$,
+\begin{equation}
+\mathcal{R}_{m \to n}^\alpha : H^s(\mathbb{R}^m) \longrightarrow H^{s + \gamma - \frac{m-n}{2}}(\mathbb{R}^n)
+\end{equation}
+is bounded. Since $|\widehat{\mathcal{K}}_\alpha| \le 1$, the case $\gamma = 0$ always applies and reproduces the classical trace loss of $\frac{m-n}{2}$ derivatives \cite{adams2003}.
+\end{theorem}
+
+\begin{proof}
+By the Cauchy--Schwarz inequality on the fiber $\boldsymbol{\eta} \in \operatorname{ker}(\mathbf{P}) \cong \mathbb{R}^{m-n}$, together with \eqref{eq:decay_gamma},
+\[
+\left|\widehat{\mathcal{R}_{m \to n}^\alpha f}(\boldsymbol{\xi})\right|^2 \le C \left(\int_{\mathbb{R}^{m-n}} (1 + |\mathbf{P}^T\boldsymbol{\xi} + \boldsymbol{\eta}|^2)^{-s - \gamma} d\boldsymbol{\eta}\right) \int_{\mathbb{R}^{m-n}} (1 + |\mathbf{P}^T\boldsymbol{\xi} + \boldsymbol{\eta}|^2)^s |\widehat{f}(\mathbf{P}^T\boldsymbol{\xi} + \boldsymbol{\eta})|^2 d\boldsymbol{\eta}.
+\]
+Since $\mathbf{P}^T\boldsymbol{\xi} \perp \ker\mathbf{P}$ and $|\mathbf{P}^T\boldsymbol{\xi}| \ge \sigma_{\min}(\mathbf{P})|\boldsymbol{\xi}|$, the first factor is at most $C(1 + |\boldsymbol{\xi}|^2)^{-(s+\gamma) + \frac{m-n}{2}}$ when $s + \gamma > \frac{m-n}{2}$. Multiplying by $(1+|\boldsymbol{\xi}|^2)^{s + \gamma - \frac{m-n}{2}}$ and integrating over $\boldsymbol{\xi}$ reassembles $\|f\|_{H^s(\mathbb{R}^m)}^2$ by the orthogonal decomposition $\mathbb{R}^m = \operatorname{ran}\mathbf{P}^T \oplus \ker\mathbf{P}$.
+\end{proof}
+
+\begin{remark}[What decay rate $\gamma$ does the Beta-kernel have?]
+\label{rem:gamma}
+In general $\gamma \neq \alpha$: the smoothing gain is not the fractional order. Nor is there an ``isomorphism'' $H^s(\mathbb{R}^m) \to H^s(\mathbb{R}^n)$ at $\alpha = \frac{m-n}{2}$, since traces are never injective.
+(a) The continuous Beta-kernel is strictly positive up to the facets of the simplex. It is a smooth function times the indicator of a polytope, so its Fourier transform decays no faster than $|\mathbf{k}|^{-1}$ in facet-normal directions. Hence $\gamma \le 1$ regardless of $\alpha$.
+(b) A trace operator onto a lower-dimensional plane is never injective, because every function vanishing near the plane has zero trace. So no choice of order gives an isomorphism. What $\gamma = \frac{m-n}{2}$ would give is an \emph{index-preserving bounded} map; this requires $\frac{m-n}{2} \le 1$ for the Beta-kernel.
+(c) The bound \eqref{eq:decay_gamma} holds with $\gamma = 1$, so $\gamma = 1$ is the exact isotropic exponent. Write $\mathcal{K}_\alpha = \kappa\,\mathbf{1}_{\Delta_m(\alpha)}$, where $\kappa(\mathbf{y}) = \Gamma(\alpha+1)/(I\,\prod_{j=1}^{m+1}\Gamma(y_j+1))$ is $C^\infty$ on $\mathbb{R}^m$ and $I$ is the normalization. Given $\mathbf{k} \ne \mathbf{0}$, choose $j$ with $|k_j| \ge |\mathbf{k}|/\sqrt{m}$ and integrate by parts in $y_j$ using $e^{-i\mathbf{k}\cdot\mathbf{y}} = \frac{i}{k_j}\partial_{y_j}e^{-i\mathbf{k}\cdot\mathbf{y}}$ (divergence theorem on the polytope):
+\[
+|\widehat{\mathcal{K}}_\alpha(\mathbf{k})| \le \frac{1}{|k_j|}\Big( \|\kappa\|_{L^\infty(\partial\Delta_m(\alpha))}\, \mathcal{H}^{m-1}(\partial\Delta_m(\alpha)) + \|\partial_{y_j}\kappa\|_{L^1(\Delta_m(\alpha))} \Big) \le \frac{C_\alpha}{|\mathbf{k}|}.
+\]
+Together with $|\widehat{\mathcal{K}}_\alpha| \le 1$ this gives \eqref{eq:decay_gamma} with $\gamma = 1$. By (a), no larger $\gamma$ is possible. Consequently $\mathcal{R}^\alpha_{m \to n} \colon H^s(\mathbb{R}^m) \to H^{s + 1 - \frac{m-n}{2}}(\mathbb{R}^n)$ for $s > \frac{m-n}{2} - 1$. In particular $\mathcal{R}^\alpha_{3 \to 2}$ is bounded from $L^2(\mathbb{R}^3)$ to $H^{1/2}(\mathbb{R}^2) \subset L^2(\mathbb{R}^2)$.
+\end{remark}
+
+\begin{theorem}[Dual Simplicial Extension Operator]
+For dimensional elevation ($m < n$), let $\mathcal{E}_{m \to n}^\alpha \coloneqq (\mathcal{R}_{n \to m}^\alpha)^*$ be the $L^2$-adjoint. Under \eqref{eq:decay_gamma} for the kernel on $\mathbb{R}^n$, for every $t < 0$ it is bounded as
+\begin{equation}
+\mathcal{E}_{m \to n}^\alpha : H^{t}(\mathbb{R}^m) \longrightarrow H^{t + \gamma - \frac{n-m}{2}}(\mathbb{R}^n).
+\end{equation}
+\end{theorem}
+\begin{proof}
+By Theorem~\ref{thm:sobolev_trace} with the roles of the dimensions exchanged,
+\[
+\mathcal{R}_{n\to m}^\alpha : H^{s}(\mathbb{R}^n) \to H^{s+\gamma-\frac{n-m}{2}}(\mathbb{R}^m) \qquad \text{for } s + \gamma > \tfrac{n-m}{2}.
+\]
+Its adjoint maps $H^{-(s+\gamma-\frac{n-m}{2})}(\mathbb{R}^m) \to H^{-s}(\mathbb{R}^n)$. Setting $t = -(s + \gamma - \frac{n-m}{2}) < 0$ gives the claim. Extension thus \emph{loses} $\frac{n-m}{2}$ derivatives up to the kernel gain $\gamma$, as expected: the adjoint of a trace spreads a function on an $m$-plane as a singular layer in $\mathbb{R}^n$.
+\end{proof}
+
+\section{Coupled Multiscale 3D--2D--1D Interface Dynamical Systems}
+% ==============================================================================
+
+Consider a multiscale coupled physical system consisting of a 3D bulk domain $\Omega \subset \mathbb{R}^3$, an active 2D interface membrane $\Gamma \subset \mathbb{R}^2$, and a 1D conductive filament $\Sigma \subset \mathbb{R}^1$, subject to homogeneous Neumann boundary conditions. Let $u(\mathbf{x}, t)$, $v(\mathbf{y}, t)$, and $w(z, t)$ denote the respective state fields.
+
+\begin{definition}[Coupled Inter-Dimensional Transport System]
+Adapting transmission boundary conditions and multiscale interface parabolic systems \cite{evans2010}, we formulate the transmission-coupled dynamical system:
+\begin{equation}
+\label{eq:coupled_system}
+\begin{cases}
+\partial_t u(\mathbf{x}, t) = \Delta u(\mathbf{x}, t) - \mathcal{E}_{2 \to 3}^\alpha\big(\lambda (\mathcal{R}_{3 \to 2}^\alpha u - v)\big)(\mathbf{x}, t), & \mathbf{x} \in \Omega \subset \mathbb{R}^3, \\
+\partial_t v(\mathbf{y}, t) = \Delta_{\Gamma} v(\mathbf{y}, t) + \lambda \big(\mathcal{R}_{3 \to 2}^\alpha u - v\big)(\mathbf{y}, t) - \mathcal{E}_{1 \to 2}^\beta\big(\kappa (\mathcal{R}_{2 \to 1}^\beta v - w)\big)(\mathbf{y}, t), & \mathbf{y} \in \Gamma \subset \mathbb{R}^2, \\
+\partial_t w(z, t) = \partial_z^2 w(z, t) + \kappa \big(\mathcal{R}_{2 \to 1}^\beta v - w\big)(z, t), & z \in \Sigma \subset \mathbb{R}^1,
+\end{cases}
+\end{equation}
+where $\lambda, \kappa > 0$ are transmission coefficients and $\alpha, \beta > 0$ are fixed kernel orders. Here $\Gamma$ is identified with a subset of the plane $\operatorname{ran}(\mathbf{P}^+) \subset \mathbb{R}^3$ used by $\mathcal{R}_{3\to 2}^\alpha$, and $\Sigma$ with a subset of the corresponding line in $\mathbb{R}^2$. We assume the interface condition
+\begin{equation}
+\label{eq:interface_condition}
+\mathbf{P}^+\mathbf{y} + \Delta_3(\alpha) \subset \Omega \quad (\mathbf{y} \in \Gamma), \qquad \mathbf{Q}^+ z + \Delta_2(\beta) \subset \Gamma \quad (z \in \Sigma),
+\end{equation}
+where $\mathbf{Q}$ is the projection used by $\mathcal{R}^\beta_{2\to 1}$. The operators then act within the domains. $\mathcal{E}^\alpha_{2\to 3}\phi(\mathbf{x}) = \int_\Gamma \phi(\mathbf{y})\,\mathcal{K}_\alpha(\mathbf{x} - \mathbf{P}^+\mathbf{y})\,d\mathbf{y}$ is supported in $\mathbf{P}^+\Gamma + \Delta_3(\alpha) \subset \Omega$, and $\mathcal{R}^\alpha_{3\to 2}(\mathbf{1}_\Omega) = 1$ on $\Gamma$. The adjoint relation $\langle u, \mathcal{E}\phi\rangle_{L^2(\Omega)} = \langle \mathcal{R}u, \phi\rangle_{L^2(\Gamma)}$ holds exactly, and similarly for the pair $\Gamma$, $\Sigma$.
+\end{definition}
+
+\begin{proposition}[Conservation of Total Mass and Energy Dissipation; formal computation]
+Assume \eqref{eq:interface_condition} and homogeneous Neumann conditions on $\partial\Omega$, $\partial\Gamma$, $\partial\Sigma$. Let $(u, v, w)$ be a smooth solution of \eqref{eq:coupled_system}; existence and regularity of solutions are not addressed here. Then:
+\begin{enumerate}
+    \item \textbf{Conservation of Total Mass:} The total joint mass is strictly invariant for all $t \ge 0$:
+    \begin{equation}
+    \mathcal{M}_{\text{total}}(t) \coloneqq \int_\Omega u(\mathbf{x}, t)d\mathbf{x} + \int_\Gamma v(\mathbf{y}, t)d\mathbf{y} + \int_\Sigma w(z, t)dz = \mathcal{M}_{\text{total}}(0).
+    \end{equation}
+    \item \textbf{Global Energy Dissipation:} The joint energy $\mathcal{E}(t) \coloneqq \frac{1}{2}\|u\|_{L^2}^2 + \frac{1}{2}\|v\|_{L^2}^2 + \frac{1}{2}\|w\|_{L^2}^2$ dissipates monotonically:
+    \begin{equation}
+    \frac{d\mathcal{E}}{dt} = -\|\nabla u\|_{L^2(\Omega)}^2 - \|\nabla_\Gamma v\|_{L^2(\Gamma)}^2 - \|\partial_z w\|_{L^2(\Sigma)}^2 - \lambda \|\mathcal{R}_{3 \to 2}^\alpha u - v\|_{L^2(\Gamma)}^2 - \kappa \|\mathcal{R}_{2 \to 1}^\beta v - w\|_{L^2(\Sigma)}^2 \le 0.
+    \end{equation}
+\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+The Laplacian terms integrate to zero by the Neumann conditions. The transmission fluxes between bulk and interface satisfy:
+\begin{equation}
+\int_\Omega \mathcal{E}_{2 \to 3}^\alpha \big(\lambda (\mathcal{R}_{3 \to 2}^\alpha u - v)\big) d\mathbf{x} = \int_\Gamma \lambda (\mathcal{R}_{3 \to 2}^\alpha u - v)\, \mathcal{R}_{3 \to 2}^\alpha(\mathbf{1}_\Omega)\, d\mathbf{y} = \int_\Gamma \lambda (\mathcal{R}_{3 \to 2}^\alpha u - v) d\mathbf{y},
+\end{equation}
+since $\mathcal{R}_{3 \to 2}^\alpha(\mathbf{1}_\Omega) = 1$ on $\Gamma$ by the normalization of the kernel and \eqref{eq:interface_condition}. Without \eqref{eq:interface_condition} the factor $\mathcal{R}_{3 \to 2}^\alpha(\mathbf{1}_\Omega)$ is smaller than $1$ near the parts of $\Gamma$ close to $\partial\Omega$, and mass is not conserved. Hence, the mass loss from $\Omega$ identically matches the gain on $\Gamma$. Similarly, the flux between $\Gamma$ and $\Sigma$ cancels, proving $\frac{d\mathcal{M}_{\text{total}}}{dt} = 0$.
+
+For energy dissipation, multiplying by the state fields and applying the adjoint duality $\langle u, \mathcal{E}_{2 \to 3}^\alpha \phi \rangle_{L^2(\Omega)} = \langle \mathcal{R}_{3 \to 2}^\alpha u, \phi \rangle_{L^2(\Gamma)}$ with $\phi = \lambda(\mathcal{R}_{3 \to 2}^\alpha u - v)$:
+\begin{align*}
+-\langle u, \mathcal{E}_{2 \to 3}^\alpha \phi \rangle_{L^2(\Omega)} + \langle v, \phi \rangle_{L^2(\Gamma)} &= -\langle \mathcal{R}_{3 \to 2}^\alpha u, \phi \rangle_{L^2(\Gamma)} + \langle v, \phi \rangle_{L^2(\Gamma)} \\
+&= -\langle \mathcal{R}_{3 \to 2}^\alpha u - v, \lambda(\mathcal{R}_{3 \to 2}^\alpha u - v) \rangle_{L^2(\Gamma)} = -\lambda \|\mathcal{R}_{3 \to 2}^\alpha u - v\|_{L^2(\Gamma)}^2 \le 0.
+\end{align*}
+Combining with the negative-definite Dirichlet integrals yields monotonic dissipation $\frac{d\mathcal{E}}{dt} \le 0$. All terms are finite for $u \in L^2(\Omega)$ because $\mathcal{R}^\alpha_{3\to 2}$ is bounded on $L^2$ (Remark~\ref{rem:gamma}(c)).
+\end{proof}
+
+% ==============================================================================
+\section{Reconstruction from Restriction Data}
+% ==============================================================================
+
+Let $\operatorname{Gr}(n, m)$ denote the Grassmannian manifold of $n$-dimensional subspaces in $\mathbb{R}^m$. For a projection matrix $\mathbf{P}_\theta$ with $\operatorname{ran}\mathbf{P}_\theta^+ = \theta$, let $g_\theta(\mathbf{z}) = \mathcal{R}_{m \to n, \theta}^\alpha f(\mathbf{z})$ be the observed data. By Definition~\ref{def:radon_beta}, $g_\theta(\mathbf{z}) = h(\mathbf{P}_\theta^+\mathbf{z})$ with $h(\mathbf{x}) \coloneqq \int \mathcal{K}_\alpha(\mathbf{y}) f(\mathbf{x} + \mathbf{y})\,d\mathbf{y}$. The data are therefore \emph{restrictions} of the smoothed field $h$ to planes through the origin, not integrals of $f$ over $n$-planes as in the $n$-plane (Radon) transform.
+
+\begin{proposition}[Inversion]
+Let $f \in \mathcal{S}(\mathbb{R}^m)$ and assume $\widehat{\mathcal{K}}_\alpha(\mathbf{k}) \ne 0$ for all $\mathbf{k}$. For every $\mathbf{x} \in \mathbb{R}^m$ and every $\theta \ni \mathbf{x}$,
+\begin{equation}
+h(\mathbf{x}) = g_\theta(\mathbf{P}_\theta \mathbf{x}),
+\end{equation}
+so the family $\{g_\theta\}$ determines $h$ on $\bigcup_\theta \theta = \mathbb{R}^m$. Then $\widehat{h}(\mathbf{k}) = \widehat{\mathcal{K}}_\alpha(-\mathbf{k})\widehat{f}(\mathbf{k})$, and
+\begin{equation}
+f = \mathcal{F}^{-1}\Big[\widehat{h}(\mathbf{k}) / \widehat{\mathcal{K}}_\alpha(-\mathbf{k})\Big].
+\end{equation}
+\end{proposition}
+\begin{proof}
+For $\mathbf{x} \in \theta = \operatorname{ran}\mathbf{P}_\theta^+ = \operatorname{ran}\mathbf{P}_\theta^T$, $\mathbf{P}_\theta^+\mathbf{P}_\theta$ is the orthogonal projection onto $\theta$, so $\mathbf{P}_\theta^+(\mathbf{P}_\theta\mathbf{x}) = \mathbf{x}$. The Fourier identity is the convolution theorem for $h = \check{\mathcal{K}}_\alpha * f$ with $\check{\mathcal{K}}_\alpha(\mathbf{y}) = \mathcal{K}_\alpha(-\mathbf{y})$.
+\end{proof}
+
+\begin{remark}[Filtered backprojection does not apply]
+A filtered backprojection with filter $|\boldsymbol{\xi}|^{m-n}$ inverts the $n$-plane transform, because of the Fourier slice theorem. Here the Fourier transform of the data is instead an integral of $\widehat{h}$ over the fibres $\mathbf{P}_\theta^T\boldsymbol{\xi} + \ker\mathbf{P}_\theta$ (Proposition~\ref{prop:fourier_rep} with a $\delta$ kernel), so the slice theorem does not hold. Numerically, for $m = 2$, $n = 1$, a Gaussian $f$ centred at $(1.5, 0)$ and $\alpha = 1$, the filtered backprojection of the restriction data divided by $h$ takes the values $11.28$, $10.01$, $-0.90$ and $14.73$ at four test points. Applied to genuine line integrals, the same procedure gives the constant $(2\pi)^2$. A tomographic model based on the Beta-kernel would have to integrate over the fibres of $\mathbf{P}_\theta$. That is a different operator from $\mathcal{R}^\alpha_{m\to n}$.
+\end{remark}
+
+\begin{remark}[Ill-posedness]
+Division by $\widehat{\mathcal{K}}_\alpha$ is a deconvolution. Because $\widehat{\mathcal{K}}_\alpha$ decays at high frequency, the division \emph{amplifies} high-frequency noise, and at any zero of $\widehat{\mathcal{K}}_\alpha$ it is undefined. The reconstruction is therefore ill-posed and requires regularization, for instance Tikhonov filtering $\overline{\widehat{\mathcal{K}}_\alpha}/(|\widehat{\mathcal{K}}_\alpha|^2 + \epsilon)$. By Remark~\ref{rem:gamma}, $|\widehat{\mathcal{K}}_\alpha|$ decays like $|\mathbf{k}|^{-1}$ in facet-normal directions, so the deconvolution is mildly ill-posed of order one. The kernel therefore does not regularize the inversion or suppress Gibbs ringing; the effect is the opposite. The Beta-kernel smooths the \emph{forward} projections; that smoothing is exactly what makes the inverse problem harder.
+\end{remark}
+
+% ==============================================================================
+\section{A Barycentric Contraction Map}
+% ==============================================================================
+
+In high-dimensional data analysis, multi-way relational structures are encoded as abstract simplicial complexes $K = \{\sigma_1, \dots, \sigma_N\}$ with barycentric coordinates $\mathbf{x} = \sum_{j=1}^m c_j \mathbf{v}_j$, where $\sum c_j = 1, c_j \ge 0$.
+
+\begin{definition}[Induced Barycentric Contraction Map]
+\label{def:induced_barycentric_map}
+Let $\sigma$ be the $(m-1)$-simplex with vertex set $\{1,\dots,m\}$ and let $\pi : \{1,\dots,m\} \twoheadrightarrow \{1,\dots,n\}$ be a surjective grouping of the vertices, chosen by the user, with fibers $G_k \coloneqq \pi^{-1}(k)$, $k=1,\dots,n$. On the barycentric coordinate vector $\mathbf{c} = (c_1,\dots,c_m) \in \Delta^{m-1}$ of a point $\mathbf{x} = \sum_j c_j \mathbf{v}_j \in \sigma$ define $\Phi_\alpha : \Delta^{m-1} \to \Delta^{n-1}$ by
+\begin{equation}
+\label{eq:induced_map}
+\Phi_\alpha(\mathbf{c})_k \coloneqq \frac{\alpha \sum_{j \in G_k} c_j + |G_k|}{\alpha + m}, \qquad k = 1, \dots, n,
+\end{equation}
+the mean of the Dirichlet law $\mathrm{Dir}(\alpha c_1 + 1, \dots, \alpha c_m + 1)$ pushed forward along $\pi$. The Dirichlet density is the discrete-parameter analogue of the Beta-kernel. The map $\Phi_\alpha$ is a separate construction: it is not derived from the transform $\mathcal{R}_{m\to n}^\alpha$ of Definition~\ref{def:radon_beta}, and a rank-$n$ projection does not in general induce a vertex grouping. Note $\sum_k \Phi_\alpha(\mathbf{c})_k = \frac{\alpha \sum_j c_j + m}{\alpha+m} = 1$, so $\Phi_\alpha(\mathbf{c}) \in \Delta^{n-1}$ is well-defined.
+\end{definition}
+
+\begin{theorem}[Barycentric Lipschitz Bound with Sharp Constant]
+\label{thm:barycentric_ratio}
+Let $\sigma \in K$ be an $(m-1)$-simplex and $\Phi_\alpha : \Delta^{m-1} \to \Delta^{n-1}$ the induced map of Definition~\ref{def:induced_barycentric_map}. For any $\mathbf{c}_1, \mathbf{c}_2 \in \Delta^{m-1}$,
+\begin{equation}
+\label{eq:sharp_contraction}
+\operatorname{dist}_\Delta\big(\Phi_\alpha(\mathbf{c}_1), \Phi_\alpha(\mathbf{c}_2)\big) \;\le\; \frac{\alpha}{\alpha+m}\,\operatorname{dist}_\Delta(\mathbf{c}_1, \mathbf{c}_2),
+\end{equation}
+where $\operatorname{dist}_\Delta(\mathbf{c},\mathbf{c}') \coloneqq \tfrac{1}{2}\|\mathbf{c}-\mathbf{c}'\|_1$ is the barycentric Wasserstein-1 metric on the equilateral vertex embedding. The constant $\alpha/(\alpha+m)$ is sharp: equality holds whenever $\mathbf{c}_1 - \mathbf{c}_2$ does not change sign within any fiber $G_k$ (in particular whenever $n = m$, i.e.\ $\pi$ is the identity). Consequently
+\begin{equation}
+\frac{\operatorname{dist}_\Delta(\Phi_\alpha \mathbf{c}_1, \Phi_\alpha \mathbf{c}_2)}{\operatorname{dist}_\Delta(\mathbf{c}_1, \mathbf{c}_2)} \;\le\; 1 - \frac{m}{\alpha} + \mathcal{O}(\alpha^{-2}) \qquad (\alpha \to \infty),
+\end{equation}
+with the ratio identically $0$ whenever $\pi$ merges vertices on which $\mathbf{c}_1,\mathbf{c}_2$ agree oppositely within every fiber (e.g.\ $m=4 \to n=2$, $G_1=\{1,2\}$, $G_2=\{3,4\}$, $\mathbf{c}_1=(0.5,0,0.5,0)$, $\mathbf{c}_2=(0,0.5,0,0.5)$) --- so the ratio does \emph{not} converge to $1$ uniformly over $\Delta^{m-1}\times\Delta^{m-1}$ for $n<m$, and there is no lower (bi-Lipschitz) bound. The map $\Phi_\alpha$ is affine, so \eqref{eq:sharp_contraction} is an upper Lipschitz bound obtained from the triangle inequality. It is not a two-sided distortion estimate.
+\end{theorem}
+
+\begin{proof}
+Fix $k \in \{1,\dots,n\}$. From \eqref{eq:induced_map},
+\begin{equation}
+\Phi_\alpha(\mathbf{c}_1)_k - \Phi_\alpha(\mathbf{c}_2)_k = \frac{\alpha}{\alpha+m} \sum_{j \in G_k} (c_{1,j} - c_{2,j}).
+\end{equation}
+By the triangle inequality, $\left|\sum_{j \in G_k}(c_{1,j}-c_{2,j})\right| \le \sum_{j\in G_k}|c_{1,j}-c_{2,j}|$, with equality iff $c_{1,j}-c_{2,j}$ has constant sign on $G_k$. Summing over $k=1,\dots,n$ and using that $\{G_k\}$ partitions $\{1,\dots,m\}$:
+\begin{equation}
+\begin{aligned}
+\|\Phi_\alpha(\mathbf{c}_1) - \Phi_\alpha(\mathbf{c}_2)\|_1 &= \frac{\alpha}{\alpha+m}\sum_{k=1}^n \left|\sum_{j\in G_k}(c_{1,j}-c_{2,j})\right| \\ &\le \frac{\alpha}{\alpha+m}\sum_{k=1}^n \sum_{j\in G_k}|c_{1,j}-c_{2,j}| = \frac{\alpha}{\alpha+m}\|\mathbf{c}_1-\mathbf{c}_2\|_1.
+\end{aligned}
+\end{equation}
+Dividing by $2$ gives \eqref{eq:sharp_contraction}. Equality throughout requires equality in every fiber's triangle inequality, i.e.\ no sign cancellation within any $G_k$; when $n=m$ every fiber is a singleton and this holds automatically, giving the exact identity $\operatorname{dist}_\Delta(\Phi_\alpha\mathbf{c}_1,\Phi_\alpha\mathbf{c}_2) = \frac{\alpha}{\alpha+m}\operatorname{dist}_\Delta(\mathbf{c}_1,\mathbf{c}_2)$. The stated counterexample exhibits full cancellation ($\sum_{j\in G_k}(c_{1,j}-c_{2,j})=0$ for every $k$), forcing $\Phi_\alpha(\mathbf{c}_1)=\Phi_\alpha(\mathbf{c}_2)$ identically in $\alpha$, which shows the ratio bound \eqref{eq:sharp_contraction} cannot be improved to an asymptotic equality valid uniformly over $\Delta^{m-1}\times\Delta^{m-1}$. Finally, $\frac{\alpha}{\alpha+m} = 1 - \frac{m}{\alpha+m} = 1-\frac{m}{\alpha}+\mathcal{O}(\alpha^{-2})$ as $\alpha\to\infty$ by direct Taylor expansion.
+\end{proof}
+
+% ==============================================================================
+\section{Matrix-Valued Beta-Kernels}
+% ==============================================================================
+
+Let $\operatorname{Sym}_m^+(\mathbb{R})$ denote the open convex cone of $m \times m$ real symmetric positive-definite matrices. This section recalls classical facts, which we do not extend here, for instance to Grassmannians.
+
+\begin{definition}[Siegel--Wishart Matrix Beta Operator]
+Extending multivariate hypergeometric distributions and Wishart random matrices \cite{muirhead2009}, for scalar shape parameters $a, b \in \mathbb{R}$ with $a, b > \frac{m-1}{2}$, the matrix Beta operator acting on $F: \operatorname{Sym}_m^+(\mathbb{R}) \to \mathbb{R}$ is defined by
+\begin{equation}
+\mathcal{G}_{a, b} F(\mathbf{X}) \coloneqq \frac{1}{\mathrm{B}_m(a, b)} \int_{\mathbf{0} < \mathbf{Y} < \mathbf{I}_m} (\det \mathbf{Y})^{a - \frac{m+1}{2}} (\det(\mathbf{I}_m - \mathbf{Y}))^{b - \frac{m+1}{2}} F\left(\mathbf{X}^{1/2} \mathbf{Y} \mathbf{X}^{1/2}\right) d\mathbf{Y},
+\end{equation}
+where the multivariate Siegel Beta normalization is given by
+\begin{equation}
+\mathrm{B}_m(a, b) \coloneqq \frac{\Gamma_m(a)\Gamma_m(b)}{\Gamma_m(a+b)}, \quad \Gamma_m(a) \coloneqq \pi^{m(m-1)/4}\prod_{j=1}^m \Gamma\left(a - \frac{j-1}{2}\right).
+\end{equation}
+\end{definition}
+
+\begin{theorem}[Invariance and Spherical Harmonic Eigenfunctions; classical, see {\cite[Ch.~7]{muirhead2009}}]
+The operator $\mathcal{G}_{a, b}$ is invariant under the congruence action of the orthogonal group $\mathrm{O}(m)$ ($\mathbf{X} \mapsto \mathbf{U}\mathbf{X}\mathbf{U}^T$). Furthermore, for any zonal spherical polynomial $Z_\lambda(\mathbf{X})$ associated with partition $\lambda$:
+\begin{equation}
+\mathcal{G}_{a, b} Z_\lambda(\mathbf{X}) = \frac{(a)_\lambda}{(a+b)_\lambda} Z_\lambda(\mathbf{X}),
+\end{equation}
+where $(a)_\lambda \coloneqq \prod_{j=1}^m \frac{\Gamma\left(a - \frac{j-1}{2} + \lambda_j\right)}{\Gamma\left(a - \frac{j-1}{2}\right)}$ denotes the multivariate generalized Pochhammer symbol.
+\end{theorem}
+
+% ==============================================================================
+\section{Conclusion}
+% ==============================================================================
+
+We have studied dimension-changing non-local operators $\mathcal{T}_{m \to n}^\alpha$. We proved a Sobolev trace estimate whose smoothing gain is the Fourier decay rate of the kernel, which equals $1$ for the Beta-kernel, and gave the dual extension estimate. We formulated a coupled 3D--2D--1D interface system, conservative under an explicit interface condition (formal computation). We showed that the transform yields restrictions of a smoothed field, so reconstruction is a deconvolution, which is ill-posed. We proved a Lipschitz bound with sharp constant for a barycentric Dirichlet-mean map, and recalled the Siegel--Wishart matrix Beta operators. Determining the exact directional Fourier decay of the Beta-kernel beyond the isotropic exponent is left open. Future work will investigate numerical finite-element schemes for inter-dimensional multiscale PDEs.
+
+\input{declarations_chapter}
+
+\begin{thebibliography}{99}
+\bibitem{silvafilho2026simplex} R.~M. Silva-Filho, \emph{Analytic Continuation of Pascal's Simplex: Continuous Multinomial Integrals, Polytope Boundary Recurrences, and Simplicial Fractional Calculus}, Chapter~3 of \emph{Geometry, Tensors, and Quantum Gravity}, Universidade Federal de Lavras, 2026.
+\bibitem{silvafilho2026waves} R.~M. Silva-Filho, \emph{Nonlinear Simplicial Waves and Anomalous Porous Transport Induced by Beta-Kernel Fractional Laplacians}, Chapter~4 of \emph{Geometry, Tensors, and Quantum Gravity}, Universidade Federal de Lavras, 2026.
+\bibitem{helgason2011} S. Helgason, \emph{Integral Geometry and Radon Transforms}, Springer, New York, 2011, \href{https://doi.org/10.1007/978-1-4419-6055-9}{doi:10.1007/978-1-4419-6055-9}.
+\bibitem{samko1993} S. G. Samko, A. A. Kilbas, and O. I. Marichev, \emph{Fractional Integrals and Derivatives: Theory and Applications}, Gordon and Breach, Yverdon, 1993, ISBN 978-2-88124-864-1.
+\bibitem{adams2003} R. A. Adams and J. J. F. Fournier, \emph{Sobolev Spaces}, 2nd ed., Pure and Applied Mathematics, vol. 140, Academic Press, New York, 2003, ISBN 978-0-12-044143-3.
+\bibitem{muirhead2009} R. J. Muirhead, \emph{Aspects of Multivariate Statistical Theory}, John Wiley \& Sons, Hoboken, 2009, \href{https://doi.org/10.1002/9780470316559}{doi:10.1002/9780470316559}.
+\bibitem{evans2010} L. C. Evans, \emph{Partial Differential Equations}, 2nd ed., Graduate Studies in Mathematics, vol. 19, American Mathematical Society, Providence, 2010, \href{https://doi.org/10.1090/gsm/019}{doi:10.1090/gsm/019}.
+\end{thebibliography}
+
+\end{document}
