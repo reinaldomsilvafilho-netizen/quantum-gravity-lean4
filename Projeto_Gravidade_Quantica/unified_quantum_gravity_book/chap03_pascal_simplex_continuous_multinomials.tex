@@ -61,7 +61,7 @@
 \begin{abstract}
 We develop an analytic continuation of Pascal's triangle and its higher-dimensional generalization, the Pascal $m$-simplex, extending the discrete factorial domain via Euler's Gamma function. We prove that the continuous volume integral over the $(m-1)$-dimensional standard simplex $\Delta_{m-1}(x)$ satisfies $I_m(x) \sim m^x$ as $x \to \infty$, by a Laplace-method (local limit) argument. This is the continuous analogue of the discrete multinomial identity $\sum \binom{n}{\mathbf{k}} = m^n$. For $m = 2$ we give an exact trigonometric representation $I(x) = 2^x\mathcal{J}(x)$ and prove $\mathcal{J}(x) = 1 + \mathcal{O}(x^{-1/2})$; numerically $2^x - I(x)$ stays bounded. The analogous torus representation fails for $m \ge 3$. We discuss the boundary defect $m^n - I_m(n)$ via the lattice-polytope Euler--Maclaurin formula \cite{berline2007} and show numerically that its first-order facet approximation is not quantitatively reliable.
 
-We translate classical combinatorial identities into continuous statements: (i) a continuous Star of David product identity; (ii) continuous Fibonacci diagonals scaling as $\phi^{x+1}/\sqrt{5}$ and general ray integrals with explicit rate and constant, via Laplace's method; (iii) $L^p$ row norms; (iv) the leading-order moments of the continuous multinomial measure; (v) a numerically supported conjecture relating a continuous Dixon cubic integral to the central trinomial coefficient \cite{dixon1891}; and (vi) the continuous row logarithmic entropy in closed form via the Barnes $G$-function \cite{barnes1900}.
+We translate classical combinatorial identities into continuous statements: (i) a continuous Star of David product identity; (ii) continuous Fibonacci diagonals scaling as $\phi^{x+1}/\sqrt{5}$ and general ray integrals with explicit rate and constant, via Laplace's method; (iii) $L^p$ row norms; (iv) the leading-order moments of the continuous multinomial measure; (v) a continuous Dixon cubic integral that is asymptotic to half the central trinomial coefficient, with an explicit tail bound, for integer and for real $x\ge1$ \cite{dixon1891,cohlvolkmer2025}; and (vi) the continuous row logarithmic entropy in closed form via the Barnes $G$-function \cite{barnes1900}.
 
 Finally, we introduce \emph{Simplicial Beta-Kernel} averaging operators and prove their identity limit and their action on exponentials. We show that, unlike the lattice multinomial (Gr\"unwald--Letnikov) construction, the continuous kernel does \emph{not} satisfy a closed-form multinomial symbol or a semigroup law. For the resulting \emph{Fractional Simplicial Laplacian} $\Delta_{\Delta_m}^\alpha$, a bounded operator with spectrum in $[0, 2/\alpha^2]$, we derive the Fourier symbol and its long-wavelength quadratic form, which is invariant under the permutations of the first $m-1$ coordinates.
 \end{abstract}
@@ -341,17 +341,72 @@ This is the case $m = 2$ of the argument proving Theorem~\ref{thm:simplex_integr
 
 \subsection{Continuous Dixon Cubic Integral and Projection to 3-Simplex}
 
-\begin{conjecture}[Continuous Dixon Integral]
+\begin{theorem}[Continuous Dixon Integral, integer case]
 \label{conj:dixon}
-The continuous oscillatory cubic integral satisfies:
+Let $n \ge 1$ be an integer, $m \coloneqq 2n+1$, $\psi \coloneqq \Gamma'/\Gamma$, and
+\[
+f_n(t) \coloneqq \left[\binom{2n}{n+t}\right]^3 = \left[\frac{\Gamma(2n+1)}{\Gamma(n+1+t)\Gamma(n+1-t)}\right]^3,
+\]
+extended to all $t \in \mathbb{C}$ by the right-hand side, which is entire since $1/\Gamma$ is entire. Then
 \begin{equation}
-\int_{-x}^x \cos(\pi t) \left[\binom{2x}{x+t}\right]^3 dt \sim \frac{1}{2}\binom{3x}{x, x, x} = \frac{1}{2}\frac{\Gamma(3x+1)}{(\Gamma(x+1))^3} \sim \frac{\sqrt{3}}{4\pi x} 27^x \qquad (x \to \infty).
+\left| \int_{-n}^n \cos(\pi t)\, f_n(t)\, dt \; - \; \frac12\binom{3n}{n,n,n} \right| \;\le\; 2\tau_n, \qquad
+\tau_n \coloneqq \frac{1}{3\psi(m)} + \frac{1}{\pi^3 m^2(m-1)}.
 \end{equation}
-Numerically, the ratio of the left-hand side to $\frac12\binom{3x}{x,x,x}$ is $1.0000005$ at $x = 5$, $1 - 5 \times 10^{-11}$ at $x = 7.5$, and $1$ to double precision at $x = 10$ and $x = 20$. We have no proof.
-\end{conjecture}
+Consequently $\int_{-n}^n \cos(\pi t) f_n(t)\,dt \sim \frac12\binom{3n}{n,n,n} \sim \frac{\sqrt3}{4\pi n}27^n$ as $n \to \infty$, and the error is not merely $o(27^n/n)$ but tends to $0$.
+\end{theorem}
 
-\begin{remark}[Relation with Dixon's identity]
-The conjecture is an asymptotic, not an exact, counterpart of Dixon's 1891 summation formula $\sum_{k=-n}^n (-1)^k \binom{2n}{n+k}^3 = \frac{(3n)!}{(n!)^3}$ \cite{dixon1891}. A heuristic mechanism is Poisson summation. For $f(t) = \binom{2x}{x+t}^3$ on $[-x, x]$ (extended by $0$) and $\hat f(\xi) = \int f(t)e^{-i\xi t}\,dt$, one has $\sum_k (-1)^k f(k) = \sum_{\nu \in \mathbb{Z}} \hat f((2\nu+1)\pi)$ at integer $x$. Since $f$ is even, the terms $\nu = 0, -1$ add up to $2\int\cos(\pi t) f(t)\,dt$. The conjecture thus says that the remaining Poisson terms are negligible. The Gaussian approximation $f(t) \approx (4^x/\sqrt{\pi x})^3 e^{-3t^2/x}$ does not decide the question. Inserted into the integral it gives a quantity of order $64^x e^{-\pi^2 x/12}/x$, which is exponentially \emph{larger} than $27^x$ because $\ln 64 - \pi^2/12 > \ln 27$. The answer therefore depends on the shape of $f$ beyond the Gaussian approximation.
+\begin{proof}
+From $\Gamma(n+1\pm z) = \Gamma(1\pm z)\prod_{k=1}^n(k\pm z)$ and $\Gamma(1+z)\Gamma(1-z) = \pi z/\sin(\pi z)$,
+\[
+f_n(z) = \frac{\Gamma(2n+1)^3\sin^3(\pi z)}{\pi^3 z^3\prod_{k=1}^n(k^2-z^2)^3},
+\]
+so $f_n$ is even, real and non-negative on $\mathbb{R}$, vanishes at every integer $|k|>n$, and for $|z|\ge 2n$ satisfies $|k^2-z^2|\ge\frac34|z|^2$ for $1\le k\le n$, whence $|f_n(z)|\le K_n e^{3\pi|\operatorname{Im}z|}|z|^{-6n-3}$: $f_n$ is entire of exponential type exactly $3\pi$ and lies in $L^1(\mathbb{R})$.
+
+\emph{Step 1 (Paley--Wiener bound on the Fourier transform).} Let $F(\omega) \coloneqq \int_{\mathbb{R}} f_n(t) e^{i\omega t}\,dt$. For $\omega\ge3\pi$, integrate the entire function $g(z)=f_n(z)e^{i\omega z}$ over the boundary of the rectangle $[-R,R]\times[0,Y]$ with $R>2n$, $Y\ge2n$: the vertical sides contribute $O(YR^{-6n-3})\to0$ as $R\to\infty$, so $\int_\mathbb{R}g(x)\,dx=\int_\mathbb{R}g(x+iY)\,dx$; on the top side $|g(x+iY)|\le K_n e^{(3\pi-\omega)Y}(x^2+Y^2)^{-(6n+3)/2}$, which is $O(Y^{-6n-2})\to0$ as $Y\to\infty$ even at the boundary value $\omega=3\pi$, using only the polynomial decay. Hence $F(\omega)=0$ for every real $|\omega|\ge3\pi$. This is the integer case of the exponential-type bound underlying Cohl--Volkmer's Lemma~4.1 \cite{cohlvolkmer2025}, proved there for the general beta-integral kernel and real parameters.
+
+\emph{Step 2 (Poisson summation and Dixon's identity).} With $h(t) = f_n(t)e^{i\pi t}$, $|h(t)|\le C(1+|t|)^{-3}$, so the periodization $P(u) = \sum_{k\in\mathbb{Z}} h(u+k)$ converges to a continuous, $1$-periodic function whose Fourier coefficients are $\int_0^1P(u)e^{-2\pi i\nu u}\,du = F(\pi(1-2\nu))$. By Step~1 these vanish unless $\nu\in\{0,1\}$, so $P(u)=F(\pi)+F(-\pi)e^{2\pi iu}$; a continuous function is determined by its Fourier coefficients. Evaluating at $u=0$ and using $f_n(k)=0$ for $|k|>n$,
+\[
+D_n \coloneqq \sum_{k=-n}^n (-1)^k \binom{2n}{n+k}^3 = P(0) = 2J_1, \qquad J_1 \coloneqq \int_{\mathbb{R}}\cos(\pi t)\, f_n(t)\,dt.
+\]
+By Dixon's 1891 identity \cite{dixon1891}, $D_n = (3n)!/(n!)^3$, so $J_1=\frac12\binom{3n}{n,n,n}$ exactly. (This is the integer specialization, via reflection, of Cohl--Volkmer's Theorem~5.1 \cite{cohlvolkmer2025}; see Remark~\ref{rem:dixon_real}.)
+
+\emph{Step 3 (tail bound; the estimate original to this chapter).} By evenness, $\int_{-n}^n\cos(\pi t)f_n(t)\,dt = J_1-2T_1$ with $T_1\coloneqq\int_n^\infty\cos(\pi t)f_n(t)\,dt$, so $|T_1|\le\int_n^\infty|f_n(t)|\,dt$. Write $t=n+s$: $f_n(n+s)=[A(s)R(s)]^3$ with $A(s)=\Gamma(m)/\Gamma(m+s)$, $R(s)=1/\Gamma(1-s)$. On $[0,1]$, $\Gamma\ge1$, so $0\le R(s)\le1$; log-convexity of $\log\Gamma$ gives $0<A(s)\le e^{-s\psi(m)}$, whence $|f_n(n+s)|\le A(s)^3\le e^{-3s\psi(m)}$ and $\int_0^1|f_n(n+s)|\,ds\le1/(3\psi(m))$. For $s\ge1$, the reflection formula $1/\Gamma(1-s)=\Gamma(s)\sin(\pi s)/\pi$ gives $R(s)=\Gamma(s)\sin(\pi s)/\pi$, hence $f_n(n+s)=[B(s,m)\sin(\pi s)/\pi]^3$ with $B$ the Beta function; $B(\cdot,m)$ is non-increasing with $B(1,m)=1/m$, and $-\log u\ge1-u$ gives $\int_1^\infty B(s,m)\,ds\le1/(m-1)$, so $\int_1^\infty|f_n(n+s)|\,ds\le\pi^{-3}B(1,m)^2\int_1^\infty B(s,m)\,ds\le\pi^{-3}m^{-2}(m-1)^{-1}$. Adding the two ranges gives $\int_n^\infty|f_n(t)|\,dt\le\tau_n$, and the bound follows.
+\end{proof}
+
+\begin{corollary}[Higher harmonics]
+\label{cor:dixon_higher}
+Let $I_j(n) \coloneqq \int_{-n}^n\cos(\pi jt)\,f_n(t)\,dt$ for odd $j\ge1$. For every odd $j\ge3$, $|I_j(n)|\le2\tau_n$, by the same argument (Step~1 gives $F(\pi j)=0$, and Step~3 is independent of $j$).
+\end{corollary}
+
+\begin{remark}[Sum over harmonics]
+Periodizing $f_n$ on $[n,n+2]$ and integrating by parts expresses each tail term $T_j\coloneqq\int_n^\infty\cos(\pi jt)f_n(t)\,dt$ as a Fourier coefficient, against the orthonormal family $\{\sin(\pi js)\}_{j\ge1}$ on $L^2(0,2)$, of the derivative of the periodized tail; Bessel's inequality with Cauchy--Schwarz over $\sum_{j\text{ odd}\ge3}j^{-2}$ then bounds $\sum_{j\text{ odd}\ge3}|I_j(n)|$ by a multiple of the $L^2(0,2)$ norm of that derivative, which grows like $\sqrt{\log n}$, giving $\sum_{j\text{ odd}\ge3}|I_j(n)| = O(\sqrt{\log n})$. This is recorded as a remark rather than folded into the corollary above because making every constant explicit needs several further elementary, but lengthy, term-by-term bounds on $f_n'$ that are not used elsewhere in this chapter.
+\end{remark}
+
+\begin{remark}[Real $x$, and attribution of the exact identity]
+\label{rem:dixon_real}
+For real $x$, $f_x(t)\coloneqq[\Gamma(2x+1)/(\Gamma(x+1+t)\Gamma(x+1-t))]^3$ is entire of the same exponential type $3\pi$. Cohl and Volkmer, \emph{Evaluation of beta integrals of Ramanujan type and integral representations for bilateral hypergeometric series}, Ramanujan J.\ \textbf{67} (2025), Art.\ 28, \doi{10.1007/s11139-025-01064-z} \cite{cohlvolkmer2025}, prove (their Lemma~4.1 and Theorem~5.1) that for every real $x>-1/3$,
+\begin{equation}
+J_1(x) \coloneqq \int_{\mathbb{R}}\cos(\pi t)\,f_x(t)\,dt = \frac12\,\frac{\Gamma(3x+1)}{\Gamma(x+1)^3},
+\end{equation}
+exactly and with no trigonometric correction factor; the integer identity $J_1=\frac12(3n)!/(n!)^3$ of Step~2 above is the special case $x=n$. This exact identity, and the underlying vanishing of the Fourier transform for $|\omega|\ge3\pi$, are due to Cohl--Volkmer and not original to this chapter. What we add is the elementary tail bound of Step~3 and Corollary~\ref{cor:dixon_higher}, which convert the exact real-line identity into a genuine, explicit-error estimate for the truncated integral $\int_{-x}^x\cos(\pi t)f_x(t)\,dt$ that appears in Table~\ref{tab:dictionary}. For integer $x=n$ this is Theorem~\ref{conj:dixon}, proved in full; Corollary~\ref{cor:dixon_real} below extends it to every real $x\ge1$.
+\end{remark}
+
+\begin{corollary}[Real $x$]
+\label{cor:dixon_real}
+For every real $x\ge1$, with $m=2x+1$ and $\tau(x)\coloneqq1/(3\psi(m))+1/(\pi^3m^2(m-1))$,
+\begin{equation}
+\Bigl|\int_{-x}^x\cos(\pi t)f_x(t)\,dt \;-\; \tfrac12\tfrac{\Gamma(3x+1)}{\Gamma(x+1)^3}\Bigr| \;\le\; 2\tau(x),
+\end{equation}
+so $\int_{-x}^x\cos(\pi t)f_x(t)\,dt \sim \frac12\frac{\Gamma(3x+1)}{\Gamma(x+1)^3} \sim \frac{\sqrt3}{4\pi x}27^x$ as $x\to\infty$ through the reals, with an error that tends to $0$, not merely $o(27^x/x)$.
+\end{corollary}
+\begin{proof}
+By evenness, the truncated integral equals $J_1(x)-2T_1(x)$ with $T_1(x)\coloneqq\int_x^\infty\cos(\pi t)f_x(t)\,dt$, and $J_1(x)$ is the exact quantity of Remark~\ref{rem:dixon_real}. The tail computation of Step~3 uses only log-convexity of $\log\Gamma$ and the elementary properties of the Beta function $B(\cdot,m)$ recorded there, all of which hold verbatim for real $m=2x+1$; for $x\ge1$, $m\ge3$ exceeds the point $m_0\approx1.4616$ where $\Gamma$ attains its minimum on $(0,\infty)$ and $\psi=\Gamma'/\Gamma$ changes sign, so $\psi(m)>0$ and Step~3 gives $|T_1(x)|\le\tau(x)$ exactly as in the integer case. No growth or Stirling estimate is needed, because $J_1(x)$ is already the exact full-line integral established by Cohl--Volkmer, not a quantity derived here from a Paley--Wiener argument.
+\end{proof}
+
+Numerically, $2\int_{-x}^{x}\cos(\pi t)f_x(t)\,dt\cdot\Gamma(x+1)^3/\Gamma(3x+1) - 1$, computed by direct quadrature over the truncated range $[-x,x]$, equals $5.1\times10^{-7}$ at $x=5$, $-5.2\times10^{-11}$ at $x=7.5$, $-6.0\times10^{-14}$ at $x=10$, and $-5\times10^{-28}$ at $x=20$, consistent with the bound $2\tau(x)$ of Corollary~\ref{cor:dixon_real}. The corresponding full-line quantity, $2J_1(x)\Gamma(x+1)^3/\Gamma(3x+1) - 1$, is exactly $0$ by Remark~\ref{rem:dixon_real}, and quadrature confirms it is below $10^{-43}$.
+
+\begin{remark}[Why a naive Gaussian estimate does not settle the question]
+Theorem~\ref{conj:dixon} is proved by an \emph{exact} vanishing $F(\pi j)=0$ for $|j|\ge3$, not by bounding the size of the Poisson terms $F((2\nu+1)\pi)$, $|\nu|\ge1$, heuristically. Indeed, substituting the Gaussian approximation $f_n(t)\approx(4^n/\sqrt{\pi n})^3e^{-3t^2/n}$ into $J_1$ gives a quantity of order $64^ne^{-\pi^2n/12}/n$, which is exponentially \emph{larger} than $27^n$ since $\ln64-\pi^2/12>\ln27$; the correct rate comes from the exact exponential type $3\pi$ of the entire continuation of $\binom{2n}{n+t}^3$, which the Gaussian approximation does not see because it drops the factor $\sin^3(\pi z)$.
 \end{remark}
 
 \subsection{Continuous Alternating Row Integrals (Zero Sum)}
@@ -434,7 +489,7 @@ To facilitate cross-disciplinary reading, Table~\ref{tab:dictionary} provides a 
 \small
 \caption{Dictionary of Discrete Combinatorial Identities and Continuous Simplicial Theorems.}
 \label{tab:dictionary}
-\begin{tabularx}{\textwidth}{lXX}
+\begin{tabularx}{\textwidth}{l>{\raggedright\arraybackslash}X>{\raggedright\arraybackslash}X}
 \toprule
 \textbf{Property / Law} & \textbf{Discrete Combinatorial Form} & \textbf{Continuous Analytic Theorem} \\
 \midrule
@@ -448,7 +503,7 @@ To facilitate cross-disciplinary reading, Table~\ref{tab:dictionary} provides a 
 \textbf{Hockey-Stick Identity} & $\sum_{t=r}^n \binom{t}{r} = \binom{n+1}{r+1}$ & $\int_r^x \binom{t}{r}dt = \binom{x+1}{r+1} + \mathcal{O}(x^r)$ (Prop.~\ref{prop:hockey}) \\
 \textbf{Absorption Law} & $k\binom{n}{k} = n\binom{n-1}{k-1}$ & $\langle y_j \rangle = \frac{x}{m}$, $\mathrm{Var}(y_j) \sim \frac{m-1}{m^2}x$ (Thm.~\ref{thm:moments}) \\
 \textbf{Alternating Sum} & $\sum (-1)^k \binom{n}{k} = 0$ & $\int_0^x \cos(\pi y)\binom{x}{y}dy = 0$ ($x \in 2\mathbb{N}+1$) \\
-\textbf{Cubic Sum (Dixon)} & $\sum (-1)^k \binom{2n}{n+k}^3 = \frac{(3n)!}{(n!)^3}$ \cite{dixon1891} & Conjecture~\ref{conj:dixon}: $\int_{-x}^x \cos(\pi t)\binom{2x}{x+t}^3 dt \sim \frac{1}{2}\binom{3x}{x,x,x}$ \\
+\textbf{Cubic Sum (Dixon)} & $\sum (-1)^k \binom{2n}{n+k}^3 = \frac{(3n)!}{(n!)^3}$ \cite{dixon1891} & Theorem~\ref{conj:dixon}: $\int_{-x}^x \cos(\pi t)\binom{2x}{x+t}^3 dt \sim \frac{1}{2}\binom{3x}{x,x,x}$ (real $x\ge1$) \\
 \textbf{Row Term Product} & $\prod_{k=0}^n \binom{n}{k} = \frac{(n!)^{n+1}}{\mathrm{sf}(n)^2}$, $\mathrm{sf}(n) = \prod_{k=0}^n k! = G(n+2)$ & $\int_0^x \ln\binom{x}{y}dy = \mathcal{E}(x)$ via Barnes $G(x+1)$ \cite{barnes1900} \\
 \bottomrule
 \end{tabularx}
@@ -582,7 +637,7 @@ $m$ & Layer $x$ & Numerical $I_m(x)$ & Asymptotic $m^x$ & Error (\%) & Defect Mo
 \section{Conclusion and Future Research}
 % ==============================================================================
 
-We have developed the analytic continuation of Pascal's triangle and the Pascal $m$-simplex: an exact trigonometric representation of the row integral for $m = 2$ (which has no analogue on the torus for $m \ge 3$), exact continuous identities (Stifel, Star of David, Barnes $G$), asymptotic counterparts of classical identities (Fibonacci, $L^p$ norms, hockey stick, moments), a numerically supported conjecture for Dixon's cubic sum, the leading asymptotics $I_m(x) \sim m^x$, and Beta-kernel operators with their Fourier symbols. Two structural facts distinguish the continuous theory from the lattice one. First, the continuous kernel does not inherit the multinomial generating function or the semigroup law of the lattice construction. Second, the resulting Laplacian is bounded, so it has no Weyl law at high energies. Establishing the precise boundary defect $m^n - I_m(n)$, the exponential rate of $1 - \mathcal{J}_m(x)$, the $\mathcal{O}(1)$ corrections to the moments, and the continuous Dixon asymptotics remains open. Future research includes studying nonlinear simplicial Schrödinger equations and investigating applications to anomalous diffusion in anisotropic porous media.
+We have developed the analytic continuation of Pascal's triangle and the Pascal $m$-simplex: an exact trigonometric representation of the row integral for $m = 2$ (which has no analogue on the torus for $m \ge 3$), exact continuous identities (Stifel, Star of David, Barnes $G$), asymptotic counterparts of classical identities (Fibonacci, $L^p$ norms, hockey stick, moments), a proved explicit-error asymptotic for the continuous Dixon cubic integral at integer $x$ (Theorem~\ref{conj:dixon}) and, combining Cohl--Volkmer's exact real-line identity with the same tail bound, at every real $x \ge 1$ (Corollary~\ref{cor:dixon_real}), the leading asymptotics $I_m(x) \sim m^x$, and Beta-kernel operators with their Fourier symbols. Two structural facts distinguish the continuous theory from the lattice one. First, the continuous kernel does not inherit the multinomial generating function or the semigroup law of the lattice construction. Second, the resulting Laplacian is bounded, so it has no Weyl law at high energies. Establishing the precise boundary defect $m^n - I_m(n)$, the exponential rate of $1 - \mathcal{J}_m(x)$, the $\mathcal{O}(1)$ corrections to the moments, and explicit constants for $\sum_{j\text{ odd}\ge3}|I_j(n)| = O(\sqrt{\log n})$ (Remark after Corollary~\ref{cor:dixon_higher}) remain open. Future research includes studying nonlinear simplicial Schrödinger equations and investigating applications to anomalous diffusion in anisotropic porous media.
 
 \input{declarations_chapter}
 
@@ -618,6 +673,12 @@ A.~C. Dixon,
 \emph{On the Sum of the Cubes of the Coefficients in a Certain Expansion by the Binomial Theorem},
 Messenger of Mathematics, \textbf{20} (1891), 79--80,
 JFM~23.0259.01.
+
+\bibitem{cohlvolkmer2025}
+H.~S. Cohl and H.~Volkmer,
+\emph{Evaluation of beta integrals of Ramanujan type and integral representations for bilateral hypergeometric series},
+The Ramanujan Journal, \textbf{67} (2025), no.~2, Art.~28,
+\doi{10.1007/s11139-025-01064-z}.
 
 \bibitem{gould1972}
 H.~W. Gould,

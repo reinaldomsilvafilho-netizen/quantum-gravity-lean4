@@ -1,0 +1,27 @@
+iso k^2+k^4 tau=0.01: min marginal -0.082394 at x=1.54 (max 0.86542)
+PASS C1 tau=0.01: 1D marginal negative => 4D kernel not positive
+iso k^2+k^4 tau=1.0: min marginal -0.0091919 at x=5.6 (max 0.21677)
+PASS C1 tau=1.0: 1D marginal negative => 4D kernel not positive
+iso k^2+k^4 tau=10.0: min marginal -0.00034386 at x=15.4 (max 0.083958)
+PASS C1 tau=10.0: 1D marginal negative => 4D kernel not positive
+PASS C1b Horava spatial k^2+k^6: marginal negative (-0.132)
+PASS NC Gaussian marginal has no negative value (min 6.543e-17)
+PASS NC Cauchy marginal has no negative value (min 0.002195)
+4D kernel K(1.937)/K(0) at tau=0.01: -0.018934 (draft: -1.893e-2)
+PASS C1c 4D kernel ratio reproduces draft value within 2%
+PASS D0 book erfc closed form = quadrature (max rel err 3.8e-22)
+PASS NC mutated closed form (e^{z^2} dropped) disagrees
+book symbol: d_s(1e-8) = 2.0000886, d_s(1e8) = 3.9999999; IR slope check 4 - 12/tau at tau=1e4: 3.998801677 vs 3.9988
+PASS D1 book symbol UV d_s -> 2
+PASS D2 book symbol IR d_s -> 4
+PASS D3 book IR approach 4 - 12 l^2/tau
+Horava z=2: d_s(UV) = 2.50001 (1+3/z = 2.5)
+PASS D4 Horava z=2: UV d_s = 1 + 3/z
+Horava z=3: d_s(UV) = 2.0 (1+3/z = 2.0)
+PASS D4 Horava z=3: UV d_s = 1 + 3/z
+PASS D5 Horava IR -> 4
+nonlocal form factor: d_s(1e-7) = 2.0, d_s(1e7) = 4.0; Ein series check 0.0
+PASS X1 Ein entire (series = gamma+ln x+E1 x)
+PASS X1 Lorentz-invariant ghost-free (entire zero-free form factor) symbol with d_s: 4 -> 2 exists
+
+SUMMARY: 17/17 PASS

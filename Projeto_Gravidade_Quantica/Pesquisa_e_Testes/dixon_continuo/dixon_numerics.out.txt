@@ -1,0 +1,67 @@
+=== A1. Dixon identity, exact integers ===
+D_n == (3n)!/(n!)^3 for n = 2..20: OK
+negative control (closed form + 1) rejected for all n: OK
+
+=== A2. I_j by direct quadrature vs oracle ===
+n= 2 I_1=44.7547094075  I_3=-0.106336579615  I_5=-0.0459548644029  I_7=-0.0246088923187  I_9=-0.0151809788916
+n= 3 I_1=840.220862486  I_3=0.109276331527  I_5=0.0509978636785  I_7=0.0280634164396  I_9=0.0175189127131
+n= 4 I_1=17324.7945538  I_3=-0.110005677749  I_5=-0.0540736009632  I_7=-0.0303744693736  I_9=-0.0191394956338
+n= 5 I_1=378378.194535  I_3=0.109935682413  I_5=0.0561547151259  I_7=0.0320663801525  I_9=0.0203617238148
+n= 6 I_1=8576567.81374  I_3=-0.109534494231  I_5=-0.0576569533094  I_7=-0.0333762544551  I_9=-0.0213327024815
+n= 7 I_1=199536480.18  I_3=0.108990356914  I_5=0.0587904577779  I_7=0.0344299301372  I_9=0.0221318815276
+n= 8 I_1=4732755884.83  I_3=-0.10838822603  I_5=-0.0596737633663  I_7=-0.0353015284384  I_9=-0.0228068054345
+n= 9 I_1=113936715750.0  I_3=0.107769246137  I_5=0.0603791555109  I_7=0.0360380524037  I_9=0.0233880638615
+n=10 I_1=2.77549839567e+12  I_3=-0.107154113019  I_5=-0.0609533725861  I_7=-0.0366710006879  I_9=-0.0238964321585
+n=11 I_1=6.82634977315e+13  I_3=0.106553308271  I_5=0.0614280461191  I_7=0.0372224086962  I_9=0.0243466259249
+n=12 I_1=1.69236588126e+15  I_3=-0.105971960976  I_5=-0.061825382759  I_7=-0.0377082318688  I_9=-0.0247494251545
+n=13 I_1=4.22390490364e+16  I_3=0.105412304082  I_5=0.0621614489131  I_7=0.0381403543117  I_9=0.0251129474601
+n=14 I_1=1.06028633296e+18  I_3=-0.104874975946  I_5=-0.0624481649727  I_7=-0.0385278391514  I_9=-0.0254434478674
+n=15 I_1=2.67474898927e+19  I_3=0.10435973563  I_5=0.0626945663881  I_7=0.0388777380405  I_9=0.0257458411052
+n=16 I_1=6.77672732203e+20  I_3=-0.103865866878  I_5=-0.0629076290126  I_7=-0.0391956328991  I_9=-0.0260240540182
+n=17 I_1=1.72349293484e+22  I_3=0.103392410616  I_5=0.0630928254017  I_7=0.0394860088761  I_9=0.0262812701019
+n=18 I_1=4.39809863743e+23  I_3=-0.102938300153  I_5=-0.0632545094506  I_7=-0.0397525174902  I_9=-0.0265201033345
+n=19 I_1=1.1257183216e+25  I_3=0.102502439873  I_5=0.0633961883395  I_7=0.0399981663095  I_9=0.0267427243902
+n=20 I_1=2.88915607239e+26  I_3=-0.102083750477  I_5=-0.0635207186264  I_7=-0.0402254582903  I_9=-0.0269509540024
+max |Q - O| / max(|O|,1) over all (n,j): 5.2026e-39  (required < 1e-30)
+
+=== A3. 30-digit values at n = 20 ===
+I_1(20) = 288915607239237911915932949.8564
+I_3(20) = -0.10208375047658202655582881259384
+I_5(20) = -0.063520718626435538644439101519656
+I_7(20) = -0.040225458290324026940555969591224
+I_9(20) = -0.026950954002406335863837236411493
+D_20/2  = 288915607239237911915932950.0
+
+=== A4. Rates ===
+j=1 fitted rate exp(slope) = 27.03521562
+j=3 fitted rate exp(slope) = 0.995006122
+j=5 fitted rate exp(slope) = 1.004903954
+j=7 fitted rate exp(slope) = 1.01050041
+j=9 fitted rate exp(slope) = 1.013515545
+
+Saddle tau_j = i tan(pi j/6) (principal branch of log):
+j=1: tau=(0.0 + 0.57735027j), predicted rate 27.0
+j=3: tan(pi j/6) infinite, no finite saddle -> endpoint prediction rate 1
+j=5: tau=(0.0 - 0.57735027j), predicted rate 1437811.971
+j=7: tau=(0.0 + 0.57735027j), predicted rate 0.0005070203995
+j=9: tan(pi j/6) infinite, no finite saddle -> endpoint prediction rate 1
+j=1: saddle rate == 27 exactly, fit 27.035216: ACCEPTED
+j=3: fit 0.995006 vs saddle/endpoint prediction 1.0 -> ACCEPTED
+j=5: fit 1.0049 vs saddle/endpoint prediction 1.43781e+6 -> REJECTED
+j=7: fit 1.0105 vs saddle/endpoint prediction 0.00050702 -> REJECTED
+j=9: fit 1.01352 vs saddle/endpoint prediction 1.0 -> ACCEPTED
+Conclusion: for j = 5, 7 the principal-branch saddle predicts exponential growth, the data show rate 1 (bounded, slowly decaying). The saddle is not on the integration contour; for j >= 3 the exact full-line integrals vanish (type 3*pi).
+
+Negative control: wrong saddle tau = i tan(pi j/3) for j=1:
+  predicted 230.76459 vs fit 27.035216 -> REJECTED (as it must be)
+
+=== A5. Endpoint model for j >= 3 ===
+model: I_j ~ -2 (-1)^n * 3H/(9H^2 + pi^2 j^2),  H = H_{2n}  (from f(n+s) ~ exp(-3 H s))
+n= 5: j=3 ratio 1.0387; j=5 ratio 1.0351; j=7 ratio 1.0233; j=9 ratio 1.0157
+n=10: j=3 ratio 1.0192; j=5 ratio 1.0257; j=7 ratio 1.0195; j=9 ratio 1.0139
+n=15: j=3 ratio 1.0121; j=5 ratio 1.0211; j=7 ratio 1.0174; j=9 ratio 1.0129
+n=20: j=3 ratio 1.0084; j=5 ratio 1.0182; j=7 ratio 1.016; j=9 ratio 1.0123
+
+=== A6. Finite-interval Poisson identity (fact 1) ===
+n=4: sum_{3<=j<=61} I_j = -0.2812362654, target -0.2945537573, diff 0.0133 (tail O(1/J))
+n=7: sum_{3<=j<=61} I_j = 0.3043865419, target 0.3203151397, diff -0.0159 (tail O(1/J))

@@ -1,0 +1,54 @@
+x | trunc-target | 2tau | ratio | int_x^inf|f| | tau | full-line rel.err
+1 0.29398 0.726035 0.4049 0.177589 0.363017 1.258e-22  (rest<= 1.59e-7 )
+PASS x=1 full-line identity (|rel|<1e-12 + rest)
+PASS x=1 corollary bound |err|<=2tau
+PASS x=1 Step-3 tail int|f|<=tau
+PASS x=1 NEG target without 1/2 violates bound
+PASS x=1 NEG Gamma(3x+2) identity fails
+1.5 -0.116152 0.53208 0.2183 0.154812 0.26604 -4.418e-26  (rest<= 1.19e-9 )
+PASS x=1.5 full-line identity (|rel|<1e-12 + rest)
+PASS x=1.5 corollary bound |err|<=2tau
+PASS x=1.5 Step-3 tail int|f|<=tau
+PASS x=1.5 NEG target without 1/2 violates bound
+PASS x=1.5 NEG Gamma(3x+2) identity fails
+2.3 -0.0645047 0.409236 0.1576 0.134516 0.204618 8.781e-35  (rest<= 1.34e-12 )
+PASS x=2.3 full-line identity (|rel|<1e-12 + rest)
+PASS x=2.3 corollary bound |err|<=2tau
+PASS x=2.3 Step-3 tail int|f|<=tau
+PASS x=2.3 NEG target without 1/2 violates bound
+PASS x=2.3 NEG Gamma(3x+2) identity fails
+3.7 -0.181111 0.32257 0.5615 0.116102 0.161285 -2.141e-48  (rest<= 5.56e-17 )
+PASS x=3.7 full-line identity (|rel|<1e-12 + rest)
+PASS x=3.7 corollary bound |err|<=2tau
+PASS x=3.7 Step-3 tail int|f|<=tau
+PASS x=3.7 NEG target without 1/2 violates bound
+PASS x=3.7 NEG Gamma(3x+2) identity fails
+7.7 -0.143786 0.240995 0.5966 0.0946519 0.120498 -1.016e-49  (rest<= 9.43e-27 )
+PASS x=7.7 full-line identity (|rel|<1e-12 + rest)
+PASS x=7.7 corollary bound |err|<=2tau
+PASS x=7.7 Step-3 tail int|f|<=tau
+PASS x=7.7 NEG target without 1/2 violates bound
+PASS x=7.7 NEG Gamma(3x+2) identity fails
+15.5 -0.0367059 0.193237 0.19 0.0798629 0.0966185 2.673e-51  (rest<= 2.9e-40 )
+PASS x=15.5 full-line identity (|rel|<1e-12 + rest)
+PASS x=15.5 corollary bound |err|<=2tau
+PASS x=15.5 Step-3 tail int|f|<=tau
+PASS x=15.5 NEG target without 1/2 violates bound
+PASS x=15.5 NEG Gamma(3x+2) identity fails
+PASS NEG 2tau/20 is violated for some x in {1,1.5,2.3,3.7}
+PASS psi(3)>0 and psi(1.2)<0 (m0 threshold)
+m0 = 1.4616321
+PASS m0 ~ 1.4616
+PASS psi'=trigamma>0 at m=1.2,1.4616,3 (psi only changes SIGN at m0)
+printed x= 5 5.141e-7
+PASS printed value x=5
+printed x= 7.5 -5.22e-11
+PASS printed value x=7.5
+printed x= 10 -5.975e-14
+PASS printed value x=10
+printed x= 20 -4.97e-28
+PASS printed value x=20
+tau( 1e3 )= 0.043853
+tau( 1e6 )= 0.022975
+PASS target ~ sqrt3/(4 pi x) 27^x at x=200 (rel<1e-2)
+TOTAL FAILS 0

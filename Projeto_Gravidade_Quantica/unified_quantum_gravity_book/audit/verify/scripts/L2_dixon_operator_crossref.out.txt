@@ -1,0 +1,9 @@
+cohlvolkmer2025 | 10.1007/s11139-025-01064-z | Evaluation of beta integrals of Ramanujan type and integral representations for bilateral hypergeometric series | Cohl, Volkmer | The Ramanujan Journal | vol 67 issue 2 page None art 28 | [[2025, 4, 3]] | OK
+modesto2012 | 10.1103/PhysRevD.86.044005 | Super-renormalizable quantum gravity | Modesto | Physical Review D | vol 86 issue 4 page None art 044005 | [[2012, 8, 3]] | OK
+blas2009extra | 10.1088/1126-6708/2009/10/029 | On the extra mode and inconsistency of Hořava gravity | Blas, Pujolàs, Sibiryakov | Journal of High Energy Physics | vol 2009 issue 10 page 029-029 art None | [[2009, 10, 12]] | OK
+blas2011models | 10.1007/JHEP04(2011)018 | Models of non-relativistic quantum gravity: the good, the bad and the healthy | Blas, Pujolàs, Sibiryakov | Journal of High Energy Physics | vol 2011 issue 4 page None art 18 | [[2011, 4]] | OK
+pospelov2012lorentz | 10.1103/PhysRevD.85.105001 | Lorentz violation in Hořava-Lifshitz-type theories | Pospelov, Shang | Physical Review D | vol 85 issue 10 page None art 105001 | [[2012, 5, 3]] | OK
+calcagni2013probing | 10.1103/PhysRevD.87.124028 | Probing the quantum nature of spacetime by diffusion | Calcagni, Eichhorn, Saueressig | Physical Review D | vol 87 issue 12 page None art 124028 | [[2013, 6, 24]] | OK
+marcinkiewicz1939 | 10.1007/BF01210677 | Sur une propri�t� de la loi de Gau� | Marcinkiewicz | Mathematische Zeitschrift | vol 44 issue 1 page 612-618 art None | [[1939, 12]] | OK
+NEG_mutated | 10.1103/PhysRevD.85.105999 | does not resolve (expected): HTTP Error 404: Not Found
+TOTAL FAILS: 0

@@ -1,0 +1,25 @@
+PASS D1 l* = hbar/(M* c) has dimension L
+PASS NC1 mutant hbar/(M* c^2) is NOT a length
+PASS D2 omega^2 = c^2k^2 + c^2 l*^4 k^6 homogeneous (T^-2)
+PASS D3 k^2 + l*^2 k^4 homogeneous (L^-2)
+PASS NC2 mutant l*^4 k^4 is not homogeneous with k^2
+CODATA: M_P c^2 = 1.22089e+19 GeV, l_P = 1.616255e-35 m
+PASS D4 l_P two routes agree (rel 1e-12)
+PASS D4b order of magnitude: M_P c^2 ~ 1.22e19 GeV, l_P ~ 1.616e-35 m
+PASS D2b SI and natural-unit z=3 dispersion agree (rel 1e-12)
+
+GW at f = 100.0 Hz: k = 2.096e-06 1/m
+    M* [GeV]       l* [m]    (3/2)(l k)^2 [z=2 ansatz, xi=1]   (5/2)(l k)^4 [z=3]
+   1.221e+19    1.616e-35                          1.721e-81           3.292e-162
+   1.000e+16    1.973e-32                          2.566e-75           7.313e-150
+   1.000e+15    1.973e-31                          2.566e-73           7.313e-146
+   1.000e+10    1.973e-26                          2.566e-63           7.313e-126
+
+GW170817 |dv|/c < 3e-15 at 100 Hz  =>  l* < 2.13e-02 m (z=2 ansatz, xi=1);  l* < 8.88e+01 m (z=3)
+   i.e. M* > 9.25e-06 eV (z=2), M* > 2.22e-09 eV (z=3)
+PASS O1 GW170817 bound is far weaker for z=3 than for the z=2 ansatz
+M* = 1e+10 GeV (Pospelov-Shang ceiling / BPS photon-LV floor): l* = 1.97e-26 m = 1.2e+09 l_P
+M* = 1e+16 GeV (BPS weak-coupling ceiling): l* = 1.97e-32 m = 1.2e+03 l_P
+PASS O2 M* = M_P lies above the BPS weak-coupling ceiling 1e16 GeV
+
+SUMMARY: 10/10 PASS

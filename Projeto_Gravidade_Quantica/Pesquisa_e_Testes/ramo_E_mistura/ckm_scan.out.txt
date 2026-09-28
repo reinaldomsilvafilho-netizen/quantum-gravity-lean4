@@ -1,0 +1,16 @@
+abelian subgroups of B3: 62; fixing the eigenbasis completely: 33
+distinct fixed |V| patterns: 7
+  moduli [np.float64(0.0), np.float64(1.0)]: best chi2 = 1.97e+05
+  moduli [np.float64(0.0), np.float64(0.5), np.float64(0.7071)]: best chi2 = 2.3e+07
+  moduli [np.float64(0.2113), np.float64(0.5774), np.float64(0.7887)]: best chi2 = 1.23e+07
+  moduli [np.float64(0.0), np.float64(0.7071), np.float64(1.0)]: best chi2 = 4.29e+06
+  moduli [np.float64(0.3333), np.float64(0.6667)]: best chi2 = 3e+07
+  moduli [np.float64(0.5774)]: best chi2 = 4.3e+07
+  moduli [np.float64(0.0), np.float64(0.4082), np.float64(0.5774), np.float64(0.7071), np.float64(0.8165)]: best chi2 = 1.42e+07
+
+One sector with residual Z2 only (2-dim eigenspace): the angle in that plane is a free parameter,
+so |Vus| is fitted, not predicted. No zero-parameter Cabibbo angle arises from B3.
+
+oracle circulant-circulant is a permutation matrix: True
+oracle circulant-Klein all 1/sqrt3: True
+negative control, random unitaries: chi2 = 1.01e+07 (must be large)

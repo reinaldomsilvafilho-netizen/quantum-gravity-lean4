@@ -1,0 +1,7 @@
+AlbrightRodejohann2009   10.1140/epjc/s10052-009-1074-3           Comparing trimaximal mixing and its variants with deviations from tri-bimaximal mixing | The European Physical Journal C | 62 599-608 | ['Albright', 'Rodejohann']
+KingLuhn2011             10.1007/JHEP09(2011)042                  Trimaximal neutrino mixing from vacuum alignment in A 4 and S 4 models | Journal of High Energy Physics | 2011 42 | ['King', 'Luhn']
+KingLuhn2013review       10.1088/0034-4885/76/5/056201            Neutrino mass and mixing with discrete symmetry | Reports on Progress in Physics | 76 056201 | ['King', 'Luhn']
+VarzielasLavoura2013     10.1088/0954-3899/40/8/085002            Flavour models for TM<sub>1</sub>lepton mixing | Journal of Physics G: Nuclear and Particle Physics | 40 085002 | ['Varzielas', 'Lavoura']
+NuFIT6                   10.1007/JHEP12(2024)216                  NuFit-6.0: updated global analysis of three-flavor neutrino oscillations | Journal of High Energy Physics | 2024 216 | ['Esteban', 'Gonzalez-Garcia', 'Maltoni', 'Martinez-Soler', 'Pinheiro']
+NEGATIVE_CONTROL         10.1007/JHEP12(2024)2169                 UNRESOLVED (HTTPError)
+arXiv API unavailable from this machine: HTTP Error 406: Not Acceptable - arXiv IDs checked via abs pages instead (see VERIFICACAO.md)

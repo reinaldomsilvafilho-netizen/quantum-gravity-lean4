@@ -1,0 +1,72 @@
+== Dixon: ratio - 1, truncated [-x,x] vs full line ==
+x=5: trunc ratio-1 = 5.141e-7 ; full-line ratio-1 = 7.205e-44 ; |trunc-target| = 0.1945 <= 2tau = 0.2835
+PASS x=5 truncated matches text value 5.1e-07 to 2 sig. digits
+PASS x=5 full-line ratio-1 ~ 0 (Cohl-Volkmer exact) |rf|<1e-35
+PASS x=5 tail bound 2tau(x) holds
+x=7.5: trunc ratio-1 = -5.22e-11 ; full-line ratio-1 = 2.673e-51 ; |trunc-target| = 0.05062 <= 2tau = 0.2432
+PASS x=7.5 truncated matches text value -5.2e-11 to 2 sig. digits
+PASS x=7.5 full-line ratio-1 ~ 0 (Cohl-Volkmer exact) |rf|<1e-35
+PASS x=7.5 tail bound 2tau(x) holds
+x=10: trunc ratio-1 = -5.975e-14 ; full-line ratio-1 = 0.0 ; |trunc-target| = 0.1658 <= 2tau = 0.2207
+PASS x=10 truncated matches text value -6e-14 to 2 sig. digits
+PASS x=10 full-line ratio-1 ~ 0 (Cohl-Volkmer exact) |rf|<1e-35
+PASS x=10 tail bound 2tau(x) holds
+x=20: trunc ratio-1 = -4.97e-28 ; full-line ratio-1 = -5.346e-51 ; |trunc-target| = 0.1436 <= 2tau = 0.1801
+PASS x=20 truncated matches text value -5e-28 to 2 sig. digits
+PASS x=20 full-line ratio-1 ~ 0 (Cohl-Volkmer exact) |rf|<1e-35
+PASS x=20 tail bound 2tau(x) holds
+PASS NEG: full-line integral reproduces the quoted numbers (must be False)
+PASS NEG: target without 1/2 rejected
+PASS x=10: |ratio-1| exceeds double eps 2.2e-16 (sentence 'not 1 in double precision' true)
+== Dixon integer theorem: |int_{-n}^n cos f - 1/2 (3n)!/(n!)^3| <= 2 tau_n ==
+PASS n=1 Dixon sum = (3n)!/(n!)^3
+PASS n=1 |I_3| <= 2 tau_n
+PASS n=2 Dixon sum = (3n)!/(n!)^3
+PASS n=2 |I_3| <= 2 tau_n
+PASS n=3 Dixon sum = (3n)!/(n!)^3
+PASS n=3 |I_3| <= 2 tau_n
+PASS n=4 Dixon sum = (3n)!/(n!)^3
+PASS n=4 |I_3| <= 2 tau_n
+PASS n=5 Dixon sum = (3n)!/(n!)^3
+PASS n=5 |I_3| <= 2 tau_n
+PASS n=6 Dixon sum = (3n)!/(n!)^3
+PASS n=6 |I_3| <= 2 tau_n
+PASS n=7 Dixon sum = (3n)!/(n!)^3
+PASS n=7 |I_3| <= 2 tau_n
+PASS n=8 Dixon sum = (3n)!/(n!)^3
+PASS n=8 |I_3| <= 2 tau_n
+PASS n=9 Dixon sum = (3n)!/(n!)^3
+PASS n=9 |I_3| <= 2 tau_n
+PASS n=10 Dixon sum = (3n)!/(n!)^3
+PASS n=10 |I_3| <= 2 tau_n
+PASS n=11 Dixon sum = (3n)!/(n!)^3
+PASS n=11 |I_3| <= 2 tau_n
+PASS n=12 Dixon sum = (3n)!/(n!)^3
+PASS n=12 |I_3| <= 2 tau_n
+PASS n=13 Dixon sum = (3n)!/(n!)^3
+PASS n=13 |I_3| <= 2 tau_n
+PASS n=14 Dixon sum = (3n)!/(n!)^3
+PASS n=14 |I_3| <= 2 tau_n
+PASS n=15 Dixon sum = (3n)!/(n!)^3
+PASS n=15 |I_3| <= 2 tau_n
+max err/(2 tau_n) = 0.7801
+PASS NEG: bound tau_n/2 (i.e. 2tau/4) is violated for some n (bound not trivially loose)
+== Operator: v_g sign, M* window, rescaled delay ==
+PASS xi=0.5: v_g>c is True (v_g=1.06627)
+PASS xi=-0.5: v_g>c is False (v_g=0.931193)
+l_P = 1.61626e-35 m ; E_P = 1.22089e+19 GeV
+M*=1e+16 GeV: l*=1.973e-32 m = 1221.0 l_P
+M*=1e+15 GeV: l*=1.973e-31 m = 1.221e+4 l_P
+M*=1e+10 GeV: l*=1.973e-26 m = 1.221e+9 l_P
+(l*/l_P)^2 for M*=1e10 GeV: 1.491e+18
+PASS (l*/l_P)^2 ~ 1.5e18
+PASS l* range 1e3-1e9 l_P for M* 1e16-1e10 (order of magnitude)
+z=1: dt(l_P)=6.41e-62 s ; dt(l*)=9.56e-44 s ; orders below 1e-4 s: 39.02
+z=3: dt(l_P)=2.92e-61 s ; dt(l*)=4.35e-43 s ; orders below 1e-4 s: 38.36
+z=8: dt(l_P)=1.16e-60 s ; dt(l*)=1.74e-42 s ; orders below 1e-4 s: 37.76
+PASS dt(l_P) z=1 ~6e-62, z=8 ~1.2e-60
+PASS rescaled delays in 1e-43..1e-42 range (order)
+PASS 'some 38 orders': min orders in [37.5,38.5]
+orders range: 37.76 - 39.02
+PASS NEG: linear-in-l rescaling does not give ~38 orders
+TOTAL FAILS: 0

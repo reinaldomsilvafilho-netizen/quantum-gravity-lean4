@@ -1,0 +1,18 @@
+[PASS] B1 book symbol: moment identity = erfc closed form (max diff 8.4e-07)
+[PASS] NC1 erfc without e^{x^2} fails (max diff 2.00)
+   book d_s: 1e-06:2.0009, 0.0001:2.0088, 0.01:2.0865, 0.1:2.2598, 1:2.7009, 10:3.4290, 100:3.8941, 10000:3.9988, 1e+06:4.0000
+[PASS] T1 S_T > 0 on (0,1e4], S_T/u^2 -> 1 (UV), S_T/u -> 1 (IR) (UV dev 2.58e-26, IR dev 2.81e-9)
+[PASS] T2 Tomboulis-type: d_s 4 -> 2, fd = moment (UV 2.0000, IR 4.0000; max |d_s^T - d_s^B| = 0.379 at tau = 10)
+   T   d_s: 1e-06:2.0000, 0.0001:2.0000, 0.01:2.0003, 0.1:2.0259, 1:2.5694, 10:3.8084, 100:3.9973, 10000:4.0000, 1e+06:4.0000
+[PASS] T3 |1/S_T(5i)| > 1e100 (propagator not polynomially bounded off the real axis -> no KL representation) (|1/S_T(5i)| = 2.265e+20927; book symbol: |1/S_B(5i)| = 0.039)
+[PASS] NC3 non-entire replacement has no IR recovery (d_s(1e6) != 4) (2.0000)
+   eta = 0: d_s(1e-8) = 4.0000, 2d/(2-eta) = 4.0000
+   eta = -1: d_s(1e-8) = 2.6667, 2d/(2-eta) = 2.6667
+   eta = -2: d_s(1e-8) = 2.0001, 2d/(2-eta) = 2.0000
+   eta = -3: d_s(1e-8) = 1.6006, 2d/(2-eta) = 1.6000
+[PASS] A1 UV law d_s = 2d/(2-eta); eta=-2 is the book symbol 
+[PASS] NC2 mutated law 2d/(2+eta) fails 
+[PASS] L1 degree-2 symbol with massless pole: second root real, residue -1/alpha < 0 
+[PASS] L2 Lee-Wick pair (roots [-0.5+0.866j -0.5-0.866j]) forces d_s(UV) -> 4/3 (1.3338)
+
+10/10 checks passed

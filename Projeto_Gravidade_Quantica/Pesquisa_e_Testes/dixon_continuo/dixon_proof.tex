@@ -1,0 +1,288 @@
+\documentclass[11pt]{amsart}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage[hidelinks]{hyperref}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\dd}{\,\mathrm{d}}
+
+\title{The continuous Dixon integral: an exact Fourier identity\\ and a proof of the asymptotic}
+\author{Research note (Pesquisa\_e\_Testes/dixon\_continuo)}
+\date{2026-09-28}
+
+\begin{document}
+
+\begin{abstract}
+For $f_x(t)=\bigl[\Gamma(2x+1)/(\Gamma(x+1+t)\Gamma(x+1-t))\bigr]^3$ and
+$I_1(x)=\int_{-x}^{x}\cos(\pi t)f_x(t)\dd t$ we prove, for every integer $n\ge 1$,
+\[
+\Bigl|I_1(n)-\tfrac12\,\tfrac{(3n)!}{(n!)^3}\Bigr|\;\le\;\frac{2}{3(H_{2n}-\gamma)}+\frac{2}{\pi^3(2n+1)^2\,2n},
+\]
+so $I_1(n)\sim \tfrac12 (3n)!/(n!)^3\sim \frac{\sqrt3}{4\pi n}27^n$; the error is not only $o(27^n/n)$ but tends to $0$.
+The key fact is that the full-line integral $\int_\R\cos(\pi t)f_n(t)\dd t$ equals \emph{exactly} $\frac12(3n)!/(n!)^3$,
+because $f_n$ is entire of exponential type $3\pi$ (Paley--Wiener) and Poisson summation reduces to Dixon's identity.
+We also prove $\sum_{j\ \mathrm{odd}\ge3}|I_j(n)|=O(\sqrt{\log n})$ with explicit constants, and, using Dougall's bilateral
+${}_5H_5$ sum, extend the main estimate to all real $x\ge1$ with $\Gamma(3x+1)/\Gamma(x+1)^3$ and no trigonometric factor.
+\end{abstract}
+
+\maketitle
+
+\section{Setting and statement}
+
+Throughout, $n\ge1$ is an integer, $m:=2n+1$, $\psi=\Gamma'/\Gamma$, $H_k=\sum_{i\le k}1/i$, and $\gamma$ is Euler's constant,
+so that $\psi(m)=H_{2n}-\gamma>0$. Let
+\[
+f(z):=\Bigl[\frac{\Gamma(m)}{\Gamma(n+1+z)\,\Gamma(n+1-z)}\Bigr]^3 ,
+\]
+which is entire because $1/\Gamma$ is entire; on $[-n,n]$ it equals $\binom{2n}{n+t}^3$. For odd $j\ge1$ put
+\[
+I_j:=\int_{-n}^{n}\cos(\pi j t)f(t)\dd t,\qquad
+J_j:=\int_{\R}\cos(\pi j t)f(t)\dd t,\qquad
+T_j:=\int_{n}^{\infty}\cos(\pi j t)f(t)\dd t .
+\]
+Since $f$ is even, $I_j=J_j-2T_j$. Let $D_n:=\sum_{k=-n}^{n}(-1)^k\binom{2n}{n+k}^3$ and
+\[
+\tau_n:=\frac{1}{3\psi(2n+1)}+\frac{1}{\pi^3 m^2(m-1)} .
+\]
+
+\begin{theorem}[Main theorem]\label{thm:main}
+For every integer $n\ge1$:
+\begin{enumerate}
+\item $J_1=\tfrac12 D_n=\tfrac12(3n)!/(n!)^3$ and $J_j=0$ for every odd $j\ge3$;
+\item $\bigl|I_1-\tfrac12(3n)!/(n!)^3\bigr|\le 2\tau_n$ and $|I_j|\le 2\tau_n$ for every odd $j\ge3$;
+\item $\sum_{j\ \mathrm{odd}\ge3}|I_j|\le \kappa\,E_n$, where $\kappa=\frac{2}{\pi}\sqrt{\pi^2/8-1}$ and $E_n=O(\sqrt{\log n})$ is given in \eqref{eq:En}.
+\end{enumerate}
+Consequently $I_1(n)=\frac{\sqrt3}{4\pi n}\,27^n\,e^{\rho_n}+O(1/\log n)$ with
+$\frac{1}{36n+1}-\frac{1}{4n}<\rho_n<\frac{1}{36n}-\frac{3}{12n+1}$; in particular $I_1(n)\sim\frac{\sqrt3}{4\pi n}27^n$.
+\end{theorem}
+
+Numerically, $2\tau_1\approx0.726$, $2\tau_{10}\approx0.221$, $2\tau_{30}\approx0.163$; the actual deviation $|I_1-\frac12D_n|$ is
+$\approx0.294$, $0.166$, $0.133$ respectively (see \texttt{dixon\_proof\_checks.out.txt}).
+
+\section{The entire function \texorpdfstring{$f$}{f}}
+
+\begin{lemma}\label{lem:closed}
+$f(z)=\dfrac{\Gamma(m)^3\sin^3(\pi z)}{\pi^3 z^3\prod_{k=1}^{n}(k^2-z^2)^3}$. Hence $f$ is even and real on $\R$,
+$f(k)=0$ for integers $|k|>n$, $f(\pm n)=1$, and for $|z|\ge 2n$,
+\begin{equation}\label{eq:growth}
+|f(z)|\le K_n\,e^{3\pi|\operatorname{Im}z|}\,|z|^{-6n-3},\qquad K_n:=\Gamma(m)^3\pi^{-3}(4/3)^{3n}.
+\end{equation}
+\end{lemma}
+
+\begin{proof}
+$\Gamma(n+1\pm z)=\Gamma(1\pm z)\prod_{k=1}^n(k\pm z)$ and $\Gamma(1+z)\Gamma(1-z)=\pi z/\sin(\pi z)$ give the formula.
+For $|z|\ge2n$ and $1\le k\le n$ we have $|k^2-z^2|\ge|z|^2-n^2\ge\frac34|z|^2$, and $|\sin\pi z|\le\cosh(\pi\operatorname{Im}z)\le e^{\pi|\operatorname{Im}z|}$.
+\end{proof}
+
+\begin{lemma}[Fourier support]\label{lem:pw}
+Let $F(\omega):=\int_\R f(t)e^{i\omega t}\dd t$. Then $F(\omega)=0$ for all real $|\omega|\ge3\pi$.
+\end{lemma}
+
+\begin{proof}
+By \eqref{eq:growth}, $f\in L^1(\R)$. As $f$ is even, it suffices to take $\omega\ge3\pi$. Put $g(z)=f(z)e^{i\omega z}$, entire.
+For $R>2n$ and $Y\ge2n$ integrate $g$ over the boundary of $[-R,R]\times[0,Y]$. On the vertical sides $|z|\ge R$ and
+$|g|\le K_n e^{(3\pi-\omega)y}R^{-6n-3}\le K_nR^{-6n-3}$, so their contribution is at most $2YK_nR^{-6n-3}\to0$ as $R\to\infty$.
+Cauchy's theorem therefore gives $\int_\R g(x)\dd x=\int_\R g(x+iY)\dd x$, and on the top side $|z|\ge Y\ge2n$, so
+\[
+\Bigl|\int_\R g(x+iY)\dd x\Bigr|\le K_n e^{(3\pi-\omega)Y}\int_\R (x^2+Y^2)^{-(6n+3)/2}\dd x
+\le K_n\,Y^{-6n-2}\int_\R(1+u^2)^{-3/2}\dd u\xrightarrow[Y\to\infty]{}0 .
+\]
+The boundary case $\omega=3\pi$ is included: only the polynomial decay was used.
+\end{proof}
+
+\begin{lemma}[Poisson summation]\label{lem:poisson}
+$D_n=2J_1$.
+\end{lemma}
+
+\begin{proof}
+Let $h(t)=f(t)e^{i\pi t}$; $h$ is continuous and $|h(t)|\le C(1+|t|)^{-3}$ by \eqref{eq:growth}. Hence
+$P(x):=\sum_{k\in\Z}h(x+k)$ converges absolutely and uniformly on $[0,1]$ to a continuous $1$-periodic function whose
+Fourier coefficients are $\int_0^1P(x)e^{-2\pi i\nu x}\dd x=\int_\R h(t)e^{-2\pi i\nu t}\dd t=F(\pi(1-2\nu))$.
+By Lemma~\ref{lem:pw} these vanish unless $|1-2\nu|<3$, i.e.\ $\nu\in\{0,1\}$. A continuous function is determined by its
+Fourier coefficients, so $P(x)=F(\pi)+F(-\pi)e^{2\pi ix}$. At $x=0$, using Lemma~\ref{lem:closed}
+($f(k)=0$ for $|k|>n$) and $F(\pm\pi)=J_1$ (evenness): $D_n=\sum_k(-1)^kf(k)=P(0)=2J_1$.
+\end{proof}
+
+\begin{lemma}[Dixon]\label{lem:dixon}
+$D_n=(3n)!/(n!)^3$.
+\end{lemma}
+This is Dixon's identity $\sum_k(-1)^k\binom{2n}{k}^3=(-1)^n(3n)!/(n!)^3$ \cite{Dixon,Ekhad} after $k\mapsto n+k$.
+It is also checked in exact integer arithmetic for $n\le 20$ in \texttt{dixon\_numerics.py}.
+
+\begin{proof}[Proof of Theorem~\ref{thm:main}(1)]
+Lemmas~\ref{lem:poisson} and \ref{lem:dixon} give $J_1=\frac12(3n)!/(n!)^3$; Lemma~\ref{lem:pw} with $\omega=\pi j$,
+$j\ge3$, gives $J_j=F(\pi j)=0$.
+\end{proof}
+
+\begin{remark}[Why the saddle-point heuristic misleads for $j\equiv5\pmod6$]
+With $t=n\tau$, Stirling gives $\log\binom{2n}{n+n\tau}\approx n\,h(\tau)$ on the \emph{real} segment, and the saddle of
+$3h(\tau)+i\pi j\tau$ is $\tau_j=i\tan(\pi j/6)$. For $j=1$ this yields the exact rate $\operatorname{Re}[3h+i\pi\tau]_{\tau=i/\sqrt3}=\log27$.
+For $j=5$ the principal-branch value is $\log27+6\pi/\sqrt3$, i.e.\ exponential growth; this is false: $J_5=0$ exactly and $I_5=O(1)$.
+The Stirling phase is not the analytic continuation of $\log f$ off the real axis (the factor $\sin^3(\pi z)$ is dropped), and the
+true continuation has exponential type exactly $3\pi$, which kills every frequency $|\omega|\ge3\pi$. The fitted rates of
+$|I_j|$, $j=3,5,7,9$, are $1.00$ (Section~\ref{sec:num}).
+\end{remark}
+
+\section{The tail \texorpdfstring{$t>n$}{t>n}}
+
+\begin{lemma}\label{lem:tailrep}
+For $s\ge0$, $f(n+s)=\bigl(A(s)R(s)\bigr)^3$ with $A(s)=\Gamma(m)/\Gamma(m+s)$ and $R(s)=1/\Gamma(1-s)$.
+For $s>0$ non-integer, $R(s)=\Gamma(s)\sin(\pi s)/\pi$, hence $f(n+s)=\bigl(B(s,m)\sin(\pi s)/\pi\bigr)^3$ with the Beta function $B$.
+\end{lemma}
+\begin{proof}
+Substitute $t=n+s$ and use $\Gamma(1-s)\Gamma(s)=\pi/\sin(\pi s)$.
+\end{proof}
+
+\begin{lemma}\label{lem:bounds}
+\begin{enumerate}
+\item $0<A(s)\le e^{-s\psi(m)}$ for $s\ge0$.
+\item $0\le R(s)\le1$ for $s\in[0,1]$, and $|R'(s)|\le c_R:=\max_{u\in[0,1]}|(1/\Gamma)'(u)|<1.18$.
+\item For $s\ge1$: $B(s,m)$ is non-increasing in $s$, $B(1,m)=1/m$, $B(2,m)=1/(m(m+1))$, and $\int_1^\infty B(s,m)\dd s\le 1/(m-1)$.
+\item For $s\ge1$: $|f(n+s)|\le\pi^{-3}B(s,m)^3$ and $|f'(n+s)|\le 3\pi^{-3}(H_m+\pi)B(s,m)^3$.
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+(1) $\log\Gamma$ is convex, so $\log\Gamma(m+s)\ge\log\Gamma(m)+s\psi(m)$.
+(2) $\Gamma$ is decreasing on $(0,x_0)$, $x_0\approx1.4616$, so $\Gamma(u)\ge\Gamma(1)=1$ for $u\in(0,1]$, and $1/\Gamma(0)=0$.
+$R'(s)=-(1/\Gamma)'(1-s)$. The numerical value $c_R=1.17081\ldots$ (attained at $u^*\approx0.3021$) is computed in \texttt{dixon\_proof\_checks.py};
+it enters only the constant of part (3) of Theorem~\ref{thm:main}.
+(3) $B(s,m)=\int_0^1u^{s-1}(1-u)^{m-1}\dd u$ is non-increasing in $s$; the two values are elementary. By Tonelli and $-\log u\ge1-u$,
+$\int_1^\infty B(s,m)\dd s=\int_0^1\frac{(1-u)^{m-1}}{-\log u}\dd u\le\int_0^1(1-u)^{m-2}\dd u=\frac1{m-1}$.
+(4) The first bound is Lemma~\ref{lem:tailrep}. For the second,
+$\frac{\mathrm d}{\mathrm ds}\bigl(B\sin(\pi s)/\pi\bigr)=B'\sin(\pi s)/\pi+B\cos(\pi s)$ and
+$|B'|=B\,(\psi(m+s)-\psi(s))=B\sum_{i=0}^{m-1}\frac1{s+i}\le B\,H_m$ for $s\ge1$.
+\end{proof}
+
+\begin{proposition}\label{prop:tail}
+$\int_n^\infty|f(t)|\dd t\le\tau_n$. Consequently $|T_j|\le\tau_n$ for every $j$.
+\end{proposition}
+\begin{proof}
+On $[0,1]$, $|f(n+s)|\le A(s)^3\le e^{-3s\psi(m)}$, whose integral is $\le1/(3\psi(m))$. On $[1,\infty)$,
+$|f(n+s)|\le\pi^{-3}B(1,m)^2B(s,m)$, whose integral is $\le\pi^{-3}m^{-2}(m-1)^{-1}$.
+\end{proof}
+
+\begin{proof}[Proof of Theorem~\ref{thm:main}(2)]
+$I_j=J_j-2T_j$, Theorem~\ref{thm:main}(1) and Proposition~\ref{prop:tail}.
+\end{proof}
+
+\section{Summability over \texorpdfstring{$j$}{j}}
+
+Let $G(s):=\sum_{k\ge0}f(n+s+2k)$ for $s\in[0,2]$. By Lemma~\ref{lem:bounds}(3)--(4) the series and its term-wise derivative
+converge uniformly on $[0,2]$ (for $k\ge1$ the terms are bounded by multiples of $B(2k,m)^3$ and $\sum_kB(2k,m)^3<\infty$),
+so $G\in C^1[0,2]$. Since $\cos(\pi j\,\cdot)$ has period $2$, Fubini gives
+$T_j=\int_0^2\cos(\pi j(n+s))G(s)\dd s$. Integrating by parts, the boundary term vanishes because $\sin(\pi j(n+s))=0$ at $s=0,2$,
+and $\sin(\pi j(n+s))=(-1)^{jn}\sin(\pi js)$, so
+\[
+T_j=-\frac{(-1)^{jn}}{\pi j}\,c_j,\qquad c_j:=\int_0^2\sin(\pi js)\,G'(s)\dd s .
+\]
+The family $\{\sin(\pi js)\}_{j\ge1}$ is orthonormal in $L^2(0,2)$, so Bessel's inequality gives $\sum_j c_j^2\le\|G'\|_2^2$, and by Cauchy--Schwarz
+\[
+\sum_{j\ \mathrm{odd}\ge3}|I_j|=2\sum_{j\ \mathrm{odd}\ge3}|T_j|\le\frac2\pi\Bigl(\sum_{j\ \mathrm{odd}\ge3}j^{-2}\Bigr)^{1/2}\|G'\|_{L^2(0,2)}
+=\kappa\,\|G'\|_{L^2(0,2)} .
+\]
+It remains to bound $\|G'\|_2\le\|f'\|_{L^2(n,n+1)}+\|f'\|_{L^2(n+1,n+2)}+\sqrt2\sum_{k\ge1}\sup_{[n+2k,n+2k+2]}|f'|$.
+
+\emph{On $[n,n+1]$:} $f'=3(AR)^2(A'R+AR')$ with $A'=-\psi(m+s)A$, so $|f'|\le3A^3\bigl(\psi(m+1)+c_R\bigr)$ and
+$\|f'\|^2_{L^2(n,n+1)}\le9(\psi(m+1)+c_R)^2\int_0^1e^{-6s\psi(m)}\dd s\le\frac{9(\psi(m+1)+c_R)^2}{6\psi(m)}$.
+
+\emph{On $[n+1,n+2]$:} $|f'|\le3\pi^{-3}(H_m+\pi)m^{-3}$ by Lemma~\ref{lem:bounds}(4).
+
+\emph{For $k\ge1$:} with $B_2:=B(2,m)$ and monotonicity, $\sum_{k\ge1}B(2k,m)^3\le B_2^2\bigl(B_2+\frac12\int_2^\infty B\bigr)\le B_2^2\bigl(B_2+\frac1{2(m-1)}\bigr)$.
+
+Altogether $\|G'\|_2\le E_n$ with
+\begin{equation}\label{eq:En}
+E_n:=\frac{3(\psi(m+1)+c_R)}{\sqrt{6\psi(m)}}+\frac{3(H_m+\pi)}{\pi^3m^3}
++\frac{3\sqrt2\,(H_m+\pi)}{\pi^3}\,B_2^2\Bigl(B_2+\frac1{2(m-1)}\Bigr),
+\end{equation}
+which is $\sqrt{3\log n/2}\,(1+o(1))$. This proves Theorem~\ref{thm:main}(3). For example
+$\kappa E_1\approx 0.96$, $\kappa E_{12}\approx 0.93$, while the actual sums are $\approx 0.21$ and $\approx 0.36$.
+
+\begin{remark}
+The finite-interval Poisson formula $D_n=(-1)^n+2\sum_{j\,\mathrm{odd}}I_j$ combined with
+Lemma~\ref{lem:poisson} gives
+\[\textstyle\sum_{j\ \mathrm{odd}\ge3}I_j=2T_1-\frac{(-1)^n}{2},\]
+a bounded quantity, consistent with (2)--(3) and checked numerically.
+Heuristically $f(n+s)\approx e^{-3H_{2n}s}$ near $s=0$, which gives
+\[I_j\approx-2(-1)^n\,\frac{3H_{2n}}{9H_{2n}^2+\pi^2j^2};\]
+this matches the data to within $1$--$4\,\%$ for $5\le n\le20$, $3\le j\le9$.
+So $I_j$ for $j\ge3$ is an endpoint (corner) effect of size $\asymp1/\log n$, not an exponential one.
+\end{remark}
+
+\section{The constant}
+By Robbins' form of Stirling's formula, $k!=\sqrt{2\pi k}(k/e)^ke^{r_k}$ with $\frac1{12k+1}<r_k<\frac1{12k}$. Therefore
+\[
+\frac{(3n)!}{(n!)^3}=\frac{\sqrt{6\pi n}}{(2\pi n)^{3/2}}\,27^n e^{r_{3n}-3r_n}=\frac{\sqrt3}{2\pi n}\,27^ne^{\rho_n},
+\qquad \frac1{36n+1}-\frac1{4n}<\rho_n<\frac1{36n}-\frac3{12n+1},
+\]
+and $\rho_n=-\frac{2}{9n}+O(n^{-2})$. With Theorem~\ref{thm:main}(2),
+$I_1(n)=\frac{\sqrt3}{4\pi n}27^n\bigl(1-\frac2{9n}+O(n^{-2})\bigr)+O(1/\log n)$. The factor $\frac12$ comes from Lemma~\ref{lem:poisson}:
+the alternating sum picks up the two frequencies $\pm\pi$, each carrying $J_1$.
+
+\section{Non-integer \texorpdfstring{$x$}{x}}\label{sec:real}
+
+For real $x$ put $m=2x+1$, $f_x(t)=[\Gamma(m)/(\Gamma(x+1+t)\Gamma(x+1-t))]^3$ and $S(x):=\sum_{k\in\Z}(-1)^kf_x(k)$ (bilateral: $f_x(k)\ne0$ for all $k$ when $x\notin\Z$).
+
+\begin{proposition}[Bilateral Dixon sum]\label{prop:bilateral}
+For real $x>-1/3$, $S(x)=\Gamma(3x+1)/\Gamma(x+1)^3$. There is no trigonometric factor.
+\end{proposition}
+\begin{proof}
+Dougall's bilateral summation \cite{Dougall,Bailey,AAR} states, for $\operatorname{Re}(1+2a-b-c-d-e)>0$,
+\begin{multline*}
+\sum_{k\in\Z}\frac{(1+\frac a2)_k(b)_k(c)_k(d)_k(e)_k}{(\frac a2)_k(1+a-b)_k(1+a-c)_k(1+a-d)_k(1+a-e)_k}\\
+=\frac{\Gamma(1+2a-b-c-d-e)\,\Pi_1}{\Gamma(1+a)\Gamma(1-a)\,\Pi_2},
+\end{multline*}
+where $\Pi_1=\prod_{u\in\{b,c,d,e\}}\Gamma(1+a-u)\Gamma(1-u)$, $\Pi_2=\prod_{\{u,v\}}\Gamma(1+a-u-v)$ over the six pairs from $\{b,c,d,e\}$, and $(y)_k=\Gamma(y+k)/\Gamma(y)$. (This form was checked numerically at two random parameter
+points to $10^{-30}$ in \texttt{dixon\_proof\_checks.py}.) Take $e=a/2$: the very-well-poised factor cancels and one obtains the
+well-poised ${}_3H_3$ evaluation; both sides are continuous at $a=0$, where, with $b=c=d=-x$ ($x\notin\Z$), the right side equals
+$\Gamma(1+3x)\Gamma(1+x)^3/\Gamma(1+2x)^3$ and the left side is $\sum_k[(-x)_k/(1+x)_k]^3$.
+By the reflection formula, $1/\Gamma(x+1-k)=(-1)^{k+1}\sin(\pi x)\Gamma(k-x)/\pi$, whence
+$\sum_k[(-x)_k/(1+x)_k]^3=\Gamma(1+x)^6\Gamma(1+2x)^{-3}S(x)$. Solving gives the claim; integer $x$ is Dixon's identity.
+\end{proof}
+
+\begin{theorem}\label{thm:real}
+For real $x\ge1$, $\bigl|I_1(x)-\frac12\Gamma(3x+1)/\Gamma(x+1)^3\bigr|\le2\tau(x)$ with
+$\tau(x)=\frac{1}{3\psi(2x+1)}+\frac1{\pi^3m^2(m-1)}$. Hence $I_1(x)\sim\frac{\sqrt3}{4\pi x}27^x$ as $x\to\infty$ through the reals.
+\end{theorem}
+\begin{proof}[Proof (Lemma~\ref{lem:pw} step at the level of a standard estimate)]
+For $\operatorname{Re}z\ge0$, reflection gives $f_x(z)=\pi^{-3}\Gamma(m)^3\bigl[\Gamma(z-x)/\Gamma(z+x+1)\bigr]^3\sin^3(\pi(z-x))$, and by Stirling
+$\Gamma(w)/\Gamma(w+m)=w^{-m}(1+O(|w|^{-1}))$ uniformly in $|\arg w|\le\pi-\delta$; with evenness this yields
+$|f_x(z)|\le K e^{3\pi|\operatorname{Im}z|}|z|^{-3m}$ for $|z|\ge R_0$. Since $3m>1$, the proofs of Lemmas~\ref{lem:pw} and \ref{lem:poisson}
+apply verbatim, giving $\int_\R\cos(\pi t)f_x=\frac12S(x)$. The tail representation of Lemma~\ref{lem:tailrep} holds with the same formula
+($f_x(x+s)=[\Gamma(m)/(\Gamma(m+s)\Gamma(1-s))]^3$), and Lemma~\ref{lem:bounds}(1)--(3) only used $m\ge3$ (for (3) replace $m-1$ by the real $m-1$);
+so Proposition~\ref{prop:tail} holds. Conclude with Proposition~\ref{prop:bilateral}.
+\end{proof}
+Numerically $S(x)\,\Gamma(x+1)^3/\Gamma(3x+1)-1$ is below $10^{-30}$ at $x=2.5,3.7,1.3,6.25$, while inserting a factor $\cos(\pi x)$ is rejected.
+
+\section{Numerical record}\label{sec:num}
+\texttt{dixon\_numerics.py} computes $I_j(n)$, $j\in\{1,3,5,7,9\}$, $n=2,\dots,20$, at 90 digits by direct quadrature on $[-n,n]$ and
+compares with the oracle $I_1=\frac12D_n-2T_1$, $I_j=-2T_j$ (exact integer $D_n$, tail from the Beta representation); agreement is
+better than $10^{-30}$ relative. Fitted rates over $n=8..20$: $27.0$ for $j=1$ (with the $1/n$ prefactor removed) and $1.00$ for
+$j=3,5,7,9$. The saddle prediction is accepted for $j=1$ and rejected for $j=5$ (predicted rate $\approx1.44\times10^6$) and $j=7$ (predicted $\approx5.1\times10^{-4}$); a deliberately wrong saddle
+$\tau=i\tan(\pi/3)$ is rejected for $j=1$. \texttt{dixon\_proof\_checks.py} verifies every inequality of this note for $n=1,\dots,30$
+(or the listed subsets) with negative controls: halving $\tau_n$ fails for all $n$, replacing $\psi(m)$ by $\psi(m+1)$ in Lemma~\ref{lem:bounds}(1)
+fails, $c_R\le1$ fails, $\binom{2n}{n+t}^4$ (type $4\pi$) has $J_3\ne0$, and a $\cos(\pi x)$ factor in Proposition~\ref{prop:bilateral} fails.
+
+\section*{Status and caveats}
+Theorem~\ref{thm:main} is proved for integer $n$ with explicit constants; the only numerically certified constant is $c_R<1.18$, which
+affects only part (3). Dixon's identity and Dougall's summation are quoted from the literature (and checked numerically).
+The non-integer extension (Theorem~\ref{thm:real}) relies on a standard Stirling estimate stated without explicit constants.
+Bibliographic data below were not machine-resolved (no DOIs given).
+
+\begin{thebibliography}{9}
+\bibitem{Dixon} A.~C. Dixon, \emph{Summation of a certain series}, Proc.\ London Math.\ Soc.\ (1) \textbf{35} (1903), 284--289.
+\bibitem{Ekhad} S.~B. Ekhad, \emph{A very short proof of Dixon's theorem}, J.\ Combin.\ Theory Ser.\ A \textbf{54} (1990), 141--142.
+\bibitem{Dougall} J.~Dougall, \emph{On Vandermonde's theorem and some more general expansions}, Proc.\ Edinburgh Math.\ Soc.\ \textbf{25} (1907), 114--132.
+\bibitem{Bailey} W.~N. Bailey, \emph{Generalized Hypergeometric Series}, Cambridge Univ.\ Press, 1935, Ch.~6.
+\bibitem{AAR} G.~E. Andrews, R.~Askey, R.~Roy, \emph{Special Functions}, Cambridge Univ.\ Press, 1999, \S2.8.
+\end{thebibliography}
+
+\end{document}

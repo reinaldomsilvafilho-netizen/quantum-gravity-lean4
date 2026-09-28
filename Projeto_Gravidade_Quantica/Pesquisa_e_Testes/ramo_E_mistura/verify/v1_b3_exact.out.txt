@@ -1,0 +1,15 @@
+non-trivial involutions of B3 (excluding +-1): 18
+PASS 18 non-trivial involutions besides -1 (19 incl. -1)
+|col|^2 = (1/3, 1/3, 1/3): 6 generators, kinds ['sign flips only']
+|col|^2 = (1/2, 1/2, 0): 6 generators, kinds ['transposition']
+|col|^2 = (2/3, 1/6, 1/6): 6 generators, kinds ['transposition x signs']
+PASS exactly three fixed columns, 6 generators each
+PASS pure vertex transpositions give (1/2,1/2,0): a zero PMNS entry
+PASS sign flips only -> TM2 column (1/3,1/3,1/3)
+PASS transposition x opposite sign on the swapped pair -> TM1 column (2/3,1/6,1/6)
+PASS analytic zero: first entry of Uw^dag (0,1,-1)/sqrt2 is exactly 0
+PASS numeric: random G_TM1-invariant M_nu has a (2/3,1/6,1/6) column (20 samples)
+PASS NC: random M_nu without symmetry has no such column
+PASS NC: 3-cycle is not an involution (filtered out)
+
+SUMMARY: 9/9 PASS

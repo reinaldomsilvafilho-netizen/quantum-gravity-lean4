@@ -1,0 +1,24 @@
+l=0.4: Res(s=0)=0.999999999998  Res(s=-1/l^2)=-1.0  (x l^2 -> weight -1.0)
+PASS A1 l=0.4: massless residue +1
+PASS A1 l=0.4: massive pole m^2=1/l^2 has residue -1 (ghost)
+PASS NC l=0.4: healthy control has residue +1 at the massive pole
+l=1.0: Res(s=0)=0.99999999999  Res(s=-1/l^2)=-1.00000000001  (x l^2 -> weight -1.00000000001)
+PASS A1 l=1.0: massless residue +1
+PASS A1 l=1.0: massive pole m^2=1/l^2 has residue -1 (ghost)
+PASS NC l=1.0: healthy control has residue +1 at the massive pole
+l=3.0: Res(s=0)=0.99999999991  Res(s=-1/l^2)=-1.00000000009  (x l^2 -> weight -1.00000000009)
+PASS A1 l=3.0: massless residue +1
+PASS A1 l=3.0: massive pole m^2=1/l^2 has residue -1 (ghost)
+PASS NC l=3.0: healthy control has residue +1 at the massive pole
+energy-plane residue at E=+omega_m: book 0.4096159602, healthy -0.4096159603
+PASS A3 energy residue has sign opposite to healthy massive field
+Yukawa rel errs ['3.55e-30', '1.97e-31', '1.97e-31', '1.97e-31']  mutant ['39.0', '5.72', '1.16', '0.0373']
+PASS A4 V(r) = -(GM/r)(1 - e^{-r/l}), alpha = -1
+PASS A4 V(0) finite = -GM/l (limit r->0 of closed form)
+PASS NC mutated 1/k^2 + 1/(k^2+m^2) disagrees
+PASS A5 isotropic Lorentzian branches have v_g <= 1 (max 1.0)
+  ansatz xi=0.5: v_g(k=0.3) = 1.066272854
+  ansatz xi=-0.5: v_g(k=0.3) = 0.9311930084
+PASS A5b ansatz: v_g > c only for xi > 0 (xi < 0 is subluminal)
+
+SUMMARY: 15/15 PASS
