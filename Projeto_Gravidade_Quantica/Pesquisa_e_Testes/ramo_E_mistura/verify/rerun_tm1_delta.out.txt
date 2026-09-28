@@ -1,7 +1,0 @@
-s23^2=0.450: cos d=-0.221  delta = 102.8 or 257.2 deg
-s23^2=0.470: cos d=-0.132  delta =  97.6 or 262.4 deg
-s23^2=0.500: cos d=+0.000  delta =  90.0 or 270.0 deg
-s23^2=0.530: cos d=+0.132  delta =  82.4 or 277.6 deg
-s23^2=0.558: cos d=+0.257  delta =  75.1 or 284.9 deg
-s23^2=0.561: cos d=+0.270  delta =  74.3 or 285.7 deg
-s23^2=0.580: cos d=+0.356  delta =  69.1 or 290.9 deg

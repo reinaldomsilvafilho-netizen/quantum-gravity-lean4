@@ -1,8 +1,0 @@
-[PASS] K1 z*G(z) non-decreasing for 200 random positive densities 
-[PASS] K2 d_s(tau=1e-6) >= 4 - 1e-3 for positive densities (min d_s = 4.000270)
-[PASS] K3 finite-difference vs moment identity agree (max |diff| = 7.24e-11)
-[PASS] NC1 book symbol (negative weight) violates the bound: d_s(1e-6) < 2.01 (fd 2.000886, moment 2.000886)
-[PASS] NC1b residue of 1/(z+z^2) at z=-1 equals -1 (negative weight) (-1.0)
-[PASS] NC2 flipped-sign density breaks monotonicity of z*G (detector works) 
-
-6/6 checks passed

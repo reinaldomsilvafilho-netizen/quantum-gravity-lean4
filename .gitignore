@@ -22,3 +22,8 @@ _staging/
 *.toc
 *.fls
 *.fdb_latexmk
+
+# unpublished work stays local (only Zenodo material, update notes and audit records go to GitHub)
+Projeto_Gravidade_Quantica/Pesquisa_e_Testes/
+Projeto_Gravidade_Quantica/Aplicacoes_Tecnologicas/
+Outros_Projetos/
