@@ -115,7 +115,7 @@ A phenomenological study of an S₃-circulant parametrization of charged-fermion
 
 The parameter count is explicit: 9 continuous inputs (4 free) and at least 8 discrete choices, against 12 observables. That leaves 6 genuine tests:
 - the two that pass (m_τ and |V_us|) are known relations;
-- the one new sharp relation, for the reactor angle θ₁₃, is disfavoured by more than 4σ.
+- the sharpest mixing relation, sin θ₁₃ = sin θ_C/√2, is an ansatz adopted from the literature (King 2012), not derived from the parametrization; it is disfavoured by more than 4σ, so the model has no working mixing mechanism of its own.
 
 Two structural limitations are stated:
 - if both quark sectors are circulant, the CKM matrix is trivial;

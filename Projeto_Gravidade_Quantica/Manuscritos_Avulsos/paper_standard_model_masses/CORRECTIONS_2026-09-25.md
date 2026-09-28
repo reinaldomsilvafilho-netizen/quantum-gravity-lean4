@@ -49,7 +49,7 @@ New references, each DOI resolved with the Crossref API: Koide 1982 (10.1007/BF0
 | Not independent of inputs | 2 | J_CP (∝ s23 s13); Q_cbt (scheme spread 0.65–0.72 exceeds the claimed agreement) |
 | Remaining tests | 6 | m_τ +0.4σ and \|V_us\| 0.0σ both pass, and both are known relations (1982–83 and 1968); δ −1.2σ; θ12 +2.0σ; θ23 −2.8σ; θ13 +4.5 to +5.1σ |
 
-Balance: 9 continuous inputs plus at least 8 discrete choices, against 12 observables. After calibration, the only passing tests are the known Koide and GST relations. The one new sharp relation, sin θ13 = sin θC/√2, is disfavored at more than 4σ.
+Balance: 9 continuous inputs plus at least 8 discrete choices, against 12 observables. After calibration, the only passing tests are the known Koide and GST relations. The sharpest mixing relation, sin θ13 = sin θC/√2, is an ansatz adopted from King (2012), not a prediction of the parametrization, and it is disfavored at more than 4σ.
 
 ## Items left open
 

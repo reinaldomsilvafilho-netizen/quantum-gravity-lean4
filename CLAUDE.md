@@ -68,6 +68,12 @@ Compact state for any model continuing this project. Read this first, then `Proj
    - single-source build (F-19);
    - author confirmation of the AI/conflict declarations (F-21, F-29);
    - audit of *Beyond the Spectrum* and the cobordism paper.
+   - Ch. 14 (written with Gemini, not in the master): see F-52. Do not integrate it as it stands. Salvage in this order:
+     1. a precise balloon proposition, which goes into ch. 9;
+     2. a chattering conjecture with an explicit cost; check the prior art first (Robbins; Sussmann 1997);
+     3. a remark that an L∞ bound on II rules out Nash–Kuiper corrugations.
+
+     Use a sonnet corrector and an opus verifier.
 2. **Phase 2 (research cycle per conjecture):** choose → literature → formulate → Python → prove → Lean → adversarial → integrate and publish. Suggested order:
    1. continuous Dixon for integer x, via Poisson summation plus contour shift (I₃/I₁ ≈ e^{−3x} numerically);
    2. regularity invariance for curves;
