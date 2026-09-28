@@ -1,0 +1,20 @@
+PASS KL positive rho: min d_s over tau >= 4  min=4.000002
+PASS NC book symbol k^2+k^4 violates the bound  min d_s=2.0009
+PASS z^2+z+1 (complex pair, n=2, no massless pole) has d_s(UV)=2  2.0001
+PASS z(z^2+z+1) (with massless pole) has d_s(UV)=4/3  1.3335
+PASS window lower 3.7e-4  3.7037e-04
+PASS window upper 3.3e-3  3.3333e-03
+PASS one-scale r=8/N^2=2.2e-3  2.2222e-03
+PASS 2.2 sigma at dr=1e-3  2.222
+PASS 1.1 sigma from 12/N^2  1.111
+PASS NC swapped-mass formula fails the 4/3 edge  0.727
+PASS m_phi(N=60) ~ 2.7-2.9e13 GeV  2.730e+13 GeV
+PASS ell ~ 7e-30 m  7.227e-30 m
+PASS ell/l_P ~ 4.4e5 (4.2-4.6)  4.471e+05
+PASS 4 ell < 2.9e-29 m (rounding)  2.891e-29 m
+PASS OoM m_phi/MPl in 1e-6..1e-5  2.24e-06
+PASS NC non-reduced Planck mass gives ell outside 6.5-7.5e-30  1.442e-30
+PASS literal ell_P=1/m_2 => r = Starobinsky to ~2.5e-12  x=4.471e+05, 1-N^2r/12=2.50e-12
+PASS ... so the one-scale 8/N^2 case is excluded under the conjecture  N^2r=12.000000
+
+18/18 checks passed

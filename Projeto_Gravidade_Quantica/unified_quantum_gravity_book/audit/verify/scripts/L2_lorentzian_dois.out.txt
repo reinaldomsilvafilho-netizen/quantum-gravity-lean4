@@ -1,0 +1,13 @@
+Lehmann1954: OK | Über Eigenschaften von Ausbreitungsfunktionen und Renormierungskonstanten quantisierter Felder | Lehmann | Il Nuovo Cimento 11 4 342-357 | [[1954, 4]]
+OS1973: OK | Axioms for Euclidean Green's functions | Osterwalder; Schrader | Communications in Mathematical Physics 31 2 83-112 | [[1973, 6]]
+BBMM2016: OK | Spectral dimension from nonlocal dynamics on causal sets | Belenchia; Benincasa; Marcianò; Modesto | Physical Review D 93 4 044017 | [[2016, 2, 8]]
+Anselmi2018: OK | Fakeons and Lee-Wick models | Anselmi | Journal of High Energy Physics 2018 2 141 | [[2018, 2]]
+AnselmiPiva2018: OK | Quantum gravity, fakeons and microcausality | Anselmi; Piva | Journal of High Energy Physics 2018 11 21 | [[2018, 11]]
+Anselmi2021: OK | Diagrammar of physical and fake particles and spectral optical theorem | Anselmi | Journal of High Energy Physics 2021 11 30 | [[2021, 11]]
+ABP2020: OK | Predictions of quantum gravity in inflationary cosmology: effects of the Weyl-squared term | Anselmi; Bianchi; Piva | Journal of High Energy Physics 2020 7 211 | [[2020, 7]]
+Stelle1977: OK | Renormalization of higher-derivative quantum gravity | Stelle | Physical Review D 16 4 953-969 | [[1977, 8, 15]]
+Stelle1978: OK | Classical gravity with higher derivatives | Stelle | General Relativity and Gravitation 9 4 353-371 | [[1978, 4]]
+LeeWick1970: OK | Finite Theory of Quantum Electrodynamics | Lee; Wick | Physical Review D 2 6 1033-1048 | [[1970, 9, 15]]
+GOW2008: OK | The Lee-Wick standard model | Grinstein; O’Connell; Wise | Physical Review D 77 2 025012 | [[2008, 1, 14]]
+NEG_mutated: HTTP 404  (NC PASS)
+11/11 resolved

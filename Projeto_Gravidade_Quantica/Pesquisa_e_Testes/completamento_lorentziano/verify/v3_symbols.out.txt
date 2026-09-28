@@ -1,0 +1,11 @@
+[PASS] B1 book symbol: moment d_s = erfc closed form (max diff 6.3e-07)
+[PASS] NC1 erfc without e^{x^2} fails 
+   d_s at tau=1: book 2.7009, entire 2.5694; tau=10: book 3.4290, entire 3.8084
+[PASS] T1 entire form factor: d_s 4 -> 2 (UV 2, IR 4) (UV 2.0000, IR 4.0000)
+[PASS] T2 max |d_s^T - d_s^B| on a 49-point grid is 0.38 +- 0.01 (max 0.3794 at tau = 10)
+[PASS] L1 polynomial: n=2 -> d_s 2, n=3 (complex pair) -> 4/3 (2.0000, 1.3335)
+[PASS] L2 rational symbol u(u^2+u+1)/(u+2): massless pole residue > 0, complex pair, S > 0 on u > 0, d_s(UV) = 2 (poles [-0.5+0.866j -0.5-0.866j  0. +0.j   ], residues [-1.+0.j -1.-0.j  2.+0.j], d_s 2.0000)
+[PASS] PU1 modes are PU oscillators with w1 = |p|, w2 = sqrt(p^2+1/l^2); w1 = 0 only at p = 0; w2 > w1 always 
+[PASS] NC3 mutated (massless) second branch gives equal frequencies -> detected 
+
+8/8 checks passed

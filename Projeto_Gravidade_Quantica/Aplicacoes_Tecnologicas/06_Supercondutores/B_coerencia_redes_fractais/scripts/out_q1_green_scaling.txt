@@ -1,0 +1,57 @@
+# oracle check: separable formula vs direct inverse (small boxes)
+  dim=2 L=12: separable=0.455561849568 direct=0.455561849568
+  dim=3 L=7: separable=0.212300841607 direct=0.212300841607
+# square lattice: Gbar vs N;  slope dGbar/dlnN (expect 1/(4pi)=0.07958):
+  N=     256 Gbar=0.489491 slope=0.05654
+  N=    1024 Gbar=0.578235 slope=0.06402
+  N=    4096 Gbar=0.674717 slope=0.06960
+  N=   16384 Gbar=0.776513 slope=0.07343
+  N=   65536 Gbar=0.881743 slope=0.07591
+  N=  262144 Gbar=0.989096 slope=0.07744
+  N= 1048576 Gbar=1.097719 slope=0.07835
+# cubic lattice: Watson integral oracle G_inf = W/2 = 0.758193
+  N=     512 Gbar=0.214873
+  N=    1728 Gbar=0.222080
+  N=    4096 Gbar=0.226616
+  N=   13824 Gbar=0.232182
+  N=   32768 Gbar=0.235555
+  N=  110592 Gbar=0.239550
+  N=  262144 Gbar=0.241892
+  N=  884736 Gbar=0.244585
+  N= 2097152 Gbar=0.246121
+# Sierpinski carpet (2D)
+  carpet level 1: N=8 Gbar=0.357292 +- 0.000000  R_face=1.750000  (0.0s)
+  carpet level 2: N=64 Gbar=0.556293 +- 0.000000  R_face=1.911583  (0.0s)
+  carpet level 3: N=512 Gbar=0.857380 +- 0.000000  R_face=2.292499  (0.0s)
+  carpet level 4: N=4096 Gbar=1.274578 +- 0.000000  R_face=2.834092  (6.0s)
+  carpet level 5: N=32768 Gbar=1.772975 +- 0.034515  R_face=3.534816  (1.2s)
+  carpet level 6: N=262144 Gbar=2.514090 +- 0.046219  R_face=4.419686  (33.1s)
+  carpet: resistance ratio rho=1.25033 (prev 1.24725) -> d_w=2.0961, d_s(resistance)=1.8060, d_f=1.8928
+# Menger sponge (3D)
+  Menger sponge level 1: N=20 Gbar=0.241793 +- 0.000000  R_face=0.800000  (0.0s)
+  Menger sponge level 2: N=400 Gbar=0.346094 +- 0.000000  R_face=0.390461  (0.0s)
+  Menger sponge level 3: N=8000 Gbar=0.440079 +- 0.015283  R_face=0.204848  (0.6s)
+  Menger sponge level 4: N=160000 Gbar=0.535258 +- 0.015532  R_face=0.109792  (213.8s)
+  Menger sponge: resistance ratio rho=0.53597 (prev 0.52463) -> d_w=2.1591, d_s(resistance)=2.5259, d_f=2.7268
+# products with a Dirichlet chain of matching linear size (d_s adds exactly)
+  Vicsek(3) x chain level 1: N=15 Gbar=0.282126
+  Vicsek(3) x chain level 2: N=225 Gbar=0.424145
+  Vicsek(3) x chain level 3: N=3375 Gbar=0.562943
+  Vicsek(3) x chain level 4: N=50625 Gbar=0.688424
+  Vicsek(3) x chain level 5: N=759375 Gbar=0.795149
+  gasket x chain level 1: N=6 Gbar=0.186111
+  gasket x chain level 2: N=48 Gbar=0.219467
+  gasket x chain level 3: N=312 Gbar=0.249187
+  gasket x chain level 4: N=1920 Gbar=0.276083
+  gasket x chain level 5: N=11616 Gbar=0.299693
+  gasket x chain level 6: N=69888 Gbar=0.319648
+  gasket x chain level 7: N=419712 Gbar=0.336014
+# fits Gbar = G_inf + B N^-kappa on the largest sizes; d_s(fit) = 2/(1-kappa)
+  family | d_s(ref) | kappa_pred | kappa_fit | d_s(fit) | G_inf | rms(pred d_s) | rms(d_f control)
+  square (d_s=2): log law Gbar = 0.07725 ln N + 0.02594  (1/(4pi)=0.07958)
+  cubic (d_s=3) | 3.0000 | 0.3333 | 0.1930 | 2.4784 | 0.2547 | 1.30e-03 | 1.30e-03
+  gasket (d_s=1.365) | 1.3652 | -0.4650 | -0.4650 | 1.3652 | -0.0327 | 4.24e-07 | 8.00e-02
+  carpet | 1.8060 | -0.1074 | -0.1408 | 1.7532 | -0.3156 | 2.11e-02 | 5.01e-02
+  Menger sponge | 2.5259 | 0.2082 | 0.0158 | 2.0321 | 2.4490 | 6.61e-02 | 8.25e-02
+  Vicsek x chain (d_s=2.188) | 2.1886 | 0.0862 | 0.0338 | 2.0700 | 1.9643 | 2.79e-02 | 7.65e-02
+  gasket x chain (d_s=2.365) | 2.3652 | 0.1544 | 0.0874 | 2.1915 | 0.4356 | 7.27e-03 | 1.46e-02

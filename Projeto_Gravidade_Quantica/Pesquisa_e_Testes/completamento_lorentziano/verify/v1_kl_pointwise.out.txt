@@ -1,0 +1,7 @@
+[PASS] K1 pointwise d_s(tau) >= 4 on 25 tau in [1e-6,1e6] for 40 random positive measures (min d_s = 4.000000)
+[PASS] K2 moment formula = finite difference of ln P (independent route) (max diff 9.5e-10)
+[PASS] K3 gapped positive measure (w0 = 0): d_s >= 4 pointwise (min 4.000019)
+[PASS] NC1 book symbol (weight -1) violates the bound (min d_s = 2.0009)
+[PASS] NC2 flipped residue: detector fires (S/z non-monotone or d_s < 4) (S/z monotone: False; min d_s = 3.74571)
+
+5/5 checks passed

@@ -524,6 +524,51 @@ Asymptotic expansion confirms:
 \end{equation}
 where in the infrared limit the $-\tau/(2\ell_P^2) = -2z^2$ term cancels against the $2z^2 + 3 + \mathcal{O}(z^{-2})$ reciprocal tail, restoring $d_s \to 4$; the approach is slow, $d_s = 4 - 12\ell_P^2/\tau + \mathcal{O}(\ell_P^4/\tau^2)$. Closed forms of this kind are known: Sotiriou, Visser and Weinfurtner \cite{sotiriou2011dispersion} evaluate the return probability of the anisotropic operator $-\partial_t^2 + f(-\nabla^2)$ with the two-scale symbol $f(k^2) = k^2(1 + k^2/4K^2)$ in terms of the error function in $2+1$ dimensions, and with $f(k^2) = k^2(1 + k^2/8K^2)$ in terms of Bessel functions in $3+1$ dimensions. The four-dimensional isotropic case reduces to theirs: with $I_n(\tau) = \int_0^\infty u^n e^{-\tau(u + \ell_P^2 u^2)} \dif u$, integration by parts gives $I_1 = (\tau^{-1} - I_0)/(2\ell_P^2)$, and $I_0$ is, up to a constant factor, their two-dimensional spatial integral. We have checked \eqref{eq:analytical_ds_formula} against direct numerical quadrature of the heat-kernel diagonal for $\tau/\ell_P^2 \in [10^{-3}, 10^{2}]$. The formula gives the spectral dimension of this particular heat-kernel model. As for Ho\v{r}ava--Lifshitz and other modified diffusion equations, the kernel is not positive and admits no probabilistic interpretation \cite{calcagni2013probing}. Whether quantum spacetime diffuses according to this symbol is an assumption.
 
+\subsection{Lorentzian Completion}
+\label{sec:lorentzian_completion}
+
+Everything above is a property of a Euclidean heat kernel; nothing in this chapter, or in the simplicial construction of this book, supplies Lorentzian dynamics with ultraviolet spectral dimension $d_s = 2$. This is a structural obstruction, not a gap left by incomplete computation.
+
+\textbf{The K\"all\'en--Lehmann obstruction.} By the K\"all\'en--Lehmann representation \cite{Lehmann1954}, the two-point function of a scalar field, or of a positive-metric component of a field, in a Lorentz-invariant, reflection-positive Euclidean theory with $P(\tau) < \infty$ (equivalently, by the Osterwalder--Schrader reconstruction theorem \cite{OS1973}, of a positive-metric Lorentzian theory) is a Stieltjes function of $z = k^2$,
+\begin{equation}
+    \label{eq:kl_representation}
+    G(z) = \frac{w_0}{z} + \int \frac{\rho(\dif \mu^2)}{z + \mu^2}, \qquad w_0 \ge 0,\ \rho \ge 0.
+\end{equation}
+Covariant-gauge graviton propagators, whose free-field Hilbert space carries an indefinite metric before gauge-fixing, are not directly covered by this hypothesis; the argument below applies to a positive-metric component. Then $zG(z)$ is non-decreasing, so $G(z) \ge c/z$ for $z \ge z_0$ with $c \coloneqq z_0 G(z_0)$; the symbol $S = 1/G$ therefore satisfies $S(z) \le z/c$ in the ultraviolet, and the associated four-dimensional heat-kernel trace obeys $P(\tau) \gtrsim \tau^{-2}$ as $\tau \to 0$. This argument, by itself, bounds only the ultraviolet limit,
+\begin{equation}
+    \label{eq:kl_bound}
+    \liminf_{\tau \to 0} d_s(\tau) \ge 4.
+\end{equation}
+The pointwise statement $d_s(\tau) \ge 4$ for every $\tau > 0$ is stronger and needs a further, Chebyshev-type moment bound on $zG(z)$ under the full measure $\rho$, not only its ultraviolet tail; we do not carry out that step here. The argument is Weinberg's \cite{Weinberg1995} (\S 10.7, p.~460); it is standard, and BBMM record it in \S V of \cite{BBMM2016}. It is elementary: the mean-value inequality for the non-decreasing function $zG(z)$ bounds $S$ from above on $[z_0,\infty)$, and $\int z\,e^{-\tau S(z)} \dif z$ is then bounded below by its restriction to $[z_0,\infty)$. The symbol $k^2 + \ell_P^2 k^4$ used above has spectral density $\rho = \delta(\mu^2) - \delta(\mu^2 - \ell_P^{-2})$: it violates $\rho \ge 0$ at exactly the residue-$(-1)$ pole already flagged as a ghost, and this negative weight is the only way it evades \eqref{eq:kl_bound}. Consequently, \emph{any} Lorentzian completion of this symbol with $d_s \to 2$ in the ultraviolet must give up at least one of: positivity of the spectral measure, locality (a symbol not representable by \eqref{eq:kl_representation}, nor polynomial), or Lorentz invariance. This is the same trichotomy already used for the two ghost-free routes discussed above: Ho\v{r}ava--Lifshitz $z=3$ keeps positivity and locality but gives up Lorentz invariance above $M_\ast$; entire form factors (the $d_s = 2$ family introduced above, a different family from Modesto's ghost-free construction \cite{modesto2012}) keep Lorentz invariance but give up a polynomial, finitely-many-poles symbol, i.e.\ locality; whether their spectral density stays positive is not established here.
+
+\textbf{The fakeon route.} A third, Lorentz-invariant and local completion gives up positivity of the residue instead: the fakeon prescription of Anselmi and Piva \cite{Anselmi2018, AnselmiPiva2018, Anselmi2021}. We record it here in conditional form; none of it is established, or claimed, by this book. If the massive pole is treated as a \emph{fakeon} (removed from the asymptotic spectrum by a non-analytic Wick rotation of the Euclidean theory, rather than by an ordinary $i\epsilon$ prescription), then: the symbol, the closed-form return probability, and $d_s(\tau)$ of \eqref{eq:analytical_ds_formula} are unchanged, since the prescription is a rule for continuing Euclidean correlators to Minkowski amplitudes and not a modification of the Euclidean action; the theory is Lorentz-invariant and local; $R + R^2 + C^2$ quadratic gravity is renormalizable by power counting \cite{Stelle1977}, compatibly with the fakeon prescription \cite{ABP2020}; and unitarity is proved perturbatively, to all orders, via a spectral optical theorem \cite{Anselmi2021}. The cost is a violation of microcausality at centre-of-mass energies above $m_\chi$, at distances or time intervals below $1/|\Gamma_\chi|$, where $\Gamma_\chi < 0$ is the fakeon width, with $\Gamma_\chi \propto m_\chi^3/M_P^2 \ll m_\chi$ \cite{AnselmiPiva2018}.
+
+In the transverse-traceless sector of $R + R^2 + C^2$ the kinetic operator is $k^2(1 + k^2/m_2^2)$ \cite{Stelle1978}, formally the symbol of Section~\ref{sec:analytical_solutions} with $\ell_P \to \ell \coloneqq 1/m_2$. If an inflationary phase is driven by the same construction, with $m_\varphi$ the scalar ($R^2$) inflaton mass and $m_\chi$ the spin-2 ($C^2$) fakeon mass, consistency of the prescription requires $m_\chi > m_\varphi/4$ and gives, to leading order in the number of e-folds $N$ \cite{ABP2020},
+\begin{equation}
+    \label{eq:fakeon_r}
+    r = \frac{24\, m_\chi^2}{N^2\left( m_\varphi^2 + 2 m_\chi^2 \right)}, \qquad \frac{4}{3} < N^2 r < 12,
+\end{equation}
+so that, for $N = 60$, $r \in [3.7 \times 10^{-4},\, 3.3 \times 10^{-3}]$. In the special case of a single scale, $m_\chi = m_\varphi = 1/\ell$, this gives $N^2 r = 8$, i.e.\ $r = 8/N^2 \approx 2.2 \times 10^{-3}$ at $N = 60$: about $2.2\sigma$ from zero at the target sensitivity of LiteBIRD ($\delta r \approx 10^{-3}$), and about $1.1\sigma$ from the Starobinsky value $r = 12/N^2$. Taken alone this is a weak test, since it would not distinguish the single-scale fakeon prediction from pure $R^2$ inflation at that significance. The corresponding length scale is
+\begin{equation}
+    \ell = \frac{\hbar c}{m_\chi c^2} \approx 7 \times 10^{-30}\,\text{m} \approx 4.4 \times 10^5\, \ell_P
+\end{equation}
+(dimensional check: $[\hbar c]/[m_\chi c^2] = (\text{GeV}\cdot\text{m})/\text{GeV} = \text{m}$), and the general consistency bound $m_\chi > m_\varphi/4$ gives $\ell < 2.9 \times 10^{-29}\,\text{m}$. Both values are far above the benchmark $\ell_\ast = \ell_P$ used in Section~\ref{sec:experimental}. These are two distinct scales, kept separate here: $\ell = 1/m_\chi$ is the fakeon's Compton wavelength in the Lorentz-invariant completion above, while $\ell_\ast$ in \eqref{eq:graviton_dispersion} parametrizes the Lorentz-\emph{violating} $\xi$-term of Section~\ref{sec:experimental}. Because the fakeon completion is Lorentz invariant, it predicts $\xi = 0$ there (no dispersion signal of that form), as already noted below \eqref{eq:graviton_dispersion}; it does not fix $\ell_\ast$. If this route applied to the operator of this chapter, it would instead fix the fakeon scale $\ell = 1/m_\chi$.
+
+\textbf{Alternatives, without ranking.} Lee--Wick theories \cite{LeeWick1970, GOW2008} share the book's tree-level symbol exactly: the standard construction gives $k^2(1 + k^2/M^2)$ at tree level, and the complex-conjugate pole pair sometimes attributed to Lee--Wick models arises, when it does, from the resummed width of that pole, not from the tree-level symbol. A polynomial symbol of degree $n$ in $k^2$ has $d_s(\mathrm{UV}) = 4/n$ in four Euclidean dimensions; an explicit complex-conjugate pole pair in the symbol itself, together with the massless (graviton) pole, rather than in a resummed propagator, needs degree $n \ge 3$ and so gives $d_s \le 4/3$, not $2$ (without the massless pole, a bare complex-conjugate pair already has $n = 2$ and $d_s = 2$). Nonlocal entire form factors (the $d_s = 2$ family of Section~\ref{sec:analytical_solutions}, distinct from Modesto's construction \cite{modesto2012}) and the Ho\v{r}ava--Lifshitz $z = 3$ completion \cite{horava2009spectral} are the other two routes. We do not rank these against the fakeon prescription: Lee--Wick and the fakeon both give up positivity of the residue, sharing the same tree-level symbol and the same negative residue and differing only in the pole prescription, while the entire-form-factor route gives up locality and the Ho\v{r}ava--Lifshitz route gives up Lorentz invariance; none is derived from the simplicial construction of this book.
+
+\begin{conjecture}[Spin-2 Identification]
+\label{conj:spin2_identification}
+In the continuum limit of the simplicial construction of this book (a limit not constructed here), the heat-kernel symbol $k^2 + \ell_P^2 k^4$ of Section~\ref{sec:analytical_solutions} coincides, up to normalization and the formal substitution $\ell_P \to \ell \coloneqq 1/m_2$, with the transverse-traceless (spin-2) kinetic operator of quadratic gravity $\int \sqrt{g}\, (R + aR^2 + bC^2)$ linearized about flat space, with $m_2^2 \propto 1/b$ \cite{Stelle1978}. The scale $m_2$ is left free by this identification, subject only to the consistency bound $m_\chi > m_\varphi/4$ of \eqref{eq:fakeon_r}; the Conjecture does not set $m_2$ to the physical Planck mass $1/\ell_P$. If it holds, the fakeon prescription for $R + R^2 + C^2$ applies directly to the operator of this chapter, without altering the symbol, the closed form \eqref{eq:analytical_ds_formula}, or $d_s(\tau)$.
+\end{conjecture}
+
+\begin{remark}
+Establishing Conjecture~\ref{conj:spin2_identification} would need: (a) identifying, within the simplicial/minimax construction of Chapters~2--9, a field playing the role of the metric perturbation $h_{\mu\nu}$, together with its transverse-traceless projector; (b) deriving, rather than positing, that the second variation of the (regularized) simplicial action about a flat background produces the Einstein--Hilbert-plus-Weyl-squared combination above, with the coefficient $b$ that fixes the scale $m_2$; and (c) checking that no other term surviving the continuum limit spoils the identification. Since $m_\varphi$ is already fixed by the amplitude $A_s$, as used below, item (b) would fix $m_\chi = m_2$ and hence the ratio $m_\chi/m_\varphi$ that controls \eqref{eq:fakeon_r}, rather than leave it free. None of (a)--(c) is attempted here.
+\end{remark}
+
+\begin{remark}
+The scale $m_2$ of Conjecture~\ref{conj:spin2_identification} and the single-scale choice $m_\chi = m_\varphi$ of \eqref{eq:fakeon_r} are independent specializations and should not be conflated. Setting $m_2$ literally to the physical Planck mass, $\ell = \ell_P$, i.e.\ $m_\chi = M_P$, gives $m_\chi/m_\varphi \approx 4.5 \times 10^5$ and, with $m_\varphi$ fixed by $A_s$, $N^2 r = 12(1 - 2.5\times 10^{-12})$: indistinguishable from the Starobinsky value $12/N^2$, and excluding the single-scale case $r = 8/N^2$ used above. The Conjecture as stated leaves $m_2$ free within $m_\chi > m_\varphi/4$, so $r$ ranges over $4/(3N^2) < r < 12/N^2$; $\ell = \ell_P$ and $m_\chi = m_\varphi$ are two different, mutually exclusive choices within that range, not consequences of the Conjecture.
+\end{remark}
+
 \subsection{The Ryu--Takayanagi Hemisphere as a Stationary Point of Mean Curvature Flow}
 In the hyperbolic metric $g = \frac{L^2}{z^2}(\dif z^2 + \dif \mathbf{x}^2)$, $\mathbf{x} \in \R^{d-1}$, $z>0$, consider the ball $A = \{ \|\mathbf{x}\| \le R_0 \}$ on the boundary $z = 0$ and the hemisphere
 \begin{equation}
@@ -680,6 +725,78 @@ L.~Modesto,
 \emph{Super-renormalizable quantum gravity},
 Physical Review D, \textbf{86} (2012), 044005,
 \doi{10.1103/PhysRevD.86.044005}.
+
+\bibitem{Lehmann1954}
+H.~Lehmann,
+\emph{{\"U}ber Eigenschaften von Ausbreitungsfunktionen und Renormierungskonstanten quantisierter Felder},
+Il Nuovo Cimento, \textbf{11} (1954), no.~4, 342--357,
+\doi{10.1007/BF02783624}.
+
+\bibitem{OS1973}
+K.~Osterwalder and R.~Schrader,
+\emph{Axioms for Euclidean Green's functions},
+Communications in Mathematical Physics, \textbf{31} (1973), no.~2, 83--112,
+\doi{10.1007/BF01645738}.
+
+\bibitem{Weinberg1995}
+S.~Weinberg,
+\emph{The Quantum Theory of Fields, Volume I: Foundations},
+Cambridge University Press, Cambridge, 1995,
+\doi{10.1017/CBO9781139644167}.
+
+\bibitem{BBMM2016}
+A.~Belenchia, D.~M.~T. Benincasa, A.~Marcian\`o, and L.~Modesto,
+\emph{Spectral dimension from nonlocal dynamics on causal sets},
+Physical Review D, \textbf{93} (2016), 044017,
+\doi{10.1103/PhysRevD.93.044017}.
+
+\bibitem{Anselmi2018}
+D.~Anselmi,
+\emph{Fakeons and Lee--Wick models},
+Journal of High Energy Physics, \textbf{2018} (2018), no.~2, 141,
+\doi{10.1007/JHEP02(2018)141}.
+
+\bibitem{AnselmiPiva2018}
+D.~Anselmi and M.~Piva,
+\emph{Quantum gravity, fakeons and microcausality},
+Journal of High Energy Physics, \textbf{2018} (2018), no.~11, 21,
+\doi{10.1007/JHEP11(2018)021}.
+
+\bibitem{Anselmi2021}
+D.~Anselmi,
+\emph{Diagrammar of physical and fake particles and spectral optical theorem},
+Journal of High Energy Physics, \textbf{2021} (2021), no.~11, 30,
+\doi{10.1007/JHEP11(2021)030}.
+
+\bibitem{ABP2020}
+D.~Anselmi, E.~Bianchi, and M.~Piva,
+\emph{Predictions of quantum gravity in inflationary cosmology: effects of the Weyl-squared term},
+Journal of High Energy Physics, \textbf{2020} (2020), no.~7, 211,
+\doi{10.1007/JHEP07(2020)211}.
+
+\bibitem{Stelle1977}
+K.~S. Stelle,
+\emph{Renormalization of higher-derivative quantum gravity},
+Physical Review D, \textbf{16} (1977), no.~4, 953--969,
+\doi{10.1103/PhysRevD.16.953}.
+
+\bibitem{Stelle1978}
+K.~S. Stelle,
+\emph{Classical gravity with higher derivatives},
+General Relativity and Gravitation, \textbf{9} (1978), no.~4, 353--371,
+\doi{10.1007/BF00760427}.
+
+\bibitem{LeeWick1970}
+T.~D. Lee and G.~C. Wick,
+\emph{Finite theory of quantum electrodynamics},
+Physical Review D, \textbf{2} (1970), no.~6, 1033--1048,
+\doi{10.1103/PhysRevD.2.1033}.
+
+\bibitem{GOW2008}
+B.~Grinstein, D.~O'Connell, and M.~B. Wise,
+\emph{The Lee--Wick standard model},
+Physical Review D, \textbf{77} (2008), no.~2, 025012,
+\doi{10.1103/PhysRevD.77.025012}.
 
 \bibitem{blas2011models}
 D.~Blas, O.~Pujol\`as, and S.~Sibiryakov,

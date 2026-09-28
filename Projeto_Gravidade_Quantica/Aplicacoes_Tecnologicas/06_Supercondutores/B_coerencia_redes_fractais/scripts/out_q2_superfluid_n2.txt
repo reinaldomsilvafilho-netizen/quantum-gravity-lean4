@@ -1,0 +1,20 @@
+# controls
+  cross-stitch flat levels: {5.0: (1, np.float64(6.008564307045585))}
+  sawtooth flat levels: {2.0: (1, np.float64(2.004282153522793))}
+  sawtooth metric (phys): 0.14433756645583076  (x0): 0.19245008844719433
+  cross-stitch: U=0.050 mu=5.000000 n=4.000000/3.0 |Delta|mean=0.0000e+00 [phys] Ds_relaxed=-2.9606e-12 Ds_frozen=-2.9606e-12 [x0] Ds_relaxed=-2.9606e-12 Ds_frozen=-2.9606e-12  (0s)
+  cross-stitch: U=0.100 mu=5.000000 n=3.000000/3.0 |Delta|mean=2.5068e-02 [phys] Ds_relaxed=+6.5301e-06 Ds_frozen=+6.5301e-06 [x0] Ds_relaxed=+6.5301e-06 Ds_frozen=+6.5301e-06  (0s)
+  cross-stitch: U=0.200 mu=5.000001 n=3.000000/3.0 |Delta|mean=5.0274e-02 [phys] Ds_relaxed=+2.6263e-05 Ds_frozen=+2.6263e-05 [x0] Ds_relaxed=+2.6263e-05 Ds_frozen=+2.6263e-05  (0s)
+  sawtooth: U=0.050 mu=1.999999 n=3.000000/3.0 |Delta|mean=1.2543e-02 [phys] Ds_relaxed=+6.4709e-03 Ds_frozen=+6.4709e-03 [x0] Ds_relaxed=+6.4709e-03 Ds_frozen=+8.8261e-03  (0s)
+  sawtooth: U=0.100 mu=1.999998 n=3.000000/3.0 |Delta|mean=2.5172e-02 [phys] Ds_relaxed=+1.2938e-02 Ds_frozen=+1.2938e-02 [x0] Ds_relaxed=+1.2938e-02 Ds_frozen=+1.7651e-02  (0s)
+  sawtooth: U=0.200 mu=1.999994 n=3.000000/3.0 |Delta|mean=5.0694e-02 [phys] Ds_relaxed=+2.5862e-02 Ds_frozen=+2.5862e-02 [x0] Ds_relaxed=+2.5862e-02 Ds_frozen=+3.5297e-02  (0s)
+  gasket n=2 DISCONNECTED cells: U=0.200 mu=1.999978 n=25.000000/25.0 |Delta|mean=2.2512e-02 [phys] Ds_relaxed=+1.1842e-11 Ds_frozen=+2.5079e-02 [x0] Ds_relaxed=+1.1842e-11 Ds_frozen=+5.9212e-12  (2s)
+# gasket chain, E=+2 flat band, half filled
+ n=1: metric(phys)=7.04124e-01 metric(x0)=8.50517e-01
+  gasket n=1: U=0.100 mu=1.999992 n=9.000000/9.0 |Delta|mean=1.0270e-02 [phys] Ds_relaxed=+1.2629e-02 Ds_frozen=+1.4287e-02 [x0] Ds_relaxed=+1.2629e-02 Ds_frozen=+1.9605e-02  (0s)
+  gasket n=1: U=0.200 mu=1.999980 n=9.000000/9.0 |Delta|mean=2.1119e-02 [phys] Ds_relaxed=+2.5792e-02 Ds_frozen=+2.9060e-02 [x0] Ds_relaxed=+2.5792e-02 Ds_frozen=+4.0005e-02  (0s)
+  gasket n=1: U=0.400 mu=2.000049 n=9.000000/9.0 |Delta|mean=4.4811e-02 [phys] Ds_relaxed=+5.3896e-02 Ds_frozen=+6.0234e-02 [x0] Ds_relaxed=+5.3896e-02 Ds_frozen=+8.3447e-02  (0s)
+ n=2: metric(phys)=1.78514e+00 metric(x0)=3.29837e+00
+  gasket n=2: U=0.100 mu=1.999995 n=24.000000/24.0 |Delta|mean=1.4553e-02 [phys] Ds_relaxed=+2.0529e-02 Ds_frozen=+2.4798e-02 [x0] Ds_relaxed=+2.0529e-02 Ds_frozen=+5.1693e-02  (2s)
+  gasket n=2: U=0.200 mu=1.999990 n=24.000000/24.0 |Delta|mean=2.9664e-02 [phys] Ds_relaxed=+4.1426e-02 Ds_frozen=+5.0060e-02 [x0] Ds_relaxed=+4.1426e-02 Ds_frozen=+1.0435e-01  (3s)
+  gasket n=2: U=0.400 mu=2.000042 n=24.000000/24.0 |Delta|mean=6.1726e-02 [phys] Ds_relaxed=+8.4322e-02 Ds_frozen=+1.0204e-01 [x0] Ds_relaxed=+8.4322e-02 Ds_frozen=+2.1250e-01  (3s)

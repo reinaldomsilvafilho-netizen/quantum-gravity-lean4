@@ -1,0 +1,7 @@
+cross-stitch: deg=1 metric(phys)=0.000000 metric(x0)=0.000000 minimal=0.000000 direct@Xmin=0.000000 perturbed-X min=0.001264  minimal/deg=0.00000 minimal*a0=0.00000
+sawtooth: deg=1 metric(phys)=0.144338 metric(x0)=0.192450 minimal=0.144338 direct@Xmin=0.144338 perturbed-X min=0.150132  minimal/deg=0.14434 minimal*a0=0.14434
+gasket n=1: deg=1 metric(phys)=0.704124 metric(x0)=0.850517 minimal=0.612372 direct@Xmin=0.612372 perturbed-X min=0.619792  minimal/deg=0.61237 minimal*a0=1.22474
+gasket n=2: deg=4 metric(phys)=1.785138 metric(x0)=3.298369 minimal=1.421529 direct@Xmin=1.421529 perturbed-X min=1.581027  minimal/deg=0.35538 minimal*a0=5.68612
+gasket n=3: deg=13 metric(phys)=5.087065 metric(x0)=13.185722 minimal=3.402206 direct@Xmin=3.402207 perturbed-X min=3.954076  minimal/deg=0.26171 minimal*a0=27.21765
+gasket n=4: deg=40 metric(phys)=14.994868 metric(x0)=52.742848 minimal=8.163772 direct@Xmin=8.163779 perturbed-X min=10.005737  minimal/deg=0.20409 minimal*a0=130.62035
+gasket n=5: deg=121 metric(phys)=44.718277 metric(x0)=210.970850 minimal=19.592760 direct@Xmin=19.592827 perturbed-X min=25.616279  minimal/deg=0.16192 minimal*a0=626.96832
