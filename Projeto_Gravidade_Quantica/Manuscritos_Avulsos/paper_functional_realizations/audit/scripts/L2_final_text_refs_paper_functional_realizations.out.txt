@@ -1,0 +1,79 @@
+== DOIs in paper_functional_realizations.tex ==
+adler2007random: crossref 'Random Fields and Geometry'  2007 | title sim 1.00 year-in-item True author-in-item False
+[FAIL] adler2007random: resolves, title sim >= 0.85, year and first author match
+auffinger2013random: crossref 'Random Matrices and Complexity of Spin Glasses' Auffinger 2012 | title sim 1.00 year-in-item False author-in-item True
+[FAIL] auffinger2013random: resolves, title sim >= 0.85, year and first author match
+cartwright2013number: crossref 'The number of eigenvalues of a tensor' Cartwright 2013 | title sim 1.00 year-in-item True author-in-item True
+[PASS] cartwright2013number: resolves, title sim >= 0.85, year and first author match
+desilva2008illposed: crossref 'Tensor Rank and the Ill-Posedness of the Best Low-Rank Approximation P' de Silva 2008 | title sim 1.00 year-in-item True author-in-item True
+[PASS] desilva2008illposed: resolves, title sim >= 0.85, year and first author match
+evans2015measure: crossref 'Measure Theory and Fine Properties of Functions, Revised Edition' Evans 2015 | title sim 0.85 year-in-item True author-in-item True
+[PASS] evans2015measure: resolves, title sim >= 0.85, year and first author match
+fleming1960integral: crossref 'An integral formula for total gradient variation' Fleming 1960 | title sim 1.00 year-in-item True author-in-item True
+[PASS] fleming1960integral: resolves, title sim >= 0.85, year and first author match
+hillar2013most: crossref 'Most Tensor Problems Are NP-Hard' Hillar 2013 | title sim 1.00 year-in-item True author-in-item True
+[PASS] hillar2013most: resolves, title sim >= 0.85, year and first author match
+lovasz2006limits: crossref 'Limits of dense graph sequences' Lovász 2006 | title sim 1.00 year-in-item True author-in-item True
+[PASS] lovasz2006limits: resolves, title sim >= 0.85, year and first author match
+lovasz2007szemeredi: crossref 'Szemerédi’s Lemma for the Analyst' Lovász 2007 | title sim 0.99 year-in-item True author-in-item True
+[PASS] lovasz2007szemeredi: resolves, title sim >= 0.85, year and first author match
+lovasz2012large: crossref 'Large Networks and Graph Limits' Lovász 2012 | title sim 1.00 year-in-item True author-in-item True
+[PASS] lovasz2012large: resolves, title sim >= 0.85, year and first author match
+lim2005singular: crossref 'Singular Values and Eigenvalues of Tensors: A Variational Approach' Lek-Heng Lim None | title sim 1.00 year-in-item False author-in-item True
+[FAIL] lim2005singular: resolves, title sim >= 0.85, year and first author match
+qi2005eigenvalues: crossref 'Eigenvalues of a real supersymmetric tensor' Qi 2005 | title sim 1.00 year-in-item True author-in-item True
+[PASS] qi2005eigenvalues: resolves, title sim >= 0.85, year and first author match
+rudin1992nonlinear: crossref 'Nonlinear total variation based noise removal algorithms' Rudin 1992 | title sim 1.00 year-in-item True author-in-item True
+[PASS] rudin1992nonlinear: resolves, title sim >= 0.85, year and first author match
+milnor1963morse: crossref 'Morse Theory. (AM-51)' Milnor 1963 | title sim 0.80 year-in-item True author-in-item True
+[FAIL] milnor1963morse: resolves, title sim >= 0.85, year and first author match
+silvafilho2026book: datacite 'Geometry, Tensors, and Quantum Gravity' Silva-Filho, Reinaldo M. 2026 | title sim 1.00 year-in-item True author-in-item True
+[PASS] silvafilho2026book: resolves, title sim >= 0.85, year and first author match
+tomioka2014spectral: datacite 'Spectral norm of random tensors' Tomioka, Ryota 2014 | title sim 1.00 year-in-item True author-in-item True
+[PASS] tomioka2014spectral: resolves, title sim >= 0.85, year and first author match
+nguyen2015tensor: crossref 'Tensor sparsification via a bound on the spectral norm of random tenso' Nguyen 2015 | title sim 0.92 year-in-item True author-in-item True
+[PASS] nguyen2015tensor: resolves, title sim >= 0.85, year and first author match
+vershynin2018high: crossref 'High-Dimensional Probability' Vershynin 2018 | title sim 0.53 year-in-item True author-in-item True
+[FAIL] vershynin2018high: resolves, title sim >= 0.85, year and first author match
+zhao2015hypergraph: crossref 'Hypergraph limits: A regularity approach' Zhao 2014 | title sim 1.00 year-in-item False author-in-item True
+[FAIL] zhao2015hypergraph: resolves, title sim >= 0.85, year and first author match
+[PASS] negative control: mutated DOI does not resolve
+== Declarations ==
+[FAIL] declarations block equals the standard (volume variant, Lean sentence)
+   diff insert: std='' tex=' or Proposition are proved in the text or cited as classical results with references; Remarks that cite the literature without proof say so'
+   diff replace: std='Proposition or Lemma are' tex='and the proposals and the conjecture of Section~\ref{sec:implications} are not'
+   diff replace: std=' in the text or cited as classical results; statements labelled Conjecture are not pro' tex='. No statement of this paper is formally '
+   diff replace: std='d. The numerical scripts are checks, not proofs' tex='rified'
+   diff replace: std='mathematic' tex='statements here. Python scripts compare the formulas of the text with independent computations (grid quadrature, finite differences, Monte Carlo, the coarea integral) and include negative controls; they are checks, not proof'
+   diff insert: std='' tex=' This paper is Volume~I of \emph{Beyond the Spectrum}, archived on Zenodo under the CC~BY~4.0 license with DOI \href{https://doi.org/10.5281/zenodo.22644743}{10.5281/zenodo.22644743}.'
+   extra text after the standard block: ''
+[PASS] negative control: mutated block fails
+== Affiliation ==
+   Master's student, Postgraduate Program in Statistics and Agricultural Experimentation (PPGEE/DES), Department of Statistics (DES), Federal University of Lavras (UFLA), Lavras, MG, Brazil
+[PASS] affiliation: Master's student, PPGEE/DES, UFLA, Statistics and Agricultural Experimentation
+== House style / forbidden claims in the .tex body (outside Declarations) ==
+[PASS] no 'earlier version' in body
+[PASS] no 'withdrawn' in body
+[PASS] no '\bcorrected\b' in body
+[PASS] no 'audit/' in body
+[PASS] no 'machine-checked' in body
+[PASS] no 'formally verified' in body
+[PASS] no '\bLean\b' in body
+[PASS] no 'GitHub' in body
+[PASS] no 'pending' in body
+[PASS] no '\bv2\b' in body
+[PASS] no 'previous version' in body
+[PASS] no 'rigorously' in body
+[PASS] no 'definitively' in body
+== Notes ==
+[PASS] CORRECTIONS_2026-10-06.md: no 'github'
+[PASS] CORRECTIONS_2026-10-06.md: no 'pending'
+[PASS] CORRECTIONS_2026-10-06.md: no 'TODO'
+[PASS] CORRECTIONS_2026-10-06.md: no 'layer 2'
+[PASS] CORRECTIONS_2026-10-06.md: no 'layer-2'
+[PASS] ZENODO_DESCRIPTION_VOL1.md: no 'github'
+[PASS] ZENODO_DESCRIPTION_VOL1.md: no 'pending'
+[PASS] ZENODO_DESCRIPTION_VOL1.md: no 'TODO'
+[PASS] ZENODO_DESCRIPTION_VOL1.md: no 'layer 2'
+[PASS] ZENODO_DESCRIPTION_VOL1.md: no 'layer-2'
+failures: 7

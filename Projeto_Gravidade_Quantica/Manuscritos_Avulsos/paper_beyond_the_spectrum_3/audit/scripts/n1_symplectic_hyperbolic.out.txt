@@ -1,0 +1,3 @@
+OBL-001 quadratic test: violations of paper bound = 0 /2000 ; mutated bound fails in 2000 /2000
+OBL-009 slim constant (numeric) = 0.881374 ; ln(1+sqrt2) = 0.881374 ; inradius ln3/2 = 0.549306
+failures: 0

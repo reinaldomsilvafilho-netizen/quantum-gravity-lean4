@@ -1,0 +1,101 @@
+== A  Construction 3.7
+PASS ||f_A||_{L2(dmu)} = ||A||_F  6.321602818018 vs 6.321602818018
+PASS Lebesgue factor 2pi
+PASS NEG v2 claim ||(1/n) sum ..||_{L2(dx)} = ||A||_F  9.9300 vs 6.3216
+== B  Theorem 4.1
+PASS E(f_A) spectral oracle = ||DA||^2+||AD||^2  513.15048104 vs 513.15048104
+PASS FD refinement converges to the formula at order 2  observed orders 1.878, 1.969, 1.992
+PASS NEG mutant weight (k1+k2)^2  932.053 vs 513.150
+PASS NEG v2 Lebesgue reading with 1/n: (2pi/n)^2-free value differs
+PASS random ratios inside [n^-2, n^2]  range [0.337, 2.932] vs [0.040, 25]
+PASS E_nn / E_11 ratio = n^2  25.000000
+PASS I_n: all 120 permutations give one energy (ratio 1)
+PASS J_n: all 120 permutations give one energy (ratio 1)
+PASS NEG v2 'exists ratio n^2 for every A != 0' on A = I_n  max ratio 1.000000
+== C  Example 4.3
+PASS n=4: checkerboard energy = 2n*n(n+1)(2n+1)/6  240.0000
+PASS n=4: J_n energy identical
+PASS n=8: checkerboard energy = 2n*n(n+1)(2n+1)/6  3264.0000
+PASS n=8: J_n energy identical
+PASS n=16: checkerboard energy = 2n*n(n+1)(2n+1)/6  47872.0000
+PASS n=16: J_n energy identical
+PASS E/n^4 -> 2/3  0.7969, 0.7305, 0.6982
+PASS NEG v2 claim E = Theta(n^3): E/n^3 bounded  E/n^3 = [6.37, 11.69, 22.34]
+PASS TV(checkerboard) formula = 4(n-1)
+== D  Theorem 4.5 (TV of the step realization)
+PASS mollified TV -> formula: order ~1 and Richardson limit matches  target 18.4000; values 12.7118, 15.6702, 17.0352, 17.7176; orders 1.06, 1.00, 1.00; Richardson 18.4000
+PASS NEG mutant without 1/n
+PASS checkerboard TV by mollification (Richardson) = 4(n-1)  18.8895 -> 20.0000
+== E  Theorem 4.10 sharpness
+PASS cut norm 1/4, L_inf->L_1 value 1, ratio 4
+PASS NEG mutant constant 2
+PASS random 6x6 step kernels: cut <= ||T||_{inf->1} <= 4 cut  max ratio 3.385
+== F  Remark 5.2
+PASS t=10: ||T - X_t|| * t -> sqrt(3)  1.734935; weights 10.2, 10
+PASS t=100: ||T - X_t|| * t -> sqrt(3)  1.732080; weights 100, 100
+PASS t=1000: ||T - X_t|| * t -> sqrt(3)  1.732051; weights 1e+03, 1000
+PASS slice pencil S0^-1 S1 is a nonzero nilpotent (not diagonalizable) => rank > 2
+PASS NEG control: a rank-2 tensor gives a nilpotent pencil
+== G  Theorem 5.7(i),(iv)
+PASS Var f(e1) = 1, Var f((e1+e2)/sqrt2) = 5/2 (d=3)  1.0049, 2.5021
+PASS NEG isotropy of the multiset-iid model
+PASS ordered-tuple model: Cov = (x.y)^3  0.3535 vs 0.3536
+PASS Var at x2 = 1 (isotropic)
+PASS Cartwright-Sturmfels bound for n=d=3 is 14
+== H  Theorem 5.8
+PASS C_3 = 8.19 as stated in the notes  C_2=6.380, C_3=8.192, C_4=9.809
+PASS net bound <= C_k sqrt(d) for all d >= 1
+PASS E||Z|| (exact chi mean) >= d/sqrt(d+2) >= sqrt(d/3), d = 1..1999
+PASS NEG mutant lower bound E||Z|| >= sqrt(d)
+PASS E max|Z_i| <= sqrt(2 log 2N)  (rho=0.0, N=10)  1.866 <= 2.448
+PASS E max|Z_i| <= sqrt(2 log 2N)  (rho=0.0, N=1000)  3.426 <= 3.899
+PASS E max|Z_i| <= sqrt(2 log 2N)  (rho=0.0, N=20000)  4.181 <= 4.604
+PASS E max|Z_i| <= sqrt(2 log 2N)  (rho=0.5, N=10)  1.699 <= 2.448
+PASS E max|Z_i| <= sqrt(2 log 2N)  (rho=0.5, N=1000)  2.875 <= 3.899
+PASS E max|Z_i| <= sqrt(2 log 2N)  (rho=0.5, N=20000)  3.411 <= 4.604
+PASS NEG mutant sqrt(log 2N)
+PASS telescoping X(u)-X(v) = sum_alpha X(v..,u_a - v_a,u..)
+PASS NEG mutant telescoping without the last term
+PASS k=2 d=8: 1/sqrt3 <= E sup f_hat (HOPM) <= C_k  HOPM/sqrt(d) 1.737, unfolding upper/sqrt(d) 1.737 (loose), C_k 6.38
+PASS k=2 d=16: 1/sqrt3 <= E sup f_hat (HOPM) <= C_k  HOPM/sqrt(d) 1.855, unfolding upper/sqrt(d) 1.855 (loose), C_k 6.38
+PASS k=2 d=32: 1/sqrt3 <= E sup f_hat (HOPM) <= C_k  HOPM/sqrt(d) 1.903, unfolding upper/sqrt(d) 1.903 (loose), C_k 6.38
+PASS k=2 d=64: 1/sqrt3 <= E sup f_hat (HOPM) <= C_k  HOPM/sqrt(d) 1.943, unfolding upper/sqrt(d) 1.943 (loose), C_k 6.38
+PASS k=2 d=128: 1/sqrt3 <= E sup f_hat (HOPM) <= C_k  HOPM/sqrt(d) 1.966, unfolding upper/sqrt(d) 1.966 (loose), C_k 6.38
+PASS k=3 d=4: 1/sqrt3 <= E sup f_hat (HOPM) <= C_k  HOPM/sqrt(d) 2.224, unfolding upper/sqrt(d) 2.559 (loose), C_k 8.19
+PASS k=3 d=8: 1/sqrt3 <= E sup f_hat (HOPM) <= C_k  HOPM/sqrt(d) 2.488, unfolding upper/sqrt(d) 3.522 (loose), C_k 8.19
+PASS k=3 d=16: 1/sqrt3 <= E sup f_hat (HOPM) <= C_k  HOPM/sqrt(d) 2.650, unfolding upper/sqrt(d) 4.801 (loose), C_k 8.19
+PASS k=3 d=32: 1/sqrt3 <= E sup f_hat (HOPM) <= C_k  HOPM/sqrt(d) 2.704, unfolding upper/sqrt(d) 6.546 (loose), C_k 8.19
+PASS k=3 d=64: 1/sqrt3 <= E sup f_hat (HOPM) <= C_k  HOPM/sqrt(d) 2.739, unfolding upper/sqrt(d) 8.922 (loose), C_k 8.19
+PASS k=4 d=4: 1/sqrt3 <= E sup f_hat (HOPM) <= C_k  HOPM/sqrt(d) 2.688, unfolding upper/sqrt(d) 4.397 (loose), C_k 9.81
+PASS k=4 d=8: 1/sqrt3 <= E sup f_hat (HOPM) <= C_k  HOPM/sqrt(d) 3.059, unfolding upper/sqrt(d) 8.675 (loose), C_k 9.81
+PASS k=4 d=16: 1/sqrt3 <= E sup f_hat (HOPM) <= C_k  HOPM/sqrt(d) 3.278, unfolding upper/sqrt(d) 16.778 (loose), C_k 9.81
+PASS k=4 d=24: 1/sqrt3 <= E sup f_hat (HOPM) <= C_k  HOPM/sqrt(d) 3.280, unfolding upper/sqrt(d) 24.846 (loose), C_k 9.81
+PASS HOPM estimate stable under 6x more restarts (< 5%) and still <= C_3  2.6897 vs 2.7473
+PASS k=2: E||G||/sqrt(d) increases to 2, gaps shrink  gaps 0.2627, 0.1453, 0.0968, 0.0573, 0.0339; ratios 0.553, 0.666, 0.592, 0.592
+PASS k=3: HOPM E sup/sqrt(d) stabilizes (successive changes shrink)  2.488, 2.650, 2.704, 2.739
+PASS beta=0.25: d^-beta E||T|| -> inf  4.184, 5.301, 6.432, 7.746
+PASS NEG v2 beta clause at beta=0.25
+PASS beta=0.75: d^-beta E||T|| -> zero  1.479, 1.325, 1.137, 0.968
+PASS NEG v2 beta clause at beta=0.75
+PASS NEG superseded v1 normalization d^-(k-1)/2 stays Theta(1) for k=3  0.879, 0.663, 0.478, 0.342
+PASS Rademacher k=3 d=8: E sup f_hat in [1/sqrt3, C_3] (Remark 5.9)  2.373
+PASS Rademacher k=3 d=16: E sup f_hat in [1/sqrt3, C_3] (Remark 5.9)  2.615
+PASS Rademacher k=3 d=32: E sup f_hat in [1/sqrt3, C_3] (Remark 5.9)  2.680
+PASS (ii) k=3 d=10: sqrt(d) f_hat ~ N(0,1) (KS p > 0.01)  KS p = 0.713
+PASS (ii) k=3 d=10: empirical tail <= 2 exp(-d eps^2/2)
+PASS NEG (ii) k=3 d=10: mutant tail 2exp(-d eps^2)  max emp/mut 134.56
+PASS NEG (ii) k=3 d=10: mutant constant 1 > 1/2
+PASS (ii) k=4 d=6: sqrt(d) f_hat ~ N(0,1) (KS p > 0.01)  KS p = 0.780
+PASS (ii) k=4 d=6: empirical tail <= 2 exp(-d eps^2/2)
+PASS NEG (ii) k=4 d=6: mutant tail 2exp(-d eps^2)  max emp/mut 9.19
+PASS NEG (ii) k=4 d=6: mutant constant 1 > 1/2
+== I  Proposition 5.6
+PASS N=4: f(0,0) = N
+PASS N=4: sup|f| <= C_lam sqrt(R)  4.000 <= 32.458
+PASS N=8: f(0,0) = N
+PASS N=8: sup|f| <= C_lam sqrt(R)  8.000 <= 195.712
+PASS N=16: f(0,0) = N
+PASS N=16: sup|f| <= C_lam sqrt(R)  16.000 <= 1007.061
+PASS NEG lambda = 0: lattice sum converges  partial sums 25.359, 29.683, 34.022, 38.369
+PASS lambda = 0.5: lattice sum converges (increments shrink ~K^-2)  4.93389, 4.93539, 4.93578, 4.93587
+failures: 0

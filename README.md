@@ -48,8 +48,8 @@ Outcomes:
 | *Simplicial Quantum Gravity on Δ₄ × Δ₂* (companion paper) | [10.5281/zenodo.22704111](https://doi.org/10.5281/zenodo.22704111) | Corrected against the monograph; second check pending |
 | *A Geometric and Metric-Measure Framework for the Yang–Mills Mass Gap* | [10.5281/zenodo.22301093](https://doi.org/10.5281/zenodo.22301093) | Corrected: conditional result only; second check pending |
 | *An S₃-Circulant Parametrization of Fermion Masses and Mixing* | [10.5281/zenodo.22373916](https://doi.org/10.5281/zenodo.22373916) | Corrected: fits and relations with an explicit parameter count; second check pending |
-| *Beyond the Spectrum* (three-volume monograph) | [10.5281/zenodo.22644743](https://doi.org/10.5281/zenodo.22644743) | Not yet audited |
-| *A Functorial Bridge from Continuous Tensor Manifolds to 4-Dimensional Spacetime Cobordisms* | [10.5281/zenodo.22441676](https://doi.org/10.5281/zenodo.22441676) | Not yet audited |
+| *Beyond the Spectrum* (three-volume monograph) | [10.5281/zenodo.22644743](https://doi.org/10.5281/zenodo.22644743) | Audited, corrected and re-checked (October 2026); new major version 3.0.0 with expanded references. Several earlier claims were false and are corrected or withdrawn; no formal verification is claimed |
+| *Quantum Fisher Geometry of Continuous Matrix Product State Fields and Lorentzian Cylinders* (formerly *A Functorial Bridge … Cobordisms*) | [10.5281/zenodo.22441676](https://doi.org/10.5281/zenodo.22441676) | Audited, corrected and re-checked (October 2026); new major version 2.0.0. The cobordism functor of the first version does not exist as defined; the paper now proves a Moore-path functor and records the obstructions |
 
 [All records by the author on Zenodo](https://zenodo.org/search?q=metadata.creators.person_or_org.name:%22Silva-Filho,+Reinaldo+M.%22)
 
@@ -71,7 +71,6 @@ Outcomes:
 - **Python checks for chapters 1–11.** These scripts predate the audit and do not yet follow the independent-oracle standard. The checks used during the audit are in `audit/scripts/` and `audit/verify/scripts/`.
 - **Final consistency check.** The last integration pass (titles, cross-references, notation) has not yet had its own independent re-check.
 - **Build.** The master volume is still assembled from per-chapter PDFs rather than compiled from a single source.
-- **Other works.** *Beyond the Spectrum* and the functorial-cobordism paper have not been audited.
 - **Open conjectures.** They are listed, with suggested proof strategies, in the monograph and in `WORKPLAN.md`.
 
 ## Status of the Lean 4 code

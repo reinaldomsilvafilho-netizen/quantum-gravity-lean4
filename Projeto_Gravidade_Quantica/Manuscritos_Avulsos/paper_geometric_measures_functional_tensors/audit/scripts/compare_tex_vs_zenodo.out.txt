@@ -1,0 +1,112 @@
+zenodo vol2 pages 18 words 7397; local tex build pages 17 words 7034
+diff ops: 110 ; similarity 0.9136
+replace | ZENODO: Functional Realization Paradigm 3 1.1. Outline of | LOCAL-TEX: Functional Realization Paradigm 2 1.1. Outline of
+replace | ZENODO: of the Treatise 3 2. Optimal Transport, | LOCAL-TEX: of the Treatise 2 2. Optimal Transport,
+replace | ZENODO: and Metric Curvature 4 2.1. The Density | LOCAL-TEX: and Metric Curvature 3 2.1. The Density
+replace | ZENODO: Density Realization Operator 4 2.2. Dimension-Free Matrix | LOCAL-TEX: Density Realization Operator 3 2.2. Dimension-Free Matrix
+replace | ZENODO: Matrix Wasserstein Distance 4 2.3. Bakry–Émery Metric | LOCAL-TEX: Matrix Wasserstein Distance 3 2.3. Bakry–Émery Metric
+replace | ZENODO: a Matrix Realization 5 3. Persistent Homology, | LOCAL-TEX: a Matrix Realization 4 3. Persistent Homology,
+replace | ZENODO: and Persistent Entropy 6 Date: September 10, | LOCAL-TEX: and Persistent Entropy 5 Date: October 6,
+replace | ZENODO: Entropy 6 Date: September 10, 2026. 2020 Mathematics | LOCAL-TEX: Entropy 5 Date: October 6, 2026. 2020 Mathematics
+replace | ZENODO: Super-Level Set Filtration 6 3.2. Bottleneck Stability | LOCAL-TEX: Super-Level Set Filtration 5 3.2. Bottleneck Stability
+replace | ZENODO: of Functional Tensors 7 3.3. The Persistent | LOCAL-TEX: of Functional Tensors 6 3.3. The Persistent
+replace | ZENODO: Persistent Entropy Invariant 8 4. Geometric Measure | LOCAL-TEX: Persistent Entropy Invariant 6 4. Geometric Measure
+replace | ZENODO: and Isoperimetric Deficits 9 4.1. Level-Set Varifolds | LOCAL-TEX: and Isoperimetric Deficits 8 4.1. Level-Set Varifolds
+replace | ZENODO: Mean Curvature Fields 9 4.2. The Integrated | LOCAL-TEX: Mean Curvature Fields 8 4.2. The Integrated
+replace | ZENODO: Willmore Bending Energy 10 4.3. The Matrix | LOCAL-TEX: Willmore Bending Energy 8 4.3. The Matrix
+replace | ZENODO: Matrix Isoperimetric Profile 11 5. Micro-Local Phase-Space | LOCAL-TEX: Matrix Isoperimetric Profile 10 5. Micro-Local Phase-Space
+replace | ZENODO: Fractional Besov Regularity 11 5.1. Continuous Gabor | LOCAL-TEX: Fractional Besov Regularity 10 5.1. Continuous Gabor
+replace | ZENODO: Gabor Wavepacket Transform 11 5.2. The Matrix | LOCAL-TEX: Gabor Wavepacket Transform 10 5.2. The Matrix
+replace | ZENODO: Matrix Wavefront Set 12 5.3. Fractional Besov | LOCAL-TEX: Matrix Wavefront Set 10 5.3. Fractional Besov
+replace | ZENODO: Fractional Besov Exponents 12 6. Non-Commutative Spectral | LOCAL-TEX: Fractional Besov Exponents 11 6. Non-Commutative Spectral
+replace | ZENODO: Quantum Information Geometry 13 6.1. The Canonical | LOCAL-TEX: Quantum Information Geometry 11 6.1. The Canonical
+replace | ZENODO: Dirac Spectral Triple 13 6.2. The Connes–Dixmier | LOCAL-TEX: Dirac Spectral Triple 11 6.2. The Connes–Dixmier
+replace | ZENODO: Conformal Volume Trace 13 6.3. Quantized Cyclic | LOCAL-TEX: Conformal Volume Trace 12 6.3. Quantized Cyclic
+replace | ZENODO: and Topological Indices 14 7. Quantum Information | LOCAL-TEX: and Topological Indices 12 7. Quantum Information
+replace | ZENODO: Continuous Tensor Networks 14 7.1. Fiber-Bundle Tensor | LOCAL-TEX: Continuous Tensor Networks 12 7.1. Fiber-Bundle Tensor
+replace | ZENODO: Fiber-Bundle Tensor Networks 14 7.2. The Integrated | LOCAL-TEX: Fiber-Bundle Tensor Networks 12 7.2. The Integrated
+replace | ZENODO: Information (QFI) Volume 14 7.3. Continuous Entanglement | LOCAL-TEX: Information (QFI) Volume 13 7.3. Continuous Entanglement
+replace | ZENODO: Contour and Centroid 15 8. Synthesis, Taxonomy | LOCAL-TEX: Contour and Centroid 14 8. Synthesis, Taxonomy
+replace | ZENODO: Invariants, and Applications 16 8.1. The Master | LOCAL-TEX: Invariants, and Applications 14 8.1. The Master
+replace | ZENODO: Functional Tensor Invariants 16 8.2. Key Scientific | LOCAL-TEX: Functional Tensor Invariants 14 8.2. Key Scientific
+replace | ZENODO: Key Scientific Applications 17 9. Conclusion and | LOCAL-TEX: Key Scientific Applications 14 9. Conclusion and
+replace | ZENODO: and Future Horizons 17 References 17 BEYOND | LOCAL-TEX: and Future Horizons 14 References 15 BEYOND
+replace | ZENODO: Horizons 17 References 17 BEYOND THE SPECTRUM | LOCAL-TEX: Horizons 14 References 15 BEYOND THE SPECTRUM
+replace | ZENODO: Reilly–Bochner formula on domains with boundary, for | LOCAL-TEX: Reilly–Bochner formula on manifolds with boundary, for
+replace | ZENODO: (2.16) where II denotes the second fundamental | LOCAL-TEX: (2.16) where II is the second fundamental
+replace | ZENODO: fundamental form of the boundary. For the convex hypercube Ω= [0, 1]d, | LOCAL-TEX: fundamental form of ∂Ω. Because Ω= [0, 1]d
+replace | ZENODO: hypercube Ω= [0, 1]d, this is rigorously justified | LOCAL-TEX: Because Ω= [0, 1]d is convex, the
+replace | ZENODO: 1]d, this is rigorously justified by approximating Ωvia an exhausting sequence of smooth convex domains Ωϵ ↗Ωwith smooth C2 boundary satisfying II∂Ωϵ ≥0. On each Ωϵ, the boundary integral | LOCAL-TEX: [0, 1]d is convex, the boundary is
+delete | ZENODO: Ωϵ, the boundary integral is non-negative ( | LOCAL-TEX: convex, the boundary is flat (II
+replace | ZENODO: boundary integral is non-negative ( ∫︁ ∂Ωϵ II ≥0), and in the limit ϵ →0, the boundary contribution on the flat | LOCAL-TEX: the boundary is flat (II ≡0 on the faces).
+replace | ZENODO: contribution on the flat faces satisfies II ≡0 on each face while the singular edge/corner contributions vanish for H2 Neumann eigenfunctions. Since Ric∞(Φ(A)) ≥K | LOCAL-TEX: ≡0 on the faces). Since Ric∞(Φ(A)) ≥K
+replace | ZENODO: equivalent to the K-displacement convexity of relative | LOCAL-TEX: equivalent to the K- displacement convexity of relative
+delete | ZENODO: mA := minx∈ΩΦ(A)(x). BEYOND THE SPECTRUM II 7 Definition 3.1 (Continuous | LOCAL-TEX: mA := minx∈ΩΦ(A)(x). Definition 3.1 (Continuous
+insert | ZENODO: ↦−→Hk(Xt(A); F), (3.2) where F is | LOCAL-TEX: ↦−→Hk(Xt(A); F), (3.2) BEYOND THE SPECTRUM II 7 where F is
+delete | ZENODO: the proof. □ 8 REINALDO M. SILVA-FILHO 3.3. The Persistent | LOCAL-TEX: the proof. □ 3.3. The Persistent
+insert | ZENODO: pers(A) := 0. Theorem 3.4 (Isospectral | LOCAL-TEX: pers(A) := 0. 8 REINALDO M. SILVA-FILHO Theorem 3.4 (Isospectral
+replace | ZENODO: and yet their continuous topological persistence diagrams | LOCAL-TEX: and yet their functional topological invariants strictly
+replace | ZENODO: their continuous topological persistence diagrams strictly separate them: | LOCAL-TEX: their functional topological invariants strictly separate them:
+replace | ZENODO: Dgm1(Φ(A))̸ = Dgm1(Φ(B)) with Dgm1(Φ(A)) = ∅̸ = | LOCAL-TEX: Dgm1(Φ(A))̸ = Dgm1(Φ(B)) and E(1) pers(A)̸ = E(1) pers(B).
+replace | ZENODO: with Dgm1(Φ(A)) = ∅̸ = {(2, 0)} ⊂Dgm1(Φ(B)), (3.11) and for | LOCAL-TEX: E(1) pers(A)̸ = E(1) pers(B). (3.11) Proof. We
+delete | ZENODO: 0)} ⊂Dgm1(Φ(B)), (3.11) and for realizations with Nk ≥2 distinct persistence lifetimes, their persistent entropies strictly differ: E(k) pers(Φ(A))̸ = E(k) pers(Φ(B)). Proof. We construct | LOCAL-TEX: E(1) pers(B). (3.11) Proof. We construct
+delete | ZENODO: 2ϵ →0, ensuring BEYOND THE SPECTRUM II 9 strict macroscopic topological | LOCAL-TEX: 2ϵ →0, ensuring strict macroscopic topological
+insert | ZENODO: = 2. (3.18) In contrast, for | LOCAL-TEX: = 2. (3.18) BEYOND THE SPECTRUM II 9 Consequently, its persistent entropy is well-defined: with a single normalized bar, E(1) pers(B) = 0, but the diagram is non-empty. Perturbing the boundary values into distinct heights (2, 2.2, 2.4) yields multiple distinct bars with E(1) pers(B) > 0. In contrast, for
+replace | ZENODO: Ω11 = [0, 1/3]×[0, 1/3]. For t | LOCAL-TEX: Ω11 = [0, 1/3] × [0, 1/3]. For t
+replace | ZENODO: Therefore, Dgm1(Φ(A)) = ∅. We have thus | LOCAL-TEX: Therefore, Dgm1(Φ(A)) = ∅, and by the empty-diagram convention, E(1) pers(A) = 0. We have thus
+delete | ZENODO: separates isospectral matrices. Furthermore, under smooth generic perturbations breaking cell degenera- cies into Nk ≥2 bars of unequal lifetimes, persistent entropy E(k) pers = −∑︁pi log pi is non-zero for B while remaining zero for contractible A, yielding strict entropy discrimination. □ 4. Geometric | LOCAL-TEX: separates isospectral matrices. □ 4. Geometric
+delete | ZENODO: ∥∇Φ(A)∥3 . (4.3) 10 REINALDO M. SILVA-FILHO 4.2. The Integrated | LOCAL-TEX: ∥∇Φ(A)∥3 . (4.3) 4.2. The Integrated
+insert | ZENODO: )︃⃓⃓⃓⃓2 ∥∇Φ(A)∥dx. (4.5) Remark 4.3 (Integrability | LOCAL-TEX: )︃⃓⃓⃓⃓2 ∥∇Φ(A)∥dx. (4.5) 10 REINALDO M. SILVA-FILHO Remark 4.3 (Integrability
+replace | ZENODO: then for each compact regular level hypersurface Σt | LOCAL-TEX: then for each closed level set Σt
+replace | ZENODO: compact regular level hypersurface Σt ⊂int(Ω) strictly | LOCAL-TEX: each closed level set Σt ⊂Ω(or under
+replace | ZENODO: level hypersurface Σt ⊂int(Ω) strictly contained in the interior (with Σt ∩∂Ω= ∅), the trace-free curvature | LOCAL-TEX: level set Σt ⊂Ω(or under transformations preserving ∂Ω), the trace-free curvature
+delete | ZENODO: sin(kx1) sin(kx2). (4.9) BEYOND THE SPECTRUM II 11 Direct differentiation yields | LOCAL-TEX: sin(kx1) sin(kx2). (4.9) Direct differentiation yields
+insert | ZENODO: = Θ(k2) →∞. (ii) If the | LOCAL-TEX: = Θ(k2) →∞. BEYOND THE SPECTRUM II 11 (ii) If the
+delete | ZENODO: ξ)⃓⃓2 ≥0. (5.2) 12 REINALDO M. SILVA-FILHO 5.2. The Matrix | LOCAL-TEX: ξ)⃓⃓2 ≥0. (5.2) 5.2. The Matrix
+insert | ZENODO: the interface Γ. Proof. Away from | LOCAL-TEX: the interface Γ. 12 REINALDO M. SILVA-FILHO Proof. Away from
+delete | ZENODO: similar distributions [7]. BEYOND THE SPECTRUM II 13 6. Non-Commutative Spectral | LOCAL-TEX: similar distributions [7]. 6. Non-Commutative Spectral
+insert | ZENODO: realizations A ∈Rn×n. 6.2. The Connes–Dixmier | LOCAL-TEX: realizations A ∈Rn×n. BEYOND THE SPECTRUM II 13 6.2. The Connes–Dixmier
+delete | ZENODO: the formula. □ 14 REINALDO M. SILVA-FILHO 6.3. Quantized Cyclic | LOCAL-TEX: the formula. □ 6.3. Quantized Cyclic
+delete | ZENODO: tuple of d + 1 matrices (A0, A1, | LOCAL-TEX: tuple of d matrices (A0, A1,
+replace | ZENODO: Φ(Ad)]|D|−d)︂ . (6.6) Theorem 6.3 (Quantized Cyclic Cocycles and Topological Degree). Let Ω= Td or let Ωbe a closed compact | LOCAL-TEX: Φ(Ad)]|D|−d)︂ . (6.6) When the maps Φ(Aj) define coordinates of a map from
+replace | ZENODO: let Ωbe a closed compact spin manifold of dimension d. Suppose the functional realizations | LOCAL-TEX: coordinates of a map from Ωinto a target sphere, τd computes the integer topological
+replace | ZENODO: d. Suppose the functional realizations satisfy the spherical constraint ∑︁d j=0 Φ(Aj)(x)2 = 1, defining a smooth map FA : Ω→Sd with components F j A(x) = Φ(Aj)(x). Then: (a) The cyclic cocycle τd(A0, . . . , Ad) evaluates to the non-commutative Chern character pairing and is strictly quantized: τd(A0, A1, . . . , Ad) = 2⌊d/2⌋Ωd d(2π)d ∫︂ Ω F ∗ AvolSd = cd · deg(FA) ∈cd · Z, (6.7) where deg(FA) ∈Z  | LOCAL-TEX: τd computes the integer topological Brouwer degree (winding
+delete | ZENODO: is the Brouwer topological degree (winding number) | LOCAL-TEX: integer topological Brouwer degree (winding number),
+replace | ZENODO: topological degree (winding number) of the map FA. (b) τd is invariant under smooth homotopies of the matrix tuple | LOCAL-TEX: Brouwer degree (winding number), providing a **quantized topological charge** on the matrix manifold.
+replace | ZENODO: of the matrix tuple that preserve the spherical non-degeneracy condition. Proof. By the Clifford algebra relations {γµ, γν} = 2gµνId, the product of commutators [D, Φ(A1)] · · · [D, Φ(Ad)] expands into idγµ1 · · · γµd∂µ1Φ(A1) · · · ∂µdΦ(Ad). Taking the Clifford trace extracts the totally antisymmetric Levi-Civita symbol ϵµ1...µdvolg. Evaluating the Dixmier trace via the Wodzicki residue formula as | LOCAL-TEX: on the matrix manifold. 7. Quantum Information
+replace | ZENODO: with a canonical fiber bundle structure: E | LOCAL-TEX: with a canonical **fiber bundle structure**: E
+replace | ZENODO: canonical fiber bundle structure: E := Ω× | LOCAL-TEX: canonical **fiber bundle structure**: E := Ω×
+insert | ZENODO: Trχ(ρ(x)) = 1. 7.2. The Integrated | LOCAL-TEX: Trχ(ρ(x)) = 1. 14 REINALDO M. SILVA-FILHO 7.2. The Integrated
+delete | ZENODO: gQFI(x) ddx. (7.4) BEYOND THE SPECTRUM II 15 Theorem 7.2 (Positivity | LOCAL-TEX: gQFI(x) ddx. (7.4) Theorem 7.2 (Positivity
+delete | ZENODO: ≥ϵ0 > 0. Suppose further that the directional tangent derivatives {∂µρ(x)}d µ=1 are linearly independent in the Hilbert–Schmidt inner product (non-degenerate spatial variation). Then: (a) VolQFI(T | LOCAL-TEX: ≥ϵ0 > 0. Then: (a) VolQFI(T
+delete | ZENODO: ∂µρ(x) = 0. By the non-degeneracy condition (linear independence of non-zero directional derivatives {∂µρ(x)}), the Gram-type metric gQFI(x) is strictly positive definite whenever any spatial gradient exists. Consequently, det gQFI(x) | LOCAL-TEX: ∂µρ(x) = 0. Consequently, det gQFI(x)
+delete | ZENODO: gQFI(x) = 0 almost everywhere on Ωif | LOCAL-TEX: gQFI(x) = 0 everywhere on Ωif
+insert | ZENODO: of state space. 7.3. Continuous Entanglement | LOCAL-TEX: of state space. BEYOND THE SPECTRUM II 15 7.3. Continuous Entanglement
+delete | ZENODO: det gQFI(x). (7.8) 16 REINALDO M. SILVA-FILHO The Total Geometric | LOCAL-TEX: det gQFI(x). (7.8) The Total Geometric
+replace | ZENODO: These invariants localize where in physical space | LOCAL-TEX: These invariants localize **where** in physical space
+delete | ZENODO: from Volume I. Invariant Mathematical Family Formal Definition Physical / Computational Role W2(A, B) Optimal Trans- port infπ ∫︁ ∥x −y∥2 dπ Geodesic distance between matrices of un- equal dimensions (n̸ = m). κBE(A) Metric Measure Geometry infξ⟨(−∇2 log Φ)ξ, ξ⟩ Ricci curvature, log-Sobolev constant, dissi- pation rate of flows. Dgmk(A) Topological Data Analysis {(bi, di) | Hk(Xt)̸ = 0} Multi-scal | LOCAL-TEX: from Volume I. 8.2. Key Scientific
+insert | ZENODO: physical multilinear geometry. References [1] D. | LOCAL-TEX: physical multilinear geometry. 16 REINALDO M. SILVA-FILHO Invariant Mathematical Family Formal Definition Physical / Computational Role W2(A, B) Optimal Trans- port infπ ∫︁ ∥x −y∥2 dπ Geodesic distance between matrices of un- equal dimensions (n̸ = m). κBE(A) Metric Measure Geometry infξ⟨(−∇2 log Φ)ξ, ξ⟩ Ricci curvature, log-Sobolev constant, dissi- pation rate of flows. Dgmk(A) Topological Data A
+replace | ZENODO: Lecture Notes in Mathematics, vol. 1123, Springer, | LOCAL-TEX: Lecture Notes in Math., vol. 1123, Springer,
+delete | ZENODO: 1123, Springer, Berlin, Heidelberg, 1985, pp. 177–206, | LOCAL-TEX: 1123, Springer, Berlin, 1985, pp. 177–206.
+replace | ZENODO: Heidelberg, 1985, pp. 177–206, ISBN: 978-3-540-15230-9, DOI: 10.1007/BFb0075847. [2] J.-D. Benamou | LOCAL-TEX: Berlin, 1985, pp. 177–206. [2] J.-D. Benamou
+replace | ZENODO: mass transfer problem, Numerische Mathematik, 84 (2000), no. | LOCAL-TEX: mass transfer problem, Numer. Math. 84 (2000), no.
+replace | ZENODO: (2000), no. 3, 375–393, DOI: 10.1007/s002110050475. [3] I. Bengtsson | LOCAL-TEX: (2000), no. 3, 375–393. [3] I. Bengtsson
+replace | ZENODO: Introduction to Quantum En- tanglement, 2nd ed., Cambridge | LOCAL-TEX: Introduction to Quantum Entanglement, 2nd ed., Cambridge
+replace | ZENODO: University Press, Cambridge, 2017, ISBN: 978-1-107-02625-4, DOI: 10.1017/9781139207010. [4] F. Chazal, | LOCAL-TEX: University Press, Cambridge, 2017. [4] F. Chazal,
+replace | ZENODO: Mathematics, Springer, Cham, 2016, ISBN: 978-3-319-42545-0, DOI: 10.1007/978-3-319- 42545-0. [5] A. Connes, | LOCAL-TEX: Mathematics, Springer, Cham, 2016. [5] A. Connes,
+replace | ZENODO: San Diego, CA, 1994, ISBN: 978-0-12-185860-5. [6] H. Edelsbrunner | LOCAL-TEX: San Diego, CA, 1994. [6] H. Edelsbrunner
+replace | ZENODO: Society, Providence, RI, 2010, ISBN: 978-0-8218-4925-5, DOI: 10.1090/mbk/069. [7] L. Hörmander, | LOCAL-TEX: Society, Providence, RI, 2010. [7] L. Hörmander,
+replace | ZENODO: Mathematics, Springer-Verlag, Berlin, Heidelberg, 2003, ISBN: 978-3-540-00662-6, DOI: 10.1007/978-3-642-61497-2. [8] D. Šafránek, | LOCAL-TEX: Mathematics, Springer-Verlag, Berlin, 2003. [8] D. Šafránek,
+replace | ZENODO: the Bures metric, Physical Review A, 95 (2017), no. | LOCAL-TEX: the Bures metric, Phys. Rev. A 95 (2017), no.
+replace | ZENODO: 95 (2017), no. 5, 052320, DOI: 10.1103/PhysRevA.95.052320. [9] R. M. | LOCAL-TEX: 95 (2017), no. 6, 062320. [9] R. M.
+replace | ZENODO: 1, Chap. 1, 2026, DOI: 10.5281/zenodo.22441676. [10] R. M. | LOCAL-TEX: 1, Chap. 1, 2026. BEYOND THE SPECTRUM II 17 [10] R. M.
+delete | ZENODO: 2026, DOI: 10.5281/zenodo.22290043. 18 REINALDO M. SILVA-FILHO [11] F. Verstraete | LOCAL-TEX: 2026, DOI: 10.5281/zenodo.22290043. [11] F. Verstraete
+replace | ZENODO: for quantum fields, Physical Review Letters, 104 (2010), no. | LOCAL-TEX: for quantum fields, Phys. Rev. Lett. 104 (2010), no.
+replace | ZENODO: (2010), no. 19, 190405, DOI: 10.1103/PhysRevLett.104.190405. [12] C. Villani, | LOCAL-TEX: (2010), no. 19, 190405. [12] C. Villani,
+replace | ZENODO: 338, Springer-Verlag, Berlin, Heidelberg, 2009, ISBN: 978-3-540-71049-3, DOI: 10.1007/978-3-540-71050-9. [13] M.-K. von | LOCAL-TEX: 338, Springer-Verlag, Berlin, 2009. [13] M.-K. von
+replace | ZENODO: and Ricci curvature, Communications on Pure and Applied | LOCAL-TEX: and Ricci curvature, Comm. Pure Appl. Math.
+replace | ZENODO: Communications on Pure and Applied Mathematics, 58 (2005), no. | LOCAL-TEX: curvature, Comm. Pure Appl. Math. 58 (2005), no.
+replace | ZENODO: (2005), no. 7, 923–940, DOI: 10.1002/cpa.20060. [14] T. J. | LOCAL-TEX: (2005), no. 7, 923–940. [14] T. J.
+delete | ZENODO: Oxford Science Publications, Clarendon Press, Oxford University Press, | LOCAL-TEX: Oxford Science Publications, Oxford University Press,
+replace | ZENODO: Press, New York, 1993, ISBN: 978-0-19-853253-8, DOI: 10.1093/oso/9780198532538.001.0001. Departamento de Estatística (DES), Programa de Pós-Graduação em Estatística e Experi- mentação Agropecuária (PPGEE/DES), Universidade Federal de | LOCAL-TEX: Press, New York, 1993. Universidade Federal de
+replace | ZENODO: de Lavras (UFLA), Lavras, MG, Brazil Email address: reinaldo.filho1@estudante.ufla.br | LOCAL-TEX: de Lavras (UFLA), Departamento de Estatística e Experimentação Agropecuária (PPGEEAA/DES) Email address: reinaldo.filho1@estudante.ufla.br

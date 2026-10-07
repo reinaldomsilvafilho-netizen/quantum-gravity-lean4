@@ -1,0 +1,16 @@
+x0=0.5 (5 window widths from the jump at 0); g(-x0)=8.8518e-6
+xi=     10 |V|=0.361123  |xi||V|=3.61123  quad|V|=0.361123
+xi=    100 |V|=7.95498e-8  |xi||V|=7.95498e-6  quad|V|=7.95498e-8
+xi=   1000 |V|=8.84163e-9  |xi||V|=8.84163e-6  quad|V|=8.84163e-9
+xi=  10000 |V|=8.8517e-10  |xi||V|=8.8517e-6
+xi= 100000 |V|=8.8518e-11  |xi||V|=8.8518e-6
+limit |xi||V| -> 8.8518e-6 vs g(-x0)=8.8518e-6: polynomial (1/xi) decay => (x0,xi) in WF per paper's definition although x0 not in Gamma
+NEG CTRL smooth f: xi=10 |V|=0.103187 xi^4|V|=1031.87
+NEG CTRL smooth f: xi=40 |V|=0.000120819 xi^4|V|=309.297
+NEG CTRL smooth f: xi=80 |V|=5.02776e-14 xi^4|V|=2.05937e-6
+NEG CTRL smooth f: xi=120 |V|=1.1662e-29 xi^4|V|=2.41823e-21
+NEG CTRL compact window (Hormander): xi=10 |V|=0.063679 xi^4|V|=636.79
+NEG CTRL compact window (Hormander): xi=100 |V|=0.000112381 xi^4|V|=11238.1
+NEG CTRL compact window (Hormander): xi=1000 |V|=4.93274e-9 xi^4|V|=4932.74
+NEG CTRL compact window (Hormander): xi=3000 |V|=7.36573e-14 xi^4|V|=5.96624
+failures=0

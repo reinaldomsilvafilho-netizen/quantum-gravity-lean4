@@ -1,0 +1,51 @@
+(a) n=1: grid quadrature == ||DA||^2+||AD||^2 : ok
+(a) n=2: grid quadrature == ||DA||^2+||AD||^2 : ok
+(a) n=3: grid quadrature == ||DA||^2+||AD||^2 : ok
+(a) n=4: grid quadrature == ||DA||^2+||AD||^2 : ok
+(a) n=5: grid quadrature == ||DA||^2+||AD||^2 : ok
+(a-neg) aliased grid M=2 disagrees: ok (control fails as expected)
+(b) n=1 rep=0: brute=0.0007733487121 claimed=0.0007733487121 E(pi=tau^-1)=0.0007733487121 ok
+(b) n=1 rep=1: brute=6.447942914 claimed=6.447942914 E(pi=tau^-1)=6.447942914 ok
+(b) n=1 rep=2: brute=0.5445214258 claimed=0.5445214258 E(pi=tau^-1)=0.5445214258 ok
+(b) n=1 rep=3: brute=0.8396206619 claimed=0.8396206619 E(pi=tau^-1)=0.8396206619 ok
+(b) n=1 rep=4: brute=0.001104491769 claimed=0.001104491769 E(pi=tau^-1)=0.001104491769 ok
+(b) n=1 rep=5: brute=0.02389623305 claimed=0.02389623305 E(pi=tau^-1)=0.02389623305 ok
+(b) n=2 rep=0: brute=21.40173449 claimed=21.40173449 E(pi=tau^-1)=21.40173449 ok
+(b) n=2 rep=1: brute=10.0114917 claimed=10.0114917 E(pi=tau^-1)=10.0114917 ok
+(b) n=2 rep=2: brute=9.027543495 claimed=9.027543495 E(pi=tau^-1)=9.027543495 ok
+(b) n=2 rep=3: brute=3.825070441 claimed=3.825070441 E(pi=tau^-1)=3.825070441 ok
+(b) n=2 rep=4: brute=5.461160947 claimed=5.461160947 E(pi=tau^-1)=5.461160947 ok
+(b) n=2 rep=5: brute=1.759064414 claimed=1.759064414 E(pi=tau^-1)=1.759064414 ok
+(b) n=3 rep=0: brute=58 claimed=58 E(pi=tau^-1)=58 ok
+(b) n=3 rep=1: brute=39.53307266 claimed=39.53307266 E(pi=tau^-1)=39.53307266 ok
+(b) n=3 rep=2: brute=96.34256174 claimed=96.34256174 E(pi=tau^-1)=96.34256174 ok
+(b) n=3 rep=3: brute=81.46753004 claimed=81.46753004 E(pi=tau^-1)=81.46753004 ok
+(b) n=3 rep=4: brute=33.23339528 claimed=33.23339528 E(pi=tau^-1)=33.23339528 ok
+(b) n=3 rep=5: brute=31.6035252 claimed=31.6035252 E(pi=tau^-1)=31.6035252 ok
+(b) n=4 rep=0: brute=110 claimed=110 E(pi=tau^-1)=110 ok
+(b) n=4 rep=1: brute=329.2730086 claimed=329.2730086 E(pi=tau^-1)=329.2730086 ok
+(b) n=4 rep=2: brute=126.4882578 claimed=126.4882578 E(pi=tau^-1)=126.4882578 ok
+(b) n=4 rep=3: brute=244.2280505 claimed=244.2280505 E(pi=tau^-1)=244.2280505 ok
+(b) n=4 rep=4: brute=97.45744977 claimed=97.45744977 E(pi=tau^-1)=97.45744977 ok
+(b) n=4 rep=5: brute=142.4567383 claimed=142.4567383 E(pi=tau^-1)=142.4567383 ok
+(b) n=5 rep=0: brute=294 claimed=294 E(pi=tau^-1)=294 ok
+(b) n=5 rep=1: brute=509.2328941 claimed=509.2328941 E(pi=tau^-1)=509.2328941 ok
+(b) n=5 rep=2: brute=404.7391148 claimed=404.7391148 E(pi=tau^-1)=404.7391148 ok
+(b) n=5 rep=3: brute=313.2305101 claimed=313.2305101 E(pi=tau^-1)=313.2305101 ok
+(b) n=5 rep=4: brute=363.4104678 claimed=363.4104678 E(pi=tau^-1)=363.4104678 ok
+(b) n=5 rep=5: brute=428.9314488 claimed=428.9314488 E(pi=tau^-1)=428.9314488 ok
+(b) n=6 rep=0: brute=423 claimed=423 E(pi=tau^-1)=423 ok
+(b) n=6 rep=1: brute=1112.047034 claimed=1112.047034 E(pi=tau^-1)=1112.047034 ok
+(b) n=6 rep=2: brute=570.2692144 claimed=570.2692144 E(pi=tau^-1)=570.2692144 ok
+(b) n=6 rep=3: brute=785.4024128 claimed=785.4024128 E(pi=tau^-1)=785.4024128 ok
+(b) n=6 rep=4: brute=1004.25655 claimed=1004.25655 E(pi=tau^-1)=1004.25655 ok
+(b) n=6 rep=5: brute=572.8311362 claimed=572.8311362 E(pi=tau^-1)=572.8311362 ok
+(b) n=7 rep=0: brute=1309 claimed=1309 E(pi=tau^-1)=1309 ok
+(b) n=7 rep=1: brute=905.4281682 claimed=905.4281682 E(pi=tau^-1)=905.4281682 ok
+(b) n=7 rep=2: brute=1389.593536 claimed=1389.593536 E(pi=tau^-1)=1389.593536 ok
+(b) n=8 rep=0: brute=1549 claimed=1549 E(pi=tau^-1)=1549 ok
+(b) n=8 rep=1: brute=2333.223928 claimed=2333.223928 E(pi=tau^-1)=2333.223928 ok
+instances: 41
+negative-control detections over 35 non-degenerate instances: ascending=35, row_only=24, pi=tau=20
+coupled i*j energy (genuine QAP-type): sorting misses optimum in 17/29
+failures=0

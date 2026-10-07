@@ -1,0 +1,47 @@
+== recon vs v2 standalone 22699282: tokens 7243 vs 7244, ratio 0.99979, non-equal blocks 2
+   insert  recon[]  pdf[10]
+   replace recon[14]  pdf[15]
+   words (len>=4) only in published: []
+   words (len>=4) only in recon    : []
+   NEG ok: mutated stream gives 4 blocks > 2
+== recon vs trilogy 22866175 Vol I: tokens 7224 vs 7225, ratio 0.99979, non-equal blocks 2
+   insert  recon[]  pdf[10]
+   replace recon[14]  pdf[15]
+   words (len>=4) only in published: []
+   words (len>=4) only in recon    : []
+   NEG ok: mutated stream gives 4 blocks > 2
+
+== v2 items whose title is absent from the current .tex:
+   subsection: Core Thesis and Contributions
+   subsection: Asymptotic Graphons and the Cut-Norm Topology ($n \to \infty$)
+   subsection: Variational Realization and Resolution of the Border-Rank Pathology
+   subsection: Critical Scaling and Measure Concentration in Infinite Dimensions ($d \to \infty$)
+   subsection: Complex Networks: Universal Scale-Free Metrics on Massive Graphs
+   section: Formal Verification and Code Availability
+   example: The Checkerboard Matrix Pathology
+   remark: The Degenerate Morse-Bott Regime
+   theorem: Duality with $L^\infty \to L^1$ Operator Norm and Grothendieck Inequality
+   theorem: Multilinear Operator Duality and Hypergraphon Compactness
+   theorem: Dirichlet Stability of Attention Fields
+   theorem: Complexity of the Tensor Morse Landscape
+   theorem: Critical Multilinear Scaling and Sub-Gaussian Concentration
+== current items whose title is absent from v2:
+   subsection: Contributions
+   subsection: Asymptotic Graphons and the Cut-Norm Topology (\texorpdfstring{$n \to \infty$
+   subsection: Variational Realization and Best Rank-One Approximation
+   subsection: Critical Scaling and Concentration as \texorpdfstring{$d \to \infty$
+   subsection: Complex Networks: Size-Independent Metrics on Massive Graphs
+   section: Declarations
+   remark: Matrices for which the ratio is $1$
+   example: The Checkerboard Matrix
+   remark: The Degenerate Morse--Bott Regime
+   theorem: Equivalence with the $L^\infty \to L^1$ Operator Norm
+   remark: Scope: rank $r \ge 2$
+   theorem: Multilinear Form Norm and the Box Cut Norm
+   remark: Compactness for the box cut norm
+   proposition: Sobolev Bound for Attention Realizations
+   theorem: Complexity of the Isotropic Tensor Landscape
+   theorem: Critical Multilinear Scaling and Gaussian Concentration
+   remark: Sub-Gaussian entries and sharper constants
+
+failures: 0

@@ -1,0 +1,1 @@
+paper_functorial_tensor_field_theory: exit codes [0, 0, 0]; errors 0; warnings 0; overfull 0; underfull 0; undefined 0; pages ['11']

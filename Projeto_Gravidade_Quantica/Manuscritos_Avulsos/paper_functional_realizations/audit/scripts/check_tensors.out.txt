@@ -1,0 +1,29 @@
+== (a) scaling of the spectral norm of iid Gaussian 3-tensors ==
+  d   HOPM_lower  unfold_upper  lower/sqrt(d)  upper/d   lower/d
+   8      7.109       10.524        2.513     1.315     0.889
+  16     10.571       19.572        2.643     1.223     0.661
+  32     15.601       37.566        2.758     1.174     0.488
+  64     22.235       71.833        2.779     1.122     0.347
+lower/sqrt(d) roughly constant (Zenodo 1/sqrt(d) normalisation, Tomioka-Suzuki ~ sqrt(k d log k)): True
+lower/d decays like d^{-1/2} (local .tex normalisation d^{-(k-1)/2} gives -> 0): [np.float64(0.889), np.float64(0.661), np.float64(0.488), np.float64(0.347)]
+
+== (b) tail bound of Thm 5.6(ii) (Gaussian entries, k=3) ==
+d= 10 eps=0.2: empirical 0.5211  bound 2exp(-d eps^2/2) 1.6375  ok=True
+d= 10 eps=0.4: empirical 0.1999  bound 2exp(-d eps^2/2) 0.8987  ok=True
+d= 10 eps=0.6: empirical 0.0583  bound 2exp(-d eps^2/2) 0.3306  ok=True
+d= 40 eps=0.2: empirical 0.2045  bound 2exp(-d eps^2/2) 0.8987  ok=True
+d= 40 eps=0.4: empirical 0.0109  bound 2exp(-d eps^2/2) 0.0815  ok=True
+d= 40 eps=0.6: empirical 0.0001  bound 2exp(-d eps^2/2) 0.0015  ok=True
+
+== (c) De Silva-Lim example, d=2 ==
+t=    1  ||T-X_t||=2.000e+00  weights |lambda|=(2.8, 1)
+t=   10  ||T-X_t||=1.735e-01  weights |lambda|=(10.2, 10)
+t=  100  ||T-X_t||=1.732e-02  weights |lambda|=(100.0, 100)
+t= 1000  ||T-X_t||=1.732e-03  weights |lambda|=(1000.0, 1000)
+|lambda| <=    2: best rank-2 error found = 7.7402e-02
+|lambda| <=    5: best rank-2 error found = 1.0311e-02
+|lambda| <=   20: best rank-2 error found = 6.2618e-04
+|lambda| <=  100: best rank-2 error found = 3.3273e-05
+rank-1 best approximation (sigma_max, Thm 5.1) exists; rank-2 infimum 0 approached only as |lambda|->inf
+
+failures: 0

@@ -1,0 +1,76 @@
+CHECK ambrosio2008gradient: 10.1007/978-3-7643-8722-8
+    tex  : Gradient Flows in Metric Spaces and in the Space of Probability Measures
+    reg  : Gradient Flows | [] | 2008 |   (title ratio 0.33)
+PASS bakry1985diffusions: 10.1007/BFb0075847
+    tex  : Diffusions hypercontractives
+    reg  : Diffusions hypercontractives | ['Bakry', 'Émery'] | 1985 | Lecture Notes in Mathematics  (title ratio 1.00)
+PASS benamou2000computational: 10.1007/s002110050002
+    tex  : A computational fluid mechanics solution to the Monge-Kantorovich mass transfer problem
+    reg  : A computational fluid mechanics solution to the Monge-Kantorovich mass transfer problem | ['Benamou', 'Brenier'] | 2000 | Numerische Mathematik  (title ratio 1.00)
+PASS bakry2014analysis: 10.1007/978-3-319-00227-9
+    tex  : Analysis and Geometry of Markov Diffusion Operators
+    reg  : Analysis and Geometry of Markov Diffusion Operators | ['Bakry', 'Gentil', 'Ledoux'] | 2014 | Grundlehren der mathematischen Wissenschaften  (title ratio 1.00)
+PASS caffarelli2000monotonicity: 10.1007/s002200000257
+    tex  : Monotonicity properties of optimal transportation and the FKG and related inequalities
+    reg  : Monotonicity Properties of Optimal Transportation�and the FKG and Related Inequalities | ['Caffarelli'] | 2000 | Communications in Mathematical Physics  (title ratio 1.00)
+PASS chazal2016structure: 10.1007/978-3-319-42545-0
+    tex  : The Structure and Stability of Persistence Modules
+    reg  : The Structure and Stability of Persistence Modules | ['Chazal', 'de Silva', 'Glisse'] | 2016 | SpringerBriefs in Mathematics  (title ratio 1.00)
+PASS cheeger1970lower: 10.1515/9781400869312-013
+    tex  : A lower bound for the smallest eigenvalue of the Laplacian
+    reg  : A Lower Bound for the Smallest Eigenvalue of the Laplacian | ['Cheeger'] | 2015 | Problems in Analysis: A Symposium in Honor of Salomon Bochner (PMS-31)  (title ratio 1.00)
+PASS chen2014entanglement: 10.1088/1742-5468/2014/10/P10011
+    tex  : Entanglement contour
+    reg  : Entanglement contour | ['Chen', 'Vidal'] | 2014 | Journal of Statistical Mechanics: Theory and Experiment  (title ratio 1.00)
+PASS cohensteiner2007stability: 10.1007/s00454-006-1276-5
+    tex  : Stability of persistence diagrams
+    reg  : Stability of Persistence Diagrams | ['Cohen-Steiner', 'Edelsbrunner', 'Harer'] | 2006 | Discrete &amp; Computational Geometry  (title ratio 1.00)
+PASS connes1988action: 10.1007/BF01218391
+    tex  : The action functional in non-commutative geometry
+    reg  : The action functional in non-commutative geometry | ['Connes'] | 1988 | Communications in Mathematical Physics  (title ratio 1.00)
+connes1994noncommutative: no DOI in entry
+PASS crawley2015decomposition: 10.1142/S0219498815500668
+    tex  : Decomposition of pointwise finite-dimensional persistence modules
+    reg  : Decomposition of pointwise finite-dimensional persistence modules | ['Crawley-Boevey'] | 2015 | Journal of Algebra and Its Applications  (title ratio 1.00)
+PASS evans2015measure: 10.1201/b18333
+    tex  : Measure Theory and Fine Properties of Functions
+    reg  : Measure Theory and Fine Properties of Functions, Revised Edition | ['Evans', 'Gariepy'] | 2015 |   (title ratio 0.85)
+PASS hormander2003analysis: 10.1007/978-3-642-61497-2
+    tex  : The Analysis of Linear Partial Differential Operators I: Distribution Theory and Fourier Analysis
+    reg  : The Analysis of Linear Partial Differential Operators I: Distribution Theory and Fourier Analysis | ['Hörmander'] | 2003 | Classics in Mathematics  (title ratio 1.00)
+PASS lovasz2012large: 10.1090/coll/060
+    tex  : Large Networks and Graph Limits
+    reg  : Large Networks and Graph Limits | ['Lovász'] | 2012 | Colloquium Publications  (title ratio 1.00)
+PASS mccann1997convexity: 10.1006/aima.1997.1634
+    tex  : A convexity principle for interacting gases
+    reg  : A Convexity Principle for Interacting Gases | ['McCann'] | 1997 | Advances in Mathematics  (title ratio 1.00)
+PASS memoli2011gromov: 10.1007/s10208-011-9093-5
+    tex  : Gromov--Wasserstein distances and the metric approach to object matching
+    reg  : Gromov–Wasserstein Distances and the Metric Approach to Object Matching | ['Mémoli'] | 2011 | Foundations of Computational Mathematics  (title ratio 0.99)
+PASS safranek2017discontinuities: 10.1103/PhysRevA.95.052320
+    tex  : Discontinuities of the quantum Fisher information and the Bures metric
+    reg  : Discontinuities of the quantum Fisher information and the Bures metric | ['Šafránek'] | 2017 | Physical Review A  (title ratio 1.00)
+CHECK silvafilho2026beyond: 10.5281/zenodo.22644743
+    tex  : Beyond the Spectrum: Functional Realizations of Matrices and Tensors, Emerging Invariants, and Geometric Measures
+    reg  : Beyond the Spectrum: The Complete Three-Volume Monograph on Functional Tensor Realizations, Metric Measure Geometry, and Higher Topological Invariants | ['Silva-Filho'] | 2026 | Zenodo  (title ratio 0.46)
+PASS verstraete2010continuous: 10.1103/PhysRevLett.104.190405
+    tex  : Continuous matrix product states for quantum fields
+    reg  : Continuous Matrix Product States for Quantum Fields | ['Verstraete', 'Cirac'] | 2010 | Physical Review Letters  (title ratio 1.00)
+CHECK villani2009optimal: 10.1007/978-3-540-71050-9
+    tex  : Optimal Transport: Old and New
+    reg  : Optimal Transport | ['Villani'] | 2009 | Grundlehren der mathematischen Wissenschaften  (title ratio 0.72)
+PASS von2005transport: 10.1002/cpa.20060
+    tex  : Transport inequalities, gradient estimates, entropy and Ricci curvature
+    reg  : Transport inequalities, gradient estimates, entropy and Ricci curvature | ['von Renesse', 'Sturm'] | 2004 | Communications on Pure and Applied Mathematics  (title ratio 1.00)
+PASS white1973global: 10.1090/S0002-9939-1973-0324603-1
+    tex  : A global invariant of conformal mappings in space
+    reg  : A global invariant of conformal mappings in space | ['White'] | 1973 | Proceedings of the American Mathematical Society  (title ratio 1.00)
+PASS NEG mutated Benamou DOI: HTTP 404
+NEG v2 Benamou DOI 10.1007/s002110050475 -> 'Simplicial grid refinement: on Freudenthal's algorithm and the optimal number of congruence classes'
+NEG v2 Vol. I DOI 22441676 -> 'A Functorial Bridge from Continuous Tensor Manifolds to 4-Dimensional Spacetime Cobordisms'
+Vol. I DOI 22644743 -> 'Beyond the Spectrum: The Complete Three-Volume Monograph on Functional Tensor Realizations, Metric Measure Geometry, and Higher Topological Invariants' | ['Silva-Filho'] | 2026 | Zenodo
+    related: IsSupplementTo 10.5281/zenodo.22290043
+    related: HasVersion 10.5281/zenodo.22644744
+    related: HasVersion 10.5281/zenodo.22866175
+    related: HasVersion 10.5281/zenodo.22699282
+failures 3

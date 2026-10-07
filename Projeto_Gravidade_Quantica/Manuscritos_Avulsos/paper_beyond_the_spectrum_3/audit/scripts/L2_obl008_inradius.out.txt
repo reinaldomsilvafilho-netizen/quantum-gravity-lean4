@@ -1,0 +1,67 @@
+== (1) FE oracle check: unweighted interval vs closed form ==
+p=  2 N= 100 FE=9.8704162 exact=9.8696044 relerr=8.22e-05
+p=  2 N= 200 FE=9.8698073 exact=9.8696044 relerr=2.06e-05
+p=  2 N= 400 FE=9.8696551 exact=9.8696044 relerr=5.14e-06
+   observed orders 2.00, 2.00 (P1 eigenvalue: expect ~2)
+[PASS] FE matches closed form at p=2 (relerr<1e-4 at N=400)
+[PASS] FE error decreases under refinement at p=2
+p=  4 N= 100 FE=73.071023 exact=73.056818 relerr=1.94e-04
+p=  4 N= 200 FE=73.060567 exact=73.056818 relerr=5.13e-05
+p=  4 N= 400 FE=73.057795 exact=73.056818 relerr=1.34e-05
+   observed orders 1.92, 1.94 (P1 eigenvalue: expect ~2)
+[PASS] FE matches closed form at p=4 (relerr<1e-4 at N=400)
+[PASS] FE error decreases under refinement at p=4
+p=  8 N= 100 FE=2204.2935 exact=2203.4328 relerr=3.91e-04
+p=  8 N= 200 FE=2203.6788 exact=2203.4328 relerr=1.12e-04
+p=  8 N= 400 FE=2203.5013 exact=2203.4328 relerr=3.11e-05
+   observed orders 1.81, 1.85 (P1 eigenvalue: expect ~2)
+[PASS] FE matches closed form at p=8 (relerr<1e-4 at N=400)
+[PASS] FE error decreases under refinement at p=8
+[PASS] negative control: mutated closed form (extra (p-1)^{1/p}) disagrees with FE at p=4
+== (2) weighted 1D: lambda_p(A)^{1/p} in comparison window and -> 1/R = 2 ==
+wA p=  2 lam^(1/p)=3.101236 (N/2: 3.101264) window=[2.341605,4.214889]
+[PASS] wA p=2 inside comparison window
+wA p=  4 lam^(1/p)=2.941432 (N/2: 2.941461) window=[2.524045,3.386361]
+[PASS] wA p=4 inside comparison window
+wA p=  8 lam^(1/p)=2.637209 (N/2: 2.637239) window=[2.432083,2.817063]
+[PASS] wA p=8 inside comparison window
+wA p= 16 lam^(1/p)=2.395463 (N/2: 2.395491) window=[2.298134,2.473343]
+[PASS] wA p=16 inside comparison window
+wA p= 32 lam^(1/p)=2.235675 (N/2: 2.235680) window=[2.189554,2.271487]
+[PASS] wA p=32 inside comparison window
+wA p= 64 lam^(1/p)=2.137275 (N/2: 2.137279) window=[2.115098,2.154308]
+[PASS] wA p=64 inside comparison window
+[PASS] wA: distance to 2 decreases monotonically in p (2..64)
+[PASS] wA: mutated weight-dependent limit 2*(C0/c0) excluded at p=64
+wB p=  2 lam^(1/p)=3.198383 (N/2: 3.198407) window=[1.724143,5.724355]
+[PASS] wB p=2 inside comparison window
+wB p=  4 lam^(1/p)=2.938370 (N/2: 2.938407) window=[2.165842,3.946422]
+[PASS] wB p=4 inside comparison window
+wB p=  8 lam^(1/p)=2.621360 (N/2: 2.621459) window=[2.252907,3.041107]
+[PASS] wB p=8 inside comparison window
+wB p= 16 lam^(1/p)=2.385183 (N/2: 2.385210) window=[2.211861,2.569816]
+[PASS] wB p=16 inside comparison window
+wB p= 32 lam^(1/p)=2.230414 (N/2: 2.230420) window=[2.148062,2.315362]
+[PASS] wB p=32 inside comparison window
+wB p= 64 lam^(1/p)=2.134684 (N/2: 2.134688) window=[2.094962,2.175014]
+[PASS] wB p=64 inside comparison window
+[PASS] wB: distance to 2 decreases monotonically in p (2..64)
+[PASS] wB: mutated weight-dependent limit 2*(C0/c0) excluded at p=64
+== (3) unit square: rigorous bounds, no FE ==
+weight ratio 1.0, p=    8: 2.617505 <= lam^(1/p) <= 3.218708
+weight ratio 1.0, p=   64: 2.134613 <= lam^(1/p) <= 2.254673
+weight ratio 1.0, p=  512: 2.024522 <= lam^(1/p) <= 2.046599
+weight ratio 1.0, p= 4096: 2.004066 <= lam^(1/p) <= 2.007909
+[PASS] rigorous bounds at p=4096 both within 0.01 of 1/R=2 (ratio 1.0)
+[PASS] negative control: Cheeger h=2+sqrt(pi) excluded (above upper bound)
+[PASS] negative control: 1/(2R)=1 excluded (below lower bound)
+[PASS] negative control: 2/R=4 excluded (above upper bound)
+weight ratio 4.0, p=    8: 2.201050 <= lam^(1/p) <= 3.827710
+weight ratio 4.0, p=   64: 2.088872 <= lam^(1/p) <= 2.304044
+weight ratio 4.0, p=  512: 2.019048 <= lam^(1/p) <= 2.052148
+weight ratio 4.0, p= 4096: 2.003387 <= lam^(1/p) <= 2.008588
+[PASS] rigorous bounds at p=4096 both within 0.01 of 1/R=2 (ratio 4.0)
+[PASS] negative control: Cheeger h=2+sqrt(pi) excluded (above upper bound)
+[PASS] negative control: 1/(2R)=1 excluded (below lower bound)
+[PASS] negative control: 2/R=4 excluded (above upper bound)
+failures: 0

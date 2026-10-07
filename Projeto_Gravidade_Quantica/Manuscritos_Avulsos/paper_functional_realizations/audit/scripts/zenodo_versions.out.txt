@@ -1,0 +1,22 @@
+== record 22644743 ==
+22866175 conceptrecid 22644743 version None pubdate 2026-09-21 created 2026-09-21T01:22:59 updated 2026-09-21T01:23:01
+   title: Beyond the Spectrum: The Complete Three-Volume Monograph on Functional Tensor Realizations, Metric Measure Geometry, and Higher Topological Invariants
+     file: beyond_the_spectrum_trilogy.pdf 1391818 https://zenodo.org/api/records/22866175/files/beyond_the_spectrum_trilogy.pdf/content
+== all versions: 3
+22699282 conceptrecid 22644743 version None pubdate 2026-09-11 created 2026-09-11T00:48:10 updated 2026-09-11T00:48:10
+   title: Beyond the Spectrum: The Complete Three-Volume Monograph on Functional Tensor Realizations, Metric Measure Geometry, and Higher Topological Invariants
+     file: beyond_the_spectrum_trilogy_updated.pdf 1391818 https://zenodo.org/api/records/22699282/files/beyond_the_spectrum_trilogy_updated.pdf/content
+     file: volume_1_functional_realizations.pdf 706670 https://zenodo.org/api/records/22699282/files/volume_1_functional_realizations.pdf/content
+     file: volume_3_higher_invariants.pdf 694388 https://zenodo.org/api/records/22699282/files/volume_3_higher_invariants.pdf/content
+     file: formal_proofs_bts.zip 12711 https://zenodo.org/api/records/22699282/files/formal_proofs_bts.zip/content
+     file: volume_2_geometric_measures.pdf 804697 https://zenodo.org/api/records/22699282/files/volume_2_geometric_measures.pdf/content
+22866175 conceptrecid 22644743 version None pubdate 2026-09-21 created 2026-09-21T01:22:59 updated 2026-09-21T01:23:01
+   title: Beyond the Spectrum: The Complete Three-Volume Monograph on Functional Tensor Realizations, Metric Measure Geometry, and Higher Topological Invariants
+     file: beyond_the_spectrum_trilogy.pdf 1391818 https://zenodo.org/api/records/22866175/files/beyond_the_spectrum_trilogy.pdf/content
+22644744 conceptrecid 22644743 version None pubdate 2026-09-07 created 2026-09-07T13:59:57 updated 2026-09-07T13:59:58
+   title: Beyond the Spectrum: The Complete Three-Volume Monograph on Functional Tensor Realizations, Metric Measure Geometry, and Higher Topological Invariants
+     file: volume_3_higher_invariants.pdf 690137 https://zenodo.org/api/records/22644744/files/volume_3_higher_invariants.pdf/content
+     file: volume_1_functional_realizations.pdf 690794 https://zenodo.org/api/records/22644744/files/volume_1_functional_realizations.pdf/content
+     file: beyond_the_spectrum_trilogy.pdf 1362569 https://zenodo.org/api/records/22644744/files/beyond_the_spectrum_trilogy.pdf/content
+     file: formal_proofs_bts.zip 12417 https://zenodo.org/api/records/22644744/files/formal_proofs_bts.zip/content
+     file: volume_2_geometric_measures.pdf 793099 https://zenodo.org/api/records/22644744/files/volume_2_geometric_measures.pdf/content

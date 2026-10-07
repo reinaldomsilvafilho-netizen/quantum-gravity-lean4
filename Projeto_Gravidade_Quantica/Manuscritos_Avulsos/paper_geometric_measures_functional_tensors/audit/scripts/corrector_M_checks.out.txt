@@ -1,0 +1,36 @@
+== M1: metric speed bound on [0,1]
+PASS Phi_kernel(A) is a probability density (int = Tr A = 1)
+a=0.10 b=0.05: c0=0.9320 speed=0.064551  bound ||drho||/(pi sqrt c0)=0.065944  ratio 0.9789 ; final bound L||Adot||/(pi sqrt c0)=0.147454
+PASS speed <= ||d_t rho||_L2/(pi sqrt c0) <= L ||Adot||_F/(pi sqrt c0)
+PASS Phi_kernel(A) is a probability density (int = Tr A = 1)
+a=0.02 b=0.01: c0=0.9800 speed=0.012766  bound ||drho||/(pi sqrt c0)=0.012862  ratio 0.9925 ; final bound L||Adot||/(pi sqrt c0)=0.028760
+PASS speed <= ||d_t rho||_L2/(pi sqrt c0) <= L ||Adot||_F/(pi sqrt c0)
+PASS Phi_kernel(A) is a probability density (int = Tr A = 1)
+a=0.30 b=0.30: c0=0.6880 speed=0.210745  bound ||drho||/(pi sqrt c0)=0.230254  ratio 0.9153 ; final bound L||Adot||/(pi sqrt c0)=0.514864
+PASS speed <= ||d_t rho||_L2/(pi sqrt c0) <= L ||Adot||_F/(pi sqrt c0)
+near-extremal: speed 2.250791e-03 bound 2.250792e-03 ratio 1.00000
+PASS near-extremal ratio > 0.99 (constant 1/pi is sharp)
+PASS NEG CTRL: mutated constant 0.9/pi is violated
+Thm 2.3(b): e=0.100 W2=0.90000 (exact 1-e=0.90000) bound=1.00000 ratio=0.90000
+Thm 2.3(b): e=0.010 W2=0.99000 (exact 1-e=0.99000) bound=1.00000 ratio=0.99000
+Thm 2.3(b): e=0.001 W2=0.99900 (exact 1-e=0.99900) bound=1.00000 ratio=0.99900
+PASS Thm 2.3(b) ratio -> 1 (sharp), never above 1
+== M5: Willmore energy of the trigonometric profile
+periodic cell M=1000: c* = 1.05782
+periodic cell M=2000: c* = 1.05779
+periodic cell M=4000: c* = 1.05778
+PASS c* converges under refinement (changes < 1%)
+k=16 eps=1/k: W=277.38  W/(eps k^3)=1.0835  c*=1.0578  W/(eps k^2)=17.34
+k=32 eps=1/k: W=1086.95  W/(eps k^3)=1.0615  c*=1.0578  W/(eps k^2)=33.97
+k=64 eps=1/k: W=4331.38  W/(eps k^3)=1.0575  c*=1.0578  W/(eps k^2)=67.68
+PASS W/(eps k^3) -> c* within 3% at k=64
+PASS NEG CTRL: W/(eps k^2) is unbounded (exceeds 50 at k=64)
+== M6: Besov index of a step realization
+p=1: step slope 1.0103 (claim 1/p=1.0000) ; smooth slope 0.9935 (claim 1)
+PASS p=1 step exponent = 1/p, smooth = 1
+p=2: step slope 0.5052 (claim 1/p=0.5000) ; smooth slope 0.9942 (claim 1)
+PASS p=2 step exponent = 1/p, smooth = 1
+p=4: step slope 0.2526 (claim 1/p=0.2500) ; smooth slope 0.9950 (claim 1)
+PASS p=4 step exponent = 1/p, smooth = 1
+PASS NEG CTRL: s*_2 = 1 for the step realization is false (slope far from 1)
+failures=0

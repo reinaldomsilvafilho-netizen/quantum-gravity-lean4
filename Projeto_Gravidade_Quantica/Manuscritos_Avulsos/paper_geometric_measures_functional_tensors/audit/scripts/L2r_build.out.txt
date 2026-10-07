@@ -1,0 +1,8 @@
+paper: paper_geometric_measures_functional_tensors
+pdflatex exit codes: [0, 0, 0]
+counts: {'errors': 0, 'latex_warnings': 0, 'overfull': 0, 'underfull': 0, 'undefined': 0, 'rerun': 0}
+pages: 21
+pdfTeX notices (0):
+shipped PDF text identical to fresh build: True
+negative control (synthetic bad log) flagged: True {'errors': 1, 'latex_warnings': 1, 'overfull': 1, 'underfull': 0, 'undefined': 1, 'rerun': 0}
+gate failures: 0

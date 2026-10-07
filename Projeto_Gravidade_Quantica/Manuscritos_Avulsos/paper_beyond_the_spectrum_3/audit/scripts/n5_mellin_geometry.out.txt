@@ -1,0 +1,13 @@
+s=  -0.5  quad=0.906493919846  2F1=0.906493919846  pole detected: False
+s=  -1.5  quad=0.762759763502  2F1=0.762759763502  pole detected: False
+s=  -2.5  quad=0.659588828976  2F1=0.659588828976  pole detected: False
+s=  -1.5  quad=0.762759763502  2F1=0.762759763502  pole detected: False
+s=  -2.5  quad=0.659588828976  2F1=0.659588828976  pole detected: False
+s=  -7.3  quad=0.419645537236  2F1=0.419645537236  pole detected: False
+NEG CONTROL: B(s+a,b) pole at s=-a detected: True
+OBL-006: chi(S^1)=0 ; paper RHS sum m_r chi(Sigma_r) = 1*chi(arcs)+0*chi(pts) = 2 ; correct sum chi_c*stalk = 0
+OBL-020 ellipse: brute-force reach = 0.500000, eps0/M = 0.500000, b^2/a = 0.500000, d_sep <= 2.0000 (finite; paper: infinity for convex)
+OBL-021 ellipse tube r=0.3: MC = 5.81749 +- 0.00423 ; formula 2 r Per = 5.81307 ; mutated (r Per) = 2.90653
+OBL-021 S^3 in R^4: exact 37.9782377354 formula 37.9782377354
+OBL-019: 2 ln3/ln5 = 1.365212
+failures: 0

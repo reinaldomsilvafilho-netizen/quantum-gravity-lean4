@@ -1,0 +1,59 @@
+== OBL-012 ==
+kappa=  1.0 tau=   0.5: tau<W> ODE=0.3600736298 closed=0.3600736298 final mean=0.27698 (target 1.3)
+[PASS] closed form, kappa=1.0, tau=0.5
+[PASS] dragged trap at finite tau does not reach mu_B (kappa=1.0, tau=0.5)
+[PASS] tau Sigma < W_2^2 at finite tau (consistent with Aurell, which needs mu_B at tau)
+kappa=  1.0 tau=   5.0: tau<W> ODE=1.3542774261 closed=1.3542774261 final mean=1.04175 (target 1.3)
+[PASS] closed form, kappa=1.0, tau=5.0
+[PASS] dragged trap at finite tau does not reach mu_B (kappa=1.0, tau=5.0)
+[PASS] tau Sigma < W_2^2 at finite tau (consistent with Aurell, which needs mu_B at tau)
+kappa=  1.0 tau= 200.0: tau<W> ODE=1.6815500000 closed=1.6815500000 final mean=1.29350 (target 1.3)
+[PASS] closed form, kappa=1.0, tau=200.0
+kappa=1.0: friction metric g = 1.690000000000 (a^2 = 1.6900000000000002)
+[PASS] g_fric = a^2 independent of kappa=1.0
+[PASS] slow limit tau Sigma -> L^2 = a^2 (tau=200, kappa=1.0)
+[PASS] negative control: v2 factor 1/2 L^2 fails (kappa=1.0)
+   Aurell optimal protocol kappa=1.0 tau=0.5: final mean=1.30000000, tau<W>=1.6900000000 (W_2^2=1.6900)
+[PASS] optimal protocol reaches mu_B and tau W_diss = W_2^2 (kappa=1.0, tau=0.5)
+   Aurell optimal protocol kappa=1.0 tau=5.0: final mean=1.30000000, tau<W>=1.6900000000 (W_2^2=1.6900)
+[PASS] optimal protocol reaches mu_B and tau W_diss = W_2^2 (kappa=1.0, tau=5.0)
+kappa= 10.0 tau=   0.5: tau<W> ODE=1.3542774261 closed=1.3542774261 final mean=1.04175 (target 1.3)
+[PASS] closed form, kappa=10.0, tau=0.5
+[PASS] dragged trap at finite tau does not reach mu_B (kappa=10.0, tau=0.5)
+[PASS] tau Sigma < W_2^2 at finite tau (consistent with Aurell, which needs mu_B at tau)
+kappa= 10.0 tau=   5.0: tau<W> ODE=1.6562000000 closed=1.6562000000 final mean=1.27400 (target 1.3)
+[PASS] closed form, kappa=10.0, tau=5.0
+[PASS] dragged trap at finite tau does not reach mu_B (kappa=10.0, tau=5.0)
+[PASS] tau Sigma < W_2^2 at finite tau (consistent with Aurell, which needs mu_B at tau)
+kappa= 10.0 tau= 200.0: tau<W> ODE=1.6891550000 closed=1.6891550000 final mean=1.29935 (target 1.3)
+[PASS] closed form, kappa=10.0, tau=200.0
+kappa=10.0: friction metric g = 1.690000000000 (a^2 = 1.6900000000000002)
+[PASS] g_fric = a^2 independent of kappa=10.0
+[PASS] slow limit tau Sigma -> L^2 = a^2 (tau=200, kappa=10.0)
+[PASS] negative control: v2 factor 1/2 L^2 fails (kappa=10.0)
+[PASS] negative control: v2 bound tau Sigma >= kappa/4 W_2^2 fails at kappa=10
+   Aurell optimal protocol kappa=10.0 tau=0.5: final mean=1.30000000, tau<W>=1.6900000000 (W_2^2=1.6900)
+[PASS] optimal protocol reaches mu_B and tau W_diss = W_2^2 (kappa=10.0, tau=0.5)
+   Aurell optimal protocol kappa=10.0 tau=5.0: final mean=1.30000000, tau<W>=1.6900000000 (W_2^2=1.6900)
+[PASS] optimal protocol reaches mu_B and tau W_diss = W_2^2 (kappa=10.0, tau=5.0)
+time exponents: {'tau*Sigma': 1, 'L^2': 1, 'W2^2': 1, 'kappa': -1}; kappa*W2^2 -> 0
+[PASS] tau Sigma, L^2, W_2^2 have the same dimension
+[PASS] negative control: kappa W_2^2 is dimensionally different
+== OBL-020: Cassini ovals |z-1||z+1| = c ==
+c=1.05 N=1000: reach=0.32016 eps0/M=0.06650 dsep/2=0.32016 bound=0.06650
+c=1.05 N=2000: reach=0.32016 eps0/M=0.06650 dsep/2=0.32016 bound=0.06650
+c=1.05 N=4000: reach=0.32016 eps0/M=0.06650 dsep/2=0.32016 bound=0.06650
+[PASS] c=1.05: reach >= bound (finest grid)
+[PASS] c=1.05: reach stable under refinement (<1e-3)
+c=1.2 N=1000: reach=0.65389 eps0/M=0.15114 dsep/2=0.66332 bound=0.15114
+c=1.2 N=2000: reach=0.65388 eps0/M=0.15114 dsep/2=0.66332 bound=0.15114
+c=1.2 N=4000: reach=0.65388 eps0/M=0.15114 dsep/2=0.66332 bound=0.15114
+[PASS] c=1.2: reach >= bound (finest grid)
+[PASS] c=1.2: reach stable under refinement (<1e-3)
+c=1.6 N=1000: reach=1.05926 eps0/M=0.33031 dsep/2=1.24878 bound=0.33031
+c=1.6 N=2000: reach=1.05926 eps0/M=0.33031 dsep/2=1.24894 bound=0.33031
+c=1.6 N=4000: reach=1.05925 eps0/M=0.33031 dsep/2=1.24899 bound=0.33031
+[PASS] c=1.6: reach >= bound (finest grid)
+[PASS] c=1.6: reach stable under refinement (<1e-3)
+[PASS] negative control: mutated bound reach >= d_sep/2 (curvature term dropped) fails for some oval
+failures: 0

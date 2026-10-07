@@ -1,0 +1,1219 @@
+\documentclass[11pt,a4paper,reqno]{amsart}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath,amssymb,amsfonts,amsthm,mathtools}
+\usepackage{mathrsfs}
+\usepackage{microtype}
+\usepackage{booktabs}
+\usepackage{tabularx}
+\usepackage[dvipsnames]{xcolor}
+\usepackage{hyperref}
+\usepackage{geometry}
+\usepackage{enumitem}
+\usepackage{cite}
+
+\geometry{
+  top=3cm,
+  bottom=3cm,
+  left=2.8cm,
+  right=2.8cm,
+  headheight=14pt
+}
+
+\hypersetup{
+  colorlinks=true,
+  linkcolor=NavyBlue,
+  citecolor=Mahogany,
+  urlcolor=TealBlue,
+  pdfauthor={Reinaldo M. Silva-Filho},
+  pdftitle={Beyond the Spectrum: Functional Realizations of Matrices and Tensors, Emerging Invariants, and Geometric Measures}
+}
+
+% --- Theorem Environments ---
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{example}[theorem]{Example}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{construction}[theorem]{Construction}
+
+\numberwithin{equation}{section}
+
+% --- Custom Notations ---
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Sph}{\mathbb{S}}
+\newcommand{\Tor}{\mathbb{T}}
+\newcommand{\Id}{\mathrm{Id}}
+\newcommand{\Tr}{\operatorname{Tr}}
+\newcommand{\rank}{\operatorname{rank}}
+\newcommand{\supp}{\operatorname{supp}}
+\newcommand{\Lip}{\operatorname{Lip}}
+\newcommand{\BV}{\operatorname{BV}}
+\newcommand{\TV}{\operatorname{TV}}
+\newcommand{\Per}{\operatorname{Per}}
+\newcommand{\cutnorm}[1]{\|#1\|_{\square}}
+\newcommand{\norm}[1]{\left\|#1\right\|}
+\newcommand{\inner}[2]{\left\langle #1, #2 \right\rangle}
+\newcommand{\dif}{\,\mathrm{d}}
+\newcommand{\abs}[1]{\left|#1\right|}
+
+\title[Beyond the Spectrum]{Beyond the Spectrum: Functional Realizations of Matrices and Tensors, Emerging Invariants, and Geometric Measures}
+
+\author{Reinaldo M. Silva-Filho}
+\address{Master's student, Postgraduate Program in Statistics and Agricultural Experimentation (PPGEE/DES), Department of Statistics (DES), Federal University of Lavras (UFLA), Lavras, MG, Brazil}
+\email{reinaldo.filho1@estudante.ufla.br}
+\date{October 6, 2026}
+
+\begin{document}
+
+\begin{abstract}
+Finite-dimensional multilinear algebra treats matrices and higher-order tensors as elements of discrete linear spaces, extracting intrinsic invariants such as eigenvalues, singular values, operator rank, and trace polynomials. However, pure algebraic representations fundamentally obscure spatial locality, topological connectivity, and geometric regularity due to basis-permutation invariance in coordinates. In this paper we introduce a unified mathematical framework termed \emph{Functional Realization Operators} $\Phi \colon \mathcal{T}^k(V) \to \mathcal{F}(\Omega)$, mapping discrete algebraic arrays into function spaces over continuous domains $\Omega$. We describe a taxonomy of continuous, piecewise continuous, step-like, and operator-valued realization families.
+
+We prove, or recall with references, four groups of results. Two concern quantities that change under a simultaneous permutation of rows and columns, so they are not functions of the spectrum and record the spatial layout of the array: (i) Dirichlet energies and Sobolev $H^s$ norms, which differ between permutation-conjugate matrices (by a factor $n^2$ for suitable rank-one matrices, but not for $I_n$ or the all-ones matrix); and (ii) total variation ($\BV$) norms and the Hausdorff measures of level sets via the coarea formula. The other two are permutation-invariant and give geometric and asymptotic readings of matrix data: (iii) the Morse indices of the quadratic form on the sphere, which are fixed by the order of the eigenvalues, and the Euler characteristic of the sphere that they recover; and (iv) the cut distance of graphons, invariant under relabelling by construction, which compares matrices of different sizes and has convergent subsequences as $n \to \infty$. The quantities in (i) and (ii) are explicit functions of the entries (for instance, the Dirichlet energy equals $\|DA\|_F^2 + \|AD\|_F^2$ with $D = \operatorname{diag}(1, \dots, n)$); their interest lies in the spatial information they record, not in being inaccessible to matrix algebra.
+
+For tensors we prove existence of best rank-one approximations on products of spheres, a two-sided bound showing that $d^{-1/2}$ is the normalization under which the spectral norm of a Gaussian $k$-tensor stays of order one, and an exact Gaussian tail for random evaluations. We recall that the expected number of critical points of the isotropic random spherical $d$-form grows like $e^{\frac{n}{2}\log(d-1)}$ for $d \ge 3$ (Auffinger--Ben~Arous--\v{C}ern\'y), against exactly $2n$ for $d = 2$. We then discuss five application areas, separating what is proved from proposals and conjectures: a Sobolev training penalty and graphon width scaling (proposals); spin-glass landscapes (a conjectured link between replica symmetry breaking and sub-level-set connectivity); size-independent network comparison via the cut distance; tensor approximation, where compactness settles the rank-one case but does not remove the rank-$r \ge 2$ ill-posedness of De Silva--Lim; and the coarea reading of total variation in imaging.
+\end{abstract}
+
+\keywords{Matrix algebra, higher-order tensors, functional realizations, Sobolev spaces, total variation, Coarea formula, Morse theory, graphons, cut norm, spin glasses, deep learning.}
+\subjclass[2020]{15A69, 46E35, 26B30, 58E05, 05C80, 47G10, 82B44, 68T07}
+
+\maketitle
+
+\tableofcontents
+
+\newpage
+
+% =========================================================================
+\section{Introduction and Motivation}
+\label{sec:intro}
+% =========================================================================
+
+Classical linear and multilinear algebra views a real matrix $A \in \R^{m \times n}$ or a tensor $\mathcal{T} \in \R^{d_1 \times \dots \times d_k}$ through the lens of coordinate arrays and linear maps between finite-dimensional vector spaces. Within this paradigm, the dominant structural invariants are purely algebraic: the trace $\Tr(A)$, the determinant $\det(A)$, the characteristic polynomial $P_A(\lambda)$, the spectrum $\sigma(A) = \{\lambda_i(A)\}$, the singular value spectrum $\Sigma(A) = \{\sigma_i(A)\}$, and the matrix rank $\rank(A)$.
+
+While undeniably foundational, this purely algebraic framework suffers from a significant limitation when matrices represent spatial, physical, network, or image-based structures: \emph{algebraic invariants are oblivious to metric and topological spatial layouts}. Specifically:
+\begin{enumerate}[label=(\alph*)]
+    \item \textbf{Permutation Invariance vs. Metric Proximity:} If $P \in \R^{n \times n}$ is a permutation matrix, the conjugated matrix $B = P A P^T$ possesses an identical spectrum, trace, determinant, and Frobenius norm:
+    \begin{equation}
+        \sigma(P A P^T) = \sigma(A), \quad \Tr(P A P^T) = \Tr(A), \quad \|P A P^T\|_F = \|A\|_F.
+    \end{equation}
+    Yet, in physical space, transposing two adjacent rows versus swapping two distant rows induces fundamentally different topological discontinuities, gradient concentrations, and oscillatory phenomena.
+    \item \textbf{The Curse of Dimensional Rigidity ($n \to \infty$):} Two matrices of differing sizes, say $A_{100 \times 100}$ and $B_{1000 \times 1000}$, live in non-isomorphic vector spaces. Algebraic linear algebra provides no intrinsic metric to measure how closely $A$ and $B$ approximate the same underlying continuum limit object without ad-hoc downsampling or artificial padding.
+    \item \textbf{Higher-Order Tensor Intractability:} For tensors $\mathcal{T} \in \R^{d_1 \times d_2 \times d_3}$ of order $k \ge 3$, algebraic invariants become hard to compute and to control: tensor rank determination is NP-hard over $\R$ and $\C$~\cite{hillar2013most}, best low-rank approximations can fail to exist because the sets of tensors of bounded rank are not closed (border rank)~\cite{desilva2008illposed}, and multilinear spectral theory yields complicated varieties rather than discrete eigenspaces~\cite{lim2005singular,qi2005eigenvalues,cartwright2013number}; see Lim~\cite{lim2021tensors} for a survey.
+\end{enumerate}
+
+These limitations suggest combining multilinear algebra with \emph{functional analysis, geometric measure theory, and differential topology}.
+
+\subsection*{Contributions}
+We map matrices and tensors into function spaces via \emph{Functional Realization Operators} $\Phi \colon \mathcal{T}^k(V) \to \mathcal{F}(\Omega)$ and study geometric and analytical quantities of the realizations that:
+\begin{enumerate}[label=\arabic*.]
+    \item Discriminate between spectrally indistinguishable arrays according to spatial energy, harmonic smoothness, and Sobolev scale $H^s(\Omega)$;
+    \item Measure internal perimeter and level-set geometry through functions of bounded variation ($\BV$) and the coarea formula;
+    \item Describe the critical-point structure of spherical realizations through Morse indices on $\Sph^{n-1}$, which are fixed by the order of the eigenvalues;
+    \item Compare dense arrays of different sizes via the cut norm and graphons, by a distance that is invariant under relabelling of the indices;
+    \item Connect these quantities to five application areas (machine learning, spin glass physics, large networks, tensor approximation, and imaging), distinguishing proved statements from proposals and conjectures.
+\end{enumerate}
+Most of the individual results are classical or follow from classical results, which we cite; the contribution is to collect them in one framework, with complete proofs where the arguments are short. This paper shares most of its material with Chapter~1 of the author's monograph~\cite{silvafilho2026book}.
+
+\subsection*{Related work}
+Several of the realizations studied here are the starting point of established theories, and we use their results rather than re-derive them. The step realization of a matrix is the graphon of graph-limit theory, introduced by Lov\'asz and Szegedy~\cite{lovasz2006limits} and developed by Borgs, Chayes, Lov\'asz, S\'os and Vesztergombi~\cite{borgs2008convergent}; its metric is the cut distance of Frieze and Kannan~\cite{frieze1999quick}, see the monograph~\cite{lovasz2012large} and Janson's survey~\cite{janson2013graphons}. The cut norm is related to Grothendieck's inequality through the $\infty \to 1$ norm (Alon and Naor~\cite{alon2006approximating}). Limits of $k$-uniform hypergraphs were constructed by Elek and Szegedy~\cite{elek2012measure}; Zhao~\cite{zhao2015hypergraph} explains which cut norms give compactness and which give counting lemmas. Graphons are also used as continuum limits of dynamics on large networks (Medvedev~\cite{medvedev2014nonlinear}), of graph signal processing and graph neural networks (Ruiz, Chamon and Ribeiro~\cite{ruiz2021graphon,ruiz2020graphon}), and as estimation targets in network statistics (Gao, Lu and Zhou~\cite{gao2015rate}).
+
+The spherical realization of a symmetric tensor is the variational setting of tensor eigenvalues and singular values (Lim~\cite{lim2005singular}, Qi~\cite{qi2005eigenvalues}). The generic number of complex eigenvectors was computed by Cartwright and Sturmfels~\cite{cartwright2013number}, and the number of singular vector tuples by Friedland and Ottaviani~\cite{friedland2014number}. Average counts for Gaussian tensors were obtained by Draisma and Horobe\c{t}~\cite{draisma2016average} for critical rank-one approximations and by Breiding~\cite{breiding2017expected} for real eigenvalues. For random Gaussian forms on the sphere, the expected number of critical points is computed by the Kac--Rice formula~\cite{kac1943average,adler2007random}. Fyodorov~\cite{fyodorov2004complexity} reduced it to averages of absolute values of random characteristic polynomials. Auffinger, Ben~Arous and \v{C}ern\'y~\cite{auffinger2013random} and Auffinger and Ben~Arous~\cite{auffinger2013complexity} computed the exponential rates for spherical spin glasses, and Subag~\cite{subag2017complexity} proved concentration by a second-moment argument. The spectral (injective) norm of random tensors was bounded by Tomioka and Suzuki~\cite{tomioka2014spectral} and Nguyen, Drineas and Tran~\cite{nguyen2015tensor}, with recent refinements by Dartois and McKenna~\cite{dartois2024injective} and Boedihardjo~\cite{boedihardjo2024injective}. For total variation, the coarea formula goes back to Federer~\cite{federer1959curvature} for Lipschitz maps and to Fleming and Rishel~\cite{fleming1960integral} for $\BV$ functions; its use as an image prior is due to Rudin, Osher and Fatemi~\cite{rudin1992nonlinear}.
+
+% =========================================================================
+\section{Axiomatic Framework: Functional Realization Operators}
+\label{sec:framework}
+% =========================================================================
+
+Let $V_1, \dots, V_k$ be real vector spaces of finite dimensions $d_1, \dots, d_k$ equipped with standard inner products $\inner{\cdot}{\cdot}_{V_i}$, and let $\mathcal{T}^k(V_1, \dots, V_k) \cong V_1 \otimes \dots \otimes V_k$ denote the $k$-th order tensor product space. When $V_i = \R^{d_i}$ with canonical bases $\{e_{j}^{(i)}\}$, any tensor $\mathcal{T} \in \mathcal{T}^k(V_1, \dots, V_k)$ is uniquely identified with its coordinate multi-array $(T_{j_1 \dots j_k})_{1 \le j_r \le d_r}$. For $k=2$, this reduces to the classical matrix space $\R^{d_1 \times d_2}$.
+
+Let $\Omega \subseteq \R^d$ be a measurable domain endowed with the Lebesgue measure $\dif x$, or a smooth compact Riemannian manifold $(M, g)$ with volume form $\dif V_g$. We denote by $\mathcal{F}(\Omega)$ a topological vector space of functions over $\Omega$ (e.g., $C^0(\Omega)$, $L^p(\Omega)$, $W^{s,p}(\Omega)$, or the space of Radon measures $\mathcal{M}(\Omega)$).
+
+\begin{definition}[Functional Realization Operator]
+\label{def:realization_op}
+A \emph{Functional Realization Operator} is a mapping
+\begin{equation}
+    \Phi \colon \mathcal{T}^k(V_1, \dots, V_k) \longrightarrow \mathcal{F}(\Omega)
+\end{equation}
+which associates to each discrete tensor $\mathcal{T}$ a well-defined function $f_{\mathcal{T}} \coloneqq \Phi(\mathcal{T}) \in \mathcal{F}(\Omega)$.
+\end{definition}
+
+\begin{definition}[Structural Properties of Realizations]
+Let $\Phi \colon \mathcal{T}^k \to \mathcal{F}(\Omega)$ be a functional realization. We categorize $\Phi$ according to the following properties:
+\begin{enumerate}[label=(\roman*)]
+    \item \textbf{Linearity:} $\Phi$ is linear if $\Phi(\alpha \mathcal{S} + \beta \mathcal{T}) = \alpha \Phi(\mathcal{S}) + \beta \Phi(\mathcal{T})$ for all $\alpha, \beta \in \R$ and $\mathcal{S}, \mathcal{T} \in \mathcal{T}^k$.
+    \item \textbf{Injectivity (Faithfulness):} $\Phi$ is faithful if it is injective. For linear $\Phi$ this means $\ker(\Phi) = \{0\}$: no non-zero tensor is mapped to the zero element of $\mathcal{F}(\Omega)$ (the zero function, the zero class of functions equal almost everywhere, or the zero measure, according to the target space).
+    \item \textbf{Continuity (Boundedness):} If $\mathcal{T}^k$ is equipped with the Frobenius norm $\|\mathcal{T}\|_F = \sqrt{\sum T_{j_1 \dots j_k}^2}$ and $\mathcal{F}(\Omega)$ with norm $\|\cdot\|_{\mathcal{F}}$, $\Phi$ is bounded if there exists $C > 0$ such that
+    \begin{equation}
+        \|\Phi(\mathcal{T})\|_{\mathcal{F}} \le C \|\mathcal{T}\|_F, \quad \forall \mathcal{T} \in \mathcal{T}^k.
+    \end{equation}
+    \item \textbf{Symmetry Equivariance:} Let $G$ be a subgroup of the product of orthogonal groups $O(d_1) \times \dots \times O(d_k)$ (or permutation groups $\mathcal{S}_{d_1} \times \dots \times \mathcal{S}_{d_k}$) acting on $\mathcal{T}^k$, and let $G$ act on $\Omega$ via measurable transformations $\tau_g \colon \Omega \to \Omega$. $\Phi$ is $G$-equivariant if
+    \begin{equation}
+        \Phi(g \cdot \mathcal{T})(x) = \Phi(\mathcal{T})(\tau_{g^{-1}}(x)), \quad \forall x \in \Omega, \forall g \in G.
+    \end{equation}
+\end{enumerate}
+\end{definition}
+
+% -------------------------------------------------------------------------
+\section{Comprehensive Taxonomy of Functional Realizations}
+\label{sec:taxonomy}
+% -------------------------------------------------------------------------
+
+\subsection{Family I: Multilinear, Polynomial, and Spherical Realizations}
+\label{subsec:fam1}
+
+In this family, the matrix or tensor coefficients define the homogeneous algebraic form of a polynomial on Euclidean space or a compact sphere.
+
+\begin{construction}[Quadratic Forms on $\R^n$ and $\Sph^{n-1}$]
+Let $A \in \R^{n \times n}$. The quadratic realization $\Phi_{\mathrm{quad}}(A) \colon \R^n \to \R$ is defined by:
+\begin{equation}
+    \label{eq:quad_form}
+    f_A(x) \coloneqq x^T A x = \sum_{i=1}^n \sum_{j=1}^n a_{ij} x_i x_j.
+\end{equation}
+Restricting $x$ to the unit sphere $\Sph^{n-1} = \{x \in \R^n \colon \|x\|_2 = 1\}$ yields a smooth function $f_A \in C^\infty(\Sph^{n-1})$.
+\end{construction}
+
+\begin{construction}[Higher-Order Homogeneous Tensor Forms]
+For a $d$-th order symmetric tensor $\mathcal{T} \in \operatorname{Sym}^d(\R^n)$, the homogeneous realization $\Phi_{\mathrm{hom}}(\mathcal{T}) \colon \Sph^{n-1} \to \R$ is:
+\begin{equation}
+    \label{eq:tensor_form}
+    f_{\mathcal{T}}(x) \coloneqq \mathcal{T}(x, x, \dots, x) = \sum_{i_1, \dots, i_d = 1}^n \mathcal{T}_{i_1 \dots i_d} x_{i_1} \dots x_{i_d}.
+\end{equation}
+\end{construction}
+
+\begin{proposition}[Spectral and Critical Correspondence]
+Let $A \in \operatorname{Sym}_n(\R)$ be symmetric with eigendecomposition $A = V \Lambda V^T$, where $\Lambda = \operatorname{diag}(\lambda_1, \dots, \lambda_n)$ with $\lambda_1 \le \lambda_2 \le \dots \le \lambda_n$. Then:
+\begin{enumerate}[label=(\roman*)]
+    \item The global extrema of $f_A|_{\Sph^{n-1}}$ satisfy:
+    \begin{equation}
+        \min_{x \in \Sph^{n-1}} f_A(x) = \lambda_1, \quad \max_{x \in \Sph^{n-1}} f_A(x) = \lambda_n.
+    \end{equation}
+    \item The critical points of the function $f_A \colon \Sph^{n-1} \to \R$ are precisely the unit eigenvectors of $A$ (all unit vectors of each eigenspace when an eigenvalue is repeated), and the critical values are the corresponding eigenvalues.
+\end{enumerate}
+\end{proposition}
+This is the classical Rayleigh--Ritz characterization; we include the short proof.
+\begin{proof}
+Consider the Lagrangian $\mathcal{L}(x, \mu) = x^T A x - \mu (x^T x - 1)$ on $\R^n \times \R$. Since $\nabla(x^T x) = 2x \neq 0$ on the sphere, the Lagrange multiplier rule applies, and the criticality condition $\nabla_x \mathcal{L} = 2Ax - 2\mu x = 0$ yields the eigenvalue equation $Ax = \mu x$. Constraining $\|x\|_2 = 1$ gives $f_A(x) = x^T A x = \mu x^T x = \mu$. Thus, the critical values are precisely the spectrum $\sigma(A)$, and the extrema coincide with the Rayleigh quotient bounds.
+\end{proof}
+
+\subsection{Family II: Step-like, Partition-Based, and Graphon Realizations}
+\label{subsec:fam2}
+
+Here, the discrete array parametrizes a piecewise-constant function over a partitioned measure space. This construction forms the foundation of modern dense graph limit theory (Graphons)~\cite{lovasz2006limits,borgs2008convergent} and digital imaging.
+
+\begin{construction}[Graphon / Unit Square Step Realization]
+Let $A \in \R^{n \times n}$ and consider the unit square $\Omega = [0, 1]^2$ with Lebesgue measure. Partition $[0, 1]$ into $n$ equal left-closed, right-open intervals:
+\begin{equation}
+    I_i \coloneqq \left[\frac{i-1}{n}, \frac{i}{n}\right), \quad i=1, \dots, n-1, \quad \text{and} \quad I_n \coloneqq \left[\frac{n-1}{n}, 1\right].
+\end{equation}
+The graphon step realization $\Phi_{\mathrm{step}}(A) \colon [0, 1]^2 \to \R$ is defined by:
+\begin{equation}
+    \label{eq:graphon_step}
+    W_A(x, y) \coloneqq \sum_{i=1}^n \sum_{j=1}^n a_{ij} \mathbf{1}_{I_i}(x) \mathbf{1}_{I_j}(y),
+\end{equation}
+where $\mathbf{1}_E$ denotes the characteristic function of set $E$.
+\end{construction}
+
+\begin{construction}[Multidimensional Pixel/Voxel Fields]
+Let $A \in \R^{n_1 \times \dots \times n_d}$ be a $d$-dimensional tensor. Partition $\Omega = \prod_{\alpha=1}^d [0, L_\alpha)$ into boxes $Q_{\mathbf{i}} = \prod_{\alpha=1}^d [(\mathbf{i}_\alpha-1) h_\alpha, \mathbf{i}_\alpha h_\alpha)$ with side lengths $h_\alpha \coloneqq L_\alpha / n_\alpha$. The realization is:
+\begin{equation}
+    f_A(x) = \sum_{\mathbf{i}} A_{\mathbf{i}} \mathbf{1}_{Q_{\mathbf{i}}}(x).
+\end{equation}
+Always $f_A \in L^\infty(\Omega) \cap \BV(\Omega)$; $f_A$ is continuous only when $A$ is constant, and otherwise jumps across the faces separating boxes with different values.
+\end{construction}
+
+\begin{construction}[Polyhedral Indicator Functions and Hyperplane Arrangements]
+Let $A \in \R^{m \times n}$ and $b \in \R^m$. The matrix $A$ defines a system of $m$ affine half-spaces $H_i^- = \{x \in \R^n \colon \inner{a_i}{x} \le b_i\}$, where $a_i$ is the $i$-th row of $A$. The polyhedral indicator realization is:
+\begin{equation}
+    \Phi_{\mathrm{poly}}(A, b)(x) \coloneqq \mathbf{1}_{\{x \in \R^n \colon Ax \le b\}}(x) = \prod_{i=1}^m \Theta(b_i - \inner{a_i}{x}),
+\end{equation}
+where $\Theta(t) = \mathbf{1}_{[0, \infty)}(t)$ is the Heaviside step function.
+\end{construction}
+
+\subsection{Family III: Interpolation, Basis Expansions, and Sobolev Fields}
+\label{subsec:fam3}
+
+In this family, matrix elements act as generalized Fourier coefficients, spline control points, or localized radial basis weights.
+
+\begin{construction}[Harmonic / Dual Fourier Realization]
+\label{constr:harmonic}
+Let $A \in \C^{n \times n}$. Let $\Tor^2 = [0, 2\pi)^2$ be the 2-torus equipped with the normalized Haar probability measure $\dif\mu(x) = \frac{\dif x_1 \dif x_2}{(2\pi)^2}$. We associate $A$ with the trigonometric polynomial:
+\begin{equation}
+    \label{eq:fourier_realization}
+    f_A(x_1, x_2) \coloneqq \sum_{k_1, k_2 = 1}^n a_{k_1 k_2} e^{i (k_1 x_1 + k_2 x_2)}.
+\end{equation}
+The characters $e^{i(k_1 x_1 + k_2 x_2)}$ are orthonormal in $L^2(\Tor^2, \dif\mu)$, so Parseval's identity gives $\|f_A\|_{L^2(\Tor^2, \dif\mu)} = \|A\|_F$. (With Lebesgue measure $\dif x_1 \dif x_2$ instead, every $L^2$ norm below is multiplied by $2\pi$ and every squared norm or energy by $(2\pi)^2$.)
+\end{construction}
+
+\begin{construction}[Tensor Product Splines and B\'ezier Surfaces]
+Let $B_{i, p}(u)$ denote the $i$-th B-spline basis function of degree $p$ on a knot vector $\Xi$, and $B_{j,q}(v)$ those of degree $q$ on a knot vector $H$. For an array of control points $P \in \R^{(m+1) \times (n+1) \times 3}$, indexed by $0 \le i \le m$ and $0 \le j \le n$:
+\begin{equation}
+    S(u, v) = \sum_{i=0}^m \sum_{j=0}^n B_{i, p}(u) B_{j, q}(v) P_{ij}.
+\end{equation}
+The surface is $C^{p-1}$ in $u$ and $C^{q-1}$ in $v$ at simple knots (a knot of multiplicity $\mu$ lowers the regularity there to $C^{p-\mu}$). The control points determine the shape through the convex hull property and the curvature of $S$. Tensor-product B-splines are a standard example of a multilinear rank decomposition in a product basis~\cite[\S4]{lim2021tensors}.
+\end{construction}
+
+\subsection{Family IV: Integral Operators and Continuous Matrix Limits}
+\label{subsec:fam4}
+
+\begin{construction}[Fredholm Integral Kernel Operators]
+Every matrix $A \in \R^{n \times n}$ can be identified with the integral operator $T_A \colon L^2([0, 1]) \to L^2([0, 1])$:
+\begin{equation}
+    (T_A u)(x) \coloneqq \int_0^1 W_A(x, y) u(y) \dif y,
+\end{equation}
+where $W_A$ is the step realization given in \eqref{eq:graphon_step}. $T_A$ is a Hilbert-Schmidt operator with Hilbert-Schmidt norm $\|T_A\|_{\mathrm{HS}} = \frac{1}{n} \|A\|_F$.
+\end{construction}
+
+% =========================================================================
+\section{Emerging Invariants: Spatial, Topological and Asymptotic Quantities}
+\label{sec:emerging_invariants}
+% =========================================================================
+
+Sections~\ref{subsec:sobolev} and~\ref{subsec:coarea} treat quantities that change under a simultaneous permutation of rows and columns. Sections~\ref{subsec:morse} and~\ref{subsec:graphon_cutnorm} treat permutation-invariant ones: the Morse indices are fixed by the order of the eigenvalues, and the cut distance is invariant under relabelling by construction.
+
+\subsection{Spatiality vs. Spectrum: Dirichlet Energies and Sobolev Regularity}
+\label{subsec:sobolev}
+
+Let $A \in \R^{n \times n}$. In linear algebra, the permutation matrix $P_\pi$ corresponding to a permutation $\pi \in \mathcal{S}_n$ preserves all spectral invariants:
+\begin{equation}
+    \sigma(P_\pi A P_\pi^T) = \sigma(A), \quad \Tr(P_\pi A P_\pi^T) = \Tr(A), \quad \|P_\pi A P_\pi^T\|_F = \|A\|_F.
+\end{equation}
+
+Now consider the harmonic realization on $(\Tor^2, \dif\mu)$ given by \eqref{eq:fourier_realization}:
+\begin{equation}
+    f_A(x_1, x_2) = \sum_{k_1, k_2 = 1}^n a_{k_1 k_2} e^{i (k_1 x_1 + k_2 x_2)}.
+\end{equation}
+
+The homogeneous Dirichlet energy with respect to the normalized measure $\dif\mu$ is:
+\begin{equation}
+    \mathcal{E}(f) \coloneqq \|\nabla f\|_{L^2(\Tor^2, \dif\mu)}^2 = \int_{\Tor^2} \|\nabla f(x_1, x_2)\|_2^2 \dif\mu(x).
+\end{equation}
+
+\begin{theorem}[Spectral Blindness to Spatial Energy]
+\label{thm:dirichlet_blindness}
+For every matrix $A \in \R^{n \times n}$, the Dirichlet energy of the realization $f_A$ is
+\begin{equation}
+    \label{eq:dirichlet_energy_formula}
+    \mathcal{E}(f_A) = \sum_{k_1=1}^n \sum_{k_2=1}^n (k_1^2 + k_2^2) |a_{k_1 k_2}|^2 = \|DA\|_F^2 + \|AD\|_F^2, \qquad D \coloneqq \operatorname{diag}(1, 2, \dots, n).
+\end{equation}
+Moreover, for every $n \ge 2$ there exist a non-zero symmetric matrix $A \in \operatorname{Sym}_n(\R)$ and permutation matrices $P_1, P_2$ such that $A_1 = P_1 A P_1^T$ and $A_2 = P_2 A P_2^T$ satisfy
+\begin{equation}
+    \sigma(A_1) = \sigma(A_2), \quad \rank A_1 = \rank A_2, \quad \|A_1\|_F = \|A_2\|_F = \|A\|_F,
+\end{equation}
+yet
+\begin{equation}
+    \frac{\mathcal{E}(f_{A_2})}{\mathcal{E}(f_{A_1})} = n^2.
+\end{equation}
+For every $A \neq 0$ and all permutation matrices $P_1, P_2$ the ratio lies in $[n^{-2}, n^2]$, so $n^2$ is the largest possible value.
+\end{theorem}
+
+\begin{proof}
+Direct differentiation of $f_A$ yields:
+\begin{equation}
+    \partial_{x_1} f_A = \sum_{k_1, k_2=1}^n (i k_1) a_{k_1 k_2} e^{i(k_1 x_1 + k_2 x_2)}, \quad
+    \partial_{x_2} f_A = \sum_{k_1, k_2=1}^n (i k_2) a_{k_1 k_2} e^{i(k_1 x_1 + k_2 x_2)}.
+\end{equation}
+Since this is a finite trigonometric polynomial, termwise differentiation is justified. By Parseval's identity for the orthonormal system $\{e^{i(k_1 x_1 + k_2 x_2)}\}$ in $L^2(\Tor^2, \dif\mu)$:
+\begin{equation}
+    \|\nabla f_A\|_{L^2}^2 = \|\partial_{x_1} f_A\|_{L^2}^2 + \|\partial_{x_2} f_A\|_{L^2}^2 = \sum_{k_1, k_2=1}^n (k_1^2 + k_2^2) |a_{k_1 k_2}|^2.
+\end{equation}
+Since $(DA)_{k_1 k_2} = k_1 a_{k_1 k_2}$ and $(AD)_{k_1 k_2} = k_2 a_{k_1 k_2}$, the sum equals $\|DA\|_F^2 + \|AD\|_F^2$. As $2 \le k_1^2 + k_2^2 \le 2n^2$, we get $2\|A\|_F^2 \le \mathcal{E}(f_A) \le 2n^2 \|A\|_F^2$; permutation conjugation preserves $\|A\|_F$, so every ratio lies in $[n^{-2}, n^2]$.
+To attain the ratio $n^2$, consider a rank-1 matrix $A = u u^T$ where $u \in \R^n$ has a single non-zero component $u_1 = 1$. Let $\pi_1 = \mathrm{id}$ so that $A_1 = E_{1,1}$, which places the entire spectral mass at the base frequency index $(1, 1)$. Then:
+\begin{equation}
+    \mathcal{E}(f_{A_1}) = (1^2 + 1^2) \cdot 1^2 = 2.
+\end{equation}
+Now let $\pi_2$ swap index $1$ and $n$, so $A_2 = P_{\pi_2} A P_{\pi_2}^T = E_{n, n}$, concentrating the spectral mass at maximal frequency $(n, n)$. Then:
+\begin{equation}
+    \mathcal{E}(f_{A_2}) = (n^2 + n^2) \cdot 1^2 = 2n^2.
+\end{equation}
+Both $A_1$ and $A_2$ possess an identical spectrum $\sigma = \{1, 0, \dots, 0\}$, identical rank 1, and identical Frobenius norm $\|A_1\|_F = \|A_2\|_F = 1$. However:
+\begin{equation}
+    \frac{\mathcal{E}(f_{A_2})}{\mathcal{E}(f_{A_1})} = \frac{2n^2}{2} = n^2.
+\end{equation}
+This completes the proof.
+\end{proof}
+
+\begin{remark}[Matrices for which the ratio is $1$]
+The existence statement in Theorem~\ref{thm:dirichlet_blindness} cannot be strengthened to all $A \neq 0$. For $A = c I_n$ or $A = c J_n$ ($J_n$ the all-ones matrix), every permutation matrix satisfies $P A P^T = A$, so every ratio equals $1$. Large ratios require matrices whose mass is localized in a few entries, such as $E_{11}$ above. Formula \eqref{eq:dirichlet_energy_formula} also shows that $\mathcal{E}(f_A)$ is an explicit quadratic function of the entries; it is not an invariant hidden from matrix algebra, but it is not invariant under simultaneous permutation of rows and columns, which is what makes it record the spatial layout of $A$.
+\end{remark}
+
+\begin{proposition}[Optimal permutation for the Dirichlet energy]
+\label{prop:optimal_permutation}
+For $A \in \R^{n \times n}$, define $w_i \coloneqq \sum_{j=1}^n \bigl(a_{ij}^2 + a_{ji}^2\bigr)$ for $i = 1, \dots, n$, and let $\tau \in \mathcal{S}_n$ be any permutation with $w_{\tau(1)} \ge w_{\tau(2)} \ge \dots \ge w_{\tau(n)}$. Then
+\begin{equation}
+    \label{eq:optimal_permutation}
+    \min_{\pi \in \mathcal{S}_n} \mathcal{E}(f_{P_\pi A P_\pi^T}) = \min_{\pi \in \mathcal{S}_n} \sum_{i=1}^n \pi(i)^2 w_i = \sum_{k=1}^n k^2\, w_{\tau(k)},
+\end{equation}
+and $\pi = \tau^{-1}$ attains it: the row/column with the $k$-th largest value of $w_i$ receives frequency index $k$, smallest frequency to largest weight. The minimum and a minimizer are computed in $O(n \log n)$ time by sorting $w$.
+\end{proposition}
+
+\begin{proof}
+Expanding \eqref{eq:dirichlet_energy_formula} under $A \mapsto P_\pi A P_\pi^T$, i.e.\ $a_{ij} \mapsto a_{\pi^{-1}(i)\pi^{-1}(j)}$, and reindexing by $i' = \pi^{-1}(i)$, $j' = \pi^{-1}(j)$ gives
+\begin{equation}
+    \mathcal{E}(f_{P_\pi A P_\pi^T}) = \sum_{i,j=1}^n \bigl(\pi(i)^2 + \pi(j)^2\bigr) a_{ij}^2 = \sum_{i=1}^n \pi(i)^2 \sum_{j=1}^n a_{ij}^2 + \sum_{j=1}^n \pi(j)^2 \sum_{i=1}^n a_{ij}^2 = \sum_{i=1}^n \pi(i)^2 w_i,
+\end{equation}
+where the last step renames the summation index of the second sum from $j$ to $i$. As $\pi$ ranges over $\mathcal{S}_n$, the values $\{\pi(i)^2 : i = 1,\dots,n\}$ are always the fixed multiset $\{1^2, \dots, n^2\}$; choosing $\pi$ only chooses which weight $w_i$ each fixed square is paired with. By the rearrangement inequality, a sum of pairwise products $\sum_i c_i w_i$ over a bijective pairing of two fixed sequences is minimized when the sequences are sorted in opposite order. Pairing the sequence $1^2 < 2^2 < \dots < n^2$ in increasing order against $w$ sorted in decreasing order, $w_{\tau(1)} \ge \dots \ge w_{\tau(n)}$, is exactly this opposite-order pairing, giving the stated minimum $\sum_k k^2 w_{\tau(k)}$ and minimizer $\pi = \tau^{-1}$.
+\end{proof}
+
+\begin{remark}[This is not a genuine quadratic assignment problem]
+\label{rem:not_qap}
+The double sum $\sum_{i,j}(\pi(i)^2+\pi(j)^2)a_{ij}^2$ superficially has the shape of a quadratic assignment problem (QAP), where hardness in general comes from a coupling term $c_{\pi(i)\pi(j)}$ that depends jointly on $\pi(i)$ and $\pi(j)$ through both indices at once. Here the coefficient of $a_{ij}^2$ is additively separable, $\pi(i)^2+\pi(j)^2$, so the double sum collapses, as shown in the proof above, to the single sum $\sum_i \pi(i)^2 w_i$: a one-dimensional linear assignment of the fixed labels $\{1^2,\dots,n^2\}$ to the indices $i$, weighted by $w_i$. This is solved exactly and in closed form by the rearrangement inequality for every $A$, with no relaxation needed and no dependence on any structure of $A$ beyond the derived weights $w_i$.
+\end{remark}
+
+\begin{example}[The Checkerboard Matrix]
+Consider the checkerboard array $A \in \R^{n \times n}$ given by $a_{ij} = (-1)^{i+j}$. In discrete linear algebra, $A = v v^T$ with $v = (1, -1, 1, -1, \dots)^T$ is a rank-1 matrix with spectrum $\sigma(A) = \{n, 0, \dots, 0\}$. Under the harmonic realization every entry has $|a_{k_1 k_2}|^2 = 1$, so the mass is spread over all frequency indices, and \eqref{eq:dirichlet_energy_formula} gives
+\begin{equation}
+    \mathcal{E}(f_A) = \sum_{k_1=1}^n \sum_{k_2=1}^n (k_1^2 + k_2^2) = 2n \sum_{k=1}^n k^2 = 2n \cdot \frac{n(n+1)(2n+1)}{6} = \frac{2}{3} n^4 + \mathcal{O}(n^3).
+\end{equation}
+Since $\mathcal{E}(f_A)$ is increasing in each $|a_{k_1 k_2}|$, this is the largest Dirichlet energy among matrices with entries in $[-1,1]$. The same value is attained by \emph{every} $\pm 1$ matrix, including the all-ones matrix $J_n$. The harmonic realization treats the indices $(k_1,k_2)$ as frequencies, so its energy measures how mass is distributed over frequency indices, not the spatial sign oscillation of the checkerboard. Spatial roughness in the latter sense is captured by the step realization and its total variation (Theorem~\ref{thm:tv_matrix}), which is $4(n-1)$ for the checkerboard and $0$ for $J_n$.
+\end{example}
+
+\subsection{Geometric Measure Theory: Bounded Variation and the Coarea Formula}
+\label{subsec:coarea}
+
+We now investigate the step realization $\Phi_{\mathrm{step}}(A)$ on $\Omega = (0, 1)^2$. Unless $A$ is constant, $W_A$ jumps across some grid edges, so it has no classical gradient. However, $W_A$ belongs to the space of \emph{Functions of Bounded Variation} $\BV(\Omega)$.
+
+\begin{definition}[Total Variation in $\BV(\Omega)$]
+Let $\Omega \subset \R^2$ be an open domain. For $f \in L^1(\Omega)$, the \emph{Total Variation} of $f$ is defined duality-wise by:
+\begin{equation}
+    \TV(f) \coloneqq \sup \left\{ \int_\Omega f(x) \operatorname{div} \varphi(x) \dif x \colon \varphi \in C_c^1(\Omega; \R^2), \ \|\varphi\|_{L^\infty} \le 1 \right\}.
+\end{equation}
+\end{definition}
+
+\begin{theorem}[Total Variation of the Matrix Step Realization]
+\label{thm:tv_matrix}
+Let $A \in \R^{n \times n}$ and let $W_A \in \BV((0,1)^2)$ be its step realization defined on the open unit square $(0, 1)^2$. Then the distributional gradient $D W_A$ is a 1-dimensional Radon measure concentrated on the grid lines $\mathcal{G}_n = \bigcup_{i=1}^{n-1} (\{i/n\} \times [0,1]) \cup \bigcup_{j=1}^{n-1} ([0,1] \times \{j/n\})$, and its total variation is given by:
+\begin{equation}
+    \label{eq:tv_formula}
+    \TV(W_A) = \frac{1}{n} \sum_{i=1}^{n-1} \sum_{j=1}^n |a_{i+1, j} - a_{i, j}| + \frac{1}{n} \sum_{i=1}^n \sum_{j=1}^{n-1} |a_{i, j+1} - a_{i, j}|.
+\end{equation}
+\end{theorem}
+
+\begin{proof}
+Let $\varphi = (\varphi_1, \varphi_2) \in C_c^1((0,1)^2; \R^2)$ with $\|\varphi\|_{L^\infty} \le 1$. By Green-Gauss integration by parts over each sub-square $Q_{ij} = (\frac{i-1}{n}, \frac{i}{n}) \times (\frac{j-1}{n}, \frac{j}{n})$:
+\begin{equation}
+    \int_{(0,1)^2} W_A \operatorname{div} \varphi \dif x \dif y = \sum_{i,j=1}^n a_{ij} \int_{Q_{ij}} \left( \frac{\partial \varphi_1}{\partial x} + \frac{\partial \varphi_2}{\partial y} \right) \dif x \dif y.
+\end{equation}
+Applying the divergence theorem on each cell gives:
+\begin{equation}
+    \int_{Q_{ij}} \operatorname{div}\varphi \dif x \dif y = \int_{\partial Q_{ij}} \varphi \cdot \nu \dif \mathcal{H}^1,
+\end{equation}
+where $\nu$ is the outward unit normal and $\mathcal{H}^1$ is the 1-dimensional Hausdorff measure. 
+
+At the internal vertical boundary separating $Q_{ij}$ and $Q_{i+1, j}$, denoted $\Gamma_{i, j}^v = \{i/n\} \times (\frac{j-1}{n}, \frac{j}{n})$, the outward normal from $Q_{ij}$ is $(1, 0)$ and from $Q_{i+1, j}$ is $(-1, 0)$. Likewise, the horizontal interface between $Q_{ij}$ and $Q_{i,j+1}$ is $\Gamma_{i, j}^h = (\frac{i-1}{n}, \frac{i}{n}) \times \{j/n\}$, with outward normals $(0,1)$ from $Q_{ij}$ and $(0,-1)$ from $Q_{i,j+1}$. The test field vanishes near $\partial(0,1)^2$, so the outer boundary contributes nothing. Summing across all interfaces:
+\begin{align}
+    \int_{(0,1)^2} W_A \operatorname{div} \varphi \dif x \dif y 
+    &= \sum_{i=1}^{n-1} \sum_{j=1}^n (a_{ij} - a_{i+1, j}) \int_{\Gamma_{i,j}^v} \varphi_1\left(\frac{i}{n}, y\right) \dif y \notag \\
+    &\quad + \sum_{i=1}^n \sum_{j=1}^{n-1} (a_{ij} - a_{i, j+1}) \int_{\Gamma_{i,j}^h} \varphi_2\left(x, \frac{j}{n}\right) \dif x.
+\end{align}
+Since $|\varphi_1|, |\varphi_2| \le 1$ and each segment has length $1/n$, the right-hand side is at most the right-hand side of \eqref{eq:tv_formula}. For the reverse inequality, fix $\epsilon \in (0, \frac{1}{4n})$ and signs $s^v_{ij} = \operatorname{sign}(a_{ij} - a_{i+1,j})$, $s^h_{ij} = \operatorname{sign}(a_{ij} - a_{i,j+1})$. Let $\rho_\epsilon \in C_c^1((-\epsilon, \epsilon))$ with $0 \le \rho_\epsilon \le 1$ and $\rho_\epsilon(0) = 1$, and let $g^v_{ij} \in C_c^1(\frac{j-1}{n} + \epsilon, \frac{j}{n} - \epsilon)$, $g^h_{ij} \in C_c^1(\frac{i-1}{n} + \epsilon, \frac{i}{n} - \epsilon)$ take values in $[0,1]$ and equal $1$ outside a $2\epsilon$-neighbourhood of the end points of their intervals. Put
+\[
+\varphi_1(x,y) = \sum_{i,j} s^v_{ij}\, \rho_\epsilon(x - \tfrac{i}{n})\, g^v_{ij}(y), \qquad \varphi_2(x,y) = \sum_{i,j} s^h_{ij}\, \rho_\epsilon(y - \tfrac{j}{n})\, g^h_{ij}(x).
+\]
+The supports of the summands are pairwise disjoint, and the support of $\varphi_1$ (within $\epsilon$ of a vertical grid line, at distance $\ge \epsilon$ from every horizontal one) is disjoint from that of $\varphi_2$; hence $\varphi \in C_c^1((0,1)^2;\R^2)$ and $\|\varphi\|_{L^\infty} \le 1$. Inserting $\varphi$ in the identity above gives every difference with a non-negative sign and weight $\int g \ge \frac{1}{n} - 6\epsilon$, so the supremum is at least $(1 - 6n\epsilon)$ times the right-hand side of \eqref{eq:tv_formula}. Letting $\epsilon \to 0$ establishes \eqref{eq:tv_formula}.
+\end{proof}
+
+\begin{theorem}[Geometric Coarea Linkage: Hausdorff Measure of Matrix Level Curves]
+\label{thm:coarea_linkage}
+For any $t \in \R$, define the super-level set $E_t \coloneqq \{(x, y) \in (0, 1)^2 \colon W_A(x, y) > t\}$. Then $E_t$ is a set of finite perimeter in $(0, 1)^2$, and its perimeter $\Per(E_t; (0,1)^2) = \mathcal{H}^1(\partial^* E_t \cap (0,1)^2)$ satisfies the \emph{coarea formula}:
+\begin{equation}
+    \label{eq:coarea}
+    \TV(W_A) = \int_{-\infty}^\infty \mathcal{H}^1(\partial^* E_t \cap (0,1)^2) \dif t,
+\end{equation}
+where $\partial^* E_t$ is the reduced boundary of $E_t$ in the sense of De Giorgi.
+\end{theorem}
+\begin{proof}
+Since $W_A \in \BV((0,1)^2)$ by Theorem~\ref{thm:tv_matrix}, the coarea formula for functions of bounded variation of Fleming and Rishel~\cite{fleming1960integral}, which extends the coarea formula of Federer for Lipschitz maps \cite[Thm.~3.1]{federer1959curvature} (see also Evans and Gariepy~\cite[Ch.~5]{evans2015measure}) gives $\TV(W_A) = \int_{\R} \Per(E_t;(0,1)^2) \dif t$, with $E_t$ of finite perimeter for almost every $t$. De Giorgi's structure theorem~\cite[Ch.~5]{evans2015measure} identifies $\Per(E_t;(0,1)^2)$ with $\mathcal{H}^1(\partial^* E_t \cap (0,1)^2)$. Here $W_A$ takes finitely many values, so $E_t$ is a finite union of grid cells and has finite perimeter for every $t$.
+\end{proof}
+
+\subsection{Differential Topology: Morse Theory and Landscape Homology}
+\label{subsec:morse}
+
+We now examine the polynomial realization on the sphere $\Sph^{n-1}$, defined in Section~\ref{subsec:fam1}:
+\begin{equation}
+    f_A(x) = x^T A x, \quad x \in \Sph^{n-1}.
+\end{equation}
+Assume that $A \in \operatorname{Sym}_n(\R)$ is symmetric.
+
+\begin{theorem}[Morse Spectrum of Quadratic Realizations]
+\label{thm:morse_matrix}
+Let $n \ge 1$ and let $A \in \operatorname{Sym}_n(\R)$ have pairwise distinct eigenvalues:
+\begin{equation}
+    \lambda_1 < \lambda_2 < \dots < \lambda_n.
+\end{equation}
+Then $f_A \colon \Sph^{n-1} \to \R$ is a Morse function (all critical points are non-degenerate). Moreover:
+\begin{enumerate}[label=(\roman*)]
+    \item $f_A$ has exactly $2n$ isolated critical points, occurring in antipodal pairs:
+    \begin{equation}
+        \operatorname{Crit}(f_A) = \{\pm v_1, \pm v_2, \dots, \pm v_n\},
+    \end{equation}
+    where $v_i$ is the normalized eigenvector corresponding to $\lambda_i$.
+    \item The Morse index of the critical points $\pm v_i$ is given precisely by:
+    \begin{equation}
+        \gamma(\pm v_i) = i - 1.
+    \end{equation}
+    \item The Morse polynomial $P_t(f_A) \coloneqq \sum_{p \in \operatorname{Crit}(f_A)} t^{\gamma(p)}$ satisfies:
+    \begin{equation}
+        P_t(f_A) = 2 \sum_{i=1}^n t^{i-1} = 2 (1 + t + t^2 + \dots + t^{n-1}).
+    \end{equation}
+    Evaluating at $t = -1$ recovers the Euler characteristic:
+    \begin{equation}
+        \chi(\Sph^{n-1}) = P_{-1}(f_A) = 1 - (-1)^n = \begin{cases} 0, & n \text{ even} \ (\Sph^{n-1} \text{ odd}), \\ 2, & n \text{ odd} \ (\Sph^{n-1} \text{ even}). \end{cases}
+    \end{equation}
+\end{enumerate}
+\end{theorem}
+This is a classical example of Morse theory (see Milnor~\cite{milnor1963morse}); we include the computation because Theorem~\ref{thm:kac_rice_tensors} uses it.
+
+\begin{proof}
+Let $x \in \Sph^{n-1}$. The Riemannian gradient on the sphere with respect to the standard round metric is the projection of the ambient gradient onto $T_x \Sph^{n-1} = \{u \in \R^n \colon \inner{u}{x} = 0\}$:
+\begin{equation}
+    \nabla_{\Sph^{n-1}} f_A(x) = 2 A x - 2(x^T A x) x.
+\end{equation}
+Thus, $\nabla_{\Sph^{n-1}} f_A(x) = 0$ if and only if $Ax = (x^T Ax) x$. Since $\|x\|_2=1$, $x$ is an eigenvector with eigenvalue $\lambda = x^T Ax$. Because the eigenvalues are pairwise distinct, the only unit critical points are $x = \pm v_i$ for $i=1, \dots, n$.
+
+Next, we evaluate the Riemannian Hessian at $x = v_i$. Along a geodesic $\gamma(t)$ on $\Sph^{n-1}$ with $\gamma(0) = v_i$ and $\dot{\gamma}(0) = u \in T_{v_i} \Sph^{n-1}$, the geodesic curvature satisfies $\ddot{\gamma}(0) = -\|u\|_2^2 v_i$. Differentiating:
+\begin{equation}
+    \operatorname{Hess}_{\Sph^{n-1}} f_A(v_i)(u, u) = \left.\frac{\dif^2}{\dif t^2} f_A(\gamma(t))\right|_{t=0} = 2 u^T A u - 2 \lambda_i \|u\|_2^2.
+\end{equation}
+Expanding $u$ in the orthonormal eigenbasis $\{v_j\}_{j \neq i}$: $u = \sum_{j \ne i} c_j v_j$. Then:
+\begin{equation}
+    \operatorname{Hess}_{\Sph^{n-1}} f_A(v_i)(u, u) = 2 \sum_{j \ne i} (\lambda_j - \lambda_i) c_j^2.
+\end{equation}
+Since $\lambda_1 < \dots < \lambda_n$:
+\begin{itemize}
+    \item $(\lambda_j - \lambda_i) < 0$ for $j \in \{1, \dots, i-1\}$, producing exactly $i-1$ negative eigenvalues;
+    \item $(\lambda_j - \lambda_i) > 0$ for $j \in \{i+1, \dots, n\}$, producing $(n-1) - (i-1) = n - i$ positive eigenvalues;
+    \item there are no zero eigenvalues since $\lambda_j \ne \lambda_i$ for all $j \ne i$.
+\end{itemize}
+Thus, $\ker(\operatorname{Hess}_{\Sph^{n-1}} f_A(v_i)) = \{0\}$ and the Morse index is $\gamma(\pm v_i) = i - 1$. 
+
+The Morse polynomial evaluates to $P_{-1}(f_A) = 2 \sum_{i=1}^n (-1)^{i-1} = 2 \cdot \frac{1 - (-1)^n}{2} = 1 - (-1)^n$. By the Morse inequalities (Milnor~\cite{milnor1963morse}), the alternating sum of the numbers of critical points of each index equals the Euler characteristic $\chi(\Sph^{n-1})$ computed from singular homology. For $n = 1$ the sphere $\Sph^0 = \{\pm 1\}$ consists of two critical points of index $0$, and the formulas hold trivially.
+\end{proof}
+
+\begin{remark}[The Degenerate Morse--Bott Regime]
+If $A$ has repeated eigenvalues, say $\lambda_k = \dots = \lambda_{k+m}$, the critical set along that eigenspace forms a critical sub-manifold $\Sph^m$ rather than isolated points. In this setting, $f_A$ is a Morse--Bott function. The hypothesis of distinct eigenvalues in Theorem~\ref{thm:morse_matrix} cannot be dropped without changing the conclusion.
+\end{remark}
+
+\subsection{Asymptotic Graphons and the Cut-Norm Topology (\texorpdfstring{$n \to \infty$}{n -> infinity})}
+\label{subsec:graphon_cutnorm}
+
+In the functional domain, the step realizations of symmetric matrices of all sizes lie in the common space $\mathcal{W} \coloneqq \{W \in L^\infty([0, 1]^2) \colon W(x, y) = W(y, x)\}$.
+
+\begin{definition}[The Cut Norm (Frieze--Kannan / Lov\'asz--Szegedy)~\cite{frieze1999quick,lovasz2006limits,borgs2008convergent}]
+For any kernel $W \in L^1([0, 1]^2)$, the \emph{Cut Norm} is defined by:
+\begin{equation}
+    \label{eq:cut_norm_def}
+    \cutnorm{W} \coloneqq \sup_{S, T \subseteq [0, 1]} \left| \int_{S \times T} W(x, y) \dif x \dif y \right|,
+\end{equation}
+where the supremum is taken over all measurable subsets $S, T \subseteq [0, 1]$.
+\end{definition}
+
+\begin{theorem}[Equivalence with the $L^\infty \to L^1$ Operator Norm]
+\label{thm:grothendieck_cutnorm}
+The cut norm $\cutnorm{W}$ is equivalent to the operator norm of the integral operator $T_W \colon L^\infty([0,1]) \to L^1([0,1])$:
+\begin{equation}
+    \cutnorm{W} \le \|T_W\|_{L^\infty \to L^1} \le 4 \cutnorm{W},
+\end{equation}
+where $\|T_W\|_{L^\infty \to L^1} \coloneqq \sup_{\|u\|_\infty \le 1, \|v\|_\infty \le 1} \left| \iint_{[0,1]^2} W(x, y) u(x) v(y) \dif x \dif y \right|$.
+\end{theorem}
+
+\begin{proof}
+For any indicator functions $u = \mathbf{1}_S$ and $v = \mathbf{1}_T$, we have $\inner{u}{T_W v} = \int_{S \times T} W(x,y) \dif x \dif y$. Decomposing any $u, v$ with $\|u\|_\infty \le 1, \|v\|_\infty \le 1$ into positive and negative parts $u = u_+ - u_-$ and $v = v_+ - v_-$:
+\begin{align}
+    \left|\int_{[0,1]^2} W u v \dif x \dif y\right| 
+    &\le \left|\int W u_+ v_+\right| + \left|\int W u_+ v_-\right| + \left|\int W u_- v_+\right| + \left|\int W u_- v_-\right| \notag \\
+    &\le 4 \cutnorm{W}.
+\end{align}
+The last step uses that $\left|\int W g h\right| \le \cutnorm{W}$ for all measurable $g, h \colon [0,1] \to [0,1]$. Indeed, for fixed $h$ the map $g \mapsto \int W g h = \int g(x) (T_W h)(x) \dif x$ is linear, so with $S_+ = \{T_W h > 0\}$ and $S_- = \{T_W h < 0\}$ one has $\int_{S_-} T_W h \le \int g\, T_W h \le \int_{S_+} T_W h$; hence $|\int W g h| \le \max_{S} |\int W \mathbf{1}_S h|$, and repeating the argument in $h$ for fixed $\mathbf{1}_S$ replaces $h$ by an indicator as well. Taking the supremum establishes the upper bound. The lower bound $\cutnorm{W} \le \|T_W\|_{L^\infty \to L^1}$ follows by restricting to $u = \mathbf{1}_S$ and $v = \mathbf{1}_T$.
+\end{proof}
+The constant $4$ cannot be improved: for the step kernel $W$ equal to $1$ on $[0,\frac12)^2 \cup [\frac12,1]^2$ and to $-1$ elsewhere, $\cutnorm{W} = \frac14$ while $u = v = \mathbf{1}_{[0,1/2)} - \mathbf{1}_{[1/2,1]}$ gives $\int W u v = 1$. This is the elementary equivalence recorded in Lov\'asz's monograph~\cite[Ch.~8]{lovasz2012large}; for matrices it is Lemma~3.1 of Alon and Naor~\cite{alon2006approximating}, who show that the factor $4$ is attained whenever all row and column sums vanish, and who use the $\infty \to 1$ norm and Grothendieck's inequality to approximate the cut norm within a constant factor in polynomial time.
+
+\begin{theorem}[Compactness of the Continuum Moduli Space]
+\label{thm:graphon_compactness}
+Let $\bar{\mathcal{W}}$ be the space of symmetric graphons $W \colon [0, 1]^2 \to [0, 1]$, let $\bar{\Pi}$ be the group of measure-preserving bijections of $[0,1]$, and let $\delta_\square(U, W) \coloneqq \inf_{\psi \in \bar\Pi} \cutnorm{U - W^\psi}$ with $W^\psi(x,y) = W(\psi(x),\psi(y))$. Identify $U$ and $W$ when $\delta_\square(U, W) = 0$ (weak isomorphism; this is coarser than lying in one $\bar\Pi$-orbit). The resulting metric space $(\widetilde{\mathcal{W}}, \delta_\square)$ is \emph{compact}. Consequently, every sequence of symmetric matrices $\{A_n\}_{n=1}^\infty$, $A_n \in \operatorname{Sym}_n(\R)$, with entries in a fixed interval $[m, M]$ ($m < M$), after the affine normalization $a_{ij} \mapsto \frac{a_{ij} - m}{M - m} \in [0, 1]$, has a subsequence whose step realizations $W_{A_{n_k}}$ converge in $\delta_\square$ to some $W \in \widetilde{\mathcal{W}}$, an equivalence class of measurable functions. The full sequence need not converge.
+\end{theorem}
+\begin{proof}
+Compactness is proved by Lov\'asz and Szegedy \cite{lovasz2007szemeredi}, via the weak (Frieze--Kannan) regularity lemma and a martingale argument; the existence of limit objects for convergent graph sequences is due to the same authors \cite{lovasz2006limits}. See also the monograph \cite{lovasz2012large}; the cut distance and its relation to subgraph densities and sampling are developed in~\cite{borgs2008convergent}, and the equivalence $\delta_\square(U,W) = 0$ (weak isomorphism) is discussed in detail by Janson~\cite{janson2013graphons}. The step realization of a normalized symmetric matrix is a graphon, so the second statement follows from the first.
+\end{proof}
+
+\begin{example}[The Identity Matrix Continuum Collapse]
+Consider the identity matrix $I_n \in \R^{n \times n}$. In linear algebra, $\rank(I_n) = n \to \infty$. However, its functional realization $W_{I_n}(x, y)$ is supported on $n$ diagonal squares of area $1/n^2$, giving total support measure $n \times (1/n^2) = 1/n$. For any measurable sets $S, T \subseteq [0, 1]$:
+\begin{equation}
+    \cutnorm{W_{I_n}} \le \iint_{[0,1]^2} W_{I_n}(x, y) \dif x \dif y = \frac{1}{n} \longrightarrow 0 \quad \text{as } n \to \infty.
+\end{equation}
+Thus, in the continuous cut metric, $I_n \to 0$. Discrete full rank vanishes into the null graphon because the continuous diagonal has Lebesgue measure zero.
+\end{example}
+
+% =========================================================================
+\section{High-Dimensional Tensors: Functional Geometry, Curvature, and Scaled Invariants}
+\label{sec:tensors}
+% =========================================================================
+
+When transitioning from 2-tensors (matrices) to higher-order tensors $\mathcal{T} \in \bigotimes_{\alpha=1}^k \R^{d_\alpha}$ ($k \ge 3$), classical multilinear algebra meets serious obstructions: tensor rank computation is NP-hard (Hillar and Lim~\cite{hillar2013most}), and the sets of tensors of rank at most $r \ge 2$ fail to be closed (De Silva and Lim~\cite{desilva2008illposed}). In this section we study what the functional point of view does and does not change for these problems, and we extend the cut-norm and Morse-theoretic constructions to higher order.
+
+\subsection{Variational Realization and Best Rank-One Approximation}
+\label{subsec:tensors_border_rank}
+
+Let $\mathcal{T} \in \bigotimes_{\alpha=1}^k \R^{d_\alpha}$ be a $k$-th order tensor. The canonical CP approximation seeks:
+\begin{equation}
+    \label{eq:cp_approx_problem}
+    \inf_{\mathcal{X} \in \mathcal{S}_r} \|\mathcal{T} - \mathcal{X}\|_F, \quad \text{where } \mathcal{S}_r \coloneqq \left\{ \sum_{i=1}^r \lambda_i u_i^{(1)} \otimes \dots \otimes u_i^{(k)} \right\}.
+\end{equation}
+
+\begin{theorem}[Functional Well-Posedness over Compact Product Manifolds]
+\label{thm:tensor_weierstrass}
+Define the product of unit spheres $\mathcal{M} \coloneqq \prod_{\alpha=1}^k \Sph^{d_\alpha - 1}$, which is compact under the product Riemannian metric. The functional realization:
+\begin{equation}
+    \Phi_{\mathrm{multi}}(\mathcal{T})(u^{(1)}, \dots, u^{(k)}) \coloneqq \sum_{j_1, \dots, j_k} \mathcal{T}_{j_1 \dots j_k} u_{j_1}^{(1)} \dots u_{j_k}^{(k)}
+\end{equation}
+is smooth: $\Phi_{\mathrm{multi}}(\mathcal{T}) \in C^\infty(\mathcal{M})$. Consequently:
+\begin{enumerate}[label=(\roman*)]
+    \item The maximal multilinear singular value:
+    \begin{equation}
+        \sigma_{\max}(\mathcal{T}) \coloneqq \sup_{(u^{(1)}, \dots, u^{(k)}) \in \mathcal{M}} \Phi_{\mathrm{multi}}(\mathcal{T})(u^{(1)}, \dots, u^{(k)})
+    \end{equation}
+    is attained at some tuple $(u_*^{(1)}, \dots, u_*^{(k)}) \in \mathcal{M}$.
+    \item The critical points on $\mathcal{M}$ satisfy the Lagrange equations:
+    \begin{equation}
+        \label{eq:tensor_critical}
+        \mathcal{T}(u^{(1)}, \dots, u^{(\alpha-1)}, \cdot, u^{(\alpha+1)}, \dots, u^{(k)}) = \sigma u^{(\alpha)}, \quad \forall \alpha \in \{1, \dots, k\},
+    \end{equation}
+    which are Lim's singular value equations for tensors~\cite{lim2005singular}. For a symmetric tensor and $u^{(1)} = \dots = u^{(k)}$ they reduce to the Z-eigenvalue equations of Lim and Qi~\cite{lim2005singular,qi2005eigenvalues}.
+\end{enumerate}
+In particular, a best rank-one approximation $\sigma_{\max}\, u_*^{(1)} \otimes \dots \otimes u_*^{(k)}$ of $\mathcal{T}$ always exists.
+\end{theorem}
+These facts are classical~\cite{lim2005singular}; the proof is included for completeness. Existence does not make the problem easy: computing a best rank-one approximation is NP-hard~\cite{hillar2013most}. For almost every real tensor the best rank-one approximation is unique, and a generic complex tensor has finitely many singular vector tuples, whose number is given by Friedland and Ottaviani~\cite{friedland2014number}.
+\begin{proof}
+Since each sphere $\Sph^{d_\alpha - 1}$ is compact, by Tychonoff's Theorem $\mathcal{M}$ is compact. The polynomial mapping $\Phi_{\mathrm{multi}}(\mathcal{T})$ is continuous on $\mathcal{M}$. By the Weierstrass Extreme Value Theorem, $\Phi_{\mathrm{multi}}(\mathcal{T})$ attains its supremum and infimum on $\mathcal{M}$. 
+
+To establish (ii), form the Lagrangian on $\prod \R^{d_\alpha} \times \R^k$:
+\begin{equation}
+    \mathcal{L}(u^{(1)}, \dots, u^{(k)}, \mu_1, \dots, \mu_k) = \Phi_{\mathrm{multi}}(\mathcal{T})(u^{(1)}, \dots, u^{(k)}) - \frac{1}{2} \sum_{\alpha=1}^k \mu_\alpha (\|u^{(\alpha)}\|_2^2 - 1).
+\end{equation}
+Vanishing of the gradient with respect to $u^{(\alpha)}$ gives:
+\begin{equation}
+    \nabla_{u^{(\alpha)}} \Phi = \mu_\alpha u^{(\alpha)}.
+\end{equation}
+Taking inner products with $u^{(\alpha)}$ and using multilinearity:
+\begin{equation}
+    \inner{u^{(\alpha)}}{\nabla_{u^{(\alpha)}} \Phi} = \Phi_{\mathrm{multi}}(\mathcal{T}) = \mu_\alpha \|u^{(\alpha)}\|_2^2 = \mu_\alpha.
+\end{equation}
+Since $\|u^{(\alpha)}\|_2 = 1$ for all $\alpha$, we must have $\mu_1 = \dots = \mu_k = \sigma$, so all singular equations share one parameter $\sigma$. The Lagrange rule applies because the constraint gradients $(0, \dots, 2u^{(\alpha)}, \dots, 0)$ are linearly independent on $\mathcal{M}$. For the rank-one statement, note that $\|\mathcal{T} - \lambda\, u^{(1)}\otimes\dots\otimes u^{(k)}\|_F^2 = \|\mathcal{T}\|_F^2 - 2\lambda\,\Phi_{\mathrm{multi}}(\mathcal{T})(u) + \lambda^2$ for $u \in \mathcal{M}$; it is minimized at $\lambda = \Phi_{\mathrm{multi}}(\mathcal{T})(u)$, with value $\|\mathcal{T}\|_F^2 - \Phi_{\mathrm{multi}}(\mathcal{T})(u)^2$. This reduces the problem to maximizing $\Phi_{\mathrm{multi}}(\mathcal{T})^2$ over the compact set $\mathcal{M}$; the maximum of $|\Phi_{\mathrm{multi}}(\mathcal{T})|$ equals $\sigma_{\max}(\mathcal{T})$ because flipping the sign of one factor flips the sign of $\Phi_{\mathrm{multi}}(\mathcal{T})$.
+\end{proof}
+
+\begin{remark}[Scope: rank $r \ge 2$]
+\label{rem:scope_rank}
+Compactness of $\mathcal{M}$ settles only the rank-one problem, whose feasible set is closed. For rank $r \ge 2$ the weights $\lambda_i$ in \eqref{eq:cp_approx_problem} range over $\R$; restricting the factors to spheres does not bound them, and the non-closedness of $\mathcal{S}_r$ persists. Explicitly~\cite[Prop.~4.6]{desilva2008illposed}, with $a = e_1$, $b = e_2$ in $\R^2$, the tensor $\mathcal{T} = a\otimes a\otimes b + a\otimes b\otimes a + b\otimes a\otimes a$ has rank $3$, while
+\[
+\mathcal{X}_t = t\,(a + t^{-1} b)^{\otimes 3} - t\, a^{\otimes 3} = \lambda_1(t)\, v_t^{\otimes 3} - t\, a^{\otimes 3}, \qquad v_t = \frac{a + t^{-1} b}{\|a + t^{-1} b\|_2},\quad \lambda_1(t) = t\,\|a + t^{-1}b\|_2^3,
+\]
+has rank at most $2$, unit-norm factors, and $\|\mathcal{T} - \mathcal{X}_t\|_F = t^{-1}\|b\otimes b\otimes a + b\otimes a\otimes b + a\otimes b\otimes b + t^{-1} b^{\otimes 3}\|_F \to 0$ as $t \to \infty$, with both weights of order $t$. So $\mathcal{T}$ has no best rank-$2$ approximation, with or without the sphere normalization.
+\end{remark}
+
+\subsection{Continuum Limits of Dense Hyper-Networks: Hypergraphons}
+\label{subsec:hypergraphons}
+
+Just as symmetric matrices represent graphs, order-$k$ tensors $\mathcal{T} \in \bigotimes^k \R^n$ represent $k$-uniform hypergraphs (e.g., $k$-way multi-body interactions).
+
+\begin{definition}[$k$-Hypergraphon and Multilinear Cut Norm]
+A \emph{$k$-hypergraphon} is a symmetric measurable function $W \colon [0, 1]^k \to [0, 1]$. The \emph{Multilinear Cut Norm} of order $k$ is defined by:
+\begin{equation}
+    \label{eq:hypergraphon_cutnorm}
+    \|W\|_{\square, k} \coloneqq \sup_{S_1, \dots, S_k \subseteq [0, 1]} \left| \int_{S_1 \times \dots \times S_k} W(x_1, \dots, x_k) \dif x_1 \dots \dif x_k \right|,
+\end{equation}
+where the supremum is taken over all measurable subsets $S_1, \dots, S_k \subseteq [0, 1]$.
+\end{definition}
+
+\begin{theorem}[Multilinear Form Norm and the Box Cut Norm]
+\label{thm:hypergraphon_compactness}
+For $W \in L^\infty([0,1]^k)$ let
+\begin{equation}
+    \|T_W\|_{\infty, k} \coloneqq \sup_{\|u^{(\alpha)}\|_\infty \le 1} \left| \int_{[0,1]^k} W(x_1, \dots, x_k)\, u^{(1)}(x_1) \cdots u^{(k)}(x_k) \dif x_1 \cdots \dif x_k \right|
+\end{equation}
+be the norm of the $k$-linear form $T_W$ on $L^\infty([0,1])^k$. Then
+\begin{equation}
+    \|W\|_{\square, k} \le \|T_W\|_{\infty, k} \le 2^k \|W\|_{\square, k}.
+\end{equation}
+\end{theorem}
+\begin{proof}
+The proof generalizes Theorem~\ref{thm:grothendieck_cutnorm}. Decomposing each test function $u^{(\alpha)} \in L^\infty([0, 1])$ with $\|u^{(\alpha)}\|_\infty \le 1$ into positive and negative parts $u_+^{(\alpha)} - u_-^{(\alpha)}$, the multilinear integral splits into $2^k$ signed integrals with $[0,1]$-valued test functions. Each is bounded by $\|W\|_{\square, k}$, because the integral is linear in each test function separately, so the argument in the proof of Theorem~\ref{thm:grothendieck_cutnorm} replaces the test functions by indicators one at a time. The lower bound follows by restricting to indicators.
+\end{proof}
+
+\begin{remark}[Compactness for the box cut norm]
+\label{rem:hypergraphon_compactness}
+Let $\delta_{\square, k}(U, W) \coloneqq \inf_{\psi \in \bar{\Pi}} \|U - W^\psi\|_{\square, k}$ on symmetric measurable $W \colon [0,1]^k \to [0,1]$. Zhao~\cite[\S3]{zhao2015hypergraph} observes, for $k = 3$, that the weak regularity lemma and the Lov\'asz--Szegedy compactness argument extend with essentially no change to this box cut norm, so that every sequence has a subsequence converging in $\delta_{\square,k}$ to a symmetric function on $[0,1]^k$. The argument should extend to every $k \ge 3$, but we have not written it out, so we do not state compactness as a theorem here. Zhao also shows that this norm is too weak for a counting lemma for non-linear hypergraphs, which is why hypergraph limits that determine all homomorphism densities are functions of $2^k - 2$ variables~\cite{zhao2015hypergraph}; such limit objects were constructed by Elek and Szegedy~\cite{elek2012measure}. For tensors, the statement applies to symmetric tensors $\mathcal{T}_n \in \operatorname{Sym}^k(\R^n)$ with entries in a fixed interval, after an affine normalization of the entries to $[0,1]$.
+\end{remark}
+
+\subsection{Multivariate Sobolev Regularization on Transformer Attention Tensors}
+\label{subsec:transformer_tensors}
+
+In modern deep learning architectures (Transformers), self-attention computes an activation tensor $\mathcal{A} \in \R^{B \times H \times N \times N}$, where $B$ is batch size, $H$ is number of attention heads, and $N$ is sequence length:
+\begin{equation}
+    \mathcal{A}_{b, h, i, j} = \operatorname{Softmax}\left( \frac{Q_{b, h, i, :} K_{b, h, j, :}^T}{\sqrt{d_k}} \right).
+\end{equation}
+
+\begin{proposition}[Sobolev Bound for Attention Realizations]
+\label{thm:attention_sobolev}
+Let $f_{\mathcal{A}_{b,h}}$ be the harmonic realization \eqref{eq:fourier_realization} of the attention slice $\mathcal{A}_{b, h, :, :}$, and fix $\lambda > 0$. Define the penalty, with the normalized measure $\dif\mu$ of Construction~\ref{constr:harmonic},
+\begin{equation}
+    \mathcal{R}_{\mathrm{Attn}}(\mathcal{A}) \coloneqq \sum_{b=1}^B \sum_{h=1}^H \int_{\Tor^2} \left( |f_{\mathcal{A}_{b,h}}|^2 + \|\nabla f_{\mathcal{A}_{b,h}}\|_2^2 + \lambda |\Delta f_{\mathcal{A}_{b,h}}|^2 \right) \dif \mu,
+\end{equation}
+a weighted sum of squared $H^2(\Tor^2)$ norms. Then:
+\begin{enumerate}[label=(\roman*)]
+    \item for every $b, h$,
+    \begin{equation}
+        \label{eq:attention_sup_bound}
+        \sup_{(x, y) \in \Tor^2} |f_{\mathcal{A}_{b,h}}(x, y)| \le C_\lambda \sqrt{\mathcal{R}_{\mathrm{Attn}}(\mathcal{A})}, \qquad C_\lambda^2 \coloneqq \sum_{\mathbf{k} \in \Z^2} \frac{1}{1 + |\mathbf{k}|^2 + \lambda |\mathbf{k}|^4} < \infty;
+    \end{equation}
+    the constant $C_\lambda$ depends on $\lambda$ and tends to $\infty$ as $\lambda \to 0$;
+    \item for every softmax attention matrix (entries $\ge 0$, rows summing to $1$), $f_{\mathcal{A}_{b,h}}(0,0) = \sum_{i,j} \mathcal{A}_{b,h,i,j} = N$. Hence $\sup |f_{\mathcal{A}_{b,h}}| \ge N$ and $\mathcal{R}_{\mathrm{Attn}}(\mathcal{A}) \ge N^2 / C_\lambda^2$.
+\end{enumerate}
+\end{proposition}
+\begin{proof}
+(i) Write $f = \sum_{\mathbf{k}} a_{\mathbf{k}} e^{i \mathbf{k}\cdot x}$ (finitely many terms). By Parseval for $\dif\mu$, the integrand of one slice integrates to $\sum_{\mathbf{k}} (1 + |\mathbf{k}|^2 + \lambda |\mathbf{k}|^4) |a_{\mathbf{k}}|^2$. By Cauchy--Schwarz,
+\[
+|f(x)| \le \sum_{\mathbf{k}} |a_{\mathbf{k}}| \le \Big( \sum_{\mathbf{k}} (1 + |\mathbf{k}|^2 + \lambda |\mathbf{k}|^4) |a_{\mathbf{k}}|^2 \Big)^{1/2} C_\lambda,
+\]
+and one slice is bounded by the sum over all slices. The series defining $C_\lambda^2$ converges because its terms are $\mathcal{O}(\lambda^{-1}|\mathbf{k}|^{-4})$. For $\lambda = 0$ the series $\sum_{\mathbf{k}} (1 + |\mathbf{k}|^2)^{-1}$ diverges, and by monotone convergence $C_\lambda \to \infty$ as $\lambda \to 0$. This is the Sobolev embedding $H^2(\Tor^2) \hookrightarrow L^\infty(\Tor^2)$, with nothing specific to attention. (ii) All exponentials equal $1$ at the origin.
+\end{proof}
+
+By (ii), the bound \eqref{eq:attention_sup_bound} cannot be uniform in the sequence length $N$: a penalty that stays bounded as $N$ grows is incompatible with softmax normalization under this realization. Without the second-derivative term ($\lambda = 0$) no bound of the form \eqref{eq:attention_sup_bound} holds with a constant independent of $N$, since $H^1(\Tor^2) \not\hookrightarrow L^\infty(\Tor^2)$. The statement concerns the attention field alone; it says nothing about downstream behaviour of a language model, such as hallucination, which depends on the whole decoding pipeline.
+
+\subsection{Complexity of the High-Dimensional Tensor Morse Landscape}
+\label{subsec:kac_rice_tensors}
+
+\begin{theorem}[Complexity of the Isotropic Tensor Landscape]
+\label{thm:kac_rice_tensors}
+Let $d \ge 2$, let $\mathcal{T} \in (\R^n)^{\otimes d}$ have independent standard Gaussian entries (no symmetry imposed), and let $f_{\mathcal{T}}(x) = \mathcal{T}(x, \dots, x)$ on $\Sph^{n-1}$. Equivalently, $f_{\mathcal{T}}$ is the form of the symmetric tensor $\operatorname{sym}\mathcal{T}$, whose entry indexed by a multiset $\mathbf{m}$ has variance $1/\operatorname{mult}(\mathbf{m})$, where $\operatorname{mult}(\mathbf{m})$ is the number of distinct orderings of $\mathbf{m}$. Then:
+\begin{enumerate}[label=(\roman*)]
+    \item $f_{\mathcal{T}}$ is a centered Gaussian field with covariance $\mathbb{E}[f_{\mathcal{T}}(x) f_{\mathcal{T}}(y)] = (x \cdot y)^d$, hence isotropic; this is the spherical pure $d$-spin model;
+    \item for $d = 2$, $f_{\mathcal{T}}$ has exactly $2n$ critical points almost surely;
+    \item for $d \ge 3$, the expected number of critical points grows exponentially, with the rate computed by Auffinger, Ben~Arous and \v{C}ern\'y~\cite[Remark~2.9, Eq.~(2.20)]{auffinger2013random}:
+    \begin{equation}
+        \label{eq:abc_complexity}
+        \lim_{n \to \infty} \frac{1}{n} \log \mathbb{E}\big[|\operatorname{Crit}(f_{\mathcal{T}})|\big] = \frac{1}{2} \log(d-1).
+    \end{equation}
+    The rate is of order $\log d$, not of order $d$, and no prefactor is asserted.
+    \item If instead the entries of a symmetric tensor $\mathcal{T} \in \operatorname{Sym}^d(\R^n)$ indexed by distinct multisets are independent with a common variance, then $f_{\mathcal{T}}$ is not isotropic for $n \ge 2$: with unit variance, $\operatorname{Var} f_{\mathcal{T}}(e_1) = 1$, whereas $\operatorname{Var} f_{\mathcal{T}}\big((e_1+e_2)/\sqrt{2}\big) = 2^{-d}\sum_{j=0}^d \binom{d}{j}^2 = 2^{-d}\binom{2d}{d}$, which is $\tfrac32$ for $d=2$ and $\tfrac52$ for $d=3$. Part (iii) does not apply to this model. What remains true for it, and for any law on $\operatorname{Sym}^d(\R^n)$ with a density, is the almost sure deterministic bound
+    \begin{equation}
+        \label{eq:cs_bound}
+        |\operatorname{Crit}(f_{\mathcal{T}})| \le 2\, \frac{(d-1)^n - 1}{d-2} \quad (d \ge 3),
+    \end{equation}
+    so that $\limsup_n \frac1n \log \mathbb{E}|\operatorname{Crit}(f_{\mathcal{T}})| \le \log(d-1)$.
+\end{enumerate}
+\end{theorem}
+\begin{proof}
+(i) $f_{\mathcal{T}}(x) = \sum_{i_1,\dots,i_d} \mathcal{T}_{i_1\dots i_d} x_{i_1}\cdots x_{i_d}$ is a linear combination of independent standard Gaussians, so $\mathbb{E}[f_{\mathcal{T}}(x) f_{\mathcal{T}}(y)] = \sum_{i_1,\dots,i_d} x_{i_1} y_{i_1} \cdots x_{i_d} y_{i_d} = (x\cdot y)^d$. Grouping the sum over ordered tuples by multisets gives the stated variances of $\operatorname{sym}\mathcal{T}$.
+(ii) For $d = 2$, $f_{\mathcal{T}}(x) = x^T S x$ with $S = \frac12(\mathcal{T} + \mathcal{T}^T)$, a GOE matrix, whose eigenvalues are almost surely distinct; Theorem~\ref{thm:morse_matrix} gives exactly $2n$ critical points.
+(iii) The number of critical points does not change when $f_{\mathcal{T}}$ is multiplied by a positive constant or when the sphere is dilated. With $N = n$ and $p = d$, the Hamiltonian of~\cite[Eq.~(2.2)]{auffinger2013random} is $H_{N,p}(\sigma) = N^{-(p-1)/2} \sum_{i_1, \dots, i_p} J_{i_1 \dots i_p} \sigma_{i_1} \cdots \sigma_{i_p}$ on the sphere of radius $\sqrt{N}$, with i.i.d.\ standard Gaussian couplings indexed by ordered tuples; thus $H_{N,p}(\sqrt{N} x) = \sqrt{N}\, f_{\mathcal{T}}(x)$ with $J = \mathcal{T}$, and the two functions have the same critical points. Equation~(2.20) of~\cite{auffinger2013random} gives the total complexity $\frac12\log(p-1)$. For orientation, the Kac--Rice formula (going back to Kac~\cite{kac1943average}; see Adler and Taylor~\cite{adler2007random}) reads
+\begin{equation}
+    \mathbb{E}[|\operatorname{Crit}(f_{\mathcal{T}})|] = \int_{\Sph^{n-1}} \mathbb{E}\left[ |\det(\nabla^2 f_{\mathcal{T}}(x))| \;\middle|\; \nabla f_{\mathcal{T}}(x) = 0 \right] p_{\nabla f_{\mathcal{T}}(x)}(0) \dif \sigma(x).
+\end{equation}
+Differentiating the covariance $(x\cdot y)^d$ at $x = y$ shows the following. The tangential gradient has covariance $d\, I_{n-1}$. The tangential part $H_0$ of the ambient Hessian is uncorrelated with $f_{\mathcal{T}}(x)$ and with the gradient, and it is a GOE-type matrix with $\mathbb{E}[(H_0)_{ij}^2] = d(d-1)(1+\delta_{ij})$. By Euler's identity $x \cdot \nabla f_{\mathcal{T}}(x) = d\, f_{\mathcal{T}}(x)$, the Riemannian Hessian is
+\begin{equation}
+    \nabla^2 f_{\mathcal{T}}(x) = H_0 - d\, f_{\mathcal{T}}(x)\, I_{n-1}.
+\end{equation}
+For $d = 2$ this is the formula $2u^TAu - 2\lambda_i\|u\|^2$ of Theorem~\ref{thm:morse_matrix}. The exponential rate then comes from the large deviations of the GOE spectrum and an optimization over the energy level; this is carried out in~\cite{auffinger2013random}.
+(iv) The variance of $f_{\mathcal{T}}(x) = \sum_{\mathbf{m}} \operatorname{mult}(\mathbf{m})\, \mathcal{T}_{\mathbf{m}} x^{\mathbf{m}}$ is $\sum_{\mathbf{m}} \operatorname{mult}(\mathbf{m})^2 x^{2\mathbf{m}}$. At $x = (e_1+e_2)/\sqrt2$ the multisets with $j$ copies of $1$ and $d-j$ copies of $2$ contribute $\binom{d}{j}^2 2^{-d}$. Critical points of $f_{\mathcal{T}}$ on the sphere are the real unit vectors $x$ with $\mathcal{T}(\cdot, x, \dots, x) = \mu x$, i.e.\ real eigenvectors. For a generic symmetric tensor the eigenvectors, counted in $\mathbb{P}^{n-1}(\C)$, are finite in number, and there are exactly $((d-1)^n - 1)/(d-2)$ of them (Cartwright and Sturmfels~\cite{cartwright2013number}). The non-generic tensors form a proper algebraic subset of $\operatorname{Sym}^d(\R^n)$, which has measure zero. Each real projective eigenvector gives two unit critical points $\pm x$, which proves \eqref{eq:cs_bound}.
+\end{proof}
+
+\begin{remark}[Related results]
+\label{rem:kac_rice_literature}
+The reduction of the mean number of critical points to the mean absolute value of a random characteristic polynomial is due to Fyodorov~\cite{fyodorov2004complexity}. Auffinger and Ben~Arous~\cite{auffinger2013complexity} extend~\cite{auffinger2013random} to general isotropic Gaussian functions on the sphere (mixed spherical models), including the mean Euler characteristic of level sets. For the pure model with $p \ge 3$, Subag~\cite{subag2017complexity} shows by a second-moment computation that the number of critical values below a sufficiently low energy level concentrates around its mean. For $d = 2$ with an added linear term (a random magnetic field), Fyodorov and Le~Doussal~\cite{fyodorov2014topology} identify regimes in which the number of critical points drops from order $n$ to order one (``topology trivialization''). For the non-isotropic model of part~(iv), Breiding~\cite{breiding2017expected} computes the expected number of real eigenvalues of a Gaussian tensor without symmetry, and Draisma and Horobe\c{t}~\cite{draisma2016average} the average number of critical rank-one approximations; Evnin~\cite{evnin2021melonic} studies the largest eigenvalue of the rotationally invariant Gaussian ensemble of symmetric tensors in which the variance of an entry depends on its number of coincident indices, which is the ensemble of part~(i) up to scale. With a planted rank-one signal (the spiked tensor model), the complexity was computed by Ben~Arous, Mei, Montanari and Nica~\cite{benarous2019landscape} and by Ros, Ben~Arous, Biroli and Cammarota~\cite{ros2019complex}.
+\end{remark}
+
+\subsection{Critical Scaling and Concentration as \texorpdfstring{$d \to \infty$}{d -> infinity}}
+\label{subsec:measure_concentration}
+
+We identify the normalization under which multilinear forms of a random tensor neither diverge nor vanish as the mode dimension $d \to \infty$.
+
+\begin{theorem}[Critical Multilinear Scaling and Gaussian Concentration]
+\label{thm:critical_scaling}
+Let $k \ge 2$ be fixed and let $\mathcal{T} \in (\R^d)^{\otimes k}$ have independent standard normal entries. Define the normalized functional realization:
+\begin{equation}
+    \label{eq:renorm_tensor_form}
+    \widehat{f}_{\mathcal{T}}(u^{(1)}, \dots, u^{(k)}) \coloneqq \frac{1}{\sqrt{d}} \sum_{j_1, \dots, j_k = 1}^d \mathcal{T}_{j_1 \dots j_k} u_{j_1}^{(1)} \dots u_{j_k}^{(k)}, \quad u^{(\alpha)} \in \Sph^{d-1}.
+\end{equation}
+Then:
+\begin{enumerate}[label=(\roman*)]
+    \item With $\mathcal{M} \coloneqq \prod_{\alpha=1}^k \Sph^{d-1}$ and $\|\mathcal{T}\|_\sigma \coloneqq \sup_{u \in \mathcal{M}} |\sqrt{d}\, \widehat{f}_{\mathcal{T}}(u)|$ the spectral norm, for every $d \ge 1$
+    \begin{equation}
+        \label{eq:two_sided}
+        \frac{1}{\sqrt{3}} \le \mathbb{E}\left[ \sup_{u \in \mathcal{M}} |\widehat{f}_{\mathcal{T}}(u)| \right] = \frac{\mathbb{E}\|\mathcal{T}\|_\sigma}{\sqrt{d}} \le C_k \coloneqq 2\sqrt{2k \log(1 + 4k) + 2\log 2}.
+    \end{equation}
+    Consequently, for an exponent $\beta \in \R$, $d^{-\beta}\, \mathbb{E}\|\mathcal{T}\|_\sigma$ tends to $0$ if $\beta > \frac12$ and to $\infty$ if $\beta < \frac12$; $\beta = \frac12$, independent of $k$, is the only exponent for which it stays bounded away from $0$ and $\infty$. The normalization $d^{-(k-1)/2}$ gives $d^{-(k-1)/2}\,\mathbb{E}\|\mathcal{T}\|_\sigma \to 0$ for every $k \ge 3$.
+    \item Let $(u^{(1)}, \dots, u^{(k)})$ be random vectors on $\Sph^{d-1}$, with any joint law, independent of $\mathcal{T}$ (for instance i.i.d.\ uniform). Then $\sqrt{d}\,\widehat{f}_{\mathcal{T}}(u^{(1)}, \dots, u^{(k)})$ is exactly standard normal, and therefore
+    \begin{equation}
+        \label{eq:concentration_inequality}
+        \mathbb{P}\left( |\widehat{f}_{\mathcal{T}}(u^{(1)}, \dots, u^{(k)})| > \epsilon \right) \le 2 \exp\left( - \frac{d \, \epsilon^2}{2} \right), \qquad \epsilon > 0.
+    \end{equation}
+    The constant $\frac12$ in the exponent does not depend on $k$ and cannot be increased, since $\mathbb{P}(|Z| > s) = \exp(-\frac{s^2}{2}(1+o(1)))$ as $s \to \infty$ for $Z \sim \mathcal{N}(0,1)$.
+\end{enumerate}
+\end{theorem}
+\begin{proof}
+Write $X(u) \coloneqq \sum_{j_1, \dots, j_k} \mathcal{T}_{j_1 \dots j_k} u_{j_1}^{(1)} \cdots u_{j_k}^{(k)}$ for $u = (u^{(1)}, \dots, u^{(k)}) \in (\R^d)^k$, so that $\widehat{f}_{\mathcal{T}} = d^{-1/2} X$ on $\mathcal{M}$. For fixed $u \in \mathcal{M}$, $X(u)$ is a linear combination of independent standard normals with
+\begin{equation}
+    \operatorname{Var}(X(u)) = \sum_{j_1, \dots, j_k} (u_{j_1}^{(1)})^2 \cdots (u_{j_k}^{(k)})^2 = \prod_{\alpha=1}^k \|u^{(\alpha)}\|_2^2 = 1,
+\end{equation}
+so $X(u) \sim \mathcal{N}(0,1)$ for every $u \in \mathcal{M}$.
+
+\emph{Upper bound.} Let $S \coloneqq \sup_{u \in \mathcal{M}} |X(u)| = \|\mathcal{T}\|_\sigma$, fix $\epsilon = \frac{1}{2k}$, and let $\mathcal{N}_\epsilon \subset \Sph^{d-1}$ be an $\epsilon$-net with $|\mathcal{N}_\epsilon| \le (1 + 2/\epsilon)^d$ (volumetric argument, e.g.~\cite[\S4.2]{vershynin2018high}). For $u \in \mathcal{M}$ choose $v \in \mathcal{N} \coloneqq \mathcal{N}_\epsilon^k$ with $\|u^{(\alpha)} - v^{(\alpha)}\|_2 \le \epsilon$ for all $\alpha$. By multilinearity,
+\[
+X(u) - X(v) = \sum_{\alpha=1}^k X\big(v^{(1)}, \dots, v^{(\alpha-1)}, u^{(\alpha)} - v^{(\alpha)}, u^{(\alpha+1)}, \dots, u^{(k)}\big),
+\]
+and each term has absolute value at most $\|u^{(\alpha)} - v^{(\alpha)}\|_2\, S \le \epsilon S$. Hence $S \le \max_{v \in \mathcal{N}} |X(v)| + k\epsilon S$, i.e.\ $S \le 2 \max_{v \in \mathcal{N}} |X(v)|$. For any $N$ standard normal variables $Z_1, \dots, Z_N$ (not necessarily independent), $\mathbb{E}\max_i |Z_i| \le \sqrt{2 \log (2N)}$, by Jensen's inequality applied to $\exp(t \max_i |Z_i|)$ and optimization in $t$. With $N = |\mathcal{N}| \le (1 + 4k)^{kd}$,
+\[
+\mathbb{E} S \le 2 \sqrt{2 kd \log(1 + 4k) + 2 \log 2} \le C_k \sqrt{d}.
+\]
+
+\emph{Lower bound.} Restricting to $u^{(1)} = \dots = u^{(k-1)} = e_1$ gives $S \ge \sup_{w \in \Sph^{d-1}} |\langle Z, w\rangle| = \|Z\|_2$ with $Z \coloneqq (\mathcal{T}_{1 \dots 1 j})_{j=1}^d \sim \mathcal{N}(0, I_d)$. By H\"older's inequality, $\mathbb{E}\|Z\|_2^2 \le (\mathbb{E}\|Z\|_2)^{2/3} (\mathbb{E}\|Z\|_2^4)^{1/3}$, and $\mathbb{E}\|Z\|_2^2 = d$, $\mathbb{E}\|Z\|_2^4 = d(d+2)$, so
+\[
+\mathbb{E} S \ge \mathbb{E}\|Z\|_2 \ge \frac{d^{3/2}}{\sqrt{d(d+2)}} = \frac{d}{\sqrt{d+2}} \ge \sqrt{\frac{d}{3}} \qquad (d \ge 1).
+\]
+Dividing by $\sqrt{d}$ gives \eqref{eq:two_sided}. The statements about $d^{-\beta}\,\mathbb{E}\|\mathcal{T}\|_\sigma$ follow because it lies between $d^{1/2 - \beta}/\sqrt{3}$ and $C_k d^{1/2-\beta}$.
+
+To establish (ii), condition on $u = (u^{(1)}, \dots, u^{(k)})$. Since $u$ is independent of $\mathcal{T}$, the conditional law of $X(u) = \sqrt{d}\,\widehat{f}_{\mathcal{T}}(u)$ is $\mathcal{N}(0,1)$ by the variance computation above. The conditional law does not depend on $u$, so $X(u) \sim \mathcal{N}(0,1)$ unconditionally. Hence $\mathbb{P}(|\widehat{f}_{\mathcal{T}}(u)| > \epsilon) = \mathbb{P}(|Z_1| > \epsilon\sqrt{d}) \le 2 e^{-d\epsilon^2/2}$ by the Gaussian tail bound $\mathbb{P}(Z_1 > s) \le e^{-s^2/2}$, $s \ge 0$.
+\end{proof}
+
+\begin{remark}[Sub-Gaussian entries and sharper constants]
+\label{rem:subgaussian}
+If the entries of $\mathcal{T}$ are i.i.d., centered, with unit variance and sub-Gaussian norm $K$, the same proof gives $c_K \le \mathbb{E}\|\mathcal{T}\|_\sigma / \sqrt{d} \le C_{k,K}$: the general Hoeffding inequality~\cite[\S2.6]{vershynin2018high} makes each $X(v)$ sub-Gaussian with norm $\mathcal{O}(K)$, which replaces the Gaussian maximal inequality, and the lower bound uses only $\mathbb{E}\|Z\|_2^4 = d(d - 1) + d\,\mathbb{E}\mathcal{T}_{1\dots1}^4$. The tail bound (ii) then holds in the form $2\exp(-c\, d\epsilon^2 / K^2)$ with an absolute constant $c > 0$. For $k = 2$ the exponent $\frac12$ is that of the operator norm of a square Gaussian matrix. For $k \ge 3$ the constant $C_k = \mathcal{O}(\sqrt{k \log k})$ above has the same order in $k$ as the bound of Tomioka and Suzuki~\cite{tomioka2014spectral}; see also Nguyen, Drineas and Tran~\cite{nguyen2015tensor}. Dartois and McKenna~\cite{dartois2024injective} obtain high-probability upper bounds on the injective norm of real and complex Gaussian tensors from the Kac--Rice formula, and Boedihardjo~\cite{boedihardjo2024injective} gives a non-asymptotic bound on the expected injective norm of Gaussian tensors with independent entries of arbitrary variances, in the spirit of the Bandeira--van Handel bound for matrices. In tensor PCA, with Gaussian noise whose entries have variance of order $1/d$ (the normalization of $\widehat{f}_{\mathcal{T}}$), Montanari and Richard~\cite{montanari2014statistical} show that a planted rank-one signal can be estimated with unbounded computation once the signal-to-noise ratio exceeds a constant times $\sqrt{k \log k}$.
+\end{remark}
+
+The physical normalization of the spherical $p$-spin model, $N^{-(p-1)/2}$ on the sphere of radius $\sqrt{N}$ (Theorem~\ref{thm:kac_rice_tensors}), is consistent with Theorem~\ref{thm:critical_scaling}: on that sphere
+\[
+H_{N,p}(\sqrt{N}x) = \sqrt{N}\,\mathcal{T}(x,\dots,x),
+\]
+so the energy per coordinate $H_{N,p}/N$ is of order one exactly when $\mathcal{T}(x, \dots, x)/\sqrt{N}$ is.
+
+
+% =========================================================================
+\section{Deep Implications Across the Mathematical Sciences}
+\label{sec:implications}
+% =========================================================================
+
+We now discuss five application areas. In three of them (Sections~\ref{subsec:imp_networks}, \ref{subsec:imp_tensors}, and \ref{subsec:imp_imaging}) the relevant mathematics is established; it consists largely of known results (Lov\'asz--Szegedy graph limits, compactness for rank one, and the Fleming--Rishel coarea formula) viewed through the realization framework. In the other two (Sections~\ref{subsec:imp_dl} and \ref{subsec:imp_physics}) we offer proposals and a conjecture whose consequences remain open, as noted in each subsection.
+
+% -------------------------------------------------------------------------
+\subsection{Deep Learning: Sobolev Weight Regularization and Zero-Shot Width Scaling}
+\label{subsec:imp_dl}
+In standard deep neural network training, weights $W \in \R^{d_{\mathrm{out}} \times d_{\mathrm{in}}}$ are conventionally regularized via coordinate-blind penalties: Weight Decay $\|W\|_F^2$ or Spectral Norm constraints $\sigma_{\max}(W) \le 1$~\cite{yoshida2017spectral,miyato2018spectral}. By Theorem~\ref{thm:dirichlet_blindness}, two weight matrices with identical spectra can differ by a factor up to $n^2$ in their Dirichlet energy $\mathcal{E}(f_W)$.
+
+We propose, as a hypothesis to be tested empirically, that this spectral blindness may leave networks susceptible to high-frequency perturbations, and we propose the \emph{Sobolev Regularized Loss}:
+\begin{equation}
+    \label{eq:sobolev_loss}
+    \mathcal{L}_{\mathrm{Sobolev}}(\theta) \coloneqq \mathcal{L}_{\mathrm{task}}(\theta) + \sum_{\ell=1}^L \lambda_\ell \|\nabla f_{W_\ell}\|_{L^2(\Tor^2, \dif\mu)}^2.
+\end{equation}
+Penalizing the Dirichlet energy pushes the weights toward lower frequency indices. This penalty acts on the index layout of the weight array; it differs from Sobolev training in the sense of Czarnecki et al.~\cite{czarnecki2017sobolev}, which fits derivatives of the network with respect to its input, and from the spectral bias of Rahaman et al.~\cite{rahaman2019spectral}, which concerns frequencies of the learned function in input space. Two caveats apply. First, hidden units of a layer can be permuted without changing the network function, while this penalty is not permutation-invariant, so it depends on an arbitrary ordering of neurons unless that ordering carries meaning (e.g.\ spatial layouts in convolutional or positional structures). The role of this permutation symmetry in the loss landscape is studied empirically by Entezari et al.~\cite{entezari2022role} and Ainsworth, Hayase and Srinivasa~\cite{ainsworth2023git}. Second, we do not prove any bound on Lipschitz stability or expressive capacity; both are empirical questions.
+
+Theorem~\ref{thm:graphon_compactness} also suggests a protocol for \emph{width scaling}, which we state as a proposal. For symmetric weight matrices $W_n \in \R^{n \times n}$ with entries in a fixed interval, the theorem gives only a \emph{subsequence} converging in $\delta_\square$ to some limit $\mathcal{W}_\infty \in \widetilde{\mathcal{W}}$. It does not say that the matrices produced by training at increasing widths converge, and it gives no rate. Non-symmetric weight matrices need the analogous theory for kernels that are not required to be symmetric. The limit is an equivalence class of functions defined almost everywhere, so point values $\mathcal{W}_\infty(\frac{i}{n}, \frac{j}{n})$ are not defined; a width-$n$ matrix can instead be obtained from a chosen representative by averaging over the cells $I_i \times I_j$, i.e.\ by the entries $n^2 \int_{I_i \times I_j} \mathcal{W}_\infty$. The proposal is to train at a moderate width (say $n = 10^3$), pass to a limit kernel, and read off matrices at a much larger width (say $n = 10^6$) in this way. Whether trained weights at moderate width are close in $\delta_\square$ to a common limit, and whether the transferred network performs well, are empirical questions not addressed by the theorem. Two related lines of work transfer information across sizes by other routes: hyperparameter transfer across width under a suitable parametrization (Yang et al.~\cite{yang2022tensor}), and the transferability of graph neural networks between graphs drawn from a common graphon (Ruiz, Chamon and Ribeiro~\cite{ruiz2020graphon}).
+
+% -------------------------------------------------------------------------
+\subsection{Theoretical Physics: Spin Glass Transitions and Parisi Symmetry Breaking}
+\label{subsec:imp_physics}
+In the statistical physics of disordered systems, the $p$-spin spherical spin glass is defined by the Hamiltonian $H_n(\sigma) = \sum_{i_1, \dots, i_p} J_{i_1 \dots i_p} \sigma_{i_1} \dots \sigma_{i_p}$ on the spin sphere $\sum \sigma_i^2 = n$. Computing the ground state energy of a given instance is, in general, a hard non-convex optimization problem; the closely related problem of computing the spectral norm of a $3$-tensor is NP-hard~\cite{hillar2013most}. Worst-case hardness does not settle typical instances: for spherical mixed models whose Parisi distribution has support of the form $[0,q]$, Subag~\cite{subag2021following} constructs a polynomial-time algorithm that reaches the ground-state energy up to a small error with high probability.
+
+The spherical realization (Theorems~\ref{thm:morse_matrix} and~\ref{thm:kac_rice_tensors}) places the spin glass landscape in the setting of Morse theory. For $p = 2$ there are $2n$ critical points, while for $p \ge 3$ the expected number grows like $\exp(\frac{n}{2}\log(p-1))$~\cite{auffinger2013random}. Auffinger, Ben~Arous, and \v{C}ern\'y also compute the complexity of critical points of each index below a given energy, and use it to locate the ground state energy and a threshold energy below which the critical points of each fixed index concentrate. This complexity result motivates a structural link between Parisi's Replica Symmetry Breaking (RSB) and the proliferation of disconnected components in the sub-level sets
+\begin{equation}
+    M_E \coloneqq \left\{ \sigma \in \Sph^{n-1} \colon f_J(\sigma) \le E \right\}.
+\end{equation}
+Identifying RSB with the onset of large zeroth Betti numbers $\beta_0(M_E) \gg 1$ is a conjecture, not a consequence proved here: the critical-point count bounds the number of stationary points but does not by itself determine the connectivity of sub-level sets, which requires an independent Betti-number computation. Two known results bear on it. Auffinger and Ben~Arous~\cite{auffinger2013complexity} compute the mean Euler characteristic of the level sets, an alternating sum of Betti numbers rather than $\beta_0$ itself. For the pure models at low temperature, Subag~\cite{subag2017geometry} proves that the Gibbs measure splits into thin spherical bands centred at deep minima, which makes precise the picture of ``many valleys separated by high mountains''. Arrangements of nearby minima and saddles in mixed models are studied by Kent-Dobias~\cite{kentdobias2024arrangement}. A heuristic link between loss surfaces of neural networks and spherical spin glasses was proposed by Choromanska et al.~\cite{choromanska2015loss}, under simplifying assumptions stated there. We record the conjecture as an open problem in Section~\ref{sec:conclusion}.
+
+% -------------------------------------------------------------------------
+\subsection{Complex Networks: Size-Independent Metrics on Massive Graphs}
+\label{subsec:imp_networks}
+When comparing real-world complex networks of disparate dimensions (e.g., biological connectomes or internet topologies across developmental epochs, where $|V_1| = 10^5$ and $|V_2| = 10^8$), discrete matrix algebra provides no direct comparison: the difference $A_1 - A_2$ is undefined because the underlying vector spaces are non-isomorphic.
+
+Under the step realization $\Phi_{\mathrm{step}}$, every adjacency matrix $A$ becomes a function $W_A \colon [0, 1]^2 \to [0, 1]$. By the graph-limit theory of Lov\'asz and Szegedy (Theorem~\ref{thm:graphon_compactness}), the cut distance $\delta_\square(W_{A_1}, W_{A_2})$ places networks of \emph{arbitrary, unequal sizes} in one compact metric space $(\widetilde{\mathcal{W}}, \delta_\square)$. The map $A \mapsto [W_A]$ is not injective: a graph and its blow-ups (each vertex replaced by $m$ copies) are at distance $0$, so $\delta_\square$ compares graphs only up to this identification. This makes possible:
+\begin{enumerate}[label=(\roman*)]
+    \item Tracking a growing network through the curve $t \mapsto [W_{A(t)}] \in \widetilde{\mathcal{W}}$ and measuring its continuity in $\delta_\square$ (the quotient space has no linear structure, so time derivatives require working with representatives in $L^\infty([0,1]^2)$);
+    \item Statistical hypothesis testing comparing graph families across different sampling scales, building on the sampling theory of~\cite{borgs2008convergent} and on graphon estimation~\cite{gao2015rate};
+    \item Continuous epidemic and consensus dynamics modeled via integro-differential equations rather than discrete master equations, as justified for convergent graph sequences by Medvedev~\cite{medvedev2014nonlinear}.
+\end{enumerate}
+
+% -------------------------------------------------------------------------
+\subsection{Computational Multilinear Algebra: Well-Posed Rank-One Approximation and the De Silva--Lim Pathology}
+\label{subsec:imp_tensors}
+In multilinear data processing (signal processing, hyper-spectral imaging, quantum chemistry), computing the best low-rank tensor approximation under the CP format:
+\begin{equation}
+    \min_{\rank(\mathcal{X}) \le r} \|\mathcal{T} - \mathcal{X}\|_F
+\end{equation}
+can be numerically unstable. De Silva and Lim~\cite{desilva2008illposed} proved that for tensors of order $k \ge 3$ and $2 \le r \le \min_\alpha d_\alpha$, the set $\mathcal{S}_r \coloneqq \{\mathcal{X} \colon \rank(\mathcal{X}) \le r\}$ is \emph{not closed} in the Euclidean topology, and some tensors have no best rank-$r$ approximation. When the infimum is not attained, minimizing sequences have factor weights that diverge to $\pm\infty$ while partially cancelling, and algorithms such as Alternating Least Squares (CP-ALS) can show degenerate iterates or long plateaus.
+
+The functional framework handles the rank-one case only. Realizing the tensor as a multilinear form $\Phi(\mathcal{T})$ on the compact manifold $\mathcal{M} = \Sph^{n_1-1} \times \dots \times \Sph^{n_k-1}$ turns the best rank-one approximation into the maximization of a smooth function on a compact set, so a maximizer exists by the Weierstrass theorem, and Lim's singular-vector equations~\eqref{eq:tensor_critical} characterize it (Theorem~\ref{thm:tensor_weierstrass}). This is a classical fact: the set of rank-one tensors is closed. It does \emph{not} circumvent the De Silva--Lim pathology for $r \ge 2$ (Remark~\ref{rem:scope_rank} gives an explicit tensor with unit-norm factors and weights of order $t$ approaching it). Well-posed alternatives for higher rank require additional constraints, such as bounds on the weights, orthogonality or angular separation of the factors, or nonnegativity (for nonnegative tensors, Lim and Comon~\cite{lim2009nonnegative} prove that best nonnegative rank-$r$ approximations always exist), or a change of format (e.g.\ Tucker or tensor-train formats, whose sets of tensors of bounded multilinear or TT rank are closed; multilinear rank is discussed in~\cite[\S4]{lim2021tensors}).
+
+% -------------------------------------------------------------------------
+\subsection{Biomedical Imaging: Hausdorff Perimeters of Level Sets}
+\label{subsec:imp_imaging}
+In medical tomography (MRI, CT) and computer vision, digital images are discrete matrices of pixel intensities $A \in \R^{M \times N}$. The standard Frobenius norm $\|A\|_F^2 = \sum a_{ij}^2$ penalizes image energy diffusively, failing to distinguish between smooth background gradients and sharp organ boundaries.
+
+By Theorem~\ref{thm:coarea_linkage}, the Total Variation $\TV(W_A)$ of the matrix step realization equals the \emph{integrated 1-dimensional Hausdorff measure} (arc-length) of the reduced boundaries of the superlevel sets:
+\begin{equation}
+    \TV(W_A) = \int_{-\infty}^\infty \mathcal{H}^1\bigl(\partial^* \{W_A > t\} \cap (0,1)^2\bigr) \dif t.
+\end{equation}
+This is the classical geometric reading of Total Variation regularization, as in the Rudin--Osher--Fatemi model~\cite{rudin1992nonlinear}: penalizing $\TV$ penalizes the integrated perimeter of the level sets. For the step realization the perimeter is measured in the anisotropic sense of \eqref{eq:tv_formula}, i.e.\ by the sum of absolute horizontal and vertical jumps; the common isotropic discretizations of $\TV$, which use $\sqrt{(\Delta_x a)^2 + (\Delta_y a)^2}$, are a different functional. Matrices with identical pixel histograms can have very different level-set perimeters, so $\TV(W_A)$ is a natural quantitative descriptor of boundary complexity; its diagnostic value for specific imaging tasks is an empirical question.
+
+% =========================================================================
+\section{Synthesis and Comparison Table}
+\label{sec:synthesis}
+% =========================================================================
+
+Table~\ref{tab:comparison} synthesizes the correspondence between classical algebraic matrix invariants and their emerging functional counterparts.
+
+\begin{table}[htbp]
+\centering
+\footnotesize
+\renewcommand{\arraystretch}{1.3}
+\begin{tabularx}{\textwidth}{@{}l >{\raggedright\arraybackslash}X >{\raggedright\arraybackslash}X >{\raggedright\arraybackslash}X@{}}
+\toprule
+\textbf{Entity} & \textbf{Algebraic Invariant} & \textbf{Functional Realization} & \textbf{Emerging Invariant / Impact} \\
+\midrule
+$A \in \R^{n \times n}$ & Spectrum $\sigma(A)$, $\|A\|_F$ & $f_A \in H^s(\Tor^2)$ & Dirichlet energy $\mathcal{E}(f_A) = \|DA\|_F^2 + \|AD\|_F^2$, not permutation-invariant; optimal permutation solved by sorting (Prop.~\ref{prop:optimal_permutation}); Sobolev penalty (proposal). \\
+$A \in \R^{n \times n}$ & Finite differences $\Delta A$ & $W_A \in \BV((0,1)^2)$ & Total variation $\TV$, level-set perimeter $\mathcal{H}^1(\partial^* E_t)$. \\
+$A \in \operatorname{Sym}_n$ & Spectrum $\lambda_1 < \dots < \lambda_n$ & $f_A \in C^\infty(\Sph^{n-1})$ & Morse indices $\gamma(\pm v_i) = i-1$, Euler characteristic $\chi$. \\
+$A$ ($n \to \infty$) & Rank, spectral radius $\rho$ & Graphon $W_A \in \widetilde{\mathcal{W}}$ & Cut norm $\cutnorm{W_A}$, size-independent network comparison. \\
+$\mathcal{T} \in (\R^n)^{\otimes d}$ & Tensor rank, Z-eigenvalues & $f_{\mathcal{T}} \in C^\infty(\Sph^{n-1})$ & Critical-point complexity $\frac12\log(d-1)$ of the isotropic model ($d \ge 3$); well-posed rank-one approximation (rank $r \ge 2$ remains ill-posed). \\
+\bottomrule
+\end{tabularx}
+\caption{Systematic bridge between discrete multilinear algebra and emerging functional-geometric invariants.}
+\label{tab:comparison}
+\end{table}
+
+% =========================================================================
+\section{Conclusion and Open Problems}
+\label{sec:conclusion}
+% =========================================================================
+
+We have described a framework in which matrices and higher-order tensors are read as functions on continuous domains. Through Functional Realization Operators $\Phi$, quantities that change under a relabelling of the indices, and so are not determined by the spectrum, become available: spatial smoothness, total variation and the perimeter of level curves. Permutation-invariant geometric readings come with them: Morse indices on the sphere, fixed by the order of the eigenvalues, and graphon limits in the cut distance, which compare arrays of different sizes. The Dirichlet, optimal-permutation, total variation, Morse, cut-norm, rank-one and critical-scaling statements are proved here or are classical results with references. The attention bound (Proposition~\ref{thm:attention_sobolev}) is the Sobolev embedding and is not uniform in the sequence length. The complexity rate of Theorem~\ref{thm:kac_rice_tensors} is imported from Auffinger, Ben~Arous and \v{C}ern\'y. Compactness for the hypergraph box cut norm (Remark~\ref{rem:hypergraphon_compactness}) is cited, not proved. The applications in Section~\ref{sec:implications} to learning and to spin glasses are proposals and a conjecture.
+
+The infimum Dirichlet energy over coordinate permutations, $\inf_{\pi \in \mathcal{S}_n} \mathcal{E}(f_{P_\pi A P_\pi^T})$, is not an open problem: Proposition~\ref{prop:optimal_permutation} gives it in closed form and in $O(n \log n)$ time by sorting, for every $A$, via the rearrangement inequality (Remark~\ref{rem:not_qap} explains why the resemblance to a quadratic assignment problem is only superficial).
+
+Several open problems invite future research:
+\begin{enumerate}
+    \item \textbf{Hypergraphon Curvature:} Can one define a Ricci curvature tensor directly on higher-order tensor realizations (hypergraphons) that governs the convergence of message-passing algorithms on dense hypergraphs?
+    \item \textbf{Topological Data Analysis (TDA) of Tensor Landscapes:} How do persistent homology barcodes of the sublevel sets $\{f_{\mathcal{T}} \le c\}$ correlate with the numerical rank and tensor train (TT) decomposition ranks of $\mathcal{T}$?
+    \item \textbf{Betti Numbers and Replica Symmetry Breaking (conjecture):} Does the zeroth Betti number $\beta_0(M_E)$ of the sub-level sets $M_E = \{\sigma \in \Sph^{n-1} \colon f_J(\sigma) \le E\}$ of the $p$-spin Hamiltonian undergo a sharp transition at the energy or temperature associated with replica symmetry breaking, and can this be established from the critical-point complexity of Theorem~\ref{thm:kac_rice_tensors} together with an explicit connectivity estimate? The mean Euler characteristic of level sets~\cite{auffinger2013complexity} and the band structure of the Gibbs measure~\cite{subag2017geometry} are related known results.
+    \item \textbf{Hypergraph box cut norm:} Write out the compactness of $(\widetilde{\mathcal{W}}_k, \delta_{\square,k})$ for all $k \ge 3$ (Remark~\ref{rem:hypergraphon_compactness}).
+\end{enumerate}
+
+\section*{Declarations}
+
+\noindent\textbf{Funding.} This research was financed in part by the Coordena\c{c}\~ao de Aperfei\c{c}oamento de Pessoal de N\'ivel Superior -- Brasil (CAPES) -- Finance Code 001.
+
+\medskip\noindent\textbf{Competing interests.} The author declares no competing interests.
+
+\medskip\noindent\textbf{Use of generative AI tools.} Large language model
+assistants (Anthropic Claude; Google Gemini, through the Antigravity agent
+environment) were used extensively. Under the author's direction they drafted and
+edited text and \LaTeX{} source, proposed and wrote derivations, proofs and
+counterexamples, wrote the numerical check scripts, and searched the literature.
+The mathematics was then checked in three steps by AI sessions that had not
+written it: a blind review of every statement, a correction made by a separate
+session, and a targeted re-check of each correction. Every numerical claim is
+checked by a script that compares it with an independent computation and includes
+a negative control, a deliberately altered formula that must fail. Every reference
+was resolved through Crossref, DataCite or arXiv. These checks were carried out by
+AI systems; they are not peer review, and no result in this volume has yet been
+checked by an independent human expert. AI tools are not authors. The author
+chose the questions, directed the work, decided what to publish, and is
+responsible for the content, including any remaining errors.
+
+\medskip\noindent\textbf{Verification status.} Results labelled Theorem or Proposition are proved in the text or cited as classical results with references; Remarks that cite the literature without proof say so, and the proposals and the conjecture of Section~\ref{sec:implications} are not proved. No statement of this paper is formally verified. The \textsc{Lean 4} files in the author's repository associated with this work are a placeholder skeleton without Mathlib and verify none of the statements. Python scripts compare the formulas of the text with independent computations (grid quadrature, finite differences, Monte Carlo, the coarea integral) and include negative controls; they are checks, not proofs.
+
+\medskip\noindent\textbf{Code availability.} The numerical check scripts are
+available from the author on request.
+This paper is Volume~I of \emph{Beyond the Spectrum}, archived on Zenodo under the CC~BY~4.0 license in the record of the three-volume series, DOI \href{https://doi.org/10.5281/zenodo.22644743}{10.5281/zenodo.22644743}.
+
+\raggedbottom
+\begin{thebibliography}{99}
+
+\bibitem{adler2007random}
+R.~J. Adler and J.~E. Taylor,
+\emph{Random Fields and Geometry},
+Springer Monographs in Mathematics, Springer, New York, 2007, ISBN: 978-0-387-48112-8, DOI: \href{https://doi.org/10.1007/978-0-387-48116-6}{10.1007/978-0-387-48116-6}.
+
+\bibitem{auffinger2013random}
+A.~Auffinger, G.~Ben Arous, and J.~{\v{C}}ern{\`y},
+\emph{Random matrices and complexity of spin glasses},
+Communications on Pure and Applied Mathematics, \textbf{66} (2013), no.~2, 165--201, DOI: \href{https://doi.org/10.1002/cpa.21422}{10.1002/cpa.21422}.
+
+\bibitem{cartwright2013number}
+D.~Cartwright and B.~Sturmfels,
+\emph{The number of eigenvalues of a tensor},
+Linear Algebra and its Applications, \textbf{438} (2013), no.~2, 942--952, DOI: \href{https://doi.org/10.1016/j.laa.2011.05.040}{10.1016/j.laa.2011.05.040}.
+
+\bibitem{desilva2008illposed}
+V.~De Silva and L.-H. Lim,
+\emph{Tensor rank and the ill-posedness of the best low-rank approximation problem},
+SIAM Journal on Matrix Analysis and Applications, \textbf{30} (2008), no.~3, 1084--1127, DOI: \href{https://doi.org/10.1137/06066518X}{10.1137/06066518X}.
+
+\bibitem{evans2015measure}
+L.~C. Evans and R.~F. Gariepy,
+\emph{Measure Theory and Fine Properties of Functions},
+Revised Edition, Textbooks in Mathematics, CRC Press, Boca Raton, FL, 2015, ISBN: 978-1-4822-4238-6, DOI: \href{https://doi.org/10.1201/b18333}{10.1201/b18333}.
+
+\bibitem{fleming1960integral}
+W.~H. Fleming and R.~Rishel,
+\emph{An integral formula for total gradient variation},
+Archiv der Mathematik, \textbf{11} (1960), 218--222, DOI: \href{https://doi.org/10.1007/BF01236935}{10.1007/BF01236935}.
+
+\bibitem{hillar2013most}
+C.~J. Hillar and L.-H. Lim,
+\emph{Most tensor problems are NP-hard},
+Journal of the ACM, \textbf{60} (2013), no.~6, Article 45, DOI: \href{https://doi.org/10.1145/2512329}{10.1145/2512329}.
+
+\bibitem{lovasz2006limits}
+L.~Lov{\'a}sz and B.~Szegedy,
+\emph{Limits of dense graph sequences},
+Journal of Combinatorial Theory, Series B, \textbf{96} (2006), no.~6, 933--957, DOI: \href{https://doi.org/10.1016/j.jctb.2006.05.002}{10.1016/j.jctb.2006.05.002}.
+
+\bibitem{lovasz2007szemeredi}
+L.~Lov{\'a}sz and B.~Szegedy,
+\emph{Szemer{\'e}di's lemma for the analyst},
+Geometric and Functional Analysis (GAFA), \textbf{17} (2007), no.~1, 252--270, DOI: \href{https://doi.org/10.1007/s00039-007-0599-6}{10.1007/s00039-007-0599-6}.
+
+\bibitem{lovasz2012large}
+L.~Lov{\'a}sz,
+\emph{Large Networks and Graph Limits},
+American Mathematical Society Colloquium Publications, Vol.~60, AMS, Providence, RI, 2012, ISBN: 978-0-8218-9085-1, DOI: \href{https://doi.org/10.1090/coll/060}{10.1090/coll/060}.
+
+\bibitem{lim2005singular}
+L.-H. Lim,
+\emph{Singular values and eigenvalues of tensors: a variational approach},
+in \emph{1st IEEE International Workshop on Computational Advances in Multi-Sensor Adaptive Processing (CAMSAP '05)}, 2005, pp.~129--132, DOI: \href{https://doi.org/10.1109/CAMAP.2005.1574201}{10.1109/CAMAP.2005.1574201}.
+
+\bibitem{qi2005eigenvalues}
+L.~Qi,
+\emph{Eigenvalues of a real supersymmetric tensor},
+Journal of Symbolic Computation, \textbf{40} (2005), no.~6, 1302--1324, DOI: \href{https://doi.org/10.1016/j.jsc.2005.05.007}{10.1016/j.jsc.2005.05.007}.
+
+\bibitem{rudin1992nonlinear}
+L.~I. Rudin, S.~Osher, and E.~Fatemi,
+\emph{Nonlinear total variation based noise removal algorithms},
+Physica D: Nonlinear Phenomena, \textbf{60} (1992), no.~1-4, 259--268, DOI: \href{https://doi.org/10.1016/0167-2789(92)90242-F}{10.1016/0167-2789(92)90242-F}.
+
+\bibitem{milnor1963morse}
+J.~Milnor,
+\emph{Morse Theory},
+Annals of Mathematics Studies, No.~51, Princeton University Press, Princeton, NJ, 1963, ISBN: 978-0-691-08008-6, DOI: \href{https://doi.org/10.1515/9781400881802}{10.1515/9781400881802}.
+
+\bibitem{silvafilho2026book}
+R.~M. Silva-Filho,
+\emph{Geometry, Tensors, and Quantum Gravity},
+monograph, Zenodo, 2026, DOI: \href{https://doi.org/10.5281/zenodo.22290043}{10.5281/zenodo.22290043}.
+
+\bibitem{tomioka2014spectral}
+R.~Tomioka and T.~Suzuki,
+\emph{Spectral norm of random tensors},
+arXiv preprint arXiv:1407.1870, 2014, DOI: \href{https://doi.org/10.48550/arXiv.1407.1870}{10.48550/arXiv.1407.1870}.
+
+\bibitem{nguyen2015tensor}
+N.~H. Nguyen, P.~Drineas, and T.~D. Tran,
+\emph{Tensor sparsification via a bound on the spectral norm of random tensors},
+Information and Inference: A Journal of the IMA, \textbf{4} (2015), no.~3, 195--229, DOI: \href{https://doi.org/10.1093/imaiai/iav004}{10.1093/imaiai/iav004}.
+
+\bibitem{vershynin2018high}
+R.~Vershynin,
+\emph{High-Dimensional Probability: An Introduction with Applications in Data Science},
+Cambridge University Press, Cambridge, 2018, DOI: \href{https://doi.org/10.1017/9781108231596}{10.1017/9781108231596}.
+
+\bibitem{zhao2015hypergraph}
+Y.~Zhao,
+\emph{Hypergraph limits: a regularity approach},
+Random Structures \& Algorithms, \textbf{47} (2015), no.~2, 205--226, DOI: \href{https://doi.org/10.1002/rsa.20537}{10.1002/rsa.20537}.
+
+\bibitem{ainsworth2023git}
+S.~K. Ainsworth, J.~Hayase, and S.~Srinivasa,
+\emph{Git Re-Basin: merging models modulo permutation symmetries},
+International Conference on Learning Representations (ICLR), 2023, arXiv:2209.04836, DOI: \href{https://doi.org/10.48550/arXiv.2209.04836}{10.48550/arXiv.2209.04836}.
+
+\bibitem{alon2006approximating}
+N.~Alon and A.~Naor,
+\emph{Approximating the cut-norm via Grothendieck's inequality},
+SIAM Journal on Computing, \textbf{35} (2006), no.~4, 787--803, DOI: \href{https://doi.org/10.1137/S0097539704441629}{10.1137/S0097539704441629}.
+
+\bibitem{auffinger2013complexity}
+A.~Auffinger and G.~Ben Arous,
+\emph{Complexity of random smooth functions on the high-dimensional sphere},
+The Annals of Probability, \textbf{41} (2013), no.~6, 4214--4247, DOI: \href{https://doi.org/10.1214/13-AOP862}{10.1214/13-AOP862}.
+
+\bibitem{benarous2019landscape}
+G.~Ben Arous, S.~Mei, A.~Montanari, and M.~Nica,
+\emph{The landscape of the spiked tensor model},
+Communications on Pure and Applied Mathematics, \textbf{72} (2019), no.~11, 2282--2330, DOI: \href{https://doi.org/10.1002/cpa.21861}{10.1002/cpa.21861}.
+
+\bibitem{boedihardjo2024injective}
+M.~T. Boedihardjo,
+\emph{Injective norm of random tensors with independent entries},
+arXiv preprint arXiv:2412.21193, 2024, DOI: \href{https://doi.org/10.48550/arXiv.2412.21193}{10.48550/arXiv.2412.21193}.
+
+\bibitem{borgs2008convergent}
+C.~Borgs, J.~T. Chayes, L.~Lov{\'a}sz, V.~T. S{\'o}s, and K.~Vesztergombi,
+\emph{Convergent sequences of dense graphs I: Subgraph frequencies, metric properties and testing},
+Advances in Mathematics, \textbf{219} (2008), no.~6, 1801--1851, DOI: \href{https://doi.org/10.1016/j.aim.2008.07.008}{10.1016/j.aim.2008.07.008}.
+
+\bibitem{breiding2017expected}
+P.~Breiding,
+\emph{The expected number of eigenvalues of a real Gaussian tensor},
+SIAM Journal on Applied Algebra and Geometry, \textbf{1} (2017), no.~1, 254--271, DOI: \href{https://doi.org/10.1137/16M1089769}{10.1137/16M1089769}.
+
+\bibitem{choromanska2015loss}
+A.~Choromanska, M.~Henaff, M.~Mathieu, G.~Ben Arous, and Y.~LeCun,
+\emph{The loss surfaces of multilayer networks},
+Proceedings of the 18th International Conference on Artificial Intelligence and Statistics (AISTATS), PMLR \textbf{38} (2015), arXiv:1412.0233, DOI: \href{https://doi.org/10.48550/arXiv.1412.0233}{10.48550/arXiv.1412.0233}.
+
+\bibitem{czarnecki2017sobolev}
+W.~M. Czarnecki, S.~Osindero, M.~Jaderberg, G.~{\'S}wirszcz, and R.~Pascanu,
+\emph{Sobolev training for neural networks},
+arXiv preprint arXiv:1706.04859, 2017, DOI: \href{https://doi.org/10.48550/arXiv.1706.04859}{10.48550/arXiv.1706.04859}.
+
+\bibitem{dartois2024injective}
+S.~Dartois and B.~McKenna,
+\emph{Injective norm of real and complex random tensors I: From spin glasses to geometric entanglement},
+arXiv preprint arXiv:2404.03627, 2024, DOI: \href{https://doi.org/10.48550/arXiv.2404.03627}{10.48550/arXiv.2404.03627}.
+
+\bibitem{draisma2016average}
+J.~Draisma and E.~Horobe\c{t},
+\emph{The average number of critical rank-one approximations to a tensor},
+Linear and Multilinear Algebra, \textbf{64} (2016), no.~12, 2498--2518, DOI: \href{https://doi.org/10.1080/03081087.2016.1164660}{10.1080/03081087.2016.1164660}.
+
+\bibitem{elek2012measure}
+G.~Elek and B.~Szegedy,
+\emph{A measure-theoretic approach to the theory of dense hypergraphs},
+Advances in Mathematics, \textbf{231} (2012), no.~3--4, 1731--1772, DOI: \href{https://doi.org/10.1016/j.aim.2012.06.022}{10.1016/j.aim.2012.06.022}.
+
+\bibitem{entezari2022role}
+R.~Entezari, H.~Sedghi, O.~Saukh, and B.~Neyshabur,
+\emph{The role of permutation invariance in linear mode connectivity of neural networks},
+International Conference on Learning Representations (ICLR), 2022, arXiv:2110.06296, DOI: \href{https://doi.org/10.48550/arXiv.2110.06296}{10.48550/arXiv.2110.06296}.
+
+\bibitem{evnin2021melonic}
+O.~Evnin,
+\emph{Melonic dominance and the largest eigenvalue of a large random tensor},
+Letters in Mathematical Physics, \textbf{111} (2021), no.~3, Article 66, DOI: \href{https://doi.org/10.1007/s11005-021-01407-z}{10.1007/s11005-021-01407-z}.
+
+\bibitem{federer1959curvature}
+H.~Federer,
+\emph{Curvature measures},
+Transactions of the American Mathematical Society, \textbf{93} (1959), no.~3, 418--491, DOI: \href{https://doi.org/10.1090/S0002-9947-1959-0110078-1}{10.1090/S0002-9947-1959-0110078-1}.
+
+\bibitem{friedland2014number}
+S.~Friedland and G.~Ottaviani,
+\emph{The number of singular vector tuples and uniqueness of best rank-one approximation of tensors},
+Foundations of Computational Mathematics, \textbf{14} (2014), no.~6, 1209--1242, DOI: \href{https://doi.org/10.1007/s10208-014-9194-z}{10.1007/s10208-014-9194-z}.
+
+\bibitem{frieze1999quick}
+A.~Frieze and R.~Kannan,
+\emph{Quick approximation to matrices and applications},
+Combinatorica, \textbf{19} (1999), no.~2, 175--220, DOI: \href{https://doi.org/10.1007/s004930050052}{10.1007/s004930050052}.
+
+\bibitem{fyodorov2004complexity}
+Y.~V. Fyodorov,
+\emph{Complexity of random energy landscapes, glass transition, and absolute value of the spectral determinant of random matrices},
+Physical Review Letters, \textbf{92} (2004), no.~24, Article 240601, DOI: \href{https://doi.org/10.1103/PhysRevLett.92.240601}{10.1103/PhysRevLett.92.240601}.
+
+\bibitem{fyodorov2014topology}
+Y.~V. Fyodorov and P.~Le Doussal,
+\emph{Topology trivialization and large deviations for the minimum in the simplest random optimization},
+Journal of Statistical Physics, \textbf{154} (2014), no.~1--2, 466--490, DOI: \href{https://doi.org/10.1007/s10955-013-0838-1}{10.1007/s10955-013-0838-1}.
+
+\bibitem{gao2015rate}
+C.~Gao, Y.~Lu, and H.~H. Zhou,
+\emph{Rate-optimal graphon estimation},
+The Annals of Statistics, \textbf{43} (2015), no.~6, 2624--2652, DOI: \href{https://doi.org/10.1214/15-AOS1354}{10.1214/15-AOS1354}.
+
+\bibitem{janson2013graphons}
+S.~Janson,
+\emph{Graphons, cut norm and distance, couplings and rearrangements},
+arXiv preprint arXiv:1009.2376, 2010, DOI: \href{https://doi.org/10.48550/arXiv.1009.2376}{10.48550/arXiv.1009.2376}.
+
+\bibitem{kac1943average}
+M.~Kac,
+\emph{On the average number of real roots of a random algebraic equation},
+Bulletin of the American Mathematical Society, \textbf{49} (1943), no.~4, 314--320, DOI: \href{https://doi.org/10.1090/S0002-9904-1943-07912-8}{10.1090/S0002-9904-1943-07912-8}.
+
+\bibitem{kentdobias2024arrangement}
+J.~Kent-Dobias,
+\emph{Arrangement of nearby minima and saddles in the mixed spherical energy landscapes},
+SciPost Physics, \textbf{16} (2024), no.~1, Article 001, DOI: \href{https://doi.org/10.21468/SciPostPhys.16.1.001}{10.21468/SciPostPhys.16.1.001}.
+
+\bibitem{lim2009nonnegative}
+L.-H. Lim and P.~Comon,
+\emph{Nonnegative approximations of nonnegative tensors},
+Journal of Chemometrics, \textbf{23} (2009), no.~7--8, 432--441, DOI: \href{https://doi.org/10.1002/cem.1244}{10.1002/cem.1244}.
+
+\bibitem{lim2021tensors}
+L.-H. Lim,
+\emph{Tensors in computations},
+Acta Numerica, \textbf{30} (2021), 555--764,\newline DOI: \href{https://doi.org/10.1017/S0962492921000076}{10.1017/S0962492921000076}.
+
+\bibitem{medvedev2014nonlinear}
+G.~S. Medvedev,
+\emph{The nonlinear heat equation on dense graphs and graph limits},
+SIAM Journal on Mathematical Analysis, \textbf{46} (2014), no.~4, 2743--2766, DOI: \href{https://doi.org/10.1137/130943741}{10.1137/130943741}.
+
+\bibitem{miyato2018spectral}
+T.~Miyato, T.~Kataoka, M.~Koyama, and Y.~Yoshida,
+\emph{Spectral normalization for generative adversarial networks},
+International Conference on Learning Representations (ICLR), 2018, arXiv:1802.05957, DOI: \href{https://doi.org/10.48550/arXiv.1802.05957}{10.48550/arXiv.1802.05957}.
+
+\bibitem{montanari2014statistical}
+A.~Montanari and E.~Richard,
+\emph{A statistical model for tensor PCA},
+Advances in Neural Information Processing Systems (NeurIPS), 2014, arXiv:1411.1076, DOI: \href{https://doi.org/10.48550/arXiv.1411.1076}{10.48550/arXiv.1411.1076}.
+
+\bibitem{rahaman2019spectral}
+N.~Rahaman, A.~Baratin, D.~Arpit, F.~Draxler, M.~Lin, F.~A. Hamprecht, Y.~Bengio, and A.~Courville,
+\emph{On the spectral bias of neural networks},
+Proceedings of the 36th International Conference on Machine Learning (ICML), PMLR \textbf{97} (2019), arXiv:1806.08734, DOI: \href{https://doi.org/10.48550/arXiv.1806.08734}{10.48550/arXiv.1806.08734}.
+
+\bibitem{ros2019complex}
+V.~Ros, G.~Ben Arous, G.~Biroli, and C.~Cammarota,
+\emph{Complex energy landscapes in spiked-tensor and simple glassy models: ruggedness, arrangements of local minima, and phase transitions},
+Physical Review X, \textbf{9} (2019), no.~1, Article 011003, DOI: \href{https://doi.org/10.1103/PhysRevX.9.011003}{10.1103/PhysRevX.9.011003}.
+
+\bibitem{ruiz2020graphon}
+L.~Ruiz, L.~F.~O. Chamon, and A.~Ribeiro,
+\emph{Graphon neural networks and the transferability of graph neural networks},
+arXiv preprint arXiv:2006.03548, 2020, DOI: \href{https://doi.org/10.48550/arXiv.2006.03548}{10.48550/arXiv.2006.03548}.
+
+\bibitem{ruiz2021graphon}
+L.~Ruiz, L.~F.~O. Chamon, and A.~Ribeiro,
+\emph{Graphon signal processing},
+IEEE Transactions on Signal Processing, \textbf{69} (2021), 4961--4976, DOI: \href{https://doi.org/10.1109/TSP.2021.3106857}{10.1109/TSP.2021.3106857}.
+
+\bibitem{subag2017complexity}
+E.~Subag,
+\emph{The complexity of spherical $p$-spin models: a second moment approach},
+The Annals of Probability, \textbf{45} (2017), no.~5, DOI: \href{https://doi.org/10.1214/16-AOP1139}{10.1214/16-AOP1139}.
+
+\bibitem{subag2017geometry}
+E.~Subag,
+\emph{The geometry of the Gibbs measure of pure spherical spin glasses},
+Inventiones Mathematicae, \textbf{210} (2017), no.~1, 135--209, DOI: \href{https://doi.org/10.1007/s00222-017-0726-4}{10.1007/s00222-017-0726-4}.
+
+\bibitem{subag2021following}
+E.~Subag,
+\emph{Following the ground states of full-RSB spherical spin glasses},
+Communications on Pure and Applied Mathematics, \textbf{74} (2021), no.~5, 1021--1044, DOI: \href{https://doi.org/10.1002/cpa.21922}{10.1002/cpa.21922}.
+
+\bibitem{yang2022tensor}
+G.~Yang, E.~J. Hu, I.~Babuschkin, S.~Sidor, X.~Liu, D.~Farhi, N.~Ryder, J.~Pachocki, W.~Chen, and J.~Gao,
+\emph{Tensor Programs V: Tuning large neural networks via zero-shot hyperparameter transfer},
+Advances in Neural Information Processing Systems (NeurIPS), 2021, arXiv:2203.03466, DOI: \href{https://doi.org/10.48550/arXiv.2203.03466}{10.48550/arXiv.2203.03466}.
+
+\bibitem{yoshida2017spectral}
+Y.~Yoshida and T.~Miyato,
+\emph{Spectral norm regularization for improving the generalizability of deep learning},
+arXiv preprint arXiv:1705.10941, 2017, DOI: \href{https://doi.org/10.48550/arXiv.1705.10941}{10.48550/arXiv.1705.10941}.
+
+\end{thebibliography}
+
+\end{document}

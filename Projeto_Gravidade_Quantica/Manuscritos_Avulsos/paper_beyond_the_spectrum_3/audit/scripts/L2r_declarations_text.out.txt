@@ -1,0 +1,39 @@
+== paper_functorial_tensor_field_theory
+  affiliation: ok
+  CAPES: ok
+  Lean sentence: ok
+  competing interests: ok
+  forbidden history words: none
+  bibitems: 42; without DOI/arXiv: ['brown2006']
+  uncited bibitems: none; cited without bibitem: none
+  reference sentence: Every reference was resolved through Crossref, DataCite, arXiv or, for the one book without a DOI, its ISBN record.
+== paper_functional_realizations
+  affiliation: ok
+  CAPES: ok
+  Lean sentence: ok
+  competing interests: ok
+  forbidden history words: none
+  bibitems: 56; without DOI/arXiv: []
+  uncited bibitems: none; cited without bibitem: none
+  reference sentence: Every reference was resolved through Crossref, DataCite or arXiv.
+== paper_geometric_measures_functional_tensors
+  affiliation: ok
+  CAPES: ok
+  Lean sentence: ok
+  competing interests: ok
+  forbidden history words: none
+  bibitems: 68; without DOI/arXiv: ['connes1994noncommutative']
+  uncited bibitems: none; cited without bibitem: none
+  reference sentence: Every reference was resolved through Crossref, DataCite or arXiv, or, for the one book without a DOI, through its ISBN record at Open Library.
+== paper_beyond_the_spectrum_3
+  affiliation: ok
+  CAPES: ok
+  Lean sentence: ok
+  competing interests: ok
+  forbidden history words: none
+  bibitems: 72; without DOI/arXiv: ['DLMF', 'Kashiwara1985', 'KawohlFridman2003']
+  uncited bibitems: none; cited without bibitem: none
+  reference sentence: Every reference was resolved through Crossref, DataCite or arXiv, or, for the three items without a DOI, through Numdam, EuDML or the ISBN record.
+AI-use block identical across the four works (modulo reference sentence, paper/volume): True
+negative controls (injected history words; stripped DOI of silvafilho2026book) detected: True
+failures=0

@@ -1,0 +1,16 @@
+[PASS] R1 nn(G+Lg) = 3adot^2/(N0^2a^2) - Lambda: -Lambda + 3*Derivative(a(t), t)**2/(N0**2*a(t)**2)
+[PASS] R1 control: display without -Lambda fails: difference -Lambda
+[PASS] R2 endpoints/sitting intervals unchanged: max diff 0.00e+00
+[PASS] R2 morphism changed at t=L/2: |T'-T| = 2.000000 (oracle 2)
+[PASS] R2 h(t) unchanged (formula): max |dh| 1.11e-16
+[PASS] R2 h(L/2) = sin^2(2 theta) delta via fidelity oracle: err 4.06e-08
+[PASS] R2 control: x-dependent phase changes h: |dh| 10.127
+[PASS] R3 Lemma field projectively immersed (min eig > 0): min eig 1.0000
+[PASS] R3 formula vs fidelity oracle: max err 3.61e-07
+[PASS] R3 analytic oracle g = delta: err 3.27e-11
+[PASS] R3 control: C^2 field is never immersed (min eig ~ 0): min eig -4.11e-16
+[PASS] R4 min_s alpha' = min(1 - s0/2, (1+s0)/2): err 1.1e-16
+[PASS] R4 global min = 1/2: min 0.500000000000
+[PASS] R4 control: bound 0.6 is violated: min 0.500
+[PASS] R4 s0=1/2: alpha' in [3/4, 9/8]: [0.750000, 1.125000]
+failures: 0

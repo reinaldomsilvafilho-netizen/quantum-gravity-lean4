@@ -1,0 +1,72 @@
+== Thm 3.6 ==
+eig B {2 - 2*sqrt(3): 1, 2 + 2*sqrt(3): 1, 0: 1}  eig A {2 - 2*sqrt(3): 1, 2 + 2*sqrt(3): 1, 0: 1}
+PASS 3x3 spectrum = {2+2sqrt3, 2-2sqrt3, 0}
+charpoly B' lam**2*(lam**3 - 10*lam**2 - 54*lam - 54)
+PASS 5x5 isospectral, symmetric
+PASS C = J B' J^T isospectral and != B'
+r=1: B [(np.float64(2.0), np.float64(0.0))] A [] B' [(np.float64(3.0), np.float64(1.0)), (np.float64(3.0), np.float64(0.0))] A' [(np.float64(3.0), np.float64(1.0))] C [(np.float64(3.0), np.float64(1.0)), (np.float64(3.0), np.float64(0.0))] essential (0, 0, 0, 0, 0)
+PASS r=1 3x3 diagrams
+PASS r=1 5x5 diagrams
+r=2: B [(np.float64(2.0), np.float64(0.0))] A [] B' [(np.float64(3.0), np.float64(1.0)), (np.float64(3.0), np.float64(0.0))] A' [(np.float64(3.0), np.float64(1.0))] C [(np.float64(3.0), np.float64(1.0)), (np.float64(3.0), np.float64(0.0))] essential (0, 0, 0, 0, 0)
+PASS r=2 3x3 diagrams
+PASS r=2 5x5 diagrams
+r=3: B [(np.float64(2.0), np.float64(0.0))] A [] B' [(np.float64(3.0), np.float64(1.0)), (np.float64(3.0), np.float64(0.0))] A' [(np.float64(3.0), np.float64(1.0))] C [(np.float64(3.0), np.float64(1.0)), (np.float64(3.0), np.float64(0.0))] essential (0, 0, 0, 0, 0)
+PASS r=3 3x3 diagrams
+PASS r=3 5x5 diagrams
+E(B')=0.673012  exact 0.673012  E(A')=-0.0  E(B)=-0.0 E(A)=0.0
+PASS entropies 0.673 vs 0; 3x3 both 0
+PASS NEG B'_44=3 gives one bar (entropy 0)
+PASS NEG mutated entropy (log base 2) differs from stated 0.673
+PASS 3x3 random symmetric: max #H1 bars = 1 <= 1
+PASS NEG/sanity 5x5 random can have >=2 bars (max 5)
+== Prop 6.4 ==
+PASS grading -i g1 g2 = sigma3
+PASS gamma anticommutes with gamma^mu
+PASS tr(g^mu g^nu) = 2 delta
+PASS tr(gamma g^mu g^nu) = 2i eps
+k=1 N=128: deg(preimage)=[1, 1, 1] graded=[np.complex128(1+0j), np.complex128(1+0j), np.complex128(1+0j)] ungraded=[-0.0, -0.02202, -0.01894]
+k=1 N=256: deg(preimage)=[1, 1, 1] graded=[np.complex128(1+0j), np.complex128(1+0j), np.complex128(1+0j)] ungraded=[0.0, -0.02202, -0.01894]
+k=1 N=512: deg(preimage)=[1, 1, 1] graded=[np.complex128(1+0j), np.complex128(1+0j), np.complex128(1+0j)] ungraded=[-0.0, -0.02202, -0.01894]
+PASS (i/4) sum sgn tau^gamma = deg F for k=1
+k=2 N=128: deg(preimage)=[2, 2, 2] graded=[np.complex128(2+0j), np.complex128(2+0j), np.complex128(2+0j)] ungraded=[-0.0, -0.02828, -0.02432]
+k=2 N=256: deg(preimage)=[2, 2, 2] graded=[np.complex128(2+0j), np.complex128(2+0j), np.complex128(2+0j)] ungraded=[-0.0, -0.02828, -0.02432]
+k=2 N=512: deg(preimage)=[2, 2, 2] graded=[np.complex128(2+0j), np.complex128(2+0j), np.complex128(2+0j)] ungraded=[-0.0, -0.02828, -0.02432]
+PASS (i/4) sum sgn tau^gamma = deg F for k=2
+k=-1 N=128: deg(preimage)=[-1, -1, -1] graded=[np.complex128(-1+0j), np.complex128(-1+0j), np.complex128(-1+0j)] ungraded=[0.0, -0.02202, -0.01894]
+k=-1 N=256: deg(preimage)=[-1, -1, -1] graded=[np.complex128(-1+0j), np.complex128(-1+0j), np.complex128(-1+0j)] ungraded=[-0.0, -0.02202, -0.01894]
+k=-1 N=512: deg(preimage)=[-1, -1, -1] graded=[np.complex128(-1+0j), np.complex128(-1+0j), np.complex128(-1+0j)] ungraded=[0.0, -0.02202, -0.01894]
+PASS (i/4) sum sgn tau^gamma = deg F for k=-1
+ungraded tau_2 over 5 rotations (deg 1): [ 0.      -0.02202 -0.01894 -0.00725 -0.05204]
+PASS ungraded tau_2 varies under rotations at fixed degree
+PASS NEG prefactor i/2 instead of i/4 gives 2*deg (fails)
+PASS Rem 6.5: degree-0 map, tau_2 = -0.7191 < 0
+== Lemma 7.2 / Thm 7.3 ==
+  observed order 2.14, extrapolated 117.45590056, formula 117.45452569
+  Bures refinement eps=4e-3,2e-3,1e-3: [116.98027181 117.34547254 117.42829356]
+  observed order 2.02, extrapolated 153.44861440, formula 153.44854657
+  Bures refinement eps=4e-3,2e-3,1e-3: [153.29237134 153.41000502 153.43896206]
+  observed order 1.98, extrapolated 29.07885998, formula 29.07886173
+  Bures refinement eps=4e-3,2e-3,1e-3: [29.07469917 29.07781094 29.07859772]
+  observed order 1.90, extrapolated 234.42529301, formula 234.42751753
+  Bures refinement eps=4e-3,2e-3,1e-3: [233.65228353 234.22224065 234.37452992]
+  observed order 1.95, extrapolated 104.24794608, formula 104.24804842
+  Bures refinement eps=4e-3,2e-3,1e-3: [104.16434997 104.22655393 104.24259805]
+rel err factor 2: [1.17e-05 4.00e-07 1.00e-07 9.50e-06 1.00e-06]  factor 1: [0.5 0.5 0.5 0.5 0.5]
+PASS QFI formula with factor 2 matches Bures oracle
+PASS NEG formula without factor 2 fails
+PASS Rem 7.4(i): rho=R(x1+x2) det g = 0.00e+00 = 0
+PASS Rem 7.4(ii): gauge orbit det g > 0 (min 1.022e+01)
+PASS Thm 7.3(a): g_mumu >= ||d rho||_HS^2
+== Prop 4.5 ==
+c_* (adaptive quarter-cell, tol 1e-6/1e-8/1e-10): [1.0577638, 1.0577638, 1.0577638]
+PASS c_* = 1.0578 (paper 1.058)
+PASS NEG H without Hessian term gives 2.2817 != c_*
+== Thm 2.3 ==
+sharpness eps=0.1: W2=0.90000 (1-eps=0.9), rhs=1
+PASS (b) sharpness ratio = 1-eps at eps=0.1
+sharpness eps=0.05: W2=0.95000 (1-eps=0.95), rhs=1
+PASS (b) sharpness ratio = 1-eps at eps=0.05
+speed/bound for rho=1+tau*eps*cos(pi x): [0.99992 0.99997 1.     ]
+PASS (c) bound holds and is attained (ratio -> 1)
+PASS NEG constant 1/(2 pi) violated
+failures 0

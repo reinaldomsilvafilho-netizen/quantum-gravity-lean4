@@ -1,0 +1,6 @@
+exit codes: [0, 0, 0]
+counts: {'errors': 0, 'latex_warnings': 0, 'overfull': 0, 'underfull': 0, 'undefined': 0, 'pdftex_notices': 1}
+pages: 13
+notice: pdfTeX warning (font expansion): font should be expanded before its first use
+negative control parser: {'errors': 1, 'latex_warnings': 1, 'overfull': 1, 'underfull': 0, 'undefined': 2, 'pdftex_notices': 0} -> flagged
+gate failures (pdfTeX notices not counted): 0

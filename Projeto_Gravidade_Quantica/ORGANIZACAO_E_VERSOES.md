@@ -49,6 +49,10 @@ Cada versão publicada tem três registros coerentes entre si:
 
 Para recuperar uma versão antiga: `git checkout <tag>` ou baixar a versão correspondente no Zenodo. Não se guarda cópia.
 
+**A fonte de toda versão publicada tem de existir.** Em 2026-10-06 o `.tex` da v2 de *Beyond the Spectrum* I e II tinha sumido, e foi preciso reconstruí-lo a partir do PDF. A partir de agora:
+- o `.tex` exato de cada upload vai junto no pacote `releases/AAAA-MM-DD/<obra>/`;
+- a fonte recebe a *tag* git quando o autor fizer o commit.
+
 ## 3. Git
 
 - **`main`** é sempre compilável e só recebe o que passou pelos portões do *Guia do Projeto*.

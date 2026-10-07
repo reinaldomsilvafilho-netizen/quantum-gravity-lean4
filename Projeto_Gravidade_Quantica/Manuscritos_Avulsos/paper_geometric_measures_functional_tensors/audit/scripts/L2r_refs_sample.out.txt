@@ -1,0 +1,189 @@
+paper: paper_geometric_measures_functional_tensors; bibitems now 68, before 23, added 45, removed []
+sample (seed 20261007): ['gordon1992one', 'ledoux1994simple', 'brenier1991polar', 'jordan1998variational', 'uhlmann1976transition', 'vandam2003which', 'sturm2023space', 'chan2003euler', 'helstrom1967minimum', 'chintakunta2015entropy']
+neg control: fake DOI does not resolve (ok)
+neg control: title similarity of a wrong title = 0.00 (must be < 0.5)
+
+====================================================================================================
+KEY gordon1992one
+BIBITEM: C.~Gordon, D.~L.~Webb, and S.~Wolpert, \emph{One cannot hear the shape of a drum}, Bulletin of the American Mathematical Society (N.S.), \textbf{27} (1992), no.~1, 134--138, DOI: \href{https://doi.org/10.1090/S0273-0979-1992-00289-6}{10.1090/S0273-0979-1992-00289-6}.
+DOI 10.1090/S0273-0979-1992-00289-6: resolved via Crossref
+[Crossref] title: One cannot hear the shape of a drum
+  authors: Carolyn Gordon; David L. Webb; Scott Wolpert
+  year: 1992 venue: Bulletin of the American Mathematical Society vol 27 p 134-138
+  title-in-bibitem similarity: 1.00
+  abstract: We use an extension of Sunada’s theorem to construct a nonisometric pair of isospectral simply connected domains in the Euclidean plane, thus answering negatively Kac’s question, "can one hear the shape of a drum?" In order to construct simply connected examples, we exploit the observation that an orbifold whose underlying space is a simply connected manifold with boundary need not be simply connected as an orbifold.
+  CITED AT: . That a spectrum does not determine the underlying object is classical: Kac asked whether the Dirichlet spectrum of a planar domain determines its shape \cite{kac1966can}, Gordon, Webb and Wolpert constructed isospectral non-isometric planar domains \cite{gordon1992one}, and van Dam and Haemers survey which graphs are, and which are not, determined by their spectra \cite{vandam2003which}.
+
+====================================================================================================
+KEY ledoux1994simple
+BIBITEM: M.~Ledoux, \emph{A simple analytic proof of an inequality by P.~Buser}, Proceedings of the American Mathematical Society, \textbf{121} (1994), no.~3, 951--959, DOI: \href{https://doi.org/10.1090/S0002-9939-1994-1186991-X}{10.1090/S0002-9939-1994-1186991-X}.
+DOI 10.1090/S0002-9939-1994-1186991-X: resolved via Crossref
+[Crossref] title: A simple analytic proof of an inequality by P. Buser
+  authors: M. Ledoux
+  year: 1994 venue: Proceedings of the American Mathematical Society vol 121 p 951-959
+  title-in-bibitem similarity: 1.00
+  abstract: We present a simple analytic proof of the inequality of P. Buser showing the equivalence of the first eigenvalue of a compact Riemannian manifold without boundary and Cheeger’s isoperimetric constant under a lower bound on the Ricci curvature. Our tools are the Li-Yau inequality and ideas of Varopoulos in his functional approach to isoperimetric inequalities and heat kernel estimates on groups and manifolds. The method is easily modified to yield a logarithmic isoperimetric inequality involving the hypercontractivity constant of the manifold.
+  CITED AT: \begin{remark} On compact Riemannian manifolds without boundary whose Ricci curvature is bounded below, an inequality in the opposite direction bounds $\lambda_1$ above in terms of the Cheeger constant; it is due to Buser \cite{buser1982note}, and Ledoux gave an analytic proof \cite{ledoux1994simple}.
+
+====================================================================================================
+KEY brenier1991polar
+BIBITEM: Y.~Brenier, \emph{Polar factorization and monotone rearrangement of vector-valued functions}, Communications on Pure and Applied Mathematics, \textbf{44} (1991), no.~4, 375--417, DOI: \href{https://doi.org/10.1002/cpa.3160440402}{10.1002/cpa.3160440402}.
+DOI 10.1002/cpa.3160440402: resolved via Crossref
+[Crossref] title: Polar factorization and monotone rearrangement of vector‐valued functions
+  authors: Yann Brenier
+  year: 1991 venue: Communications on Pure and Applied Mathematics vol 44 p 375-417
+  title-in-bibitem similarity: 1.00
+  abstract: Abstract 
+                   
+                    Given a probability space (
+                     X 
+                    , μ) and a bounded domain Ω in ℝ
+                     
+                       d 
+                     
+                    equipped with the Lebesgue measure |·| (normalized so that |Ω| = 1), it is shown (under additional technical assumptions on
+                     X 
+                    and Ω) that for every vector‐valued function u ∈ L
+                     p 
+                    (
+                     X 
+                    , μ; ℝ
+                     d 
+                    ) there is a unique “polar factorization”
+                     u 
+                    = ∇Ψ
+                     s 
+                    , where Ψ is a convex function defined on Ω and
+                     s 
+                    is a measure‐preserving mapping from (
+                     X 
+                    , μ) into (Ω, |·|), provided that
+                     u 
+                    is nondegenerate, in the sense that μ(
+                     u 
+                     −1 
+                    (
+                     E 
+                    )) = 0 for each Lebesgue negligible subset
+                     E 
+                    of ℝ
+                     d 
+                    .
+                   
+                   Through this result, the concepts of polar factorization of real matrices, Helmholtz decomposition of vector fields, and nondecreasing rearrangements of real‐valued functions are unified. 
+                   The Monge‐Ampère equation is involved in the polar factorization and the proof relies on the study of an appropriate “Monge‐Kantorovich” problem.
+  CITED AT: . By Brenier's theorem \cite{brenier1991polar} there is an optimal map $T$ with $\mu_1 = T_\#\mu_0$, and $\mu_t = ((1-t)\mathrm{id} + tT)_\# \mu_0$; since $\Omega$ is convex, $\mu_t$ is supported in $\Omega$.
+
+====================================================================================================
+KEY jordan1998variational
+BIBITEM: R.~Jordan, D.~Kinderlehrer, and F.~Otto, \emph{The variational formulation of the Fokker--Planck equation}, SIAM Journal on Mathematical Analysis, \textbf{29} (1998), no.~1, 1--17, DOI: \href{https://doi.org/10.1137/S0036141096303359}{10.1137/S0036141096303359}.
+DOI 10.1137/S0036141096303359: resolved via Crossref
+[Crossref] title: The Variational Formulation of the Fokker--Planck Equation
+  authors: Richard Jordan; David Kinderlehrer; Felix Otto
+  year: 1998 venue: SIAM Journal on Mathematical Analysis vol 29 p 1-17
+  title-in-bibitem similarity: 1.00
+  abstract: The Fokker--Planck equation, or forward Kolmogorov equation, describes the evolution of the probability density for a stochastic process associated with an Ito stochastic differential equation. It pertains to a wide variety of time-dependent systems in which randomness plays a role. In this paper, we are concerned with Fokker--Planck equations for which the drift term is given by the gradient of a potential. For a broad class of potentials, we construct a time discrete, iterative variational scheme whose solutions converge to the solution of the Fokker--Planck equation. The major novelty of this iterative scheme is that the time-step is governed by the Wasserstein metric on probability measures. This formulation enables us to reveal an appealing, and previously unexplored, relationship between the Fokker--Planck equation and the associated free energy functional. Namely, we demonstrate that the dynamics may be regarded as a gradient flux, or a steepest descent, for the free energy with respect to the Wasserstein metric.
+  CITED AT: . Related links are the identification of the Fokker--Planck equation as the Wasserstein gradient flow of the relative entropy \cite{jordan1998variational} and the implication from a logarithmic Sobolev inequality to Talagrand's transport inequality \cite{otto2000generalization}.
+
+====================================================================================================
+KEY uhlmann1976transition
+BIBITEM: A.~Uhlmann, \emph{The ``transition probability'' in the state space of a $*$-algebra}, Reports on Mathematical Physics, \textbf{9} (1976), no.~2, 273--279, DOI: \href{https://doi.org/10.1016/0034-4877(76)90060-4}{10.1016/0034-4877(76)90060-4}.
+DOI 10.1016/0034-4877(76)90060-4: resolved via Crossref
+[Crossref] title: The “transition probability” in the state space of a ∗-algebra
+  authors: A. Uhlmann
+  year: 1976 venue: Reports on Mathematical Physics vol 9 p 273-279
+  title-in-bibitem similarity: 1.00
+  abstract: (none)
+  CITED AT: . Braunstein and Caves identified the corresponding metric with statistical distinguishability of states \cite{braunstein1994statistical}; it equals four times the Bures metric built from Uhlmann's fidelity \cite{uhlmann1976transition}, see \cite[Sect.~2.4.2]{liu2020quantum}, and it belongs to Petz's family of monotone metrics on density matrices \cite{petz1996monotone}.
+
+====================================================================================================
+KEY vandam2003which
+BIBITEM: E.~R.~van Dam and W.~H.~Haemers, \emph{Which graphs are determined by their spectrum?}, Linear Algebra and its Applications, \textbf{373} (2003), 241--272, DOI: \href{https://doi.org/10.1016/S0024-3795(03)00483-X}{10.1016/S0024-3795(03)00483-X}.
+DOI 10.1016/S0024-3795(03)00483-X: resolved via Crossref
+[Crossref] title: Which graphs are determined by their spectrum?
+  authors: Edwin R. van Dam; Willem H. Haemers
+  year: 2003 venue: Linear Algebra and its Applications vol 373 p 241-272
+  title-in-bibitem similarity: 1.00
+  abstract: (none)
+  CITED AT: . That a spectrum does not determine the underlying object is classical: Kac asked whether the Dirichlet spectrum of a planar domain determines its shape \cite{kac1966can}, Gordon, Webb and Wolpert constructed isospectral non-isometric planar domains \cite{gordon1992one}, and van Dam and Haemers survey which graphs are, and which are not, determined by their spectra \cite{vandam2003which}.
+
+====================================================================================================
+KEY sturm2023space
+BIBITEM: K.-T.~Sturm, \emph{The Space of Spaces: Curvature Bounds and Gradient Flows on the Space of Metric Measure Spaces}, Memoirs of the American Mathematical Society, \textbf{290} (2023), no.~1443, DOI: \href{https://doi.org/10.1090/memo/1443}{10.1090/memo/1443}.
+DOI 10.1090/memo/1443: resolved via Crossref
+[Crossref] title: The Space of Spaces: Curvature Bounds and Gradient Flows on the Space of Metric Measure Spaces
+  authors: Karl-Theodor Sturm
+  year: 2023 venue: Memoirs of the American Mathematical Society vol 290 p None
+  title-in-bibitem similarity: 1.00
+  abstract: Equipped with the
+                     
+                       
+                         
+                           
+                             L 
+                             
+                               2 
+                               , 
+                               q 
+                             
+                           
+                           L^{2,q} 
+                         
+                       
+                     
+                    -distortion distance
+                     
+                       \DD _{2,q} 
+                     
+                    , the space
+                     
+                       \XX _{2q} 
+                     
+                    of all metric measure spaces
+                     
+                       (X,\d ,\m ) 
+                     
+                    is proven to have nonnegative curvature in the sense of Alexandrov. Geodesics and tangent spaces are characterized in detail. Moreover, classes of semiconvex functionals and their gradient flows on
+                     
+                       \ol \XX _{2q} 
+                     
+                    are presented.
+  CITED AT: . Sturm showed that the space of all metric measure spaces with the $L^{2,q}$-distortion distance has non-negative curvature in the sense of Alexandrov \cite{sturm2023space}. \subsection*{Related work} Each section draws on an established theory.
+
+====================================================================================================
+KEY chan2003euler
+BIBITEM: T.~F.~Chan, S.~H.~Kang, and J.~Shen, \emph{Euler's elastica and curvature-based inpainting}, SIAM Journal on Applied Mathematics, \textbf{63} (2003), no.~2, 564--592, DOI: \href{https://doi.org/10.1137/S0036139901390088}{10.1137/S0036139901390088}.
+DOI 10.1137/S0036139901390088: resolved via Crossref
+[Crossref] title: Euler's Elastica and Curvature-Based Inpainting
+  authors: Jianhong Shen; Sung Ha Kang; Tony F. Chan
+  year: 2003 venue: SIAM Journal on Applied Mathematics vol 63 p 564-592
+  title-in-bibitem similarity: 1.00
+  abstract: Image inpainting is a special image restoration problem for which image prior models play a crucial role. Euler's elastica was first introduced to computer vision by Mumford [Algebraic Geometry and its Applications, Springer-Verlag, New York, 1994, pp. 491--506] as a curve prior model. By functionalizing the elastica energy, Masnou and Morel [Proceedings of the 5th IEEE International Conference Image Processing, 3 (1998), pp. 259--263] proposed an elastica-based variational inpainting model. The current paper is intended to contribute to the development of its mathematical foundation and the study of its properties and connections to the earlier works of Bertalmio, Sapiro, Caselles, and Ballester [SIGGRAPH 2000, ACM Press, New York, 2000] and Chan and Shen [J. Visual Comm. Image Rep., 12 (2001), pp. 436--449]. A computational scheme based on numerical PDEs is presented, which allows the automatic handling of topologically complex inpainting domains.
+  CITED AT: . The level-set curvature energy of Section~\ref{sec:willmore_gmt} is, up to the weights, the curvature term of the elastica-type energies used in image inpainting \cite{chan2003euler,ambrosio2003direct}.
+  CITED AT: t) \dif t \in [0, \infty]. \end{equation} By the coarea formula for Lipschitz functions \cite{evans2015measure}, this equals \begin{equation} \mathcal{W}(\Phi(A)) = \int_{\{\nabla\Phi(A) \ne 0\}} \left| \operatorname{div}\left(\frac{\nabla \Phi(A)}{\|\nabla \Phi(A)\|}\right) \right|^2 \|\nabla \Phi(A)\| \dif x. \label{eq:willmore_volume} \end{equation} \end{definition} Functionals of the form $\int |\nabla u|\,(\alpha + \beta|\operatorname{div}(\nabla u/|\nabla u|)|^p)\dif x$ were proposed for image inpainting; Chan, Kang and Shen study the case $p = 2$ in the plane (Euler's elastica) \cite{chan2003euler}, and Ambrosio and Masnou study the relaxation of the general case \cite{ambrosio2003direct}.
+
+====================================================================================================
+KEY helstrom1967minimum
+BIBITEM: C.~W.~Helstrom, \emph{Minimum mean-squared error of estimates in quantum statistics}, Physics Letters A, \textbf{25} (1967), no.~2, 101--102, DOI: \href{https://doi.org/10.1016/0375-9601(67)90366-0}{10.1016/0375-9601(67)90366-0}.
+DOI 10.1016/0375-9601(67)90366-0: resolved via Crossref
+[Crossref] title: Minimum mean-squared error of estimates in quantum statistics
+  authors: C.W. Helstrom
+  year: 1967 venue: Physics Letters A vol 25 p 101-102
+  title-in-bibitem similarity: 1.00
+  abstract: (none)
+  CITED AT: . The quantum Fisher information goes back to Helstrom \cite{helstrom1967minimum} and Braunstein and Caves \cite{braunstein1994statistical}; see \cite{liu2020quantum} for a review. \subsection*{What is new here} Cited classical results are marked ``classical'' in their headings and are applied after checking their hypotheses; remarks that rest only on numerical evidence say so.
+  CITED AT: \subsection{The Integrated Quantum Fisher Information Volume} For $\rho(x) \succ 0$, the quantum Fisher information metric is \begin{equation} g^{\mathrm{QFI}}_{\mu\nu}(x) \coloneqq \frac{1}{2} \Tr_\chi \left( \rho(x) \{ L_\mu(x), L_\nu(x) \} \right), \end{equation} where $\{A, B\} = AB + BA$, and $L_\mu(x)$ is the Symmetric Logarithmic Derivative (SLD) defined implicitly by: \begin{equation} \partial_\mu \rho(x) = \frac{1}{2} \left( \rho(x) L_\mu(x) + L_\mu(x) \rho(x) \right). \label{eq:sld_implicit} \end{equation} The symmetric logarithmic derivative goes back to Helstrom \cite{helstrom1967minimum}.
+
+====================================================================================================
+KEY chintakunta2015entropy
+BIBITEM: H.~Chintakunta, T.~Gentimis, R.~Gonzalez-D{\'\i}az, M.-J.~Jim{\'e}nez, and H.~Krim, \emph{An entropy-based persistence barcode}, Pattern Recognition, \textbf{48} (2015), no.~2, 391--401, DOI: \href{https://doi.org/10.1016/j.patcog.2014.06.023}{10.1016/j.patcog.2014.06.023}.
+DOI 10.1016/j.patcog.2014.06.023: resolved via Crossref
+[Crossref] title: An entropy-based persistence barcode
+  authors: Harish Chintakunta; Thanos Gentimis; Rocio Gonzalez-Diaz; Maria-Jose Jimenez; Hamid Krim
+  year: 2015 venue: Pattern Recognition vol 48 p 391-401
+  title-in-bibitem similarity: 1.00
+  abstract: (none)
+  CITED AT: . Persistent homology was introduced in \cite{edelsbrunner2002topological,zomorodian2005computing}; see \cite{edelsbrunner2010computational} for a textbook account, \cite{kaczynski2004computational,wagner2012efficient} for cubical complexes such as the super-level sets of step realizations, and \cite{chintakunta2015entropy,atienza2020stability} for persistent entropy.
+  CITED AT: . The persistent probability weights are $p_i \coloneqq \ell_i / L_k(A)$. The \emph{$k$-th Persistent Entropy} of the matrix is: \begin{equation} E_{\mathrm{pers}}^{(k)}(A) \coloneqq -\sum_{i=1}^{N_k} p_i \log p_i \ge 0. \end{equation} By convention, if $N_k = 0$ (i.e., the persistence diagram $\mathrm{Dgm}_k(\Phi(A))$ is empty and has no off-diagonal bars), we set $E_{\mathrm{pers}}^{(k)}(A) \coloneqq 0$. \end{definition} Persistent entropy, the Shannon entropy of the normalized bar lengths, was introduced by Chintakunta, Gentimis, Gonzalez-D{\'\i}az, Jim{\'e}nez and Krim \cite{chintakunta2015entropy}; Atienza, Gonzalez-D{\'\i}az and Soriano-Trigueros proved that it is stable under small perturbations of the barcode \cite{atienza2020stability}. \begin{theorem}[Isospectral pairs separated by step persistence] \label{thm:isospectral_separation} Use the step realization $\Phi_\square$ of Definition~\ref{def:step} and homology with coefficients in a field $\mathbb{F}$. \begin{enumerate}[label=(\alph*)] \item Let $B$ be the $3 \times 3$ matrix with $B_{22} = 0$ and all other entries $2$, let $P$ be the permutation matrix exchanging the indices $1$ and $2$, and let $A = PBP^T$.
+
+resolver failures=0

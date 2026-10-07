@@ -1,0 +1,13 @@
+zenodo words 7592  rebuilt-v2 words 7594  ratio 0.99974  diff ops 1
+  replace: ZEN[7 9 These invariants localizewherein physical space the entanglement]  V2[7 9 These invariants localize where in physical space the entanglement]
+  spot 'Quantized Cyclic Cocycles and Topological Degree': zenodo True rebuilt True
+  spot 'linearly independent in the Hilbert Schmidt inner product': zenodo True rebuilt True
+  spot 'exhausting sequence of smooth convex domains': zenodo True rebuilt True
+  spot 'strictly contained in the interior': zenodo True rebuilt True
+  spot '052320': zenodo True rebuilt True
+  spot '22441676': zenodo True rebuilt True
+  spot 'Programa de P': zenodo True rebuilt True
+NEG zenodo vs v3 ratio 0.2926 (must be < 0.9)
+NEG mutated rebuilt (3000 chars removed) ratio 0.96884 (must be < 0.99974 - 0.01)
+v3 folder PDF vs fresh L2 build: ratio 1.000000, ops 0
+failures 0

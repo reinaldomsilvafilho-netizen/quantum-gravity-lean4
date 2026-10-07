@@ -1,0 +1,29 @@
+OK   Bakry-Emery 1985                     10.1007/BFb0075847 | Diffusions hypercontractives | Bakry, Émery | 1985 | Lecture Notes in Mathematics vol None pp 177-206
+OK   Benamou-Brenier 2000 (corrected)     10.1007/s002110050002 | A computational fluid mechanics solution to the Monge-Kantorovich mass transfer problem | Benamou, Brenier | 2000 | Numerische Mathematik vol 84 pp 375-393
+OK   Bengtsson-Zyczkowski 2017            10.1017/9781139207010 | Geometry of Quantum States | Bengtsson, Życzkowski | 2017 |  vol None pp None
+OK   Chazal et al 2016                    10.1007/978-3-319-42545-0 | The Structure and Stability of Persistence Modules | Chazal, de Silva, Glisse, Oudot | 2016 | SpringerBriefs in Mathematics vol None pp None
+OK   Edelsbrunner-Harer 2010              10.1090/mbk/069 | Computational Topology | Edelsbrunner, Harer | 2009 |  vol None pp None
+OK   Hormander 2003                       10.1007/978-3-642-61497-2 | The Analysis of Linear Partial Differential Operators I | Hörmander | 2003 | Classics in Mathematics vol None pp None
+OK   Safranek 2017                        10.1103/PhysRevA.95.052320 | Discontinuities of the quantum Fisher information and the Bures metric | Šafránek | 2017 | Physical Review A vol 95 pp None
+OK   Verstraete-Cirac 2010                10.1103/PhysRevLett.104.190405 | Continuous Matrix Product States for Quantum Fields | Verstraete, Cirac | 2010 | Physical Review Letters vol 104 pp None
+OK   Villani 2009                         10.1007/978-3-540-71050-9 | Optimal Transport | Villani | 2009 | Grundlehren der mathematischen Wissenschaften vol None pp None
+OK   von Renesse-Sturm 2005               10.1002/cpa.20060 | Transport inequalities, gradient estimates, entropy and Ricci curvature | von Renesse, Sturm | 2004 | Communications on Pure and Applied Mathematics vol 58 pp 923-940
+OK   Cohen-Steiner-Edelsbrunner-Harer 2007 10.1007/s00454-006-1276-5 | Stability of Persistence Diagrams | Cohen-Steiner, Edelsbrunner, Harer | 2006 | Discrete &amp; Computational Geometry vol 37 pp 103-120
+OK   Cheeger 1970                         10.1515/9781400869312-013 | A Lower Bound for the Smallest Eigenvalue of the Laplacian | Cheeger | 2015 | Problems in Analysis: A Symposium in Honor of Salomon Bochner (PMS-31) vol None pp 195-200
+OK   White 1973                           10.1090/S0002-9939-1973-0324603-1 | A global invariant of conformal mappings in space | White | 1973 | Proceedings of the American Mathematical Society vol 38 pp 162-164
+OK   Caffarelli 2000                      10.1007/s002200000257 | Monotonicity Properties of Optimal Transportation�and the FKG and Related Inequalities | Caffarelli | 2000 | Communications in Mathematical Physics vol 214 pp 547-563
+OK   Memoli 2011                          10.1007/s10208-011-9093-5 | Gromov–Wasserstein Distances and the Metric Approach to Object Matching | Mémoli | 2011 | Foundations of Computational Mathematics vol 11 pp 417-487
+OK   Lovasz 2012                          10.1090/coll/060 | Large Networks and Graph Limits | Lovász | 2012 | Colloquium Publications vol None pp None
+OK   Evans-Gariepy 2015                   10.1201/b18333 | Measure Theory and Fine Properties of Functions, Revised Edition | Evans, Gariepy | 2015 |  vol None pp None
+OK   McCann 1997                          10.1006/aima.1997.1634 | A Convexity Principle for Interacting Gases | McCann | 1997 | Advances in Mathematics vol 128 pp 153-179
+OK   Otto-Villani 2000                    10.1006/jfan.1999.3557 | Generalization of an Inequality by Talagrand and Links with the Logarithmic Sobolev Inequality | Otto, Villani | 2000 | Journal of Functional Analysis vol 173 pp 361-400
+OK   Ambrosio-Gigli-Savare 2008           10.1007/978-3-7643-8722-8 | Gradient Flows | eds:  | 2008 |  vol None pp None
+OK   Connes 1988                          10.1007/BF01218391 | The action functional in non-commutative geometry | Connes | 1988 | Communications in Mathematical Physics vol 117 pp 673-683
+OK   Bakry-Gentil-Ledoux 2014             10.1007/978-3-319-00227-9 | Analysis and Geometry of Markov Diffusion Operators | Bakry, Gentil, Ledoux | 2014 | Grundlehren der mathematischen Wissenschaften vol None pp None
+OK   Crawley-Boevey 2015                  10.1142/S0219498815500668 | Decomposition of pointwise finite-dimensional persistence modules | Crawley-Boevey | 2015 | Journal of Algebra and Its Applications vol 14 pp 1550066
+OK   Chen-Vidal 2014                      10.1088/1742-5468/2014/10/P10011 | Entanglement contour | Chen, Vidal | 2014 | Journal of Statistical Mechanics: Theory and Experiment vol 2014 pp P10011
+FAIL NEGATIVE CONTROL mutated             10.1007/s002110059999 HTTP 404
+OK   Vol I DOI printed in v2              10.5281/zenodo.22441676 | A Functorial Bridge from Continuous Tensor Manifolds to 4-Dimensional Spacetime Cobordisms | Silva-Filho, Reinaldo M. | 2026 | version None
+OK   Beyond the Spectrum concept          10.5281/zenodo.22644743 | Beyond the Spectrum: The Complete Three-Volume Monograph on Functional Tensor Realizations, Metric Measure Geo | Silva-Filho, Reinaldo M. | 2026 | version None
+OK   Book concept                         10.5281/zenodo.22290043 | Geometry, Tensors, and Quantum Gravity | Silva-Filho, Reinaldo M. | 2026 | version None
+FAIL NEGATIVE CONTROL mutated             10.5281/zenodo.0000001 HTTP 404

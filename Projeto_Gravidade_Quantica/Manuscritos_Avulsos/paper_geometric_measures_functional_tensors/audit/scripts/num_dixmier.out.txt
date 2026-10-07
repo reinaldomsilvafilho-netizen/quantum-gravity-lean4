@@ -1,0 +1,7 @@
+d=2 f=1: slope 0.15915  vs paper constant 1/(2pi)=0.15915
+   NEG CTRL mutated constant (drop 1/d) = 0.31831 -> differs: True
+   NEG CTRL mutated constant (drop 2^{d/2}) = 0.07958 -> differs: True
+d=1 f=1                slope 0.3168 | Thm 6.2 predicts (1/pi)int f = 0.3183 | (1/pi) int|f| = 0.3183
+d=1 f=cos(2pi x)       slope 0.2017 | Thm 6.2 predicts (1/pi)int f = 0.0000 | (1/pi) int|f| = 0.2026
+d=1 f=0.3+cos(2pi x)   slope 0.2108 | Thm 6.2 predicts (1/pi)int f = 0.0955 | (1/pi) int|f| = 0.2118
+failures=0

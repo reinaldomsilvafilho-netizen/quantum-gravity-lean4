@@ -1,0 +1,1215 @@
+\documentclass[11pt,a4paper,reqno]{amsart}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{amsmath,amssymb,amsfonts,amsthm,mathtools}
+\usepackage{mathrsfs}
+\usepackage[expansion=false]{microtype}
+\usepackage{booktabs}
+\usepackage{tabularx}
+\usepackage[dvipsnames]{xcolor}
+\usepackage{hyperref}
+\usepackage{geometry}
+\usepackage{enumitem}
+
+\geometry{
+  top=3cm,
+  bottom=3cm,
+  left=2.8cm,
+  right=2.8cm,
+  headheight=14pt
+}
+
+\hypersetup{
+  colorlinks=true,
+  linkcolor=NavyBlue,
+  citecolor=Mahogany,
+  urlcolor=TealBlue,
+  pdfauthor={Reinaldo M. Silva-Filho},
+  pdftitle={Beyond the Spectrum II: Metric Measure Geometry, Persistent Homology, and Non-Commutative Invariants of Functional Tensor Manifolds}
+}
+
+% --- Theorem Environments ---
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{example}[theorem]{Example}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{construction}[theorem]{Construction}
+
+\numberwithin{equation}{section}
+\raggedbottom
+
+% --- Custom Notations ---
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Sph}{\mathbb{S}}
+\newcommand{\Tor}{\mathbb{T}}
+\newcommand{\Id}{\mathrm{Id}}
+\newcommand{\Tr}{\operatorname{Tr}}
+\newcommand{\rank}{\operatorname{rank}}
+\newcommand{\supp}{\operatorname{supp}}
+\newcommand{\Lip}{\operatorname{Lip}}
+\newcommand{\BV}{\operatorname{BV}}
+\newcommand{\TV}{\operatorname{TV}}
+\newcommand{\Per}{\operatorname{Per}}
+\newcommand{\cutnorm}[1]{\|#1\|_{\square}}
+\newcommand{\norm}[1]{\left\|#1\right\|}
+\newcommand{\inner}[2]{\left\langle #1, #2 \right\rangle}
+\newcommand{\dif}{\,\mathrm{d}}
+\newcommand{\abs}[1]{\left|#1\right|}
+\newcommand{\WF}{\operatorname{WF}}
+\newcommand{\QFI}{\mathrm{QFI}}
+\newcommand{\Ric}{\operatorname{Ric}}
+\newcommand{\Hess}{\operatorname{Hess}}
+\newcommand{\diam}{\operatorname{diam}}
+\newcommand{\dist}{\operatorname{dist}}
+
+\begin{document}
+
+\title[Beyond the Spectrum II]{Beyond the Spectrum II: Metric Measure Geometry, Persistent Homology, and Non-Commutative Invariants of Functional Tensor Manifolds}
+
+\author{Reinaldo M. Silva-Filho}
+\address{Master's student, Postgraduate Program in Statistics and Agricultural Experimentation (PPGEE/DES), Department of Statistics (DES), Federal University of Lavras (UFLA), Lavras, MG, Brazil}
+\email{reinaldo.filho1@estudante.ufla.br}
+\date{October 6, 2026}
+
+\begin{abstract}
+A functional realization $\Phi$ turns a matrix $A$ into a function $\Phi(A)$ on a domain $\Omega$. Invariants of $\Phi(A)$ can depend on the positions of the entries, which eigenvalues cannot. We study six families of such invariants and mark which results are proved here and which are classical.
+(1) For probability-density realizations, the quadratic Wasserstein distance compares matrices of different sizes. We prove the sharp bound $\mathcal{W}_2 \le 2^{-1/2}\diam(\Omega)\,\|\Phi(A)-\Phi(B)\|_{L^1}^{1/2}$ and, for the kernel realization with density bounded below by $c_0$, the metric-speed bound $|\dot\mu| \le C c_0^{-1/2}\|\dot A\|_F$. Bakry--\'Emery curvature gives the classical displacement-convexity and log-Sobolev consequences.
+(2) For step realizations we compute super-level persistence of explicit isospectral pairs: a $3\times 3$ pair with different diagrams and equal persistent entropy, and a $5\times 5$ pair whose entropies differ. Persistent entropy depends only on bar lengths and does not separate isospectral matrices in general.
+(3) For a trigonometric checkerboard profile, the integrated Willmore energy of level sets equals $c_*\,\epsilon k^3(1+O(1/k))$.
+(4) A jump across a smooth interface has wavefront set equal to the conormal bundle (classical); non-constant step realizations have Besov index $s^*_p = 1/p$ for $p > 1$.
+(5) On the flat torus, Connes' trace theorem gives $\Tr_\omega(\Phi(A)|\mathcal{D}|^{-d}) = c_d\int\Phi(A)$. The cocycle $\tau_2$ without grading is not topological; with the grading, its antisymmetrization equals $-4i\deg F$.
+(6) The quantum Fisher information volume of a field of density matrices vanishes if and only if its partial derivatives are everywhere linearly dependent.
+\end{abstract}
+
+\keywords{Functional realizations of matrices, optimal transport, Wasserstein distance, Bakry--\'Emery curvature, persistent homology, persistent entropy, Willmore energy, wavefront set, Besov regularity, Dixmier trace, cyclic cocycles, quantum Fisher information.}
+\subjclass[2020]{15A69, 49Q22, 55N31, 53C21, 58J40, 58B34, 81P45, 46E35}
+
+\maketitle
+
+\tableofcontents
+
+\newpage
+
+% =========================================================================
+\section{Introduction}
+\label{sec:intro}
+% =========================================================================
+
+Algebraic invariants of a matrix $A \in \R^{n \times n}$---trace, determinant, spectrum $\sigma(A)$, singular values, rank---are unchanged under simultaneous permutation of rows and columns: for a permutation matrix $P$,
+\begin{equation}
+    \sigma(PAP^T) = \sigma(A), \quad \Tr(PAP^T) = \Tr(A), \quad \|PAP^T\|_F = \|A\|_F.
+\end{equation}
+When the indices carry a spatial meaning (pixels of an image, sites of a lattice), these invariants cannot see where an entry sits. That a spectrum does not determine the underlying object is classical: Kac asked whether the Dirichlet spectrum of a planar domain determines its shape \cite{kac1966can}, Gordon, Webb and Wolpert constructed isospectral non-isometric planar domains \cite{gordon1992one}, and van Dam and Haemers survey which graphs are, and which are not, determined by their spectra \cite{vandam2003which}. A \emph{functional realization} is a map
+\begin{equation}
+    \Phi \colon \R^{n \times n} \supseteq \mathcal{D}_n \longrightarrow \mathcal{F}(\Omega)
+\end{equation}
+from a class of matrices into a space of functions on a domain $\Omega \subset \R^d$; invariants of the function $\Phi(A)$ may depend on the positions of entries. Volume~I \cite{silvafilho2026beyond} of this series studies first-order invariants such as the Dirichlet energy and the total variation of $\Phi(A)$; functional realizations of matrices and tensors are also the subject of Part~I of the monograph \cite{silvafilho2026geometry}. This volume studies six further families: optimal transport and Bakry--\'Emery curvature (Section~\ref{sec:optimal_transport}), persistent homology (Section~\ref{sec:persistent_homology}), level-set curvature energies and isoperimetry (Section~\ref{sec:willmore_gmt}), wavefront sets and Besov regularity (Section~\ref{sec:microlocal}), Dixmier traces and cyclic cocycles (Section~\ref{sec:noncommutative}), and the quantum Fisher information of fields of density matrices (Section~\ref{sec:quantum_info}). Section~\ref{sec:synthesis} summarizes the results.
+
+Every invariant below depends on the choice of realization. In particular, the Wasserstein distance of Section~\ref{sec:optimal_transport} compares matrices of different sizes only through a chosen realization for each size; other ways of comparing objects of different sizes, such as the cut distance of graph limits \cite{lovasz2012large}, Sturm's transportation distance between metric measure spaces \cite{sturm2006geometryI}, the Gromov--Wasserstein distance \cite{memoli2011gromov}, and its extension by Chowdhury and M\'emoli to weighted networks with different numbers of nodes \cite{chowdhury2019gromov}, are not discussed here. Sturm showed that the space of all metric measure spaces with the $L^{2,q}$-distortion distance has non-negative curvature in the sense of Alexandrov \cite{sturm2023space}.
+
+\subsection*{Related work}
+Each section draws on an established theory. Optimal transport and its dynamic formulation are treated in \cite{villani2009optimal,ambrosio2008gradient,benamou2000computational}; for centred Gaussian measures with covariance matrices $A$ and $B$ the quadratic Wasserstein distance is the Bures--Wasserstein distance between $A$ and $B$ \cite{bhatia2019bures}, a transport distance on positive definite matrices of a fixed size. Lower Ricci bounds defined through displacement convexity of the entropy go back to Sturm and to Lott and Villani \cite{sturm2006geometryI,sturm2006geometryII,lott2009ricci}, and the Bakry--\'Emery calculus is developed in \cite{bakry1985diffusions,bakry2014analysis}. Persistent homology was introduced in \cite{edelsbrunner2002topological,zomorodian2005computing}; see \cite{edelsbrunner2010computational} for a textbook account, \cite{kaczynski2004computational,wagner2012efficient} for cubical complexes such as the super-level sets of step realizations, and \cite{chintakunta2015entropy,atienza2020stability} for persistent entropy. The level-set curvature energy of Section~\ref{sec:willmore_gmt} is, up to the weights, the curvature term of the elastica-type energies used in image inpainting \cite{chan2003euler,ambrosio2003direct}. For wavefront sets we follow H\"ormander \cite{hormander2003analysis}; for the non-commutative part, Connes \cite{connes1985noncommutative,connes1988action,connes1994noncommutative}, Connes and Moscovici \cite{connes1995local}, and the monograph \cite{lord2013singular} on singular traces. The quantum Fisher information goes back to Helstrom \cite{helstrom1967minimum} and Braunstein and Caves \cite{braunstein1994statistical}; see \cite{liu2020quantum} for a review.
+
+\subsection*{What is new here}
+Cited classical results are marked ``classical'' in their headings and are applied after checking their hypotheses; remarks that rest only on numerical evidence say so. Our own contributions are mostly explicit computations: the bounds of Theorem~\ref{thm:wasserstein_properties}, the isospectral examples of Theorem~\ref{thm:isospectral_separation}, the scaling law of Proposition~\ref{prop:willmore_scaling}, the Besov indices of Proposition~\ref{prop:besov}, the cocycle formulas of Proposition~\ref{prop:cocycle}, and the rank criterion of Theorem~\ref{thm:qfi_volume}.
+
+% =========================================================================
+\section{Optimal Transport and Bakry--\'Emery Curvature}
+\label{sec:optimal_transport}
+% =========================================================================
+
+\subsection{The Density Realization Operator}
+Let $V$ be an $n$-dimensional Euclidean space. Let $\mathcal{S}_+^n \subset \R^{n \times n}$ denote the cone of symmetric positive semi-definite (PSD) matrices, normalized such that $\Tr(A) = 1$. Let $\Omega = [0, 1]^d$ be the unit hypercube equipped with the standard Lebesgue measure $\dif x$.
+
+\begin{definition}[Probability Density Realization]
+Let $\Phi \colon \mathcal{S}_+^n \to L^1(\Omega)$ be a positive functional realization operator satisfying:
+\begin{equation}
+    \Phi(A)(x) \ge 0 \quad \text{a.e. } x \in \Omega, \quad \text{and} \quad \int_\Omega \Phi(A)(x) \dif x = \Tr(A) = 1.
+\end{equation}
+Each normalized matrix $A \in \mathcal{S}_+^n$ thus induces an absolutely continuous Borel probability measure on $\Omega$:
+\begin{equation}
+    \dif \mu_A(x) \coloneqq \Phi(A)(x) \dif x \in \mathcal{P}_{\mathrm{ac}}(\Omega).
+\end{equation}
+\end{definition}
+
+A family of such realizations is the \emph{kernel realization}. Fix real functions $\psi_1, \dots, \psi_n \in L^4(\Omega)$ that are orthonormal in $L^2(\Omega)$, $\int_\Omega \psi_i \psi_j \dif x = \delta_{ij}$, and set
+\begin{equation}
+    \Phi_{\mathrm{kernel}}(A)(x) \coloneqq \sum_{i,j=1}^n A_{ij} \psi_i(x) \psi_j(x) = \boldsymbol{\psi}(x)^T A \boldsymbol{\psi}(x).
+    \label{eq:kernel_realization}
+\end{equation}
+Since $A \succeq 0$, $\Phi_{\mathrm{kernel}}(A) \ge 0$, and orthonormality gives $\int_\Omega \Phi_{\mathrm{kernel}}(A) \dif x = \sum_i A_{ii} = \Tr(A) = 1$. The map $A \mapsto \Phi_{\mathrm{kernel}}(A)$ is linear, and since $|\boldsymbol{\psi}^T M \boldsymbol{\psi}| \le \|M\|_{\mathrm{op}} |\boldsymbol{\psi}|^2 \le \|M\|_F |\boldsymbol{\psi}|^2$ for symmetric $M$,
+\begin{equation}
+    \|\Phi_{\mathrm{kernel}}(M)\|_{L^2(\Omega)} \le L_\psi \|M\|_F, \qquad L_\psi \coloneqq \Big\| \sum_{i=1}^n \psi_i^2 \Big\|_{L^2(\Omega)}.
+    \label{eq:kernel_lipschitz}
+\end{equation}
+
+\subsection{Wasserstein Distance Between Matrices of Different Sizes}
+Let $A \in \mathcal{S}_+^n$ and $B \in \mathcal{S}_+^m$, possibly with $n \ne m$, and fix a density realization for each size. The realizations induce probability measures $\mu_A, \mu_B \in \mathcal{P}(\Omega)$.
+
+\begin{definition}[Functional $L^2$-Wasserstein Matrix Distance]
+The functional quadratic Wasserstein distance between $A \in \mathcal{S}_+^n$ and $B \in \mathcal{S}_+^m$ is defined by:
+\begin{equation}
+    \mathcal{W}_2(A, B) \coloneqq \left( \inf_{\pi \in \Pi(\mu_A, \mu_B)} \int_{\Omega \times \Omega} \|x - y\|^2 \dif \pi(x, y) \right)^{1/2},
+    \label{eq:wasserstein_matrix}
+\end{equation}
+where $\Pi(\mu_A, \mu_B)$ is the set of all Borel probability measures on $\Omega \times \Omega$ having marginals $\mu_A$ and $\mu_B$.
+\end{definition}
+This is Kantorovich's relaxation \cite{kantorovich2006translocation} of the transport problem, with quadratic cost; see \cite[Ch.~6]{villani2009optimal}.
+
+By the Benamou--Brenier formula \cite{benamou2000computational}, $\mathcal{W}_2(A, B)$ also has a dynamic formulation:
+\begin{equation}
+    \mathcal{W}_2^2(A, B) = \inf_{(\rho_t, \mathbf{v}_t)} \left\{ \int_0^1 \int_\Omega \|\mathbf{v}_t(x)\|^2 \rho_t(x) \dif x \dif t \right\},
+\end{equation}
+subject to the continuity equation and boundary conditions:
+\begin{equation}
+    \partial_t \rho_t + \nabla \cdot (\rho_t \mathbf{v}_t) = 0, \quad \rho_0 = \Phi(A), \quad \rho_1 = \Phi(B).
+\end{equation}
+
+\begin{theorem}[Metric properties]
+\label{thm:wasserstein_properties}
+Let $\mathcal{M} = \bigcup_{n=1}^\infty \mathcal{S}_+^n$, with a density realization fixed for each $n$, and $\Omega = [0,1]^d$. Then:
+\begin{enumerate}[label=(\alph*)]
+    \item $\mathcal{W}_2$ is a pseudometric on $\mathcal{M}$, and $\mathcal{W}_2(A,B) = 0$ if and only if $\Phi(A) = \Phi(B)$ almost everywhere. Hence $\mathcal{W}_2$ is a metric on the quotient of $\mathcal{M}$ by the relation $\Phi(A) = \Phi(B)$ a.e.
+    \item For all $A, B \in \mathcal{M}$,
+    \begin{equation}
+        \mathcal{W}_2(A, B) \le \frac{\diam(\Omega)}{\sqrt{2}} \|\Phi(A) - \Phi(B)\|_{L^1(\Omega)}^{1/2},
+        \label{eq:w2_l1}
+    \end{equation}
+    and the constant $\diam(\Omega)/\sqrt{2}$ cannot be decreased.
+    \item Let $\Phi = \Phi_{\mathrm{kernel}}$ be the kernel realization \eqref{eq:kernel_realization}, let $\tau \mapsto A(\tau) \in \mathcal{S}_+^n$ be a $C^1$ curve on an open interval $I$, and assume $\rho_\tau \coloneqq \Phi(A(\tau)) \ge c_0 > 0$ on $\Omega$ for all $\tau \in I$. Then $\tau \mapsto \mu_{A(\tau)}$ is absolutely continuous in $(\mathcal{P}_2(\Omega), \mathcal{W}_2)$, and for almost every $\tau$ its metric derivative satisfies
+    \begin{equation}
+        |\dot{\mu}|(\tau) \coloneqq \lim_{h \to 0} \frac{\mathcal{W}_2(A(\tau+h), A(\tau))}{|h|} \le \frac{\|\partial_\tau \rho_\tau\|_{L^2(\Omega)}}{\pi \sqrt{c_0}} \le \frac{L_\psi}{\pi \sqrt{c_0}} \|\dot{A}(\tau)\|_F,
+        \label{eq:metric_speed}
+    \end{equation}
+    with $L_\psi$ as in \eqref{eq:kernel_lipschitz}.
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+(a) $\mathcal{W}_2$ is a metric on $\mathcal{P}(\Omega)$ for compact $\Omega$ \cite[Ch.~6]{villani2009optimal}. Its pull-back by $A \mapsto \mu_A$ is therefore a pseudometric that vanishes exactly when $\mu_A = \mu_B$, that is, when $\Phi(A) = \Phi(B)$ a.e.
+
+(b) Write $\rho = \Phi(A)$, $\sigma = \Phi(B)$, $m \coloneqq \frac{1}{2}\|\rho - \sigma\|_{L^1} = \int (\rho - \sigma)_+ = \int (\sigma - \rho)_+$. If $m = 0$ there is nothing to prove. Otherwise the measure
+\begin{equation}
+    \pi \coloneqq (\mathrm{id}, \mathrm{id})_\# \big(\min(\rho, \sigma) \dif x\big) + \frac{1}{m} (\rho - \sigma)_+ \dif x \otimes (\sigma - \rho)_+ \dif y
+\end{equation}
+has marginals $\mu_A$ and $\mu_B$. The first part costs nothing and the second has total mass $m$, so $\mathcal{W}_2^2(A,B) \le \int \|x-y\|^2 \dif \pi \le \diam(\Omega)^2 m$, which is \eqref{eq:w2_l1}. For sharpness, take $d = 1$, the kernel realization with $\psi_1 = \epsilon^{-1/2}\mathbf{1}_{[0,\epsilon]}$, $\psi_2 = \epsilon^{-1/2}\mathbf{1}_{[1-\epsilon,1]}$ ($0 < \epsilon < 1/2$), and $A = \mathrm{diag}(1,0)$, $B = \mathrm{diag}(0,1)$, so that $\Phi(A) = \epsilon^{-1}\mathbf{1}_{[0,\epsilon]}$ and $\Phi(B) = \epsilon^{-1}\mathbf{1}_{[1-\epsilon,1]}$. The monotone map $x \mapsto x + 1 - \epsilon$ is optimal, so $\mathcal{W}_2 = 1 - \epsilon$, while the right-hand side of \eqref{eq:w2_l1} equals $1$. In dimension $d$, the same construction near two opposite corners gives ratios tending to $1$.
+
+(c) Since $\Phi$ is linear, $\partial_\tau \rho_\tau = \Phi(\dot{A}(\tau))$ exists in $L^2(\Omega)$, depends continuously on $\tau$, and $\|\partial_\tau \rho_\tau\|_{L^2} \le L_\psi \|\dot{A}(\tau)\|_F$ by \eqref{eq:kernel_lipschitz}. Because $\Tr A(\tau) = 1$, $\int_\Omega \partial_\tau \rho_\tau = 0$. By the Lax--Milgram lemma there is a unique $\varphi_\tau \in H^1(\Omega)$ with $\int_\Omega \varphi_\tau = 0$ and
+\begin{equation}
+    \int_\Omega \nabla \varphi_\tau \cdot \nabla \zeta \dif x = \int_\Omega \partial_\tau \rho_\tau \, \zeta \dif x \qquad \text{for all } \zeta \in H^1(\Omega),
+    \label{eq:weak_neumann}
+\end{equation}
+the weak form of $-\Delta \varphi_\tau = \partial_\tau\rho_\tau$ with Neumann data. The first non-zero Neumann eigenvalue of $-\Delta$ on $[0,1]^d$ is $\pi^2$, so the Poincar\'e inequality $\|\varphi_\tau\|_{L^2} \le \pi^{-1} \|\nabla \varphi_\tau\|_{L^2}$ holds; taking $\zeta = \varphi_\tau$ in \eqref{eq:weak_neumann} gives $\|\nabla \varphi_\tau\|_{L^2} \le \pi^{-1}\|\partial_\tau \rho_\tau\|_{L^2}$. Put $\mathbf{v}_\tau \coloneqq \nabla \varphi_\tau / \rho_\tau$. For every $\zeta \in C_c^\infty(\R^d)$, \eqref{eq:weak_neumann} gives
+\begin{equation}
+    \frac{\dif}{\dif \tau} \int \zeta \dif \mu_{A(\tau)} = \int_\Omega \zeta \, \partial_\tau \rho_\tau \dif x = \int_\Omega \nabla \zeta \cdot \mathbf{v}_\tau \, \rho_\tau \dif x,
+\end{equation}
+so $(\mu_{A(\tau)}, \mathbf{v}_\tau)$ solves the continuity equation in the distributional sense on $I \times \R^d$, and
+\begin{equation}
+    \|\mathbf{v}_\tau\|_{L^2(\mu_{A(\tau)})}^2 = \int_\Omega \frac{|\nabla \varphi_\tau|^2}{\rho_\tau} \dif x \le \frac{1}{c_0} \|\nabla \varphi_\tau\|_{L^2}^2 \le \frac{\|\partial_\tau \rho_\tau\|_{L^2}^2}{\pi^2 c_0}.
+\end{equation}
+This bound is locally bounded in $\tau$. By \cite[Thm.~8.3.1]{ambrosio2008gradient}, a narrowly continuous curve solving the continuity equation with velocity field $\mathbf{v}_\tau$ satisfying $\int_I \|\mathbf{v}_\tau\|_{L^2(\mu_\tau)} \dif\tau < \infty$ on compact subintervals is absolutely continuous, and $|\dot{\mu}|(\tau) \le \|\mathbf{v}_\tau\|_{L^2(\mu_\tau)}$ for a.e.\ $\tau$. This gives \eqref{eq:metric_speed}.
+\end{proof}
+
+\begin{remark}
+The constant $1/\pi$ in the first inequality of \eqref{eq:metric_speed} is attained in the limit: for $d = 1$ and $\rho_\tau = 1 + \tau \epsilon \cos(\pi x)$ at $\tau = 0$, the velocity field above is the exact one-dimensional transport velocity, and the ratio of the two sides tends to $1$. A numerical check with exact one-dimensional Wasserstein distances confirms \eqref{eq:metric_speed} on several curves. The first inequality in \eqref{eq:metric_speed} is an instance of the formal identity between $\mathcal{W}_2$ and a weighted homogeneous $\dot H^{-1}$ norm for infinitesimal perturbations; Peyre \cite{peyre2018comparison} integrates this identity into the non-asymptotic bound $\mathcal{W}_2(\mu,\nu) \le 2\|\mu - \nu\|_{\dot H^{-1}(\mu)}$.
+\end{remark}
+
+\subsection{Bakry--\'Emery Metric Curvature of a Matrix Realization}
+Given a strictly positive functional realization $\Phi(A) \in C^2(\Omega)$ with $\Phi(A)(x) > 0$, we view $(\Omega, g, \dif \mu_A)$ as a weighted Riemannian metric measure space (smooth metric measure space) with background Euclidean metric $g_{ij} = \delta_{ij}$ and smooth potential:
+\begin{equation}
+    V_A(x) \coloneqq -\log \Phi(A)(x) \implies \dif \mu_A(x) = e^{-V_A(x)} \dif x.
+\end{equation}
+The weighted Laplacian (drift Laplacian / Witten Laplacian) acting on $f \in C^2(\Omega)$ is:
+\begin{equation}
+    \Delta_A f \coloneqq \Delta f - \langle \nabla V_A, \nabla f \rangle = \Delta f + \frac{\langle \nabla \Phi(A), \nabla f \rangle}{\Phi(A)}.
+\end{equation}
+
+\begin{definition}[Bakry--\'Emery Curvature Tensor and Invariant]
+The infinite-dimensional Bakry--\'Emery Ricci tensor associated with the matrix $A$ is:
+\begin{equation}
+    \Ric_\infty(\Phi(A)) \coloneqq \Ric_g + \nabla^2 V_A = -\nabla^2 \log \Phi(A) = -\frac{\nabla^2 \Phi(A)}{\Phi(A)} + \frac{\nabla \Phi(A) \otimes \nabla \Phi(A)}{\Phi(A)^2}.
+\end{equation}
+The \emph{Bakry--\'Emery Curvature Invariant} $\kappa_{\mathrm{BE}}(A)$ of the matrix is the infimum of its spectrum:
+\begin{equation}
+    \kappa_{\mathrm{BE}}(A) \coloneqq \inf_{x \in \Omega, \|\xi\|=1} \left\langle \left( -\nabla^2 \log \Phi(A)(x) \right) \xi, \xi \right\rangle.
+\end{equation}
+\end{definition}
+
+\begin{theorem}[Bakry--\'Emery consequences; (b) and (c) classical]
+\label{thm:bakry_emery}
+Let $\Omega = [0, 1]^d$ and let $A \in \mathcal{S}_+^n$ have a realization $\Phi(A) \in C^2(\overline{\Omega})$ with $\Phi(A) > 0$ on $\overline{\Omega}$ and $\kappa_{\mathrm{BE}}(A) \ge K > 0$. Let $\Delta_A$ carry Neumann boundary conditions, that is, let $e^{\tau\Delta_A}$ be the self-adjoint semigroup on $L^2(\mu_A)$ associated with the Dirichlet form $f \mapsto \int_\Omega \|\nabla f\|^2 \dif\mu_A$ on $H^1(\Omega)$. Then:
+\begin{enumerate}[label=(\alph*)]
+    \item \textbf{Displacement convexity.} For $\mu_0, \mu_1 \in \mathcal{P}(\Omega)$ absolutely continuous with finite entropy, let $(\mu_t)_{t \in [0,1]}$ be their displacement interpolation. Then $\mathrm{Ent}(\mu \mid \mu_A) \coloneqq \int_\Omega \rho \log(\rho / \Phi(A)) \dif x$ satisfies
+    \begin{equation}
+        \mathrm{Ent}(\mu_t \mid \mu_A) \le (1-t)\,\mathrm{Ent}(\mu_0 \mid \mu_A) + t\,\mathrm{Ent}(\mu_1 \mid \mu_A) - \frac{K}{2} t(1-t) \mathcal{W}_2^2(\mu_0, \mu_1).
+    \end{equation}
+    \item \textbf{Logarithmic Sobolev inequality.} For every $f \in H^1(\Omega)$,
+    \begin{equation}
+        \int_\Omega f^2 \log\left(\frac{f^2}{\int_\Omega f^2 \dif\mu_A}\right) \dif\mu_A \le \frac{2}{K} \int_\Omega \|\nabla f\|^2 \dif\mu_A.
+    \end{equation}
+    \item \textbf{Variance decay.} For every $u_0 \in L^2(\mu_A)$, $e^{\tau\Delta_A}u_0$ converges to the constant $\int u_0 \dif\mu_A$ and
+    \begin{equation}
+        \mathrm{Var}_{\mu_A}(e^{\tau \Delta_A} u_0) \le e^{-2K\tau} \mathrm{Var}_{\mu_A}(u_0).
+    \end{equation}
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+(a) Write $V = V_A = -\log \Phi(A)$, so $\nabla^2 V \ge K\,\Id$ on the convex set $\Omega$, and $\mathrm{Ent}(\mu \mid \mu_A) = \int \rho \log \rho \dif x + \int V \dif \mu$. By Brenier's theorem \cite{brenier1991polar} there is an optimal map $T$ with $\mu_1 = T_\#\mu_0$, and $\mu_t = ((1-t)\mathrm{id} + tT)_\# \mu_0$; since $\Omega$ is convex, $\mu_t$ is supported in $\Omega$. McCann's displacement convexity theorem \cite{mccann1997convexity} gives $\int \rho_t \log \rho_t \le (1-t)\int \rho_0\log\rho_0 + t \int\rho_1\log\rho_1$. For the potential term, $K$-convexity of $V$ along the segment from $x$ to $T(x)$ gives
+\begin{equation}
+    V((1-t)x + tT(x)) \le (1-t)V(x) + tV(T(x)) - \frac{K}{2}t(1-t)\|x - T(x)\|^2,
+\end{equation}
+and integrating against $\mu_0$, with $\int \|x - T(x)\|^2 \dif\mu_0 = \mathcal{W}_2^2(\mu_0,\mu_1)$, gives the claim.
+
+(b), (c) These are classical consequences of the Bakry--\'Emery criterion \cite{bakry1985diffusions}; see \cite{bakry2014analysis} for the theory. On the convex body $\Omega$ the measure $\mu_A$ has the form $f\,\dif\gamma$, where $\gamma$ is the Gaussian measure with covariance $K^{-1}\Id$ and $f = Z^{-1}\mathbf{1}_\Omega\, e^{-(V - K|x|^2/2)}$ is log-concave. By Caffarelli's contraction theorem \cite{caffarelli2000monotonicity}, the Brenier map from $\gamma$ to $\mu_A$ is $1$-Lipschitz, so $\mu_A$ inherits the Gaussian logarithmic Sobolev inequality with constant $2/K$, which is (b). Linearizing (b) gives the Poincar\'e inequality $\mathrm{Var}_{\mu_A}(f) \le K^{-1}\int\|\nabla f\|^2\dif\mu_A$, so the spectral gap of $-\Delta_A$ is at least $K$, and (c) follows from the spectral theorem. We do not reprove these classical statements.
+\end{proof}
+
+\begin{remark}
+On smooth Riemannian manifolds without boundary and without weight, lower Ricci bounds are equivalent to displacement convexity of the entropy \cite{von2005transport}. Sturm \cite{sturm2006geometryI,sturm2006geometryII} and Lott and Villani \cite{lott2009ricci} turned this property into a definition of lower Ricci bounds for metric measure spaces. Related links are the identification of the Fokker--Planck equation as the Wasserstein gradient flow of the relative entropy \cite{jordan1998variational} and the implication from a logarithmic Sobolev inequality to Talagrand's transport inequality \cite{otto2000generalization}. None of these results is used above.
+\end{remark}
+
+\begin{example}[Realizations with Strict Positive Curvature]
+\label{ex:positive_curvature}
+For $n = d$, a family of realizations with $\kappa_{\mathrm{BE}}(A) > 0$ is the truncated Gaussian realization on $\Omega = [0, 1]^d$, with a fixed centre $x_0$ and $Z_A$ the normalizing constant:
+\begin{equation}
+    \Phi_{\mathrm{Gibbs}}(A)(x) \coloneqq \frac{1}{Z_A} \exp\left( -\frac{1}{2} (x - x_0)^T A (x - x_0) \right), \quad A \succ 0.
+\end{equation}
+The potential is $V_A(x) = \frac{1}{2} (x - x_0)^T A (x - x_0) + \log Z_A$, yielding $\nabla^2 V_A(x) = A$. Therefore, $\Ric_\infty(\Phi_{\mathrm{Gibbs}}(A)) = A \ge \lambda_{\min}(A) \cdot \Id$, and the Bakry--\'Emery curvature invariant is precisely the smallest eigenvalue of the matrix:
+\begin{equation}
+    \kappa_{\mathrm{BE}}(A) = \lambda_{\min}(A) > 0.
+\end{equation}
+Thus every positive definite $A$ has $\kappa_{\mathrm{BE}}(A) > 0$ under this realization. Under the normalization $\Tr A = 1$ one has $\kappa_{\mathrm{BE}}(A) = \lambda_{\min}(A) \le 1/d$.
+\end{example}
+
+% =========================================================================
+\section{Persistent Homology and Persistent Entropy}
+\label{sec:persistent_homology}
+% =========================================================================
+
+\subsection{The Super-Level Set Filtration}
+Let $A \in \R^{n \times n}$ and let $\Phi(A) \colon \Omega \to \R$ be a realization on $\Omega = [0, 1]^d$ that is either continuous or a step realization (Definition~\ref{def:step}).
+
+\begin{definition}[Super-level filtration]
+For $t \in \R$, the super-level set of $A$ is
+\begin{equation}
+    X_t(A) \coloneqq \left\{ x \in \Omega \;\middle|\; \Phi(A)(x) \ge t \right\}.
+\end{equation}
+For $s \ge t$ the inclusion $X_s(A) \hookrightarrow X_t(A)$ induces maps in homology, giving a persistence module indexed by $(\R, \ge)$:
+\begin{equation}
+    \mathcal{H}_k(A) \colon t \longmapsto H_k(X_t(A); \mathbb{F}),
+\end{equation}
+where $\mathbb{F}$ is a field and $H_k$ is singular homology.
+\end{definition}
+Persistence of a filtration was introduced by Edelsbrunner, Letscher and Zomorodian \cite{edelsbrunner2002topological} and given its module-theoretic form by Zomorodian and Carlsson \cite{zomorodian2005computing}; see also \cite{edelsbrunner2010computational}.
+
+\begin{definition}[Step realization]
+\label{def:step}
+Let $d = 2$, $A \in \R^{n \times n}$, and let $\Omega_{ij} = [\frac{i-1}{n}, \frac{i}{n}] \times [\frac{j-1}{n}, \frac{j}{n}]$ be the closed cells of the uniform $n \times n$ grid. The step realization is
+\begin{equation}
+    \Phi_\square(A)(x) \coloneqq \max\{ A_{ij} : x \in \Omega_{ij} \}.
+\end{equation}
+It is upper semicontinuous, and $X_t(A) = \bigcup\{\Omega_{ij} : A_{ij} \ge t\}$ is a finite union of closed cells.
+\end{definition}
+The super-level sets of a step realization are cubical complexes, as for grey-scale images; for the homology and persistence of cubical complexes see \cite{kaczynski2004computational,wagner2012efficient}.
+
+When every $H_k(X_t(A))$ is finite-dimensional---for instance for step realizations, where $X_t(A)$ is a finite cubical complex taking finitely many values---the module decomposes into interval modules \cite{crawley2015decomposition}. A bar on which the class is alive for $t \in (d_i, b_i]$ is recorded as the point $(b_i, d_i)$, $b_i > d_i$: $b_i$ is the threshold at which the class appears and $d_i$ the threshold at which it dies as $t$ decreases. The \emph{persistence diagram} $\mathrm{Dgm}_k(\Phi(A))$ is the multiset of these points together with the diagonal.
+
+\subsection{Bottleneck Stability of Functional Tensors}
+Let $\mathrm{Dgm}_k(f)$ and $\mathrm{Dgm}_k(g)$ be two persistence diagrams. The bottleneck distance is:
+\begin{equation}
+    d_B(\mathrm{Dgm}_k(f), \mathrm{Dgm}_k(g)) \coloneqq \inf_{\gamma \colon \mathrm{Dgm}_k(f) \to \mathrm{Dgm}_k(g)} \sup_{p \in \mathrm{Dgm}_k(f)} \|p - \gamma(p)\|_\infty,
+\end{equation}
+where $\gamma$ ranges over all bijections between the multisets.
+
+\begin{theorem}[Bottleneck stability; classical]
+\label{thm:bottleneck_stability}
+Let $A, B \in \R^{n \times n}$ and let $\Phi$ be a realization operator with values in $C(\Omega)$ and Lipschitz constant $L_\Phi$:
+\begin{equation}
+    \|\Phi(A) - \Phi(B)\|_{L^\infty(\Omega)} \le L_\Phi \|A - B\|_F.
+\end{equation}
+Assume $\Phi(A)$ and $\Phi(B)$ are tame continuous functions (e.g., Morse functions with finitely many critical values, or piecewise affine functions on a finite simplicial triangulation of $\Omega$), ensuring well-defined, finite persistence diagrams. Then, for every homology dimension $k \in \{0, 1, \dots, d-1\}$, the persistence diagrams satisfy:
+\begin{equation}
+    d_B(\mathrm{Dgm}_k(\Phi(A)), \mathrm{Dgm}_k(\Phi(B))) \le \|\Phi(A) - \Phi(B)\|_{L^\infty(\Omega)} \le L_\Phi \|A - B\|_F.
+\end{equation}
+\end{theorem}
+
+\begin{proof}
+Let $f = \Phi(A)$ and $g = \Phi(B)$. For any $\epsilon = \|f - g\|_{L^\infty(\Omega)}$, we have $f(x) \le g(x) + \epsilon$ and $g(x) \le f(x) + \epsilon$ for all $x \in \Omega$. 
+This induces interlacing inclusions between the super-level sets:
+\begin{equation}
+    X_{t+\epsilon}(f) \subseteq X_t(g) \subseteq X_{t-\epsilon}(f).
+\end{equation}
+Applying $H_k(\cdot; \mathbb{F})$ produces an $\epsilon$-interleaving of the persistence modules $\mathcal{H}_k(f)$ and $\mathcal{H}_k(g)$. By the algebraic stability theorem \cite{chazal2009proximity,chazal2016structure}, an $\epsilon$-interleaving of such modules bounds the bottleneck distance of their diagrams by $\epsilon$:
+\begin{equation}
+    d_B(\mathrm{Dgm}_k(f), \mathrm{Dgm}_k(g)) \le \epsilon = \|f - g\|_{L^\infty(\Omega)}.
+\end{equation}
+For tame functions this is the stability theorem of Cohen-Steiner, Edelsbrunner and Harer \cite{cohensteiner2007stability}. Combining it with the Lipschitz bound on $\Phi$ completes the proof.
+\end{proof}
+
+\begin{remark}
+Theorem~\ref{thm:bottleneck_stability} needs continuous realizations and does not apply to the step realizations of Definition~\ref{def:step}. Nor can a step realization be approximated uniformly by mollified ones: a uniform limit of continuous functions is continuous, so $\|\Phi_\square(A) * \eta_\epsilon - \Phi_\square(A)\|_{L^\infty} \not\to 0$ whenever $\Phi_\square(A)$ has a jump.
+\end{remark}
+
+\subsection{The Persistent Entropy Invariant}
+\begin{definition}[Persistent Entropy of a Matrix]
+Let $\mathrm{Dgm}_k(\Phi(A)) = \{(b_i, d_i)\}_{i=1}^{N_k}$ be the off-diagonal points of the $k$-th persistence diagram. The lifespan of the $i$-th topological feature is $\ell_i \coloneqq b_i - d_i > 0$. The total persistent lifetime is $L_k(A) \coloneqq \sum_{i=1}^{N_k} \ell_i$. The persistent probability weights are $p_i \coloneqq \ell_i / L_k(A)$.
+The \emph{$k$-th Persistent Entropy} of the matrix is:
+\begin{equation}
+    E_{\mathrm{pers}}^{(k)}(A) \coloneqq -\sum_{i=1}^{N_k} p_i \log p_i \ge 0.
+\end{equation}
+By convention, if $N_k = 0$ (i.e., the persistence diagram $\mathrm{Dgm}_k(\Phi(A))$ is empty and has no off-diagonal bars), we set $E_{\mathrm{pers}}^{(k)}(A) \coloneqq 0$.
+\end{definition}
+Persistent entropy, the Shannon entropy of the normalized bar lengths, was introduced by Chintakunta, Gentimis, Gonzalez-D{\'\i}az, Jim{\'e}nez and Krim \cite{chintakunta2015entropy}; Atienza, Gonzalez-D{\'\i}az and Soriano-Trigueros proved that it is stable under small perturbations of the barcode \cite{atienza2020stability}.
+
+\begin{theorem}[Isospectral pairs separated by step persistence]
+\label{thm:isospectral_separation}
+Use the step realization $\Phi_\square$ of Definition~\ref{def:step} and homology with coefficients in a field $\mathbb{F}$.
+\begin{enumerate}[label=(\alph*)]
+    \item Let $B$ be the $3 \times 3$ matrix with $B_{22} = 0$ and all other entries $2$, let $P$ be the permutation matrix exchanging the indices $1$ and $2$, and let $A = PBP^T$. Then $A$ and $B$ are symmetric and isospectral, $\sigma(A) = \sigma(B) = \{2 + 2\sqrt{3}, 2 - 2\sqrt{3}, 0\}$, and
+    \begin{equation}
+        \mathrm{Dgm}_1(\Phi_\square(A)) = \emptyset, \qquad \mathrm{Dgm}_1(\Phi_\square(B)) = \{(2,0)\}, \qquad E^{(1)}_{\mathrm{pers}}(A) = E^{(1)}_{\mathrm{pers}}(B) = 0.
+    \end{equation}
+    \item Let $B'$ be the $5 \times 5$ matrix with $B'_{22} = 0$, $B'_{44} = 1$ and all other entries $3$, let $P'$ exchange the indices $1$ and $2$, and let $A' = P'B'P'^T$. Then $A'$ and $B'$ are symmetric and isospectral,
+    \begin{equation}
+        \mathrm{Dgm}_1(\Phi_\square(B')) = \{(3,0), (3,1)\}, \qquad \mathrm{Dgm}_1(\Phi_\square(A')) = \{(3,1)\},
+    \end{equation}
+    and $E^{(1)}_{\mathrm{pers}}(B') = -\frac{3}{5}\log\frac{3}{5} - \frac{2}{5}\log\frac{2}{5} \approx 0.673 > 0 = E^{(1)}_{\mathrm{pers}}(A')$.
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+We use one homological fact. Let $K \subset \R^2$ be a compact contractible union of closed grid cells and let $U_1, \dots, U_r$ be the interiors of closed grid cells $\overline{U}_1, \dots, \overline{U}_r \subset \operatorname{int} K$ with pairwise disjoint closures. Then $H_1(K \setminus \bigcup_l U_l; \mathbb{F}) \cong \mathbb{F}^r$, with basis the classes of the boundary loops $\partial U_l$. For $r = 1$, choose a closed square $\overline{W}$ with $\overline{U}_1 \subset \operatorname{int}\overline{W}$ and $\overline{W} \subset \operatorname{int} K$, and put $Y \coloneqq K \setminus \operatorname{int}\overline{W}$; all sets involved are subcomplexes of a refined cubical structure. The Mayer--Vietoris sequence of $K = Y \cup \overline{W}$, with $Y \cap \overline{W} = \partial\overline{W}$ a circle and $H_1(K) = H_2(K) = H_1(\overline{W}) = 0$, shows that $Y$ is connected and that $H_1(Y) \cong \mathbb{F}$, generated by $[\partial\overline{W}]$. The Mayer--Vietoris sequence of $K \setminus U_1 = Y \cup (\overline{W} \setminus U_1)$, with intersection $\partial\overline{W}$ and the annulus $\overline{W} \setminus U_1$ having $H_1 \cong \mathbb{F}$ generated by $[\partial\overline{W}] = [\partial U_1]$, then gives $H_1(K \setminus U_1) \cong \mathbb{F}^2 / \mathbb{F}(1,1) \cong \mathbb{F}$, generated by $[\partial U_1]$. The general case follows by induction on $r$, using pairwise disjoint squares $\overline{W}_l$: since $H_2$ of a compact planar cubical complex vanishes, the same two sequences show that removing one more $U_l$ adds one direct summand, generated by $[\partial U_l]$. Naturality of the Mayer--Vietoris sequence shows that adding back the cell $\overline{U}_l$ kills $[\partial U_l]$ and maps the other basis classes to the corresponding basis classes.
+
+(a) $A$ and $B$ are orthogonally similar, hence isospectral; the eigenvalues of $B$ are computed directly. For $t > 2$ both super-level sets are empty, and for $t \le 0$ both are the whole square. For $t \in (0,2]$, $X_t(B)$ is the square minus the open central cell, so $H_1 \cong \mathbb{F}$, and the class dies at $t = 0$: $\mathrm{Dgm}_1(\Phi_\square(B)) = \{(2,0)\}$. Since $A_{11} = 0$ and the other entries equal $2$, $X_t(A)$ for $t \in (0,2]$ is the square minus $[0,\frac13) \times [0, \frac13)$. This set is star-shaped with respect to $(1,1)$: if $p$ lies in it, then $p_1 \ge \frac13$ or $p_2 \ge \frac13$, and that coordinate stays $\ge \frac13$ along the segment from $p$ to $(1,1)$. Hence $H_1(X_t(A)) = 0$ for all $t$ and $\mathrm{Dgm}_1(\Phi_\square(A)) = \emptyset$. A diagram with at most one bar has entropy $0$, so both entropies vanish.
+
+(b) Write $C_{ij}$ for the open cells of the $5 \times 5$ grid. For $B'$: $X_t = \emptyset$ for $t > 3$; for $t \in (1, 3]$, $X_t$ is the square minus $C_{22}$ and $C_{44}$, whose closures are disjoint and lie in the interior, so $H_1 \cong \mathbb{F}^2$ with basis $[\partial C_{22}], [\partial C_{44}]$; for $t \in (0, 1]$, the cell $\overline{C}_{44}$ is added, which kills $[\partial C_{44}]$ and leaves $H_1 \cong \mathbb{F}$ generated by $[\partial C_{22}]$; for $t \le 0$ the square is contractible. The module is therefore the sum of the interval modules on $(0,3]$ and $(1,3]$, so $\mathrm{Dgm}_1 = \{(3,0),(3,1)\}$ with lifetimes $3$ and $2$, weights $\frac35, \frac25$, and the stated entropy. For $A'$, the entries are $A'_{11} = 0$, $A'_{44} = 1$ and all others $3$. For $t \in (1,3]$, $X_t$ is the star-shaped set $K' \coloneqq [0,1]^2 \setminus [0, \frac15)^2$ (same argument as in (a)) minus $C_{44}$, with $\overline{C}_{44} \subset \operatorname{int} K'$, so $H_1 \cong \mathbb{F}$; for $t \in (0,1]$, $X_t = K'$ is contractible. Hence $\mathrm{Dgm}_1(\Phi_\square(A')) = \{(3,1)\}$ and $E^{(1)}_{\mathrm{pers}}(A') = 0$.
+\end{proof}
+
+\begin{remark}[What the theorem does and does not show]
+\label{rem:entropy_limits}
+\begin{enumerate}[label=(\roman*)]
+    \item The step realization is not invariant under simultaneous permutations of rows and columns, so it is to be expected that it separates some isospectral pairs. The content of Theorem~\ref{thm:isospectral_separation} is the explicit computation.
+    \item Persistent entropy depends only on the multiset of lifetimes, so it cannot separate two matrices whose diagrams have the same lifetimes. For example, let $J$ be the reversal permutation $i \mapsto 6 - i$ and $C = JB'J^T$. Then $C \ne B'$, $C$ is isospectral to $B'$, and $\Phi_\square(C)$ is $\Phi_\square(B')$ rotated by $\pi$ about the centre of the square. Hence $\mathrm{Dgm}_1(\Phi_\square(C)) = \mathrm{Dgm}_1(\Phi_\square(B'))$, which has two bars of different lifetimes, and $E^{(1)}_{\mathrm{pers}}(C) = E^{(1)}_{\mathrm{pers}}(B')$. So two bars of different lifetimes do not force the entropies of an isospectral pair to differ.
+    \item In the $3 \times 3$ example, perturbing the eight outer entries to distinct values does not create a second $H_1$ bar: a $3 \times 3$ grid has only one interior cell, so $\beta_1(X_t) \le 1$ for every $t$.
+\end{enumerate}
+The diagrams and entropies above were also checked numerically by two independent methods: union--find on the cells, using Alexander duality, and pixel rasterization with connected-component counting.
+\end{remark}
+
+% =========================================================================
+\section{Level-Set Curvature Energies and Isoperimetry}
+\label{sec:willmore_gmt}
+% =========================================================================
+
+\subsection{Curvature of Level Sets}
+Let $\Omega \subset \R^d$ be a bounded open set, $d \ge 2$, and $\Phi(A) \in C^2(\overline{\Omega})$. On the open set $\{\nabla \Phi(A) \ne 0\}$ the level sets
+\begin{equation}
+    \Sigma_t \coloneqq \left\{ x \in \Omega \;\middle|\; \Phi(A)(x) = t \right\}
+\end{equation}
+are $C^2$ hypersurfaces with unit normal
+\begin{equation}
+    \mathbf{n}(x) \coloneqq \frac{\nabla \Phi(A)(x)}{\|\nabla \Phi(A)(x)\|}.
+\end{equation}
+If $\Phi(A) \in C^d$, Sard's theorem \cite{sard1942measure} shows that almost every $t$ is a regular value.
+
+\begin{definition}[Level-set curvature]
+On $\{\nabla \Phi(A) \ne 0\}$ let
+\begin{equation}
+    H_t(x) \coloneqq -\operatorname{div}\left( \frac{\nabla \Phi(A)(x)}{\|\nabla \Phi(A)(x)\|} \right) = -\frac{\Delta \Phi(A)}{\|\nabla \Phi(A)\|} + \frac{\Hess \Phi(A)(\nabla \Phi(A), \nabla \Phi(A))}{\|\nabla \Phi(A)\|^3}.
+\end{equation}
+Up to sign, $H_t(x)$ is the sum $\kappa_1 + \dots + \kappa_{d-1}$ of the principal curvatures of $\Sigma_t$ at $x$, that is, $(d-1)$ times the mean curvature.
+\end{definition}
+
+\subsection{The Integrated Willmore Energy}
+The Willmore energy of a closed surface $\Sigma \subset \R^3$ is $\int_\Sigma H_{\mathrm{m}}^2 \dif A$, where $H_{\mathrm{m}} = (\kappa_1 + \kappa_2)/2$ is the mean curvature; Marques and Neves proved Willmore's conjecture that it is at least $2\pi^2$ for every torus immersed in $\R^3$ \cite{marques2014minmax}. We integrate the analogous quantity over all level sets.
+
+\begin{definition}[Integrated Willmore energy]
+For $d \ge 2$ and $\Phi(A) \in C^2(\overline{\Omega})$ whose critical set has measure zero,
+\begin{equation}
+    \mathcal{W}(\Phi(A)) \coloneqq \int_{-\infty}^\infty \left( \int_{\Sigma_t \cap \{\nabla\Phi(A) \ne 0\}} H_t(x)^2 \dif \mathcal{H}^{d-1}(x) \right) \dif t \in [0, \infty].
+\end{equation}
+By the coarea formula for Lipschitz functions \cite{evans2015measure}, this equals
+\begin{equation}
+    \mathcal{W}(\Phi(A)) = \int_{\{\nabla\Phi(A) \ne 0\}} \left| \operatorname{div}\left(\frac{\nabla \Phi(A)}{\|\nabla \Phi(A)\|}\right) \right|^2 \|\nabla \Phi(A)\| \dif x.
+    \label{eq:willmore_volume}
+\end{equation}
+\end{definition}
+Functionals of the form $\int |\nabla u|\,(\alpha + \beta|\operatorname{div}(\nabla u/|\nabla u|)|^p)\dif x$ were proposed for image inpainting; Chan, Kang and Shen study the case $p = 2$ in the plane (Euler's elastica) \cite{chan2003euler}, and Ambrosio and Masnou study the relaxation of the general case \cite{ambrosio2003direct}. The right-hand side of \eqref{eq:willmore_volume} is the term with $\alpha = 0$, $\beta = 1$, $p = 2$.
+
+\begin{remark}[Integrability]
+The formula for $H_t$ gives, with the Frobenius norm of the Hessian,
+\begin{equation}
+    |H_t| \le (\sqrt{d} + 1)\frac{\|\Hess \Phi(A)\|}{\|\nabla \Phi(A)\|}, \qquad H_t^2\|\nabla\Phi(A)\| \le (\sqrt{d}+1)^2 \frac{\|\Hess\Phi(A)\|^2}{\|\nabla \Phi(A)\|}.
+\end{equation} Near a non-degenerate critical point $x_0$ we have $\|\nabla \Phi(A)(x)\| \ge c\|x - x_0\|$, so the integrand is $O(\|x - x_0\|^{-1})$, which is integrable in dimension $d \ge 2$. Hence $\mathcal{W}(\Phi(A)) < \infty$ when $\Phi(A)$ is a Morse function on a neighbourhood of $\overline{\Omega}$. In dimension $d = 1$ level sets are points and $H_t \equiv 0$, so the definition is used only for $d \ge 2$.
+\end{remark}
+
+\begin{proposition}[Conformal invariance; classical]
+\label{thm:willmore_invariance}
+Let $d = 3$ and let $\Sigma = \Sigma_t \subset \operatorname{int}\Omega$ be a compact regular level surface of $\Phi(A)$, with principal curvatures $\kappa_1, \kappa_2$, $H = \kappa_1 + \kappa_2$ (Definition above, up to sign) and Gaussian curvature $K = \kappa_1\kappa_2$. Let $\psi$ be a M\"obius transformation of $\R^3 \cup \{\infty\}$ whose pole, if any, does not lie on $\Sigma$. Then
+\begin{equation}
+    \int_{\psi(\Sigma)} \Big(\frac{H^2}{4} - K\Big) \dif \mathcal{H}^2 = \int_{\Sigma} \Big(\frac{H^2}{4} - K\Big) \dif \mathcal{H}^2
+    \quad\text{and}\quad
+    \int_{\psi(\Sigma)} (H^2 - K) \dif \mathcal{H}^2 = \int_{\Sigma} (H^2 - K) \dif \mathcal{H}^2.
+\end{equation}
+\end{proposition}
+
+\begin{proof}
+The first identity is White's theorem \cite{white1973global}: with the mean curvature $H_{\mathrm{m}} = H/2$, the integrand $H_{\mathrm{m}}^2 - K = \frac14(\kappa_1 - \kappa_2)^2$ times the area element is invariant under M\"obius transformations. For the second, $H^2 - K = 4(H^2/4 - K) + 3K$, and $\int_\Sigma K \dif\mathcal{H}^2 = 2\pi\chi(\Sigma)$ by Gauss--Bonnet; $\psi(\Sigma)$ is a closed surface diffeomorphic to $\Sigma$, so this term is also unchanged. Note that $\psi(\Sigma)$ is in general not a level set of $\Phi(A)$.
+\end{proof}
+
+\begin{proposition}[Willmore energy of a trigonometric checkerboard]
+\label{prop:willmore_scaling}
+Let $d = 2$, $\Omega = (0,1)^2$, $u(y) = \sin y_1 \sin y_2$, and for $k \ge 1$, $\epsilon > 0$ let $\Phi_k(x) = \epsilon\, u(kx)$. Put
+\begin{equation}
+    c_* \coloneqq \frac{1}{(2\pi)^2} \int_{[0,2\pi]^2} H_u(y)^2 \|\nabla u(y)\| \dif y,
+\end{equation}
+where $H_u$ is the level-set curvature of $u$. Then $0 < c_* < \infty$, and
+\begin{equation}
+    \int_\Omega \|\nabla \Phi_k\|^2 \dif x = \frac{\epsilon^2 k^2}{2}\big(1 + O(k^{-1})\big), \qquad \mathcal{W}(\Phi_k) = c_*\, \epsilon k^3 \big(1 + O(k^{-1})\big),
+\end{equation}
+with $O(k^{-1})$ uniform in $\epsilon$. In particular, for $\epsilon = 1/k$ the Dirichlet energy tends to $\frac12$ while $\mathcal{W}(\Phi_k) \sim c_* k^2$; for fixed $\epsilon$, $\mathcal{W}(\Phi_k) \sim c_* \epsilon k^3$.
+\end{proposition}
+
+\begin{proof}
+The function $u$ is Morse. Its critical points are the zeros of both $\cos y_1 \sin y_2$ and $\sin y_1 \cos y_2$, and there the Hessian is $\pm\begin{psmallmatrix} 0 & 1 \\ 1 & 0 \end{psmallmatrix}$ or $\pm\Id$. By the integrability remark above, $g \coloneqq H_u^2\|\nabla u\|$ is locally integrable, so $c_* < \infty$. Near a strict maximum the level curves of $u$ are closed convex curves with non-zero curvature, so $c_* > 0$. The level-set curvature does not change when a function is multiplied by $\epsilon > 0$, and it scales like the inverse of a length under $x \mapsto kx$, so $H_{\Phi_k}(x) = k H_u(kx)$ and $\|\nabla\Phi_k(x)\| = \epsilon k \|\nabla u(kx)\|$. Substituting $y = kx$ in \eqref{eq:willmore_volume},
+\begin{equation}
+    \mathcal{W}(\Phi_k) = \epsilon k^3 \cdot \frac{1}{k^2} \int_{(0,k)^2} g(y) \dif y.
+\end{equation}
+The function $g \ge 0$ is $2\pi$-periodic in each variable. Let $m = \lfloor k / 2\pi \rfloor$. The square $(0,k)^2$ contains $m^2$ period cells and is covered by $(m+1)^2$ of them, so $(2\pi m/k)^2 c_* \le k^{-2}\int_{(0,k)^2} g \le (2\pi(m+1)/k)^2 c_*$, and both bounds equal $c_*(1 + O(k^{-1}))$. The same argument applied to $\|\nabla u\|^2 = \cos^2 y_1 \sin^2 y_2 + \sin^2 y_1 \cos^2 y_2$, whose mean over a period is $\frac12$, gives the Dirichlet energy.
+\end{proof}
+
+\begin{remark}
+Numerically, $c_* \approx 1.058$; midpoint quadrature over one period with $1000^2$, $2000^2$ and $4000^2$ points gives $1.0578$ in each case, and direct quadrature of $\mathcal{W}(\Phi_k)/(\epsilon k^3)$ on $(0,1)^2$ gives $1.084$, $1.062$, $1.058$ for $k = 16, 32, 64$. The profile $\Phi_k$ is a model for a $k \times k$ checkerboard matrix $A_k$ with entries $\pm\epsilon$, for which $\|A_k\|_F = \epsilon k$; it is not produced by any realization operator defined in this paper. The step realization of $A_k$ is not $C^2$, and $\mathcal{W}$ is not defined for it.
+\end{remark}
+
+\subsection{The Isoperimetric Profile}
+\begin{definition}[Isoperimetric profile and Cheeger constant]
+Let $\Omega = (0,1)^d$ and let $\Phi(A) \in C^1(\overline{\Omega})$ be a density realization with $\Phi(A) \ge c > 0$, inducing $\mu_A$. For a set $E \subset \Omega$ of finite perimeter, let $\Per_{\mu_A}(E) \coloneqq \int_{\partial^* E \cap \Omega} \Phi(A) \dif \mathcal{H}^{d-1}$ be its weighted perimeter relative to $\Omega$. The isoperimetric profile $\mathcal{I}_A \colon (0, 1) \to [0,\infty)$ and the Cheeger constant are
+\begin{equation}
+    \mathcal{I}_A(v) \coloneqq \inf \left\{ \Per_{\mu_A}(E) \;\middle|\; \mu_A(E) = v \right\}, \qquad h(A) \coloneqq \inf_{0 < \mu_A(E) \le 1/2} \frac{\Per_{\mu_A}(E)}{\mu_A(E)}.
+\end{equation}
+\end{definition}
+
+\begin{proposition}[Cheeger's inequality; classical]
+\label{prop:cheeger}
+Let $\lambda_1(A) \coloneqq \inf\{ \int_\Omega \|\nabla f\|^2 \dif\mu_A / \int_\Omega (f - \bar f)^2 \dif\mu_A \}$ over non-constant $f \in H^1(\Omega)$, with $\bar f = \int f \dif\mu_A$; this is the first non-zero eigenvalue of $-\Delta_A$ with Neumann conditions. Then $\lambda_1(A) \ge h(A)^2/4$.
+\end{proposition}
+
+\begin{proof}
+This is Cheeger's argument \cite{cheeger1970lower}. By density it suffices to take $f \in C^1(\overline{\Omega})$ non-constant. Let $m$ be a median of $f$ for $\mu_A$ and $g_\pm \coloneqq (f - m)_\pm$. For $t > 0$ the sets $\{g_+^2 > t\}$ have $\mu_A$-measure at most $\frac12$. The coarea formula for the Lipschitz function $g_+^2$ \cite{evans2015measure} gives
+\begin{equation}
+    \int_\Omega \|\nabla g_+^2\| \dif\mu_A = \int_0^\infty \Per_{\mu_A}(\{g_+^2 > t\}) \dif t \ge h(A) \int_0^\infty \mu_A(\{g_+^2 > t\}) \dif t = h(A) \int_\Omega g_+^2 \dif\mu_A.
+\end{equation}
+By Cauchy--Schwarz, $\int \|\nabla g_+^2\| \dif\mu_A = 2\int g_+\|\nabla g_+\| \dif\mu_A \le 2 (\int g_+^2 \dif\mu_A)^{1/2} (\int \|\nabla g_+\|^2 \dif\mu_A)^{1/2}$, so $\int \|\nabla g_+\|^2 \dif\mu_A \ge \frac{h(A)^2}{4}\int g_+^2 \dif\mu_A$, and likewise for $g_-$. Adding, and using that $\nabla g_+$ and $\nabla g_-$ have disjoint supports up to null sets, $\int \|\nabla f\|^2 \dif\mu_A \ge \frac{h(A)^2}{4} \int (f-m)^2 \dif\mu_A \ge \frac{h(A)^2}{4} \int (f - \bar f)^2 \dif\mu_A$.
+\end{proof}
+
+\begin{remark}
+On compact Riemannian manifolds without boundary whose Ricci curvature is bounded below, an inequality in the opposite direction bounds $\lambda_1$ above in terms of the Cheeger constant; it is due to Buser \cite{buser1982note}, and Ledoux gave an analytic proof \cite{ledoux1994simple}. We do not use it.
+\end{remark}
+
+% =========================================================================
+\section{Wavefront Sets and Besov Regularity}
+\label{sec:microlocal}
+% =========================================================================
+
+\subsection{Gabor Transform}
+To record the frequency and direction $\xi \in \R^d \setminus \{0\}$ of features of $\Phi(A)$ as well as their position, we work on $T^*\Omega \cong \Omega \times \R^d$. Let $g(y) = (\pi s^2)^{-d/4} e^{-\|y\|^2/(2s^2)}$, $s > 0$, be a Gaussian window with $\|g\|_{L^2} = 1$, and extend $\Phi(A)$ by zero outside $\Omega$.
+\begin{definition}[Gabor transform]
+For $x \in \Omega$ and $\xi \in \R^d$, the Gabor transform (short-time Fourier transform with Gaussian window \cite{grochenig2001foundations}) of $\Phi(A) \in L^2(\Omega)$ is:
+\begin{equation}
+    \mathcal{V}_{\Phi(A)}(x, \xi) \coloneqq \int_{\R^d} \Phi(A)(y) g(y - x) e^{-i \langle \xi, y \rangle} \dif y.
+\end{equation}
+The associated phase-space energy density (spectrogram) is:
+\begin{equation}
+    \mathcal{E}_A(x, \xi) \coloneqq \left| \mathcal{V}_{\Phi(A)}(x, \xi) \right|^2 \ge 0.
+\end{equation}
+\end{definition}
+
+\subsection{The Wavefront Set}
+We use H\"ormander's definition \cite[Sect.~8.1]{hormander2003analysis}.
+
+\begin{definition}[Wavefront set]
+Let $f \in L^1_{\mathrm{loc}}(\Omega)$. A point $(x_0, \xi_0) \in \Omega \times (\R^d \setminus \{0\})$ is \emph{not} in $\WF(f)$ if there are $\chi \in C_c^\infty(\Omega)$ with $\chi(x_0) \ne 0$ and an open cone $\Gamma \ni \xi_0$ such that, for every $N \in \mathbb{N}$,
+\begin{equation}
+    \sup_{\xi \in \Gamma} (1 + \|\xi\|)^N \big| \widehat{\chi f}(\xi) \big| < \infty.
+\end{equation}
+\end{definition}
+
+\begin{remark}[A fixed window does not localize]
+\label{rem:fixed_window}
+The same decay condition imposed on the Gabor transform with a fixed Gaussian window does not localize singularities. For $d = 1$ and $f = \mathbf{1}_{[0,\infty)}$, integration by parts gives, for every $x_0 \in \R$,
+\begin{equation}
+    \mathcal{V}_f(x_0, \xi) = \int_0^\infty g(y - x_0) e^{-i\xi y} \dif y = \frac{g(-x_0)}{i\xi} + \frac{1}{i\xi}\int_0^\infty g'(y - x_0) e^{-i\xi y}\dif y = \frac{g(-x_0)}{i\xi} + O(\xi^{-2}),
+\end{equation}
+and $g(-x_0) \ne 0$. So $|\mathcal{V}_f(x_0,\xi)|$ decays only like $|\xi|^{-1}$ even at points $x_0$ far from the jump, because the Gaussian tail reaches the jump. Numerically, at $x_0 = 5s$ one finds $|\xi\, \mathcal{V}_f(x_0,\xi)| \to g(-x_0)$. For this reason the wavefront set is defined with compactly supported cut-offs.
+\end{remark}
+
+\begin{proposition}[Jump across a smooth interface; classical]
+\label{thm:wavefront_interface}
+Let $U \subset \Omega$ be open, $D \subset \R^d$ open with $C^\infty$ boundary, $\Gamma = \partial D \cap U$, and let $f = b + (a - b)\mathbf{1}_D$ on $U$ with constants $a \ne b$. Then
+\begin{equation}
+    \WF(f) \cap (U \times \R^d) = N^*\Gamma \setminus 0 \coloneqq \left\{ (x, \lambda \mathbf{n}_\Gamma(x)) \;\middle|\; x \in \Gamma, \; \lambda \ne 0 \right\}.
+\end{equation}
+\end{proposition}
+
+\begin{proof}
+Off $\Gamma$, $f$ is locally constant, hence smooth, so no point over $U \setminus \Gamma$ lies in $\WF(f)$. Let $x_0 \in \Gamma$. By the transformation law of wavefront sets under diffeomorphisms \cite[Sect.~8.2]{hormander2003analysis}, which maps conormal bundles to conormal bundles, we may assume near $x_0$ that $\Gamma = \{y_1 = 0\}$ and $f = b + (a-b)H(y_1)$, $H = \mathbf{1}_{(0,\infty)}$. Let $\chi \in C_c^\infty$ near $x_0$ and write $\xi = (\xi_1, \xi')$. Since $\partial_{y_j}$, $j \ge 2$, does not see the jump, $(\xi')^{\alpha}\, \widehat{\chi H}(\xi) = \widehat{(-i\partial')^{\alpha}\chi \cdot H}(\xi)$ up to sign, which is bounded by $\|\partial'^{\alpha}\chi\|_{L^1}$. In a closed cone not containing $\pm e_1$ we have $\|\xi'\| \ge c\|\xi\|$, so $\widehat{\chi f}$ decays rapidly there. Hence $\WF(f)$ over $x_0$ is contained in $\{\lambda e_1 : \lambda \ne 0\}$. It is non-empty, because $x_0$ lies in the singular support of $f$, which is the projection of $\WF(f)$ \cite[Sect.~8.1]{hormander2003analysis}. Since $f$ is real and we may take $\chi$ real, $\widehat{\chi f}(-\xi) = \overline{\widehat{\chi f}(\xi)}$, so $\WF(f)$ is invariant under $\xi \mapsto -\xi$. Therefore $\WF(f)$ over $x_0$ equals $\{\lambda e_1 : \lambda \ne 0\}$.
+\end{proof}
+
+\begin{remark}[Step realizations]
+For the step realization of Definition~\ref{def:step}, Proposition~\ref{thm:wavefront_interface} applies near every point in the relative interior of a cell edge separating two different values, and $\WF$ there consists of the normals to the edge. At a grid vertex the set can be larger. For instance, for $f = H(y_1)H(y_2)$ and $\chi = \beta(y_1)\beta(y_2)$ with $0 \le \beta \in C_c^\infty$, $\beta(0) > 0$, one has $\widehat{\chi f}(\xi) = \widehat{\beta H}(\xi_1)\widehat{\beta H}(\xi_2)$ with $\widehat{\beta H}(t) = \beta(0)/(it) + O(t^{-2})$. This decays only polynomially in every direction, for cut-offs of arbitrarily small support, so every direction belongs to $\WF(f)$ over the vertex.
+\end{remark}
+
+\subsection{Besov Regularity Index}
+Let $\Omega = (0,1)^d$ and $\Omega_h \coloneqq \{x \in \Omega : x + h \in \Omega\}$. For $1 \le p < \infty$ and $s \in (0,1)$ we use the first-difference seminorm of the Besov space $B^s_{p,\infty}$ (see \cite{triebel1983theory} for the Besov scale)
+\begin{equation}
+    [\Phi(A)]_{B^s_{p,\infty}} \coloneqq \sup_{h \in \R^d, 0 < \|h\| \le 1} \frac{\|\Phi(A)(\cdot + h) - \Phi(A)(\cdot)\|_{L^p(\Omega_h)}}{\|h\|^s}.
+\end{equation}
+
+\begin{definition}[Besov regularity index]
+For $1 \le p < \infty$,
+\begin{equation}
+    s^*_p(A) \coloneqq \sup \left\{ s \in (0, 1) \;\middle|\; [\Phi(A)]_{B^s_{p,\infty}} < \infty \right\} \in [0,1].
+\end{equation}
+\end{definition}
+
+\begin{proposition}[Besov index of smooth and step realizations]
+\label{prop:besov}
+Let $1 \le p < \infty$.
+\begin{enumerate}[label=(\alph*)]
+    \item If $\Phi(A) \in C^1(\overline{\Omega})$, then $s^*_p(A) = 1$.
+    \item Let $d = 2$ and let $\Phi_\square(A)$ be the step realization of Definition~\ref{def:step}, with $\Phi_\square(A)$ not constant. Then $s^*_p(A) = 1/p$ for $p > 1$, and $s^*_1(A) = 1$.
+\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+(a) $\Omega$ is convex, so $|f(x+h) - f(x)| \le \|\nabla f\|_\infty \|h\|$ and $[f]_{B^s_{p,\infty}} \le \|\nabla f\|_\infty < \infty$ for every $s < 1$.
+
+(b) Write $f = \Phi_\square(A)$. If $x, x + h \in \Omega$ and $f(x+h) \ne f(x)$ (away from the null set of grid lines), the segment from $x$ to $x+h$ crosses one of the $2(n-1)$ interior grid lines $\{x_i = j/n\}$. For a fixed line $\{x_i = c\}$ this happens only for $x$ in a slab of width $|h_i| \le \|h\|$. Hence $\|f(\cdot + h) - f\|_{L^p(\Omega_h)}^p \le (2\|f\|_\infty)^p\, 2(n-1)\|h\|$, so $[f]_{B^s_{p,\infty}} < \infty$ for $s \le 1/p$ and $s^*_p \ge \min(1, 1/p)$; this gives $s^*_1 = 1$. Conversely, since $f$ is not constant, two cells sharing an edge carry different values $\alpha \ne \beta$; say the edge lies on $\{x_i = c\}$, with the cell of value $\alpha$ below it. For $h = t e_i$, $0 < t < 1/n$, every $x$ in the open lower cell with $x_i > c - t$ satisfies $x + h$ in the open upper cell. This set has measure $t/n$, so $\|f(\cdot+h) - f\|_{L^p(\Omega_h)} \ge |\alpha - \beta|\, (t/n)^{1/p}$, and $[f]_{B^s_{p,\infty}} = \infty$ for every $s > 1/p$. Thus $s^*_p = 1/p$ when $p > 1$.
+\end{proof}
+
+\begin{remark}
+For $p = 1$ the index does not distinguish step realizations from smooth ones, so $p > 1$ must be used for that purpose. For an indicator $f = \mathbf{1}_E$ of a measurable set $E \subset \Omega$, a short argument gives a lower bound: if exactly one of $x, x+h$ lies in $E$, the segment between them meets $\partial E$, so $\|f(\cdot + h) - f\|_{L^1(\Omega_h)}$ is at most the measure of the $\|h\|$-neighbourhood of $\partial E$. By the definition of the upper Minkowski dimension $\overline{\dim}_M$, this yields $s^*_1 \ge \min\{1, d - \overline{\dim}_M \partial E\}$. We do not claim equality. For the fractional seminorm $[\mathbf{1}_E]_{W^{s,1}}$ (the fractional perimeter) Visintin proved the analogous bound, finiteness for $s < d - \overline{\dim}_M \partial E$ \cite{visintin1991generalized}, and Lombardini showed that the resulting index equals the Minkowski codimension for the von Koch snowflake \cite{lombardini2019fractional}.
+\end{remark}
+
+% =========================================================================
+\section{Dixmier Traces and Cyclic Cocycles}
+\label{sec:noncommutative}
+% =========================================================================
+
+\subsection{The Spectral Triple on the Torus}
+We use Connes' non-commutative geometry \cite{connes1994noncommutative}. In this section $\Omega = \mathbb{T}^d = (\R/\Z)^d$ with the flat metric and the trivial spin structure, and the realizations $\Phi(A)$ are real and smooth on $\mathbb{T}^d$ (for the kernel realization, take periodic $\psi_i \in C^\infty(\mathbb{T}^d)$). Let $N_d = 2^{\lfloor d/2 \rfloor}$ and let $\gamma^1, \dots, \gamma^d$ be Hermitian $N_d \times N_d$ matrices with $\gamma^\mu\gamma^\nu + \gamma^\nu\gamma^\mu = 2\delta^{\mu\nu}\Id$. We consider
+\begin{itemize}
+    \item $\mathcal{H} \coloneqq L^2(\mathbb{T}^d, \C^{N_d})$;
+    \item $\mathcal{D} \coloneqq i \gamma^\mu \partial_\mu$, self-adjoint with discrete spectrum. Its kernel consists of the constant spinors and has dimension $N_d$. We set $|\mathcal{D}|^{-d} \coloneqq 0$ on $\ker \mathcal{D}$; on the Fourier mode $e^{2\pi i \langle k, x\rangle}$, $k \in \Z^d \setminus \{0\}$, it acts as $|2\pi k|^{-d}$;
+    \item the multiplication operators $M_{\Phi(A)} \colon \psi \mapsto \Phi(A)\,\psi$.
+\end{itemize}
+
+\subsection{The Dixmier Trace of a Realization}
+\begin{definition}[Dixmier trace]
+For a positive compact operator $T$ in the ideal $\mathcal{L}^{1,\infty}(\mathcal{H})$, with singular values $\mu_1(T) \ge \mu_2(T) \ge \dots$, put
+\begin{equation}
+    \Tr_\omega(T) \coloneqq \omega\text{-}\lim_{N \to \infty} \frac{1}{\log N} \sum_{n=1}^N \mu_n(T),
+\end{equation}
+where $\omega$ is a Dixmier limit, and extend $\Tr_\omega$ by linearity to all of $\mathcal{L}^{1,\infty}(\mathcal{H})$ \cite[Ch.~IV, Sect.~2]{connes1994noncommutative}; see \cite{lord2013singular} for the general theory of singular traces. For the operators below the value does not depend on $\omega$.
+\end{definition}
+
+\begin{proposition}[Dixmier trace of a realization]
+\label{thm:dixmier_integration}
+For real $\Phi(A) \in C^\infty(\mathbb{T}^d)$,
+\begin{equation}
+    \Tr_\omega \left( M_{\Phi(A)} |\mathcal{D}|^{-d} \right) = c_d \int_{\mathbb{T}^d} \Phi(A)(x) \dif x, \qquad c_d \coloneqq \frac{2^{\lfloor d/2 \rfloor} |\mathbb{S}^{d-1}|}{d (2\pi)^d},
+\end{equation}
+where $|\mathbb{S}^{d-1}| = 2\pi^{d/2}/\Gamma(d/2)$.
+\end{proposition}
+
+\begin{proof}
+$|\mathcal{D}|^{-d}$ is the Fourier multiplier with symbol $\|\xi\|^{-d}\Id$ for $\xi \ne 0$; modifying it near $\xi = 0$ changes the operator by a finite-rank one. So $T = M_{\Phi(A)}|\mathcal{D}|^{-d}$ is a classical pseudo-differential operator of order $-d$ on the closed manifold $\mathbb{T}^d$, with principal symbol $\sigma_{-d}(T)(x,\xi) = \Phi(A)(x)\|\xi\|^{-d}\Id$. Connes' trace theorem \cite{connes1988action}, \cite[Ch.~IV, Sect.~2, Prop.~5]{connes1994noncommutative} states that such an operator lies in $\mathcal{L}^{1,\infty}$, that its Dixmier trace does not depend on $\omega$, and that it equals the noncommutative residue of Wodzicki and Guillemin \cite{wodzicki1987noncommutative,guillemin1985new}:
+\begin{equation}
+    \Tr_\omega(T) = \frac{1}{d (2\pi)^d} \int_{S^*\mathbb{T}^d} \operatorname{tr} \sigma_{-d}(T)(x, \xi) \dif S(x, \xi).
+\end{equation}
+Since $\operatorname{tr}\Id = 2^{\lfloor d/2 \rfloor}$, integration over the unit sphere gives $|\mathbb{S}^{d-1}|$, which proves the formula.
+\end{proof}
+
+\begin{remark}[Linearity matters]
+For $T \ge 0$ the singular-value formula applies directly. For a sign-changing $\Phi(A)$, the operator $M_{\Phi(A)}|\mathcal{D}|^{-d}$ is not positive, and the plain sum of its singular values computes the Dixmier trace of $|T|$, not of $T$. Numerically, for $d = 1$ and $\Phi = \cos 2\pi x$, the singular-value sums grow like $0.202\log N \approx \frac{1}{\pi}\int|\Phi| \log N$, while the linear Dixmier trace (diagonal sums in the Fourier basis) is $\frac{1}{\pi}\int\Phi = 0$, in agreement with Proposition~\ref{thm:dixmier_integration}.
+\end{remark}
+
+\subsection{Cyclic Cocycles in Dimension Two}
+The commutator of $\mathcal{D}$ with a realization is the multiplication operator
+\begin{equation}
+    [\mathcal{D}, M_{\Phi(A)}] = i \gamma^\mu \, \partial_\mu \Phi(A).
+\end{equation}
+For a tuple of $d+1$ matrices $(A_0, A_1, \dots, A_d)$ we define
+\begin{equation}
+    \tau_d(A_0, A_1, \dots, A_d) \coloneqq \Tr_\omega \left( \Phi(A_0) [\mathcal{D}, \Phi(A_1)] [\mathcal{D}, \Phi(A_2)] \cdots [\mathcal{D}, \Phi(A_d)] |\mathcal{D}|^{-d} \right).
+\end{equation}
+For $d = 2$ take $\gamma^1 = \sigma_1$, $\gamma^2 = \sigma_2$ (Pauli matrices) and the grading $\gamma \coloneqq -i\gamma^1\gamma^2 = \sigma_3$, which anticommutes with $\mathcal{D}$, and define the graded version
+\begin{equation}
+    \tau_2^\gamma(A_0, A_1, A_2) \coloneqq \Tr_\omega \left( \gamma\, \Phi(A_0) [\mathcal{D}, \Phi(A_1)] [\mathcal{D}, \Phi(A_2)] |\mathcal{D}|^{-2} \right).
+\end{equation}
+
+Up to a normalizing constant, $\tau_d$ and $\tau_2^\gamma$ are the Dixmier-trace cochains that Connes uses to compute the Hochschild class of the Chern character of a spectral triple, with $\gamma\Phi(A_0)$ in place of $\Phi(A_0)$ in the even case \cite[Ch.~IV, Sect.~2, Thm.~8]{connes1994noncommutative}. Cyclic cohomology was introduced in \cite{connes1985noncommutative}, and the local index formula of Connes and Moscovici expresses the Chern character of a spectral triple through Dixmier traces and residues \cite{connes1995local}.
+
+\begin{proposition}[Cocycles on $\mathbb{T}^2$]
+\label{prop:cocycle}
+Let $d = 2$, write $\Phi_j = \Phi(A_j)$, and orient $\mathbb{T}^2$ by $\dif x_1 \wedge \dif x_2$. Then:
+\begin{enumerate}[label=(\alph*)]
+    \item $\displaystyle \tau_2(A_0, A_1, A_2) = -\frac{1}{2\pi} \int_{\mathbb{T}^2} \Phi_0 \, \nabla\Phi_1 \cdot \nabla\Phi_2 \dif x$;
+    \item $\displaystyle \tau_2^\gamma(A_0, A_1, A_2) = -\frac{i}{2\pi} \int_{\mathbb{T}^2} \Phi_0 \, \dif\Phi_1 \wedge \dif\Phi_2$;
+    \item if $\Phi_0^2 + \Phi_1^2 + \Phi_2^2 = 1$, so that $F = (\Phi_0, \Phi_1, \Phi_2) \colon \mathbb{T}^2 \to \mathbb{S}^2$, then
+    \begin{equation}
+        \frac{i}{4} \sum_{\sigma \in S_3} \operatorname{sgn}(\sigma)\, \tau_2^\gamma(A_{\sigma(0)}, A_{\sigma(1)}, A_{\sigma(2)}) = \deg F \in \Z.
+    \end{equation}
+\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+The operator in (a) is $M_G|\mathcal{D}|^{-2}$ with the smooth matrix-valued function
+\begin{equation}
+    G = \Phi_0 (i\gamma^\mu\partial_\mu\Phi_1)(i\gamma^\nu\partial_\nu\Phi_2) = -\Phi_0\, \gamma^\mu\gamma^\nu\, \partial_\mu\Phi_1 \partial_\nu\Phi_2.
+\end{equation}
+As in the proof of Proposition~\ref{thm:dixmier_integration}, Connes' trace theorem gives
+\begin{equation}
+    \Tr_\omega(M_G|\mathcal{D}|^{-2}) = \frac{1}{2(2\pi)^2} \cdot 2\pi \int \operatorname{tr} G \dif x = \frac{1}{4\pi}\int \operatorname{tr}G \dif x.
+\end{equation} Since $\operatorname{tr}(\gamma^\mu\gamma^\nu) = 2\delta^{\mu\nu}$, $\operatorname{tr} G = -2\Phi_0 \nabla\Phi_1\cdot\nabla\Phi_2$, which gives (a). For (b) the function is $\gamma G$. Since $\gamma = \sigma_3$ and $\sigma_\mu\sigma_\nu = \delta_{\mu\nu}\Id + i\epsilon_{\mu\nu 3}\sigma_3$, we get $\operatorname{tr}(\gamma\gamma^\mu\gamma^\nu) = 2i\epsilon^{\mu\nu}$, hence $\operatorname{tr}(\gamma G) = -2i\,\Phi_0(\partial_1\Phi_1\partial_2\Phi_2 - \partial_2\Phi_1\partial_1\Phi_2)$, which gives (b). For (c), $\sum_\sigma \operatorname{sgn}\sigma\, F^{\sigma(0)} \dif F^{\sigma(1)} \wedge \dif F^{\sigma(2)} = 2\, F\cdot(\partial_1 F \times \partial_2 F) \dif x_1\wedge\dif x_2 = 2F^*\omega$, where $\omega$ is the area form of $\mathbb{S}^2$ with the outward orientation. Since $\int_{\mathbb{T}^2} F^*\omega = 4\pi\deg F$, (b) gives $\sum_\sigma \operatorname{sgn}\sigma\, \tau_2^\gamma(\dots) = -\frac{i}{2\pi}\cdot 2\cdot 4\pi\deg F = -4i\deg F$.
+\end{proof}
+
+\begin{remark}[The ungraded cocycle is not topological]
+\label{rem:tau_not_topological}
+By (a), $\tau_2$ is symmetric in its last two arguments and has no antisymmetric part, so it cannot detect the degree. For example, let $0 < s < 1$, $c(x) = \cos 2\pi x_1$, $\Phi_1 = \Phi_2 = s c/\sqrt{2}$ and $\Phi_0 = \sqrt{1 - s^2c^2}$. Then $F$ takes values in $\mathbb{S}^2$, has degree $0$ (since $\partial_2 F = 0$), and $\tau_2 = -\frac{1}{2\pi}\int\Phi_0\|\nabla\Phi_1\|^2 \dif x < 0$. Likewise, composing a degree-one map $\mathbb{T}^2 \to \mathbb{S}^2$ with rotations of $\mathbb{S}^2$ keeps the degree fixed but changes $\tau_2$; numerically, $\tau_2$ ranges over about $[-0.015, 0.037]$ for five random rotations, while $\frac{i}{4}\sum_\sigma\operatorname{sgn}\sigma\,\tau_2^\gamma = 1.000$ in all five cases. We treat only $d = 2$; other dimensions are not considered here.
+\end{remark}
+
+% =========================================================================
+\section{Quantum Fisher Information of Fields of Density Matrices}
+\label{sec:quantum_info}
+% =========================================================================
+
+\subsection{Fields of Density Matrices}
+Let $\Omega \subset \R^d$ be a bounded open set and let $x \mapsto \rho(x)$ be a $C^1$ map from a neighbourhood of $\overline{\Omega}$ into the $\chi \times \chi$ density matrices ($\rho(x) \succeq 0$, $\Tr\rho(x) = 1$). In other words, $\rho$ is a section of the trivial bundle $\Omega \times \mathrm{End}(\C^\chi)$. Such fields arise, for instance, as auxiliary (bond) density matrices of continuous matrix product states \cite{verstraete2010continuous}, where to each $x$ are attached a bond space $\C^\chi$ and operators $Q(x), R(x) \in \mathrm{End}(\C^\chi)$. Nothing below uses this structure.
+
+\subsection{The Integrated Quantum Fisher Information Volume}
+For $\rho(x) \succ 0$, the quantum Fisher information metric is
+\begin{equation}
+    g^{\mathrm{QFI}}_{\mu\nu}(x) \coloneqq \frac{1}{2} \Tr_\chi \left( \rho(x) \{ L_\mu(x), L_\nu(x) \} \right),
+\end{equation}
+where $\{A, B\} = AB + BA$, and $L_\mu(x)$ is the Symmetric Logarithmic Derivative (SLD) defined implicitly by:
+\begin{equation}
+    \partial_\mu \rho(x) = \frac{1}{2} \left( \rho(x) L_\mu(x) + L_\mu(x) \rho(x) \right).
+    \label{eq:sld_implicit}
+\end{equation}
+The symmetric logarithmic derivative goes back to Helstrom \cite{helstrom1967minimum}. Braunstein and Caves identified the corresponding metric with statistical distinguishability of states \cite{braunstein1994statistical}; it equals four times the Bures metric built from Uhlmann's fidelity \cite{uhlmann1976transition}, see \cite[Sect.~2.4.2]{liu2020quantum}, and it belongs to Petz's family of monotone metrics on density matrices \cite{petz1996monotone}. Pulling such metrics back to a parameter space is standard: for pure states this gives the metric of Provost and Vallee \cite{provost1980riemannian}, and the fidelity metric on the coupling space of a Hamiltonian is used to detect quantum phase transitions \cite{zanardi2007information}.
+
+\begin{definition}[Integrated QFI volume]
+The integrated quantum Fisher information volume of the field $\rho$ is
+\begin{equation}
+    \mathrm{Vol}_{\mathrm{QFI}}(\rho) \coloneqq \int_\Omega \sqrt{\det g^{\mathrm{QFI}}(x)} \dif^d x.
+\end{equation}
+\end{definition}
+
+\begin{lemma}[QFI metric in an eigenbasis; classical, see {\cite[Thm.~2.1]{liu2020quantum}}]
+\label{lem:qfi_formula}
+Let $\rho(x) = \sum_i \lambda_i |i\rangle\langle i|$ with all $\lambda_i > 0$. Then $\langle i|L_\mu|j\rangle = 2\langle i|\partial_\mu\rho|j\rangle / (\lambda_i + \lambda_j)$ and
+\begin{equation}
+    g^{\mathrm{QFI}}_{\mu\nu}(x) = 2 \sum_{i,j=1}^\chi \frac{\operatorname{Re} \left( \langle i | \partial_\mu \rho | j \rangle \langle j | \partial_\nu \rho | i \rangle \right)}{\lambda_i + \lambda_j}.
+    \label{eq:qfi_eigen}
+\end{equation}
+\end{lemma}
+
+\begin{proof}
+Taking the $(i,j)$ entry of \eqref{eq:sld_implicit} gives $\langle i|\partial_\mu\rho|j\rangle = \frac12(\lambda_i + \lambda_j)\langle i|L_\mu|j\rangle$. Then
+\begin{equation}
+    \frac12\Tr(\rho\{L_\mu,L_\nu\}) = \frac12\sum_{i,j}(\lambda_i + \lambda_j)\operatorname{Re}\big(\langle i|L_\mu|j\rangle\langle j|L_\nu|i\rangle\big),
+\end{equation}
+and substituting the entries of $L_\mu$, $L_\nu$ gives \eqref{eq:qfi_eigen}.
+\end{proof}
+
+\begin{theorem}[Vanishing of the QFI volume]
+\label{thm:qfi_volume}
+Assume $\rho(x) \succ 0$ for all $x \in \overline{\Omega}$. Then:
+\begin{enumerate}[label=(\alph*)]
+    \item $g^{\mathrm{QFI}}(x)$ is the Gram matrix of $\partial_1\rho(x), \dots, \partial_d\rho(x)$ for the real inner product
+    \begin{equation}
+        \langle X, Y\rangle_{\rho(x)} \coloneqq 2\sum_{i,j}\frac{\operatorname{Re}(X_{ij}\overline{Y_{ij}})}{\lambda_i + \lambda_j}
+    \end{equation}
+    on Hermitian matrices (entries in an eigenbasis of $\rho(x)$), which is positive definite. Hence $g^{\mathrm{QFI}}(x) \succeq 0$, $\mathrm{Vol}_{\mathrm{QFI}}(\rho) \ge 0$, and $g^{\mathrm{QFI}}_{\mu\mu}(x) \ge \|\partial_\mu\rho(x)\|_{\mathrm{HS}}^2$.
+    \item $\det g^{\mathrm{QFI}}(x) > 0$ if and only if $\partial_1\rho(x), \dots, \partial_d\rho(x)$ are linearly independent over $\R$.
+    \item $\mathrm{Vol}_{\mathrm{QFI}}(\rho) = 0$ if and only if the derivatives $\partial_1\rho(x), \dots, \partial_d\rho(x)$ are linearly dependent at every $x \in \Omega$, that is, $\rank \dif\rho(x) < d$ everywhere.
+    \item $\mathrm{Vol}_{\mathrm{QFI}}$ is invariant under $C^1$ diffeomorphisms of $\Omega$: if $\phi \colon \Omega' \to \Omega$ is one, then $\mathrm{Vol}_{\mathrm{QFI}}(\rho \circ \phi) = \mathrm{Vol}_{\mathrm{QFI}}(\rho)$.
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+(a) In the eigenbasis of $\rho(x)$ the matrices $\partial_\mu\rho$ are Hermitian, so $\langle j|\partial_\nu\rho|i\rangle = \overline{\langle i|\partial_\nu\rho|j\rangle}$, and \eqref{eq:qfi_eigen} reads $g_{\mu\nu} = \langle\partial_\mu\rho, \partial_\nu\rho\rangle_{\rho}$. The form $\langle\cdot,\cdot\rangle_\rho$ is a weighted Hilbert--Schmidt inner product with positive weights $2/(\lambda_i + \lambda_j)$; since $\lambda_i + \lambda_j \le 2$, the weights are at least $1$, which gives the bound on $g_{\mu\mu}$. A Gram matrix is positive semi-definite.
+(b) A Gram matrix of $d$ vectors for a positive-definite inner product is non-singular if and only if the vectors are linearly independent.
+(c) The SLD $L_\mu(x)$ is the unique solution of the linear equation \eqref{eq:sld_implicit}. The operator $X \mapsto \frac12(\rho X + X\rho)$ is invertible for $\rho \succ 0$ and depends continuously on $\rho$, so $g^{\mathrm{QFI}}$ and $\det g^{\mathrm{QFI}}$ are continuous on $\Omega$. Hence $\int_\Omega \sqrt{\det g^{\mathrm{QFI}}} = 0$ if and only if $\det g^{\mathrm{QFI}} \equiv 0$ on the open set $\Omega$, and (b) applies.
+(d) By the chain rule, $g^{\mathrm{QFI}}_{\rho\circ\phi}(y) = J(y)^T g^{\mathrm{QFI}}_\rho(\phi(y)) J(y)$ with $J = \dif\phi$. So $\sqrt{\det g_{\rho\circ\phi}(y)} = \sqrt{\det g_\rho(\phi(y))}\,|\det J(y)|$, and the change-of-variables formula gives the claim.
+\end{proof}
+
+\begin{remark}[What the volume does and does not detect]
+\label{rem:qfi_examples}
+\begin{enumerate}[label=(\roman*)]
+    \item Non-constant fields can have zero volume. For example, let $d = 2$ and let $\rho(x) = R(x_1 + x_2)$, where $R$ is a non-constant $C^1$ curve of positive definite density matrices. Then $\partial_1\rho = \partial_2\rho \ne 0$ and $\mathrm{Vol}_{\mathrm{QFI}} = 0$.
+    \item A field that is constant up to a unitary gauge can have positive volume. If $\rho(x) = U(x)\rho_0U(x)^\dagger$ with $U(x) = \exp(i(x_1h_1 + x_2h_2))$, then $\partial_\mu\rho = i[h_\mu, \rho_0]$ at $x = 0$. For generic Hermitian $h_1, h_2$ and non-scalar $\rho_0$ these are linearly independent, so $\det g^{\mathrm{QFI}} > 0$ near $0$. Numerically, $\det g^{\mathrm{QFI}}(0) > 0$ in random $3 \times 3$ examples.
+    \item Nothing in Theorem~\ref{thm:qfi_volume} relates the volume to the presence or absence of entanglement.
+\end{enumerate}
+Formula \eqref{eq:qfi_eigen} agrees with an independent computation of $L_\mu$ from \eqref{eq:sld_implicit} by a linear solve, in random examples; the same formula without the factor $2$ does not.
+\end{remark}
+
+\begin{remark}[Rank-deficient states]
+When some eigenvalues of $\rho(x)$ vanish, the QFI metric can be discontinuous, as shown by {\v{S}}afr{\'a}nek \cite{safranek2017discontinuities}. The assumption $\rho \succ 0$ on $\overline{\Omega}$ excludes this.
+\end{remark}
+
+\subsection{An Entropy-Weighted Density}
+Let $S_{\mathrm{vN}}(x) = -\Tr(\rho(x) \log \rho(x))$ be the von Neumann entropy of $\rho(x)$.
+
+\begin{definition}[QFI-weighted entropy density and centroid]
+Put
+\begin{equation}
+    s(x) \coloneqq S_{\mathrm{vN}}(x)\sqrt{\det g^{\mathrm{QFI}}(x)}, \qquad S_{\mathrm{tot}}(\rho) \coloneqq \int_\Omega s(x) \dif^d x.
+\end{equation}
+If $S_{\mathrm{tot}}(\rho) > 0$, the centroid and the dispersion of $s$ are
+\begin{equation}
+    \bar{x}_{s} \coloneqq \frac{1}{S_{\mathrm{tot}}(\rho)} \int_\Omega x \, s(x) \dif^d x, \quad \Sigma_{s}^2 \coloneqq \frac{1}{S_{\mathrm{tot}}(\rho)} \int_\Omega \|x - \bar{x}_{s}\|^2 \, s(x) \dif^d x.
+\end{equation}
+\end{definition}
+The density $s$ is unrelated to the ``entanglement contour'' of Chen and Vidal \cite{chen2014entanglement}, which distributes the entanglement entropy of a region over its sites. We prove no properties of $s$ beyond those inherited from Theorem~\ref{thm:qfi_volume}.
+
+% =========================================================================
+\section{Summary}
+\label{sec:synthesis}
+% =========================================================================
+
+Table~\ref{tab:master_taxonomy} lists the invariants of this volume, what is established about each, and where.
+
+\begin{table}[htbp]
+\centering
+\small
+\renewcommand{\arraystretch}{1.2}
+\begin{tabularx}{\textwidth}{@{} l >{\raggedright\arraybackslash}p{3.4cm} >{\raggedright\arraybackslash}X @{}}
+\toprule
+\textbf{Invariant} & \textbf{Definition} & \textbf{What is established} \\
+\midrule
+$\mathcal{W}_2(A, B)$ & $\inf_\pi \int \|x-y\|^2 \dif \pi$ & Pseudometric for any choice of density realizations; sharp $L^1$ bound; metric-speed bound for the kernel realization (Thm.~\ref{thm:wasserstein_properties}). \\
+\midrule
+$\kappa_{\mathrm{BE}}(A)$ & $\inf \langle (-\nabla^2 \log \Phi) \xi, \xi \rangle$ & Entropy $K$-convexity (proved); log-Sobolev and variance decay (classical) (Thm.~\ref{thm:bakry_emery}). \\
+\midrule
+$\mathrm{Dgm}_k$, $E^{(k)}_{\mathrm{pers}}$ & Super-level persistence; entropy of bar lengths & Bottleneck stability for continuous tame realizations (classical); explicit isospectral pairs separated by the step diagrams, one also by entropy; entropy does not separate in general (Thm.~\ref{thm:isospectral_separation}, Rem.~\ref{rem:entropy_limits}). \\
+\midrule
+$\mathcal{W}(\Phi(A))$ & $\int \int_{\Sigma_t} H_t^2 \dif \mathcal{H}^{d-1} \dif t$ & Finite for Morse realizations, $d \ge 2$; $c_*\epsilon k^3$ law for a trigonometric checkerboard (Prop.~\ref{prop:willmore_scaling}). \\
+\midrule
+$h(A)$ & Weighted Cheeger constant & $\lambda_1 \ge h^2/4$ (classical, Prop.~\ref{prop:cheeger}). \\
+\midrule
+$\WF(\Phi(A))$ & H\"ormander wavefront set & Conormal bundle of a smooth jump interface (classical, Prop.~\ref{thm:wavefront_interface}); all directions at grid vertices of the model corner. \\
+\midrule
+$s^*_p(A)$ & Besov index & $1$ for $C^1$ realizations, $1/p$ for non-constant step realizations, $p > 1$ (Prop.~\ref{prop:besov}). \\
+\midrule
+$\Tr_\omega$, $\tau_2$, $\tau_2^\gamma$ & Dixmier trace, cocycles on $\mathbb{T}^d$ & $c_d\int\Phi$ (Connes' trace theorem); $\tau_2$ not topological; graded antisymmetrization $= -4i\deg F$ (Prop.~\ref{prop:cocycle}). \\
+\midrule
+$\mathrm{Vol}_{\mathrm{QFI}}(\rho)$ & $\int_\Omega \sqrt{\det g^{\mathrm{QFI}}} \dif^d x$ & Vanishes iff $\rank\dif\rho < d$ everywhere (Thm.~\ref{thm:qfi_volume}). \\
+\bottomrule
+\end{tabularx}
+\caption{Invariants of functional realizations treated in this volume.}
+\label{tab:master_taxonomy}
+\end{table}
+
+\subsection*{Open questions}
+\begin{enumerate}[label=(\roman*)]
+    \item Which isospectral pairs are separated by persistence of a \emph{continuous} realization, for which Theorem~\ref{thm:bottleneck_stability} applies?
+    \item Upper bounds matching the lower bound $s^*_1 \ge d - \overline{\dim}_M\partial E$ for indicator realizations of rough sets.
+    \item Analogues of Proposition~\ref{prop:cocycle} in higher even dimensions.
+\end{enumerate}
+Applications of these invariants, for example as regularizers of weight matrices or as diagnostics of tensor-network states, are not studied here.
+
+\section*{Declarations}
+
+\noindent\textbf{Funding.} This research was financed in part by the
+Coordena\c{c}\~ao de Aperfei\c{c}oamento de Pessoal de N\'ivel Superior -- Brasil
+(CAPES) -- Finance Code 001.
+
+\medskip\noindent\textbf{Competing interests.} The author declares no competing
+interests.
+
+\medskip\noindent\textbf{Use of generative AI tools.} Large language model
+assistants (Anthropic Claude; Google Gemini, through the Antigravity agent
+environment) were used extensively. Under the author's direction they drafted and
+edited text and \LaTeX{} source, proposed and wrote derivations, proofs and
+counterexamples, wrote the numerical check scripts, and searched the literature.
+The mathematics was then checked in three steps by AI sessions that had not
+written it: a blind review of every statement, a correction made by a separate
+session, and a targeted re-check of each correction. Every numerical claim is
+checked by a script that compares it with an independent computation and includes
+a negative control, a deliberately altered formula that must fail. Every reference
+was resolved through Crossref, DataCite or arXiv, or, for the one book without
+a DOI, through its ISBN record at Open Library. These checks were carried out by
+AI systems; they are not peer review, and no result in this volume has yet
+been checked by an independent human expert. AI tools are not authors. The author
+chose the questions, directed the work, decided what to publish, and is
+responsible for the content, including any remaining errors.
+
+\medskip\noindent\textbf{Verification status.} Results labelled Theorem,
+Proposition or Lemma are proved in the text or cited as classical results;
+statements labelled Conjecture are not proved. The numerical scripts are checks,
+not proofs. The \textsc{Lean 4} files in the author's repository associated with
+this work are a placeholder skeleton without Mathlib and verify none of the
+statements.
+
+\medskip\noindent\textbf{Code availability.} The numerical check scripts are
+available from the author on request.
+
+% =========================================================================
+\begin{thebibliography}{99}
+% =========================================================================
+
+\bibitem{ambrosio2003direct}
+L.~Ambrosio and S.~Masnou,
+\emph{A direct variational approach to a problem arising in image reconstruction},
+Interfaces and Free Boundaries, \textbf{5} (2003), no.~1, 63--81, DOI: \href{https://doi.org/10.4171/IFB/72}{10.4171/IFB/72}.
+
+\bibitem{ambrosio2008gradient}
+L.~Ambrosio, N.~Gigli, and G.~Savar{\'e},
+\emph{Gradient Flows in Metric Spaces and in the Space of Probability Measures},
+2nd ed., Lectures in Mathematics ETH Z{\"u}rich, Birkh{\"a}user, Basel, 2008, DOI: \href{https://doi.org/10.1007/978-3-7643-8722-8}{10.1007/978-3-7643-8722-8}.
+
+\bibitem{atienza2020stability}
+N.~Atienza, R.~Gonzalez-D{\'\i}az, and M.~Soriano-Trigueros,
+\emph{On the stability of persistent entropy and new summary functions for topological data analysis},
+Pattern Recognition, \textbf{107} (2020), 107509, DOI: \href{https://doi.org/10.1016/j.patcog.2020.107509}{10.1016/j.patcog.2020.107509}.
+
+\bibitem{bakry1985diffusions}
+D.~Bakry and M.~{\'E}mery,
+\emph{Diffusions hypercontractives},
+S{\'e}minaire de Probabilit{\'e}s XIX 1983/84, Lecture Notes in Mathematics, vol.~1123, Springer, Berlin, Heidelberg, 1985, pp.~177--206, ISBN: 978-3-540-15230-9, DOI: \href{https://doi.org/10.1007/BFb0075847}{10.1007/BFb0075847}.
+
+\bibitem{bakry2014analysis}
+D.~Bakry, I.~Gentil, and M.~Ledoux,
+\emph{Analysis and Geometry of Markov Diffusion Operators},
+Grundlehren der mathematischen Wissenschaften, vol.~348, Springer, Cham, 2014, DOI: \href{https://doi.org/10.1007/978-3-319-00227-9}{10.1007/978-3-319-00227-9}.
+
+\bibitem{benamou2000computational}
+J.-D.~Benamou and Y.~Brenier,
+\emph{A computational fluid mechanics solution to the Monge-Kantorovich mass transfer problem},
+Numerische Mathematik, \textbf{84} (2000), no.~3, 375--393, DOI: \href{https://doi.org/10.1007/s002110050002}{10.1007/s002110050002}.
+
+\bibitem{bhatia2019bures}
+R.~Bhatia, T.~Jain, and Y.~Lim,
+\emph{On the Bures--Wasserstein distance between positive definite matrices},
+Expositiones Mathematicae, \textbf{37} (2019), no.~2, 165--191, DOI: \href{https://doi.org/10.1016/j.exmath.2018.01.002}{10.1016/j.exmath.2018.01.002}.
+
+\bibitem{braunstein1994statistical}
+S.~L.~Braunstein and C.~M.~Caves,
+\emph{Statistical distance and the geometry of quantum states},
+Physical Review Letters, \textbf{72} (1994), no.~22, 3439--3443, DOI: \href{https://doi.org/10.1103/PhysRevLett.72.3439}{10.1103/PhysRevLett.72.3439}.
+
+\bibitem{brenier1991polar}
+Y.~Brenier,
+\emph{Polar factorization and monotone rearrangement of vector-valued functions},
+Communications on Pure and Applied Mathematics, \textbf{44} (1991), no.~4, 375--417, DOI: \href{https://doi.org/10.1002/cpa.3160440402}{10.1002/cpa.3160440402}.
+
+\bibitem{buser1982note}
+P.~Buser,
+\emph{A note on the isoperimetric constant},
+Annales scientifiques de l'{\'E}cole Normale Sup{\'e}rieure (4), \textbf{15} (1982), no.~2, 213--230, DOI: \href{https://doi.org/10.24033/asens.1426}{10.24033/asens.1426}.
+
+\bibitem{caffarelli2000monotonicity}
+L.~A.~Caffarelli,
+\emph{Monotonicity properties of optimal transportation and the FKG and related inequalities},
+Communications in Mathematical Physics, \textbf{214} (2000), 547--563, DOI: \href{https://doi.org/10.1007/s002200000257}{10.1007/s002200000257}.
+
+\bibitem{chan2003euler}
+T.~F.~Chan, S.~H.~Kang, and J.~Shen,
+\emph{Euler's elastica and curvature-based inpainting},
+SIAM Journal on Applied Mathematics, \textbf{63} (2003), no.~2, 564--592, DOI: \href{https://doi.org/10.1137/S0036139901390088}{10.1137/S0036139901390088}.
+
+\bibitem{chazal2009proximity}
+F.~Chazal, D.~Cohen-Steiner, M.~Glisse, L.~J.~Guibas, and S.~Y.~Oudot,
+\emph{Proximity of persistence modules and their diagrams},
+in: Proceedings of the 25th Annual Symposium on Computational Geometry (SCG '09), ACM, New York, 2009, pp.~237--246, DOI: \href{https://doi.org/10.1145/1542362.1542407}{10.1145/1542362.1542407}.
+
+\bibitem{chazal2016structure}
+F.~Chazal, V.~de Silva, M.~Glisse, and S.~Oudot,
+\emph{The Structure and Stability of Persistence Modules},
+SpringerBriefs in Mathematics, Springer, Cham, 2016, ISBN: 978-3-319-42545-0, DOI: \href{https://doi.org/10.1007/978-3-319-42545-0}{10.1007/978-3-319-42545-0}.
+
+\bibitem{cheeger1970lower}
+J.~Cheeger,
+\emph{A lower bound for the smallest eigenvalue of the Laplacian},
+in: Problems in Analysis (a symposium in honor of S.~Bochner), Princeton University Press, Princeton, NJ, 1970, pp.~195--199, DOI: \href{https://doi.org/10.1515/9781400869312-013}{10.1515/9781400869312-013}.
+
+\bibitem{chen2014entanglement}
+Y.~Chen and G.~Vidal,
+\emph{Entanglement contour},
+Journal of Statistical Mechanics: Theory and Experiment, \textbf{2014} (2014), P10011, DOI: \href{https://doi.org/10.1088/1742-5468/2014/10/P10011}{10.1088/1742-5468/2014/10/P10011}.
+
+\bibitem{chintakunta2015entropy}
+H.~Chintakunta, T.~Gentimis, R.~Gonzalez-D{\'\i}az, M.-J.~Jim{\'e}nez, and H.~Krim,
+\emph{An entropy-based persistence barcode},
+Pattern Recognition, \textbf{48} (2015), no.~2, 391--401, DOI: \href{https://doi.org/10.1016/j.patcog.2014.06.023}{10.1016/j.patcog.2014.06.023}.
+
+\bibitem{chowdhury2019gromov}
+S.~Chowdhury and F.~M{\'e}moli,
+\emph{The Gromov--Wasserstein distance between networks and stable network invariants},
+Information and Inference: A Journal of the IMA, \textbf{8} (2019), no.~4, 757--787, DOI: \href{https://doi.org/10.1093/imaiai/iaz026}{10.1093/imaiai/iaz026}.
+
+\bibitem{cohensteiner2007stability}
+D.~Cohen-Steiner, H.~Edelsbrunner, and J.~Harer,
+\emph{Stability of persistence diagrams},
+Discrete \& Computational Geometry, \textbf{37} (2007), 103--120, DOI: \href{https://doi.org/10.1007/s00454-006-1276-5}{10.1007/s00454-006-1276-5}.
+
+\bibitem{connes1985noncommutative}
+A.~Connes,
+\emph{Non-commutative differential geometry},
+Publications Math{\'e}matiques de l'IH{\'E}S, \textbf{62} (1985), 41--144, DOI: \href{https://doi.org/10.1007/BF02698807}{10.1007/BF02698807}.
+
+\bibitem{connes1988action}
+A.~Connes,
+\emph{The action functional in non-commutative geometry},
+Communications in Mathematical Physics, \textbf{117} (1988), 673--683, DOI: \href{https://doi.org/10.1007/BF01218391}{10.1007/BF01218391}.
+
+\bibitem{connes1994noncommutative}
+A.~Connes,
+\emph{Noncommutative Geometry},
+Academic Press, San Diego, CA, 1994, ISBN: 978-0-12-185860-5.
+
+\bibitem{connes1995local}
+A.~Connes and H.~Moscovici,
+\emph{The local index formula in noncommutative geometry},
+Geometric and Functional Analysis, \textbf{5} (1995), no.~2, 174--243, DOI: \href{https://doi.org/10.1007/BF01895667}{10.1007/BF01895667}.
+
+\bibitem{crawley2015decomposition}
+W.~Crawley-Boevey,
+\emph{Decomposition of pointwise finite-dimensional persistence modules},
+Journal of Algebra and Its Applications, \textbf{14} (2015), 1550066, DOI: \href{https://doi.org/10.1142/S0219498815500668}{10.1142/S0219498815500668}.
+
+\bibitem{edelsbrunner2002topological}
+H.~Edelsbrunner, D.~Letscher, and A.~Zomorodian,
+\emph{Topological persistence and simplification},
+Discrete \& Computational Geometry, \textbf{28} (2002), no.~4, 511--533, DOI: \href{https://doi.org/10.1007/s00454-002-2885-2}{10.1007/s00454-002-2885-2}.
+
+\bibitem{edelsbrunner2010computational}
+H.~Edelsbrunner and J.~L.~Harer,
+\emph{Computational Topology: An Introduction},
+American Mathematical Society, Providence, RI, 2010, ISBN: 978-0-8218-4925-5, DOI: \href{https://doi.org/10.1090/mbk/069}{10.1090/mbk/069}.
+
+\bibitem{evans2015measure}
+L.~C.~Evans and R.~F.~Gariepy,
+\emph{Measure Theory and Fine Properties of Functions},
+revised ed., CRC Press, Boca Raton, FL, 2015, DOI: \href{https://doi.org/10.1201/b18333}{10.1201/b18333}.
+
+\bibitem{gordon1992one}
+C.~Gordon, D.~L.~Webb, and S.~Wolpert,
+\emph{One cannot hear the shape of a drum},
+Bulletin of the American Mathematical Society (N.S.), \textbf{27} (1992), no.~1, 134--138, DOI: \href{https://doi.org/10.1090/S0273-0979-1992-00289-6}{10.1090/S0273-0979-1992-00289-6}.
+
+\bibitem{grochenig2001foundations}
+K.~Gr{\"o}chenig,
+\emph{Foundations of Time-Frequency Analysis},
+Applied and Numerical Harmonic Analysis, Birkh{\"a}user, Boston, MA, 2001, ISBN: 978-1-4612-6568-9, DOI: \href{https://doi.org/10.1007/978-1-4612-0003-1}{10.1007/978-1-4612-0003-1}.
+
+\bibitem{guillemin1985new}
+V.~Guillemin,
+\emph{A new proof of Weyl's formula on the asymptotic distribution of eigenvalues},
+Advances in Mathematics, \textbf{55} (1985), no.~2, 131--160, DOI: \href{https://doi.org/10.1016/0001-8708(85)90018-0}{10.1016/0001-8708(85)90018-0}.
+
+\bibitem{helstrom1967minimum}
+C.~W.~Helstrom,
+\emph{Minimum mean-squared error of estimates in quantum statistics},
+Physics Letters A, \textbf{25} (1967), no.~2, 101--102, DOI: \href{https://doi.org/10.1016/0375-9601(67)90366-0}{10.1016/0375-9601(67)90366-0}.
+
+\bibitem{hormander2003analysis}
+L.~H{\"o}rmander,
+\emph{The Analysis of Linear Partial Differential Operators I: Distribution Theory and Fourier Analysis},
+Classics in Mathematics, Springer-Verlag, Berlin, Heidelberg, 2003, ISBN: 978-3-540-00662-6, DOI: \href{https://doi.org/10.1007/978-3-642-61497-2}{10.1007/978-3-642-61497-2}.
+
+\bibitem{jordan1998variational}
+R.~Jordan, D.~Kinderlehrer, and F.~Otto,
+\emph{The variational formulation of the Fokker--Planck equation},
+SIAM Journal on Mathematical Analysis, \textbf{29} (1998), no.~1, 1--17, DOI: \href{https://doi.org/10.1137/S0036141096303359}{10.1137/S0036141096303359}.
+
+\bibitem{kac1966can}
+M.~Kac,
+\emph{Can one hear the shape of a drum?},
+The American Mathematical Monthly, \textbf{73} (1966), no.~4, part~II, 1--23, DOI: \href{https://doi.org/10.1080/00029890.1966.11970915}{10.1080/00029890.1966.11970915}.
+
+\bibitem{kaczynski2004computational}
+T.~Kaczynski, K.~Mischaikow, and M.~Mrozek,
+\emph{Computational Homology},
+Applied Mathematical Sciences, Springer, New York, 2004, ISBN: 978-0-387-21597-6, DOI: \href{https://doi.org/10.1007/b97315}{10.1007/b97315}.
+
+\bibitem{kantorovich2006translocation}
+L.~V.~Kantorovich,
+\emph{On the translocation of masses},
+Journal of Mathematical Sciences, \textbf{133} (2006), no.~4, 1381--1382, DOI: \href{https://doi.org/10.1007/s10958-006-0049-2}{10.1007/s10958-006-0049-2}. English translation of Dokl.\ Akad.\ Nauk SSSR \textbf{37} (1942), 227--229.
+
+\bibitem{ledoux1994simple}
+M.~Ledoux,
+\emph{A simple analytic proof of an inequality by P.~Buser},
+Proceedings of the American Mathematical Society, \textbf{121} (1994), no.~3, 951--959, DOI: \href{https://doi.org/10.1090/S0002-9939-1994-1186991-X}{10.1090/S0002-9939-1994-1186991-X}.
+
+\bibitem{liu2020quantum}
+J.~Liu, H.~Yuan, X.-M.~Lu, and X.~Wang,
+\emph{Quantum Fisher information matrix and multiparameter estimation},
+Journal of Physics A: Mathematical and Theoretical, \textbf{53} (2020), no.~2, 023001, DOI: \href{https://doi.org/10.1088/1751-8121/ab5d4d}{10.1088/1751-8121/ab5d4d}, arXiv: \href{https://arxiv.org/abs/1907.08037}{1907.08037}.
+
+\bibitem{lombardini2019fractional}
+L.~Lombardini,
+\emph{Fractional perimeters from a fractal perspective},
+Advanced Nonlinear Studies, \textbf{19} (2019), no.~1, 165--196, DOI: \href{https://doi.org/10.1515/ans-2018-2016}{10.1515/ans-2018-2016}, arXiv: \href{https://arxiv.org/abs/1603.06088}{1603.06088}.
+
+\bibitem{lord2013singular}
+S.~Lord, F.~Sukochev, and D.~Zanin,
+\emph{Singular Traces: Theory and Applications},
+De Gruyter Studies in Mathematics, De Gruyter, Berlin, 2012, ISBN: 978-3-11-026250-6, DOI: \href{https://doi.org/10.1515/9783110262551}{10.1515/9783110262551}.
+
+\bibitem{lott2009ricci}
+J.~Lott and C.~Villani,
+\emph{Ricci curvature for metric-measure spaces via optimal transport},
+Annals of Mathematics, \textbf{169} (2009), no.~3, 903--991, DOI: \href{https://doi.org/10.4007/annals.2009.169.903}{10.4007/annals.2009.169.903}.
+
+\bibitem{lovasz2012large}
+L.~Lov{\'a}sz,
+\emph{Large Networks and Graph Limits},
+Colloquium Publications, vol.~60, American Mathematical Society, Providence, RI, 2012, DOI: \href{https://doi.org/10.1090/coll/060}{10.1090/coll/060}.
+
+\bibitem{marques2014minmax}
+F.~C.~Marques and A.~Neves,
+\emph{Min-max theory and the Willmore conjecture},
+Annals of Mathematics, \textbf{179} (2014), no.~2, 683--782, DOI: \href{https://doi.org/10.4007/annals.2014.179.2.6}{10.4007/annals.2014.179.2.6}.
+
+\bibitem{mccann1997convexity}
+R.~J.~McCann,
+\emph{A convexity principle for interacting gases},
+Advances in Mathematics, \textbf{128} (1997), 153--179, DOI: \href{https://doi.org/10.1006/aima.1997.1634}{10.1006/aima.1997.1634}.
+
+\bibitem{memoli2011gromov}
+F.~M{\'e}moli,
+\emph{Gromov--Wasserstein distances and the metric approach to object matching},
+Foundations of Computational Mathematics, \textbf{11} (2011), 417--487, DOI: \href{https://doi.org/10.1007/s10208-011-9093-5}{10.1007/s10208-011-9093-5}.
+
+\bibitem{otto2000generalization}
+F.~Otto and C.~Villani,
+\emph{Generalization of an inequality by Talagrand and links with the logarithmic Sobolev inequality},
+Journal of Functional Analysis, \textbf{173} (2000), no.~2, 361--400, DOI: \href{https://doi.org/10.1006/jfan.1999.3557}{10.1006/jfan.1999.3557}.
+
+\bibitem{petz1996monotone}
+D.~Petz,
+\emph{Monotone metrics on matrix spaces},
+Linear Algebra and its Applications, \textbf{244} (1996), 81--96, DOI: \href{https://doi.org/10.1016/0024-3795(94)00211-8}{10.1016/0024-3795(94)00211-8}.
+
+\bibitem{peyre2018comparison}
+R.~Peyre,
+\emph{Comparison between $W_2$ distance and $\dot{H}^{-1}$ norm, and localization of Wasserstein distance},
+ESAIM: Control, Optimisation and Calculus of Variations, \textbf{24} (2018), no.~4, 1489--1501, DOI: \href{https://doi.org/10.1051/cocv/2017050}{10.1051/cocv/2017050}, arXiv: \href{https://arxiv.org/abs/1104.4631}{1104.4631}.
+
+\bibitem{provost1980riemannian}
+J.~P.~Provost and G.~Vallee,
+\emph{Riemannian structure on manifolds of quantum states},
+Communications in Mathematical Physics, \textbf{76} (1980), no.~3, 289--301, DOI: \href{https://doi.org/10.1007/BF02193559}{10.1007/BF02193559}.
+
+\bibitem{safranek2017discontinuities}
+D.~{\v{S}}afr{\'a}nek,
+\emph{Discontinuities of the quantum Fisher information and the Bures metric},
+Physical Review A, \textbf{95} (2017), no.~5, 052320, DOI: \href{https://doi.org/10.1103/PhysRevA.95.052320}{10.1103/PhysRevA.95.052320}.
+
+\bibitem{sard1942measure}
+A.~Sard,
+\emph{The measure of the critical values of differentiable maps},
+Bulletin of the American Mathematical Society, \textbf{48} (1942), no.~12, 883--890, DOI: \href{https://doi.org/10.1090/S0002-9904-1942-07811-6}{10.1090/S0002-9904-1942-07811-6}.
+
+\bibitem{silvafilho2026beyond}
+R.~M.~Silva-Filho,
+\emph{Beyond the Spectrum: Functional Realizations of Matrices and Tensors, Emerging Invariants, and Geometric Measures},
+Volume~I of \emph{Beyond the Spectrum}, Zenodo \href{https://doi.org/10.5281/zenodo.22644743}{10.5281/zenodo.22644743}, 2026; this Zenodo record holds all three volumes of the series.
+
+\bibitem{silvafilho2026geometry}
+R.~M.~Silva-Filho,
+\emph{Geometry, Tensors, and Quantum Gravity},
+monograph, Zenodo, 2026, DOI: \href{https://doi.org/10.5281/zenodo.22290043}{10.5281/zenodo.22290043}.
+
+\bibitem{sturm2006geometryI}
+K.-T.~Sturm,
+\emph{On the geometry of metric measure spaces. I},
+Acta Mathematica, \textbf{196} (2006), no.~1, 65--131, DOI: \href{https://doi.org/10.1007/s11511-006-0002-8}{10.1007/s11511-006-0002-8}.
+
+\bibitem{sturm2006geometryII}
+K.-T.~Sturm,
+\emph{On the geometry of metric measure spaces. II},
+Acta Mathematica, \textbf{196} (2006), no.~1, 133--177, DOI: \href{https://doi.org/10.1007/s11511-006-0003-7}{10.1007/s11511-006-0003-7}.
+
+\bibitem{sturm2023space}
+K.-T.~Sturm,
+\emph{The Space of Spaces: Curvature Bounds and Gradient Flows on the Space of Metric Measure Spaces},
+Memoirs of the American Mathematical Society, \textbf{290} (2023), no.~1443, DOI: \href{https://doi.org/10.1090/memo/1443}{10.1090/memo/1443}.
+
+\bibitem{triebel1983theory}
+H.~Triebel,
+\emph{Theory of Function Spaces},
+Monographs in Mathematics, Birkh{\"a}user, Basel, 1983, ISBN: 978-3-0346-0415-4, DOI: \href{https://doi.org/10.1007/978-3-0346-0416-1}{10.1007/978-3-0346-0416-1}.
+
+\bibitem{uhlmann1976transition}
+A.~Uhlmann,
+\emph{The ``transition probability'' in the state space of a $*$-algebra},
+Reports on Mathematical Physics, \textbf{9} (1976), no.~2, 273--279, DOI: \href{https://doi.org/10.1016/0034-4877(76)90060-4}{10.1016/0034-4877(76)90060-4}.
+
+\bibitem{vandam2003which}
+E.~R.~van Dam and W.~H.~Haemers,
+\emph{Which graphs are determined by their spectrum?},
+Linear Algebra and its Applications, \textbf{373} (2003), 241--272, DOI: \href{https://doi.org/10.1016/S0024-3795(03)00483-X}{10.1016/S0024-3795(03)00483-X}.
+
+\bibitem{verstraete2010continuous}
+F.~Verstraete and J.~I.~Cirac,
+\emph{Continuous matrix product states for quantum fields},
+Physical Review Letters, \textbf{104} (2010), no.~19, 190405, DOI: \href{https://doi.org/10.1103/PhysRevLett.104.190405}{10.1103/PhysRevLett.104.190405}.
+
+\bibitem{villani2009optimal}
+C.~Villani,
+\emph{Optimal Transport: Old and New},
+Grundlehren der mathematischen Wissenschaften, vol.~338, Springer-Verlag, Berlin, Heidelberg, 2009, ISBN: 978-3-540-71049-3, DOI: \href{https://doi.org/10.1007/978-3-540-71050-9}{10.1007/978-3-540-71050-9}.
+
+\bibitem{visintin1991generalized}
+A.~Visintin,
+\emph{Generalized coarea formula and fractal sets},
+Japan Journal of Industrial and Applied Mathematics, \textbf{8} (1991), no.~2, 175--201, DOI: \href{https://doi.org/10.1007/BF03167679}{10.1007/BF03167679}.
+
+\bibitem{von2005transport}
+M.-K.~von Renesse and K.-T.~Sturm,
+\emph{Transport inequalities, gradient estimates, entropy and Ricci curvature},
+Communications on Pure and Applied Mathematics, \textbf{58} (2005), no.~7, 923--940, DOI: \href{https://doi.org/10.1002/cpa.20060}{10.1002/cpa.20060}.
+
+\bibitem{wagner2012efficient}
+H.~Wagner, C.~Chen, and E.~Vu{\c{c}}ini,
+\emph{Efficient computation of persistent homology for cubical data},
+in: Topological Methods in Data Analysis and Visualization II, Mathematics and Visualization, Springer, Berlin, Heidelberg, 2012, pp.~91--106, DOI: \href{https://doi.org/10.1007/978-3-642-23175-9_7}{10.1007/978-3-642-23175-9\_7}.
+
+\bibitem{white1973global}
+J.~H.~White,
+\emph{A global invariant of conformal mappings in space},
+Proceedings of the American Mathematical Society, \textbf{38} (1973), 162--164, DOI: \href{https://doi.org/10.1090/S0002-9939-1973-0324603-1}{10.1090/S0002-9939-1973-0324603-1}.
+
+\bibitem{wodzicki1987noncommutative}
+M.~Wodzicki,
+\emph{Noncommutative residue. Chapter I. Fundamentals},
+in: K-Theory, Arithmetic and Geometry (Moscow, 1984--1986), Lecture Notes in Mathematics, vol.~1289, Springer, Berlin, 1987, pp.~320--399, DOI: \href{https://doi.org/10.1007/BFb0078372}{10.1007/BFb0078372}.
+
+\bibitem{zanardi2007information}
+P.~Zanardi, P.~Giorda, and M.~Cozzini,
+\emph{Information-theoretic differential geometry of quantum phase transitions},
+Physical Review Letters, \textbf{99} (2007), no.~10, 100603, DOI: \href{https://doi.org/10.1103/PhysRevLett.99.100603}{10.1103/PhysRevLett.99.100603}.
+
+\bibitem{zomorodian2005computing}
+A.~Zomorodian and G.~Carlsson,
+\emph{Computing persistent homology},
+Discrete \& Computational Geometry, \textbf{33} (2005), no.~2, 249--274, DOI: \href{https://doi.org/10.1007/s00454-004-1146-y}{10.1007/s00454-004-1146-y}.
+
+\end{thebibliography}
+
+\end{document}

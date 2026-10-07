@@ -1,0 +1,6 @@
+k=  8 eps=1/k: W(M=20k,40k,80k) = ['70.42', '74.23', '70.41'] ; W/(eps k^3) = 1.1002 ; W/(eps k^2) = 8.802 ; Dirichlet = 0.4998
+k= 16 eps=1/k: W(M=20k,40k,80k) = ['275.00', '277.38', '268.91'] ; W/(eps k^3) = 1.0504 ; W/(eps k^2) = 16.807 ; Dirichlet = 0.4999
+k= 32 eps=1/k: W(M=20k,40k,80k) = ['1082.17', '1086.95', '1074.92'] ; W/(eps k^3) = 1.0497 ; W/(eps k^2) = 33.591 ; Dirichlet = 0.4999
+k= 64 eps=1/k: W(M=20k,40k,80k) = ['4312.92', '4331.38', '4304.88'] ; W/(eps k^3) = 1.0510 ; W/(eps k^2) = 67.264 ; Dirichlet = 0.5000
+relative spread of W/(eps k^3): 0.047 (Theta(eps k^3) confirmed if small)
+failures=0

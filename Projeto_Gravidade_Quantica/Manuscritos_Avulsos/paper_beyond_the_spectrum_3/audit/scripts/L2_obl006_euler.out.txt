@@ -1,0 +1,40 @@
+[PASS] (a) S^1, cos: lower-rank strata form a closed subcomplex
+(a) S^1, cos: strata ranks [0, 1]; chi_c by cell count {1: -2, 0: 2}
+(a) S^1, cos: H^*(X)=[1, 1]  H^*(X,Z)=[0, 2]  H^*(Z)=[2]
+   k_X              oracle chi=  0  formula sum chi_c*chi(stalk)=  0
+[PASS] (a) S^1, cos: formula (3.2) for k_X
+   j_!k_U           oracle chi= -2  formula sum chi_c*chi(stalk)= -2
+[PASS] (a) S^1, cos: formula (3.2) for j_!k_U
+   i_*k_Z           oracle chi=  2  formula sum chi_c*chi(stalk)=  2
+[PASS] (a) S^1, cos: formula (3.2) for i_*k_Z
+   k_X+i_*k_Z[-1]   oracle chi= -2  formula sum chi_c*chi(stalk)= -2
+[PASS] (a) S^1, cos: formula (3.2) for k_X+i_*k_Z[-1]
+   v2 formula m_top*chi(Sigma_top) = 2  vs chi(X) = 0
+[PASS] (a) negative control: v2 formula fails (2 != 0)
+[PASS] (b) S^1, diag(cos, cos+1/2): lower-rank strata form a closed subcomplex
+(b) S^1, diag(cos, cos+1/2): strata ranks [1, 2]; chi_c by cell count {2: -4, 1: 4}
+(b) S^1, diag(cos, cos+1/2): H^*(X)=[1, 1]  H^*(X,Z)=[0, 4]  H^*(Z)=[4]
+   k_X              oracle chi=  0  formula sum chi_c*chi(stalk)=  0
+[PASS] (b) S^1, diag(cos, cos+1/2): formula (3.2) for k_X
+   j_!k_U           oracle chi= -4  formula sum chi_c*chi(stalk)= -4
+[PASS] (b) S^1, diag(cos, cos+1/2): formula (3.2) for j_!k_U
+   i_*k_Z           oracle chi=  4  formula sum chi_c*chi(stalk)=  4
+[PASS] (b) S^1, diag(cos, cos+1/2): formula (3.2) for i_*k_Z
+   k_X+i_*k_Z[-1]   oracle chi= -4  formula sum chi_c*chi(stalk)= -4
+[PASS] (b) S^1, diag(cos, cos+1/2): formula (3.2) for k_X+i_*k_Z[-1]
+   v2 formula m_top*chi(Sigma_top) = 4  vs chi(X) = 0
+[PASS] (b) negative control: v2 formula fails (4 != 0)
+[PASS] (c) S^2 cube, z: lower-rank strata form a closed subcomplex
+(c) S^2 cube, z: strata ranks [0, 1]; chi_c by cell count {1: 2, 0: 0}
+(c) S^2 cube, z: H^*(X)=[1, 0, 1]  H^*(X,Z)=[0, 0, 2]  H^*(Z)=[1, 1]
+   k_X              oracle chi=  2  formula sum chi_c*chi(stalk)=  2
+[PASS] (c) S^2 cube, z: formula (3.2) for k_X
+   j_!k_U           oracle chi=  2  formula sum chi_c*chi(stalk)=  2
+[PASS] (c) S^2 cube, z: formula (3.2) for j_!k_U
+   i_*k_Z           oracle chi=  0  formula sum chi_c*chi(stalk)=  0
+[PASS] (c) S^2 cube, z: formula (3.2) for i_*k_Z
+   k_X+i_*k_Z[-1]   oracle chi=  2  formula sum chi_c*chi(stalk)=  2
+[PASS] (c) S^2 cube, z: formula (3.2) for k_X+i_*k_Z[-1]
+   v2 formula m_top*chi(Sigma_top) = 2  vs chi(X) = 2
+(c) v2 formula happens to agree on S^2 (2 = 2): True (not a test of v2)
+failures: 0

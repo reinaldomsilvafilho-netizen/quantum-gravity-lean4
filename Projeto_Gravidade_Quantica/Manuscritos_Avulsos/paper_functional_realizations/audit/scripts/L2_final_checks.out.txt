@@ -1,0 +1,22 @@
+Dirichlet A: Fourier sum 396.452441, torus quadrature 396.452441, ||DA||^2+||AD||^2 396.452441
+[PASS] Dirichlet routes agree for A
+Dirichlet PAP^T: Fourier sum 952.259890, torus quadrature 952.259890, ||DA||^2+||AD||^2 952.259890
+[PASS] Dirichlet routes agree for PAP^T
+[PASS] (i) Dirichlet energy changes under permutation conjugation
+[PASS] (i) spectra equal (control that the comparison is fair)
+TV A: jump formula 7.691721, coarea with cap (0,1)^2 7.691928
+[PASS] §6.5 display (with cap (0,1)^2) equals TV for A
+TV PAP^T: jump formula 10.485008, coarea with cap (0,1)^2 10.485212
+[PASS] §6.5 display (with cap (0,1)^2) equals TV for PAP^T
+TV A without cap (0,1)^2 on the window [min-1, max+1]: 20.072866
+[PASS] negative control: display without cap (0,1)^2 differs from TV
+[PASS] (ii) TV changes under permutation conjugation
+Morse indices (eigenvalues ascending): A [0, 1, 2, 3, 4], PAP^T [0, 1, 2, 3, 4]
+[PASS] (iii) Morse indices equal for A and PAP^T, and equal i-1
+[PASS] (iii) Morse count recovers chi(S^{n-1}) = 1 + (-1)^{n-1}
+cut norm ||W_A - W_B^psi|| = 0.000e+00; plain ||W_A - W_B|| = 0.0435
+[PASS] (iv) delta_box(W_A, W_{PAP^T}) = 0 via explicit relabelling
+[PASS] (iv) plain cut norm without relabelling is > 0 (relabelling matters)
+control: orthogonally similar C (same spectrum): delta_box >= |edge density diff| = 0.0367
+[PASS] negative control: same spectrum but delta_box > 0 for a non-permutation conjugate
+failures: 0

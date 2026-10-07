@@ -56,3 +56,42 @@ Rule of thumb: if a wrong answer would be caught by the next automatic check (co
 - Git Bash heredocs collapse `\\`: never write LaTeX through heredocs.
 - A stray `bisect.py` in the session scratchpad can shadow the stdlib: run Python from the project folders.
 - `taskkill /IM python.exe` kills every Python process on the machine; do not use it.
+
+## 5b. Publication pipeline (learned 2026-10-06)
+1. **Correctness:**
+   - blind review (layer 1);
+   - correction by another session;
+   - layer 2.
+
+   Any new proof written by a corrector gets its own re-check (layer 2b). On 2026-10-06 a second round found a medium-severity (M) gap in about half the papers.
+2. **Referee simulation**, separate from correctness. A fresh agent writes a referee report that asks: is it enough for the target journal, what is the closest prior work, and what would strengthen it (ranked). Do this *before* polishing the text. The strengthening results, such as a sparse regime or a sharp rate, then go through step 1.
+3. **Text gate.** Title, headings, abstract, tables, the version note and the Zenodo description are checked like theorems. Use the standard declarations block `_staging/DECLARACOES_PADRAO_ARTIGOS.tex`. Never claim formal verification for placeholder Lean.
+4. **Release bundle** in `releases/AAAA-MM-DD/<work>/`:
+   - the PDF;
+   - `VERSION_NOTE.md`;
+   - `ZENODO_DESCRIPTION.md`;
+   - a top-level `LEIA-ME.md` with the upload steps.
+
+   The author uploads; Claude never does.
+5. **Keep the source of every published version.** The .tex of two published versions was lost, and the source had to be rebuilt from the PDF. From now on, copy the exact .tex of each upload into the release bundle and tag it in git when the author commits.
+6. **Backups before editing** go to `_arquivo/backup_tex_AAAA-MM-DD/` with a `MANIFESTO.tsv` line. Write the line with Python, not `printf`, because escapes corrupted it twice. Leave no `_backup` copies in working folders.
+
+## 6. Processes and memory (mandatory; added 2026-10-02 after an orphaned 2.7 GB job)
+Every agent prompt that runs Python must include these rules:
+1. **Every long job has a time limit**: `timeout` on the command or a time limit inside the script, at most ~20 min. Save intermediate results to disk.
+2. **Background jobs:**
+   - write down the PID when starting;
+   - **before the final report, wait for the job to finish or kill it by PID** (`Stop-Process -Id <PID>`);
+   - never hand back with a job still running.
+3. **Memory:**
+   - modest meshes and grids;
+   - at most one heavy job at a time;
+   - estimate the memory before running (array size × 8 bytes);
+   - above ~2 GB, reduce the problem or split it.
+4. **Never** `taskkill /IM python.exe` or anything else that kills by name.
+6. **Read the sources (author's authorization, 2026-10-07, all projects).** When a text matters for a claim, a proof, a novelty check or a citation, download the open-access PDF (arXiv, the author's page, the publisher's OA copy, a repository) into the project's `biblioteca/` folder and read the relevant theorem or section; an abstract is not a source. Put this permission in every literature, verification or citation prompt.
+5. **No personal data to external services** (added 2026-10-06 after an agent sent the author's e-mail to the Unpaywall API): never put the author's e-mail, name or other identifiers in API queries, headers or URLs (Unpaywall, Crossref `mailto`, etc.) unless the author has approved that service. A paywalled source is reported as "not accessible"; the author fetches it through CAPES.
+
+The orchestrator:
+- after each agent finishes, runs `python _staging/processos_orfaos.py` (lists Python processes older than 45 min in project folders) and kills orphans by PID with `--matar`;
+- the hourly check does the same.

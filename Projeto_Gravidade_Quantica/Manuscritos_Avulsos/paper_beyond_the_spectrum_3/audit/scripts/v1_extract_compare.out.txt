@@ -1,0 +1,95 @@
+warning: The `fitz` API is deprecated and will be removed in future. Use `import pymupdf` instead.
+trilogy pages 59 vol3 pages 11
+pages mentioning Vol III title: [48, 49, 50, 52, 54, 56, 58]
+word counts: trilogy-vol3 3283, vol3.pdf 3283, tex 3059
+similarity trilogy-vol3 vs vol3.pdf: 1.0000
+similarity vol3.pdf vs tex: 0.9145
+similarity trilogy-vol3 vs tex: 0.9145
+NEG CONTROL vol3.pdf vs vol1.pdf: 0.0512
+trilogy OBL tags: 21 OBL-001 OBL-021
+vol3pdf OBL tags: 21 OBL-001 OBL-021
+tex OBL tags: 21 OBL-001 OBL-021
+--- diff blocks vol3.pdf -> tex (non-equal, first 80) ---
+delete BEYOND THE SPECTRUM III HIGHER INVARIANTS BIPARTITE KERNELS AND NON EQUILIBRIUM GEOMETRY FUNCTIONAL REALIZATIONS REINALDO SILVA FILHO Abstract  ==>  
+replace trices  ==>  matrices
+replace gener alized  ==>  generalized
+delete cEH  ==>  
+delete cHZ  ==>  
+replace invari ants  ==>  invariants
+replace Symn  ==>  Sym
+replace theo rem  ==>  theorem
+delete limp  ==>  
+delete log  ==>  
+delete log  ==>  
+replace continu ous  ==>  continuous
+replace Hsupp ker  ==>  supp
+delete log log  ==>  
+replace Contents Introduction and the Higher Categorical Frontier Symplectic and Floer Invariants Functional Sublevel Sets Microlocal Sheaves and Stratified Rank Charac  ==>  SECTION
+delete Date September REINALDO SILVA FILHO  ==>  
+delete det  ==>  
+replace lift ing  ==>  lifting
+replace Dgmk  ==>  Dgm
+delete cEH  ==>  
+delete cHZ  ==>  
+replace Symn  ==>  Sym
+delete log  ==>  
+insert   ==>  SECTION
+delete dpj dqj  ==>  
+delete lim  ==>  
+delete minx  ==>  
+delete BEYOND THE SPECTRUM III  ==>  
+delete max sup max min inf min Theorem  ==>  
+delete min  ==>  
+delete cEH  ==>  
+delete min max cEH min min Proof  ==>  
+delete min min  ==>  
+delete cEH  ==>  
+delete minI maxI  ==>  
+replace Ein Eout  ==>  out
+delete Ein  ==>  
+delete rmin min max  ==>  
+replace Eout  ==>  out
+delete Rmax min min  ==>  
+replace cEH Ein cEH cEH Eout  ==>  out
+delete min  ==>  
+delete min min max  ==>  
+delete max min min  ==>  
+delete Proposition  ==>  
+delete cHZ  ==>  
+delete cHZ cHZ inf pdq  ==>  
+delete Proof  ==>  
+delete cHZ  ==>  
+delete Theorem  ==>  
+delete Proof  ==>  
+delete maxx REINALDO SILVA FILHO  ==>  
+insert   ==>  SECTION
+replace Symn Definition  ==>  Sym
+replace Symn  ==>  Sym
+delete Proposition  ==>  
+replace Symn  ==>  Sym
+replace Symn  ==>  Sym
+delete Proof  ==>  
+replace Symn  ==>  Sym
+replace submani folds  ==>  submanifolds
+delete Lemma  ==>  
+delete det  ==>  
+delete Proof  ==>  
+delete Theorem  ==>  
+delete Proof  ==>  
+insert   ==>  SECTION
+delete inf  ==>  
+delete BEYOND THE SPECTRUM III Definition  ==>  
+delete inf Lemma  ==>  
+delete Proof  ==>  
+delete Theorem  ==>  
+delete lim inf  ==>  
+delete dHd  ==>  
+delete Proof  ==>  
+insert   ==>  KawohlFridman
+delete limp  ==>  
+delete Theorem  ==>  
+delete dgA  ==>  
+delete Proof  ==>  
+total non-equal blocks 169
+--- diff blocks trilogy-vol3 -> vol3.pdf ---
+total non-equal blocks 0

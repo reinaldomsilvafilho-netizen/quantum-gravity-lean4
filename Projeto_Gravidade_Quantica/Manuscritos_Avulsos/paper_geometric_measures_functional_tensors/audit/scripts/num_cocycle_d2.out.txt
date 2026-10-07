@@ -1,0 +1,23 @@
+N=256
+   deg=+0.9995  antisym int=+4.1868 (4pi/3*deg=+4.1866)  tau_2 ~ -(1/2pi)*sym = +0.00000
+   deg=+0.9995  antisym int=+4.1866 (4pi/3*deg=+4.1866)  tau_2 ~ -(1/2pi)*sym = -0.01736
+   deg=+0.9995  antisym int=+4.1866 (4pi/3*deg=+4.1866)  tau_2 ~ -(1/2pi)*sym = -0.01817
+   deg=+0.9995  antisym int=+4.1866 (4pi/3*deg=+4.1866)  tau_2 ~ -(1/2pi)*sym = +0.02080
+   deg=+0.9995  antisym int=+4.1866 (4pi/3*deg=+4.1866)  tau_2 ~ -(1/2pi)*sym = -0.00002
+   spread of tau_2 over rotations (same degree): 0.0390 ; spread of degree: 3.33e-16
+N=512
+   deg=+0.9999  antisym int=+4.1883 (4pi/3*deg=+4.1883)  tau_2 ~ -(1/2pi)*sym = +0.00000
+   deg=+0.9999  antisym int=+4.1882 (4pi/3*deg=+4.1883)  tau_2 ~ -(1/2pi)*sym = -0.01736
+   deg=+0.9999  antisym int=+4.1882 (4pi/3*deg=+4.1883)  tau_2 ~ -(1/2pi)*sym = -0.01817
+   deg=+0.9999  antisym int=+4.1882 (4pi/3*deg=+4.1883)  tau_2 ~ -(1/2pi)*sym = +0.02080
+   deg=+0.9999  antisym int=+4.1882 (4pi/3*deg=+4.1883)  tau_2 ~ -(1/2pi)*sym = -0.00002
+   spread of tau_2 over rotations (same degree): 0.0390 ; spread of degree: 0.00e+00
+N=1024
+   deg=+1.0000  antisym int=+4.1887 (4pi/3*deg=+4.1887)  tau_2 ~ -(1/2pi)*sym = +0.00000
+   deg=+1.0000  antisym int=+4.1887 (4pi/3*deg=+4.1887)  tau_2 ~ -(1/2pi)*sym = -0.01736
+   deg=+1.0000  antisym int=+4.1887 (4pi/3*deg=+4.1887)  tau_2 ~ -(1/2pi)*sym = -0.01817
+   deg=+1.0000  antisym int=+4.1887 (4pi/3*deg=+4.1887)  tau_2 ~ -(1/2pi)*sym = +0.02080
+   deg=+1.0000  antisym int=+4.1887 (4pi/3*deg=+4.1887)  tau_2 ~ -(1/2pi)*sym = -0.00002
+   spread of tau_2 over rotations (same degree): 0.0390 ; spread of degree: 0.00e+00
+NEG CTRL constant map: sym=0
+failures=0

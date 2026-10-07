@@ -1,0 +1,791 @@
+\documentclass[11pt,a4paper,reqno]{amsart}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath,amssymb,amsfonts,amsthm,mathtools}
+\usepackage[dvipsnames]{xcolor}
+\usepackage{geometry}
+\usepackage{enumitem}
+\usepackage{cite}
+\usepackage{hyperref}
+
+\geometry{
+  top=3cm,
+  bottom=3cm,
+  left=2.8cm,
+  right=2.8cm,
+  headheight=14pt
+}
+
+\hypersetup{
+  colorlinks=true,
+  linkcolor=NavyBlue,
+  citecolor=Mahogany,
+  urlcolor=TealBlue,
+  pdftitle={Quantum Fisher Geometry of Continuous Matrix Product State Fields and Lorentzian Cylinders}
+}
+
+% --- Theorem environments ---
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{example}[theorem]{Example}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{problem}[theorem]{Open problem}
+
+\numberwithin{equation}{section}
+
+% --- Notation ---
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\Tr}{\mathrm{Tr}}
+\newcommand{\End}{\mathrm{End}}
+\newcommand{\QFI}{\mathrm{QFI}}
+\newcommand{\HS}{\mathrm{HS}}
+\newcommand{\Path}{\mathbf{Path}_{\mathcal{M}}}
+\newcommand{\Cyl}{\mathbf{Cyl}_{\mathcal{M}}}
+\newcommand{\Dens}{\mathcal{D}_\chi}
+
+\begin{document}
+
+\title[Quantum Fisher Geometry of cMPS Fields and Lorentzian Cylinders]{Quantum Fisher Geometry of Continuous Matrix Product State Fields and Lorentzian Cylinders: A Moore-Path Functor and Obstructions to a Cobordism Functor}
+
+\author{Reinaldo M. Silva-Filho}
+\address{Master's student, Postgraduate Program in Statistics and Agricultural Experimentation (PPGEE/DES), Department of Statistics (DES), Federal University of Lavras (UFLA), Lavras, MG, Brazil}
+\email{reinaldo.filho1@estudante.ufla.br}
+
+\date{\today}
+
+\begin{abstract}
+We examine the proposal of reading a spatial Riemannian metric off the quantum Fisher information (QFI) metric of a smooth field of continuous matrix product states (cMPS) on a compact 3-manifold, and a Lorentzian metric off paths of such fields, with a symmetric monoidal functor to 4-dimensional spacetime cobordisms as the goal. We prove the following. (i) The QFI metric of a projectively immersed unit-vector field is a smooth Riemannian metric, invariant under local phases, fixed unitaries and complex conjugation, and, for cMPS fields, under pointwise gauge transformations of the generators. (ii) For a matrix-valued scalar field, the ADM energy and momentum densities are $\tfrac12\mathrm{Re}\,\Tr(\pi^\dagger\pi+h^{ij}\partial_i\psi^\dagger\partial_j\psi)+\tfrac12\Tr V$ and $-\mathrm{Re}\,\Tr(\pi^\dagger\partial_i\psi)$, and $T_{\mu\nu}k^\mu k^\nu=\|k^\mu\partial_\mu\Psi\|_{\HS}^2\ge 0$ for every null $k$. (iii) The entropy-rate lapse is smooth wherever the bond density matrix has locally constant rank, and it can diverge where the rank changes. (iv) On Moore paths with sitting instants, the construction is a functor into a category of Lorentzian cylinders, and solutions of the Einstein equations form a subcategory. Explicit counterexamples show that the image metrics need not solve the Einstein equations, that the assignment is not invariant under reparametrization, that gradient-flow paths modulo reparametrization do not form a category, and that a category of Lorentzian cobordisms up to isometry has no identities. A functor to Einstein cobordisms and its monoidal and sewing properties are stated as open problems.
+\end{abstract}
+
+\maketitle
+
+\tableofcontents
+
+% =========================================================================
+\section{Introduction}
+\label{sec:intro}
+% =========================================================================
+
+Tensor-network approaches to emergent spacetime read geometric data off entanglement data; the Ryu--Takayanagi formula \cite{ryu2006holographic} is the guiding example, and related proposals are reviewed below. This paper belongs to the programme of the monograph \cite{silvafilho2026book} and asks a sharper, categorical question: is there a functorial bridge from continuous tensor manifolds to 4-dimensional spacetime cobordisms, in the sense of the functorial axioms of topological quantum field theory \cite{atiyah1988topological}? Concretely, one assigns to a smooth field $x\mapsto\mathcal{T}(x)$ of continuous matrix product states (cMPS) \cite{verstraete2010continuous,haegeman2013calculus} on a compact 3-manifold $\mathcal{M}$ the spatial metric $h=g^{\QFI}(\mathcal{T})$, and to a path of such fields the Lorentzian metric in the Arnowitt--Deser--Misner (ADM) form \cite[Sec.~3]{adm2008},~\cite[Ch.~4]{gourgoulhon2012}
+\begin{equation}\label{eq:adm}
+    g=-N^2\,dt^2+h_{ij}(t)\,(dx^i+N^i dt)(dx^j+N^j dt)
+\end{equation}
+on $\mathcal{M}\times[0,L]$, with lapse $N$ built from the rate of change of the bond entanglement entropy and shift $N^i$ built from the cMPS generators.
+
+\subsection*{What is proved}
+\begin{enumerate}[label=(\roman*)]
+    \item The QFI metric of a projectively immersed unit-vector field is a smooth Riemannian metric with the invariances listed in Proposition~\ref{prop:qfi}; cMPS fields are invariant under pointwise gauge transformations (Lemma~\ref{lem:gauge}, Corollary~\ref{cor:gauge}).
+    \item For a matrix-valued scalar field, the ADM densities and the null energy identity hold (Propositions~\ref{prop:densities} and~\ref{prop:nec}).
+    \item The entropy-rate lapse is smooth under a constant-rank hypothesis and fails to be smooth without it (Proposition~\ref{prop:lapse}); the image metric is Lorentzian (Proposition~\ref{prop:lorentz}).
+    \item On Moore paths with sitting instants the construction is a functor $\mathcal{F}:\Path\to\Cyl$ (Theorem~\ref{thm:functor}). Paths whose image solves the Einstein equations form a subcategory (Corollary~\ref{cor:einstein-sub}).
+\end{enumerate}
+
+\subsection*{What fails, and what is open}
+Theorem~\ref{thm:functor} is close to tautological: it says nothing about the Einstein equations, and Example~\ref{ex:frw} shows that the image of a path whose endpoints satisfy the vacuum constraints can violate them in the interior. Section~\ref{sec:obstructions} records further obstructions with counterexamples: reparametrization classes (Propositions~\ref{prop:cov-nogo} and~\ref{prop:reparam}), gradient-flow morphisms (Proposition~\ref{prop:gradient}), the absence of identities among Lorentzian cobordisms up to isometry (Proposition~\ref{prop:noid}), and the monoidal and duality structures (Remark~\ref{rem:monoidal}). A functor into Einstein cobordisms, its monoidal structure, duals and the sewing correspondence are formulated as open problems in Section~\ref{sec:open}.
+
+\subsection*{Related work}
+Metrics on manifolds of quantum states defined from the Hilbert-space structure go back to Provost and Vall\'ee \cite{provost1980}. For pure states the quantum Fisher information is four times the Fubini--Study metric \cite[Thm.~2.5 and Sec.~2.4.1]{liu2020qfi}. For density operators, Braunstein and Caves define a Riemannian metric from statistical distinguishability \cite{braunstein1994}; Uhlmann's transition probability extends the pure-state overlap to states of a $*$-algebra \cite{uhlmann1976}; and Petz constructs and characterizes the monotone metrics on matrix spaces \cite{petz1996}, a family to which all versions of the QFI belong \cite[Sec.~2.1]{liu2020qfi}. See \cite{amari2000,liu2020qfi} for surveys. For uniform matrix product states, the parameter space is a principal fibre bundle over the manifold of states, whose gauge redundancy is the fibre, and the induced Hilbert-space metric makes the base a K\"ahler manifold \cite{haegeman2014geometry}. For cMPS, the gauge freedom and the tangent vectors are worked out in \cite{haegeman2013calculus}, the relativistic and fermionic setting in \cite{haegeman2010variational}, and variational optimization in inhomogeneous potentials in \cite{tuybens2022}. Geometry has been read off quantum states in several other ways: from the connectivity of spacetime and entanglement \cite{vanraamsdonk2010}; from entanglement renormalization \cite{swingle2012} and its continuum version, cMERA \cite{haegeman2013cmera}, for which a metric in the holographic direction is proposed in \cite{nozaki2012}; from the quantum information metric, whose gravity dual is argued to be approximately the volume of a maximal time slice \cite{miyaji2015}; from Fubini--Study complexity geometry \cite{erdmenger2023}; and from mutual information on an abstract Hilbert space \cite{cao2017}. Here, in contrast, a spatial metric is read off the QFI of a field of states over a fixed 3-manifold, and a time direction off a path of such fields. On the categorical side, Atiyah's axioms \cite{atiyah1988topological} follow Segal's approach to conformal field theory \cite{segal2004}. The higher-categorical programme and the cobordism hypothesis are developed in \cite{baezdolan1995,lurie2009}, and the analogy between the category of cobordisms and the category of Hilbert spaces, both $*$-categories with a non-cartesian monoidal structure, is discussed in \cite{baez2006quandaries}. Paths with sitting instants, composed by concatenation, define path groupoids in \cite[Def.~2.1]{schreiber2009}. Paths of variable length (Moore paths) form a category under addition of paths, with the zero paths as identities \cite[Sec.~6.1, Ex.~1]{brown2006}.
+
+\subsection*{Conventions}
+Signature $(-,+,+,+)$, units $c=\hbar=1$, coordinates measured in a fixed unit of length. $\End(\C^\chi)$ carries the Hilbert--Schmidt norm $\|A\|_{\HS}^2=\Tr(A^\dagger A)$. $\Dens$ denotes the set of $\chi\times\chi$ density matrices. $S_{\mathrm{vN}}(\rho)=-\Tr\rho\log\rho$.
+
+% =========================================================================
+\section{Continuous matrix product state fields and the QFI metric}
+\label{sec:qfi}
+% =========================================================================
+
+Throughout, $\mathcal{M}$ is a compact, connected, oriented smooth 3-manifold and $\mathcal{H}$ a separable complex Hilbert space.
+
+\begin{definition}[Projectively immersed field]\label{def:field}
+A \emph{unit-vector field} is a smooth map $\mathcal{T}:\mathcal{M}\to\mathcal{H}$ with $\|\mathcal{T}(x)\|=1$. Let $P_x=I-|\mathcal{T}(x)\rangle\langle\mathcal{T}(x)|$. The field is \emph{projectively immersed} if the projected differential $\bar d\mathcal{T}(x)=P_x\circ d\mathcal{T}(x):T_x\mathcal{M}\to\mathcal{H}$ is injective for every $x$.
+\end{definition}
+
+\begin{definition}[QFI metric]
+The QFI metric of a unit-vector field is
+\begin{equation}\label{eq:qfi}
+    g^{\QFI}_{ij}(x)=4\,\mathrm{Re}\,\big\langle \partial_i\mathcal{T}(x),\,P_x\,\partial_j\mathcal{T}(x)\big\rangle,
+\end{equation}
+that is, four times the pull-back of the Fubini--Study metric under $x\mapsto[\mathcal{T}(x)]$. This is the pure-state quantum Fisher information matrix \cite[Thm.~2.5, Eqs.~(25) and~(74)]{liu2020qfi}.
+\end{definition}
+
+\begin{proposition}[QFI metric]\label{prop:qfi}
+Let $\mathcal{T}$ be a unit-vector field and $h=g^{\QFI}(\mathcal{T})$.
+\begin{enumerate}[label=(\alph*)]
+    \item $h$ is a smooth symmetric 2-tensor with $h(v,v)=4\|\bar d\mathcal{T}(v)\|^2\ge 0$. It is positive definite at every point if and only if $\mathcal{T}$ is projectively immersed.
+    \item For every smooth $\lambda:\mathcal{M}\to U(1)$, $g^{\QFI}(\lambda\mathcal{T})=h$. Hence $h$ depends only on the ray map $x\mapsto[\mathcal{T}(x)]$.
+    \item For every fixed unitary $U$ on $\mathcal{H}$, $g^{\QFI}(U\mathcal{T})=h$. For complex conjugation $J$ in a fixed orthonormal basis, $g^{\QFI}(J\mathcal{T})=h$.
+\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+(a) Smoothness follows from that of $\mathcal{T}$. Since $P_x$ is an orthogonal projector, $\langle u,P_xw\rangle=\langle P_xu,P_xw\rangle$, and $\mathrm{Re}\langle a,b\rangle=\mathrm{Re}\langle b,a\rangle$; so $h$ is symmetric and $h(v,v)=4\|P_x d\mathcal{T}(v)\|^2$. This vanishes for some $v\neq0$ exactly when $\bar d\mathcal{T}(x)$ is not injective.
+
+(b) $\partial_i(\lambda\mathcal{T})=\lambda\,\partial_i\mathcal{T}+(\partial_i\lambda)\mathcal{T}$. The projector built from $\lambda\mathcal{T}$ equals $P_x$ because $|\lambda|=1$, and $P_x\mathcal{T}=0$. Hence $P_x\partial_i(\lambda\mathcal{T})=\lambda P_x\partial_i\mathcal{T}$, and $|\lambda|=1$ gives the claim. Two smooth unit lifts of the same ray map differ by $\lambda(x)=\langle\mathcal{T}(x),\mathcal{T}'(x)\rangle$, which is smooth with $|\lambda|=1$.
+
+(c) The projector of $U\mathcal{T}$ is $UP_xU^\dagger$, so $P^{U}\partial_i(U\mathcal{T})=UP_x\partial_i\mathcal{T}$ and inner products are preserved. $J$ is antiunitary and real-linear, so $\partial_i(J\mathcal{T})=J\partial_i\mathcal{T}$, the projector of $J\mathcal{T}$ is $JP_xJ^{-1}$, and $\langle Ju,Jw\rangle=\overline{\langle u,w\rangle}$ has the same real part.
+\end{proof}
+
+Part~(c) shows that $\mathcal{T}\mapsto g^{\QFI}(\mathcal{T})$ is far from injective, even modulo phases.
+
+\subsection*{cMPS fields}
+For $L>0$ and $Q,R\in\End(\C^\chi)$, the translation-invariant cMPS on a ring of length $L$ \cite{verstraete2010continuous} is the bosonic Fock-space vector
+\begin{equation}\label{eq:cmps}
+    |\chi_L(Q,R)\rangle=\sum_{n\ge0}\int_{0<s_1<\dots<s_n<L}\varphi_n(s_1,\dots,s_n)\,\hat\psi^\dagger(s_1)\cdots\hat\psi^\dagger(s_n)|\Omega\rangle\,ds_1\cdots ds_n,
+\end{equation}
+with $\varphi_n=\Tr\big[e^{Qs_1}R\,e^{Q(s_2-s_1)}R\cdots R\,e^{Q(L-s_n)}\big]$. This is the expansion of $\Tr_{\mathrm{aux}}\big[\mathcal{P}\exp\int_0^L(Q\otimes 1+R\otimes\hat\psi^\dagger(s))\,ds\big]|\Omega\rangle$ given in \cite{verstraete2010continuous}.
+
+\begin{lemma}[Gauge invariance]\label{lem:gauge}
+For every invertible $X\in\End(\C^\chi)$,
+\[
+|\chi_L(XQX^{-1},XRX^{-1})\rangle=|\chi_L(Q,R)\rangle .
+\]
+\end{lemma}
+
+\begin{proof}
+$e^{XQX^{-1}s}=Xe^{Qs}X^{-1}$, so each product inside $\varphi_n$ becomes $X(\cdots)X^{-1}$, and the trace is unchanged by cyclicity. All coefficients $\varphi_n$ agree, hence so do the vectors. This invariance is stated in \cite{verstraete2010continuous}; gauge transformations that depend on the position along the line are treated in \cite[Sec.~VI, Eq.~(55)]{haegeman2013calculus}.
+\end{proof}
+
+\begin{definition}[cMPS field]\label{def:cmps-field}
+A \emph{cMPS field} of bond dimension $\chi$ is a pair of smooth maps $Q,R:\mathcal{M}\to\End(\C^\chi)$ such that $|\chi_L(Q(x),R(x))\rangle\neq0$ for all $x$, the normalized vector $\mathcal{T}(x)=|\chi_L(Q(x),R(x))\rangle/\||\chi_L(Q(x),R(x))\rangle\|$ is a smooth map into Fock space, and $\mathcal{T}$ is projectively immersed. The smoothness of $\mathcal{T}$ is part of the hypothesis.
+\end{definition}
+
+\begin{corollary}\label{cor:gauge}
+If $(Q,R)$ is a cMPS field and $X:\mathcal{M}\to GL(\chi,\C)$ is any map for which $(XQX^{-1},XRX^{-1})$ is smooth, then both pairs define the same field $\mathcal{T}$, hence the same metric $g^{\QFI}$.
+\end{corollary}
+
+\begin{proof}
+Apply Lemma~\ref{lem:gauge} at each $x$.
+\end{proof}
+
+\begin{remark}\label{rem:gauge-matter}
+The generators themselves are not gauge invariant. In particular, declaring the matter field to be $\psi:=R$ does not define a function of the state: $R$ changes to $XRX^{-1}$. In Section~\ref{sec:moore} the matter field is therefore an independent datum. The normalization used in \cite{verstraete2010continuous} is $Q=-\tfrac12R^\dagger R-iK$ with $K$ Hermitian, and such a $Q$ is anti-Hermitian only when $R=0$.
+\end{remark}
+
+Projectively immersed fields need not exist: the existence depends on $\dim\mathcal{H}$.
+
+\begin{lemma}[Existence of projectively immersed fields]\label{lem:existence}
+\begin{enumerate}[label=(\alph*)]
+    \item If $\dim_\C\mathcal{H}\le2$, no unit-vector field $\mathcal{M}\to\mathcal{H}$ is projectively immersed.
+    \item If $\iota:\mathcal{M}\to\R^m$ is a smooth immersion and $\dim_\C\mathcal{H}\ge m+1$, then $\mathcal{M}$ carries a projectively immersed unit-vector field. Such an immersion exists for some $m$, so a projectively immersed field exists whenever $\dim\mathcal{H}=\infty$.
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+(a) If $\mathcal{H}=0$ there is no unit vector. Otherwise the ray map $x\mapsto[\mathcal{T}(x)]$ takes values in the projective space $\mathbb{P}(\mathcal{H})$, of real dimension $0$ or $2$, and $h$ is four times the pull-back of the Fubini--Study metric, which is positive definite on $\mathbb{P}(\mathcal{H})$. So $h(v,v)=0$ for every $v$ in the kernel of the differential of the ray map, which is non-zero at every $x$ because $\dim\mathcal{M}=3>2$. By Proposition~\ref{prop:qfi}(a), $\mathcal{T}$ is not projectively immersed.
+
+(b) Let $e_0,\dots,e_m$ be orthonormal in $\mathcal{H}$, put $f(x)=e_0+\sum_{k=1}^m\iota_k(x)e_k$ and $\mathcal{T}=f/\|f\|$; this is smooth because $\|f\|\ge1$. Since $P_xf(x)=0$, we get $P_x\,d\mathcal{T}(v)=P_x\,df(v)/\|f\|$ with $df(v)=\sum_k d\iota_k(v)e_k$. If $P_x\,df(v)=0$, then $df(v)=c\,\mathcal{T}(x)$ for some $c\in\C$; the $e_0$-component of $df(v)$ is $0$ and that of $\mathcal{T}(x)$ is $1/\|f\|\neq0$, so $c=0$, hence $d\iota(v)=0$ and $v=0$. For the second claim, cover the compact $\mathcal{M}$ by finitely many charts $\varphi_k:U_k\to\R^3$, $k=1,\dots,K$, and choose smooth $\beta_k:\mathcal{M}\to[0,1]$ with support in $U_k$ such that the sets $\{\beta_k=1\}$ cover $\mathcal{M}$. Then $\iota=(\beta_1\varphi_1,\dots,\beta_K\varphi_K):\mathcal{M}\to\R^{3K}$, each component extended by $0$, is smooth. If $\beta_k(x)=1$, then $x$ is a maximum of $\beta_k$, so $d\beta_k(x)=0$ and the differential of the $k$-th block at $x$ is $d(\beta_k\varphi_k)(x)=\varphi_k(x)\,d\beta_k(x)+d\varphi_k(x)=d\varphi_k(x)$, which is injective. So $\iota$ is an immersion with $m=3K$.
+\end{proof}
+
+In particular, the data of Section~\ref{sec:moore} exist when $\dim\mathcal{H}=\infty$. Example~\ref{ex:frw} gives explicit data with $\mathcal{M}=T^3$ and $\dim\mathcal{H}=8$.
+
+% =========================================================================
+\section{Matter densities and the null energy identity}
+\label{sec:matter}
+% =========================================================================
+
+Let $g$ be a Lorentzian metric of the form~\eqref{eq:adm} on $\mathcal{M}\times I$, with $N>0$ and $h(t)$ Riemannian. Let $n^\mu=N^{-1}(1,-N^i)$ be the future unit normal to the slices; then $n_\mu=(-N,0,0,0)$. Let $\Psi:\mathcal{M}\times I\to\End(\C^\chi)$ be smooth, and let $V:\End(\C^\chi)\to\mathrm{Herm}(\C^\chi)$ be smooth. Put $X_{\mu\nu}=\mathrm{Re}\,\Tr(\partial_\mu\Psi^\dagger\partial_\nu\Psi)$, which is symmetric because $\Tr(B^\dagger A)=\overline{\Tr(A^\dagger B)}$, and define
+\begin{equation}\label{eq:tmunu}
+    T_{\mu\nu}[\Psi]=X_{\mu\nu}-\tfrac12 g_{\mu\nu}\big(g^{\alpha\beta}X_{\alpha\beta}+\Tr V(\Psi)\big).
+\end{equation}
+This is the Hilbert tensor $-2(-g)^{-1/2}\,\delta S/\delta g^{\mu\nu}$ of $S=-\tfrac12\int\sqrt{-g}\,\big(g^{\mu\nu}X_{\mu\nu}+\Tr V(\Psi)\big)\,d^4x$, by $\delta\sqrt{-g}=-\tfrac12\sqrt{-g}\,g_{\mu\nu}\delta g^{\mu\nu}$.
+
+\begin{proposition}[ADM densities]\label{prop:densities}
+On each slice let $\psi=\Psi|_{\Sigma_t}$ and $\pi=n^\mu\partial_\mu\Psi$. Then
+\begin{align}
+    \rho_{\mathrm{matt}}&:=n^\mu n^\nu T_{\mu\nu}=\tfrac12\Big(\mathrm{Re}\,\Tr(\pi^\dagger\pi)+h^{ij}\,\mathrm{Re}\,\Tr(\partial_i\psi^\dagger\partial_j\psi)+\Tr V(\psi)\Big),\label{eq:rho}\\
+    j_i&:=-n^\mu h_i{}^{\nu}T_{\mu\nu}=-\mathrm{Re}\,\Tr(\pi^\dagger\partial_i\psi).\label{eq:ji}
+\end{align}
+\end{proposition}
+
+\begin{proof}
+For the ADM metric, $g^{\alpha\beta}=-n^\alpha n^\beta+\gamma^{\alpha\beta}$ with $\gamma^{00}=\gamma^{0i}=0$ and $\gamma^{ij}=h^{ij}$. Hence $g^{\alpha\beta}X_{\alpha\beta}=-X_{nn}+h^{ij}X_{ij}$, where $X_{nn}=n^\mu n^\nu X_{\mu\nu}=\mathrm{Re}\,\Tr(\pi^\dagger\pi)$ because $n^\mu$ is real. Since $g_{\mu\nu}n^\mu n^\nu=-1$,
+\[
+n^\mu n^\nu T_{\mu\nu}=X_{nn}+\tfrac12\big(-X_{nn}+h^{ij}X_{ij}+\Tr V\big),
+\]
+which is~\eqref{eq:rho}. For~\eqref{eq:ji}: $h_i{}^\nu=\delta_i^\nu+n_in^\nu=\delta_i^\nu$ because $n_i=0$, and $g_{\mu i}n^\mu=n_i=0$. So $n^\mu h_i{}^\nu T_{\mu\nu}=n^\mu X_{\mu i}=\mathrm{Re}\,\Tr(\pi^\dagger\partial_i\psi)$.
+\end{proof}
+
+With the extrinsic curvature $K_{ij}=-\nabla_in_j=-\frac{1}{2N}(\partial_th_{ij}-\mathcal{L}_{\vec N}h_{ij})$, the constraints of the Einstein equations $G_{\mu\nu}+\Lambda g_{\mu\nu}=8\pi G_NT_{\mu\nu}$ read (cf.~\cite[Ch.~5]{gourgoulhon2012}, where $\Lambda=0$ and $G_N=1$)
+\begin{equation}\label{eq:constraints}
+    R[h]+K^2-K_{ij}K^{ij}-2\Lambda=16\pi G_N\rho_{\mathrm{matt}},\qquad \nabla_j(K^j{}_i-\delta^j_iK)=8\pi G_N j_i,
+\end{equation}
+with $\rho_{\mathrm{matt}}$ and $j_i$ as in Proposition~\ref{prop:densities}. In particular, the momentum density carries the minus sign of~\eqref{eq:ji}.
+
+\begin{proposition}[Null energy identity]\label{prop:nec}
+For every null vector $k$ ($g_{\mu\nu}k^\mu k^\nu=0$), every smooth $\Psi$ and every potential $V$,
+\[
+T_{\mu\nu}[\Psi]k^\mu k^\nu=\big\|k^\mu\partial_\mu\Psi\big\|_{\HS}^2\ge0 .
+\]
+\end{proposition}
+
+\begin{proof}
+The trace term in~\eqref{eq:tmunu} is multiplied by $g_{\mu\nu}k^\mu k^\nu=0$. Since $k$ is real, $k^\mu k^\nu X_{\mu\nu}=\mathrm{Re}\,\Tr\big((k^\mu\partial_\mu\Psi)^\dagger(k^\nu\partial_\nu\Psi)\big)=\|k^\mu\partial_\mu\Psi\|_{\HS}^2$.
+\end{proof}
+
+\begin{remark}\label{rem:nec}
+\begin{enumerate}[label=(\alph*)]
+    \item The identity holds for every configuration of this matter model. It is a property of the matter Lagrangian, not of any map from tensor networks. The null convergence condition $R_{\mu\nu}k^\mu k^\nu\ge0$, the geometric form of the null energy condition \cite[Sec.~2.1]{curiel2017}, follows only where the Einstein equations hold.
+    \item The null energy condition does not exclude closed timelike curves: G\"odel's rotating dust solution \cite{godel1949} has positive density, so $T_{\mu\nu}k^\mu k^\nu=\rho\,(u_\mu k^\mu)^2\ge0$, and it contains closed timelike curves.
+    \item For free and superrenormalizable bosonic quantum field theories, the quantum null energy condition $\langle T_{kk}\rangle\ge\frac{\hbar}{2\pi}S''/A$ (in the limit of vanishing area $A$, with $S''$ the second null variation of the entropy) is proved in \cite{bousso2016}. Proposition~\ref{prop:nec} is a classical statement and is not used to derive it.
+    \item If $U\in SU(\chi)$ is constant and $V(UAU^\dagger)=UV(A)U^\dagger$, then~\eqref{eq:rho} and~\eqref{eq:ji} are unchanged under $\psi\mapsto U\psi U^\dagger$, $\pi\mapsto U\pi U^\dagger$, by cyclicity of the trace. For an $x$-dependent $U$ the gradient terms change, since no gauge connection is present.
+\end{enumerate}
+\end{remark}
+
+% =========================================================================
+\section{Lapse, shift and the image metric}
+\label{sec:lapse}
+% =========================================================================
+
+\begin{definition}[Path of data]\label{def:path}
+Let $L>0$. A \emph{path of data} of length $L$ on $\mathcal{M}$ consists of smooth maps
+\[
+\mathcal{T}:\mathcal{M}\times[0,L]\to\mathcal{H},\quad Q,R,\Psi:\mathcal{M}\times[0,L]\to\End(\C^\chi),\quad \rho:\mathcal{M}\times[0,L]\to\Dens,
+\]
+such that each $\mathcal{T}(\cdot,t)$ is a projectively immersed unit-vector field and $\rho$ has constant rank. Fix constants $\sigma_0,\kappa_0>0$ with the dimension of $\partial_tS_{\mathrm{vN}}$. The \emph{image metric} is~\eqref{eq:adm} with
+\begin{align}
+    h_{ij}(t)&=g^{\QFI}_{ij}(\mathcal{T}(\cdot,t)),\qquad
+    N=\Big(\frac{(\partial_tS_{\mathrm{vN}}(\rho))^2+\sigma_0^2}{\kappa_0^2}\Big)^{1/4},\label{eq:lapse}\\
+    N^i&=h^{ij}\,\mathrm{Re}\,\Tr\big(\rho\,[Q,\partial_jQ]+R^\dagger\partial_jR\big).\label{eq:shift}
+\end{align}
+With these units $N$ is dimensionless.
+\end{definition}
+
+The data $\mathcal{T}$ and $(Q,R)$ are independent in this definition. The cMPS case is the special case in which $\mathcal{T}(\cdot,t)$ is the cMPS field of $(Q(\cdot,t),R(\cdot,t))$.
+
+\begin{proposition}[Lapse]\label{prop:lapse}
+\begin{enumerate}[label=(\alph*)]
+    \item Wherever $\partial_tS_{\mathrm{vN}}(\rho)$ exists, $N\ge\sqrt{\sigma_0/\kappa_0}>0$.
+    \item If $\rho:\mathcal{M}\times[0,L]\to\Dens$ is smooth and has locally constant rank, then $S_{\mathrm{vN}}\circ\rho$ and $N$ are $C^\infty$.
+    \item Without constant rank, (b) fails. For $\chi=2$ and $\rho(t)=\mathrm{diag}(1-t,t)$, $t\in[0,\tfrac12]$, which is smooth, the right derivative of $S_{\mathrm{vN}}$ at $t=0$ is $+\infty$, and $N(t)\to\infty$ as $t\to0^+$.
+\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+(a) $(u^2+\sigma_0^2)/\kappa_0^2\ge\sigma_0^2/\kappa_0^2$.
+
+(b) Fix $p_0$ and let $\lambda_*>0$ be the smallest non-zero eigenvalue of $\rho(p_0)$. By Weyl's inequality $|\lambda_k(A)-\lambda_k(B)|\le\|A-B\|$ and the constant rank, there is a neighbourhood $U$ of $p_0$ on which every eigenvalue of $\rho(p)$ is either $0$ or lies in $[\lambda_*/2,1]$. Let $\Gamma$ be the positively oriented circle with centre $(1+\lambda_*/4)/2$ and radius $(1-\lambda_*/4)/2+\lambda_*/8$. It lies in $\{\mathrm{Re}\,z>0\}$, crosses the real axis at $\lambda_*/8$ and $1+\lambda_*/8$, encloses $[\lambda_*/2,1]$, and stays at distance at least $\lambda_*/8$ from $\{0\}\cup[\lambda_*/2,1]$. Let $f(z)=-z\log z$ (principal branch), which is holomorphic on $\mathrm{Re}\,z>0$. With the convention $0\log0=0$ and $\Tr(z-\rho)^{-1}=\sum_k(z-\lambda_k)^{-1}$, Cauchy's formula gives, for $p\in U$,
+\[
+S_{\mathrm{vN}}(\rho(p))=\sum_{\lambda_k\neq0}f(\lambda_k)=\frac{1}{2\pi i}\oint_\Gamma f(z)\,\Tr\big(z-\rho(p)\big)^{-1}dz ,
+\]
+because the zero eigenvalues lie outside $\Gamma$. The integrand is $C^\infty$ in $p$, with all derivatives continuous on $U\times\Gamma$, so differentiation under the integral sign shows that $S_{\mathrm{vN}}\circ\rho$ is $C^\infty$ on $U$. Finally, $u\mapsto((u^2+\sigma_0^2)/\kappa_0^2)^{1/4}$ is real-analytic because $u^2+\sigma_0^2>0$.
+
+(c) $S(t)=-(1-t)\log(1-t)-t\log t$ and $S'(t)=\log\frac{1-t}{t}\to+\infty$. Then $N(t)\ge|\log\tfrac{1-t}{t}|^{1/2}/\sqrt{\kappa_0}\to\infty$.
+\end{proof}
+
+\begin{proposition}[Shift]\label{prop:shift}
+\begin{enumerate}[label=(\alph*)]
+    \item $\mathrm{Re}\,\Tr(R^\dagger\partial_jR)=\tfrac12\partial_j\|R\|_{\HS}^2$.
+    \item If $Q(x)$ is anti-Hermitian and $\rho(x)$ Hermitian, then $\mathrm{Re}\,\Tr(\rho[Q,\partial_jQ])=0$. This hypothesis fails in the normalization of Remark~\ref{rem:gauge-matter} unless $R=0$.
+\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+(a) $\partial_j\Tr(R^\dagger R)=\Tr(\partial_jR^\dagger R)+\Tr(R^\dagger\partial_jR)=2\,\mathrm{Re}\,\Tr(R^\dagger\partial_jR)$.
+(b) With $Q^\dagger=-Q$, $(\partial_jQ)^\dagger=-\partial_jQ$ and $\rho^\dagger=\rho$, we get $\overline{\Tr(\rho[Q,\partial_jQ])}=\Tr([Q,\partial_jQ]^\dagger\rho)=\Tr([\partial_jQ,Q]\rho)=-\Tr(\rho[Q,\partial_jQ])$. So the trace is purely imaginary.
+\end{proof}
+
+\begin{proposition}[Image metric]\label{prop:lorentz}
+For a path of data, the image metric~\eqref{eq:adm} is a smooth Lorentzian metric on $\mathcal{M}\times[0,L]$. Each slice $\mathcal{M}\times\{t\}$ is spacelike with induced metric $h(t)$.
+\end{proposition}
+
+\begin{proof}
+$h$ is smooth and positive definite by Proposition~\ref{prop:qfi}(a), so $h^{ij}$ is smooth; $N$ is smooth and positive by Proposition~\ref{prop:lapse}; and $N^i$ is smooth. In the frame $e_0=\partial_t-N^i\partial_i$, $e_i=\partial_i$, we have $g(e_0,e_0)=-N^2$, $g(e_0,e_i)=h_{ij}N^j-h_{ij}N^j=0$ and $g(e_i,e_j)=h_{ij}$. So the signature is $(-,+,+,+)$, and $h(t)$ is the induced metric.
+\end{proof}
+
+% =========================================================================
+\section{A Moore-path functor}
+\label{sec:moore}
+% =========================================================================
+
+\begin{definition}[Source category $\Path$]\label{def:pathcat}
+A \emph{datum} on $\mathcal{M}$ is $D=(\mathcal{T},Q,R,\rho,\psi)$, where $\mathcal{T}$ is a projectively immersed unit-vector field, $Q,R,\psi:\mathcal{M}\to\End(\C^\chi)$ are smooth, and $\rho:\mathcal{M}\to\Dens$ is smooth of constant rank. A morphism $D\to D'$ is either the formal identity $\mathrm{id}_D$, of length $0$ and only for $D'=D$, or a pair $(L,D(\cdot))$ with $L>0$ and $D(\cdot)$ a path of data of length $L$ (Definition~\ref{def:path}, with $\Psi(\cdot,t)=\psi(t)$) that has \emph{sitting instants}: for some $\varepsilon>0$, $D(t)=D$ for $t\in[0,\varepsilon]$ and $D(t)=D'$ for $t\in[L-\varepsilon,L]$. Composition is concatenation:
+\[
+(L_2,D_2)\circ(L_1,D_1)=(L_1+L_2,D_{12}),\qquad D_{12}(t)=\begin{cases}D_1(t),&t\le L_1,\\ D_2(t-L_1),&t\ge L_1,\end{cases}
+\]
+and $\mathrm{id}$ is a two-sided unit by definition. This combines Moore paths, which keep their length \cite[Secs.~3.4 and~6.1]{brown2006}, with the sitting instants of \cite[Def.~2.1]{schreiber2009}.
+\end{definition}
+
+\begin{lemma}\label{lem:category}
+$\Path$ is a category.
+\end{lemma}
+
+\begin{proof}
+$D_{12}$ agrees with $D_1$ on $[0,L_1]$ and with $D_2(\cdot-L_1)$ on $[L_1,L_1+L_2]$. On $(L_1-\varepsilon,L_1+\varepsilon)$, with $\varepsilon$ the smaller of the two sitting margins, it is constant. Hence it is smooth, every point has a neighbourhood on which it equals one of the given smooth paths, and it has sitting instants at both ends. The rank of $\rho$ is the same on both pieces, because they agree at $t=L_1$. Both bracketings of a triple composite are the same function on $[0,L_1+L_2+L_3]$, so composition is strictly associative. Units hold by definition.
+\end{proof}
+
+\begin{definition}[Target category $\Cyl$]\label{def:cyl}
+An object is $B=(h,n,X,\psi)$, where $h$ is a Riemannian metric on $\mathcal{M}$, $n>0$ is a smooth function, $X$ is a vector field and $\psi:\mathcal{M}\to\End(\C^\chi)$ is smooth. A morphism $B\to B'$ is either the formal identity or a pair $(L,B(\cdot))$ with $L>0$ and $B(\cdot)=(h(t),n(t),X(t),\Psi(t))$ a smooth path of such quadruples with sitting instants at $B$ and $B'$. Composition is concatenation. By the argument of Lemma~\ref{lem:category}, $\Cyl$ is a category. A non-identity morphism defines the Lorentzian metric $-n^2dt^2+h_{ij}(dx^i+X^idt)(dx^j+X^jdt)$ and a field $\Psi$ on $\mathcal{M}\times[0,L]$ (Proposition~\ref{prop:lorentz}). Composition corresponds to gluing $\mathcal{M}\times[0,L_1]$ and $\mathcal{M}\times[0,L_2]$ along $\mathcal{M}\times\{L_1\}$; the glued metric is smooth because it is $t$-independent near the junction.
+\end{definition}
+
+\begin{theorem}[Moore-path functor]\label{thm:functor}
+Fix $\sigma_0,\kappa_0>0$ and put $N_0=\sqrt{\sigma_0/\kappa_0}$. Define $\mathcal{F}$ on objects by
+\[
+\mathcal{F}(D)=\big(g^{\QFI}(\mathcal{T}),\,N_0,\,X_D,\,\psi\big),\qquad X_D^i=h^{ij}\,\mathrm{Re}\,\Tr\big(\rho[Q,\partial_jQ]+R^\dagger\partial_jR\big),
+\]
+and on morphisms by $\mathcal{F}(\mathrm{id}_D)=\mathrm{id}_{\mathcal{F}(D)}$ and $\mathcal{F}(L,D(\cdot))=(L,(h(t),N(t),N^i(t),\Psi(t)))$, with $h,N,N^i$ as in Definition~\ref{def:path}. Then $\mathcal{F}:\Path\to\Cyl$ is a functor.
+\end{theorem}
+
+\begin{proof}
+\emph{Well defined.} By Propositions~\ref{prop:qfi}, \ref{prop:lapse} and~\ref{prop:lorentz}, $h(t)$ is Riemannian, $N>0$, and all components are smooth. On $[0,\varepsilon]$ the path is constant, so $\partial_tS_{\mathrm{vN}}=0$, $N=N_0$, $h(t)=g^{\QFI}(\mathcal{T})$ and $N^i=X_D^i$. Thus the image sits at $\mathcal{F}(D)$, and likewise at $\mathcal{F}(D')$ near $t=L$.
+
+\emph{Identities.} They are preserved by definition.
+
+\emph{Composition.} Let $t\in[0,L_1)$. The set $[0,L_1)$ is open in $[0,L_1+L_2]$, and $D_{12}=D_1$ on it. Since $h$, $N^i$ and $\Psi$ depend only on the datum at time $t$, and $N$ only on its first time derivative at $t$, the image of $D_{12}$ at $t$ equals the image of $D_1$ at $t$. The same argument applies on $(L_1,L_1+L_2]$ with $D_2(\cdot-L_1)$. At $t=L_1$, both paths are constant on a neighbourhood, and both images equal $\mathcal{F}(D_1(L_1))=\mathcal{F}(D_2(0))$. Hence $\mathcal{F}(D_{12})$ is the concatenation of $\mathcal{F}(D_1)$ and $\mathcal{F}(D_2)$. Composites with identities are trivial.
+\end{proof}
+
+\begin{corollary}[Einstein subcategory]\label{cor:einstein-sub}
+Fix $\Lambda$ and $V$. The identities, together with the non-identity morphisms of $\Path$ whose image $(g,\Psi)$ satisfies $G_{\mu\nu}+\Lambda g_{\mu\nu}=8\pi G_NT_{\mu\nu}[\Psi]$ on $\mathcal{M}\times[0,L]$, form a subcategory. $\mathcal{F}$ maps it into the subcategory of $\Cyl$ defined by the same equations.
+\end{corollary}
+
+\begin{proof}
+The equations are local. By Theorem~\ref{thm:functor}, every point of a composite image has a neighbourhood isometric, with the same field, to an open subset of one of the two images.
+\end{proof}
+
+\begin{remark}[What Theorem~\ref{thm:functor} does not say]\label{rem:limits}
+\begin{enumerate}[label=(\alph*)]
+    \item The theorem uses no field equation. Example~\ref{ex:frw} shows that the Einstein subcategory of Corollary~\ref{cor:einstein-sub} is a proper subcategory. Whether it contains non-constant cMPS paths is Open problem~\ref{prob:einstein}.
+    \item $\mathcal{F}$ is not faithful whenever $\Path$ has a non-identity morphism, for instance whenever $\dim\mathcal{H}=\infty$ (Lemma~\ref{lem:existence}; a constant path of length $1$ is then a morphism $D\to D$). Let $(L,D(\cdot)):D\to D'$ have sitting margin $\varepsilon$, which we may take $<L/4$. Choose a smooth $b:[0,L]\to\R$ with $b=0$ on $[0,\varepsilon]\cup[L-\varepsilon,L]$ and $b(L/2)=\pi$, and replace $\mathcal{T}(x,t)$ by $\mathcal{T}'(x,t)=e^{ib(t)}\mathcal{T}(x,t)$, keeping all other data. Then $\mathcal{T}'$ is smooth, and $\mathcal{T}'(\cdot,t)$ is a projectively immersed unit-vector field with $g^{\QFI}(\mathcal{T}'(\cdot,t))=g^{\QFI}(\mathcal{T}(\cdot,t))$ for each $t$, by Proposition~\ref{prop:qfi}(b) with the constant phase $e^{ib(t)}$. The new path coincides with the old one on the sitting intervals, so it is a morphism in the same set $\mathrm{Hom}(D,D')$. Its image is the same, because $h$ is unchanged and $N$, $N^i$, $\Psi$ do not involve $\mathcal{T}$. It is a different morphism, because $\|\mathcal{T}'(x,L/2)-\mathcal{T}(x,L/2)\|=2$. More generally, $U(t)=e^{ib(t)H}$ with $H$ bounded and Hermitian leaves the endpoints and the image unchanged, by Proposition~\ref{prop:qfi}(c).
+    \item The base $\mathcal{M}$ is fixed, so every image is a cylinder $\mathcal{M}\times[0,L]$, and no change of topology occurs.
+    \item Morphisms are arbitrary smooth sitting paths, not gradient flows. A non-constant gradient-flow line cannot sit (Proposition~\ref{prop:gradient}).
+    \item Reversal $t\mapsto L-t$ is a dagger structure on $\Path$, and $\mathcal{F}$ intertwines it with reversal of quadruples in $\Cyl$, since $(\partial_tS_{\mathrm{vN}})^2$ is unchanged. The metric of the reversed quadruple is the time reverse of the original metric only when $X=0$: in the coordinate $t'=L-t$, the shift changes sign.
+\end{enumerate}
+\end{remark}
+
+% =========================================================================
+\section{Obstructions}
+\label{sec:obstructions}
+% =========================================================================
+
+\subsection{The Einstein equations are not implied}
+
+\begin{example}[Product-state data with flat QFI slices]\label{ex:frw}
+Let $\mathcal{M}=T^3=(\R/2\pi\mathbb{Z})^3$ and $\mathcal{H}=(\C^2)^{\otimes3}$, and let
+\[
+\mathcal{T}_\theta(x)=\bigotimes_{k=1}^3\big(\cos\theta\,|0\rangle+e^{ix_k}\sin\theta\,|1\rangle\big).
+\]
+For one factor $\phi(x)=\cos\theta|0\rangle+e^{ix}\sin\theta|1\rangle$, we have $\langle\partial\phi,\partial\phi\rangle=\sin^2\theta$ and $\langle\phi,\partial\phi\rangle=i\sin^2\theta$, so $4(\sin^2\theta-\sin^4\theta)=\sin^22\theta$, in agreement with \cite[Eq.~(29)]{liu2020qfi}. For a product state, the mixed terms $\langle\partial_i\mathcal{T},\partial_j\mathcal{T}\rangle-\langle\partial_i\mathcal{T},\mathcal{T}\rangle\langle\mathcal{T},\partial_j\mathcal{T}\rangle$ with $i\neq j$ vanish. Hence
+\[
+g^{\QFI}(\mathcal{T}_\theta)=\sin^2(2\theta)\,\delta_{ij},
+\]
+which is projectively immersed for $\theta\in(0,\pi/2)$.
+
+Take a smooth, non-constant $\theta:[0,L]\to(0,\pi/4]$ with sitting instants, and put $a(t)=\sin2\theta(t)$. Take $Q=R=0$, $\rho\equiv I/\chi$, $\Psi\equiv\psi_0$ constant and $V\equiv0$. This is a morphism of $\Path$. Its image is $g=-N_0^2dt^2+a(t)^2\delta_{ij}dx^idx^j$ with $T_{\mu\nu}=0$. For this metric $n^\mu n^\nu G_{\mu\nu}=3\dot a^2/(N_0^2a^2)$.
+
+Near the ends the slices are flat with $K=0$, so the vacuum constraints~\eqref{eq:constraints} hold there exactly when $\Lambda=0$. Since $g_{\mu\nu}n^\mu n^\nu=-1$,
+\[
+n^\mu n^\nu(G_{\mu\nu}+\Lambda g_{\mu\nu})=\frac{3\dot a^2}{N_0^2a^2}-\Lambda .
+\]
+With $\Lambda=0$, at any $t$ with $\dot a(t)\neq0$ this equals $3\dot a^2/(N_0^2a^2)\neq0=8\pi G_N n^\mu n^\nu T_{\mu\nu}$. For $\Lambda\neq0$ the constraints already fail near the ends. So the image solves the Einstein equations for no $\Lambda$, although for $\Lambda=0$ both endpoints satisfy the constraints.
+
+In this example $\mathcal{T}$ is not the cMPS field of $(Q,R)$; no cMPS realization is constructed here. The example shows that constraint-satisfying endpoints, together with the definitions of $h$, $N$, $N^i$ and $\Psi$, do not imply the evolution equations. Any Einstein property must be imposed as an additional condition on the path.
+\end{example}
+
+\subsection{Reparametrization classes}
+
+The construction is sometimes phrased on paths modulo reparametrization $\alpha\in\mathrm{Diff}^+([0,1])$ (smooth, $\alpha'>0$, fixing the endpoints). For $\phi_\alpha(x,s)=(x,\alpha(s))$, the pulled-back ADM metric has lapse $\alpha'(s)N(x,\alpha(s))$ and shift $\alpha'(s)N^i(x,\alpha(s))$.
+
+\begin{proposition}[No covariant positive lapse on constant paths]\label{prop:cov-nogo}
+Suppose a rule assigns to each path $P$ on $[0,1]$ a lapse $N_P$ such that $N_{P\circ\alpha}(x,s)=\alpha'(s)N_P(x,\alpha(s))$ for all $P$ and $\alpha\in\mathrm{Diff}^+([0,1])$. Then $N_P(x,s)=0$ for every constant path $P$ and every $s\in(0,1)$. If moreover $N_P(x,\cdot)$ is continuous on $[0,1]$, then $N_P\equiv0$.
+\end{proposition}
+
+\begin{proof}
+If $P$ is constant, then $P\circ\alpha=P$. Fix $s_0\in(0,1)$ and let $\alpha(s)=s+\tfrac12s(1-s)(s-s_0)$. Then $\alpha(0)=0$, $\alpha(1)=1$ and $\alpha(s_0)=s_0$. Moreover $\alpha'(s)=1+\tfrac12\big(-3s^2+2(1+s_0)s-s_0\big)$ is concave in $s$, so on $[0,1]$ it is at least $\min\{\alpha'(0),\alpha'(1)\}=\min\{1-\tfrac{s_0}{2},\tfrac{1+s_0}{2}\}\ge\tfrac12>0$; hence $\alpha\in\mathrm{Diff}^+([0,1])$. Also $\alpha'(s_0)=1+\tfrac12s_0(1-s_0)\neq1$. The covariance identity at $s_0$ gives $N_P(x,s_0)=\alpha'(s_0)N_P(x,s_0)$, so $N_P(x,s_0)=0$. Under the continuity hypothesis, letting $s_0\to0$ and $s_0\to1$ gives $N_P(x,0)=N_P(x,1)=0$.
+\end{proof}
+
+The lapse~\eqref{eq:lapse} is positive on constant paths, so it does not satisfy the covariance identity. The next result shows that the induced assignment on classes is not well defined. A covariant choice such as $|\partial_tS_{\mathrm{vN}}|/\kappa_0$ vanishes on constant paths, in agreement with Proposition~\ref{prop:cov-nogo}. Moore paths avoid the problem because they keep the length $L$ and take no quotient.
+
+\begin{proposition}[Dependence on the representative]\label{prop:reparam}
+Assume that $\mathcal{M}$ carries a projectively immersed unit-vector field, as it does whenever $\dim\mathcal{H}=\infty$ (Lemma~\ref{lem:existence}). Then for every $\sigma_0>0$ there are a path $P$ on $[0,1]$ and $\alpha\in\mathrm{Diff}^+([0,1])$ such that the image metrics of $P$ and $P\circ\alpha$ under Definition~\ref{def:path} have different total 4-volumes, so they are not isometric.
+\end{proposition}
+
+\begin{proof}
+Choose $\chi\ge2$ with $\log\chi>2\sigma_0+\tfrac12$, and put $c=2\sigma_0$. Let
+\[
+\rho(s)=\mathrm{diag}\Big(p(s),\tfrac{1-p(s)}{\chi-1},\dots,\tfrac{1-p(s)}{\chi-1}\Big).
+\]
+For $p\in(1/\chi,1)$ this is of full rank, and $dS/dp=\log\frac{1-p}{(\chi-1)p}<0$. So $p\mapsto S$ is a diffeomorphism of $(1/\chi,1)$ onto $(0,\log\chi)$, and we can choose $p(s)$ smooth with $S_{\mathrm{vN}}(\rho(s))=\tfrac14+cs$. Let $\mathcal{T}$ be the assumed projectively immersed field, and keep $\mathcal{T}$, $Q$, $R$ and $\Psi$ constant in $s$. Then $h$ and $N^i$ are constant, and the 4-volume of the image of $P\circ\alpha$ is
+\[
+\mathrm{Vol}(\alpha)=\mathrm{Vol}_h(\mathcal{M})\int_0^1\varphi(\alpha'(s))\,ds,\qquad\varphi(u)=\kappa_0^{-1/2}(c^2u^2+\sigma_0^2)^{1/4}.
+\]
+A direct computation gives $\varphi''(u)=\tfrac12c^2\kappa_0^{-1/2}(c^2u^2+\sigma_0^2)^{-7/4}\big(\sigma_0^2-\tfrac12c^2u^2\big)$, which is negative for $u\ge\tfrac34$ because $c^2u^2\ge\tfrac94\sigma_0^2>2\sigma_0^2$. Take $\alpha$ as in the proof of Proposition~\ref{prop:cov-nogo} with $s_0=\tfrac12$. Then $\alpha'\in[\tfrac34,\tfrac98]$ is non-constant and $\int_0^1\alpha'=1$. Strict Jensen's inequality for the strictly concave $\varphi$ gives $\mathrm{Vol}(\alpha)<\mathrm{Vol}_h(\mathcal{M})\varphi(1)=\mathrm{Vol}(\mathrm{id})$. The 4-volume is an isometry invariant.
+\end{proof}
+
+\subsection{Gradient-flow morphisms}
+
+\begin{proposition}[Identity law fails for gradient-flow classes]\label{prop:gradient}
+Let $Y$ be a locally Lipschitz vector field on a manifold $Z$, for example a projected gradient field, and let $\gamma:[0,1]\to Z$ be a non-constant integral curve. Then $\gamma\circ\alpha$ is not constant on any non-degenerate interval, for any $\alpha\in\mathrm{Diff}^+([0,1])$. Consequently, if the identity is the class of a constant path and composition is concatenation, then the composite of $[\gamma]$ with an identity is not $[\gamma]$.
+\end{proposition}
+
+\begin{proof}
+If $\gamma\circ\alpha$ were constant on $[a,b]$ with $a<b$, then $\gamma$ would be constant on $[\alpha(a),\alpha(b)]$, a non-degenerate interval. There $\gamma'=Y(\gamma)=0$, so $\gamma(t)$ is an equilibrium, and by uniqueness of solutions $\gamma$ is constant on $[0,1]$, a contradiction. The concatenation of $\gamma(2s)$ with a constant path is constant on $[\tfrac12,1]$, so it is not of the form $\gamma\circ\alpha$.
+\end{proof}
+
+\begin{remark}
+Further defects of gradient-flow morphisms:
+\begin{enumerate}[label=(\alph*)]
+    \item Boundary-flat reparametrizations ($\alpha'(0)=0$) are not diffeomorphisms, because the inverse is not differentiable at $0$.
+    \item A concatenation of two integral curves is in general only piecewise an integral curve.
+    \item For a fixed functional $\mathcal{S}$, $\mathcal{S}$ strictly decreases along non-constant flow lines, so no non-identity morphism is invertible.
+\end{enumerate}
+These are the reasons why Section~\ref{sec:moore} uses Moore paths.
+\end{remark}
+
+\subsection{Monoidal and duality structures}
+
+\begin{remark}\label{rem:monoidal}
+The natural candidate product $(\mathcal{M}_1\sqcup\mathcal{M}_2,\mathcal{T}_1\otimes\mathcal{T}_2,\rho_1\otimes\rho_2,\dots)$ has the following defects.
+\begin{enumerate}[label=(\alph*)]
+    \item $\mathcal{M}_1\sqcup\mathcal{M}_2$ is disconnected.
+    \item $\rho_1\otimes\rho_2$ is a $\chi_1\chi_2\times\chi_1\chi_2$ matrix, while the matter fields stay $\chi_i\times\chi_i$; fields on a disjoint union should be defined componentwise.
+    \item The candidate unit, with $\mathcal{M}=\emptyset$ and $\chi=1$, is not a datum.
+\end{enumerate}
+For Moore paths there is a further problem. The product of morphisms of lengths $L_1\neq L_2$ needs a common length, and padding with a constant path of positive length is not an identity. A compact (dual) structure would need a morphism from the unit to $\mathbf{T}^*\otimes\mathbf{T}$, that is, a path from data on $\emptyset$ to data on $-\mathcal{M}\sqcup\mathcal{M}$. Paths keep $\mathcal{M}$ fixed, so no such morphism exists when $\mathcal{M}\neq\emptyset$. Neither structure is claimed here.
+\end{remark}
+
+\subsection{Lorentzian cobordisms up to isometry}
+
+\begin{proposition}[No identities]\label{prop:noid}
+Consider compact Lorentzian cobordisms between non-empty closed 3-manifolds, taken up to isometry relative to the boundary and composed by gluing. No morphism $e:\Sigma\to\Sigma$ satisfies $e\circ e=e$. In particular, there are no identity morphisms.
+\end{proposition}
+
+\begin{proof}
+A representative of $e$ has non-empty interior, so it has a volume $0<\mathrm{Vol}(e)<\infty$. Volume is additive under gluing along a hypersurface, which has measure zero, so $\mathrm{Vol}(e\circ e)=2\,\mathrm{Vol}(e)\neq\mathrm{Vol}(e)$. Volume is invariant under isometry.
+\end{proof}
+
+Moreover, gluing two smooth Einstein cobordisms with matching induced metrics but different extrinsic curvatures gives a metric that is only continuous across the junction; such junctions, characterized by the extrinsic curvatures of the hypersurface, are the thin shells of \cite{israel1966}. This is why $\Cyl$ uses sitting collars. An honest target category must also specify its equivalence relation and its gluing regularity; $\Cyl$ does both.
+
+\begin{remark}[Constant paths of positive length]
+A constant path need not have a static image. Take the data of Example~\ref{ex:frw} at fixed $\theta$, with $Q=0$, $\rho$ constant and $R(x)=\sqrt{2+\cos x_1}\,E_{11}$, where $E_{11}$ is a matrix unit. Then $\|R\|_{\HS}^2=2+\cos x_1$ and, by Proposition~\ref{prop:shift}, $N_i=\tfrac12\partial_i\|R\|_{\HS}^2$ (index lowered with $h=\sin^22\theta\,\delta$). The slice $t=0$ has $K_{11}=N_0^{-1}\partial_1N_1=-\cos(x_1)/(2N_0)\neq0$. The product metric $-N_0^2dt^2+h$ has totally geodesic slices, and isometries relative to the boundary preserve the second fundamental form of the boundary, so the two metrics are not isometric.
+\end{remark}
+
+\subsection{Sewing and Wheeler--DeWitt: a heuristic only}
+
+A dictionary between the gluing axiom of \cite[Sec.~2, axiom~(3b)]{atiyah1988topological}, bond contraction, and the Wheeler--DeWitt constraints \cite{dewitt1967} has no proof here and is not used. A different route from holography to the Wheeler--DeWitt formulation, with a theory living on Cauchy slices, is proposed in \cite{araujoregado2023}. One order of magnitude bounds such a dictionary. The entanglement entropy of a contiguous block of a cMPS of bond dimension $\chi$ is at most $2\log\chi$ \cite{verstraete2010continuous}. If such a state were to carry the entropy $\mathrm{Area}/(4\ell_P^2)$ of the Ryu--Takayanagi formula \cite{ryu2006holographic}, then $\log\chi\ge\mathrm{Area}/(8\ell_P^2)$, where $\ell_P^2=\hbar G_N/c^3=2.61\times10^{-70}\,\mathrm{m}^2$ (CODATA 2022 \cite{mohr2025codata}). For $\mathrm{Area}=1\,\mathrm{m}^2$ this gives $\log\chi\ge4.8\times10^{68}$, a dimensionless number, as it should be.
+
+% =========================================================================
+\section{Open problems}
+\label{sec:open}
+% =========================================================================
+
+\begin{problem}[Einstein paths of cMPS fields]\label{prob:einstein}
+Find a cMPS field path ($\mathcal{T}(\cdot,t)$ generated by $(Q,R)(\cdot,t)$), non-constant and with sitting instants, whose image under Definition~\ref{def:path} solves $G_{\mu\nu}+\Lambda g_{\mu\nu}=8\pi G_NT_{\mu\nu}[\Psi]$ together with the matter equation of the action of Section~\ref{sec:matter}. Alternatively, prove that none exists. A weaker question asks for which Einstein--matter solutions on $\mathcal{M}\times[0,L]$, which exist locally for constraint-satisfying data (local existence in a wave gauge, for the vacuum equations and for Einstein equations with field sources, \cite[Ch.~VI]{choquetbruhat2009}; the original theorem is \cite{choquet1952}), the spatial metrics $h(t)$ are QFI metrics of cMPS fields of some bond dimension.
+\end{problem}
+
+\begin{problem}[Monoidal structure]
+Construct a category of paths over variable bases, closed under $\sqcup$ and with a symmetric monoidal structure, together with an extension of $\mathcal{F}$ that is strong monoidal. The obstructions of Remark~\ref{rem:monoidal} must be resolved. For topological field theories, the monoidal structure with duals is the setting of the cobordism hypothesis \cite{baezdolan1995,lurie2009}.
+\end{problem}
+
+\begin{problem}[Topology change and duals]
+Extend the source category by morphisms that change $\mathcal{M}$, and decide whether a dagger-compact structure \cite[Def.~2.6]{selinger2007} compatible with geometric time reversal (Remark~\ref{rem:limits}(e)) exists. Lorentzian topology change has a price: under certain conditions it occurs if and only if the spacetime is acausal \cite{geroch1967} (see \cite{borde1994} for a wider class of interpolating spacetimes), and with a spinor structure it is restricted by a $\mathbb{Z}_2$ invariant, the mod~2 Kervaire semi-characteristic of the boundary \cite{gibbonshawking1992}.
+\end{problem}
+
+\begin{problem}[Amplitudes]
+Given any functor $\mathcal{Z}$ from (a subcategory of) $\Cyl$ to Hilbert spaces, the composite $\mathcal{Z}\circ\mathcal{F}$ is a functor by Theorem~\ref{thm:functor}. Identify a $\mathcal{Z}$ of physical interest, and derive the resulting amplitudes for cMPS paths. For the analogy between cobordisms and Hilbert spaces that motivates such functors, see \cite{baez2006quandaries}.
+\end{problem}
+
+% =========================================================================
+\section{Conclusion}
+\label{sec:conclusion}
+% =========================================================================
+
+The QFI metric of a projectively immersed field of cMPS is a smooth Riemannian metric, invariant under phases, fixed unitaries, conjugation and pointwise bond gauge transformations. Matrix-valued scalar matter has the ADM densities~\eqref{eq:rho}--\eqref{eq:ji} and satisfies the null energy identity of Proposition~\ref{prop:nec}. The entropy-rate lapse is smooth under constant rank. On Moore paths with sitting instants these assignments form a functor to Lorentzian cylinders, and Einstein solutions form a subcategory. Nothing in the construction forces the Einstein equations, and the stronger categorical claims fail with explicit counterexamples: reparametrization classes, gradient-flow morphisms, identities for cobordisms up to isometry, and monoidal and compact structures. Whether cMPS paths can produce Einstein spacetimes is the central open problem.
+
+\section*{Declarations}
+
+\noindent\textbf{Funding.} This research was financed in part by the
+Coordena\c{c}\~ao de Aperfei\c{c}oamento de Pessoal de N\'ivel Superior -- Brasil
+(CAPES) -- Finance Code 001.
+
+\medskip\noindent\textbf{Competing interests.} The author declares no competing
+interests.
+
+\medskip\noindent\textbf{Use of generative AI tools.} Large language model
+assistants (Anthropic Claude; Google Gemini, through the Antigravity agent
+environment) were used extensively. Under the author's direction they drafted and
+edited text and \LaTeX{} source, proposed and wrote derivations, proofs and
+counterexamples, wrote the numerical check scripts, and searched the literature.
+The mathematics was then checked in three steps by AI sessions that had not
+written it: a blind review of every statement, a correction made by a separate
+session, and a targeted re-check of each correction. Every numerical claim is
+checked by a script that compares it with an independent computation and includes
+a negative control, a deliberately altered formula that must fail. Every reference
+was resolved through Crossref, DataCite, arXiv or, for the one book without a DOI, its ISBN record. These checks were carried out by
+AI systems; they are not peer review, and no result in this paper has yet
+been checked by an independent human expert. AI tools are not authors. The author
+chose the questions, directed the work, decided what to publish, and is
+responsible for the content, including any remaining errors.
+
+\medskip\noindent\textbf{Verification status.} Results labelled Theorem,
+Proposition or Lemma are proved in the text or cited as classical results;
+statements labelled Conjecture are not proved. The numerical scripts are checks,
+not proofs. The \textsc{Lean 4} files in the author's repository associated with
+this work are a placeholder skeleton without Mathlib and verify none of the
+statements.
+
+\medskip\noindent\textbf{Code availability.} The numerical check scripts are
+available from the author on request.
+
+\raggedright
+\begin{thebibliography}{99}
+
+\bibitem{silvafilho2026book}
+R.~M. Silva-Filho,
+\emph{Geometry, Tensors, and Quantum Gravity},
+Zenodo, 2026, \href{https://doi.org/10.5281/zenodo.22290043}{doi:10.5281/zenodo.22290043}.
+
+\bibitem{atiyah1988topological}
+M.~F. Atiyah,
+\emph{Topological quantum field theories},
+Publ. Math. IH\'ES \textbf{68} (1988), 175--186,
+\href{https://doi.org/10.1007/BF02698547}{doi:10.1007/BF02698547}.
+
+\bibitem{verstraete2010continuous}
+F.~Verstraete and J.~I. Cirac,
+\emph{Continuous matrix product states for quantum fields},
+Phys. Rev. Lett. \textbf{104} (2010), 190405,
+\href{https://doi.org/10.1103/PhysRevLett.104.190405}{doi:10.1103/PhysRevLett.104.190405}.
+
+\bibitem{ryu2006holographic}
+S.~Ryu and T.~Takayanagi,
+\emph{Holographic derivation of entanglement entropy from the anti-de Sitter space/conformal field theory correspondence},
+Phys. Rev. Lett. \textbf{96} (2006), 181602,
+\href{https://doi.org/10.1103/PhysRevLett.96.181602}{doi:10.1103/PhysRevLett.96.181602}.
+
+\bibitem{choquet1952}
+Y.~Four\`es-Bruhat,
+\emph{Th\'eor\`eme d'existence pour certains syst\`emes d'\'equations aux d\'eriv\'ees partielles non lin\'eaires},
+Acta Math. \textbf{88} (1952), 141--225,
+\href{https://doi.org/10.1007/BF02392131}{doi:10.1007/BF02392131}.
+
+\bibitem{choquetbruhat2009}
+Y.~Choquet-Bruhat,
+\emph{General Relativity and the Einstein Equations},
+Oxford Mathematical Monographs, Oxford University Press, Oxford, 2009, ISBN 978-0-19-923072-3,
+\href{https://doi.org/10.1093/acprof:oso/9780199230723.001.0001}{doi:10.1093/acprof:oso/9780199230723.001.0001}.
+
+\bibitem{bousso2016}
+R.~Bousso, Z.~Fisher, J.~Koeller, S.~Leichenauer, and A.~C. Wall,
+\emph{Proof of the quantum null energy condition},
+Phys. Rev. D \textbf{93} (2016), 024017,
+\href{https://doi.org/10.1103/PhysRevD.93.024017}{doi:10.1103/PhysRevD.93.024017}.
+
+\bibitem{godel1949}
+K.~G\"odel,
+\emph{An example of a new type of cosmological solutions of Einstein's field equations of gravitation},
+Rev. Mod. Phys. \textbf{21} (1949), 447--450,
+\href{https://doi.org/10.1103/RevModPhys.21.447}{doi:10.1103/RevModPhys.21.447}.
+
+\bibitem{haegeman2013calculus}
+J.~Haegeman, J.~I. Cirac, T.~J. Osborne, and F.~Verstraete,
+\emph{Calculus of continuous matrix product states},
+Phys. Rev. B \textbf{88} (2013), 085118,
+\href{https://doi.org/10.1103/PhysRevB.88.085118}{doi:10.1103/PhysRevB.88.085118}.
+
+\bibitem{adm2008}
+R.~Arnowitt, S.~Deser, and C.~W. Misner,
+\emph{The dynamics of general relativity},
+in L.~Witten (ed.), \emph{Gravitation: An Introduction to Current Research}, Wiley, New York, 1962, pp.~227--265;
+republished in Gen. Relativ. Gravit. \textbf{40} (2008), 1997--2027,
+\href{https://doi.org/10.1007/s10714-008-0661-1}{doi:10.1007/s10714-008-0661-1}.
+
+\bibitem{gourgoulhon2012}
+\'E.~Gourgoulhon,
+\emph{3+1 Formalism in General Relativity},
+Lecture Notes in Physics \textbf{846}, Springer, Berlin, 2012, ISBN 978-3-642-24524-4,
+\href{https://doi.org/10.1007/978-3-642-24525-1}{doi:10.1007/978-3-642-24525-1}.
+
+\bibitem{provost1980}
+J.~P. Provost and G.~Vall\'ee,
+\emph{Riemannian structure on manifolds of quantum states},
+Commun. Math. Phys. \textbf{76} (1980), 289--301,
+\href{https://doi.org/10.1007/BF02193559}{doi:10.1007/BF02193559}.
+
+\bibitem{liu2020qfi}
+J.~Liu, H.~Yuan, X.-M. Lu, and X.~Wang,
+\emph{Quantum Fisher information matrix and multiparameter estimation},
+J. Phys. A: Math. Theor. \textbf{53} (2020), 023001,
+\href{https://doi.org/10.1088/1751-8121/ab5d4d}{doi:10.1088/1751-8121/ab5d4d}.
+
+\bibitem{braunstein1994}
+S.~L. Braunstein and C.~M. Caves,
+\emph{Statistical distance and the geometry of quantum states},
+Phys. Rev. Lett. \textbf{72} (1994), 3439--3443,
+\href{https://doi.org/10.1103/PhysRevLett.72.3439}{doi:10.1103/PhysRevLett.72.3439}.
+
+\bibitem{uhlmann1976}
+A.~Uhlmann,
+\emph{The ``transition probability'' in the state space of a $*$-algebra},
+Rep. Math. Phys. \textbf{9} (1976), 273--279,
+\href{https://doi.org/10.1016/0034-4877(76)90060-4}{doi:10.1016/0034-4877(76)90060-4}.
+
+\bibitem{petz1996}
+D.~Petz,
+\emph{Monotone metrics on matrix spaces},
+Linear Algebra Appl. \textbf{244} (1996), 81--96,
+\href{https://doi.org/10.1016/0024-3795(94)00211-8}{doi:10.1016/0024-3795(94)00211-8}.
+
+\bibitem{amari2000}
+S.~Amari and H.~Nagaoka,
+\emph{Methods of Information Geometry},
+Translations of Mathematical Monographs \textbf{191}, American Mathematical Society, Providence, RI, 2000, ISBN 978-0-8218-4302-4,
+\href{https://doi.org/10.1090/mmono/191}{doi:10.1090/mmono/191}.
+
+\bibitem{haegeman2014geometry}
+J.~Haegeman, M.~Mari\"en, T.~J. Osborne, and F.~Verstraete,
+\emph{Geometry of matrix product states: metric, parallel transport, and curvature},
+J. Math. Phys. \textbf{55} (2014), 021902,
+\href{https://doi.org/10.1063/1.4862851}{doi:10.1063/1.4862851}.
+
+\bibitem{haegeman2010variational}
+J.~Haegeman, J.~I. Cirac, T.~J. Osborne, H.~Verschelde, and F.~Verstraete,
+\emph{Applying the variational principle to $(1+1)$-dimensional quantum field theories},
+Phys. Rev. Lett. \textbf{105} (2010), 251601,
+\href{https://doi.org/10.1103/PhysRevLett.105.251601}{doi:10.1103/PhysRevLett.105.251601}.
+
+\bibitem{tuybens2022}
+B.~Tuybens, J.~De~Nardis, J.~Haegeman, and F.~Verstraete,
+\emph{Variational optimization of continuous matrix product states},
+Phys. Rev. Lett. \textbf{128} (2022), 020501,
+\href{https://doi.org/10.1103/PhysRevLett.128.020501}{doi:10.1103/PhysRevLett.128.020501}.
+
+\bibitem{vanraamsdonk2010}
+M.~Van~Raamsdonk,
+\emph{Building up spacetime with quantum entanglement},
+Gen. Relativ. Gravit. \textbf{42} (2010), 2323--2329,
+\href{https://doi.org/10.1007/s10714-010-1034-0}{doi:10.1007/s10714-010-1034-0}.
+
+\bibitem{swingle2012}
+B.~Swingle,
+\emph{Entanglement renormalization and holography},
+Phys. Rev. D \textbf{86} (2012), 065007,
+\href{https://doi.org/10.1103/PhysRevD.86.065007}{doi:10.1103/PhysRevD.86.065007}.
+
+\bibitem{haegeman2013cmera}
+J.~Haegeman, T.~J. Osborne, H.~Verschelde, and F.~Verstraete,
+\emph{Entanglement renormalization for quantum fields in real space},
+Phys. Rev. Lett. \textbf{110} (2013), 100402,
+\href{https://doi.org/10.1103/PhysRevLett.110.100402}{doi:10.1103/PhysRevLett.110.100402}.
+
+\bibitem{nozaki2012}
+M.~Nozaki, S.~Ryu, and T.~Takayanagi,
+\emph{Holographic geometry of entanglement renormalization in quantum field theories},
+J. High Energy Phys. \textbf{2012}, no.~10 (2012), 193,
+\href{https://doi.org/10.1007/JHEP10(2012)193}{doi:10.1007/JHEP10(2012)193}.
+
+\bibitem{miyaji2015}
+M.~Miyaji, T.~Numasawa, N.~Shiba, T.~Takayanagi, and K.~Watanabe,
+\emph{Distance between quantum states and gauge-gravity duality},
+Phys. Rev. Lett. \textbf{115} (2015), 261602,
+\href{https://doi.org/10.1103/PhysRevLett.115.261602}{doi:10.1103/PhysRevLett.115.261602}.
+
+\bibitem{erdmenger2023}
+J.~Erdmenger, A.-L. Weigel, M.~Gerbershagen, and M.~P. Heller,
+\emph{From complexity geometry to holographic spacetime},
+Phys. Rev. D \textbf{108} (2023), 106020,
+\href{https://doi.org/10.1103/PhysRevD.108.106020}{doi:10.1103/PhysRevD.108.106020}.
+
+\bibitem{cao2017}
+C.~Cao, S.~M. Carroll, and S.~Michalakis,
+\emph{Space from Hilbert space: recovering geometry from bulk entanglement},
+Phys. Rev. D \textbf{95} (2017), 024031,
+\href{https://doi.org/10.1103/PhysRevD.95.024031}{doi:10.1103/PhysRevD.95.024031}.
+
+\bibitem{segal2004}
+G.~Segal,
+\emph{The definition of conformal field theory},
+in U.~Tillmann (ed.), \emph{Topology, Geometry and Quantum Field Theory}, London Math. Soc. Lecture Note Ser.~\textbf{308}, Cambridge University Press, Cambridge, 2004, pp.~421--577, ISBN 978-0-521-54049-0,
+\href{https://doi.org/10.1017/CBO9780511526398.019}{doi:10.1017/CBO9780511526398.019}.
+
+\bibitem{baezdolan1995}
+J.~C. Baez and J.~Dolan,
+\emph{Higher-dimensional algebra and topological quantum field theory},
+J. Math. Phys. \textbf{36} (1995), 6073--6105,
+\href{https://doi.org/10.1063/1.531236}{doi:10.1063/1.531236}.
+
+\bibitem{lurie2009}
+J.~Lurie,
+\emph{On the classification of topological field theories},
+Current Developments in Mathematics \textbf{2008} (2008), 129--280,
+\href{https://doi.org/10.4310/CDM.2008.v2008.n1.a3}{doi:10.4310/CDM.2008.v2008.n1.a3}.
+
+\bibitem{baez2006quandaries}
+J.~C. Baez,
+\emph{Quantum quandaries: a category-theoretic perspective},
+in S.~French, D.~Rickles, and J.~Saatsi (eds.), \emph{The Structural Foundations of Quantum Gravity}, Oxford University Press, Oxford, 2006, pp.~240--265,
+arXiv:\href{https://arxiv.org/abs/quant-ph/0404040}{quant-ph/0404040}.
+
+\bibitem{schreiber2009}
+U.~Schreiber and K.~Waldorf,
+\emph{Parallel transport and functors},
+J. Homotopy Relat. Struct. \textbf{4} (2009), 187--244,
+arXiv:\href{https://arxiv.org/abs/0705.0452}{0705.0452}.
+
+\bibitem{brown2006}
+R.~Brown,
+\emph{Topology and Groupoids},
+BookSurge, Charleston, SC, 2006, ISBN 978-1-4196-2722-4.
+
+\bibitem{curiel2017}
+E.~Curiel,
+\emph{A primer on energy conditions},
+in D.~Lehmkuhl, G.~Schiemann, and E.~Scholz (eds.), \emph{Towards a Theory of Spacetime Theories}, Einstein Studies, Birkh\"auser, New York, 2017, pp.~43--104,
+\href{https://doi.org/10.1007/978-1-4939-3210-8_3}{doi:10.1007/978-1-4939-3210-8\_3}.
+
+\bibitem{israel1966}
+W.~Israel,
+\emph{Singular hypersurfaces and thin shells in general relativity},
+Nuovo Cimento B \textbf{44} (1966), 1--14,
+\href{https://doi.org/10.1007/BF02710419}{doi:10.1007/BF02710419}.
+
+\bibitem{dewitt1967}
+B.~S. DeWitt,
+\emph{Quantum theory of gravity. I. The canonical theory},
+Phys. Rev. \textbf{160} (1967), 1113--1148,
+\href{https://doi.org/10.1103/PhysRev.160.1113}{doi:10.1103/PhysRev.160.1113}.
+
+\bibitem{araujoregado2023}
+G.~Araujo-Regado, R.~Khan, and A.~C. Wall,
+\emph{Cauchy slice holography: a new AdS/CFT dictionary},
+J. High Energy Phys. \textbf{2023}, no.~3 (2023), 026,
+\href{https://doi.org/10.1007/JHEP03(2023)026}{doi:10.1007/JHEP03(2023)026}.
+
+\bibitem{mohr2025codata}
+P.~J. Mohr, D.~B. Newell, B.~N. Taylor, and E.~Tiesinga,
+\emph{CODATA recommended values of the fundamental physical constants: 2022},
+Rev. Mod. Phys. \textbf{97} (2025), 025002,
+\href{https://doi.org/10.1103/RevModPhys.97.025002}{doi:10.1103/RevModPhys.97.025002}.
+
+\bibitem{selinger2007}
+P.~Selinger,
+\emph{Dagger compact closed categories and completely positive maps},
+Electron. Notes Theor. Comput. Sci. \textbf{170} (2007), 139--163,
+\href{https://doi.org/10.1016/j.entcs.2006.12.018}{doi:10.1016/j.entcs.2006.12.018}.
+
+\bibitem{geroch1967}
+R.~P. Geroch,
+\emph{Topology in general relativity},
+J. Math. Phys. \textbf{8} (1967), 782--786,
+\href{https://doi.org/10.1063/1.1705276}{doi:10.1063/1.1705276}.
+
+\bibitem{borde1994}
+A.~Borde,
+\emph{Topology change in classical general relativity},
+preprint, 1994,
+arXiv:\href{https://arxiv.org/abs/gr-qc/9406053}{gr-qc/9406053}.
+
+\bibitem{gibbonshawking1992}
+G.~W. Gibbons and S.~W. Hawking,
+\emph{Selection rules for topology change},
+Commun. Math. Phys. \textbf{148} (1992), 345--352,
+\href{https://doi.org/10.1007/BF02100864}{doi:10.1007/BF02100864}.
+
+\end{thebibliography}
+
+\end{document}

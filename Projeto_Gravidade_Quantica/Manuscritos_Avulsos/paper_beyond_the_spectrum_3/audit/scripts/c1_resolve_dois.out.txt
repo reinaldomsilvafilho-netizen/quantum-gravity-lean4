@@ -1,0 +1,39 @@
+== Aurell2012 | cited in text: True | DOI: 10.1103/PhysRevLett.106.250601
+    ('crossref', 'Optimal Protocols and Optimal Transport in Stochastic Thermodynamics', 'Aurell', 2011, 'Physical Review Letters', '106', None)
+== BakryEmery1985 | cited in text: True | DOI: 10.1007/BFb0075847
+    ('crossref', 'Diffusions hypercontractives', 'Bakry', 1985, 'Lecture Notes in Mathematics', None, '177-206')
+== DuttaFaulkner2019 | cited in text: True | DOI: 10.1007/JHEP03(2021)178
+    ('crossref', 'A canonical purification for the entanglement wedge cross-section', 'Dutta', 2021, 'Journal of High Energy Physics', '2021', None)
+== EkelandHofer1989 | cited in text: True | DOI: 10.1007/BF01215653
+    ('crossref', 'Symplectic topology and Hamiltonian dynamics', 'Ekeland', 1989, 'Mathematische Zeitschrift', '200', '355-378')
+== Federer1959 | cited in text: True | DOI: 10.1090/S0002-9947-1959-0110078-1
+    ('crossref', 'Curvature measures', 'Federer', 1959, 'Transactions of the American Mathematical Society', '93', '418-491')
+== Gromov1987 | cited in text: True | DOI: 10.1007/978-1-4613-9586-7_3
+    ('crossref', 'Hyperbolic Groups', 'Gromov', 1987, 'Mathematical Sciences Research Institute Publications', None, '75-263')
+== HoferZehnder1994 | cited in text: True | DOI: 10.1007/978-3-0348-8540-9
+    ('crossref', 'Symplectic Invariants and Hamiltonian Dynamics', 'Hofer', 1994, '', None, None)
+== Jarzynski1997 | cited in text: True | DOI: 10.1103/PhysRevLett.78.2690
+    ('crossref', 'Nonequilibrium Equality for Free Energy Differences', 'Jarzynski', 1997, 'Physical Review Letters', '78', '2690-2693')
+== KashiwaraSchapira1990 | cited in text: True | DOI: 10.1007/978-3-662-02661-8
+    ('crossref', 'Sheaves on Manifolds', 'Kashiwara', 1990, 'Grundlehren der mathematischen Wissenschaften', None, None)
+== BridsonHaefliger1999 | cited in text: True | DOI: 10.1007/978-3-662-12494-9
+    ('crossref', 'Metric Spaces of Non-Positive Curvature', 'Bridson', 1999, 'Grundlehren der mathematischen Wissenschaften', None, None)
+== JuutinenLindqvistManfredi1999 | cited in text: True | DOI: 10.1007/s002050050157
+    ('crossref', 'The ∞-Eigenvalue Problem', 'Juutinen', 1999, 'Archive for Rational Mechanics and Analysis', '148', '89-105')
+== OttoVillani2000 | cited in text: True | DOI: 10.1006/jfan.1999.3557
+    ('crossref', 'Generalization of an Inequality by Talagrand and Links with the Logarithmic Sobolev Inequality', 'Otto', 2000, 'Journal of Functional Analysis', '173', '361-400')
+== KawohlFridman2003 | cited in text: True | DOI: None
+== Kigami2001 | cited in text: True | DOI: 10.1017/CBO9780511470943
+    ('crossref', 'Analysis on Fractals', 'Kigami', 2001, '', None, None)
+== SilvaFilho2026a | cited in text: False | DOI: 10.5281/zenodo.22441676
+    ('datacite', 'A Functorial Bridge from Continuous Tensor Manifolds to 4-Dimensional Spacetime Cobordisms', 'Silva-Filho, Reinaldo M.', 2026, 'Zenodo', None, None)
+== SilvaFilho2026b | cited in text: False | DOI: 10.5281/zenodo.22290043
+    ('datacite', 'Geometry, Tensors, and Quantum Gravity', 'Silva-Filho, Reinaldo M.', 2026, 'Zenodo', None, None)
+== SilvaFilho2026c | cited in text: False | DOI: 10.5281/zenodo.22441676
+    ('datacite', 'A Functorial Bridge from Continuous Tensor Manifolds to 4-Dimensional Spacetime Cobordisms', 'Silva-Filho, Reinaldo M.', 2026, 'Zenodo', None, None)
+== SivakCrooks2012 | cited in text: True | DOI: 10.1103/PhysRevLett.108.190602
+    ('crossref', 'Thermodynamic Metrics and Optimal Paths', 'Sivak', 2012, 'Physical Review Letters', '108', None)
+== Viterbo1992 | cited in text: True | DOI: 10.1007/BF01444643
+    ('crossref', 'Symplectic topology as the geometry of generating functions', 'Viterbo', 1992, 'Mathematische Annalen', '292', '685-710')
+NEG CONTROL mutated DOI -> FAIL
+unresolved: 0

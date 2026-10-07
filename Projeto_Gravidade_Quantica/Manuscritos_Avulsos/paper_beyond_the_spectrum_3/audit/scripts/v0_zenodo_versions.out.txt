@@ -1,0 +1,13 @@
+record 22866175 2026-09-21 version= None
+title: Beyond the Spectrum: The Complete Three-Volume Monograph on Functional Tensor Realizations, Metric Measure Geometry, and Higher Topological Invariants
+  file beyond_the_spectrum_trilogy.pdf 1391818 md5:8d872f4d98a616fd97873deb230ee5f5
+all versions: 3
+22644744 2026-09-07 None [('volume_3_higher_invariants.pdf', 690137, 'md5:4c771b3b9817510cf55b6257fb121d69'), ('volume_1_functional_realizations.pdf', 690794, 'md5:4cf0aacf98fc6f15a00059adcd05f4fa'), ('beyond_the_spectrum_trilogy.pdf', 1362569, 'md5:580e36584677e64e4d298f8e77cf65a5'), ('formal_proofs_bts.zip', 12417, 'md5:3ff7b66b4b883c8096b6ab3e3d4248f8'), ('volume_2_geometric_measures.pdf', 793099, 'md5:03db1f30ff4a518cb55b754b25a13a17')]
+22699282 2026-09-11 None [('beyond_the_spectrum_trilogy_updated.pdf', 1391818, 'md5:8d872f4d98a616fd97873deb230ee5f5'), ('volume_1_functional_realizations.pdf', 706670, 'md5:e6abfc872ad7573060bd5799e4f97feb'), ('volume_3_higher_invariants.pdf', 694388, 'md5:48959e0d8ea622c4a5a867f1fa49689a'), ('formal_proofs_bts.zip', 12711, 'md5:a98a98ee5cb14daa4f770f007b1f4e4a'), ('volume_2_geometric_measures.pdf', 804697, 'md5:18a4603d8d4bf8bf7d7eb4b7a0b3e766')]
+22866175 2026-09-21 None [('beyond_the_spectrum_trilogy.pdf', 1391818, 'md5:8d872f4d98a616fd97873deb230ee5f5')]
+local md5:
+   beyond_the_spectrum_trilogy.pdf 1387640 md5:78d447d5389bda7d9554680f4fa6f2bc
+   beyond_the_spectrum_trilogy_updated.pdf 1391818 md5:8d872f4d98a616fd97873deb230ee5f5
+   volume_1_functional_realizations.pdf 706670 md5:e6abfc872ad7573060bd5799e4f97feb
+   volume_2_geometric_measures.pdf 804697 md5:18a4603d8d4bf8bf7d7eb4b7a0b3e766
+   volume_3_higher_invariants.pdf 694388 md5:48959e0d8ea622c4a5a867f1fa49689a

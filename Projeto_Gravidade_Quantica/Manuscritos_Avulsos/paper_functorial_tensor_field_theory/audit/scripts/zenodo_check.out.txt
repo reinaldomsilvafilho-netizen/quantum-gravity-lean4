@@ -1,0 +1,45 @@
+id=22441680 version=None date=2026-09-06 title=A Functorial Bridge from Continuous Tensor Manifolds to 4-Dimensional Spacetime Cobordisms
+   file paper_functorial_tensor_field_theory.pdf size=630682 https://zenodo.org/api/records/22441680/files/paper_functorial_tensor_field_theory.pdf/content
+LATEST id=22441680 date=2026-09-06
+downloaded paper_functorial_tensor_field_theory.pdf -> C:\Users\monar\Documents\antigravity\resilient-turing\Projeto_Gravidade_Quantica\Manuscritos_Avulsos\paper_functorial_tensor_field_theory\audit\zenodo_latest.pdf
+description:  We resolve the open frontier in emergent spacetime by constructing an exact symmetric monoidal functor&nbsp;  F:CTensMan&rarr;Cob3+1Fields    F  :     CTensMan   &rarr;     Cob        3 + 1       Fields              &nbsp;linking the category of continuous tensor network manifolds to the category of 4-dimensional spacetime cobordisms endowed with quantum matter fields. The objects of&nbsp;  CTensMan     CTensMan     &nbsp;are continuous matrix product states and tensor varieties endowed with an entanglement density matrix of bond dimension&nbsp;  &chi;    &chi;    &nbsp;and intrinsic matrix-valued matter Cauchy data. The functor maps these objects to 3-dimensional closed spatial Cauchy hypersurfaces&nbsp;  (&Sigma;,hij)    (  &Sigma;  ,   h         ij            )    , where the induced Riemannian metric is uniquely determined by the Quantum Fisher Information metric of the tensor network (  hij=gijQFI     h         ij            =     g         ij        QFI              ). The morphisms, defined as continuous projected tensor-train gradient flows, are mapped to 4-dimensional Lorentzian cobordisms that satisfy Einstein's field equations. We prove that&nbsp;  F    F    &nbsp;preserves composition, identities, and symmetric monoidal tensor products, and verify the Atiyah-Segal cobordism sewing axiom. 
+  Formal Verification: &nbsp;The categorical axioms, functoriality theorems, and monoidal coherence proofs have been machine-verified with 100% rigor in&nbsp; Lean 4 &nbsp;(0 er
+word-sequence similarity ratio tex vs zenodo pdf: 0.8690 (tex 2246 words, pdf 2136 words)
+  delete: TEX[paper reqno amsart inputenc fontenc amsmath amssymb amsfonts amsthm mathtools mathrsfs booktabs dvipsnames xcolor hyperref geometry enumitem cite tikz tikz bottom left right headheight colorlinks] PDF[]
+  delete: TEX[universidade federal lavras ufla departamento estat istica experimenta agropecu aria ppgee reinaldo filho estudante ufla] PDF[]
+  replace: TEX[linking] PDF[ctensman cobfields link]
+  replace: TEX[intro] PDF[source category continuous tensor manifolds ctensman target category spacetime cobordisms cobfields construction functor assignment objects assignment morphisms main theorems functorial proofs conclusion impact formal verification]
+  replace: TEX[challenge quote] PDF[chal lenge date september reinaldo silva filho]
+  replace: TEX[equation equation] PDF[ctensman cobfields]
+  delete: TEX[equation projected immersion equation] PDF[]
+  insert: TEX[] PDF[functorial bridge emergent spacetime]
+  replace: TEX[equation metric equation] PDF[gqfi]
+  replace: TEX[equation equation] PDF[gqfi vivj]
+  replace: TEX[equation equation] PDF[nidt njdt]
+  replace: TEX[equation smooth lapse equation] PDF[tsvn]
+  insert: TEX[] PDF[functorial bridge emergent spacetime]
+  replace: TEX[equation matt matter action equation] PDF[smatt]
+  replace: TEX[hessian condition equation] PDF[thij nhij]
+  replace: TEX[align align] PDF[thij nkij tkij kkij kilkl nkij gnsij]
+  replace: TEX[equation composition equation enumerate theorem] PDF[reinaldo silva filho]
+  delete: TEX[equation cases cases equation] PDF[]
+  replace: TEX[equation junc equation] PDF[sjunc]
+  delete: TEX[equation equation enumerate theorem] PDF[]
+  replace: TEX[equation equation] PDF[gqfi gqfi gqfi]
+  insert: TEX[] PDF[functorial bridge emergent spacetime]
+  replace: TEX[commutative equation tikzcd column huge large] PDF[commu tative]
+  delete: TEX[equation tikzcd column huge large] PDF[]
+  replace: TEX[tikzcd equation] PDF[cobfields ctensman]
+  replace: TEX[equation sewing axiom equation] PDF[cobfields]
+  replace: TEX[enumerate proposition proof] PDF[reinaldo silva filho]
+  replace: TEX[equation equation] PDF[zeff ctensman hilb]
+  replace: TEX[equation] PDF[cobfields cobfields ctensman]
+  replace: TEX[furthermore smooth lapse] PDF[further more]
+  replace: TEX[equation equation] PDF[functorial bridge emergent spacetime]
+  replace: TEX[establishes] PDF[ctensman cobfields tablishes]
+  replace: TEX[thebibliography silvafilho book] PDF[reinaldo silva filho references]
+  replace: TEX[ematiques segal definition] PDF[matiques]
+  replace: TEX[emes equations eriv] PDF[quations]
+  replace: TEX[thebibliography document] PDF[universidade federal lavras ufla departamento estat stica experimenta agropecu ppgeeaa email address reinaldo filho estudante ufla]
+negative control (shuffled pdf words) ratio: 0.0091
+local pdf vs zenodo pdf ratio: 0.9866

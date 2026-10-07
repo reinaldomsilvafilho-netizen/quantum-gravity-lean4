@@ -1,0 +1,10 @@
+OBL-013: |K - sum lam phi phi*| = 1.0e-15, |TrK - TrA| = 7.1e-15, diag err 1.7e-16, min eig K = -1.58e-14
+B=0.6 N=200: #eig>1e-12 = 13, top eigs [0.88889 0.09877 0.01097 0.00122], ratios [0.111111 0.111111 0.111111], Mehler q = 0.111111
+B=0.6 N=400: #eig>1e-12 = 13, top eigs [0.88889 0.09877 0.01097 0.00122], ratios [0.111111 0.111111 0.111111], Mehler q = 0.111111
+B=0.6 N=800: #eig>1e-12 = 13, top eigs [0.88889 0.09877 0.01097 0.00122], ratios [0.111111 0.111111 0.111111], Mehler q = 0.111111
+B=0.0 N=200: #eig>1e-12 = 1, top eigs [1.00000e+00 3.51730e-31 3.17130e-31 2.60951e-31], ratios [3.517297e-31 9.016286e-01 8.228516e-01], Mehler q = 0.000000
+B=0.0 N=400: #eig>1e-12 = 1, top eigs [1.00000e+00 3.45409e-31 2.94412e-31 2.22195e-31], ratios [3.454094e-31 8.523565e-01 7.547083e-01], Mehler q = 0.000000
+B=0.0 N=800: #eig>1e-12 = 1, top eigs [1.00000e+00 1.77846e-30 7.53436e-31 6.88821e-31], ratios [1.778460e-30 4.236451e-01 9.142395e-01], Mehler q = 0.000000
+Unnormalised n=1 example: Tr A = 5 -> modular energy -log 5 = -1.6094 (paper: strictly positive)
+OBL-015: S_R<I violations 0, S_R>2min violations 0, asym/route mismatches 0, mutated S_R>=2I fails in 234/300
+failures: 0

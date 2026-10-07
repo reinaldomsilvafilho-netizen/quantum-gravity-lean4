@@ -1,0 +1,10 @@
+[PASS] 4.1 Dirichlet energy changes under P: 1066.00 vs 1144.00
+[PASS] 4.2 TV changes under P: 8.500 vs 6.500
+[PASS] 4.3 Morse indices and critical values identical under P (not order-sensitive): [0, 1, 2, 3]
+[PASS] 4.3 control: a non-similar matrix changes critical values: 
+[PASS] 4.4 W_B^psi = W_A for the interval permutation psi: 
+[PASS] 4.4 hence delta_cut(W_A, W_B) = 0 (not order-sensitive): 
+[PASS] 4.4 control: plain cut norm ||W_A - W_B|| > 0: 0.0781
+[PASS] 6.5 Thm 4.6 reading (inside (0,1)^2) = TV formula: 8.5000 vs 8.5000
+[PASS] 6.5 literal R^2 reading of the display (no intersection with (0,1)^2) differs from TV; for t below min A it adds 4 per unit t, so the integral over R diverges: 21.0000 vs 8.5000
+failures: 0

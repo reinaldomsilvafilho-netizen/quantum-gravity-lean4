@@ -1,0 +1,99 @@
+== OBL-008 (disk, FE minimisation) ==
+p=2: FE lambda^(1/2) = 2.40483, Bessel oracle j01 = 2.40483
+PASS FE p=2 matches Bessel oracle to 1e-3
+p=  4: unweighted 1.9575  weighted(1+r^2) 2.0860  cone bound 1.9680  comparison window [1.6460,2.3278]
+PASS p=4: FE value <= cone upper bound (+1e-3)
+PASS p=4: weighted value inside comparison window
+p=  8: unweighted 1.5964  weighted(1+r^2) 1.6508  cone bound 1.6094  comparison window [1.4639,1.7409]
+PASS p=8: FE value <= cone upper bound (+1e-3)
+PASS p=8: weighted value inside comparison window
+PASS p=8: decreasing towards 1/R=1
+p= 16: unweighted 1.3588  weighted(1+r^2) 1.3821  cone bound 1.3694  comparison window [1.3012,1.4190]
+PASS p=16: FE value <= cone upper bound (+1e-3)
+PASS p=16: weighted value inside comparison window
+PASS p=16: decreasing towards 1/R=1
+p= 32: unweighted 1.2118  weighted(1+r^2) 1.2221  cone bound 1.2187  comparison window [1.1859,1.2384]
+PASS p=32: FE value <= cone upper bound (+1e-3)
+PASS p=32: weighted value inside comparison window
+PASS p=32: decreasing towards 1/R=1
+PASS NEG CONTROL: claimed limit h=2 (Cheeger, full perimeter) is excluded: cone bound at p=32 < 2
+cone bound limit: ((p+1)(p+2)/2)^(1/p) at p=1e4: 1.0017743556632335
+== OBL-012 (moment ODE, RK4) ==
+kappa= 1.0 linear   : tau*Sigma at tau=50,200,800 = [np.float64(0.98), np.float64(0.995), np.float64(0.99875)] ; friction-metric prediction 1.00000 ; W2^2 = 1.000 ; paper RHS kappa W2^2/4 = 0.250
+PASS kappa=1.0 linear: converges to int g lam'^2
+PASS kappa=1.0 linear: corrected bound tau*Sigma >= W2^2/D (asymptotically)
+kappa= 1.0 quadratic: tau*Sigma at tau=50,200,800 = [np.float64(1.29337), np.float64(1.32333), np.float64(1.33083)] ; friction-metric prediction 1.33333 ; W2^2 = 1.000 ; paper RHS kappa W2^2/4 = 0.250
+PASS kappa=1.0 quadratic: converges to int g lam'^2
+PASS kappa=1.0 quadratic: corrected bound tau*Sigma >= W2^2/D (asymptotically)
+kappa=10.0 linear   : tau*Sigma at tau=50,200,800 = [np.float64(0.998), np.float64(0.9995), np.float64(0.99987)] ; friction-metric prediction 1.00000 ; W2^2 = 1.000 ; paper RHS kappa W2^2/4 = 2.500
+PASS kappa=10.0 linear: converges to int g lam'^2
+PASS kappa=10.0 linear: corrected bound tau*Sigma >= W2^2/D (asymptotically)
+kappa=10.0 quadratic: tau*Sigma at tau=50,200,800 = [np.float64(1.32933), np.float64(1.33233), np.float64(1.33308)] ; friction-metric prediction 1.33333 ; W2^2 = 1.000 ; paper RHS kappa W2^2/4 = 2.500
+PASS kappa=10.0 quadratic: converges to int g lam'^2
+PASS kappa=10.0 quadratic: corrected bound tau*Sigma >= W2^2/D (asymptotically)
+PASS NEG CONTROL: paper bound lim >= kappa W2^2/4 fails at kappa=10 (1.0 < 2.5)
+PASS NEG CONTROL: paper equality lim = L^2/2 fails for the geodesic (linear) protocol (1.0 vs 0.5)
+== OBL-014 (Hermite-basis Schmidt spectrum) ==
+beta=0.6: top Schmidt weights [0.888889 0.098765 0.010974 0.001219] ratios [0.111111 0.111111 0.111111] Mehler q=0.111111 ; #weights>1e-12: 13
+PASS beta=0.6: geometric Schmidt spectrum, ratio = Mehler q
+PASS beta=0.6: rank of the reduced state exceeds n=1
+beta=0.3: top Schmidt weights [9.76427e-01 2.30180e-02 5.43000e-04 1.30000e-05] ratios [0.023573 0.023573 0.023573] Mehler q=0.023573 ; #weights>1e-12: 8
+PASS beta=0.3: geometric Schmidt spectrum, ratio = Mehler q
+PASS beta=0.3: rank of the reduced state exceeds n=1
+PASS NEG CONTROL beta=0 (product state): rank exactly 1
+Schmidt ranks (1, 1, 1): rank rho_1 = 3, bound sum m_k = 3, Tr rho = 10.943848, Tr A = 10.943848
+PASS rank bound for Schmidt ranks (1, 1, 1)
+PASS Tr rho_1 = Tr A for Schmidt ranks (1, 1, 1)
+PASS normalised modular energies -log p_k >= 0 for (1, 1, 1)
+Schmidt ranks (2, 1, 3): rank rho_1 = 6, bound sum m_k = 6, Tr rho = 11.544061, Tr A = 11.544061
+PASS rank bound for Schmidt ranks (2, 1, 3)
+PASS Tr rho_1 = Tr A for Schmidt ranks (2, 1, 3)
+PASS normalised modular energies -log p_k >= 0 for (2, 1, 3)
+PASS NEG CONTROL: unnormalised n=1, A=5 product frame gives -log 5 < 0
+== OBL-017/018 (Gauss-Jacobi, contour integrals) ==
+claimed pole s=-a-0=-0.5: Z finite = 0.9064939198, (1/2pi i) contour integral of Z = 4.44e-18
+PASS no residue of Z_A at s=-0.5
+claimed pole s=-a-1=-1.5: Z finite = 0.7627597635, (1/2pi i) contour integral of Z = 8.88e-18
+PASS no residue of Z_A at s=-1.5
+claimed pole s=-a-2=-2.5: Z finite = 0.6595888290, (1/2pi i) contour integral of Z = 9.93e-18
+PASS no residue of Z_A at s=-2.5
+PASS Z(-0.5) Gauss-Jacobi = 2F1 route
+PASS Z(-2.5) Gauss-Jacobi = 2F1 route
+PASS Z(1.3) Gauss-Jacobi = 2F1 route
+PASS E[U^s] closed form = QUADPACK algebraic-weight quadrature at s=0.3
+PASS E[U^s] closed form = QUADPACK algebraic-weight quadrature at s=-0.2
+PASS E[U^s] closed form = QUADPACK algebraic-weight quadrature at s=-0.45
+PASS E[U^s] closed form = QUADPACK algebraic-weight quadrature at s=1.7
+NEG CONTROL coordinate Mellin: residue at -0.5: contour +0.63661977, formula +0.63661977
+PASS coordinate Mellin has the predicted non-zero residue at -0.5
+NEG CONTROL coordinate Mellin: residue at -1.5: contour -0.31830989, formula -0.31830989
+PASS coordinate Mellin has the predicted non-zero residue at -1.5
+NEG CONTROL coordinate Mellin: residue at -2.5: contour -0.07957747, formula -0.07957747
+PASS coordinate Mellin has the predicted non-zero residue at -2.5
+b=2: |residue| at -a-1 = 7.500e-01 (pole), at -a-2 = 4.441e-18 (cancelled)
+PASS b integer: pole at -a-1 present, -a-2 cancelled
+== OBL-006 ==
+chi(S^1) = 0; paper formula sum m_r chi(Sigma_r) = 2; sum chi_c(Sigma_r) chi(stalk) = 0
+PASS stratified chi_c formula reproduces chi(S^1)
+PASS NEG CONTROL: paper formula differs from chi(S^1)
+== OBL-020 (Federer Thm 4.18 formula) ==
+ellipse: reach(Federer formula) = 0.5000, eps0/M = 0.5000, d_sep/2 = 1.0000, bound = 0.5000
+PASS ellipse: reach >= min(eps0/M, d_sep/2) (tol 2e-3)
+PASS NEG CONTROL ellipse: doubled bound 2*min(...) exceeds the reach
+peanut: reach(Federer formula) = 0.3162, eps0/M = 0.2100, d_sep/2 = 0.3162, bound = 0.2100
+PASS peanut: reach >= min(eps0/M, d_sep/2) (tol 2e-3)
+PASS NEG CONTROL peanut: doubled bound 2*min(...) exceeds the reach
+PASS ellipse: d_sep is finite (paper claimed infinity for convex)
+== OBL-001 (radial function of K_t) ==
+radial function range [0.5350,1.9944] ; r_min = 0.5209, R_max = 2.1769
+PASS B(x0,r_min) subset K_t subset B(x0,R_max)
+PASS NEG CONTROL swapped radii fail
+== OBL-010 (synchronous coupling) ==
+max |X_t-Y_t| / (e^-kt |X0-Y0|) = 0.7038 ; with mutated rate 3k: 283.9344
+PASS contraction with rate kappa holds pathwise (Euler scheme, tol 1%)
+PASS NEG CONTROL: rate 3*kappa violated
+== OBL-019 ==
+root of N (r/N)^(d/2)=1: d_s = 1.365212; closed form 2 log3/log5 = 1.365212
+PASS Kigami-Lapidus root = 2 log 3 / log 5
+PASS NEG CONTROL: Hausdorff dimension log3/log2 differs
+failures: 0

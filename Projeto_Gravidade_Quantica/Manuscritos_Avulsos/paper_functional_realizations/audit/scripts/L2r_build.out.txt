@@ -1,0 +1,11 @@
+paper: paper_functional_realizations
+pdflatex exit codes: [0, 0, 0]
+counts: {'errors': 0, 'latex_warnings': 0, 'overfull': 0, 'underfull': 0, 'undefined': 0, 'rerun': 0}
+pages: 25
+pdfTeX notices (3):
+  pdfTeX warning (font expansion): font should be expanded before its first use
+  pdfTeX warning (font expansion): font should be expanded before its first use
+  pdfTeX warning (font expansion): font should be expanded before its first use
+shipped PDF text identical to fresh build: True
+negative control (synthetic bad log) flagged: True {'errors': 1, 'latex_warnings': 1, 'overfull': 1, 'underfull': 0, 'undefined': 1, 'rerun': 0}
+gate failures: 0

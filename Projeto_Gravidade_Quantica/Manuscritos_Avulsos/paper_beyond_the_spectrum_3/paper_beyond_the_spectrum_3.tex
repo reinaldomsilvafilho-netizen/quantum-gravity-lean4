@@ -1,0 +1,1083 @@
+\documentclass[11pt,a4paper,reqno]{amsart}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath,amssymb,amsfonts,amsthm,mathtools}
+\usepackage{geometry}
+\geometry{margin=2.5cm}
+\usepackage[dvipsnames]{xcolor}
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue!70!black,
+    citecolor=green!50!black,
+    urlcolor=blue!70!black
+}
+\usepackage{microtype}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{physics}
+
+% Theorem Environments
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{example}[theorem]{Example}
+
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+\numberwithin{equation}{section}
+\raggedbottom
+
+% Custom Operators
+\newcommand{\dif}{\mathrm{d}}
+\DeclareMathOperator{\Sym}{Sym}
+\DeclareMathOperator{\End}{End}
+\DeclareMathOperator{\supp}{supp}
+\DeclareMathOperator{\im}{im}
+\DeclareMathOperator{\Cov}{Cov}
+\DeclareMathOperator{\Var}{Var}
+\DeclareMathOperator{\Unp}{Unp}
+\DeclareMathOperator{\Proj}{Proj}
+\DeclareMathOperator{\reach}{reach}
+
+\title[Beyond the Spectrum III]{Beyond the Spectrum III: Higher Invariants, Bipartite Kernels, and Non-Equilibrium Geometry of Functional Realizations}
+
+\author{Reinaldo M. Silva-Filho}
+\address{Master's student, Postgraduate Program in Statistics and Agricultural Experimentation (PPGEE/DES), Department of Statistics (DES), Federal University of Lavras (UFLA), Lavras, MG, Brazil}
+\email{reinaldo.filho1@estudante.ufla.br}
+
+\date{}
+
+\begin{document}
+
+\begin{abstract}
+This third volume studies functional realizations of matrices through symplectic, microlocal, nonlinear spectral, stochastic, bipartite-kernel and geometric-measure invariants. The main statements, proved here or derived from cited classical results, are these. The first Ekeland--Hofer capacity of a convex sublevel set $K_t(A)\subset\mathbb{R}^{2n}$ lies between $2\pi(t-\min\Phi(A))/\lambda_{\max}$ and $2\pi(t-\min\Phi(A))/\lambda_{\min}$, where $\lambda_{\min},\lambda_{\max}$ bound the Hessian on $K_t(A)$. Rank stratifications of matrix-valued realizations transverse to the rank stratification of $\mathrm{Sym}_n(\mathbb{R})$ are Whitney regular. For a weighted $p$-Laplacian whose weight is bounded above and below, $(\lambda_1^{(p)})^{1/p}$ converges as $p\to\infty$ to the reciprocal inradius of the domain, whatever the weight; on the unit disk this limit is $1$, while the Cheeger constant is $2$. For $\kappa$-convex Langevin potentials on $\mathbb{R}^d$ the law converges in $\mathcal{W}_2$ at rate $\kappa$, and the Jarzynski identity gives $e^{-\Delta F}=\Tr(B)/\Tr(A)$ for trace-normalized realizations. For bipartite kernels, the partial trace has trace $\Tr(A)$ and rank at most the sum of the Schmidt ranks of the frame, and the normalized modular Hamiltonian is non-negative. The simplicial Mellin transform $\mathcal{Z}_A(s)$ is entire. Compact regular level sets have reach at least $\min(\epsilon_0/M, d_{\mathrm{sep}}/2)$. Counterexamples show that three stronger statements fail: a stratified Euler-characteristic formula, a thermodynamic-length bound carrying a curvature factor, and a finite-rank bound for partial traces of general frames. The holographic relation $S_R=2E_W$ is recalled as a physical proposal, not proved.
+\end{abstract}
+
+\maketitle
+\tableofcontents
+
+% =========================================================================
+% SECTION 1
+% =========================================================================
+\section{Introduction}
+\label{sec:intro}
+
+Throughout, $\mathcal{S}_+^n$ denotes the cone of positive semi-definite Hermitian $n\times n$ matrices. The classical spectral theory of matrices and tensors characterizes an algebraic object $A \in \mathcal{S}_+^n$ through scalar invariants invariant under orthogonal or unitary transformations: eigenvalues $\lambda_j(A)$, traces $\Tr(A^k)$, and determinants $\det(A)$. In Volumes~I and~II of this series \cite{SilvaFilhoBTS}, we introduced the paradigm of \emph{functional realizations}, embedding finite- and infinite-dimensional tensors into continuous function spaces:
+\begin{equation}
+\Phi \colon \mathcal{T}^k(V) \longrightarrow \mathcal{F}(\Omega, \mathbb{R}), \qquad A \longmapsto \Phi(A)(x),
+\end{equation}
+where $\Omega \subset \mathbb{R}^d$ is a smooth compact domain or Riemannian manifold. This continuous lifting unlocked the rich geometric measures of Sobolev spaces $W^{1,p}$, bounded variation $\mathrm{BV}(\Omega)$, continuous optimal transport $\mathcal{W}_2(\mu_A, \mu_B)$, Bakry--Émery Ricci curvature lower bounds $\kappa_{\mathrm{BE}}(A)$, persistent homology diagrams $\mathrm{Dgm}_k(A)$, integrated Willmore bending energies $\mathcal{W}(\Phi(A))$, and non-commutative Dixmier traces $\Tr_\omega(\Phi(A) |\mathcal{D}|^{-d})$.
+
+Despite the analytical breadth of these invariants, Volumes~I and~II operated under two fundamental structural constraints:
+\begin{enumerate}
+    \item \textbf{Mostly Scalar Codomains:} The realization $\Phi(A)$ was mostly a scalar field $\Omega \to \mathbb{R}$ (Volume~I also uses integral operators with kernel $W_A$) or a Radon probability measure $\dif\mu_A = \Phi(A) \dif x$. Consequently, topological phase-space rigidity (symplectic capacity), gauge-field parallel transport, and internal quantum entanglement remained inaccessible.
+    \item \textbf{Static Equilibrium Assumption:} Invariants were computed on static tensors or quasistatic limits, blind to finite-time non-equilibrium dissipation, dynamical fluctuations, and irreversible entropy production.
+\end{enumerate}
+
+The present volume (\emph{Beyond the Spectrum III}) addresses these two constraints along three fronts:
+\begin{itemize}
+    \item \textbf{Symplectic invariants:} In Section~\ref{sec:symplectic}, we treat $\Omega = \mathbb{R}^{2n}$ as a symplectic phase space $(\Omega, \omega_0)$ and bound the first Ekeland--Hofer capacity $c_1^{\mathrm{EH}}$ of the sublevel sets $K_t(A)$ by Hessian data; we recall the Hofer--Zehnder capacity of convex bodies.
+    \item \textbf{Matrix-valued realizations and bipartite kernels:} In Section~\ref{sec:microlocal}, $\Phi(A)(x)$ is a smooth matrix-valued field in $\mathrm{Sym}_n(\mathbb{R})$, giving Whitney rank stratifications and constructible sheaves with Lagrangian micro-support. In Section~\ref{sec:bipartite}, we pass to bipartite integral kernels $K_A(x, y)$, their partial traces, modular Hamiltonians and reflected entropies; the holographic relation with the entanglement wedge cross-section is recalled as a physical proposal.
+    \item \textbf{Nonlinear analysis, stochastic thermodynamics, and geometric measure theory:} In Section~\ref{sec:nonlinear}, we study the weighted $p$-Laplacian family $\{\lambda_1^{(p)}(A)\}_{p \in (1,\infty)}$ and its limit as $p\to\infty$, and Gromov $\delta$-hyperbolicity. In Section~\ref{sec:thermo}, we consider Langevin diffusions under the potential $V_A = -\log \Phi(A)$, Jarzynski's identity, and the slow-driving limit of the dissipated work. Finally, Sections~\ref{sec:simplicial} and~\ref{sec:federer} treat Mellin transforms over the simplex and the reach of level sets.
+\end{itemize}
+
+Statements carry tags of the form $\mathtt{OBL\text{-}nnn}$ for cross-reference. Results labelled Theorem, Proposition or Lemma are proved in the text or are cited classical results with the source named; statements that fail in general are recorded as remarks together with a counterexample.
+
+\subsection*{Related work}
+Functional realizations are also the subject of Chapter~1 of the author's monograph~\cite{silvafilho2026book}. Most results below are classical or follow from classical results, and we use them rather than re-derive them.
+
+Symplectic capacities originate in Gromov's non-squeezing theorem~\cite{Gromov1985}; the capacities used here are those of Ekeland and Hofer~\cite{EkelandHofer1989,EkelandHofer1990} and of Hofer and Zehnder~\cite{HoferZehnder1994}, surveyed by Cieliebak, Hofer, Latschev and Schlenk~\cite{CieliebakHoferLatschevSchlenk2005}. On convex domains with smooth boundary the first Ekeland--Hofer capacity and the Hofer--Zehnder capacity coincide and equal the minimal action of a closed characteristic on the boundary \cite[Theorem~1.3]{ArtsteinAvidanOstrover2008}. For convex bodies, Artstein-Avidan and Ostrover proved a Brunn--Minkowski inequality for this capacity~\cite{ArtsteinAvidanOstrover2008}, and Artstein-Avidan, Karasev and Ostrover related its maximization at fixed volume to Mahler's conjecture~\cite{ArtsteinAvidanKarasevOstrover2014}. Viterbo~\cite{Viterbo2000} suggested that among convex domains of given volume the ball maximizes capacity; Haim-Kislev and Ostrover~\cite{HaimKislevOstrover2026} gave a counterexample to Viterbo's volume--capacity conjecture.
+
+Whitney's conditions~(a) and~(b) go back to Whitney~\cite{Whitney1965}; see Mather's notes~\cite{Mather2012}, the Liverpool notes~\cite{GibsonEtAl1976} and Trotman's survey~\cite{Trotman2020}. Micro-supports, constructible sheaves and characteristic cycles are developed by Kashiwara and Schapira~\cite{KashiwaraSchapira1990}; the index theorem for constructible sheaves is due to Kashiwara~\cite{Kashiwara1985}, and Schapira~\cite{Schapira2017} gives an overview. Integration of constructible functions with respect to the Euler characteristic was developed by Viro~\cite{Viro1988} and Schapira~\cite{Schapira1991}.
+
+The limit $p\to\infty$ of the first Dirichlet eigenvalue of the $p$-Laplacian was found by Juutinen, Lindqvist and Manfredi~\cite{JuutinenLindqvistManfredi1999} and by Fukagai, Ito and Narukawa~\cite{FukagaiItoNarukawa1999}; see Lindqvist's lecture notes~\cite{Lindqvist2008}, the Finsler version of Belloni, Kawohl and Juutinen~\cite{BelloniKawohlJuutinen2006}, and the optimal-transport approach of Champion, De~Pascale and Jimenez~\cite{ChampionDePascaleJimenez2008}. The opposite limit $p\to1$ gives the Cheeger constant~\cite{Cheeger1970,KawohlFridman2003}.
+
+On the stochastic side, the Fokker--Planck equation of an overdamped Langevin diffusion is the $\mathcal{W}_2$-gradient flow of the relative entropy~\cite{JordanKinderlehrerOtto1998}, and lower Ricci bounds are equivalent to $\mathcal{W}_2$ contraction estimates for the heat flow on Riemannian manifolds~\cite{vonRenesseSturm2005}; see Villani's monograph~\cite{Villani2009}. Stochastic thermodynamics is reviewed by Seifert~\cite{Seifert2012}. Thermodynamic length goes back to Salamon and Berry~\cite{SalamonBerry1983}; Crooks~\cite{Crooks2007} defined it for small systems described by equilibrium statistical mechanics, and Sivak and Crooks~\cite{SivakCrooks2012} derived the friction tensor that controls dissipation in linear response. Optimal finite-time protocols were computed by Schmiedl and Seifert~\cite{SchmiedlSeifert2007}, and their link with optimal transport was found by Aurell, Mej\'ia-Monasterio and Muratore-Ginanneschi~\cite{Aurell2011}. Recent work relates entropy production, speed limits and optimal transport~\cite{NakazatoIto2021,VanVuSaito2023}, and shows that for overdamped dynamics the friction-tensor geometry of the slow-driving limit coincides with $L^2$ optimal-transport geometry~\cite{ZhongDeWeese2024}; Blaber and Sivak~\cite{BlaberSivak2023} review optimal control in this setting.
+
+The reflected entropy was introduced by Dutta and Faulkner~\cite{DuttaFaulkner2019}. The entanglement wedge cross-section was proposed as the holographic dual of the entanglement of purification by Umemoto and Takayanagi~\cite{UmemotoTakayanagi2018} and by Nguyen, Devakul, Halbasch, Zaletel and Swingle~\cite{NguyenEtAl2018}. Akers and Rath~\cite{AkersRath2020} and Hayden, Parrikar and Sorce~\cite{HaydenParrikarSorce2021} studied the gap between reflected entropy and mutual information in holographic states, and Hayden, Lemm and Sorce~\cite{HaydenLemmSorce2023} showed by counterexample that the reflected entropy is not monotonically decreasing under partial trace. Sets of positive reach were introduced by Federer~\cite{Federer1959}; see the monograph of Rataj and Z\"ahle~\cite{RatajZahle2019}. The reach controls the curvature of a submanifold~\cite{NiyogiSmaleWeinberger2008,Aamari2019} and the variation of its tangent spaces~\cite{BoissonnatLieutierWintraecken2019}. The tube formula for compact submanifolds is due to Weyl~\cite{Weyl1939}.
+
+% =========================================================================
+% SECTION 2
+% =========================================================================
+\section{Symplectic Invariants of Functional Sublevel Sets}
+\label{sec:symplectic}
+
+Let $(\mathbb{R}^{2n}, \omega_0)$ be the standard symplectic vector space with canonical coordinates $x = (q_1, \dots, q_n, p_1, \dots, p_n)$ and non-degenerate closed 2-form $\omega_0 = \sum_{j=1}^n \dif p_j \wedge \dif q_j$. 
+Let $A \in \mathcal{S}_+^n$, and let $\Phi(A) \in C^2(\mathbb{R}^{2n}, \mathbb{R})$ be a strictly convex functional realization satisfying $\nabla^2 \Phi(A)(x) \ge \mu I > 0$ for all $x \in \mathbb{R}^{2n}$, with $\lim_{\|x\| \to \infty} \Phi(A)(x) = +\infty$.
+
+The minimum is attained at a unique point $x_0$, and $\nabla\Phi(A)$ vanishes only there, so every $t > \min_{x} \Phi(A)(x)$ is a regular value. The sublevel set
+\begin{equation}
+K_t(A) \coloneqq \left\{ x \in \mathbb{R}^{2n} \mid \Phi(A)(x) \le t \right\}
+\end{equation}
+is a compact, strictly convex body in $\mathbb{R}^{2n}$ with $C^2$ boundary $\Sigma_t \coloneqq \partial K_t(A)$. On this compact body we define the Hessian spectral bounds:
+\begin{equation}
+\lambda_{\max} \coloneqq \sup_{x \in K_t(A)} \lambda_{\max}\left(\nabla^2 \Phi(A)(x)\right) < \infty, \qquad \lambda_{\min} \coloneqq \inf_{x \in K_t(A)} \lambda_{\min}\left(\nabla^2 \Phi(A)(x)\right) \ge \mu > 0.
+\end{equation}
+
+\begin{theorem}[\textbf{OBL-001: Sublevel Convexity and Ekeland--Hofer Capacity}]
+\label{thm:eh_capacity_pos}
+Let $A \in \mathcal{S}_+^n$ and let $\Phi(A) \in C^2(\mathbb{R}^{2n})$ be strictly convex with $\nabla^2 \Phi(A) \ge \mu I > 0$. For every $t > \min \Phi(A)$, the first Ekeland--Hofer capacity $c_1^{\mathrm{EH}}$ of \cite{EkelandHofer1989,EkelandHofer1990} satisfies the two-sided bound
+\begin{equation}
+\label{eq:eh_bound}
+0 < \frac{2\pi (t - \min \Phi(A))}{\lambda_{\max}} \le c_1^{\mathrm{EH}}(K_t(A)) \le \frac{2\pi (t - \min \Phi(A))}{\lambda_{\min}} < \infty.
+\end{equation}
+\end{theorem}
+
+\begin{proof}
+Write $m = \min\Phi(A) = \Phi(A)(x_0)$, $\Phi = \Phi(A)$, and set $r_{\min} = \sqrt{2(t - m)/\lambda_{\max}}$, $R_{\max} = \sqrt{2(t - m)/\lambda_{\min}}$. For a unit vector $v$ and $s \ge 0$ let $f(s) = \Phi(x_0 + s v)$; then $f(0) = m$, $f'(0) = 0$ and $f''(s) = \langle \nabla^2\Phi(x_0+sv)v, v\rangle$.
+
+\emph{Inner ball.} Suppose some point $x_0 + s_1 v$ with $s_1 < r_{\min}$ lies outside $K_t(A)$. Since $f(0) < t < f(s_1)$, there is a first $s^* \in (0, s_1)$ with $f(s^*) = t$, and the segment $\{x_0 + sv : 0 \le s \le s^*\}$ lies in $K_t(A)$, where $f'' \le \lambda_{\max}$. Taylor's formula gives $t = f(s^*) \le m + \lambda_{\max}(s^*)^2/2 < m + \lambda_{\max} r_{\min}^2/2 = t$, a contradiction. Hence the open ball $B(x_0, r_{\min}) \subseteq K_t(A)$.
+
+\emph{Outer ball.} Let $x_0 + s v \in K_t(A)$. By convexity the whole segment from $x_0$ lies in $K_t(A)$, where $f'' \ge \lambda_{\min}$, so $t \ge f(s) \ge m + \lambda_{\min} s^2/2$, that is, $s \le R_{\max}$. Hence $K_t(A) \subseteq \bar{B}(x_0, R_{\max}) \subset B(x_0, R_{\max} + \varepsilon)$ for every $\varepsilon > 0$.
+
+The capacity $c_1^{\mathrm{EH}}$ is monotone under inclusion, invariant under symplectomorphisms (in particular translations), and satisfies $c_1^{\mathrm{EH}}(B^{2n}(r)) = \pi r^2$ \cite{EkelandHofer1989}. Therefore $\pi r_{\min}^2 \le c_1^{\mathrm{EH}}(K_t(A)) \le \pi (R_{\max} + \varepsilon)^2$ for every $\varepsilon > 0$, which is \eqref{eq:eh_bound}.
+\end{proof}
+
+\begin{remark}
+The inclusions in the proof are between round balls; the Hessian bounds do not give ellipsoids adapted to $\Phi(A)$. For a quadratic $\Phi(A)(x) = \tfrac12\langle Qx, x\rangle$ the bound is not sharp in general, since $c_1^{\mathrm{EH}}(K_t)$ is then $2\pi t$ divided by the largest symplectic eigenvalue of $Q$, which lies between $\lambda_{\min}(Q)$ and $\lambda_{\max}(Q)$.
+\end{remark}
+
+\begin{proposition}[\textbf{OBL-002: Hofer--Zehnder Periodic Orbit Invariance}]
+\label{prop:hz_symp_inv}
+Assume in addition that $\Phi(A)$ is $C^\infty$, and let $\psi \in \mathrm{Symp}(\mathbb{R}^{2n}, \omega_0)$ be any smooth symplectomorphism ($\psi^* \omega_0 = \omega_0$). Then the Hofer--Zehnder capacity $c_{\mathrm{HZ}}$ of the sublevel set satisfies
+\begin{equation}
+c_{\mathrm{HZ}}(\psi(K_t(A))) = c_{\mathrm{HZ}}(K_t(A)) = \inf_{\gamma \subset \partial K_t(A)} \left| \oint_\gamma p \dif q \right|,
+\end{equation}
+where the infimum runs over all closed characteristic curves of the Hamiltonian vector field $X_{\Phi(A)}$ on $\partial K_t(A)$.
+\end{proposition}
+
+\begin{proof}
+This is a cited classical result. The first equality is the symplectic invariance axiom of the Hofer--Zehnder capacity. The second is the theorem of Hofer and Zehnder \cite{HoferZehnder1994} that, for a convex body with smooth boundary in $\mathbb{R}^{2n}$, $c_{\mathrm{HZ}}$ equals the minimal action of a closed characteristic on the boundary; closed characteristics on the regular level set $\partial K_t(A)$ are the periodic orbits of $X_{\Phi(A)}$ there.
+\end{proof}
+
+\begin{remark}[\textbf{OBL-003: spectral invariants of realization Hamiltonians}]
+\label{rem:viterbo_lipschitz}
+One would like a $C^0$-Lipschitz estimate $\lvert c(a, \Phi(A)) - c(a, \Phi(B))\rvert \le \lVert\Phi(A) - \Phi(B)\rVert$ for spectral invariants of the Hamiltonians $\Phi(A)$, $\Phi(B)$ with quadratic growth at infinity. We do not prove such an estimate here. For spectral invariants defined through generating functions or Floer homology see Viterbo~\cite{Viterbo1992} and Schwarz~\cite{Schwarz2000}, and for the symplectic homology of open sets in $\mathbb{C}^n$ see Floer and Hofer~\cite{FloerHofer1994}. A precise statement needs at least: (i) a class of Hamiltonians for which the spectral invariants $c(a,\cdot)$ are defined, for example asymptotically quadratic Hamiltonians with a fixed non-resonant quadratic form at infinity, since the filtered Floer homology changes when the slope at infinity crosses a resonance; (ii) a homology class $a$ of the relevant filtered Floer complex (the singular homology $H_*(\mathbb{R}^{2n};\mathbb{Z}_2)$ is concentrated in degree $0$); and (iii) a norm. Standard continuation arguments control the action shift by the oscillation of $\Phi(A) - \Phi(B)$ over the whole space, because the energy estimate involves the entire Floer cylinder; restricting the norm to a compact set $K$ containing the relevant periodic orbits would need an additional argument that we do not have.
+\end{remark}
+
+% =========================================================================
+% SECTION 3
+% =========================================================================
+\section{Microlocal Sheaves and Stratified Rank Characteristic Cycles}
+\label{sec:microlocal}
+
+We now perform the structural promotion of the realization map to smooth matrix-valued fields $\Phi(A) \in C^\infty(\Omega, \mathrm{Sym}_n(\mathbb{R}))$.
+
+\begin{definition}[\textbf{Rank Stratification}]
+\label{def:rank_strat}
+Let $\Phi(A) \in C^\infty(\Omega, \mathrm{Sym}_n(\mathbb{R}))$. For each integer $r \in \{0, 1, \dots, n\}$, the rank-$r$ stratum of $\Omega$ is defined by:
+\begin{equation}
+\Sigma_r(A) \coloneqq \left\{ x \in \Omega \mid \operatorname{rank}(\Phi(A)(x)) = r \right\}.
+\end{equation}
+\end{definition}
+
+\begin{proposition}[\textbf{OBL-004: Whitney Regularity of Rank Strata}]
+\label{prop:whitney_rank_strat}
+Let $\Omega$ be a smooth manifold. Assume that the mapping $\Phi(A) \colon \Omega \to \mathrm{Sym}_n(\mathbb{R})$ is transverse to each stratum $\mathcal{R}_r$ of the rank stratification $\mathcal{R} = \{\mathcal{R}_r\}_{r=0}^n$ of $\mathrm{Sym}_n(\mathbb{R})$, where $\mathcal{R}_r$ is the set of symmetric matrices of rank exactly $r$. Then each non-empty $\Sigma_r(A)$ is a submanifold of codimension $\binom{n-r+1}{2}$, and $\Omega = \bigsqcup_{r=0}^n \Sigma_r(A)$ is a Whitney stratification, satisfying conditions~(A) and~(B) of \cite{Whitney1965} (see also \cite[\S\S1--2]{Mather2012}).
+\end{proposition}
+
+\begin{proof}
+The congruence action $X \mapsto gXg^{\top}$ of $GL_n(\mathbb{R})$ on $\mathrm{Sym}_n(\mathbb{R})$ has finitely many orbits $O_{p,q}$, indexed by the signature $(p,q)$, and $\mathcal{R}_r = \bigsqcup_{p+q=r} O_{p,q}$. Along a continuous path of rank-$r$ matrices no non-zero eigenvalue can cross zero, so each $O_{p,q}$ is open and closed in $\mathcal{R}_r$; hence $\mathcal{R}_r$ is a semi-algebraic submanifold of dimension $r(2n-r+1)/2$, that is, of codimension $\binom{n-r+1}{2}$. For two orbits $O \subset \overline{O'}$, the set of points of $O$ at which Whitney's condition (B) fails relative to $O'$ is semi-algebraic of dimension less than $\dim O$ (Whitney's genericity theorem \cite{Whitney1965}, see \cite{GibsonEtAl1976}) and invariant under the action, which is transitive on $O$; so it is empty. Thus the rank strata form a Whitney stratification of $\mathrm{Sym}_n(\mathbb{R})$. The preimage of a Whitney stratification under a smooth map transverse to all its strata is a Whitney stratification with the same codimensions (see \cite{GibsonEtAl1976}; for the closely related statement on transverse intersections, see \cite{OrroTrotman2010}). Hence $\Sigma_r(A) = \Phi(A)^{-1}(\mathcal{R}_r)$ has codimension $\binom{n-r+1}{2}$ and the partition $\{\Sigma_r(A)\}$ satisfies (A) and (B).
+\end{proof}
+
+\begin{lemma}[\textbf{OBL-005: Kashiwara--Schapira Micro-Support Lagrangian Property}]
+\label{lem:microsupport_lagrangian}
+Assume that $\Omega$ is a real-analytic manifold, that $\Phi(A)$ is real analytic and satisfies the hypothesis of Proposition~\ref{prop:whitney_rank_strat}, so that the strata $\Sigma_r(A)$ are subanalytic. Let $\mathcal{F}_A \in D^b(\Omega)$ be a bounded complex of sheaves of vector spaces whose cohomology sheaves are locally constant of finite rank on each stratum $\Sigma_r(A)$. Then the micro-support $SS(\mathcal{F}_A) \subset T^*\Omega$ is a closed conic subanalytic Lagrangian subset, and
+\begin{equation}
+SS(\mathcal{F}_A) \subseteq \bigcup_{r=0}^n \overline{T^*_{\Sigma_r(A)} \Omega}.
+\end{equation}
+\end{lemma}
+
+\begin{proof}
+This is a cited result of Kashiwara and Schapira \cite{KashiwaraSchapira1990}. Since the cohomology sheaves of $\mathcal{F}_A$ are locally constant on the strata of a Whitney stratification, the micro-support is contained in the union of the closed conormal bundles of the strata \cite[Prop.~8.4.1]{KashiwaraSchapira1990}. This union is a closed conic isotropic subanalytic set, so $SS(\mathcal{F}_A)$ is isotropic. By the involutivity theorem \cite[Thm.~6.5.4]{KashiwaraSchapira1990}, $SS(\mathcal{F}_A)$ is coisotropic. A closed conic subanalytic set that is both isotropic and coisotropic is Lagrangian; see also \cite[Thm.~8.4.2]{KashiwaraSchapira1990}, as stated in \cite[Thm.~3.7]{Schapira2017}.
+\end{proof}
+
+\begin{theorem}[\textbf{OBL-006: Kashiwara's global index formula}]
+\label{thm:kashiwara_index_cc}
+In the setting of Lemma~\ref{lem:microsupport_lagrangian}, let $\Omega$ be compact without boundary, of dimension $m$. Orient $T^*\Omega$ by $(\dif\theta)^m$, where $\theta$ is the canonical $1$-form, and let $CC(\mathcal{F}_A)$ be the characteristic cycle of $\mathcal{F}_A$ with the orientation conventions of \cite[\S\S2--3]{Kashiwara1985}. Then the Euler characteristic of $\mathcal{F}_A$ is, up to a sign depending only on $m$, the intersection number of its characteristic cycle with the zero section,
+\begin{equation}
+\chi(\Omega; \mathcal{F}_A) = (-1)^{m(m+1)/2}\, CC(\mathcal{F}_A) \cdot [T^*_\Omega \Omega],
+\end{equation}
+and, by additivity of the compactly supported Euler characteristic over the finite partition $\{\Sigma_r(A)\}$,
+\begin{equation}
+\label{eq:chi_strata}
+\chi(\Omega; \mathcal{F}_A) = \sum_{r=0}^n \chi_c(\Sigma_r(A))\, \chi\big((\mathcal{F}_A)_{x_r}\big),
+\end{equation}
+where $x_r$ is any point of $\Sigma_r(A)$ and the sum runs over non-empty strata (if a stratum is disconnected, the term is summed over its connected components, each with its own stalk).
+\end{theorem}
+
+\begin{proof}
+The first equality is Kashiwara's index theorem \cite[Thm.~4.2]{Kashiwara1985} applied with the constant function $\varphi = 0$, whose differential graph $Y_\varphi$ is the zero section: its hypotheses, that $\{x \in \operatorname{supp}\mathcal{F}_A : \varphi(x) \le t\}$ and $Y_\varphi \cap SS(\mathcal{F}_A)$ be compact, hold because $\Omega$ is compact, and $\mathcal{F}_A$ is constructible by the hypotheses of Lemma~\ref{lem:microsupport_lagrangian}. The sign $(-1)^{m(m+1)/2}$ is the one in \cite[Thm.~4.2]{Kashiwara1985} and depends on the orientation conventions; other normalizations of the orientation of $T^*\Omega$ change it (see \cite[Ch.~IX]{KashiwaraSchapira1990} for the theory in book form). As a check, for the constant sheaf $CC = [T^*_\Omega\Omega]$ \cite[Ex.~8.5(i)]{Kashiwara1985}; with base-then-fibre coordinates $(x,\xi)$ one has $(\dif\theta)^m = m!\,(-1)^{m(m+1)/2}\,\dif x_1\wedge\cdots\wedge\dif x_m\wedge\dif\xi_1\wedge\cdots\wedge\dif\xi_m$, and the self-intersection of the zero section for the base-then-fibre orientation is the Euler number $\chi(\Omega)$ of $T^*\Omega \cong T\Omega$, so the right-hand side equals $\chi(\Omega)$. For \eqref{eq:chi_strata}: for an open $U \subseteq \Omega$ with closed complement $Z$, the exact sequence $\cdots \to H^k_c(U; \mathcal{F}) \to H^k_c(\Omega; \mathcal{F}) \to H^k_c(Z; \mathcal{F}) \to \cdots$ gives $\chi_c(\Omega;\mathcal{F}) = \chi_c(U;\mathcal{F}) + \chi_c(Z;\mathcal{F})$. Since the rank is lower semicontinuous, $\Sigma_r(A)$ is closed in $\Omega \setminus \bigcup_{r' < r} \Sigma_{r'}(A)$; removing the strata one at a time in order of increasing $r$ gives $\chi_c(\Omega;\mathcal{F}_A) = \sum_r \chi_c(\Sigma_r(A); \mathcal{F}_A|_{\Sigma_r(A)})$. On a connected stratum $S$ the cohomology sheaves are locally constant, and $\chi_c(S; \mathcal{L}) = \chi_c(S)\operatorname{rank}\mathcal{L}$ for a local system $\mathcal{L}$ of finite rank on the subanalytic set $S$ (compute with a finite triangulation adapted to $S$). Summing over the cohomology sheaves with signs, and using $\chi = \chi_c$ on compact $\Omega$, gives \eqref{eq:chi_strata}. In the language of constructible functions, \eqref{eq:chi_strata} is the integral of $x \mapsto \chi((\mathcal{F}_A)_x)$ with respect to the Euler characteristic \cite{Viro1988,Schapira1991}.
+\end{proof}
+
+\begin{remark}[A formula that fails]
+\label{rem:chi_counterexample}
+The formula $\chi(\Omega; \mathcal{F}) = \sum_r m_r \chi(\Sigma_r)$, with $m_r$ the coefficients of $CC(\mathcal{F}) = \sum_r m_r [\overline{T^*_{\Sigma_r}\Omega}]$ and the ordinary Euler characteristic $\chi$ of the strata, is false in general. Take $\Omega = S^1$, $n = 1$, $\Phi(A)(\theta) = \cos\theta$ (transverse to $\{0\}$) and $\mathcal{F}$ the constant sheaf. Then $\Sigma_1$ is the union of two open arcs and $\Sigma_0$ consists of two points; $CC(\mathcal{F}) = [T^*_{S^1}S^1] = [\overline{T^*_{\Sigma_1} S^1}]$, so $m_1 = 1$, $m_0 = 0$. The formula would give $1\cdot\chi(\Sigma_1) = 2$, while $\chi(S^1) = 0$. Formula \eqref{eq:chi_strata} gives $\chi_c(\Sigma_1) + \chi_c(\Sigma_0) = -2 + 2 = 0$. In general, the intersection of the closure of a conormal bundle with the zero section involves local Euler obstructions of the stratum closures \cite{MacPherson1974}, not the Euler characteristics of the strata.
+\end{remark}
+
+% =========================================================================
+% SECTION 4
+% =========================================================================
+\section{Nonlinear Spectral and Metric Geometry: Weighted \texorpdfstring{$p$}{p}-Laplacians}
+\label{sec:nonlinear}
+
+Let $\Omega \subset \mathbb{R}^d$ be a bounded, \emph{connected} domain with Lipschitz boundary $\partial\Omega$, and let $d\mu_A = \Phi(A)(x) \dif x$ with $\Phi(A) \in C^1(\bar{\Omega})$ strictly positive: $\inf_\Omega \Phi(A) \ge c_0 > 0$. For $p \in (1, \infty)$, the weighted $p$-Laplacian operator is defined weakly by
+\begin{equation}
+\Delta_p^A u \coloneqq \nabla \cdot \left( \Phi(A) \|\nabla u\|^{p-2} \nabla u \right).
+\end{equation}
+
+\begin{definition}[\textbf{First $p$-Laplacian Eigenvalue}]
+\label{def:p_laplacian}
+The first Dirichlet eigenvalue $\lambda_1^{(p)}(A)$ is defined by the Rayleigh--Finsler quotient:
+\begin{equation}
+\label{eq:rayleigh_p}
+\lambda_1^{(p)}(A) \coloneqq \inf_{u \in W_0^{1,p}(\Omega, \mu_A) \setminus \{0\}} \frac{\int_\Omega \|\nabla u\|^p \Phi(A) \dif x}{\int_\Omega |u|^p \Phi(A) \dif x}.
+\end{equation}
+\end{definition}
+
+\begin{lemma}[\textbf{OBL-007: Existence of a non-negative ground state}]
+\label{lem:p_laplacian_minimax}
+For every $p \in (1, \infty)$, $\lambda_1^{(p)}(A) > 0$, and the infimum in \eqref{eq:rayleigh_p} is attained by a non-negative function $u_p \in W_0^{1,p}(\Omega)\setminus\{0\}$.
+\end{lemma}
+
+\begin{proof}
+Write $C_0 \coloneqq \sup_\Omega \Phi(A) < \infty$. Since $c_0 \le \Phi(A) \le C_0$, the weighted quotient lies between $c_0/C_0$ and $C_0/c_0$ times the unweighted quotient $\int\|\nabla u\|^p/\int|u|^p$, and $W_0^{1,p}(\Omega,\mu_A) = W_0^{1,p}(\Omega)$ with equivalent norms. By Poincaré's inequality on the bounded domain $\Omega$, the unweighted quotient is bounded below by a positive constant, so $\lambda_1^{(p)}(A) > 0$. Take a minimizing sequence normalized by $\int|u_k|^p\dif\mu_A = 1$; it is bounded in $W_0^{1,p}(\Omega)$, so a subsequence converges weakly in $W_0^{1,p}$ and, by the Rellich--Kondrachov theorem, strongly in $L^p$. The constraint passes to the limit, and $u \mapsto \int\|\nabla u\|^p\dif\mu_A$ is convex and continuous, hence weakly lower semicontinuous, so the limit $u$ is a minimizer. Since $\|\nabla|u|\| = \|\nabla u\|$ almost everywhere, $u_p \coloneqq |u|$ is also a minimizer.
+\end{proof}
+
+\begin{remark}
+For $\Phi(A) \equiv 1$, Lindqvist \cite{Lindqvist1990} proved that on any bounded domain the first eigenfunction has no zeros in $\Omega$ and is unique up to multiplication by a constant; see also \cite[Theorem~6]{Lindqvist2008}. We do not prove the weighted analogue here. Strict convexity of $v \mapsto \|\nabla v\|^p$ alone does not give uniqueness, since the Rayleigh quotient is not convex.
+\end{remark}
+
+\begin{theorem}[\textbf{OBL-008: The limit $p\to\infty$ is the reciprocal inradius}]
+\label{thm:cheeger_p_limit}
+Let $R_\Omega \coloneqq \max_{x \in \bar\Omega} \operatorname{dist}(x, \partial\Omega)$ be the inradius of $\Omega$. Then
+\begin{equation}
+\lim_{p \to \infty} \left( \lambda_1^{(p)}(A) \right)^{1/p} = \frac{1}{R_\Omega},
+\end{equation}
+for every weight $\Phi(A) \in C^1(\bar\Omega)$ with $\inf_\Omega \Phi(A) > 0$. In particular the limit does not depend on $A$.
+\end{theorem}
+
+\begin{proof}
+\emph{Step 1: reduction to the unweighted case.} Let $\lambda_p$ denote the unweighted first eigenvalue ($\Phi \equiv 1$). As in the proof of Lemma~\ref{lem:p_laplacian_minimax}, $(c_0/C_0)\lambda_p \le \lambda_1^{(p)}(A) \le (C_0/c_0)\lambda_p$. Since $(C_0/c_0)^{1/p} \to 1$, it suffices to show $\lambda_p^{1/p} \to 1/R_\Omega$. This unweighted statement is due to Juutinen, Lindqvist and Manfredi \cite{JuutinenLindqvistManfredi1999} and to Fukagai, Ito and Narukawa \cite{FukagaiItoNarukawa1999}; we include the short proof for completeness, which follows \cite[Lemma~11]{Lindqvist2008}. Write $\delta(x) = \operatorname{dist}(x, \partial\Omega)$.
+
+\emph{Step 2: upper bound.} The function $\delta$ is $1$-Lipschitz, vanishes on $\partial\Omega$ and satisfies $\|\nabla\delta\| = 1$ almost everywhere, so $\delta \in W_0^{1,p}(\Omega)$ and $\lambda_p^{1/p} \le \|\nabla\delta\|_{L^p}/\|\delta\|_{L^p} = |\Omega|^{1/p}/\|\delta\|_{L^p}$. As $p \to \infty$, $|\Omega|^{1/p} \to 1$ and $\|\delta\|_{L^p} \to \|\delta\|_{L^\infty} = R_\Omega$, so $\limsup_{p} \lambda_p^{1/p} \le 1/R_\Omega$.
+
+\emph{Step 3: lower bound.} Let $L \coloneqq \liminf_{p\to\infty}\lambda_p^{1/p}$, which is finite by Step~2, and choose $p_j \to \infty$ with $\lambda_{p_j}^{1/p_j} \to L$. Let $u_j \ge 0$ be minimizers from Lemma~\ref{lem:p_laplacian_minimax} with $\|u_j\|_{L^{p_j}} = 1$, extended by zero outside $\Omega$. For fixed $q < p_j$, Hölder's inequality gives $\|\nabla u_j\|_{L^q} \le |\Omega|^{1/q - 1/p_j}\lambda_{p_j}^{1/p_j}$ and $\|u_j\|_{L^q} \le |\Omega|^{1/q-1/p_j}$. Fixing $q > d$, the sequence is bounded in $W^{1,q}(\mathbb{R}^d)$ with supports in $\bar\Omega$; by Morrey's inequality and the Arzelà--Ascoli theorem, and a diagonal argument over $q = d+1, d+2, \dots$, a subsequence converges uniformly on $\mathbb{R}^d$ and weakly in every $W^{1,q}(\mathbb{R}^d)$ to a continuous $u_\infty$ vanishing outside $\Omega$. Weak lower semicontinuity gives $\|\nabla u_\infty\|_{L^q} \le |\Omega|^{1/q} L$, and letting $q \to \infty$, $\|\nabla u_\infty\|_{L^\infty} \le L$; hence $u_\infty$ is $L$-Lipschitz on $\mathbb{R}^d$. Moreover $\|u_j\|_{L^\infty} \ge |\Omega|^{-1/p_j}\|u_j\|_{L^{p_j}} = |\Omega|^{-1/p_j} \to 1$, so uniform convergence gives $\|u_\infty\|_{L^\infty} \ge 1$. For $x \in \Omega$ pick $y \in \partial\Omega$ with $|x - y| = \delta(x)$; since $u_\infty(y) = 0$, $|u_\infty(x)| \le L\,\delta(x) \le L R_\Omega$. Taking the supremum over $x$ gives $1 \le L R_\Omega$, that is, $L \ge 1/R_\Omega$.
+\end{proof}
+
+\begin{remark}[The Cheeger constant is the limit $p \to 1$, not $p \to \infty$]
+\label{rem:cheeger}
+For the unit disk and $\Phi(A) \equiv 1$, Theorem~\ref{thm:cheeger_p_limit} gives the limit $1$, whereas the Cheeger constant \cite{Cheeger1970} $h = \inf_E \mathrm{Per}(E)/|E|$ (with the full perimeter) equals $2$, attained by the disk itself. The cone $u = 1 - |x|$ shows directly that $\lambda_p^{1/p} \le \big((p+1)(p+2)/2\big)^{1/p} \to 1$. With the relative perimeter $\int_{\partial^*E \cap \Omega}\Phi(A)\dif\mathcal{H}^{d-1}$, the choice $E = \Omega$ gives a Cheeger quotient $0$. The Cheeger constant appears in the opposite limit: Kawohl and Fridman \cite{KawohlFridman2003} proved, for the unweighted $p$-Laplacian, that $\lambda_p(\Omega) \to h(\Omega)$ as $p \to 1$.
+\end{remark}
+
+\begin{theorem}[\textbf{OBL-009: Gromov hyperbolicity of negatively curved conformal metrics}]
+\label{thm:gromov_hyperbolicity}
+Let $(\Omega, g_A)$ be a complete, simply connected Riemannian manifold with conformal metric $g_A = \Phi(A)^{2/d} \delta_{ij}$. If the sectional curvature satisfies $\mathrm{Sec}(g_A) \le -\kappa_0 < 0$ uniformly on $\Omega$, then $(\Omega, d_{g_A})$ is complete, geodesic, and Gromov $\delta$-hyperbolic with constant:
+\begin{equation}
+\delta(A) \le \frac{\ln(1 + \sqrt{2})}{\sqrt{\kappa_0}} < \infty.
+\end{equation}
+\end{theorem}
+
+\begin{proof}
+This is a direct consequence of classical comparison geometry. Since $(\Omega, g_A)$ is complete, simply connected and has sectional curvature at most $-\kappa_0 < 0$, the Cartan--Hadamard theorem shows that it is a Hadamard manifold, with unique minimizing geodesics between any two points, and comparison geometry shows that $(\Omega, d_{g_A})$ is a $\mathrm{CAT}(-\kappa_0)$ space \cite{BridsonHaefliger1999}: every geodesic triangle is thinner than its comparison triangle in the model plane $\mathbb{H}^2(-\kappa_0)$. Every geodesic triangle in $\mathbb{H}^2(-\kappa_0)$ is $\delta$-slim with $\delta = \kappa_0^{-1/2}\ln(1+\sqrt2)$, the slimness constant of an ideal triangle (the largest distance from a point of one side to the union of the other two). The comparison map transfers $\delta$-slimness to $(\Omega, d_{g_A})$ \cite{BridsonHaefliger1999,Gromov1987}.
+\end{proof}
+
+\begin{remark}
+The conformal form $g_A = \Phi(A)^{2/d}\delta_{ij}$ plays no role in the proof; only the curvature bound is used. The constant $\ln(1+\sqrt2) \approx 0.8814$ is not the inradius of the ideal triangle, which is $\tfrac12\ln 3 \approx 0.5493$.
+\end{remark}
+
+% =========================================================================
+% SECTION 5
+% =========================================================================
+\section{Non-Equilibrium Thermodynamics and Stochastic Dissipation Length}
+\label{sec:thermo}
+
+\emph{Units.} We set $k_B T = 1$ and take unit mobility, so the diffusion coefficient is $D = 1$. Then potentials, work and free energies are dimensionless, and $[x]^2 = [t]$: lengths squared have the dimension of time.
+
+Let $\Phi(A) \in C^2(\mathbb{R}^d, \mathbb{R}_{>0})$ be an unnormalized realization with total mass
+\begin{equation}
+Z(A) \coloneqq \int_{\mathbb{R}^d} \Phi(A)(x) \dif x = \Tr(A) > 0.
+\end{equation}
+Define the potential $V_A(x) \coloneqq -\log \Phi(A)(x)$ and consider the overdamped Langevin diffusion on $\mathbb{R}^d$
+\begin{equation}
+\label{eq:langevin_sde}
+\dif X_t = -\nabla V_A(X_t) \dif t + \sqrt{2} \dif W_t.
+\end{equation}
+
+\begin{proposition}[\textbf{OBL-010: Stationary measure and $\mathcal{W}_2$ contraction}]
+\label{prop:langevin_ergodicity}
+Assume that $V_A$ is uniformly convex on $\mathbb{R}^d$: $\nabla^2 V_A(x) \ge \kappa I$ with $\kappa > 0$ for all $x$. Then \eqref{eq:langevin_sde} has a unique strong solution for every initial law with finite second moment, the probability measure
+\begin{equation}
+\dif\mu_A(x) \coloneqq \frac{e^{-V_A(x)}}{Z(A)} \dif x = \frac{\Phi(A)(x)}{\Tr(A)} \dif x
+\end{equation}
+is stationary and satisfies the Bakry--\'Emery condition $CD(\kappa, \infty)$, and the law $\mu_t$ of $X_t$ satisfies
+\begin{equation}
+\mathcal{W}_2(\mu_t, \mu_A) \le e^{-\kappa t}\, \mathcal{W}_2(\mu_0, \mu_A).
+\end{equation}
+In particular $\mu_A$ is the unique stationary law with finite second moment.
+\end{proposition}
+
+\begin{proof}
+Uniform convexity gives $\langle \nabla V_A(x) - \nabla V_A(y), x - y\rangle \ge \kappa |x - y|^2$ and $V_A(x) \ge V_A(x_*) + \tfrac{\kappa}{2}|x - x_*|^2$ at the minimizer $x_*$, so $e^{-V_A}$ is integrable with Gaussian tails. The drift is locally Lipschitz and satisfies $\langle -\nabla V_A(x), x - x_*\rangle \le -\kappa|x - x_*|^2$, so strong solutions exist, are unique and do not explode. The density $e^{-V_A}$ solves the stationary Fokker--Planck equation $\nabla\cdot(\nabla \rho + \rho\nabla V_A) = 0$, and the generator $L_A f = \Delta f - \nabla V_A \cdot \nabla f$ is symmetric in $L^2(\mu_A)$; $\Gamma_2(f,f) = \|\nabla^2 f\|^2 + \langle \nabla^2 V_A \nabla f, \nabla f\rangle \ge \kappa\,\Gamma(f,f)$ is the condition $CD(\kappa,\infty)$ \cite{BakryEmery1985}.
+
+For the contraction, let $X_t, Y_t$ solve \eqref{eq:langevin_sde} with the same Brownian motion, with $(X_0, Y_0)$ an optimal coupling of $(\mu_0, \mu_A)$; then $Y_t \sim \mu_A$ for all $t$. The noise cancels in the difference, and
+\begin{equation}
+\frac{\dif}{\dif t}|X_t - Y_t|^2 = -2\langle \nabla V_A(X_t) - \nabla V_A(Y_t), X_t - Y_t\rangle \le -2\kappa |X_t - Y_t|^2,
+\end{equation}
+so $|X_t - Y_t| \le e^{-\kappa t}|X_0 - Y_0|$ almost surely. Taking second moments, $\mathcal{W}_2(\mu_t, \mu_A)^2 \le \mathbb{E}|X_t - Y_t|^2 \le e^{-2\kappa t}\mathcal{W}_2(\mu_0,\mu_A)^2$. If $\nu$ is another stationary law with finite second moment, applying this with $\mu_0 = \nu$ gives $\mathcal{W}_2(\nu,\mu_A) \le e^{-\kappa t}\mathcal{W}_2(\nu,\mu_A)$ for all $t$, so $\nu = \mu_A$.
+\end{proof}
+
+\noindent For the heat flow on a Riemannian manifold, $\mathcal{W}_2$ contraction estimates characterize lower Ricci bounds, by the theorem of von~Renesse and Sturm~\cite{vonRenesseSturm2005}. The Fokker--Planck equation of \eqref{eq:langevin_sde} is the $\mathcal{W}_2$-gradient flow of the relative entropy $H(\cdot\,|\,\mu_A)$ \cite{JordanKinderlehrerOtto1998}.
+
+\begin{remark}
+By the Bakry--\'Emery criterion and the Otto--Villani theorem \cite{BakryEmery1985,OttoVillani2000}, $\mu_A$ also satisfies a logarithmic Sobolev inequality and the Talagrand inequality \cite{Talagrand1996} $\mathcal{W}_2^2(\nu,\mu_A) \le \frac{2}{\kappa}H(\nu\,|\,\mu_A)$; see also \cite[Ch.~22]{Villani2009}. These functional inequalities do not by themselves give the $\mathcal{W}_2$ contraction above, which comes from the coupling argument.
+\end{remark}
+
+\begin{theorem}[\textbf{OBL-011: Exact Jarzynski Free Energy Identity on Functional Protocols}]
+\label{thm:jarzynski_identity}
+Let $s \in [0, 1] \mapsto A_s \in \mathcal{S}_+^n$ be a smooth matrix protocol connecting $A_0 = A$ to $A_1 = B$ over duration $\tau$, with $s(t) = t/\tau$, such that each $V_{A_s}$ satisfies the hypotheses of Proposition~\ref{prop:langevin_ergodicity} and $\int\Phi(A_s)\dif x = \Tr(A_s)$ at $s = 0, 1$. Let $X_t$ solve \eqref{eq:langevin_sde} with the time-dependent potential $V_{A_{s(t)}}$ and $X_0 \sim \mu_A$. The stochastic work $W[X_\cdot] = \int_0^\tau \partial_s V_{A_{s(t)}}(X_t) \dot{s}(t) \dif t$ satisfies the exact Jarzynski equality:
+\begin{equation}
+\mathbb{E}_{\mu_A} \left[ e^{-W} \right] = e^{-\Delta F(A, B)} = \frac{Z(B)}{Z(A)} = \frac{\Tr(B)}{\Tr(A)}.
+\end{equation}
+\end{theorem}
+
+\begin{proof}
+This is Jarzynski's equality \cite{Jarzynski1997}, applied to the realization potentials; we recall the argument through Crooks' fluctuation theorem \cite{Crooks1999}. Let $P_F[X_\cdot]$ be the forward path measure of the time-dependent diffusion starting from $\mu_A$, and $P_R[\hat{X}_\cdot]$ the path measure of the time-reversed protocol starting from $\mu_B$. By Girsanov's theorem and Crooks' theorem, the Radon--Nikodym derivative satisfies $\ln \frac{\dif P_F}{\dif P_R}[X_\cdot] = W[X_\cdot] - \Delta F(A, B)$, where $\Delta F(A, B) = -\ln(Z(B)/Z(A))$. Integrating the identity $P_R[\hat{X}_\cdot] = e^{-(W - \Delta F)} P_F[X_\cdot]$ over the entire path space yields
+\begin{equation}
+\mathbb{E}_{\mu_A} \left[ e^{-W} \right] = e^{-\Delta F(A, B)} = \frac{Z(B)}{Z(A)} = \frac{\Tr(B)}{\Tr(A)}.
+\end{equation}
+\end{proof}
+
+\begin{remark}[\textbf{OBL-012: slow driving, thermodynamic length and $\mathcal{W}_2$}]
+\label{rem:thermo_length_w2}
+Let $\Sigma_{\mathrm{irr}} \coloneqq \langle W \rangle - \Delta F(A, B) \ge 0$ be the mean dissipated work. In linear response (Sivak and Crooks \cite{SivakCrooks2012}), for a fixed smooth path $s \mapsto A_s$ run at speed $1/\tau$,
+\begin{equation}
+\tau\,\Sigma_{\mathrm{irr}} \to \int_0^1 g_{\mathrm{fric}}(A_s)(\dot A_s, \dot A_s)\dif s \qquad (\tau\to\infty),
+\end{equation}
+where $g_{\mathrm{fric}}(A)(\dot A,\dot A) = \int_0^\infty \operatorname{Cov}_{\mu_A}\big(\partial_s V_{A}(X_0), \partial_s V_{A}(X_t)\big)\dif t$ is the friction metric. By the Cauchy--Schwarz inequality the right-hand side is at least $\mathcal{L}^2$, with $\mathcal{L} = \int_0^1 \sqrt{g_{\mathrm{fric}}(\dot A_s,\dot A_s)}\dif s$ the thermodynamic length \cite{SalamonBerry1983,Crooks2007}, and equality holds for constant-speed paths. Thus the slow-driving limit equals $\mathcal{L}^2$, not $\tfrac12\mathcal{L}^2$. We do not prove these linear-response statements here.
+
+A lower bound by $\kappa\,\mathcal{W}_2^2$ fails, and is dimensionally inconsistent: with $k_BT = D = 1$, the quantities $\tau\Sigma_{\mathrm{irr}}$, $\mathcal{L}^2$ and $\mathcal{W}_2^2$ have the dimension of time (length squared), while $\kappa$ has the dimension of inverse time. Counterexample: the dragged trap (the moving laser trap of Schmiedl and Seifert \cite{SchmiedlSeifert2007}, who computed its optimal protocols) $V_s(x) = \kappa(x - sa)^2/2$ on $\mathbb{R}$, $s = t/\tau$, for which $\mu_A$ and $\mu_B$ are Gaussians of equal variance and $\mathcal{W}_2(\mu_A,\mu_B) = |a|$. The mean position obeys $\dot m = -\kappa(m - a t/\tau)$, which gives $\Delta F = 0$ and
+\begin{equation}
+\tau\,\Sigma_{\mathrm{irr}} = a^2\Big(1 - \frac{1 - e^{-\kappa\tau}}{\kappa\tau}\Big) \longrightarrow a^2 \qquad (\tau\to\infty),
+\end{equation}
+independently of $\kappa$. Here $g_{\mathrm{fric}}(\dot s) = a^2\dot s^2$, so $\mathcal{L}^2 = a^2$ for this constant-speed protocol; for $\kappa = 10$ the inequality $\lim\tau\Sigma_{\mathrm{irr}} \ge \frac{\kappa}{4}\mathcal{W}_2^2$ would require $a^2 \ge 2.5\,a^2$.
+
+The dimensionally consistent statement is the optimal-transport bound of Aurell, Mej\'ia-Monasterio and Muratore-Ginanneschi \cite{Aurell2011}: over protocols of duration $\tau$ that carry the state $\mu_A$ to the state $\mu_B$, the minimal mean dissipated work is $k_BT\,\mathcal{W}_2^2(\mu_A,\mu_B)/(D\tau)$. In the example above, $\tau\Sigma_{\mathrm{irr}} \to a^2 = \mathcal{W}_2^2$, which matches this minimal value as $\tau \to \infty$. For the relation between thermodynamic length and $\mathcal{W}_2$ in overdamped dynamics, see \cite{NakazatoIto2021,VanVuSaito2023,ZhongDeWeese2024}.
+\end{remark}
+
+% =========================================================================
+% SECTION 6
+% =========================================================================
+\section{Bipartite Kernel Operators and Reflected Entropy}
+\label{sec:bipartite}
+
+We now realize a positive semi-definite matrix $A \in \mathcal{S}_+^n$ on a bipartite system whose base is the Cartesian product $\Omega \coloneqq \Omega_1 \times \Omega_2$ of two Riemannian manifolds $\Omega_1$ and $\Omega_2$ with their volume measures. The continuous state space is the tensor product Hilbert space:
+\begin{equation}
+\mathcal{H} \coloneqq L^2(\Omega_1 \times \Omega_2) \cong L^2(\Omega_1) \otimes L^2(\Omega_2).
+\end{equation}
+Let $\{\psi_k\}_{k=1}^n$ be a fixed orthonormal family in $L^2(\Omega)$ (e.g. Laplacian eigenfunctions or localized wavelet packets). For any matrix $A = (A_{jk}) \in \mathcal{S}_+^n$, its continuous realization is defined algebraically by:
+\begin{equation}
+\label{eq:kernel_alg_def}
+K_A(x, y) \coloneqq \sum_{j, k=1}^n A_{jk} \psi_j(x) \overline{\psi_k(y)}, \qquad x, y \in \Omega_1 \times \Omega_2.
+\end{equation}
+
+\begin{proposition}[\textbf{OBL-013: Positive Kernel Codomain Realization and Constructive Diagonal Recovery}]
+\label{prop:kernel_codomain_psd}
+Let $A \in \mathcal{S}_+^n$ have unitary spectral decomposition $A = U \operatorname{diag}(\lambda_1, \dots, \lambda_n) U^\dagger$. Define the rotated functional basis:
+\begin{equation}
+\phi_j(x) \coloneqq \sum_{k=1}^n U_{kj} \psi_k(x), \qquad j = 1, \dots, n.
+\end{equation}
+Then $\{\phi_j\}_{j=1}^n$ is an orthonormal family in $L^2(\Omega_1 \times \Omega_2)$, the kernel $K_A$ in \eqref{eq:kernel_alg_def} is identically diagonalized:
+\begin{equation}
+K_A(x, y) = \sum_{j=1}^n \lambda_j \phi_j(x) \overline{\phi_j(y)},
+\end{equation}
+and the induced integral operator $T_A$ is self-adjoint, trace-class, positive semi-definite with $\Tr(T_A) = \Tr(A)$, whose diagonal restriction constructively coincides with the scalar realization $\Phi_{\mathrm{scalar}}(A)(x) \coloneqq \sum_{j,k} A_{jk} \psi_j(x) \overline{\psi_k(x)}$.
+\end{proposition}
+
+\begin{proof}
+Orthonormality of $\{\phi_j\}$ is guaranteed by the unitarity of $U$:
+\begin{equation}
+\langle \phi_i, \phi_j \rangle_{L^2} = \sum_{k, l=1}^n U_{ki}^* U_{lj} \langle \psi_k, \psi_l \rangle_{L^2} = \sum_{k=1}^n U_{ki}^* U_{kj} = (U^\dagger U)_{ij} = \delta_{ij}.
+\end{equation}
+Expanding $K_A(x, y)$ in terms of $\lambda_j$ and $\phi_j$, we compute $\langle f, T_A f \rangle = \sum \lambda_j |\langle f, \phi_j \rangle|^2 \ge 0$ since $\lambda_j \ge 0$. The trace is $\int_\Omega K_A(x, x) \dif x = \sum \lambda_j \|\phi_j\|^2 = \sum \lambda_j = \Tr(A)$. Finally, $K_A(x, x) = \sum \lambda_j |\phi_j(x)|^2 = \sum_{j,k} A_{jk} \psi_j(x) \overline{\psi_k(x)} = \Phi_{\mathrm{scalar}}(A)(x)$ holds identically by matrix multiplication.
+\end{proof}
+
+\begin{proposition}[\textbf{OBL-014: Partial trace and modular Hamiltonian}]
+\label{thm:modular_hamiltonian_spec}
+On $\Omega = \Omega_1 \times \Omega_2$, let $\rho_{\Omega_1}$ be the operator on $L^2(\Omega_1)$ with kernel
+\begin{equation}
+\rho_{\Omega_1}(x_1, y_1) \coloneqq \int_{\Omega_2} K_A(x_1, z_2; y_1, z_2) \dif z_2 .
+\end{equation}
+Assume $A \ne 0$.
+\begin{enumerate}
+\item $\rho_{\Omega_1}$ is self-adjoint, positive semi-definite and trace class, with $\Tr\rho_{\Omega_1} = \Tr(A)$.
+\item If each $\psi_k$ has finite Schmidt rank \cite{Schmidt1907} $m_k$, that is, $\psi_k = \sum_{l=1}^{m_k} a_{kl}\otimes b_{kl}$ with $a_{kl} \in L^2(\Omega_1)$, $b_{kl} \in L^2(\Omega_2)$, then $\operatorname{rank}\rho_{\Omega_1} \le \sum_{k=1}^n m_k$. In particular, for a product frame $\psi_k = a_k \otimes b_k$, $\operatorname{rank}\rho_{\Omega_1} \le n$.
+\item Let $\hat\rho \coloneqq \rho_{\Omega_1}/\Tr(A)$, with non-zero eigenvalues $p_1 \ge p_2 \ge \dots > 0$ (finitely or countably many, $\sum_k p_k = 1$) and orthonormal eigenvectors $e_k$ spanning $\mathcal{H}_{\mathrm{supp}}^{(1)} \coloneqq (\ker \rho_{\Omega_1})^\perp$. The modular Hamiltonian
+\begin{equation}
+K_{\Omega_1} \coloneqq -\log\big(\hat\rho|_{\mathcal{H}_{\mathrm{supp}}^{(1)}}\big) = \sum_k (-\log p_k)\,|e_k\rangle\langle e_k|
+\end{equation}
+is self-adjoint and non-negative on $\mathcal{H}_{\mathrm{supp}}^{(1)}$, with spectrum $\{E_k = -\log p_k\}$. It is strictly positive if and only if $\operatorname{rank}\rho_{\Omega_1} \ge 2$.
+\item Let $\Omega_1$, $\Omega_2$ be compact, let $k_{\Omega_i}$ be continuous positive semi-definite kernels with $k_{\Omega_2} \ne 0$, and assume that the integral operator $T_{k_{\Omega_1}}$ is injective on $L^2(\Omega_1)$. For $\epsilon > 0$ and $K_A^\epsilon \coloneqq K_A + \epsilon\,(k_{\Omega_1} \otimes k_{\Omega_2})$, the partial trace $\rho^\epsilon_{\Omega_1}$ is injective. If $L^2(\Omega_1)$ is infinite-dimensional, the modular Hamiltonian $K^\epsilon_{\Omega_1}$ of the normalized $\rho^\epsilon_{\Omega_1}$ is defined on a dense domain of $L^2(\Omega_1)$ and has purely discrete spectrum $E_k^\epsilon \to +\infty$.
+\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+(1) By Proposition~\ref{prop:kernel_codomain_psd}, $T_A = \sum_{j} \lambda_j |\phi_j\rangle\langle\phi_j|$ with $\lambda_j \ge 0$. For $v \in L^2(\Omega_1\times\Omega_2)$ let $V \colon L^2(\Omega_2) \to L^2(\Omega_1)$ be the Hilbert--Schmidt operator with kernel $v(x_1, z_2)$. The operator with kernel $\int v(x_1,z_2)\overline{v(y_1,z_2)}\dif z_2$ is $VV^*$, which is positive semi-definite and trace class with $\Tr VV^* = \|V\|_{HS}^2 = \|v\|^2$. Hence $\rho_{\Omega_1} = \sum_j \lambda_j \Phi_j\Phi_j^*$, where $\Phi_j$ has kernel $\phi_j(x_1,z_2)$, is positive semi-definite and trace class with $\Tr\rho_{\Omega_1} = \sum_j \lambda_j\|\phi_j\|^2 = \Tr(A)$.
+
+(2) Each $\phi_j = \sum_k U_{kj}\psi_k$ lies in $\operatorname{span}\{a_{kl}\otimes b_{kl}\}$, so the range of $\Phi_j$ lies in $W \coloneqq \operatorname{span}\{a_{kl}\}$, of dimension at most $\sum_k m_k$. The range of $\rho_{\Omega_1} = \sum_j\lambda_j\Phi_j\Phi_j^*$ lies in $W$.
+
+(3) By (1), $\hat\rho$ is a positive trace-class operator of trace $1$, so $0 < p_k \le 1$ and $E_k = -\log p_k \ge 0$. If the rank is $1$, then $p_1 = 1$ and $E_1 = 0$. If the rank is at least $2$, then every $p_k < 1$, so every $E_k > 0$, and $E_k \to +\infty$ if there are infinitely many.
+
+(4) The partial trace of $k_{\Omega_1}\otimes k_{\Omega_2}$ is $c\,T_{k_{\Omega_1}}$ with $c = \int_{\Omega_2} k_{\Omega_2}(z,z)\dif z > 0$, and $T_{k_{\Omega_i}}$ is trace class by Mercer's theorem \cite{Mercer1909}. Hence $\rho^\epsilon_{\Omega_1} = \rho_{\Omega_1} + \epsilon c\,T_{k_{\Omega_1}} \ge \epsilon c\,T_{k_{\Omega_1}}$. If $\rho^\epsilon_{\Omega_1} f = 0$, then $0 = \langle f, \rho^\epsilon_{\Omega_1} f\rangle \ge \epsilon c\,\|T_{k_{\Omega_1}}^{1/2} f\|^2$, so $T_{k_{\Omega_1}} f = 0$ and $f = 0$. A compact, injective, positive self-adjoint operator on an infinite-dimensional space has an orthonormal eigenbasis with eigenvalues $p_k^\epsilon \to 0$; so $-\log$ of its normalization is a self-adjoint operator, diagonal in that basis, with eigenvalues $E_k^\epsilon \to +\infty$, hence with compact resolvent.
+\end{proof}
+
+\begin{remark}[Two statements that fail]
+\label{rem:rank_counterexample}
+(a) Without the finite Schmidt-rank hypothesis in (2), $\rho_{\Omega_1}$ can have infinite rank even for $n = 1$. Take $\Omega_1 = \Omega_2 = \mathbb{R}$ and $\psi_1(x, y) \propto \exp\big(-(x^2+y^2)/2 + \beta x y\big)$ with $0 < |\beta| < 1$. By Mehler's formula \cite[eq.~18.18.28]{DLMF} its Schmidt coefficients are geometric, $p_k \propto q^k$ with $q = \big((1 - \sqrt{1-\beta^2})/\beta\big)^2$, so all are non-zero. For $\beta = 0.6$, $q = 1/9$. The same geometric spectrum appears for the reduced ground state of two coupled harmonic oscillators \cite{Srednicki1993}.
+(b) Without normalization, $-\log$ of the restriction of $\rho_{\Omega_1}$ need not be non-negative: for $n = 1$, $A = (5)$ and a product frame, $\rho_{\Omega_1} = 5\,|a_1\rangle\langle a_1|$ and $-\log 5 < 0$. Even after normalization, rank $1$ gives the eigenvalue $0$.
+\end{remark}
+
+\begin{theorem}[\textbf{OBL-015: Canonical Purification, Symmetry and the Mutual-Information Bound for the Reflected Entropy}]
+\label{thm:reflected_entropy_prop}
+Assume that $\rho_{\Omega_1}$ and $\rho_{\Omega_2}$ have finite rank (for instance, a frame of finite Schmidt ranks, Proposition~\ref{thm:modular_hamiltonian_spec}(2)), so that $\mathcal{H}_{\mathrm{supp}}^{(1)}$ and $\mathcal{H}_{\mathrm{supp}}^{(2)}$ are finite-dimensional. Let $\rho_{12} \coloneqq T_A/\Tr(A)$, a density operator supported on $\mathcal{H}_{\mathrm{supp}}^{(1)} \otimes \mathcal{H}_{\mathrm{supp}}^{(2)}$, and let $|\sqrt{\rho_{12}}\rangle \in (\mathcal{H}_{\mathrm{supp}}^{(1)} \otimes \mathcal{H}_{\mathrm{supp}}^{(2)}) \otimes (\mathcal{H}_{\mathrm{supp}}^{(1^*)} \otimes \mathcal{H}_{\mathrm{supp}}^{(2^*)})$ be its canonical GNS purification. The reflected entropy
+\begin{equation}
+S_R(\Omega_1 : \Omega_2) \coloneqq -\Tr\left( \sigma_{1 1^*} \log \sigma_{1 1^*} \right), \qquad \sigma_{1 1^*} \coloneqq \Tr_{2 2^*}\left( |\sqrt{\rho_{12}}\rangle \langle\sqrt{\rho_{12}}| \right)
+\end{equation}
+is non-negative, symmetric $S_R(\Omega_1 : \Omega_2) = S_R(\Omega_2 : \Omega_1)$, and satisfies the universal lower bound:
+\begin{equation}
+S_R(\Omega_1 : \Omega_2) \ge I(\Omega_1 : \Omega_2) \coloneqq S(\Omega_1) + S(\Omega_2) - S(\Omega_1 \Omega_2).
+\end{equation}
+No monotonicity of $S_R$ under partial trace is asserted: Hayden, Lemm and Sorce \cite[Thm.~1]{HaydenLemmSorce2023} give classical states on $\mathbb{C}^3\otimes\mathbb{C}^3\otimes\mathbb{C}^2$ with $S_R(A:BC) < S_R(A:B)$.
+\end{theorem}
+
+\begin{proof}
+All spaces are finite-dimensional. $S_R$ is a von Neumann entropy, hence non-negative. The vector $|\sqrt{\rho_{12}}\rangle$ is a pure state on $11^*22^*$, so the reduced states on $11^*$ and on $22^*$ have the same non-zero spectrum, which gives the symmetry. The bound $S_R \ge I(\Omega_1 : \Omega_2)$ is \cite[eqs.~(2.12)--(2.14)]{DuttaFaulkner2019}: since the state on $11^*22^*$ is pure, $S(11^*2) = S(2^*) = S(2)$, so $S_R = S(11^*) = I(11^* : 2)$, and $I(11^*:2) \ge I(1:2)$ by monotonicity of mutual information under discarding $1^*$, which is strong subadditivity \cite{LiebRuskai1973}.
+\end{proof}
+
+\begin{remark}[\textbf{OBL-016: the holographic proposal}]
+\label{thm:holographic_ew_inequality}
+For holographic quantum field theories with a classical gravity dual, Dutta and Faulkner \cite{DuttaFaulkner2019} proposed, and supported by a gravitational replica argument, that at leading order in $G_N$
+\begin{equation}
+S_R(A : B) = 2 E_W(A : B), \qquad E_W = \frac{\min_{\Sigma_{AB}} \mathrm{Area}(\Sigma_{AB})}{4 G_N},
+\end{equation}
+where $\Sigma_{AB}$ runs over surfaces splitting the entanglement wedge of $A \cup B$ into a part adjacent to $A$ and a part adjacent to $B$ (in units $\hbar = c = 1$, so that $\mathrm{Area}/G_N$ is dimensionless). The cross-section $E_W$ had been proposed earlier as the holographic dual of the entanglement of purification \cite{UmemotoTakayanagi2018,NguyenEtAl2018}; for the gap between $S_R$ and the mutual information in holographic states see \cite{AkersRath2020,HaydenParrikarSorce2021}. This is a physical duality, not a theorem. No bulk geometry or boundary state has been constructed here from the kernel $K_A$, so the relation is not established for the realizations of this section; we record it only as motivation.
+\end{remark}
+
+% =========================================================================
+% SECTION 7
+% =========================================================================
+\section{Mellin Transforms over the Simplex}
+\label{sec:simplicial}
+
+Let $\Delta_m \coloneqq \{ u \in \mathbb{R}_{\ge 0}^m \mid \sum_{i=1}^m u_i = 1 \}$ be the standard simplex, equipped with the Dirichlet probability measure $\dif\mu_\alpha(u) = \frac{\Gamma(\alpha_0)}{\prod_i \Gamma(\alpha_i)} \prod_i u_i^{\alpha_i - 1} \dif u$, where $\alpha_i > 0$, $\alpha_0 \coloneqq \sum_i \alpha_i$, and $\dif u$ is the Lebesgue measure on the first $m-1$ coordinates.
+
+\begin{proposition}[\textbf{OBL-017: The simplicial Mellin transform is entire}]
+\label{prop:simplicial_mellin_conv}
+For any continuous, strictly positive realization $\Phi(A)$ on $\Delta_m$, the simplicial Mellin transform
+\begin{equation}
+\mathcal{Z}_A(s) \coloneqq \int_{\Delta_m} \left( \Phi(A)(u) \right)^s \dif\mu_\alpha(u)
+\end{equation}
+is an entire function of $s \in \mathbb{C}$. In particular it has no poles.
+\end{proposition}
+
+\begin{proof}
+On the compact simplex, $0 < c_1 \le \Phi(A) \le c_2 < \infty$. For each $u$, $s \mapsto \Phi(A)(u)^s = e^{s\log\Phi(A)(u)}$ is entire, and for $|s| \le S$ we have $|\Phi(A)(u)^s| \le e^{S\,|\log\Phi(A)(u)|} \le e^{S \max(|\log c_1|, |\log c_2|)}$, a bound independent of $u$. Since $\mu_\alpha$ is a probability measure, $\mathcal{Z}_A$ is continuous by dominated convergence, and Fubini's and Morera's theorems show that it is holomorphic on every disk $|s| < S$, hence entire.
+\end{proof}
+
+\noindent For an affine realization $\Phi(A)(u) = \sum_i z_i u_i$ with all $z_i > 0$, $\mathcal{Z}_A(s)$ is the Dirichlet average of the power $s$, that is, Carlson's $R$-function $R_s(\alpha; z)$ \cite{Carlson1963}, a symmetric form of the Lauricella function $F_D$; see \cite[\S3.3.1]{Chow2022}.
+
+\begin{remark}[\textbf{OBL-018: no residue spectrum for $\mathcal{Z}_A$}]
+\label{thm:barnes_meromorphic_continuation}
+By Proposition~\ref{prop:simplicial_mellin_conv}, $\mathcal{Z}_A$ has no poles, so it has no residue spectrum at $s = -\alpha_j - k$. The simplest instance is $\Phi(A) \equiv c > 0$, for which $\mathcal{Z}_A(s) = c^s$. Poles at $s = -\alpha_j - k$ belong instead to Mellin transforms of a vertex coordinate, whose integrand is not bounded away from $0$; see Proposition~\ref{prop:coordinate_mellin}.
+\end{remark}
+
+\begin{proposition}[Mellin transform of a vertex coordinate]
+\label{prop:coordinate_mellin}
+For $j \in \{1, \dots, m\}$ and $m \ge 2$, let $M_j(s) \coloneqq \int_{\Delta_m} u_j^s \dif\mu_\alpha(u)$, which converges for $\operatorname{Re}(s) > -\alpha_j$. Then
+\begin{equation}
+M_j(s) = \frac{\Gamma(\alpha_0)\,\Gamma(\alpha_j + s)}{\Gamma(\alpha_j)\,\Gamma(\alpha_0 + s)},
+\end{equation}
+which extends meromorphically to $\mathbb{C}$. Write $b_j \coloneqq \alpha_0 - \alpha_j > 0$. If $b_j \notin \mathbb{Z}$, the poles are exactly $s = -\alpha_j - k$, $k \in \mathbb{N}_0$, all simple, with residues
+\begin{equation}
+\operatorname{Res}_{s = -\alpha_j - k} M_j = \frac{(-1)^k}{k!}\,\frac{\Gamma(\alpha_0)}{\Gamma(\alpha_j)\,\Gamma(b_j - k)} \ne 0.
+\end{equation}
+If $b_j$ is a positive integer, $M_j$ is a rational function with simple poles exactly at $s = -\alpha_j - k$, $0 \le k \le b_j - 1$.
+\end{proposition}
+
+\begin{proof}
+Under $\mu_\alpha$ the coordinate $u_j$ has the Beta$(\alpha_j, b_j)$ distribution (aggregation property of the Dirichlet distribution), so for $\operatorname{Re}(s) > -\alpha_j$,
+$M_j(s) = B(\alpha_j + s, b_j)/B(\alpha_j, b_j)$, which is the stated formula by the Euler beta integral \cite[eq.~5.12.1]{DLMF}. The function $1/\Gamma$ is entire, so the right-hand side is meromorphic with possible poles only at the poles $s = -\alpha_j - k$ of $\Gamma(\alpha_j + s)$, where $\operatorname{Res}\Gamma(\alpha_j+s) = (-1)^k/k!$ \cite[\S5.2(i)]{DLMF}. At such a point $\Gamma(\alpha_0 + s) = \Gamma(b_j - k)$, which is finite and non-zero unless $b_j - k \in \{0, -1, -2, \dots\}$. If $b_j \notin \mathbb{Z}$ this never happens, which gives the residues. If $b_j \in \mathbb{Z}_{>0}$, then $\Gamma(\alpha_j+s)/\Gamma(\alpha_j+b_j+s) = \prod_{i=0}^{b_j-1}(\alpha_j+s+i)^{-1}$.
+\end{proof}
+
+% =========================================================================
+% SECTION 8
+% =========================================================================
+\section{Federer Reach and Medial Axis Geometry of Level Surfaces}
+\label{sec:federer}
+
+\begin{theorem}[\textbf{OBL-020: Level Set Federer Reach Lower Bound}]
+\label{thm:federer_reach_bound}
+Let $\Omega \subseteq \mathbb{R}^d$ be open, $d \ge 2$, and $\Phi(A) \in C^\infty(\Omega, \mathbb{R})$. Let $t$ be a regular value such that $\Sigma_t = \Phi(A)^{-1}(t)$ is non-empty and compact, and set $\epsilon_0 \coloneqq \min_{\Sigma_t} \|\nabla \Phi(A)\| > 0$, $M \coloneqq \max_{\Sigma_t} \|\nabla^2 \Phi(A)\|_{\mathrm{op}}$, and $\nu \coloneqq \nabla\Phi(A)/\|\nabla\Phi(A)\|$ on $\Sigma_t$. Let
+\begin{equation}
+d_{\mathrm{sep}}(\Sigma_t) \coloneqq \inf \{ \|x - y\| \mid x, y \in \Sigma_t,\ \nu(x) = -\nu(y) \}.
+\end{equation}
+Then $d_{\mathrm{sep}}(\Sigma_t) > 0$, and the reach of $\Sigma_t$ satisfies (with $\epsilon_0/M = \infty$ if $M = 0$)
+\begin{equation}
+\mathrm{reach}(\Sigma_t) \ge \min\left( \frac{\epsilon_0}{M}, \frac{1}{2} d_{\mathrm{sep}}(\Sigma_t) \right) > 0.
+\end{equation}
+\end{theorem}
+
+\begin{proof}
+$\Sigma_t$ is a compact embedded smooth hypersurface of $\mathbb{R}^d$. By uniform continuity of $\nu$ there is $\eta > 0$ with $\|\nu(x) - \nu(y)\| < 2$ whenever $\|x-y\| < \eta$, so $d_{\mathrm{sep}} \ge \eta > 0$.
+
+\emph{Curvature.} Let $\gamma$ be a unit-speed geodesic of $\Sigma_t$ with $\gamma(0) = x$, $\gamma'(0) = v$. Differentiating $\langle \nabla\Phi(A)(\gamma), \gamma'\rangle = 0$ gives $\nabla^2\Phi(A)(v, v) + \langle\nabla\Phi(A), \gamma''(0)\rangle = 0$; since $\gamma''(0)$ is normal to $\Sigma_t$, $\|\gamma''(0)\| = |\nabla^2\Phi(A)(v,v)|/\|\nabla\Phi(A)\| \le M/\epsilon_0$.
+
+\emph{Reach.} The reach $\tau$ of a compact smooth submanifold is positive, by Federer's formula $\tau = \inf_{p\ne q}\|q-p\|^2/(2\operatorname{dist}(q-p, T_p\Sigma_t))$ \cite[Thm.~4.18]{Federer1959} and compactness. By the dichotomy of Aamari et al.\ \cite[Thm.~3.4]{Aamari2019}, either (local case) some unit-speed geodesic has $\|\gamma''(0)\| = 1/\tau$, and then $\tau \ge \epsilon_0/M$ by the curvature bound (compare \cite[Prop.~6.1]{NiyogiSmaleWeinberger2008}); or (global case) there are $q_1, q_2 \in \Sigma_t$ and $z_0$ with $q_1, q_2 \in \partial B(z_0, \tau)$, $\|q_1 - q_2\| = 2\tau$, and the open ball $B(z_0, \tau)$ disjoint from $\Sigma_t$. In the global case $z_0$ is the midpoint of $q_1 q_2$, the segment is normal to $\Sigma_t$ at both ends, and $\Phi(A) - t$ has constant sign on the connected ball, say negative. Then $\Phi(A)$ decreases from $q_i$ towards $z_0$, so $\nu(q_i) = (q_i - z_0)/\tau$ for $i = 1, 2$; hence $\nu(q_1) = -\nu(q_2)$ and $2\tau = \|q_1 - q_2\| \ge d_{\mathrm{sep}}$. (If $\Phi(A) - t > 0$ on the ball, both normals change sign and the conclusion is the same.) In both cases $\tau \ge \min(\epsilon_0/M, d_{\mathrm{sep}}/2)$.
+\end{proof}
+
+\begin{remark}
+\label{rem:reach_examples}
+(a) Compactness cannot be dropped: for $\Phi(A)(x,y) = y$ on $\Omega = (0,1)^2$, the level set $\Sigma_t$ is an open segment, with $M = 0$ and no pair of opposite normals, so the right-hand side is $+\infty$, while the reach of the (non-closed) segment is $0$.
+(b) For a strictly convex $K_t(A)$ the quantity $d_{\mathrm{sep}}$ is finite, since the Gauss map of the boundary is onto the sphere. For the ellipse $\Phi(A)(x,y) = x^2/4 + y^2$, $t = 1$: $\epsilon_0 = 1$, $M = 2$, opposite normals occur exactly at antipodal pairs $\pm x$, so $d_{\mathrm{sep}} = 2$, and the bound gives $\min(1/2, 1) = 1/2$, which equals the reach (the minimal radius of curvature $b^2/a = 1/2$).
+(c) Federer \cite[4.21]{Federer1959} records a lower bound for the reach of a preimage $f^{-1}(A)$ in terms of the Lipschitz constants of $f$ and $Df$ and a lower bound for the Jacobian of $f$ on a neighbourhood of $f^{-1}(A)$. Theorem~\ref{thm:federer_reach_bound} uses only $\Phi(A)$ and its first two derivatives on $\Sigma_t$, together with $d_{\mathrm{sep}}$. The reach of the obstacle sets in Chapter~7 of~\cite{silvafilho2026book} is treated with the same notion.
+\end{remark}
+
+\begin{theorem}[\textbf{OBL-021: Medial Axis Avoidance and Weyl--Federer Tube Volume Expansion}]
+\label{thm:tube_volume_reach}
+In the setting of Theorem~\ref{thm:federer_reach_bound}, let $R_t \coloneqq \mathrm{reach}(\Sigma_t) > 0$ and $U_r(\Sigma_t) \coloneqq \{y \in \mathbb{R}^d : \operatorname{dist}(y, \Sigma_t) < r\}$. Let $\mathcal{M}(\Sigma_t)$ be the medial axis, the set of points of $\mathbb{R}^d$ with at least two nearest points on $\Sigma_t$. For any $r < R_t$, $U_r(\Sigma_t) \cap \mathcal{M}(\Sigma_t) = \emptyset$, the metric projection $\Proj_{\Sigma_t} \colon U_r \to \Sigma_t$ is single-valued and Lipschitz, and
+\begin{equation}
+\mathrm{Vol}_d(U_r(\Sigma_t)) = \sum_{k=0}^{\lfloor \frac{d-1}{2} \rfloor} \frac{2 r^{2k+1}}{2k+1} \int_{\Sigma_t} H_{2k}(x) \dif\mathcal{H}^{d-1}(x),
+\end{equation}
+where $H_{j} = \sum_{i_1 < \dots < i_j} \kappa_{i_1}\cdots\kappa_{i_j}$ is the (unnormalized) $j$-th elementary symmetric function of the principal curvatures $\kappa_1, \dots, \kappa_{d-1}$, and $H_0 = 1$.
+\end{theorem}
+
+\begin{proof}
+By definition of the reach, every point at distance less than $R_t$ from $\Sigma_t$ has a unique nearest point, so $U_r \cap \mathcal{M} = \emptyset$; the projection is Lipschitz on $U_r$ for $r < R_t$ by \cite[Thm.~4.8]{Federer1959}. The map $F(x, s) = x + s\nu(x)$ sends $\Sigma_t \times (-r, r)$ onto $U_r$: a point $y \in U_r$ satisfies $y = F(\Proj y, \pm\operatorname{dist}(y,\Sigma_t))$, because $y - \Proj y$ is normal to $\Sigma_t$ at $\Proj y$. It is injective, because $\Proj(F(x,s)) = x$ for $|s| < R_t$ \cite[Thm.~4.8]{Federer1959}. Its Jacobian is $\prod_{i}(1 - s\kappa_i(x))$, which is positive since the second fundamental form of a closed submanifold of reach $R_t$ satisfies $\|\mathrm{II}(v,v)\| \le 1/R_t$ for unit $v$ \cite[Prop.~A.1]{Aamari2019}, (see also \cite[Prop.~6.1]{NiyogiSmaleWeinberger2008}), so $|\kappa_i| \le 1/R_t$. Hence
+$\mathrm{Vol}_d(U_r) = \int_{\Sigma_t}\int_{-r}^{r}\prod_i(1 - s\kappa_i)\dif s\dif\mathcal{H}^{d-1} = \sum_j (-1)^j \int_{\Sigma_t} H_j \int_{-r}^{r}s^j\dif s\dif\mathcal{H}^{d-1}$. The odd terms vanish and $\int_{-r}^r s^{2k}\dif s = 2r^{2k+1}/(2k+1)$.
+\end{proof}
+
+\noindent This is the hypersurface case of Weyl's tube formula \cite{Weyl1939}. Federer's Steiner formula \cite[Thm.~5.6]{Federer1959} extends the polynomial dependence on $r$, for $0 \le r < \mathrm{reach}$, to all sets of positive reach.
+
+% =========================================================================
+% SECTION 9
+% =========================================================================
+\section{Summary of Invariants}
+\label{sec:taxonomy}
+
+Table~\ref{tab:taxonomy} lists the invariants of this volume, the kind of object each one is, and where it is treated.
+
+\begin{table}[htbp]
+\centering
+\small
+\caption{Invariants of functional realizations treated in this volume.}
+\label{tab:taxonomy}
+\begin{tabular}{llll}
+\toprule
+\textbf{Invariant} & \textbf{Type of value} & \textbf{Structure} & \textbf{Where} \\
+\midrule
+$c_1^{\mathrm{EH}}(K_t(A)), c_{\mathrm{HZ}}(K_t(A))$ & number in $(0,\infty)$ & symplectic capacity & Sec.~\ref{sec:symplectic} \\
+$CC(\mathcal{F}_A)$ & Lagrangian cycle in $T^*\Omega$ & microlocal sheaf theory & Sec.~\ref{sec:microlocal} \\
+$\lambda_1^{(p)}(A)$ & number in $(0,\infty)$ & weighted $p$-Laplacian & Sec.~\ref{sec:nonlinear} \\
+$\delta(A)$ & number in $[0,\infty)$ & Gromov hyperbolicity & Sec.~\ref{sec:nonlinear} \\
+$\Delta F(A,B)$, $\Sigma_{\mathrm{irr}}$ & number & stochastic thermodynamics & Sec.~\ref{sec:thermo} \\
+$\rho_{\Omega_1}$, $K_{\Omega_1}$, $S_R$ & operator / number & bipartite kernels & Sec.~\ref{sec:bipartite} \\
+$\mathcal{Z}_A(s)$ & entire function of $s$ & Mellin transform on $\Delta_m$ & Sec.~\ref{sec:simplicial} \\
+$\mathrm{reach}(\Sigma_t)$ & number in $(0,\infty]$ & geometric measure theory & Sec.~\ref{sec:federer} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\section*{Declarations}
+
+\noindent\textbf{Funding.} This research was financed in part by the
+Coordena\c{c}\~ao de Aperfei\c{c}oamento de Pessoal de N\'ivel Superior -- Brasil
+(CAPES) -- Finance Code 001.
+
+\medskip\noindent\textbf{Competing interests.} The author declares no competing
+interests.
+
+\medskip\noindent\textbf{Use of generative AI tools.} Large language model
+assistants (Anthropic Claude; Google Gemini, through the Antigravity agent
+environment) were used extensively. Under the author's direction they drafted and
+edited text and \LaTeX{} source, proposed and wrote derivations, proofs and
+counterexamples, wrote the numerical check scripts, and searched the literature.
+The mathematics was then checked in three steps by AI sessions that had not
+written it: a blind review of every statement, a correction made by a separate
+session, and a targeted re-check of each correction. Every numerical claim is
+checked by a script that compares it with an independent computation and includes
+a negative control, a deliberately altered formula that must fail. Every reference
+was resolved through Crossref, DataCite or arXiv, or, for the three items without
+a DOI, through Numdam, EuDML or the ISBN record. These checks were carried out by
+AI systems; they are not peer review, and no result in this volume has yet
+been checked by an independent human expert. AI tools are not authors. The author
+chose the questions, directed the work, decided what to publish, and is
+responsible for the content, including any remaining errors.
+
+\medskip\noindent\textbf{Verification status.} Results labelled Theorem,
+Proposition or Lemma are proved in the text or cited as classical results;
+statements labelled Conjecture are not proved. The numerical scripts are checks,
+not proofs. The \textsc{Lean 4} files in the author's repository associated with
+this work are a placeholder skeleton without Mathlib and verify none of the
+statements.
+
+\medskip\noindent\textbf{Code availability.} The numerical check scripts are
+available from the author on request.
+
+% =========================================================================
+% REFERENCES
+% =========================================================================
+\begin{thebibliography}{99}
+
+\bibitem{Aamari2019}
+E.~Aamari, J.~Kim, F.~Chazal, B.~Michel, A.~Rinaldo, and L.~Wasserman,
+\emph{Estimating the reach of a manifold},
+Electronic Journal of Statistics, \textbf{13} (2019),
+\href{https://doi.org/10.1214/19-EJS1551}{DOI: 10.1214/19-EJS1551}.
+
+\bibitem{Aurell2011}
+E.~Aurell, C.~Mej\'ia-Monasterio, and P.~Muratore-Ginanneschi,
+\emph{Optimal protocols and optimal transport in stochastic thermodynamics},
+Physical Review Letters, \textbf{106} (2011), no.~25, 250601,
+\href{https://doi.org/10.1103/PhysRevLett.106.250601}{DOI: 10.1103/PhysRevLett.106.250601}.
+
+\bibitem{BakryEmery1985}
+D.~Bakry and M.~\'Emery,
+\emph{Diffusions hypercontractives},
+S\'eminaire de Probabilit\'es XIX 1983/84, Lecture Notes in Mathematics, vol.~1123, Springer, Berlin, Heidelberg, 1985, pp.~177--206,
+ISBN: 978-3-540-15230-9,
+\href{https://doi.org/10.1007/BFb0075847}{DOI: 10.1007/BFb0075847}.
+
+\bibitem{Crooks1999}
+G.~E. Crooks,
+\emph{Entropy production fluctuation theorem and the nonequilibrium work relation for free energy differences},
+Physical Review E, \textbf{60} (1999), no.~3, 2721--2726,
+\href{https://doi.org/10.1103/PhysRevE.60.2721}{DOI: 10.1103/PhysRevE.60.2721}.
+
+\bibitem{DuttaFaulkner2019}
+S.~Dutta and T.~Faulkner,
+\emph{A canonical purification for the entanglement wedge cross-section},
+Journal of High Energy Physics, \textbf{2021} (2021), no.~3, 178,
+\href{https://doi.org/10.1007/JHEP03(2021)178}{DOI: 10.1007/JHEP03(2021)178}.
+
+\bibitem{EkelandHofer1989}
+I.~Ekeland and H.~Hofer,
+\emph{Symplectic topology and Hamiltonian dynamics},
+Mathematische Zeitschrift, \textbf{200} (1989), no.~3, 355--378,
+\href{https://doi.org/10.1007/BF01215653}{DOI: 10.1007/BF01215653}.
+
+\bibitem{Federer1959}
+H.~Federer,
+\emph{Curvature measures},
+Transactions of the American Mathematical Society, \textbf{93} (1959), no.~3, 418--491,
+\href{https://doi.org/10.1090/S0002-9947-1959-0110078-1}{DOI: 10.1090/S0002-9947-1959-0110078-1}.
+
+\bibitem{GibsonEtAl1976}
+C.~G. Gibson, K.~Wirthm\"uller, A.~A. du~Plessis, and E.~J.~N. Looijenga,
+\emph{Topological Stability of Smooth Mappings},
+Lecture Notes in Mathematics, vol.~552, Springer, Berlin, Heidelberg, 1976,
+\href{https://doi.org/10.1007/BFb0095244}{DOI: 10.1007/BFb0095244}.
+
+\bibitem{Gromov1987}
+M.~Gromov,
+\emph{Hyperbolic groups},
+in \emph{Essays in Group Theory}, ed. S.~M. Gersten, Mathematical Sciences Research Institute Publications, vol.~8, Springer, New York, 1987, pp.~75--263,
+ISBN: 978-0-387-96618-2,
+\href{https://doi.org/10.1007/978-1-4613-9586-7_3}{DOI: 10.1007/978-1-4613-9586-7\_3}.
+
+\bibitem{HoferZehnder1994}
+H.~Hofer and E.~Zehnder,
+\emph{Symplectic Invariants and Hamiltonian Dynamics},
+Birkh\"auser Advanced Texts: Basler Lehrb\"ucher, Birkh\"auser Basel, 1994,
+ISBN: 978-3-0348-8540-9,
+\href{https://doi.org/10.1007/978-3-0348-8540-9}{DOI: 10.1007/978-3-0348-8540-9}.
+
+\bibitem{Jarzynski1997}
+C.~Jarzynski,
+\emph{Nonequilibrium equality for free energy differences},
+Physical Review Letters, \textbf{78} (1997), no.~14, 2690--2693,
+\href{https://doi.org/10.1103/PhysRevLett.78.2690}{DOI: 10.1103/PhysRevLett.78.2690}.
+
+\bibitem{KashiwaraSchapira1990}
+M.~Kashiwara and P.~Schapira,
+\emph{Sheaves on Manifolds},
+Grundlehren der mathematischen Wissenschaften, vol.~292, Springer-Verlag, Berlin, Heidelberg, 1990,
+ISBN: 978-3-540-51861-7,
+\href{https://doi.org/10.1007/978-3-662-02661-8}{DOI: 10.1007/978-3-662-02661-8}.
+
+\bibitem{BridsonHaefliger1999}
+M.~R. Bridson and A.~Haefliger,
+\emph{Metric Spaces of Non-Positive Curvature},
+Grundlehren der mathematischen Wissenschaften, vol.~319, Springer-Verlag, Berlin, Heidelberg, 1999,
+ISBN: 978-3-540-64324-1,
+\href{https://doi.org/10.1007/978-3-662-12494-9}{DOI: 10.1007/978-3-662-12494-9}.
+
+\bibitem{JuutinenLindqvistManfredi1999}
+P.~Juutinen, P.~Lindqvist, and J.~J. Manfredi,
+\emph{The $\infty$-eigenvalue problem},
+Archive for Rational Mechanics and Analysis, \textbf{148} (1999), no.~2, 89--105,
+\href{https://doi.org/10.1007/s002050050157}{DOI: 10.1007/s002050050157}.
+
+\bibitem{OttoVillani2000}
+F.~Otto and C.~Villani,
+\emph{Generalization of an inequality by Talagrand and links with the logarithmic Sobolev inequality},
+Journal of Functional Analysis, \textbf{173} (2000), no.~2, 361--400,
+\href{https://doi.org/10.1006/jfan.1999.3557}{DOI: 10.1006/jfan.1999.3557}.
+
+\bibitem{KawohlFridman2003}
+B.~Kawohl and V.~Fridman,
+\emph{Isoperimetric estimates for the first eigenvalue of the $p$-Laplace operator and the Cheeger constant},
+Commentationes Mathematicae Universitatis Carolinae, \textbf{44} (2003), no.~4, 659--667,
+\href{https://eudml.org/doc/249339}{EuDML: 249339}, \href{https://dml.cz/handle/10338.dmlcz/119420}{DML-CZ: 119420}.
+
+\bibitem{Lindqvist1990}
+P.~Lindqvist,
+\emph{On the equation $\operatorname{div}(|\nabla u|^{p-2}\nabla u) + \lambda|u|^{p-2}u = 0$},
+Proceedings of the American Mathematical Society, \textbf{109} (1990), no.~1, 157--164,
+\href{https://doi.org/10.1090/S0002-9939-1990-1007505-7}{DOI: 10.1090/S0002-9939-1990-1007505-7}.
+
+\bibitem{SilvaFilhoBTS}
+R.~M. Silva-Filho,
+\emph{Beyond the Spectrum: The Complete Three-Volume Monograph on Functional Tensor Realizations, Metric Measure Geometry, and Higher Topological Invariants},
+Zenodo (2026),
+\href{https://doi.org/10.5281/zenodo.22644743}{DOI: 10.5281/zenodo.22644743}.
+
+\bibitem{SivakCrooks2012}
+D.~A. Sivak and G.~E. Crooks,
+\emph{Thermodynamic metrics and optimal paths},
+Physical Review Letters, \textbf{108} (2012), no.~19, 190602,
+\href{https://doi.org/10.1103/PhysRevLett.108.190602}{DOI: 10.1103/PhysRevLett.108.190602}.
+
+\bibitem{ArtsteinAvidanKarasevOstrover2014}
+S.~Artstein-Avidan, R.~Karasev, and Y.~Ostrover,
+\emph{From symplectic measurements to the Mahler conjecture},
+Duke Mathematical Journal, \textbf{163} (2014), no.~11,
+\href{https://doi.org/10.1215/00127094-2794999}{DOI: 10.1215/00127094-2794999}.
+
+\bibitem{ArtsteinAvidanOstrover2008}
+S.~Artstein-Avidan and Y.~Ostrover,
+\emph{A Brunn--Minkowski inequality for symplectic capacities of convex domains},
+International Mathematics Research Notices IMRN (2008), rnn044,
+\href{https://doi.org/10.1093/imrn/rnn044}{DOI: 10.1093/imrn/rnn044}.
+
+\bibitem{AkersRath2020}
+C.~Akers and P.~Rath,
+\emph{Entanglement wedge cross sections require tripartite entanglement},
+Journal of High Energy Physics, \textbf{2020} (2020), no.~4, 208,
+\href{https://doi.org/10.1007/JHEP04(2020)208}{DOI: 10.1007/JHEP04(2020)208}.
+
+\bibitem{BelloniKawohlJuutinen2006}
+M.~Belloni, B.~Kawohl, and P.~Juutinen,
+\emph{The $p$-Laplace eigenvalue problem as $p\to\infty$ in a Finsler metric},
+Journal of the European Mathematical Society, \textbf{8} (2006), no.~1, 123--138,
+\href{https://doi.org/10.4171/JEMS/40}{DOI: 10.4171/JEMS/40}.
+
+\bibitem{BlaberSivak2023}
+S.~Blaber and D.~A. Sivak,
+\emph{Optimal control in stochastic thermodynamics},
+Journal of Physics Communications, \textbf{7} (2023), no.~3, 033001,
+\href{https://doi.org/10.1088/2399-6528/acbf04}{DOI: 10.1088/2399-6528/acbf04}.
+
+\bibitem{BoissonnatLieutierWintraecken2019}
+J.-D. Boissonnat, A.~Lieutier, and M.~Wintraecken,
+\emph{The reach, metric distortion, geodesic convexity and the variation of tangent spaces},
+Journal of Applied and Computational Topology, \textbf{3} (2019), 29--58,
+\href{https://doi.org/10.1007/s41468-019-00029-8}{DOI: 10.1007/s41468-019-00029-8}.
+
+\bibitem{Carlson1963}
+B.~C. Carlson,
+\emph{Lauricella's hypergeometric function $F_D$},
+Journal of Mathematical Analysis and Applications, \textbf{7} (1963), no.~3, 452--470,
+\href{https://doi.org/10.1016/0022-247X(63)90067-2}{DOI: 10.1016/0022-247X(63)90067-2}.
+
+\bibitem{ChampionDePascaleJimenez2008}
+T.~Champion, L.~De~Pascale, and C.~Jimenez,
+\emph{The $\infty$-eigenvalue problem and a problem of optimal transportation},
+preprint (2008), arXiv:0811.1934,
+\href{https://doi.org/10.48550/arXiv.0811.1934}{DOI: 10.48550/arXiv.0811.1934}.
+
+\bibitem{Cheeger1970}
+J.~Cheeger,
+\emph{A lower bound for the smallest eigenvalue of the Laplacian},
+in \emph{Problems in Analysis: A Symposium in Honor of Salomon Bochner}, Princeton University Press, Princeton, 1970, pp.~195--200,
+\href{https://doi.org/10.1515/9781400869312-013}{DOI: 10.1515/9781400869312-013}.
+
+\bibitem{Chow2022}
+D.~D.~K. Chow,
+\emph{Schl\"omilch integrals and probability distributions on the simplex},
+preprint (2022), arXiv:2201.11013,
+\href{https://doi.org/10.48550/arXiv.2201.11013}{DOI: 10.48550/arXiv.2201.11013}.
+
+\bibitem{CieliebakHoferLatschevSchlenk2005}
+K.~Cieliebak, H.~Hofer, J.~Latschev, and F.~Schlenk,
+\emph{Quantitative symplectic geometry},
+preprint (2005), arXiv:math/0506191,
+\href{https://doi.org/10.48550/arXiv.math/0506191}{DOI: 10.48550/arXiv.math/0506191}.
+
+\bibitem{Crooks2007}
+G.~E. Crooks,
+\emph{Measuring thermodynamic length},
+Physical Review Letters, \textbf{99} (2007), no.~10, 100602,
+\href{https://doi.org/10.1103/PhysRevLett.99.100602}{DOI: 10.1103/PhysRevLett.99.100602}.
+
+\bibitem{DLMF}
+F.~W.~J. Olver, D.~W. Lozier, R.~F. Boisvert, and C.~W. Clark (eds.),
+\emph{NIST Handbook of Mathematical Functions},
+Cambridge University Press, Cambridge, 2010, ISBN: 978-0-521-19225-5;
+online as the \emph{NIST Digital Library of Mathematical Functions}, \url{https://dlmf.nist.gov}.
+
+\bibitem{EkelandHofer1990}
+I.~Ekeland and H.~Hofer,
+\emph{Symplectic topology and Hamiltonian dynamics~II},
+Mathematische Zeitschrift, \textbf{203} (1990), no.~1, 553--567,
+\href{https://doi.org/10.1007/BF02570756}{DOI: 10.1007/BF02570756}.
+
+\bibitem{FloerHofer1994}
+A.~Floer and H.~Hofer,
+\emph{Symplectic homology I: Open sets in $\mathbb{C}^n$},
+Mathematische Zeitschrift, \textbf{215} (1994), no.~1, 37--88,
+\href{https://doi.org/10.1007/BF02571699}{DOI: 10.1007/BF02571699}.
+
+\bibitem{FukagaiItoNarukawa1999}
+N.~Fukagai, M.~Ito, and K.~Narukawa,
+\emph{Limit as $p\to\infty$ of $p$-Laplace eigenvalue problems and $L^\infty$-inequality of the Poincar\'e type},
+Differential and Integral Equations, \textbf{12} (1999), no.~2, 183--206,
+\href{https://doi.org/10.57262/die/1367265629}{DOI: 10.57262/die/1367265629}.
+
+\bibitem{Gromov1985}
+M.~Gromov,
+\emph{Pseudo holomorphic curves in symplectic manifolds},
+Inventiones Mathematicae, \textbf{82} (1985), no.~2, 307--347,
+\href{https://doi.org/10.1007/BF01388806}{DOI: 10.1007/BF01388806}.
+
+\bibitem{HaimKislevOstrover2026}
+P.~Haim-Kislev and Y.~Ostrover,
+\emph{A counterexample to Viterbo's conjecture},
+Annals of Mathematics, \textbf{203} (2026), no.~2, 603--622,
+\href{https://doi.org/10.4007/annals.2026.203.2.5}{DOI: 10.4007/annals.2026.203.2.5}.
+
+\bibitem{HaydenLemmSorce2023}
+P.~Hayden, M.~Lemm, and J.~Sorce,
+\emph{Reflected entropy is not a correlation measure},
+Physical Review A, \textbf{107} (2023), no.~5, L050401,
+\href{https://doi.org/10.1103/PhysRevA.107.L050401}{DOI: 10.1103/PhysRevA.107.L050401}.
+
+\bibitem{HaydenParrikarSorce2021}
+P.~Hayden, O.~Parrikar, and J.~Sorce,
+\emph{The Markov gap for geometric reflected entropy},
+Journal of High Energy Physics, \textbf{2021} (2021), no.~10, 47,
+\href{https://doi.org/10.1007/JHEP10(2021)047}{DOI: 10.1007/JHEP10(2021)047}.
+
+\bibitem{JordanKinderlehrerOtto1998}
+R.~Jordan, D.~Kinderlehrer, and F.~Otto,
+\emph{The variational formulation of the Fokker--Planck equation},
+SIAM Journal on Mathematical Analysis, \textbf{29} (1998), no.~1, 1--17,
+\href{https://doi.org/10.1137/S0036141096303359}{DOI: 10.1137/S0036141096303359}.
+
+\bibitem{Kashiwara1985}
+M.~Kashiwara,
+\emph{Index theorem for constructible sheaves},
+Ast\'erisque, \textbf{130} (1985), 193--209,
+\href{http://www.numdam.org/item?id=AST_1985__130__193_0}{Numdam: AST\_1985\_\_130\_\_193\_0}.
+
+\bibitem{LiebRuskai1973}
+E.~H. Lieb and M.~B. Ruskai,
+\emph{Proof of the strong subadditivity of quantum-mechanical entropy},
+Journal of Mathematical Physics, \textbf{14} (1973), no.~12, 1938--1941,
+\href{https://doi.org/10.1063/1.1666274}{DOI: 10.1063/1.1666274}.
+
+\bibitem{Lindqvist2008}
+P.~Lindqvist,
+\emph{A nonlinear eigenvalue problem},
+in \emph{Topics in Mathematical Analysis}, Series on Analysis, Applications and Computation, World Scientific, Singapore, 2008, pp.~175--203,
+ISBN: 978-981-281-105-9,
+\href{https://doi.org/10.1142/9789812811066_0005}{DOI: 10.1142/9789812811066\_0005}.
+
+\bibitem{MacPherson1974}
+R.~D. MacPherson,
+\emph{Chern classes for singular algebraic varieties},
+Annals of Mathematics, \textbf{100} (1974), no.~2, 423--432,
+\href{https://doi.org/10.2307/1971080}{DOI: 10.2307/1971080}.
+
+\bibitem{Mather2012}
+J.~Mather,
+\emph{Notes on topological stability},
+Bulletin of the American Mathematical Society, \textbf{49} (2012), no.~4, 475--506,
+\href{https://doi.org/10.1090/S0273-0979-2012-01383-6}{DOI: 10.1090/S0273-0979-2012-01383-6}.
+
+\bibitem{Mercer1909}
+J.~Mercer,
+\emph{Functions of positive and negative type, and their connection with the theory of integral equations},
+Philosophical Transactions of the Royal Society of London, Series~A, \textbf{209} (1909), 415--446,
+\href{https://doi.org/10.1098/rsta.1909.0016}{DOI: 10.1098/rsta.1909.0016}.
+
+\bibitem{NakazatoIto2021}
+M.~Nakazato and S.~Ito,
+\emph{Geometrical aspects of entropy production in stochastic thermodynamics based on Wasserstein distance},
+Physical Review Research, \textbf{3} (2021), no.~4, 043093,
+\href{https://doi.org/10.1103/PhysRevResearch.3.043093}{DOI: 10.1103/PhysRevResearch.3.043093}.
+
+\bibitem{NguyenEtAl2018}
+P.~Nguyen, T.~Devakul, M.~G. Halbasch, M.~P. Zaletel, and B.~Swingle,
+\emph{Entanglement of purification: from spin chains to holography},
+Journal of High Energy Physics, \textbf{2018} (2018), no.~1, 98,
+\href{https://doi.org/10.1007/JHEP01(2018)098}{DOI: 10.1007/JHEP01(2018)098}.
+
+\bibitem{NiyogiSmaleWeinberger2008}
+P.~Niyogi, S.~Smale, and S.~Weinberger,
+\emph{Finding the homology of submanifolds with high confidence from random samples},
+Discrete \& Computational Geometry, \textbf{39} (2008), 419--441,
+\href{https://doi.org/10.1007/s00454-008-9053-2}{DOI: 10.1007/s00454-008-9053-2}.
+
+\bibitem{OrroTrotman2010}
+P.~Orro and D.~Trotman,
+\emph{Regularity of the transverse intersection of two regular stratifications},
+in \emph{Real and Complex Singularities}, London Mathematical Society Lecture Note Series, vol.~380, Cambridge University Press, Cambridge, 2010, pp.~298--304,
+ISBN: 978-0-521-16969-1,
+\href{https://doi.org/10.1017/CBO9780511731983.022}{DOI: 10.1017/CBO9780511731983.022}.
+
+\bibitem{RatajZahle2019}
+J.~Rataj and M.~Z\"ahle,
+\emph{Curvature Measures of Singular Sets},
+Springer Monographs in Mathematics, Springer, Cham, 2019,
+ISBN: 978-3-030-18182-6,
+\href{https://doi.org/10.1007/978-3-030-18183-3}{DOI: 10.1007/978-3-030-18183-3}.
+
+\bibitem{SalamonBerry1983}
+P.~Salamon and R.~S. Berry,
+\emph{Thermodynamic length and dissipated availability},
+Physical Review Letters, \textbf{51} (1983), no.~13, 1127--1130,
+\href{https://doi.org/10.1103/PhysRevLett.51.1127}{DOI: 10.1103/PhysRevLett.51.1127}.
+
+\bibitem{Schapira1991}
+P.~Schapira,
+\emph{Operations on constructible functions},
+Journal of Pure and Applied Algebra, \textbf{72} (1991), no.~1, 83--93,
+\href{https://doi.org/10.1016/0022-4049(91)90131-K}{DOI: 10.1016/0022-4049(91)90131-K}.
+
+\bibitem{Schapira2017}
+P.~Schapira,
+\emph{Microlocal analysis and beyond},
+preprint, 2017, DOI:
+\href{https://doi.org/10.48550/arXiv.1701.08955}{10.48550/arXiv.1701.08955}.
+
+\bibitem{SchmiedlSeifert2007}
+T.~Schmiedl and U.~Seifert,
+\emph{Optimal finite-time processes in stochastic thermodynamics},
+Physical Review Letters, \textbf{98} (2007), no.~10, 108301,
+\href{https://doi.org/10.1103/PhysRevLett.98.108301}{DOI: 10.1103/PhysRevLett.98.108301}.
+
+\bibitem{Schmidt1907}
+E.~Schmidt,
+\emph{Zur Theorie der linearen und nichtlinearen Integralgleichungen. I.~Teil},
+Mathematische Annalen, \textbf{63} (1907), no.~4, 433--476,
+\href{https://doi.org/10.1007/BF01449770}{DOI: 10.1007/BF01449770}.
+
+\bibitem{Schwarz2000}
+M.~Schwarz,
+\emph{On the action spectrum for closed symplectically aspherical manifolds},
+Pacific Journal of Mathematics, \textbf{193} (2000), no.~2, 419--461,
+\href{https://doi.org/10.2140/pjm.2000.193.419}{DOI: 10.2140/pjm.2000.193.419}.
+
+\bibitem{Seifert2012}
+U.~Seifert,
+\emph{Stochastic thermodynamics, fluctuation theorems and molecular machines},
+Reports on Progress in Physics, \textbf{75} (2012), no.~12, 126001,
+\href{https://doi.org/10.1088/0034-4885/75/12/126001}{DOI: 10.1088/0034-4885/75/12/126001}.
+
+\bibitem{silvafilho2026book}
+R.~M. Silva-Filho,
+\emph{Geometry, Tensors, and Quantum Gravity},
+monograph, Zenodo (2026),
+\href{https://doi.org/10.5281/zenodo.22290043}{DOI: 10.5281/zenodo.22290043}.
+
+\bibitem{Srednicki1993}
+M.~Srednicki,
+\emph{Entropy and area},
+Physical Review Letters, \textbf{71} (1993), no.~5, 666--669,
+\href{https://doi.org/10.1103/PhysRevLett.71.666}{DOI: 10.1103/PhysRevLett.71.666}.
+
+\bibitem{Talagrand1996}
+M.~Talagrand,
+\emph{Transportation cost for Gaussian and other product measures},
+Geometric and Functional Analysis, \textbf{6} (1996), no.~3, 587--600,
+\href{https://doi.org/10.1007/BF02249265}{DOI: 10.1007/BF02249265}.
+
+\bibitem{Trotman2020}
+D.~Trotman,
+\emph{Stratification theory},
+in \emph{Handbook of Geometry and Topology of Singularities~I}, Springer, Cham, 2020, pp.~243--273,
+ISBN: 978-3-030-53060-0,
+\href{https://doi.org/10.1007/978-3-030-53061-7_4}{DOI: 10.1007/978-3-030-53061-7\_4}.
+
+\bibitem{UmemotoTakayanagi2018}
+K.~Umemoto and T.~Takayanagi,
+\emph{Entanglement of purification through holographic duality},
+Nature Physics, \textbf{14} (2018), no.~6, 573--577,
+\href{https://doi.org/10.1038/s41567-018-0075-2}{DOI: 10.1038/s41567-018-0075-2}.
+
+\bibitem{VanVuSaito2023}
+T.~Van~Vu and K.~Saito,
+\emph{Thermodynamic unification of optimal transport: thermodynamic uncertainty relation, minimum dissipation, and thermodynamic speed limits},
+Physical Review X, \textbf{13} (2023), no.~1, 011013,
+\href{https://doi.org/10.1103/PhysRevX.13.011013}{DOI: 10.1103/PhysRevX.13.011013}.
+
+\bibitem{Villani2009}
+C.~Villani,
+\emph{Optimal Transport: Old and New},
+Grundlehren der mathematischen Wissenschaften, vol.~338, Springer, Berlin, Heidelberg, 2009,
+ISBN: 978-3-540-71049-3,
+\href{https://doi.org/10.1007/978-3-540-71050-9}{DOI: 10.1007/978-3-540-71050-9}.
+
+\bibitem{Viro1988}
+O.~Y. Viro,
+\emph{Some integral calculus based on Euler characteristic},
+in \emph{Topology and Geometry --- Rohlin Seminar}, Lecture Notes in Mathematics, vol.~1346, Springer, Berlin, Heidelberg, 1988, pp.~127--138,
+ISBN: 978-3-540-50237-1,
+\href{https://doi.org/10.1007/BFb0082775}{DOI: 10.1007/BFb0082775}.
+
+\bibitem{Viterbo1992}
+C.~Viterbo,
+\emph{Symplectic topology as the geometry of generating functions},
+Mathematische Annalen, \textbf{292} (1992), no.~1, 685--710,
+\href{https://doi.org/10.1007/BF01444643}{DOI: 10.1007/BF01444643}.
+
+\bibitem{Viterbo2000}
+C.~Viterbo,
+\emph{Metric and isoperimetric problems in symplectic geometry},
+Journal of the American Mathematical Society, \textbf{13} (2000), no.~2, 411--431,
+\href{https://doi.org/10.1090/S0894-0347-00-00328-3}{DOI: 10.1090/S0894-0347-00-00328-3}.
+
+\bibitem{vonRenesseSturm2005}
+M.-K. von~Renesse and K.-T. Sturm,
+\emph{Transport inequalities, gradient estimates, entropy and Ricci curvature},
+Communications on Pure and Applied Mathematics, \textbf{58} (2005), no.~7, 923--940,
+\href{https://doi.org/10.1002/cpa.20060}{DOI: 10.1002/cpa.20060}.
+
+\bibitem{Weyl1939}
+H.~Weyl,
+\emph{On the volume of tubes},
+American Journal of Mathematics, \textbf{61} (1939), no.~2, 461--472,
+\href{https://doi.org/10.2307/2371513}{DOI: 10.2307/2371513}.
+
+\bibitem{Whitney1965}
+H.~Whitney,
+\emph{Tangents to an analytic variety},
+Annals of Mathematics, \textbf{81} (1965), no.~3, 496--549,
+\href{https://doi.org/10.2307/1970400}{DOI: 10.2307/1970400}.
+
+\bibitem{ZhongDeWeese2024}
+A.~Zhong and M.~R. DeWeese,
+\emph{Beyond linear response: equivalence between thermodynamic geometry and optimal transport},
+Physical Review Letters, \textbf{133} (2024), no.~5, 057102,
+\href{https://doi.org/10.1103/PhysRevLett.133.057102}{DOI: 10.1103/PhysRevLett.133.057102}.
+
+\end{thebibliography}
+
+\end{document}

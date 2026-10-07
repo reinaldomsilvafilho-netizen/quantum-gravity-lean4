@@ -1,0 +1,174 @@
+bibitems in .tex: 56; cited keys: 56
+cited but no bibitem: none
+bibitem never cited: none
+bibitem not in REFS table: none
+REFS entry not in .tex: none
+
+[OK ] adler2007random
+       Crossref: J=1.00 author=n/a in record year=2007 | Random Fields and Geometry
+       OpenLibrary ISBN: title=ok author=ok | Random fields and geometry  / Robert J. Adler, R.J. Adler, Jonathan Taylor
+       ISBN 9780387481128 checksum ok
+[OK ] auffinger2013random
+       Crossref: J=1.00 author=ok year=2012 | Random Matrices and Complexity of Spin Glasses
+       arXiv: J=1.00 author=ok year=2010 | Random Matrices and complexity of Spin Glasses
+[OK ] cartwright2013number
+       Crossref: J=1.00 author=ok year=2013 | The number of eigenvalues of a tensor
+       arXiv: J=1.00 author=ok year=2010 | The Number of Eigenvalues of a Tensor
+[OK ] desilva2008illposed
+       Crossref: J=1.00 author=ok year=2008 | Tensor Rank and the Ill-Posedness of the Best Low-Rank Approximation Problem
+       arXiv: J=1.00 author=ok year=2006 | Tensor rank and the ill-posedness of the best low-rank approximation problem
+[OK ] evans2015measure
+       Crossref: J=0.99 author=ok year=2015 | Measure Theory and Fine Properties of Functions, Revised Edition
+       OpenLibrary ISBN: title=ok author=ok | Measure theory and fine properties of functions  / Lawrence C. Evans
+       ISBN 9781482242386 checksum ok
+[OK ] fleming1960integral
+       Crossref: J=1.00 author=ok year=1960 | An integral formula for total gradient variation
+[OK ] hillar2013most
+       Crossref: J=1.00 author=ok year=2013 | Most Tensor Problems Are NP-Hard
+       arXiv: J=1.00 author=ok year=2009 | Most tensor problems are NP-hard
+[OK ] lovasz2006limits
+       Crossref: J=1.00 author=ok year=2006 | Limits of dense graph sequences
+       arXiv: J=1.00 author=ok year=2004 | Limits of dense graph sequences
+[OK ] lovasz2007szemeredi
+       Crossref: J=1.00 author=ok year=2007 | Szemerédi’s Lemma for the Analyst
+[OK ] lovasz2012large
+       Crossref: J=1.00 author=ok year=2012 | Large Networks and Graph Limits
+       OpenLibrary ISBN: title=ok author=ok | Large networks and graph limits  / László Lovász
+       ISBN 9780821890851 checksum ok
+[OK ] lim2005singular
+       Crossref: J=1.00 author=ok year=n/a in record | Singular Values and Eigenvalues of Tensors: A Variational Approach
+       arXiv: J=1.00 author=ok year=2006 | Singular Values and Eigenvalues of Tensors: A Variational Approach
+[OK ] qi2005eigenvalues
+       Crossref: J=1.00 author=ok year=2005 | Eigenvalues of a real supersymmetric tensor
+[OK ] rudin1992nonlinear
+       Crossref: J=1.00 author=ok year=1992 | Nonlinear total variation based noise removal algorithms
+[OK ] milnor1963morse
+       Crossref: J=0.99 author=ok year=1963 | Morse Theory. (AM-51)
+       OpenLibrary ISBN: title=ok author=ok | Morse theory  / John Willard Milnor
+       ISBN 9780691080086 checksum ok
+[OK ] silvafilho2026book
+       DataCite: J=1.00 author=ok year=2026 | Geometry, Tensors, and Quantum Gravity
+[OK ] tomioka2014spectral
+       DataCite: J=1.00 author=ok year=2014 | Spectral norm of random tensors
+       arXiv: J=1.00 author=ok year=2014 | Spectral norm of random tensors
+[OK ] nguyen2015tensor
+       Crossref: J=0.99 author=ok year=2015 | Tensor sparsification via a bound on the spectral norm of random tensors: Algorithm 1.
+       arXiv: J=1.00 author=ok year=2010 | Tensor sparsification via a bound on the spectral norm of random tensors
+[OK ] vershynin2018high
+       Crossref: J=0.99 author=ok year=2018 | High-Dimensional Probability
+[OK ] zhao2015hypergraph
+       Crossref: J=1.00 author=ok year=2014 | Hypergraph limits: A regularity approach
+       arXiv: J=1.00 author=ok year=2013 | Hypergraph limits: a regularity approach
+[OK ] frieze1999quick
+       Crossref: J=1.00 author=ok year=1999 | Quick Approximation to Matrices and Applications
+[OK ] borgs2008convergent
+       Crossref: J=1.00 author=ok year=2008 | Convergent sequences of dense graphs I: Subgraph frequencies, metric properties and testin
+       arXiv: J=1.00 author=ok year=2007 | Convergent Sequences of Dense Graphs I: Subgraph Frequencies, Metric Properties and Testin
+[OK ] janson2013graphons
+       arXiv: J=1.00 author=ok year=2010 | Graphons, cut norm and distance, couplings and rearrangements
+[OK ] alon2006approximating
+       Crossref: J=1.00 author=ok year=2006 | Approximating the Cut-Norm via Grothendieck's Inequality
+[OK ] elek2012measure
+       Crossref: J=1.00 author=ok year=2012 | A measure-theoretic approach to the theory of dense hypergraphs
+       arXiv: J=1.00 author=ok year=2008 | A measure-theoretic approach to the theory of dense hypergraphs
+[OK ] federer1959curvature
+       Crossref: J=1.00 author=ok year=1959 | Curvature measures
+[OK ] kac1943average
+       Crossref: J=1.00 author=ok year=1943 | On the average number of real roots of a random algebraic equation
+[OK ] fyodorov2004complexity
+       Crossref: J=1.00 author=ok year=2004 | Complexity of Random Energy Landscapes, Glass Transition, and Absolute Value of the Spectr
+       arXiv: J=1.00 author=ok year=2004 | Complexity of Random Energy Landscapes, Glass Transition and Absolute Value of Spectral De
+[OK ] auffinger2013complexity
+       Crossref: J=1.00 author=ok year=2013 | Complexity of random smooth functions on the high-dimensional sphere
+       arXiv: J=1.00 author=ok year=2011 | Complexity of random smooth functions on the high-dimensional sphere
+[OK ] subag2017complexity
+       Crossref: J=1.00 author=ok year=2017 | The complexity of spherical $p$-spin models—A second moment approach
+       arXiv: J=1.00 author=ok year=2015 | The complexity of spherical p-spin models - a second moment approach
+[OK ] subag2017geometry
+       Crossref: J=1.00 author=ok year=2017 | The geometry of the Gibbs measure of pure spherical spin glasses
+       arXiv: J=1.00 author=ok year=2016 | The geometry of the Gibbs measure of pure spherical spin glasses
+[OK ] subag2021following
+       Crossref: J=1.00 author=ok year=2020 | Following the Ground States of <scp>Full‐RSB</scp> Spherical Spin Glasses
+       arXiv: J=1.00 author=ok year=2018 | Following the ground-states of full-RSB spherical spin glasses
+[OK ] fyodorov2014topology
+       Crossref: J=1.00 author=ok year=2013 | Topology Trivialization and Large Deviations for the Minimum in the Simplest Random Optimi
+       arXiv: J=1.00 author=ok year=2013 | Topology trivialization and large deviations for the minimum in the simplest random optimi
+[OK ] ros2019complex
+       Crossref: J=1.00 author=ok year=2019 | Complex Energy Landscapes in Spiked-Tensor and Simple Glassy Models: Ruggedness, Arrangeme
+       arXiv: J=1.00 author=ok year=2018 | Complex energy landscapes in spiked-tensor and simple glassy models: ruggedness, arrangeme
+[OK ] kentdobias2024arrangement
+       Crossref: J=1.00 author=ok year=2024 | Arrangement of nearby minima and saddles in the mixed spherical energy landscapes
+       arXiv: J=1.00 author=ok year=2023 | Arrangement of nearby minima and saddles in the mixed spherical energy landscapes
+[OK ] benarous2019landscape
+       Crossref: J=1.00 author=ok year=2019 | The Landscape of the Spiked Tensor Model
+       arXiv: J=1.00 author=ok year=2017 | The landscape of the spiked tensor model
+[OK ] breiding2017expected
+       Crossref: J=1.00 author=ok year=2017 | The Expected Number of Eigenvalues of a Real Gaussian Tensor
+       arXiv: J=0.99 author=ok year=2016 | The expected number of Z-eigenvalues of a real gaussian tensor
+[OK ] draisma2016average
+       Crossref: J=1.00 author=ok year=2016 | The average number of critical rank-one approximations to a tensor
+       arXiv: J=1.00 author=ok year=2014 | The average number of critical rank-one approximations to a tensor
+[OK ] friedland2014number
+       Crossref: J=1.00 author=ok year=2014 | The Number of Singular Vector Tuples and Uniqueness of Best Rank-One Approximation of Tens
+       arXiv: J=1.00 author=ok year=2012 | The number of singular vector tuples and uniqueness of best rank one approximation of tens
+[OK ] lim2021tensors
+       Crossref: J=1.00 author=ok year=2021 | Tensors in computations
+       arXiv: J=1.00 author=ok year=2021 | Tensors in computations
+[OK ] lim2009nonnegative
+       Crossref: J=1.00 author=ok year=2009 | Nonnegative approximations of nonnegative tensors
+       arXiv: J=1.00 author=ok year=2009 | Nonnegative approximations of nonnegative tensors
+[OK ] evnin2021melonic
+       Crossref: J=1.00 author=ok year=2021 | Melonic dominance and the largest eigenvalue of a large random tensor
+       arXiv: J=1.00 author=ok year=2020 | Melonic dominance and the largest eigenvalue of a large random tensor
+[OK ] dartois2024injective
+       DataCite: J=1.00 author=ok year=2024 | Injective norm of real and complex random tensors I: From spin glasses to geometric entang
+       arXiv: J=1.00 author=ok year=2024 | Injective norm of real and complex random tensors I: From spin glasses to geometric entang
+[OK ] boedihardjo2024injective
+       DataCite: J=1.00 author=ok year=2024 | Injective norm of random tensors with independent entries
+       arXiv: J=1.00 author=ok year=2024 | Injective norm of random tensors with independent entries
+[OK ] montanari2014statistical
+       DataCite: J=1.00 author=ok year=2014 | A statistical model for tensor PCA
+       arXiv: J=1.00 author=ok year=2014 | A statistical model for tensor PCA
+[OK ] choromanska2015loss
+       DataCite: J=1.00 author=ok year=2014 | The Loss Surfaces of Multilayer Networks
+       arXiv: J=1.00 author=ok year=2014 | The Loss Surfaces of Multilayer Networks
+[OK ] medvedev2014nonlinear
+       Crossref: J=1.00 author=ok year=2014 | The Nonlinear Heat Equation on Dense Graphs and Graph Limits
+       arXiv: J=1.00 author=ok year=2013 | The nonlinear heat equation on dense graphs and graph limits
+[OK ] gao2015rate
+       Crossref: J=1.00 author=ok year=2015 | Rate-optimal graphon estimation
+       arXiv: J=1.00 author=ok year=2014 | Rate-optimal graphon estimation
+[OK ] ruiz2021graphon
+       Crossref: J=1.00 author=ok year=2021 | Graphon Signal Processing
+       arXiv: J=1.00 author=ok year=2020 | Graphon Signal Processing
+[OK ] ruiz2020graphon
+       DataCite: J=1.00 author=ok year=2020 | Graphon Neural Networks and the Transferability of Graph Neural Networks
+       arXiv: J=1.00 author=ok year=2020 | Graphon Neural Networks and the Transferability of Graph Neural Networks
+[OK ] yang2022tensor
+       DataCite: J=1.00 author=ok year=2022 | Tensor Programs V: Tuning Large Neural Networks via Zero-Shot Hyperparameter Transfer
+       arXiv: J=1.00 author=ok year=2022 | Tensor Programs V: Tuning Large Neural Networks via Zero-Shot Hyperparameter Transfer
+[OK ] yoshida2017spectral
+       DataCite: J=1.00 author=ok year=2017 | Spectral Norm Regularization for Improving the Generalizability of Deep Learning
+       arXiv: J=1.00 author=ok year=2017 | Spectral Norm Regularization for Improving the Generalizability of Deep Learning
+[OK ] miyato2018spectral
+       DataCite: J=1.00 author=ok year=2018 | Spectral Normalization for Generative Adversarial Networks
+       arXiv: J=1.00 author=ok year=2018 | Spectral Normalization for Generative Adversarial Networks
+[OK ] rahaman2019spectral
+       DataCite: J=1.00 author=ok year=2018 | On the Spectral Bias of Neural Networks
+       arXiv: J=1.00 author=ok year=2018 | On the Spectral Bias of Neural Networks
+[OK ] czarnecki2017sobolev
+       DataCite: J=1.00 author=ok year=2017 | Sobolev Training for Neural Networks
+       arXiv: J=1.00 author=ok year=2017 | Sobolev Training for Neural Networks
+[OK ] entezari2022role
+       DataCite: J=1.00 author=ok year=2021 | The Role of Permutation Invariance in Linear Mode Connectivity of Neural Networks
+       arXiv: J=1.00 author=ok year=2021 | The Role of Permutation Invariance in Linear Mode Connectivity of Neural Networks
+[OK ] ainsworth2023git
+       DataCite: J=1.00 author=ok year=2022 | Git Re-Basin: Merging Models modulo Permutation Symmetries
+       arXiv: J=1.00 author=ok year=2022 | Git Re-Basin: Merging Models modulo Permutation Symmetries
+
+resolved and matched: 56/56
+
+Negative controls (each must FAIL):
+  fake DOI: FAILED as required | ['DOI 10.1016/j.jctb.2099.99.999 NOT FOUND']
+  wrong title: FAILED as required | ['Crossref: J=0.00 author=ok year=2006 | Limits of dense graph sequences']
+  bad ISBN: FAILED as required | ['ISBN 9780821890852 checksum BAD']

@@ -1,0 +1,121 @@
+paper: paper_beyond_the_spectrum_3; bibitems now 72, before 19, added 53, removed []
+sample (seed 20261007): ['FloerHofer1994', 'LiebRuskai1973', 'BlaberSivak2023', 'HaydenLemmSorce2023', 'Seifert2012', 'Srednicki1993', 'Viro1988', 'SchmiedlSeifert2007', 'Carlson1963', 'HaimKislevOstrover2026']
+neg control: fake DOI does not resolve (ok)
+neg control: title similarity of a wrong title = 0.00 (must be < 0.5)
+
+====================================================================================================
+KEY FloerHofer1994
+BIBITEM: A.~Floer and H.~Hofer, \emph{Symplectic homology I: Open sets in $\mathbb{C}^n$}, Mathematische Zeitschrift, \textbf{215} (1994), no.~1, 37--88, \href{https://doi.org/10.1007/BF02571699}{DOI: 10.1007/BF02571699}.
+DOI 10.1007/BF02571699: resolved via Crossref
+[Crossref] title: Symplectic homology I open sets in ℂ n
+  authors: A. Floer; H. Hofer
+  year: 1994 venue: Mathematische Zeitschrift vol 215 p 37-88
+  title-in-bibitem similarity: 1.00
+  abstract: (none)
+  CITED AT: . For spectral invariants defined through generating functions or Floer homology see Viterbo~\cite{Viterbo1992} and Schwarz~\cite{Schwarz2000}, and for the symplectic homology of open sets in $\mathbb{C}^n$ see Floer and Hofer~\cite{FloerHofer1994}.
+
+====================================================================================================
+KEY LiebRuskai1973
+BIBITEM: E.~H. Lieb and M.~B. Ruskai, \emph{Proof of the strong subadditivity of quantum-mechanical entropy}, Journal of Mathematical Physics, \textbf{14} (1973), no.~12, 1938--1941, \href{https://doi.org/10.1063/1.1666274}{DOI: 10.1063/1.1666274}.
+DOI 10.1063/1.1666274: resolved via Crossref
+[Crossref] title: Proof of the strong subadditivity of quantum-mechanical entropy
+  authors: Elliott H. Lieb; Mary Beth Ruskai
+  year: 1973 venue: Journal of Mathematical Physics vol 14 p 1938-1941
+  title-in-bibitem similarity: 1.00
+  abstract: We prove several theorems about quantum-mechanical entropy, in particular, that it is strongly subadditive.
+  CITED AT: . The bound $S_R \ge I(\Omega_1 : \Omega_2)$ is \cite[eqs.~(2.12)--(2.14)]{DuttaFaulkner2019}: since the state on $11^*22^*$ is pure, $S(11^*2) = S(2^*) = S(2)$, so $S_R = S(11^*) = I(11^* : 2)$, and $I(11^*:2) \ge I(1:2)$ by monotonicity of mutual information under discarding $1^*$, which is strong subadditivity \cite{LiebRuskai1973}. \end{proof} \begin{remark}[\textbf{OBL-016: the holographic proposal}] \label{thm:holographic_ew_inequality} For holographic quantum field theories with a classical gravity dual, Dutta and Faulkner \cite{DuttaFaulkner2019} proposed, and supported by a gravitational replica argument, that at leading order in $G_N$ \begin{equation} S_R(A : B) = 2 E_W(A : B), \qquad E_W = \frac{\min_{\Sigma_{AB}} \mathrm{Area}(\Sigma_{AB})}{4 G_N}, \end{equation} where $\Sigma_{AB}$ runs over surfaces splitting the entanglement wedge of $A \cup B$ into a part adjacent to $A$ and a part adjacent to $B$ (in unit
+
+====================================================================================================
+KEY BlaberSivak2023
+BIBITEM: S.~Blaber and D.~A. Sivak, \emph{Optimal control in stochastic thermodynamics}, Journal of Physics Communications, \textbf{7} (2023), no.~3, 033001, \href{https://doi.org/10.1088/2399-6528/acbf04}{DOI: 10.1088/2399-6528/acbf04}.
+DOI 10.1088/2399-6528/acbf04: resolved via Crossref
+[Crossref] title: Optimal control in stochastic thermodynamics
+  authors: Steven Blaber; David A Sivak
+  year: 2023 venue: Journal of Physics Communications vol 7 p 033001
+  title-in-bibitem similarity: 1.00
+  abstract: Abstract 
+                We review recent progress in optimal control in stochastic thermodynamics. Theoretical advances provide in-depth insight into minimum-dissipation control with either full or limited (parametric) control, and spanning the limits from slow to fast driving and from weak to strong driving. Known exact solutions give a window into the properties of minimum-dissipation control, which are reproduced by approximate methods in the relevant limits. Connections between optimal-transport theory and minimum-dissipation protocols under full control give deep insight into the properties of optimal control and place bounds on the dissipation of thermodynamic processes. Since minimum-dissipation protocols are relatively well understood and advanced approximation methods and numerical techniques for estimating minimum-dissipation protocols have been developed, now is an opportune time for application to chemical and biological systems.
+  CITED AT: . Recent work relates entropy production, speed limits and optimal transport~\cite{NakazatoIto2021,VanVuSaito2023}, and shows that for overdamped dynamics the friction-tensor geometry of the slow-driving limit coincides with $L^2$ optimal-transport geometry~\cite{ZhongDeWeese2024}; Blaber and Sivak~\cite{BlaberSivak2023} review optimal control in this setting. The reflected entropy was introduced by Dutta and Faulkner~\cite{DuttaFaulkner2019}.
+
+====================================================================================================
+KEY HaydenLemmSorce2023
+BIBITEM: P.~Hayden, M.~Lemm, and J.~Sorce, \emph{Reflected entropy is not a correlation measure}, Physical Review A, \textbf{107} (2023), no.~5, L050401, \href{https://doi.org/10.1103/PhysRevA.107.L050401}{DOI: 10.1103/PhysRevA.107.L050401}.
+DOI 10.1103/PhysRevA.107.L050401: resolved via Crossref
+[Crossref] title: Reflected entropy: Not a correlation measure
+  authors: Patrick Hayden; Marius Lemm; Jonathan Sorce
+  year: 2023 venue: Physical Review A vol 107 p None
+  title-in-bibitem similarity: 1.00
+  abstract: For a quantum state of two coupled physical systems, a correlation measure is a quantity that measures how much each system knows about the other. Here, the authors show that the quantity known as ``reflected entropy'' is not a correlation measure, by constructing quantum states on three coupled systems for which the reflected entropy increases when one of the systems is discarded.
+  CITED AT: . Akers and Rath~\cite{AkersRath2020} and Hayden, Parrikar and Sorce~\cite{HaydenParrikarSorce2021} studied the gap between reflected entropy and mutual information in holographic states, and Hayden, Lemm and Sorce~\cite{HaydenLemmSorce2023} showed by counterexample that the reflected entropy is not monotonically decreasing under partial trace.
+  CITED AT: The reflected entropy \begin{equation} S_R(\Omega_1 : \Omega_2) \coloneqq -\Tr\left( \sigma_{1 1^*} \log \sigma_{1 1^*} \right), \qquad \sigma_{1 1^*} \coloneqq \Tr_{2 2^*}\left( |\sqrt{\rho_{12}}\rangle \langle\sqrt{\rho_{12}}| \right) \end{equation} is non-negative, symmetric $S_R(\Omega_1 : \Omega_2) = S_R(\Omega_2 : \Omega_1)$, and satisfies the universal lower bound: \begin{equation} S_R(\Omega_1 : \Omega_2) \ge I(\Omega_1 : \Omega_2) \coloneqq S(\Omega_1) + S(\Omega_2) - S(\Omega_1 \Omega_2). \end{equation} No monotonicity of $S_R$ under partial trace is asserted: Hayden, Lemm and Sorce \cite[Thm.~1]{HaydenLemmSorce2023} give classical states on $\mathbb{C}^3\otimes\mathbb{C}^3\otimes\mathbb{C}^2$ with $S_R(A:BC) < S_R(A:B)$. \end{theorem} \begin{proof} All spaces are finite-dimensional.
+
+====================================================================================================
+KEY Seifert2012
+BIBITEM: U.~Seifert, \emph{Stochastic thermodynamics, fluctuation theorems and molecular machines}, Reports on Progress in Physics, \textbf{75} (2012), no.~12, 126001, \href{https://doi.org/10.1088/0034-4885/75/12/126001}{DOI: 10.1088/0034-4885/75/12/126001}.
+DOI 10.1088/0034-4885/75/12/126001: resolved via Crossref
+[Crossref] title: Stochastic thermodynamics, fluctuation theorems and molecular machines
+  authors: Udo Seifert
+  year: 2012 venue: Reports on Progress in Physics vol 75 p 126001
+  title-in-bibitem similarity: 1.00
+  abstract: Stochastic thermodynamics as reviewed here systematically provides a framework for extending the notions of classical thermodynamics such as work, heat and entropy production to the level of individual trajectories of well-defined non-equilibrium ensembles. It applies whenever a non-equilibrium process is still coupled to one (or several) heat bath(s) of constant temperature. Paradigmatic systems are single colloidal particles in time-dependent laser traps, polymers in external flow, enzymes and molecular motors in single molecule assays, small biochemical networks and thermoelectric devices involving single electron transport. For such systems, a first-law like energy balance can be identified along fluctuating trajectories. For a basic Markovian dynamics implemented either on the continuum level with Langevin equations or on a discrete set of states as a master equation, thermodynamic consistency imposes a local-detailed balance constraint on noise and rates, respectively. Various integral and detailed fluctuation theorems, which are derived here in a unifying approach from one master theorem, constrain the probability distributions for work, heat and entropy production depending on the nature of the system and the choice of non-equilibrium conditions. For non-equilibrium steady states, particularly strong results hold like a generalized fluctuation-dissipation theorem involving entropy production. Ramifications and applications of these concepts include optimal driving between specified states in finite time, the role of measurement-based feedback processes and the relation between dissipation and irreversibility. Efficiency and, in particular, efficiency at maximum power can be discussed systematically beyond the linear response regime for two classes of molecular m
+  CITED AT: . Stochastic thermodynamics is reviewed by Seifert~\cite{Seifert2012}.
+
+====================================================================================================
+KEY Srednicki1993
+BIBITEM: M.~Srednicki, \emph{Entropy and area}, Physical Review Letters, \textbf{71} (1993), no.~5, 666--669, \href{https://doi.org/10.1103/PhysRevLett.71.666}{DOI: 10.1103/PhysRevLett.71.666}.
+DOI 10.1103/PhysRevLett.71.666: resolved via Crossref
+[Crossref] title: Entropy and area
+  authors: Mark Srednicki
+  year: 1993 venue: Physical Review Letters vol 71 p 666-669
+  title-in-bibitem similarity: 1.00
+  abstract: The ground-state density matrix for a massless free field is traced over the degrees of freedom residing inside an imaginary sphere; the resulting entropy is shown to be proportional to the area (and not the volume) of the sphere. Possible connections with the physics of black holes are discussed.
+  CITED AT: . The same geometric spectrum appears for the reduced ground state of two coupled harmonic oscillators \cite{Srednicki1993}. (b) Without normalization, $-\log$ of the restriction of $\rho_{\Omega_1}$ need not be non-negative: for $n = 1$, $A = (5)$ and a product frame, $\rho_{\Omega_1} = 5\,|a_1\rangle\langle a_1|$ and $-\log 5 < 0$.
+
+====================================================================================================
+KEY Viro1988
+BIBITEM: O.~Y. Viro, \emph{Some integral calculus based on Euler characteristic}, in \emph{Topology and Geometry --- Rohlin Seminar}, Lecture Notes in Mathematics, vol.~1346, Springer, Berlin, Heidelberg, 1988, pp.~127--138, ISBN: 978-3-540-50237-1, \href{https://doi.org/10.1007/BFb0082775}{DOI: 10.1007/BFb0082775}.
+DOI 10.1007/BFb0082775: resolved via Crossref
+ISBN 978-3-540-50237-1 (not resolved here)
+[Crossref] title: Some integral calculus based on Euler characteristic
+  authors: O. Y. Viro
+  year: 1988 venue: Lecture Notes in Mathematics Topology and Geometry — Rohlin Seminar vol None p 127-138
+  title-in-bibitem similarity: 1.00
+  abstract: (none)
+  CITED AT: . Integration of constructible functions with respect to the Euler characteristic was developed by Viro~\cite{Viro1988} and Schapira~\cite{Schapira1991}. The limit $p\to\infty$ of the first Dirichlet eigenvalue of the $p$-Laplacian was found by Juutinen, Lindqvist and Manfredi~\cite{JuutinenLindqvistManfredi1999} and by Fukagai, Ito and Narukawa~\cite{FukagaiItoNarukawa1999}; see Lindqvist's lecture notes~\cite{Lindqvist2008}, the Finsler version of Belloni, Kawohl and Juutinen~\cite{BelloniKawohlJuutinen2006}, and the optimal-transport approach of Champion, De~Pascale and Jimenez~\cite{ChampionDePascaleJimenez2008}.
+  CITED AT: . In the language of constructible functions, \eqref{eq:chi_strata} is the integral of $x \mapsto \chi((\mathcal{F}_A)_x)$ with respect to the Euler characteristic \cite{Viro1988,Schapira1991}. \end{proof} \begin{remark}[A formula that fails] \label{rem:chi_counterexample} The formula $\chi(\Omega; \mathcal{F}) = \sum_r m_r \chi(\Sigma_r)$, with $m_r$ the coefficients of $CC(\mathcal{F}) = \sum_r m_r [\overline{T^*_{\Sigma_r}\Omega}]$ and the ordinary Euler characteristic $\chi$ of the strata, is false in general.
+
+====================================================================================================
+KEY SchmiedlSeifert2007
+BIBITEM: T.~Schmiedl and U.~Seifert, \emph{Optimal finite-time processes in stochastic thermodynamics}, Physical Review Letters, \textbf{98} (2007), no.~10, 108301, \href{https://doi.org/10.1103/PhysRevLett.98.108301}{DOI: 10.1103/PhysRevLett.98.108301}.
+DOI 10.1103/PhysRevLett.98.108301: resolved via Crossref
+[Crossref] title: Optimal Finite-Time Processes In Stochastic Thermodynamics
+  authors: Tim Schmiedl; Udo Seifert
+  year: 2007 venue: Physical Review Letters vol 98 p None
+  title-in-bibitem similarity: 1.00
+  abstract: For a small system like a colloidal particle or a single biomolecule embedded in a heat bath, the optimal protocol of an external control parameter minimizes the mean work required to drive the system from one given equilibrium state to another in a finite time. In general, this optimal protocol obeys an integro-differential equation. Explicit solutions both for a moving laser trap and a time-dependent strength of such a trap show finite jumps of the optimal protocol to be typical both at the beginning and at the end of the process.
+  CITED AT: . Optimal finite-time protocols were computed by Schmiedl and Seifert~\cite{SchmiedlSeifert2007}, and their link with optimal transport was found by Aurell, Mej\'ia-Monasterio and Muratore-Ginanneschi~\cite{Aurell2011}.
+  CITED AT: . Counterexample: the dragged trap (the moving laser trap of Schmiedl and Seifert \cite{SchmiedlSeifert2007}, who computed its optimal protocols) $V_s(x) = \kappa(x - sa)^2/2$ on $\mathbb{R}$, $s = t/\tau$, for which $\mu_A$ and $\mu_B$ are Gaussians of equal variance and $\mathcal{W}_2(\mu_A,\mu_B) = |a|$.
+
+====================================================================================================
+KEY Carlson1963
+BIBITEM: B.~C. Carlson, \emph{Lauricella's hypergeometric function $F_D$}, Journal of Mathematical Analysis and Applications, \textbf{7} (1963), no.~3, 452--470, \href{https://doi.org/10.1016/0022-247X(63)90067-2}{DOI: 10.1016/0022-247X(63)90067-2}.
+DOI 10.1016/0022-247X(63)90067-2: resolved via Crossref
+[Crossref] title: Lauricella's hypergeometric function FD
+  authors: B.C Carlson
+  year: 1963 venue: Journal of Mathematical Analysis and Applications vol 7 p 452-470
+  title-in-bibitem similarity: 1.00
+  abstract: (none)
+  CITED AT: \noindent For an affine realization $\Phi(A)(u) = \sum_i z_i u_i$ with all $z_i > 0$, $\mathcal{Z}_A(s)$ is the Dirichlet average of the power $s$, that is, Carlson's $R$-function $R_s(\alpha; z)$ \cite{Carlson1963}, a symmetric form of the Lauricella function $F_D$; see \cite[\S3.3.1]{Chow2022}. \begin{remark}[\textbf{OBL-018: no residue spectrum for $\mathcal{Z}_A$}] \label{thm:barnes_meromorphic_continuation} By Proposition~\ref{prop:simplicial_mellin_conv}, $\mathcal{Z}_A$ has no poles, so it has no residue spectrum at $s = -\alpha_j - k$.
+
+====================================================================================================
+KEY HaimKislevOstrover2026
+BIBITEM: P.~Haim-Kislev and Y.~Ostrover, \emph{A counterexample to Viterbo's conjecture}, Annals of Mathematics, \textbf{203} (2026), no.~2, 603--622, \href{https://doi.org/10.4007/annals.2026.203.2.5}{DOI: 10.4007/annals.2026.203.2.5}.
+DOI 10.4007/annals.2026.203.2.5: resolved via Crossref
+[Crossref] title: A counterexample to Viterbo's conjecture
+  authors: Pazit Haim-Kislev; Yaron Ostrover
+  year: 2026 venue: Annals of Mathematics vol 203 p 603-622
+  title-in-bibitem similarity: 1.00
+  abstract: We present a counterexample to Viterbo's volume-capacity conjecture. This implies, in particular, that in contrast with a well-known conjecture, symplectic capacities do not coincide on the class of convex domains in the classical phase space.
+  CITED AT: . Viterbo~\cite{Viterbo2000} suggested that among convex domains of given volume the ball maximizes capacity; Haim-Kislev and Ostrover~\cite{HaimKislevOstrover2026} gave a counterexample to Viterbo's volume--capacity conjecture. Whitney's conditions~(a) and~(b) go back to Whitney~\cite{Whitney1965}; see Mather's notes~\cite{Mather2012}, the Liverpool notes~\cite{GibsonEtAl1976} and Trotman's survey~\cite{Trotman2020}.
+
+resolver failures=0

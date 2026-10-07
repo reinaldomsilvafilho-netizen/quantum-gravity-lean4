@@ -1,0 +1,16 @@
+trilogy pages 59; pages containing 'Beyond the Spectrum II' title: []
+local vol2 pages 18
+vol2 first page matches trilogy page 28 ratio 1.000
+pagewise ratio Zenodo-trilogy-vol2 vs local vol2: min 1.0000 mean 1.0000
+word-level diff ops Zenodo vs local vol2: 0
+key 'Isospectral Separation Theorem': in tex True | in local vol2 pdf True | in zenodo vol2 True
+key 'Bottleneck Stability for Functional Realizations': in tex True | in local vol2 pdf True | in zenodo vol2 True
+key 'Conformal Invariance and Regularity Bounds': in tex True | in local vol2 pdf True | in zenodo vol2 True
+key 'Interface and Shock Direction Detection': in tex True | in local vol2 pdf True | in zenodo vol2 True
+key 'Non-Commutative Integration Formula': in tex True | in local vol2 pdf True | in zenodo vol2 True
+key 'Positivity and Entanglement Faithfulness': in tex True | in local vol2 pdf True | in zenodo vol2 True
+key 'Metric Properties on Matrix Varieties': in tex True | in local vol2 pdf True | in zenodo vol2 True
+key 'Displacement Convexity and Log-Sobolev Inequality': in tex True | in local vol2 pdf True | in zenodo vol2 True
+key 'Lean 4': in tex True | in local vol2 pdf True | in zenodo vol2 True
+key 'Atiyah--Patodi--Singer': in tex True | in local vol2 pdf True | in zenodo vol2 True
+NEGATIVE CONTROL vol1 vs vol2 ratio (must be low): 0.208

@@ -1,0 +1,109 @@
+== Constr. 3.7: ||f_A||_{L2(dmu)} = ||A||_F ==
+PASS n=2: grid 1.631027 vs ||A||_F 1.631027
+PASS NEG n=2: v2 claim (1/n, Lebesgue) 5.1240 == ||A||_F
+PASS n=4: grid 3.378773 vs ||A||_F 3.378773
+PASS NEG n=4: v2 claim (1/n, Lebesgue) 5.3074 == ||A||_F
+PASS n=7: grid 7.709401 vs ||A||_F 7.709401
+PASS NEG n=7: v2 claim (1/n, Lebesgue) 6.9199 == ||A||_F
+
+== Thm 4.1: energy formula, FD oracle with refinement ==
+  M=96: FD 540.4677724703  formula 540.6867586832  err 2.190e-01
+  M=192: FD 540.6729519595  formula 540.6867586832  err 1.381e-02
+  M=384: FD 540.6858939003  formula 540.6867586832  err 8.648e-04
+PASS FD converges to formula (rel err < 1e-5 at M=384)
+  observed orders: ['3.99', '4.00'] (expected 4: fourth-order differences)
+PASS NEG mutant formula sum (k1+k2)|a|^2 matches FD
+PASS energy = ||DA||_F^2 + ||AD||_F^2 (matrix algebra): 540.6867586832
+PASS NEG mutant ||DAD||_F^2 equals the energy
+
+== Thm 4.1: ratio Theta(n^2) needs a suitable A; fails for I, J ==
+PASS A=I: all 720 permutations give one energy (ratio 1)
+PASS A=J: all 720 permutations give one energy (ratio 1)
+PASS E11 -> Enn ratio = n^2
+PASS random symmetric A: max/min ratio 1.920 <= n^2 = 36
+
+== Ex. 4.2: checkerboard energy ==
+PASS n=4: FD 239.9849 = 2n*n(n+1)(2n+1)/6 = 240.0; equals J energy
+      E/n^4 = 0.9375   E/n^3 = 3.7500
+PASS n=8: FD 3263.8277 = 2n*n(n+1)(2n+1)/6 = 3264.0; equals J energy
+      E/n^4 = 0.7969   E/n^3 = 6.3750
+PASS n=16: FD 47869.7220 = 2n*n(n+1)(2n+1)/6 = 47872.0; equals J energy
+      E/n^4 = 0.7305   E/n^3 = 11.6875
+PASS n=32: FD 732127.0868 = 2n*n(n+1)(2n+1)/6 = 732160.0; equals J energy
+      E/n^4 = 0.6982   E/n^3 = 22.3438
+PASS NEG v2 claim E = Theta(n^3): E/n^3 bounded on n=4..1024
+
+== Thm 4.4/4.5: TV formula vs coarea oracle ==
+PASS n=4 checker: formula 12.0000 coarea 12.0000
+PASS n=4 random int: formula 12.5000 coarea 12.5000
+PASS n=4: TV(checker) = 4(n-1) = 12
+PASS NEG n=4: mutant TV without 1/n equals coarea
+PASS n=8 checker: formula 28.0000 coarea 28.0000
+PASS n=8 random int: formula 36.6250 coarea 36.6250
+PASS n=8: TV(checker) = 4(n-1) = 28
+PASS NEG n=8: mutant TV without 1/n equals coarea
+
+== Thm 4.9: constant 4 is attained ==
+PASS 2x2 checkerboard: op/cut = 4.000 = 4
+PASS NEG mutant constant 2 (op <= 2 cut)
+
+== Thm 5.5: isotropy of the ordered-tuple model, non-isotropy of the multiset model ==
+PASS d=2: multiset model Var f((e1+e2)/sqrt2) = 1.5000 = C(2d,d)/2^d = 1.5000 != 1
+PASS d=2: ordered-tuple model MC Var f(x) = 1.001 ~ 1
+PASS d=3: multiset model Var f((e1+e2)/sqrt2) = 2.5000 = C(2d,d)/2^d = 2.5000 != 1
+PASS d=3: ordered-tuple model MC Var f(x) = 1.002 ~ 1
+
+== Thm 5.5(iv): Cartwright-Sturmfels bound, n=3, d=3: at most 2*7 = 14 critical points ==
+  trial 0: 6 critical points found
+  trial 1: 10 critical points found
+  trial 2: 10 critical points found
+  trial 3: 14 critical points found
+  trial 4: 14 critical points found
+  trial 5: 14 critical points found
+PASS max found 14 <= 14 and even
+PASS NEG v2 claim exp(n Theta(d)) with Theta(d) >= d/2: 14 >= exp(3*1.5)=90
+  ABC (2.20): (1/n) log E Crit -> (1/2) log(d-1); d=2 gives 0 (2n points), d=3 gives 0.3466
+PASS d=2 rate is zero
+
+== Thm 5.6: sup of X over (S^{d-1})^3 by HOPM, Gaussian and Rademacher ==
+  gauss      d=  8: sup/sqrt(d) = 2.524   sup/d = 0.892
+  gauss      d= 16: sup/sqrt(d) = 2.616   sup/d = 0.654
+  gauss      d= 32: sup/sqrt(d) = 2.711   sup/d = 0.479
+  gauss      d= 48: sup/sqrt(d) = 2.765   sup/d = 0.399
+PASS gauss: sup/sqrt(d) in [1/sqrt3 = 0.577, C_k = 8.19]
+PASS E||Z|| (d=1) = 0.7979 >= d/sqrt(d+2) = 0.5774 >= sqrt(d/3)
+PASS E||Z|| (d=2) = 1.2533 >= d/sqrt(d+2) = 1.0000 >= sqrt(d/3)
+PASS E||Z|| (d=8) = 2.7416 >= d/sqrt(d+2) = 2.5298 >= sqrt(d/3)
+PASS E||Z|| (d=48) = 6.8922 >= d/sqrt(d+2) = 6.7882 >= sqrt(d/3)
+PASS NEG gauss: mutant lower bound E||Z|| >= sqrt(d) (fails at d=1)
+PASS NEG gauss: v1 normalization d^-(k-1)/2 gives Theta(1) (sup/d non-decreasing)
+  rademacher d=  8: sup/sqrt(d) = 2.290   sup/d = 0.810
+  rademacher d= 16: sup/sqrt(d) = 2.562   sup/d = 0.640
+  rademacher d= 32: sup/sqrt(d) = 2.699   sup/d = 0.477
+  rademacher d= 48: sup/sqrt(d) = 2.756   sup/d = 0.398
+PASS rademacher: sup/sqrt(d) bounded, in [0.5, C_k] (Remark, sub-Gaussian)
+PASS NEG rademacher: v1 normalization d^-(k-1)/2 gives Theta(1) (sup/d non-decreasing)
+
+== Thm 5.6(ii): tail of f_hat for Haar u, Gaussian entries ==
+PASS eps=0.2: empirical 0.5341 <= 2exp(-d eps^2/2) = 1.6375
+PASS eps=0.4: empirical 0.2091 <= 2exp(-d eps^2/2) = 0.8987
+PASS eps=0.7: empirical 0.0263 <= 2exp(-d eps^2/2) = 0.1726
+PASS NEG mutant 2exp(-d eps^2) at eps=0.7 (0.0149) bounds the tail 0.0263
+PASS var of sqrt(d) f_hat = 1.009 ~ 1
+
+== Sec. 6.4: rank-2 ill-posedness persists with unit-sphere factors ==
+  t=     10: ||T - X_t|| = 1.735e-01, weights (10.2, 10.0) on unit-norm factors
+  t=    100: ||T - X_t|| = 1.732e-02, weights (100.0, 100.0) on unit-norm factors
+  t=   1000: ||T - X_t|| = 1.732e-03, weights (1000.0, 1000.0) on unit-norm factors
+PASS error ~ sqrt(3)/t at t=1000
+PASS pencil S0^{-1}S1 is a nontrivial Jordan block (T not of rank <= 2)
+PASS NEG mutant claim: rank-2 best approximation attained with bounded weights (error 0 at t=10)
+
+== Prop. 5.4: sup|f| <= C_lambda sqrt(R); softmax gives f(0,0) = N ==
+PASS N=4: f(0,0) = 4.000000 = N; sup|f| 4.000 <= C sqrt(R) = 38.682
+PASS N=8: f(0,0) = 8.000000 = N; sup|f| 8.000 <= C sqrt(R) = 125.218
+PASS N=16: f(0,0) = 16.000000 = N; sup|f| 16.000 <= C sqrt(R) = 538.156
+PASS lambda=0: partial sums of C^2 grow like log K: [25.36, 29.68, 34.02]
+PASS NEG mutant: C^2 at lambda=0 converges (partial sums stable to 1e-2)
+
+failures: 0

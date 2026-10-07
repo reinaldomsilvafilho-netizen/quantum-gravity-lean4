@@ -1,0 +1,1361 @@
+BEYOND THE SPECTRUM II: METRIC MEASURE GEOMETRY,
+PERSISTENT HOMOLOGY, AND NON-COMMUTATIVE INVARIANTS
+OF FUNCTIONAL TENSOR MANIFOLDS
+REINALDO M. SILVA-FILHO
+Abstract. Finite-dimensional multilinear algebra classically relies on permutation-blind al-
+gebraic invariants: eigenvalues, singular values, operator ranks, and polynomial traces. While
+the initial formulation of Functional Realization Operators Φ: T k(V ) →F(Ω) demonstrated
+that embedding matrices and higher-order tensors into function spaces unlocks first-order
+Sobolev H1 energies, total variation bounded variation (BV) norms, and graphon cut-norm
+topologies, profound geometric and topological dimensions have remained unchartered. In
+this paper, we establish a comprehensive higher-order framework by constructing six new
+foundational families of emergent invariants and geometric measures on functional tensor
+varieties: (1) Optimal Transport and Metric Curvature: a dimension-free quadratic
+Wasserstein distance W2 measuring continuous deformation costs between matrices of un-
+equal dimensions, paired with a Bakry–Émery Ricci curvature lower bound κBE governing
+displacement convexity and logarithmic Sobolev inequalities; (2) Topological Data Anal-
+ysis and Persistent Homology: continuous super-level set filtrations Xt(A) yielding
+persistence diagrams Dgmk(Φ(A)), proving strict bottleneck stability dB ≤∥Φ(A)−Φ(B)∥∞
+and establishing persistent entropy as an invariant that strictly separates isospectral ma-
+trices; (3) Geometric Measure Theory and Bending Energies: level-set varifolds
+defining the integrated Willmore bending energy W(Φ(A)) to quantify surface wrinkling
+and mean-curvature tortuosity under conformal transformations, alongside matrix isoperi-
+metric profiles; (4) Micro-Local Phase Space and Fractional Regularity: continuous
+Gabor–Radon wavepacket transforms defining the matrix wavefront set WF(Φ(A)) ⊂T ∗Ωto
+detect the spatial location and directional propagation of block discontinuities, paired with
+critical fractional Besov exponents s∗(A); (5) Non-Commutative Geometry: canonical
+Dirac spectral triples (AΦ, L2(Ω, S), D) where the Connes–Dixmier trace Trω(Φ(A)|D|−d)
+extracts conformal volume elements, alongside quantized topological cyclic cocycles τ2k;
+(6) Quantum Information Geometry of Tensor Networks: fiber-bundle continuous
+matrix product states defining the integrated Quantum Fisher Information (QFI) volume
+VolQFI(T ), continuous entanglement contours Scont(x), and spatial information centroids.
+We prove rigorous existence, stability, and invariance theorems for each construction, provid-
+ing an exhaustive classification that bridges continuous multilinear algebra, global differential
+geometry, and theoretical physics.
+Contents
+1.
+Introduction and the Functional Realization Paradigm
+3
+1.1.
+Outline of the Treatise
+3
+2.
+Optimal Transport, Wasserstein Geodesics, and Metric Curvature
+4
+2.1.
+The Density Realization Operator
+4
+2.2.
+Dimension-Free Matrix Wasserstein Distance
+4
+2.3.
+Bakry–Émery Metric Curvature of a Matrix Realization
+5
+3.
+Persistent Homology, Topological Landscape, and Persistent Entropy
+6
+Date: September 10, 2026.
+2020 Mathematics Subject Classification. 15A69, 49Q22, 55N31, 53C21, 58J40, 58B34, 81P45, 46E35.
+Key words and phrases. Functional linear algebra, higher-order tensors, optimal transport, Wasserstein
+distance, Bakry–Émery curvature, persistent homology, topological data analysis, Willmore energy, geometric
+measure theory, wavefront set, micro-local analysis, non-commutative geometry, Dixmier trace, Quantum
+Fisher Information, tensor networks.
+1
+2
+REINALDO M. SILVA-FILHO
+3.1.
+The Super-Level Set Filtration
+6
+3.2.
+Bottleneck Stability of Functional Tensors
+7
+3.3.
+The Persistent Entropy Invariant
+8
+4.
+Geometric Measure Theory: Willmore Bending and Isoperimetric Deficits
+9
+4.1.
+Level-Set Varifolds and Mean Curvature Fields
+9
+4.2.
+The Integrated Willmore Bending Energy
+10
+4.3.
+The Matrix Isoperimetric Profile
+11
+5.
+Micro-Local Phase-Space Analysis and Fractional Besov Regularity
+11
+5.1.
+Continuous Gabor Wavepacket Transform
+11
+5.2.
+The Matrix Wavefront Set
+12
+5.3.
+Fractional Besov Exponents
+12
+6.
+Non-Commutative Spectral Invariants and Quantum Information Geometry
+13
+6.1.
+The Canonical Dirac Spectral Triple
+13
+6.2.
+The Connes–Dixmier Conformal Volume Trace
+13
+6.3.
+Quantized Cyclic Cocycles and Topological Indices
+14
+7.
+Quantum Information Geometry of Continuous Tensor Networks
+14
+7.1.
+Fiber-Bundle Tensor Networks
+14
+7.2.
+The Integrated Quantum Fisher Information (QFI) Volume
+14
+7.3.
+Continuous Entanglement Contour and Centroid
+15
+8.
+Synthesis, Taxonomy of Invariants, and Applications
+16
+8.1.
+The Master Taxonomy of Functional Tensor Invariants
+16
+8.2.
+Key Scientific Applications
+17
+9.
+Conclusion and Future Horizons
+17
+References
+17
+BEYOND THE SPECTRUM II
+3
+1. Introduction and the Functional Realization Paradigm
+Classical linear and multilinear algebra views an array of numerical coefficients—be it
+a square matrix A ∈Rn×n or a higher-order tensor T ∈⨂︁k
+j=1 Rdj—as an element of a
+finite-dimensional discrete vector space. In this classical framework, all intrinsic structural
+characterizations are governed by purely algebraic invariants: the matrix trace Tr(A), the
+determinant det(A), characteristic polynomials, the eigenvalue spectrum σ(A) = {λi(A)}n
+i=1,
+singular value decompositions Σ(A), and multilinear ranks.
+However, as established in the foundational treatise [9], this algebraic perspective suffers
+from severe structural blind spots when arrays represent physical, geometric, or network
+phenomena:
+(i) Spectral Blindness to Spatial Locality: Algebraic invariants are invariant under
+coordinate permutations. If P ∈Rn×n is a permutation matrix, then
+σ(PAP T ) = σ(A),
+Tr(PAP T ) = Tr(A),
+∥PAP T ∥F = ∥A∥F .
+(1.1)
+Yet, transposing adjacent rows versus distant rows in an image or adjacency ma-
+trix creates radically different spatial gradients, topological tears, and boundary
+discontinuities.
+(ii) Dimensional Incommensurability: Two matrices of different dimensions, say
+A ∈R10×10 and B ∈R1000×1000, inhabit non-isomorphic linear spaces. Classical
+matrix algebra possesses no natural, canonical metric to measure how closely A and
+B represent the same continuous physical continuum.
+To overcome these limitations, the framework of Functional Realization Operators was
+introduced:
+Φ: T k(V ) −→F(Ω),
+(1.2)
+mapping discrete multilinear arrays into function spaces (such as Lp(Ω), Sobolev spaces
+Hs(Ω), or spaces of bounded variation BV(Ω)) over continuous spatial domains Ω⊂Rd or
+Riemannian manifolds (Ω, g).
+While the first volume [9] successfully explored first-order Sobolev Dirichlet energies
+∫︁
+Ω∥∇Φ(A)∥2 dx, BV level-set perimeters via the Federer–Fleming Coarea formula, spherical
+Morse topology for symmetric tensors, and graphon cut-norm limits, the true depth of
+functional realizations remained unchartered. In particular, first-order differential invariants
+cannot capture:
+• The optimal dynamical transport cost between differing mass distributions of unequal
+matrices;
+• The multiscale topological persistence of voids and cavities in the entry landscape;
+• The second-order bending, mean-curvature wrinkling, and Willmore energy of matrix
+level sets;
+• The exact micro-local directional orientation of shock interfaces and block boundaries
+in cotangent space;
+• Non-commutative operator traces and cyclic topological cocycles;
+• The fiber-bundle information geometry of continuous tensor network manifolds.
+In this paper, we construct and prove the mathematical foundations of these six new
+advanced families of invariants and geometric measures.
+—
+1.1. Outline of the Treatise. The paper is organized as follows:
+• Section 2: We construct the continuous Wasserstein metric measure space for
+functional tensors, establishing the dynamical W2 geodesic distance between matrices
+of arbitrary dimensions, followed by the Bakry–Émery Γ2 Ricci curvature bound and
+logarithmic Sobolev inequalities.
+4
+REINALDO M. SILVA-FILHO
+• Section 3: We define the continuous super-level set filtration, prove the Bottleneck
+Stability Theorem for functional realizations, and construct the Persistent Entropy
+invariant that strictly separates isospectral matrices.
+• Section 4: We develop the Geometric Measure Theory (GMT) of level-set vari-
+folds, formulating the Integrated Willmore Bending Energy W(Φ(A)) and the matrix
+isoperimetric profile.
+• Section 5: We introduce continuous Gabor wavepackets on phase space, formalize
+the Matrix Wavefront Set WF(Φ(A)) ⊂T ∗Ω\ {0}, and derive critical fractional
+Besov/Gagliardo regularity exponents s∗(A).
+• Section 6: We construct the canonical Dirac spectral triple, establish the Connes–
+Dixmier non-commutative volume trace Trω, and formalize quantized cyclic cocycles
+τ2k.
+• Section 7: We formulate fiber-bundle tensor networks, the integrated Quantum
+Fisher Information (QFI) volume, the continuous entanglement contour, and the
+spatial information centroid.
+• Section 8: We present the unified master comparison matrix, computational discrete-
+to-continuous realization algorithms, and applications across deep learning, disordered
+materials, and quantum information.
+2. Optimal Transport, Wasserstein Geodesics, and Metric Curvature
+2.1. The Density Realization Operator. Let V be an n-dimensional Euclidean space. Let
+Sn
++ ⊂Rn×n denote the cone of symmetric positive semi-definite (PSD) matrices, normalized
+such that Tr(A) = 1. Let Ω= [0, 1]d be the unit hypercube equipped with the standard
+Lebesgue measure dx.
+Definition 2.1 (Probability Density Realization). Let Φ: Sn
++ →L1(Ω) be a positive functional
+realization operator satisfying:
+Φ(A)(x) ≥0
+a.e. x ∈Ω,
+and
+∫︂
+Ω
+Φ(A)(x) dx = Tr(A) = 1.
+(2.1)
+Each normalized matrix A ∈Sn
++ thus induces an absolutely continuous Borel probability
+measure on Ω:
+dµA(x) := Φ(A)(x) dx ∈Pac(Ω).
+(2.2)
+A canonical family of such realizations is given by continuous kernel smoothing with a
+symmetric partition of unity {ψi}n
+i=1 ⊂C∞(Ω):
+Φkernel(A)(x) :=
+n
+∑︂
+i,j=1
+Aijψi(x)ψj(x) = ψ(x)T Aψ(x),
+(2.3)
+where ∑︁n
+i=1
+∫︁
+Ωψi(x)2 dx = 1 and
+∫︁
+Ωψi(x)ψj(x) dx = δij. Because A ≥0, ψ(x)T Aψ(x) ≥0
+for every x ∈Ω.
+2.2. Dimension-Free Matrix Wasserstein Distance. Let A ∈Sn
++ and B ∈Sm
++ be
+two matrices of potentially different dimensions n̸ = m. Classical matrix analysis cannot
+define ∥A −B∥. In our framework, their functional realizations induce probability measures
+µA, µB ∈P(Ω).
+Definition 2.2 (Functional L2-Wasserstein Matrix Distance). The functional quadratic
+Wasserstein distance between A ∈Sn
++ and B ∈Sm
++ is defined by:
+W2(A, B) :=
+(︃
+inf
+π∈Π(µA,µB)
+∫︂
+Ω×Ω
+∥x −y∥2 dπ(x, y)
+)︃1/2
+,
+(2.4)
+where Π(µA, µB) is the set of all Borel probability measures on Ω× Ωhaving marginals µA
+and µB.
+BEYOND THE SPECTRUM II
+5
+By the Benamou–Brenier theorem [2], W2(A, B) admits a dynamic fluid-mechanical formu-
+lation:
+W2
+2(A, B) =
+inf
+(ρt,vt)
+{︃∫︂1
+0
+∫︂
+Ω
+∥vt(x)∥2ρt(x) dx dt
+}︃
+,
+(2.5)
+subject to the continuity equation and boundary conditions:
+∂tρt + ∇· (ρtvt) = 0,
+ρ0 = Φ(A),
+ρ1 = Φ(B).
+(2.6)
+Theorem 2.3 (Metric Properties on Matrix Varieties). Let M = ⋃︁∞
+n=1 Sn
++ be the graded
+space of all normalized PSD matrices of arbitrary finite dimension. Then:
+(a) (M, W2) is a pseudometric space. If Φ is injective on each Sn
++, it defines a genuine
+metric on equivalence classes of matrices under realization kernel gauge equivalence.
+(b) The distance W2 is continuous with respect to the L1(Ω) norm with sharp constant:
+W2(A, B) ≤diam(Ω)
+√
+2
+∥Φ(A) −Φ(B)∥1/2
+L1(Ω).
+(2.7)
+(c) If A(τ) evolves under a continuous projected gradient flow ˙A(τ) = −∇E(A(τ)) on
+Sn
++ such that infτ,x Φ(A(τ))(x) ≥c0 > 0 (uniform ellipticity), the curve τ ↦→Φ(A(τ))
+is an absolutely continuous curve in the Wasserstein space (P2(Ω), W2) with metric
+velocity:
+| ˙µA|(τ) := lim
+h→0
+W2(A(τ + h), A(τ))
+|h|
+≤C∥˙A(τ)∥F .
+(2.8)
+Proof. (a) Symmetry W2(A, B) = W2(B, A) and non-negativity are immediate from (2.4).
+The triangle inequality follows from the gluing lemma for optimal couplings (Villani [12]).
+(b) Let µA ∧µB be the common mass. By standard transport-total variation inequalities:
+W2
+2(µA, µB) ≤diam(Ω)2∥µA −µB∥TV = diam(Ω)2 1
+2∥Φ(A) −Φ(B)∥L1(Ω),
+(2.9)
+taking the square root yields W2(A, B) ≤diam(Ω)
+√
+2
+∥Φ(A) −Φ(B)∥1/2
+L1(Ω).
+(c) Because Φ is smooth with bounded derivatives,⃦⃦
+d
+dτ Φ(A(τ))⃦⃦L1 ≤C1∥˙A(τ)∥F . Under
+the uniform lower bound ρτ(x) ≥c0 > 0, the weighted Sobolev space ˙H1(ρτ) is uniformly equiv-
+alent to ˙H1(Ω). The continuity equation ∂τρ + ∇· (ρv) = 0 is solved by elliptic reconstruction
+v = −∇ψ with −∇· (ρ∇ψ) = ∂τρ. By Lax–Milgram, ∥v∥L2(ρ) ≤c−1/2
+0
+∥∂τρ∥H−1 ≤C3∥˙A∥F .
+Hence the metric derivative satisfies | ˙µA|(τ) ≤C∥˙A(τ)∥F .
+□
+2.3. Bakry–Émery Metric Curvature of a Matrix Realization. Given a strictly positive
+functional realization Φ(A) ∈C2(Ω) with Φ(A)(x) > 0, we view (Ω, g, dµA) as a weighted
+Riemannian metric measure space (smooth metric measure space) with background Euclidean
+metric gij = δij and smooth potential:
+VA(x) := −log Φ(A)(x) =⇒dµA(x) = e−VA(x) dx.
+(2.10)
+The weighted Laplacian (drift Laplacian / Witten Laplacian) acting on f ∈C2(Ω) is:
+∆Af := ∆f −⟨∇VA, ∇f⟩= ∆f + ⟨∇Φ(A), ∇f⟩
+Φ(A)
+.
+(2.11)
+Definition 2.4 (Bakry–Émery Curvature Tensor and Invariant). The infinite-dimensional
+Bakry–Émery Ricci tensor associated with the matrix A is:
+Ric∞(Φ(A)) := Ricg +∇2VA = −∇2 log Φ(A) = −∇2Φ(A)
+Φ(A)
++ ∇Φ(A) ⊗∇Φ(A)
+Φ(A)2
+.
+(2.12)
+The Bakry–Émery Curvature Invariant κBE(A) of the matrix is the infimum of its spectrum:
+κBE(A) :=
+inf
+x∈Ω,∥ξ∥=1
+⟨︁(︁
+−∇2 log Φ(A)(x)
+)︁
+ξ, ξ
+⟩︁
+.
+(2.13)
+6
+REINALDO M. SILVA-FILHO
+Theorem 2.5 (Displacement Convexity and Log-Sobolev Inequality). Let Ω= [0, 1]d be
+convex and let A ∈Sn
++ have a smooth positive realization with κBE(A) ≥K > 0. Equip ∆A
+with Neumann boundary conditions ∂nf = 0 on ∂Ω. Then:
+(a) Displacement Convexity: The Boltzmann–Shannon relative entropy functional
+Ent(µ | µA) :=
+∫︁
+Ωρ log(ρ/Φ(A)) dx is K-geodesically convex in the L2-Wasserstein
+space (P2(Ω), W2).
+(b) Logarithmic Sobolev Inequality (LSI): For every smooth function f ∈C∞(Ω)
+satisfying ∂nf = 0 on ∂Ω:
+∫︂
+Ω
+f2 log
+(︃
+f2
+∫︁
+Ωf2 dµA
+)︃
+dµA ≤2
+K
+∫︂
+Ω
+∥∇f∥2 dµA.
+(2.14)
+(c) Exponential Convergence of Diffusion: The heat flow uτ = eτ∆Au0 associated
+with the matrix A contracts exponentially to the uniform state with rate 2K:
+VarµA(eτ∆Au0) ≤e−2KτVarµA(u0).
+(2.15)
+Proof. By the Bakry–Émery criterion [1] and the integrated Reilly–Bochner formula on
+domains with boundary, for f satisfying Neumann conditions ∂nf = 0:
+∫︂
+Ω
+Γ2(f, f) dµA =
+∫︂
+Ω
+(︁
+∥∇2f∥2
+HS + Ric∞(Φ(A))(∇f, ∇f)
+)︁
+dµA +
+∫︂
+∂Ω
+II(∇⊤f, ∇⊤f) dµA,
+(2.16)
+where II denotes the second fundamental form of the boundary. For the convex hypercube
+Ω= [0, 1]d, this is rigorously justified by approximating Ωvia an exhausting sequence
+of smooth convex domains Ωϵ ↗Ωwith smooth C2 boundary satisfying II∂Ωϵ ≥0. On
+each Ωϵ, the boundary integral is non-negative (
+∫︁
+∂Ωϵ II ≥0), and in the limit ϵ →0, the
+boundary contribution on the flat faces satisfies II ≡0 on each face while the singular
+edge/corner contributions vanish for H2 Neumann eigenfunctions. Since Ric∞(Φ(A)) ≥K · Id
+by assumption, Γ2(f, f) ≥K∥∇f∥2 = KΓ(f, f). By Sturm–von Renesse [13], the Γ2 ≥KΓ
+condition is equivalent to the K-displacement convexity of relative entropy along W2 geodesics,
+which implies the Logarithmic Sobolev Inequality with constant CLSI = 2/K and exponential
+variance contraction at rate 2K.
+□
+Example 2.6 (Realizations with Strict Positive Curvature). A canonical family of realizations
+with strictly positive Bakry–Émery curvature κBE(A) ≥K > 0 is provided by the truncated
+Gibbs/Gaussian realization on Ω= [0, 1]d:
+ΦGibbs(A)(x) := 1
+ZA
+exp
+(︃
+−1
+2(x −x0)T A(x −x0)
+)︃
+,
+A ≻0.
+(2.17)
+The potential is VA(x) = 1
+2(x −x0)T A(x −x0) + log ZA, yielding ∇2VA(x) = A. Therefore,
+Ric∞(ΦGibbs(A)) = A ≥λmin(A) · Id, and the Bakry–Émery curvature invariant is precisely
+the smallest eigenvalue of the matrix:
+κBE(A) = λmin(A) > 0.
+(2.18)
+This confirms that the class of matrices with κBE(A) ≥K > 0 is non-empty and contains all
+strictly positive definite matrices under Gaussian-type functional embedding.
+3. Persistent Homology, Topological Landscape, and Persistent Entropy
+3.1. The Super-Level Set Filtration. Let A ∈Rn×n be an arbitrary real matrix, and
+let Φ(A) ∈C0(Ω) be its continuous functional realization on Ω= [0, 1]d.
+Let MA :=
+maxx∈ΩΦ(A)(x) and mA := minx∈ΩΦ(A)(x).
+BEYOND THE SPECTRUM II
+7
+Definition 3.1 (Continuous Matrix Filtration). For each threshold t ∈[mA, MA], the
+continuous super-level set of the matrix A is:
+Xt(A) := {x ∈Ω| Φ(A)(x) ≥t} .
+(3.1)
+For s ≥t, we have the canonical inclusion is,t : Xs(A) ↪→Xt(A), inducing a functorial
+persistence module over (R, ≤):
+Hk(A): t ↦−→Hk(Xt(A); F),
+(3.2)
+where F is a field (e.g., Z2 or R) and Hk denotes singular homology in degree k ∈{0, 1, . . . , d−
+1}.
+By the Structure Theorem for persistence modules of tame functions (Edelsbrunner and
+Harer [6]), Hk(A) decomposes into a multiset of interval modules, uniquely characterized by
+the Persistence Diagram:
+Dgmk(Φ(A)) :=
+{︁
+(bi, di) ∈R2⃓⃓
+bi > di, i ∈Ik
+}︁
+∪∆,
+(3.3)
+where bi is the birth value (a local maximum where a homology cycle appears), di is the death
+value (where the cycle merges into an older cycle or fills in), and ∆= {(x, x) | x ∈R} is the
+diagonal with infinite multiplicity.
+3.2. Bottleneck Stability of Functional Tensors. Let Dgmk(f) and Dgmk(g) be two
+persistence diagrams. The bottleneck distance is:
+dB(Dgmk(f), Dgmk(g)) :=
+inf
+γ : Dgmk(f)→Dgmk(g)
+sup
+p∈Dgmk(f)
+∥p −γ(p)∥∞,
+(3.4)
+where γ ranges over all bijections between the multisets.
+Theorem 3.2 (Bottleneck Stability for Functional Realizations). Let A, B ∈Rn×n and let Φ
+be an L∞-bounded functional realization operator with Lipschitz constant LΦ:
+∥Φ(A) −Φ(B)∥L∞(Ω) ≤LΦ∥A −B∥F .
+(3.5)
+Assume Φ(A) and Φ(B) are tame continuous functions (e.g., Morse functions with finitely
+many critical values, or piecewise affine functions on a finite simplicial triangulation of
+Ω), ensuring well-defined, finite persistence diagrams. Then, for every homology dimension
+k ∈{0, 1, . . . , d −1}, the persistence diagrams satisfy:
+dB(Dgmk(Φ(A)), Dgmk(Φ(B))) ≤∥Φ(A) −Φ(B)∥L∞(Ω) ≤LΦ∥A −B∥F .
+(3.6)
+Proof. Let f = Φ(A) and g = Φ(B). For any ϵ = ∥f −g∥L∞(Ω), we have f(x) ≤g(x) + ϵ and
+g(x) ≤f(x) + ϵ for all x ∈Ω. This induces interlacing inclusions between the super-level sets:
+Xt+ϵ(f) ⊆Xt(g) ⊆Xt−ϵ(f).
+(3.7)
+Applying the homology functor Hk(·; F) produces an algebraic ϵ-interleaving between the
+persistence modules Hk(f) and Hk(g). By the Algebraic Stability Theorem of Chazal et al.
+[4], an ϵ-interleaving of tame persistence modules implies that the bottleneck distance between
+the respective persistence diagrams is bounded by ϵ:
+dB(Dgmk(f), Dgmk(g)) ≤ϵ = ∥f −g∥L∞(Ω).
+(3.8)
+Combining this with the Lipschitz continuity of Φ completes the proof.
+□
+8
+REINALDO M. SILVA-FILHO
+3.3. The Persistent Entropy Invariant.
+Definition 3.3 (Persistent Entropy of a Matrix). Let Dgmk(Φ(A)) = {(bi, di)}Nk
+i=1 be the
+off-diagonal points of the k-th persistence diagram. The lifespan of the i-th topological
+feature is ℓi := bi −di > 0. The total persistent lifetime is Lk(A) := ∑︁Nk
+i=1 ℓi. The persistent
+probability weights are pi := ℓi/Lk(A). The k-th Persistent Entropy of the matrix is:
+E(k)
+pers(A) := −
+Nk
+∑︂
+i=1
+pi log pi ≥0.
+(3.9)
+By convention, if Nk = 0 (i.e., the persistence diagram Dgmk(Φ(A)) is empty and has no
+off-diagonal bars), we set E(k)
+pers(A) := 0.
+Theorem 3.4 (Isospectral Separation Theorem). There exist pairs of strictly isospectral
+symmetric matrices A, B ∈Sn such that:
+σ(A) = σ(B),
+Tr(Ap) = Tr(Bp) ∀p ∈N,
+∥A∥F = ∥B∥F ,
+(3.10)
+and yet their continuous topological persistence diagrams strictly separate them:
+Dgm1(Φ(A))̸ = Dgm1(Φ(B))
+with Dgm1(Φ(A)) = ∅̸ = {(2, 0)} ⊂Dgm1(Φ(B)),
+(3.11)
+and for realizations with Nk ≥2 distinct persistence lifetimes, their persistent entropies strictly
+differ: E(k)
+pers(Φ(A))̸ = E(k)
+pers(Φ(B)).
+Proof. We construct an explicit geometric counter-example. Let n = 3. Partition Ω= [0, 1]2
+into a uniform 3 × 3 grid of cells Ωij = [i−1
+3 , i
+3] × [j−1
+3 , j
+3] for i, j ∈{1, 2, 3}. Let B ∈S3 be
+the symmetric matrix with entry B22 = 0 and all other entries equal to 2:
+B =
+⎛
+⎝
+2
+2
+2
+2
+0
+2
+2
+2
+2
+⎞
+⎠.
+(3.12)
+Let P be the permutation matrix transposing indices 1 and 2:
+P =
+⎛
+⎝
+0
+1
+0
+1
+0
+0
+0
+0
+1
+⎞
+⎠.
+(3.13)
+The orthogonally similar matrix A = PBP T transposes rows and columns 1 and 2, placing
+the single low entry 0 at position (1, 1):
+A =
+⎛
+⎝
+0
+2
+2
+2
+2
+2
+2
+2
+2
+⎞
+⎠.
+(3.14)
+Because A and B are related by an orthogonal similarity A = PBP T , they are strictly
+isospectral:
+σ(A) = σ(B) = {2 + 2
+√
+3, 2 −2
+√
+3, 0},
+Tr(Ap) = Tr(Bp) ∀p ∈N,
+∥A∥F = ∥B∥F =
+√
+32.
+(3.15)
+All classical spectral invariants, polynomial traces, determinants, and matrix norms are
+identically equal.
+Now consider their continuous step-realizations (or smoothed approximations via convolution
+with a standard mollifier Φϵ(M) = Φ(M) ∗ηϵ ∈C∞(Ω)). By Theorem 3.2 (Bottleneck
+Stability), dB(Dgm1(Φϵ(M)), Dgm1(Φ(M))) ≤∥Φϵ(M) −Φ(M)∥L∞→0 as ϵ →0. Because
+the topological persistence feature of B has macroscopic lifetime ℓ1 = 2 > 0, for sufficiently
+small ϵ > 0 the diagram Dgm1(Φϵ(B)) remains non-empty with a bar of lifetime ℓ≈2, whereas
+any potential spurious cycles in Dgm1(Φϵ(A)) have persistence bounded by 2ϵ →0, ensuring
+BEYOND THE SPECTRUM II
+9
+strict macroscopic topological separation holds uniformly in both the piecewise-constant and
+smooth categories.
+Specifically, for the matrix B, the 8 cells with value 2 comprise the entire boundary ring of
+the grid:
+Xt(B) =
+⋃︂
+(i,j)̸=(2,2)
+Ωij = [0, 1]2 \
+(︃(︃1
+3, 2
+3
+)︃
+×
+(︃1
+3, 2
+3
+)︃)︃
+,
+for t ∈(0, 2].
+(3.16)
+The set Xt(B) is the unit square with an open central square removed; it is topologically
+homeomorphic to an annulus S1 × [0, 1]. Its first homology group is non-trivial:
+H1(Xt(B); Z2) ∼= Z2 =⇒β1(Xt(B)) = 1
+for all t ∈(0, 2].
+(3.17)
+At threshold t = 0, the central cell (2, 2) is included, filling the hole (X0(B) = [0, 1]2),
+causing the 1-cycle to die. Thus, the 1-dimensional persistence diagram contains a prominent
+off-diagonal feature:
+Dgm1(Φ(B)) = {(2, 0)} ∪∆,
+with persistence lifetime ℓ1 = 2 −0 = 2.
+(3.18)
+In contrast, for matrix A, the zero entry is located at the top-left corner Ω11 = [0, 1/3]×[0, 1/3].
+For t ∈(0, 2], the super-level set is:
+Xt(A) =
+⋃︂
+(i,j)̸=(1,1)
+Ωij = [0, 1]2 \
+(︃[︃
+0, 1
+3
+)︃
+×
+[︃
+0, 1
+3
+)︃)︃
+.
+(3.19)
+This is an L-shaped domain formed by removing a boundary corner from the square. An
+L-shaped planar region is star-shaped and contractible; its fundamental group and all higher
+homology groups vanish:
+H1(Xt(A); Z2) = 0 =⇒β1(Xt(A)) = 0
+∀t ∈R.
+(3.20)
+Therefore, Dgm1(Φ(A)) = ∅. We have thus proven:
+Dgm1(Φ(A)) = ∅̸ = {(2, 0)} ⊂Dgm1(Φ(B)),
+(3.21)
+which rigorously establishes that continuous functional persistent homology strictly separates
+isospectral matrices. Furthermore, under smooth generic perturbations breaking cell degenera-
+cies into Nk ≥2 bars of unequal lifetimes, persistent entropy E(k)
+pers = −∑︁pi log pi is non-zero
+for B while remaining zero for contractible A, yielding strict entropy discrimination.
+□
+4. Geometric Measure Theory: Willmore Bending and Isoperimetric Deficits
+4.1. Level-Set Varifolds and Mean Curvature Fields. Let Φ(A) ∈C2(Ω) be a smooth
+realization on a compact Riemannian domain (Ω, g). For almost every t ∈R, Sard’s theorem
+guarantees that the level set
+Σt := {x ∈Ω| Φ(A)(x) = t}
+(4.1)
+is a smooth (d −1)-dimensional embedded submanifold of Ω. The unit normal vector field
+pointing towards increasing values is:
+n(x) :=
+∇Φ(A)(x)
+∥∇Φ(A)(x)∥,
+x ∈Σt.
+(4.2)
+Definition 4.1 (Mean Curvature Field of a Functional Realization). The scalar mean
+curvature Ht(x) of the level hypersurface Σt at x is given by the tangential divergence of the
+normal field:
+Ht(x) := −div
+(︃∇Φ(A)(x)
+∥∇Φ(A)(x)∥
+)︃
+= −∆Φ(A)
+∥∇Φ(A)∥+ Hess Φ(A)(∇Φ(A), ∇Φ(A))
+∥∇Φ(A)∥3
+.
+(4.3)
+10
+REINALDO M. SILVA-FILHO
+4.2. The Integrated Willmore Bending Energy. In classical differential geometry, the
+Willmore functional of a 2D surface Σ ⊂R3 is
+∫︁
+Σ H2 dA, measuring its total elastic bending
+energy. We extend this to matrix realizations by integrating over all level sets.
+Definition 4.2 (Integrated Willmore Energy of a Matrix Realization). For d ≥2, the
+Integrated Willmore Bending Energy W(Φ(A)) of a matrix A is defined by:
+W(Φ(A)) :=
+∫︂∞
+−∞
+(︃∫︂
+Σt∩Ω
+Ht(x)2 dHd−1(x)
+)︃
+dt.
+(4.4)
+Applying the Coarea formula ( dt dHd−1 = ∥∇Φ(A)∥dx), W admits the explicit volume
+integral representation:
+W(Φ(A)) =
+∫︂
+Ω⃓⃓⃓⃓
+div
+(︃∇Φ(A)
+∥∇Φ(A)∥
+)︃⃓⃓⃓⃓2
+∥∇Φ(A)∥dx.
+(4.5)
+Remark 4.3 (Integrability and Dimensional Threshold d ≥2). Near a non-degenerate critical
+point x0 ∈Ωwhere ∇Φ(A)(x0) = 0, Taylor expansion gives ∥∇Φ(x)∥≈∥Hess Φ(x0)(x −
+x0)∥∼r, where r = ∥x −x0∥. The mean curvature scales as Ht(x) ∼∥Hess Φ∥/∥∇Φ∥∼1/r.
+The integrand in (4.5) thus behaves as H2
+t ∥∇Φ∥∼(1/r2) · r = 1/r. In spherical coordinates
+around x0, the volume integral involves
+∫︁ϵ
+0 r−1 · rd−1 dr =
+∫︁ϵ
+0 rd−2 dr. This integral converges
+if and only if d −2 > −1, which is equivalent to d ≥2. For d = 1, level sets are isolated points
+and the integral exhibits a logarithmic divergence; hence the Willmore bending functional is
+intrinsically well-defined for d ≥2.
+Theorem 4.4 (Conformal Invariance and Regularity Bounds). Let d = 3 and Ω⊂R3.
+(a) Conformal Invariance of Level Energy: If ψ: R3 →R3 is a conformal diffeo-
+morphism (a composition of translations, dilations, rotations, and sphere inversions),
+then for each compact regular level hypersurface Σt ⊂int(Ω) strictly contained in the
+interior (with Σt ∩∂Ω= ∅), the trace-free curvature Willmore integrand is conformally
+invariant:
+∫︂
+ψ(Σt)
+(H2 −K) dH2 =
+∫︂
+Σt
+(H2 −K) dH2,
+(4.6)
+where K is the Gaussian curvature.
+(b) High-Frequency Wrinkling Penalization: Let Ak be a sequence of matrices
+representing high-frequency checkerboard oscillations of spatial frequency k on a k × k
+grid:
+(i) Under Frobenius normalization ∥Ak∥F = Θ(1) (corresponding to cell amplitude
+ϵk = Θ(1/k)), the L2 gradient Dirichlet energy remains O(1), but the Willmore
+bending energy diverges quadratically:
+∥∇Φ(Ak)∥2
+L2 = Θ(1),
+while
+W(Φ(Ak)) = Θ(k2) −→∞
+as k →∞.
+(4.7)
+(ii) Under fixed pointwise amplitude ϵ = const > 0 (so that ∥Ak∥F = Θ(k)), the
+Willmore energy exhibits cubic blowup:
+W(Φ(Ak)) = Θ(k3) −→∞.
+(4.8)
+Proof. (a) For any closed 2-surface Σ ⊂R3, the classical theorem of Willmore and Chen [14]
+establishes that the trace-free second fundamental form satisfies |˚
+A|2 = 2(H2 −K), which is
+pointwise conformally invariant with conformal weight −2, matching the conformal scaling of
+the surface area element dH2. Hence
+∫︁
+ψ(Σt)(H2 −K) dH2 =
+∫︁
+Σt(H2 −K) dH2.
+(b) Consider the prototypical oscillatory profile of frequency k and amplitude ϵk:
+Φ(Ak)(x) = ϵk sin(kx1) sin(kx2).
+(4.9)
+BEYOND THE SPECTRUM II
+11
+Direct differentiation yields ∥∇Φ(Ak)∥∼ϵkk and ∥Hess Φ(Ak)∥∼ϵkk2. The level-set mean
+curvature is scale-invariant with respect to the amplitude:
+Ht(x) ∼∥Hess Φ∥
+∥∇Φ∥
+∼ϵkk2
+ϵkk = k.
+(4.10)
+Substituting into the Coarea volume representation (4.5):
+W(Φ(Ak)) =
+∫︂
+Ω
+Ht(x)2∥∇Φ(Ak)(x)∥dx ∼
+∫︂
+Ω
+(k)2(ϵkk) dx = Θ(ϵkk3).
+(4.11)
+Now we examine the two canonical scalings:
+(i) For Frobenius-normalized matrices ∥Ak∥F = Θ(1), the discrete entry magnitudes on a
+k × k grid scale as ϵk ∼1/k. Then the Dirichlet energy is bounded:
+∫︂
+Ω
+∥∇Φ(Ak)∥2 dx ∼(ϵkk)2 =
+(︃1
+k · k
+)︃2
+= Θ(1),
+(4.12)
+whereas the Willmore energy scales as W(Φ(Ak)) ∼(1/k) · k3 = Θ(k2) →∞.
+(ii) If the pointwise amplitude is held fixed (ϵk = ϵ = const), then ∥Ak∥F = Θ(k), and
+the Willmore energy diverges cubically: W ∼ϵk3 = Θ(k3).
+In both regimes, the Willmore energy penalizes high-frequency surface wrinkling strictly more
+severely than first-order Sobolev H1 or W 1,1 norms, confirming its role as a higher-order
+geometric regularizer.
+□
+4.3. The Matrix Isoperimetric Profile.
+Definition 4.5 (Isoperimetric Profile). For a positive functional realization Φ(A) ≥0 inducing
+the measure µA, the Isoperimetric Profile IA : (0, 1) →R+ is:
+IA(v) := inf {PerµA(E) | E ⊂ΩBorel, µA(E) = v} ,
+(4.13)
+where PerµA(E) :=
+∫︁
+∂∗E Φ(A)(x) dHd−1(x) is the weighted perimeter. The Cheeger Constant
+of the matrix is:
+h(A) :=
+inf
+0<µA(E)≤1/2
+PerµA(E)
+µA(E) .
+(4.14)
+By the Cheeger–Federer inequality, the first non-trivial eigenvalue of the weighted drift
+Laplacian satisfies λ1(−∆A) ≥1
+4h(A)2. Thus, h(A) provides a direct geometric measure of
+the **spectral bottleneck** in the matrix graph.
+5. Micro-Local Phase-Space Analysis and Fractional Besov Regularity
+5.1. Continuous Gabor Wavepacket Transform. To localize not merely the spatial
+position x ∈Ωof matrix features, but their frequency and direction ξ ∈Rd \ {0}, we lift the
+functional realization Φ(A) to the cotangent bundle T ∗Ω∼= Ω× Rd.
+Let g ∈C∞
+c (Rd) be a symmetric Gaussian window function with ∥g∥L2 = 1.
+Definition 5.1 (Continuous Matrix Wavepacket Transform). For x ∈Ωand ξ ∈Rd, the
+Gabor transform of the realization Φ(A) ∈L2(Ω) is:
+VΦ(A)(x, ξ) :=
+∫︂
+Rd Φ(A)(y)g(y −x)e−i⟨ξ,y⟩dy.
+(5.1)
+The associated Phase-Space Energy Density (Wigner–Radon measure) is:
+EA(x, ξ) :=⃓⃓VΦ(A)(x, ξ)⃓⃓2 ≥0.
+(5.2)
+12
+REINALDO M. SILVA-FILHO
+5.2. The Matrix Wavefront Set. In micro-local analysis (Hörmander [7]), the wavefront
+set characterizes the directions in which a distribution fails to be smooth.
+Definition 5.2 (Matrix Wavefront Set). A point (x0, ξ0) ∈Ω× (Rd \ {0}) does not belong
+to the wavefront set WF(Φ(A)) if there exist a neighborhood U of x0 and an open cone
+Γ ⊂Rd \ {0} containing ξ0 such that for every N ∈N:
+sup
+x∈U,ξ∈Γ
+(1 + ∥ξ∥)N⃓⃓VΦ(A)(x, ξ)⃓⃓< ∞.
+(5.3)
+The Matrix Wavefront Set is the complement:
+WF(Φ(A)) ⊂T ∗Ω\ {0}.
+(5.4)
+Theorem 5.3 (Interface and Shock Direction Detection). Let A ∈Rn×n be a piecewise
+constant step realization with jump discontinuity across a smooth interface Γ ⊂Ωwith unit
+normal nΓ(x). Then:
+WF(Φ(A)) = N∗(Γ) :=
+{︂
+(x, ξ) ∈Γ × (Rd \ {0})⃓⃓⃓
+ξ = λnΓ(x), λ̸ = 0
+}︂
+,
+(5.5)
+where N ∗(Γ) is the conormal bundle of the interface Γ.
+Proof. Away from Γ, Φ(A) is locally constant, hence smooth (C∞). By standard integration
+by parts against the Gaussian window g(y −x), VΦ(A)(x, ξ) decays faster than any polynomial
+power (1 + ∥ξ∥)−N for any x /∈Γ. Hence WF(Φ(A)) ⊆Γ × (Rd \ {0}).
+At x0 ∈Γ, choose local coordinates such that Γ = {y1 = 0} and nΓ(x0) = (1, 0, . . . , 0).
+The jump in Φ(A) is c H(y1) where H is the Heaviside step function and c̸ = 0. The partial
+Fourier transform in the tangential directions (y2, . . . , yd) decays rapidly because the jump
+profile is invariant along the tangent plane Tx0Γ. In the normal direction ξ1, the 1D Fourier
+transform of the Heaviside jump is:
+ˆ︁H(ξ1) = 1
+iξ1
++ πδ(ξ1).
+(5.6)
+This decays only as O(∥ξ1∥−1), violating super-algebraic decay for all ξ1̸ = 0. Therefore,
+(x0, ξ) ∈WF(Φ(A)) if and only if ξ ∥nΓ(x0), which precisely defines the conormal bundle
+N∗(Γ).
+□
+5.3. Fractional Besov Exponents. To quantify the exact fractional smoothness of singular
+tensors, we use the Gagliardo–Besov seminorm:
+[Φ(A)]Bsp,∞:=
+sup
+h∈Rd,0<∥h∥≤1
+∥Φ(A)(· + h) −Φ(A)(·)∥Lp(Ωh)
+∥h∥s
+,
+s ∈(0, 1).
+(5.7)
+Definition 5.4 (Critical Fractional Regularity Index). The Critical Regularity Index s∗(A)
+of the matrix realization is:
+s∗(A) := sup
+{︂
+s ∈(0, 1)⃓⃓⃓
+[Φ(A)]Bs
+1,∞< ∞
+}︂
+.
+(5.8)
+For smooth realizations, s∗(A) = 1.
+For piecewise constant step matrices, s∗(A) =
+1/p (in Lp) and s∗(A) = 1 in B1
+1,∞= BV. Conjecturally, for self-similar fractal matrices
+generated by recursive subdivision with Hausdorff dimension dfractal, one expects s∗(A) =
+d −dfractal by analogy with fractional Brownian textures and Hörmander’s analysis of self-
+similar distributions [7].
+BEYOND THE SPECTRUM II
+13
+6. Non-Commutative Spectral Invariants and Quantum Information Geometry
+6.1. The Canonical Dirac Spectral Triple. We lift the functional realization framework
+to Alain Connes’ Non-Commutative Geometry [5]. In this section, to apply the spectral triple
+framework of non-commutative geometry rigorously, we take the spatial domain to be the
+flat d-dimensional Riemannian torus Ω= Td = (R/Z)d (obtained by identifying opposite
+faces of the unit cube [0, 1]d), which is a compact, boundaryless spin Riemannian manifold
+equipped with the flat metric gij = δij. The underlying basis functions {ψi}n
+i=1 defining the
+realization Φ(A)(x) = ψ(x)T Aψ(x) are assumed to be periodic on [0, 1]d, guaranteeing that
+Φ(A) ∈C∞(Td) descends smoothly to the torus. (Alternatively, on the flat domain with
+boundary [0, 1]d, one can impose Atiyah–Patodi–Singer (APS) boundary conditions on the
+Dirac operator D, which preserves the discrete spectrum and the leading Weyl asymptotics;
+for geometric clarity, we formulate the triple on Td). We define the canonical spectral triple
+(AΦ, H, D):
+• H := L2(Ω, S): the Hilbert space of square-integrable Dirac spinors on Ω.
+• D := iγµ∇S
+µ: the classical Atiyah–Singer Dirac operator, which is self-adjoint with
+discrete spectrum |λn| →∞.
+• AΦ: the ∗-algebra generated by multiplication operators MΦ(A) : ψ ↦→Φ(A) · ψ for all
+smooth matrix realizations A ∈Rn×n.
+6.2. The Connes–Dixmier Conformal Volume Trace. On H, the operator |D|−d is in
+the Dixmier ideal L1,∞(H).
+Definition 6.1 (Non-Commutative Matrix Trace). For A ∈Rn×n, the Connes–Dixmier
+Matrix Invariant is defined by:
+Trω
+(︂
+Φ(A)|D|−d)︂
+:= lim
+N→∞
+1
+log N
+N
+∑︂
+n=1
+µn
+(︂
+Φ(A)|D|−d)︂
+,
+(6.1)
+where µn(·) are the singular values of the compact operator.
+Theorem 6.2 (Non-Commutative Integration Formula). Let Φ(A) ∈C∞(Ω). The non-
+commutative trace extracts the continuous geometric integral of the realization:
+Trω
+(︂
+Φ(A)|D|−d)︂
+= 2⌊d/2⌋Ωd
+d(2π)d
+∫︂
+Ω
+Φ(A)(x) dvolg(x),
+(6.2)
+where Ωd = 2πd/2
+Γ(d/2) is the volume of the (d −1)-sphere Sd−1.
+Proof. This is an application of Connes’ trace theorem [5] to the order −d pseudo-differential
+operator T = Φ(A)|D|−d. The principal symbol of D is σ1(D)(x, ξ) = γ(ξ) = ∑︁d
+j=1 γjξj.
+Since γ(ξ)2 = ∥ξ∥2Id, the principal symbol of |D|−d is ∥ξ∥−dIdS. Thus, the principal symbol
+of T is:
+σ−d(T)(x, ξ) = Φ(A)(x)∥ξ∥−dIdS.
+(6.3)
+The Wodzicki residue (which coincides with the Dixmier trace up to normalization) is the
+integral of the trace of the symbol over the cosphere bundle S∗Ω= {(x, ξ) | ∥ξ∥g = 1}:
+Trω(T) =
+1
+d(2π)d
+∫︂
+S∗Ω
+TrS (σ−d(T)(x, ξ)) dS(x, ξ).
+(6.4)
+Since TrS(Id) = 2⌊d/2⌋, the ξ-integration over the unit sphere yields Ωd, and the x-integration
+yields
+∫︁
+ΩΦ(A)(x) dvolg(x), proving the formula.
+□
+14
+REINALDO M. SILVA-FILHO
+6.3. Quantized Cyclic Cocycles and Topological Indices. The commutator of D with
+the functional realization is:
+[D, Φ(A)] = iγµ(∂µΦ(A)) = iγ( dΦ(A)),
+(6.5)
+which represents the Clifford-valued gradient. For a tuple of d + 1 matrices (A0, A1, . . . , Ad),
+we define the Non-Commutative Matrix Winding Invariant:
+τd(A0, A1, . . . , Ad) := Trω
+(︂
+Φ(A0)[D, Φ(A1)][D, Φ(A2)] · · · [D, Φ(Ad)]|D|−d)︂
+.
+(6.6)
+Theorem 6.3 (Quantized Cyclic Cocycles and Topological Degree). Let Ω= Td or let Ωbe
+a closed compact spin manifold of dimension d. Suppose the functional realizations satisfy the
+spherical constraint ∑︁d
+j=0 Φ(Aj)(x)2 = 1, defining a smooth map FA : Ω→Sd with components
+F j
+A(x) = Φ(Aj)(x). Then:
+(a) The cyclic cocycle τd(A0, . . . , Ad) evaluates to the non-commutative Chern character
+pairing and is strictly quantized:
+τd(A0, A1, . . . , Ad) = 2⌊d/2⌋Ωd
+d(2π)d
+∫︂
+Ω
+F ∗
+AvolSd = cd · deg(FA) ∈cd · Z,
+(6.7)
+where deg(FA) ∈Z is the Brouwer topological degree (winding number) of the map FA.
+(b) τd is invariant under smooth homotopies of the matrix tuple that preserve the spherical
+non-degeneracy condition.
+Proof. By the Clifford algebra relations {γµ, γν} = 2gµνId, the product of commutators
+[D, Φ(A1)] · · · [D, Φ(Ad)] expands into idγµ1 · · · γµd∂µ1Φ(A1) · · · ∂µdΦ(Ad). Taking the Clifford
+trace extracts the totally antisymmetric Levi-Civita symbol ϵµ1...µdvolg.
+Evaluating the
+Dixmier trace via the Wodzicki residue formula as in Theorem 6.2 yields the pullback of
+the standard volume form on Sd. By the classical differential topology of mapping degrees,
+∫︁
+ΩF ∗
+AvolSd = Vol(Sd) deg(FA), establishing integer quantization and homotopy invariance.
+□
+7. Quantum Information Geometry of Continuous Tensor Networks
+7.1. Fiber-Bundle Tensor Networks. In quantum physics, a continuous Matrix Product
+State (cMPS) [11] on Ωassigns to each point x ∈Ωan auxiliary bond Hilbert space Cχ and
+local field operators Q(x), R(x) ∈End(Cχ). This endows the functional realization with a
+canonical fiber bundle structure:
+E := Ω× End(Cχ) −→Ω,
+(7.1)
+where each fiber above x contains the normalized auxiliary density matrix ρ(x) ∈S+(Cχ),
+Trχ(ρ(x)) = 1.
+7.2. The Integrated Quantum Fisher Information (QFI) Volume. Let the state ρ(x)
+vary smoothly across Ω. In quantum estimation theory, the distance between neighboring
+states ρ(x) and ρ(x + dx) is governed by the Quantum Fisher Information metric:
+gQFI
+µν (x) := 1
+2 Trχ (ρ(x){Lµ(x), Lν(x)}) ,
+(7.2)
+where {A, B} = AB +BA, and Lµ(x) is the Symmetric Logarithmic Derivative (SLD) defined
+implicitly by:
+∂µρ(x) = 1
+2 (ρ(x)Lµ(x) + Lµ(x)ρ(x)) .
+(7.3)
+Definition 7.1 (Integrated QFI Volume). The Integrated Quantum Fisher Information
+Volume of a tensor network state T is:
+VolQFI(T ) :=
+∫︂
+Ω
+√︂
+det gQFI(x) ddx.
+(7.4)
+BEYOND THE SPECTRUM II
+15
+Theorem 7.2 (Positivity and Entanglement Faithfulness). Let T be a continuous matrix
+product state whose auxiliary density matrix ρ(x) ∈S+(Cχ) is strictly positive definite for all
+x ∈Ωwith uniform spectral gap λmin(ρ(x)) ≥ϵ0 > 0. Suppose further that the directional
+tangent derivatives {∂µρ(x)}d
+µ=1 are linearly independent in the Hilbert–Schmidt inner product
+(non-degenerate spatial variation). Then:
+(a) VolQFI(T ) ≥0.
+(b) VolQFI(T ) = 0 if and only if ρ(x) is spatially constant across Ωmodulo unitary gauge
+transformations U(x) ∈U(χ) (i.e., the tensor network is a trivial, unentangled spatial
+product state).
+(c) VolQFI(T ) is invariant under local spatial reparametrizations Diff+(Ω).
+Proof. (a) The SLD operator Lµ is Hermitian, and ρ(x) is PSD. Thus, gQFI(x) is a positive
+semi-definite matrix at every x ∈Ω, which implies det gQFI(x) ≥0, and hence VolQFI(T ) ≥0.
+(b) Under the hypothesis λmin(ρ(x)) ≥ϵ0 > 0, the state ρ(x) lies strictly in the interior
+of the quantum state space S+(Cχ). In the instantaneous spectral decomposition ρ(x) =
+∑︁χ
+i=1 λi(x)|i(x)⟩⟨i(x)|, the matrix elements of the SLD operators Lµ(x) in (7.3) are:
+⟨i(x)|Lµ(x)|j(x)⟩= 2⟨i(x)|∂µρ(x)|j(x)⟩
+λi(x) + λj(x)
+.
+(7.5)
+Because λi(x) + λj(x) ≥2ϵ0 > 0, no vanishing denominators occur.
+The QFI metric
+components expand as:
+gQFI
+µν (x) = 1
+2
+χ
+∑︂
+i,j=1
+2 Re (⟨i|∂µρ|j⟩⟨j|∂νρ|i⟩)
+λi(x) + λj(x)
+.
+(7.6)
+In particular, the diagonal metric elements satisfy:
+gQFI
+µµ (x) =
+χ
+∑︂
+i,j=1
+|⟨i|∂µρ|j⟩|2
+λi(x) + λj(x) ≥1
+2
+χ
+∑︂
+i,j=1
+|⟨i|∂µρ|j⟩|2 = 1
+2∥∂µρ(x)∥2
+HS.
+(7.7)
+Therefore, gQFI
+µµ (x) = 0 if and only if ∂µρ(x) = 0. By the non-degeneracy condition (linear
+independence of non-zero directional derivatives {∂µρ(x)}), the Gram-type metric gQFI(x) is
+strictly positive definite whenever any spatial gradient exists. Consequently, det gQFI(x) = 0
+almost everywhere on Ωif and only if ∂µρ(x) = 0 for all µ ∈{1, . . . , d}, meaning ρ(x) is
+spatially constant across Ωmodulo U(χ) gauge transformations.
+(c) Under a change of coordinates y = ϕ(x), the metric tensor transforms as gQFI
+y
+=
+(J−1)T gQFI
+x
+J−1 where J = dϕ/ dx. Thus
+√︂
+det gQFI
+y
+ddy =
+√︂
+det gQFI
+x
+ddx, proving diffeomor-
+phism invariance.
+□
+Remark 7.3 (Quantum State Boundary and Rank-Deficiency). When ρ(x) undergoes a
+rank deficiency (so that some eigenvalues λi(x) = 0), the QFI metric can exhibit directional
+discontinuities or degenerate along directions tangent to the kernel of ρ(x), as demonstrated
+by Šafránek [8]. The uniform spectral gap condition λmin(ρ) ≥ϵ0 > 0 strictly ensures that
+the trajectory remains in the Riemannian interior of state space.
+7.3. Continuous Entanglement Contour and Centroid. The scalar von Neumann
+entropy of the bond state is SvN(x) = −Trχ(ρ(x) log ρ(x)). We define the geometric density
+of quantum entanglement:
+Definition 7.4 (Entanglement Contour and Centroid). The Continuous Entanglement Con-
+tour is the volume-weighted scalar density:
+Scont(x) := −Trχ(ρ(x) log ρ(x)) ·
+√︂
+det gQFI(x).
+(7.8)
+16
+REINALDO M. SILVA-FILHO
+The Total Geometric Entanglement is Sgeom(T ) :=
+∫︁
+ΩScont(x) ddx. If Sgeom(T ) > 0, the
+Entanglement Spatial Centroid ¯xent ∈Ωand Spatial Entanglement Dispersion Σ2
+ent are:
+¯xent :=
+1
+Sgeom(T )
+∫︂
+Ω
+x Scont(x) ddx,
+Σ2
+ent :=
+1
+Sgeom(T )
+∫︂
+Ω
+∥x −¯xent∥2 Scont(x) ddx.
+(7.9)
+These invariants localize where in physical space the entanglement of the tensor variety is
+concentrated, solving the spatial blind spot of finite-dimensional multilinear entanglement
+measures.
+8. Synthesis, Taxonomy of Invariants, and Applications
+8.1. The Master Taxonomy of Functional Tensor Invariants. Table 1 summarizes the
+mathematical taxonomy of all invariants developed in this treatise alongside their foundational
+counterparts from Volume I.
+Invariant
+Mathematical
+Family
+Formal Definition
+Physical / Computational Role
+W2(A, B)
+Optimal
+Trans-
+port
+infπ
+∫︁
+∥x −y∥2 dπ
+Geodesic distance between matrices of un-
+equal dimensions (n̸ = m).
+κBE(A)
+Metric
+Measure
+Geometry
+infξ⟨(−∇2 log Φ)ξ, ξ⟩
+Ricci curvature, log-Sobolev constant, dissi-
+pation rate of flows.
+Dgmk(A)
+Topological Data
+Analysis
+{(bi, di) | Hk(Xt)̸ =
+0}
+Multi-scale topological persistence of cavities;
+breaks isospectrality.
+Epers(A)
+Persistent Entropy
+−∑︁pi log pi
+Quantifies topological disorder and complex-
+ity in entry landscapes.
+W(Φ(A))
+Geometric
+Mea-
+sure Theory
+∫︁∫︁
+Σt H2
+t dHd−1 dt
+Total Willmore bending; penalizes second-
+order surface wrinkling.
+IA(v)
+GMT / Isoperime-
+try
+inf{Per(E)
+|
+µA(E) = v}
+Cheeger constant, matrix bottlenecks, con-
+ductance bounds.
+WF(Φ(A))
+Micro-Local Anal-
+ysis
+Σsing ⊂T ∗Ω\ {0}
+Exact spatial location and directional orien-
+tation of shock interfaces.
+s∗(A)
+Fractional Analy-
+sis
+sup{s | [Φ]Bs
+1,∞
+<
+∞}
+Critical Besov exponent; detects fractal di-
+mension of entries.
+Trω
+Non-
+Commutative
+Geom.
+Trω(Φ|D|−d)
+Conformal volume integral via Atiyah–Singer
+Dirac spectrum.
+VolQFI(T )
+Quantum Informa-
+tion
+∫︁
+Ω
+√︁
+det gQFI(x) ddx
+Total distinguishability and parameter sensi-
+tivity of tensor states.
+¯xent, Σ2
+ent
+Entanglement
+Contour
+∫︁
+xScont(x) dx
+Physical center of mass and spatial spread
+of quantum entanglement.
+Table 1. Comprehensive taxonomy of advanced geometric and topological
+invariants on functional realizations of matrices and tensors.
+BEYOND THE SPECTRUM II
+17
+8.2. Key Scientific Applications.
+(a) Transfer Learning and Dimension-Free Neural Weight Geometry: In deep neural
+networks, comparing weight matrices W1 ∈Rdin×dout and W2 ∈Rd′
+in×d′
+out of different
+architectures has historically required ad-hoc projection or padding. The functional
+Wasserstein distance W2(Φ(W1), Φ(W2)) provides an intrinsic, continuous distance metric
+on network representations, enabling true architectural transfer metrics.
+(b) Topological Regularization of Deep Learning Landscapes: Traditional weight
+decay penalizes ∥W∥2
+F = ∑︁W 2
+ij, which is blind to spatial correlations. Adding the
+persistent entropy Epers(Φ(W)) or Willmore energy W(Φ(W)) as a loss regularizer forces
+weight matrices to maintain smooth, low-curvature level sets, preventing high-frequency
+adversarial vulnerability.
+(c) Quantum Phase Transitions in Continuous Tensor Networks: In continuous
+matrix product states, quantum critical points are signaled by the divergence of correlation
+lengths. While the scalar von Neumann entropy SvN often exhibits logarithmic scaling,
+the integrated QFI volume VolQFI(T ) and the spatial entanglement dispersion Σ2
+ent detect
+the precise spatial spreading of quantum fluctuations at criticality.
+9. Conclusion and Future Horizons
+In this work, we have demonstrated that embedding discrete matrices and tensors into
+continuous function spaces via Functional Realization Operators is not merely a techni-
+cal interpolation, but a profound paradigm shift in multilinear algebra.
+By mobilizing
+optimal transport, persistent homology, geometric measure theory, micro-local analysis, non-
+commutative geometry, and quantum information geometry, we have uncovered a vast universe
+of invariants that are completely invisible to classical spectrum and matrix rank.
+These invariants resolve fundamental open problems in dimensional incommensurability,
+isospectral ambiguity, high-frequency wrinkling, and spatial entanglement localization. Future
+research will focus on the complete machine-checked formalization of these theorems within
+interactive proof assistants such as Lean 4, expanding the open verification corpus and
+establishing a new rigorous foundation for computational and physical multilinear geometry.
+References
+[1] D. Bakry and M. Émery, Diffusions hypercontractives, Séminaire de Probabilités XIX 1983/84, Lecture
+Notes in Mathematics, vol. 1123, Springer, Berlin, Heidelberg, 1985, pp. 177–206, ISBN: 978-3-540-15230-9,
+DOI: 10.1007/BFb0075847.
+[2] J.-D. Benamou and Y. Brenier, A computational fluid mechanics solution to the Monge-Kantorovich mass
+transfer problem, Numerische Mathematik, 84 (2000), no. 3, 375–393, DOI: 10.1007/s002110050475.
+[3] I. Bengtsson and K. Życzkowski, Geometry of Quantum States: An Introduction to Quantum En-
+tanglement, 2nd ed., Cambridge University Press, Cambridge, 2017, ISBN: 978-1-107-02625-4, DOI:
+10.1017/9781139207010.
+[4] F. Chazal, V. de Silva, M. Glisse, and S. Oudot, The Structure and Stability of Persistence Modules,
+SpringerBriefs in Mathematics, Springer, Cham, 2016, ISBN: 978-3-319-42545-0, DOI: 10.1007/978-3-319-
+42545-0.
+[5] A. Connes, Noncommutative Geometry, Academic Press, San Diego, CA, 1994, ISBN: 978-0-12-185860-5.
+[6] H. Edelsbrunner and J. L. Harer, Computational Topology: An Introduction, American Mathematical
+Society, Providence, RI, 2010, ISBN: 978-0-8218-4925-5, DOI: 10.1090/mbk/069.
+[7] L. Hörmander, The Analysis of Linear Partial Differential Operators I: Distribution Theory and Fourier
+Analysis, Classics in Mathematics, Springer-Verlag, Berlin, Heidelberg, 2003, ISBN: 978-3-540-00662-6,
+DOI: 10.1007/978-3-642-61497-2.
+[8] D. Šafránek, Discontinuities of the quantum Fisher information and the Bures metric, Physical Review A,
+95 (2017), no. 5, 052320, DOI: 10.1103/PhysRevA.95.052320.
+[9] R. M. Silva-Filho, Beyond the Spectrum: Functional Realizations of Matrices and Tensors, Emerging
+Invariants, and Geometric Measures, Treatise on Multilinear Geometry and Quantum Gravity, Vol. 1,
+Chap. 1, 2026, DOI: 10.5281/zenodo.22441676.
+[10] R. M. Silva-Filho, Geometry, Tensors, and Quantum Gravity: The Unified Grand Synthesis Treatise,
+Universidade Federal de Lavras, 2026, DOI: 10.5281/zenodo.22290043.
+18
+REINALDO M. SILVA-FILHO
+[11] F. Verstraete and J. I. Cirac, Continuous matrix product states for quantum fields, Physical Review
+Letters, 104 (2010), no. 19, 190405, DOI: 10.1103/PhysRevLett.104.190405.
+[12] C. Villani, Optimal Transport: Old and New, Grundlehren der mathematischen Wissenschaften, vol. 338,
+Springer-Verlag, Berlin, Heidelberg, 2009, ISBN: 978-3-540-71049-3, DOI: 10.1007/978-3-540-71050-9.
+[13] M.-K. von Renesse and K.-T. Sturm, Transport inequalities, gradient estimates, and Ricci curvature,
+Communications on Pure and Applied Mathematics, 58 (2005), no. 7, 923–940, DOI: 10.1002/cpa.20060.
+[14] T. J. Willmore, Riemannian Geometry, Oxford Science Publications, Clarendon Press, Oxford University
+Press, New York, 1993, ISBN: 978-0-19-853253-8, DOI: 10.1093/oso/9780198532538.001.0001.
+Departamento de Estatística (DES), Programa de Pós-Graduação em Estatística e Experi-
+mentação Agropecuária (PPGEE/DES), Universidade Federal de Lavras (UFLA), Lavras, MG,
+Brazil
+Email address: reinaldo.filho1@estudante.ufla.br

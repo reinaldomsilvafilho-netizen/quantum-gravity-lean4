@@ -1,0 +1,72 @@
+== (A) Mehler counterexample ==
+beta=+0.60 k=2 Tr rho^k: Gaussian-det=0.800000000000 geometric=0.800000000000 mutated=0.500000
+[PASS] beta=0.6 k=2: moments match geometric law (1e-10)
+[PASS] beta=0.6 k=2: negative control q'=sqrt(q) fails
+beta=+0.60 k=3 Tr rho^k: Gaussian-det=0.703296703297 geometric=0.703296703297 mutated=0.307692
+[PASS] beta=0.6 k=3: moments match geometric law (1e-10)
+[PASS] beta=0.6 k=3: negative control q'=sqrt(q) fails
+beta=+0.60 k=4 Tr rho^k: Gaussian-det=0.624390243902 geometric=0.624390243902 mutated=0.200000
+[PASS] beta=0.6 k=4: moments match geometric law (1e-10)
+[PASS] beta=0.6 k=4: negative control q'=sqrt(q) fails
+beta=+0.60 k=5 Tr rho^k: Gaussian-det=0.554938355236 geometric=0.554938355236 mutated=0.132231
+[PASS] beta=0.6 k=5: moments match geometric law (1e-10)
+[PASS] beta=0.6 k=5: negative control q'=sqrt(q) fails
+beta=+0.60 k=6 Tr rho^k: Gaussian-det=0.493271112449 geometric=0.493271112449 mutated=0.087912
+[PASS] beta=0.6 k=6: moments match geometric law (1e-10)
+[PASS] beta=0.6 k=6: negative control q'=sqrt(q) fails
+[PASS] beta=0.6 gives q = 1/9
+beta=+0.30 k=2 Tr rho^k: Gaussian-det=0.953939201417 geometric=0.953939201417 mutated=0.733799
+[PASS] beta=0.3 k=2: moments match geometric law (1e-10)
+[PASS] beta=0.3 k=2: negative control q'=sqrt(q) fails
+beta=+0.30 k=3 Tr rho^k: Gaussian-det=0.930946291560 geometric=0.930946291560 mutated=0.608696
+[PASS] beta=0.3 k=3: moments match geometric law (1e-10)
+[PASS] beta=0.3 k=3: negative control q'=sqrt(q) fails
+beta=+0.30 k=4 Tr rho^k: Gaussian-det=0.908989186690 geometric=0.908989186690 mutated=0.513660
+[PASS] beta=0.3 k=4: moments match geometric law (1e-10)
+[PASS] beta=0.3 k=4: negative control q'=sqrt(q) fails
+beta=+0.30 k=5 Tr rho^k: Gaussian-det=0.887561042598 geometric=0.887561042598 mutated=0.434590
+[PASS] beta=0.3 k=5: moments match geometric law (1e-10)
+[PASS] beta=0.3 k=5: negative control q'=sqrt(q) fails
+beta=+0.30 k=6 Tr rho^k: Gaussian-det=0.866638292074 geometric=0.866638292074 mutated=0.367838
+[PASS] beta=0.3 k=6: moments match geometric law (1e-10)
+[PASS] beta=0.3 k=6: negative control q'=sqrt(q) fails
+beta=-0.45 k=2 Tr rho^k: Gaussian-det=0.893028554975 geometric=0.893028554975 mutated=0.615882
+[PASS] beta=-0.45 k=2: moments match geometric law (1e-10)
+[PASS] beta=-0.45 k=2: negative control q'=sqrt(q) fails
+beta=-0.45 k=3 Tr rho^k: Gaussian-det=0.840026333114 geometric=0.840026333114 mutated=0.448980
+[PASS] beta=-0.45 k=3: moments match geometric law (1e-10)
+[PASS] beta=-0.45 k=3: negative control q'=sqrt(q) fails
+beta=-0.45 k=4 Tr rho^k: Gaussian-det=0.792423112759 geometric=0.792423112759 mutated=0.338735
+[PASS] beta=-0.45 k=4: moments match geometric law (1e-10)
+[PASS] beta=-0.45 k=4: negative control q'=sqrt(q) fails
+beta=-0.45 k=5 Tr rho^k: Gaussian-det=0.747637596596 geometric=0.747637596596 mutated=0.257584
+[PASS] beta=-0.45 k=5: moments match geometric law (1e-10)
+[PASS] beta=-0.45 k=5: negative control q'=sqrt(q) fails
+beta=-0.45 k=6 Tr rho^k: Gaussian-det=0.705389633798 geometric=0.705389633798 mutated=0.196239
+[PASS] beta=-0.45 k=6: moments match geometric law (1e-10)
+[PASS] beta=-0.45 k=6: negative control q'=sqrt(q) fails
+Nystrom M=80: eig=[8.889e-01 9.877e-02 1.097e-02 1.219e-03 1.355e-04 1.505e-05 1.673e-06
+ 1.858e-07] ratios=[0.11111111 0.11111111 0.11111111 0.11111111 0.11111111 0.11111111
+ 0.11111111]
+Nystrom M=160: eig=[8.889e-01 9.877e-02 1.097e-02 1.219e-03 1.355e-04 1.505e-05 1.673e-06
+ 1.858e-07] ratios=[0.11111111 0.11111111 0.11111111 0.11111111 0.11111111 0.11111111
+ 0.11111111]
+   change vs previous grid: 1.80e-16
+Nystrom M=320: eig=[8.889e-01 9.877e-02 1.097e-02 1.219e-03 1.355e-04 1.505e-05 1.673e-06
+ 1.858e-07] ratios=[0.11111111 0.11111111 0.11111111 0.11111111 0.11111111 0.11111111
+ 0.11111111]
+   change vs previous grid: 4.44e-16
+[PASS] Nystrom: first 8 eigenvalues positive (no finite rank <= 7)
+[PASS] Nystrom: ratios equal q = 1/9 to 1e-6
+[PASS] Nystrom: trace of rho = 1 (normalised psi)
+== (B)-(D) finite-dimensional frames ==
+trials=300: violations of rank <= sum m_k: 0; bound attained (full-rank A): 86; rank > n: 262
+[PASS] rank rho <= sum_k m_k in all trials
+[PASS] Tr rho = Tr A in all trials
+[PASS] normalised E_k >= 0 in all trials
+[PASS] E_k > 0 for all k  iff  rank >= 2, in all trials
+[PASS] negative control: 'rank <= n' (v2) fails for some frame of Schmidt rank > 1
+product frame, A=(5): top eigenvalue of rho = 5.000000000000; -log = -1.609438
+[PASS] negative control: unnormalised modular energy -log 5 < 0
+[PASS] normalised rank-1 energy equals 0
+failures: 0

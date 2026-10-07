@@ -1,0 +1,139 @@
+paper: paper_functional_realizations; bibitems now 56, before 19, added 37, removed []
+sample (seed 20261007): ['federer1959curvature', 'kentdobias2024arrangement', 'boedihardjo2024injective', 'fyodorov2014topology', 'breiding2017expected', 'fyodorov2004complexity', 'montanari2014statistical', 'miyato2018spectral', 'subag2021following', 'frieze1999quick']
+neg control: fake DOI does not resolve (ok)
+neg control: title similarity of a wrong title = 0.00 (must be < 0.5)
+
+====================================================================================================
+KEY federer1959curvature
+BIBITEM: H.~Federer, \emph{Curvature measures}, Transactions of the American Mathematical Society, \textbf{93} (1959), no.~3, 418--491, DOI: \href{https://doi.org/10.1090/S0002-9947-1959-0110078-1}{10.1090/S0002-9947-1959-0110078-1}.
+DOI 10.1090/S0002-9947-1959-0110078-1: resolved via Crossref
+[Crossref] title: Curvature measures
+  authors: Herbert Federer
+  year: 1959 venue: Transactions of the American Mathematical Society vol 93 p 418-491
+  title-in-bibitem similarity: 1.00
+  abstract: Using matrices, one may think of G" as an re(re -1)/2 dimensional compact
+  CITED AT: . For total variation, the coarea formula goes back to Federer~\cite{federer1959curvature} for Lipschitz maps and to Fleming and Rishel~\cite{fleming1960integral} for $\BV$ functions; its use as an image prior is due to Rudin, Osher and Fatemi~\cite{rudin1992nonlinear}. % ========================================================================= \section{Axiomatic Framework: Functional Realization Operators} \label{sec:framework} % ========================================================================= Let $V_1, \dots, V_k$ be real vector spaces of finite dimensions $d_1, \dots, d_k$ equipped with standard inner products $\inner{\cdot}{\cdot}_{V_i}$, and let $\mathcal{T}^k(V_1,
+  CITED AT: d its perimeter $\Per(E_t; (0,1)^2) = \mathcal{H}^1(\partial^* E_t \cap (0,1)^2)$ satisfies the \emph{coarea formula}: \begin{equation} \label{eq:coarea} \TV(W_A) = \int_{-\infty}^\infty \mathcal{H}^1(\partial^* E_t \cap (0,1)^2) \dif t, \end{equation} where $\partial^* E_t$ is the reduced boundary of $E_t$ in the sense of De Giorgi. \end{theorem} \begin{proof} Since $W_A \in \BV((0,1)^2)$ by Theorem~\ref{thm:tv_matrix}, the coarea formula for functions of bounded variation of Fleming and Rishel~\cite{fleming1960integral}, which extends the coarea formula of Federer for Lipschitz maps \cite[Thm.~3.1]{federer1959curvature} (see also Evans and Gariepy~\cite[Ch.~5]{evans2015measure}) gives $\TV(W_A) = \int_{\R} \Per(E_t;(0,1)^2) \dif t$, with $E_t$ of finite perimeter for almost every $t$.
+
+====================================================================================================
+KEY kentdobias2024arrangement
+BIBITEM: J.~Kent-Dobias, \emph{Arrangement of nearby minima and saddles in the mixed spherical energy landscapes}, SciPost Physics, \textbf{16} (2024), no.~1, Article 001, DOI: \href{https://doi.org/10.21468/SciPostPhys.16.1.001}{10.21468/SciPostPhys.16.1.001}.
+DOI 10.21468/SciPostPhys.16.1.001: resolved via Crossref
+[Crossref] title: Arrangement of nearby minima and saddles in the mixed spherical energy landscapes
+  authors: Jaron Kent-Dobias
+  year: 2024 venue: SciPost Physics vol 16 p None
+  title-in-bibitem similarity: 1.00
+  abstract: The mixed spherical models were recently found to violate long-held assumptions about mean-field glassy dynamics. In particular, the threshold energy, where most stationary points are marginal and that in the simpler pure models attracts long-time dynamics, seems to lose significance. Here, we compute the typical distribution of stationary points relative to each other in mixed models with a replica symmetric complexity. We examine the stability of nearby points, accounting for the presence of an isolated eigenvalue in their spectrum due to their proximity. Despite finding rich structure not present in the pure models, we find nothing that distinguishes the points that do attract the dynamics. Instead, we find new geometric significance of the old threshold energy, and invalidate pictures of the arrangement of most marginal inherent states into a continuous manifold.
+  CITED AT: . Arrangements of nearby minima and saddles in mixed models are studied by Kent-Dobias~\cite{kentdobias2024arrangement}.
+
+====================================================================================================
+KEY boedihardjo2024injective
+BIBITEM: M.~T. Boedihardjo, \emph{Injective norm of random tensors with independent entries}, arXiv preprint arXiv:2412.21193, 2024, DOI: \href{https://doi.org/10.48550/arXiv.2412.21193}{10.48550/arXiv.2412.21193}.
+DOI 10.48550/arXiv.2412.21193: resolved via DataCite
+arXiv 2412.21193: resolved
+[DataCite] title: Injective norm of random tensors with independent entries
+  authors: Boedihardjo, March T.
+  year: 2024 venue: arXiv vol None p None
+  title-in-bibitem similarity: 1.00
+  abstract: We obtain a non-asymptotic bound for the expected injective norm of a random tensor with independent entries. This bound is similar to the bound by Bandeira and van Handel (2016) for the expected spectral norm of a random matrix with independent entries.
+[arXiv] title: Injective norm of random tensors with independent entries
+  authors: March T. Boedihardjo
+  year: 2024 venue: arXiv vol None p None
+  title-in-bibitem similarity: 1.00
+  abstract: We obtain a non-asymptotic bound for the expected injective norm of a random tensor with independent entries. This bound is similar to the bound by Bandeira and van Handel (2016) for the expected spectral norm of a random matrix with independent entries.
+  CITED AT: . The spectral (injective) norm of random tensors was bounded by Tomioka and Suzuki~\cite{tomioka2014spectral} and Nguyen, Drineas and Tran~\cite{nguyen2015tensor}, with recent refinements by Dartois and McKenna~\cite{dartois2024injective} and Boedihardjo~\cite{boedihardjo2024injective}.
+  CITED AT: . Dartois and McKenna~\cite{dartois2024injective} obtain high-probability upper bounds on the injective norm of real and complex Gaussian tensors from the Kac--Rice formula, and Boedihardjo~\cite{boedihardjo2024injective} gives a non-asymptotic bound on the expected injective norm of Gaussian tensors with independent entries of arbitrary variances, in the spirit of the Bandeira--van Handel bound for matrices.
+
+====================================================================================================
+KEY fyodorov2014topology
+BIBITEM: Y.~V. Fyodorov and P.~Le Doussal, \emph{Topology trivialization and large deviations for the minimum in the simplest random optimization}, Journal of Statistical Physics, \textbf{154} (2014), no.~1--2, 466--490, DOI: \href{https://doi.org/10.1007/s10955-013-0838-1}{10.1007/s10955-013-0838-1}.
+DOI 10.1007/s10955-013-0838-1: resolved via Crossref
+[Crossref] title: Topology Trivialization and Large Deviations for the Minimum in the Simplest Random Optimization
+  authors: Yan V. Fyodorov; Pierre Le Doussal
+  year: 2013 venue: Journal of Statistical Physics vol 154 p 466-490
+  title-in-bibitem similarity: 1.00
+  abstract: (none)
+  CITED AT: . For $d = 2$ with an added linear term (a random magnetic field), Fyodorov and Le~Doussal~\cite{fyodorov2014topology} identify regimes in which the number of critical points drops from order $n$ to order one (``topology trivialization'').
+
+====================================================================================================
+KEY breiding2017expected
+BIBITEM: P.~Breiding, \emph{The expected number of eigenvalues of a real Gaussian tensor}, SIAM Journal on Applied Algebra and Geometry, \textbf{1} (2017), no.~1, 254--271, DOI: \href{https://doi.org/10.1137/16M1089769}{10.1137/16M1089769}.
+DOI 10.1137/16M1089769: resolved via Crossref
+[Crossref] title: The Expected Number of Eigenvalues of a Real Gaussian Tensor
+  authors: Paul Breiding
+  year: 2017 venue: SIAM Journal on Applied Algebra and Geometry vol 1 p 254-271
+  title-in-bibitem similarity: 1.00
+  abstract: In this paper we compute the expected number of eigenvalues of a random real tensor, whose entries are standard gaussian random variables.
+  CITED AT: . Average counts for Gaussian tensors were obtained by Draisma and Horobe\c{t}~\cite{draisma2016average} for critical rank-one approximations and by Breiding~\cite{breiding2017expected} for real eigenvalues.
+  CITED AT: . For the non-isotropic model of part~(iv), Breiding~\cite{breiding2017expected} computes the expected number of real eigenvalues of a Gaussian tensor without symmetry, and Draisma and Horobe\c{t}~\cite{draisma2016average} the average number of critical rank-one approximations; Evnin~\cite{evnin2021melonic} studies the largest eigenvalue of the rotationally invariant Gaussian ensemble of symmetric tensors in which the variance of an entry depends on its number of coincident indices, which is the ensemble of part~(i) up to scale.
+
+====================================================================================================
+KEY fyodorov2004complexity
+BIBITEM: Y.~V. Fyodorov, \emph{Complexity of random energy landscapes, glass transition, and absolute value of the spectral determinant of random matrices}, Physical Review Letters, \textbf{92} (2004), no.~24, Article 240601, DOI: \href{https://doi.org/10.1103/PhysRevLett.92.240601}{10.1103/PhysRevLett.92.240601}.
+DOI 10.1103/PhysRevLett.92.240601: resolved via Crossref
+[Crossref] title: Complexity of Random Energy Landscapes, Glass Transition, and Absolute Value of the Spectral Determinant of Random Matrices
+  authors: Yan V. Fyodorov
+  year: 2004 venue: Physical Review Letters vol 92 p None
+  title-in-bibitem similarity: 1.00
+  abstract: Finding the mean of the total number ${N}_{\mathrm{tot}}$ of stationary points for $N$-dimensional random energy landscapes is reduced to averaging the absolute value of the characteristic polynomial of the corresponding Hessian. For any finite $N$ we provide the exact solution to the problem for a class of landscapes corresponding to the ``toy model'' of manifolds in a random environment. For $N\ensuremath{\gg}1$ our asymptotic analysis reveals a phase transition at some critical value ${\ensuremath{\mu}}_{c}$ of a control parameter $\ensuremath{\mu}$ from a phase with a finite landscape complexity: ${N}_{\mathrm{tot}}\ensuremath{\sim}{e}^{N\ensuremath{\Sigma}}$, $\ensuremath{\Sigma}(\ensuremath{\mu}<{\ensuremath{\mu}}_{c})>0$ to the phase with vanishing complexity: $\ensuremath{\Sigma}(\ensuremath{\mu}>{\ensuremath{\mu}}_{c})=0$. Finally, we discuss a method of dealing with the modulus of the spectral determinant applicable to a broad class of problems.
+  CITED AT: . Fyodorov~\cite{fyodorov2004complexity} reduced it to averages of absolute values of random characteristic polynomials.
+  CITED AT: \begin{remark}[Related results] \label{rem:kac_rice_literature} The reduction of the mean number of critical points to the mean absolute value of a random characteristic polynomial is due to Fyodorov~\cite{fyodorov2004complexity}.
+
+====================================================================================================
+KEY montanari2014statistical
+BIBITEM: A.~Montanari and E.~Richard, \emph{A statistical model for tensor PCA}, Advances in Neural Information Processing Systems (NeurIPS), 2014, arXiv:1411.1076, DOI: \href{https://doi.org/10.48550/arXiv.1411.1076}{10.48550/arXiv.1411.1076}.
+DOI 10.48550/arXiv.1411.1076: resolved via DataCite
+arXiv 1411.1076: resolved
+[DataCite] title: A statistical model for tensor PCA
+  authors: Montanari, Andrea; Richard, Emile
+  year: 2014 venue: arXiv vol None p None
+  title-in-bibitem similarity: 1.00
+  abstract: We consider the Principal Component Analysis problem for large tensors of arbitrary order $k$ under a single-spike (or rank-one plus noise) model. On the one hand, we use information theory, and recent results in probability theory, to establish necessary and sufficient conditions under which the principal component can be estimated using unbounded computational resources. It turns out that this is possible as soon as the signal-to-noise ratio $β$ becomes larger than $C\sqrt{k\log k}$ (and in particular $β$ can remain bounded as the problem dimensions increase). On the other hand, we analyze several polynomial-time estimation algorithms, based on tensor unfolding, power iteration and message passing ideas from graphical models. We show that, unless the signal-to-noise ratio diverges in the system dimensions, none of these approaches succeeds. This is possibly related to a fundamental limitation of computationally tractable estimators for this problem. We discuss various initializations for tensor power iteration, and show that a tractable initialization based on the spectrum of the matricized tensor outperforms significantly baseline methods, statistically and computationally. Finally, we consider the case in which additional side information is available about the unknown signal. We characterize the amount of side information that allows the iterative algorithms to converge to a good estimate. Neural Information Processing Systems (NIPS) 2014 (slightly expanded: 30 pages, 6 
+[arXiv] title: A statistical model for tensor PCA
+  authors: Andrea Montanari; Emile Richard
+  year: 2014 venue: arXiv vol None p None
+  title-in-bibitem similarity: 1.00
+  abstract: We consider the Principal Component Analysis problem for large tensors of arbitrary order $k$ under a single-spike (or rank-one plus noise) model. On the one hand, we use information theory, and recent results in probability theory, to establish necessary and sufficient conditions under which the principal component can be estimated using unbounded computational resources. It turns out that this is possible as soon as the signal-to-noise ratio $β$ becomes larger than $C\sqrt{k\log k}$ (and in particular $β$ can remain bounded as the problem dimensions increase). On the other hand, we analyze several polynomial-time estimation algorithms, based on tensor unfolding, power iteration and message passing ideas from graphical models. We show that, unless the signal-to-noise ratio diverges in the system dimensions, none of these approaches succeeds. This is possibly related to a fundamental limitation of computationally tractable estimators for this problem. We discuss various initializations for tensor power iteration, and show that a tractable initialization based on the spectrum of the matricized tensor outperforms significantly baseline methods, statistically and computationally. Finally, we consider the case in which additional side information is available about the unknown signal. We characterize the amount of side information that allows the iterative algorithms to converge to a good estimate.
+  CITED AT: . In tensor PCA, with Gaussian noise whose entries have variance of order $1/d$ (the normalization of $\widehat{f}_{\mathcal{T}}$), Montanari and Richard~\cite{montanari2014statistical} show that a planted rank-one signal can be estimated with unbounded computation once the signal-to-noise ratio exceeds a constant times $\sqrt{k \log k}$. \end{remark} The physical normalization of the spherical $p$-spin model, $N^{-(p-1)/2}$ on the sphere of radius $\sqrt{N}$ (Theorem~\ref{thm:kac_rice_tensors}), is consistent with Theorem~\ref{thm:critical_scaling}: on that sphere \[ H_{N,p}(\sqrt{N}x) = \sqrt{N}\,\mathcal{T}(x,\dots,x), \] so the energy per coordinate $H_{N,p}/N$ is of order one exactly when $\mathcal{T}(x, \dots, x)/\sqrt{N}$ is. % =====================================
+
+====================================================================================================
+KEY miyato2018spectral
+BIBITEM: T.~Miyato, T.~Kataoka, M.~Koyama, and Y.~Yoshida, \emph{Spectral normalization for generative adversarial networks}, International Conference on Learning Representations (ICLR), 2018, arXiv:1802.05957, DOI: \href{https://doi.org/10.48550/arXiv.1802.05957}{10.48550/arXiv.1802.05957}.
+DOI 10.48550/arXiv.1802.05957: resolved via DataCite
+arXiv 1802.05957: resolved
+[DataCite] title: Spectral Normalization for Generative Adversarial Networks
+  authors: Miyato, Takeru; Kataoka, Toshiki; Koyama, Masanori; Yoshida, Yuichi
+  year: 2018 venue: arXiv vol None p None
+  title-in-bibitem similarity: 1.00
+  abstract: One of the challenges in the study of generative adversarial networks is the instability of its training. In this paper, we propose a novel weight normalization technique called spectral normalization to stabilize the training of the discriminator. Our new normalization technique is computationally light and easy to incorporate into existing implementations. We tested the efficacy of spectral normalization on CIFAR10, STL-10, and ILSVRC2012 dataset, and we experimentally confirmed that spectrally normalized GANs (SN-GANs) is capable of generating images of better or equal quality relative to the previous training stabilization techniques. Published as a conference paper at ICLR 2018
+[arXiv] title: Spectral Normalization for Generative Adversarial Networks
+  authors: Takeru Miyato; Toshiki Kataoka; Masanori Koyama; Yuichi Yoshida
+  year: 2018 venue: arXiv vol None p None
+  title-in-bibitem similarity: 1.00
+  abstract: One of the challenges in the study of generative adversarial networks is the instability of its training. In this paper, we propose a novel weight normalization technique called spectral normalization to stabilize the training of the discriminator. Our new normalization technique is computationally light and easy to incorporate into existing implementations. We tested the efficacy of spectral normalization on CIFAR10, STL-10, and ILSVRC2012 dataset, and we experimentally confirmed that spectrally normalized GANs (SN-GANs) is capable of generating images of better or equal quality relative to the previous training stabilization techniques.
+  CITED AT: % ------------------------------------------------------------------------- \subsection{Deep Learning: Sobolev Weight Regularization and Zero-Shot Width Scaling} \label{subsec:imp_dl} In standard deep neural network training, weights $W \in \R^{d_{\mathrm{out}} \times d_{\mathrm{in}}}$ are conventionally regularized via coordinate-blind penalties: Weight Decay $\|W\|_F^2$ or Spectral Norm constraints $\sigma_{\max}(W) \le 1$~\cite{yoshida2017spectral,miyato2018spectral}.
+
+====================================================================================================
+KEY subag2021following
+BIBITEM: E.~Subag, \emph{Following the ground states of full-RSB spherical spin glasses}, Communications on Pure and Applied Mathematics, \textbf{74} (2021), no.~5, 1021--1044, DOI: \href{https://doi.org/10.1002/cpa.21922}{10.1002/cpa.21922}.
+DOI 10.1002/cpa.21922: resolved via Crossref
+[Crossref] title: Following the Ground States of <scp>Full‐RSB</scp> Spherical Spin Glasses
+  authors: Eliran Subag
+  year: 2020 venue: Communications on Pure and Applied Mathematics vol 74 p 1021-1044
+  title-in-bibitem similarity: 0.90
+  abstract: We focus on spherical spin glasses whose Parisi distribution has support of the form  [0,  q ] . For such models we construct paths from the origin to the sphere that consistently remain close to the ground‐state energy on the sphere of corresponding radius. The construction uses a greedy strategy, which always follows a direction corresponding to the most negative eigenvalues of the Hessian of the Hamiltonian. For finite mixtures   ξ ( x )  it provides an algorithm of time complexity   O ( N  deg( ξ ) )  to find w.h.p. points with the ground‐state energy, up to a small error.  For the pure spherical models, the same algorithm reaches the energy  − E  ∞  , the conjectural terminal energy for gradient descent. Using the TAP formula for the free energy, for full‐RSB models with support  [0,  q ] , we are able to prove the correct lower bound on the free energy (namely, prove the lower bound from Parisi's formula), assuming the correctness of the Parisi formula only in the replica symmetric case. © 2020 Wiley Periodicals LLC
+  CITED AT: . Worst-case hardness does not settle typical instances: for spherical mixed models whose Parisi distribution has support of the form $[0,q]$, Subag~\cite{subag2021following} constructs a polynomial-time algorithm that reaches the ground-state energy up to a small error with high probability. The spherical realization (Theorems~\ref{thm:morse_matrix} and~\ref{thm:kac_rice_tensors}) places the spin glass landscape in the setting of Morse theory.
+
+====================================================================================================
+KEY frieze1999quick
+BIBITEM: A.~Frieze and R.~Kannan, \emph{Quick approximation to matrices and applications}, Combinatorica, \textbf{19} (1999), no.~2, 175--220, DOI: \href{https://doi.org/10.1007/s004930050052}{10.1007/s004930050052}.
+DOI 10.1007/s004930050052: resolved via Crossref
+[Crossref] title: Quick Approximation to Matrices and Applications
+  authors: Alan Frieze; Ravi Kannan
+  year: 1999 venue: Combinatorica vol 19 p 175-220
+  title-in-bibitem similarity: 1.00
+  abstract: (none)
+  CITED AT: . The step realization of a matrix is the graphon of graph-limit theory, introduced by Lov\'asz and Szegedy~\cite{lovasz2006limits} and developed by Borgs, Chayes, Lov\'asz, S\'os and Vesztergombi~\cite{borgs2008convergent}; its metric is the cut distance of Frieze and Kannan~\cite{frieze1999quick}, see the monograph~\cite{lovasz2012large} and Janson's survey~\cite{janson2013graphons}.
+  CITED AT: \begin{definition}[The Cut Norm (Frieze--Kannan / Lov\'asz--Szegedy)~\cite{frieze1999quick,lovasz2006limits,borgs2008convergent}] For any kernel $W \in L^1([0, 1]^2)$, the \emph{Cut Norm} is defined by: \begin{equation} \label{eq:cut_norm_def} \cutnorm{W} \coloneqq \sup_{S, T \subseteq [0, 1]} \left| \int_{S \times T} W(x, y) \dif x \dif y \right|, \end{equation} where the supremum is taken over all measurable subsets $S, T \subseteq [0, 1]$. \end{definition} \begin{theorem}[Equivalence with the $L^\infty \to L^1$ Operator Norm] \label{thm:grothendieck_cutnorm} The cut norm $\cutnorm{W}$ is equivalent to the operator norm of the integral operator $T_W \colon L^\infty([0,1]) \to L^1([0,1])$: \begin{equation}
+
+resolver failures=0

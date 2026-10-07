@@ -1,0 +1,9 @@
+atiyah1988: OK 10.1007/BF02698547 | Topological quantum field theory | Michael F. Atiyah | Publications Mathématiques de l'IHÉS 68 (1988) p.175-186 art.
+verstraete2010: OK 10.1103/PhysRevLett.104.190405 | Continuous Matrix Product States for Quantum Fields | F. Verstraete; J. I. Cirac | Physical Review Letters 104 (2010) p. art.190405
+ryu2006: OK 10.1103/PhysRevLett.96.181602 | Holographic Derivation of Entanglement Entropy from the anti–de Sitter Space/Conformal Field Theory Correspondence | Shinsei Ryu; Tadashi Takayanagi | Physical Review Letters 96 (2006) p. art.181602
+fouresbruhat1952: OK 10.1007/BF02392131 | Théorème d'existence pour certains systèmes d'équations aux dérivées partielles non linéaires | Y. Fourès-Bruhat | Acta Mathematica 88 (1952) p.141-225 art.
+bousso2016: OK 10.1103/PhysRevD.93.024017 | Proof of the quantum null energy condition | Raphael Bousso; Zachary Fisher; Jason Koeller; Stefan Leichenauer; Aron C. Wall | Physical Review D 93 (2016) p. art.024017
+godel1949: OK 10.1103/RevModPhys.21.447 | An Example of a New Type of Cosmological Solutions of Einstein's Field Equations of Gravitation | Kurt Gödel | Reviews of Modern Physics 21 (1949) p.447-450 art.
+silvafilho_book: OK 10.5281/zenodo.22290043 | Geometry, Tensors, and Quantum Gravity | Silva-Filho, Reinaldo M. | Zenodo (2026)
+negative control OK: fake DOI -> HTTP Error 404: Not Found
+FAILURES: 0

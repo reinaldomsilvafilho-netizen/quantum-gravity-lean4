@@ -1,0 +1,37 @@
+[PASS] B1 symbolic: n.n.(G+Lambda g) equals paper display: diff 0
+[PASS] B1 Gauss-equation oracle matches display: -0.101853640865 vs -0.101853640865
+[PASS] B1 control: display without -Lambda fails: gap -0.450
+[PASS] B1 conclusion: at ends n.n.(G+Lg) = -Lambda: 
+[PASS] B2 T' = T on sitting intervals (same Hom-set): max 0.0e+00
+[PASS] B2 b(L/2)=pi and ||T'-T|| = 2 at L/2: 2.000000000000000
+[PASS] B2 h(t) unchanged (fidelity oracle): max dh 8.9e-08, |h| 9.61
+[PASS] B2 T'(.,t) projectively immersed (min eig > 0): min eig 4.083
+[PASS] B2 control: fixed unitary moves the endpoint: 1.326
+[PASS] B2 control: relative phase changes h: 3.086
+[PASS] B3a dim H=2: QFI singular at all 20 samples: max eig ratio 7.6e-17
+[PASS] B3a dim H=1: QFI singular: max 0.0e+00
+[PASS] B3a control: dim H=3 random field is immersed: min ratio 5.6e-03
+[PASS] B3b construction QFI = analytic formula (fidelity oracle): max err 1.7e-07
+[PASS] B3b fidelity-oracle convergence rate ~2: errs [np.float64(4.111507189699659e-05), np.float64(1.027873841033533e-05), np.float64(2.568572571221006e-06)], rates [np.float64(2.000004149502479), np.float64(2.0006244616037088)]
+[PASS] B3b construction immersed (min eig > 0): min eig 0.068
+[PASS] B3b control: without e0 the field is not immersed: max min-eig 3.8e-36
+[PASS] B4 min alpha' = min(1-s0/2,(1+s0)/2) on [0,1]: max err 1.1e-16
+[PASS] B4 infimum over s0 is 1/2, never attained: min 0.500500
+[PASS] B4 s0=1/2: alpha' in [3/4,9/8], int = 1: [0.750000,1.125000], int 0.999999999994
+[PASS] B4 paper's expanded alpha' is the derivative (sympy): 
+[PASS] B4 control: old-style bound 0.6 is violated (s0=0.01): 0.5050
+[PASS] B5 book DOI resolves; title, author, ISBN match: {'date-parts': [[2008, 12, 4]]}
+[PASS] B5 Ch. VI = 'Local Cauchy Problem' pp.142-178; abstract lists wave gauges, local existence, field sources: 
+[PASS] B5 Crossref gives no theorem number (abstract has none): 
+[PASS] B5 control: fake chapter DOI is 404: 404
+[PASS] B6 declarations block = standard (paper variant): len 1948 vs 1948
+[PASS] B6 control: mutated block differs: 
+[PASS] B6 no GitHub URL / old AI statement left in .tex: 
+[PASS] B7 CORRECTIONS: no GitHub claim: 
+[PASS] B7 CORRECTIONS: no 'pending': 
+[PASS] B7 ZENODO_DESCRIPTION: no GitHub claim: 
+[PASS] B7 ZENODO_DESCRIPTION: no 'pending': 
+[PASS] B7 ZENODO: no 'dagger-compact': 
+[PASS] B7 CORRECTIONS item 9 uses e^{ib(t)} argument: 
+[PASS] B7 description <= 250 words: 242 words
+failures: 0

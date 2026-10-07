@@ -1,0 +1,10 @@
+[PASS] 10.5281/zenodo.22290043: ('Geometry, Tensors, and Quantum Gravity', 'Silva-Filho, Reinaldo M.', 2026, None, None)
+[PASS] 10.1007/BF02698547: ('Topological quantum field theory', 'Atiyah', 1988, '68', '175')
+[PASS] control: mutated volume 69 detected = True
+[PASS] 10.1103/PhysRevLett.104.190405: ('Continuous Matrix Product States for Quantum Fields', 'Verstraete', 2010, '104', '190405')
+[PASS] 10.1103/PhysRevLett.96.181602: ('Holographic Derivation of Entanglement Entropy from the anti–de Sitter Space/Conformal Field Theory Correspondence', 'Ryu', 2006, '96', '181602')
+[PASS] 10.1007/BF02392131: ("Théorème d'existence pour certains systèmes d'équations aux dérivées partielles non linéaires", 'Fourès-Bruhat', 1952, '88', '141')
+[PASS] 10.1103/PhysRevD.93.024017: ('Proof of the quantum null energy condition', 'Bousso', 2016, '93', '024017')
+[PASS] 10.1103/RevModPhys.21.447: ("An Example of a New Type of Cosmological Solutions of Einstein's Field Equations of Gravitation", 'Gödel', 1949, '21', '447')
+[PASS] control: fake DOI -> HTTP Error 404: Not Found
+FAILED CHECKS: 0

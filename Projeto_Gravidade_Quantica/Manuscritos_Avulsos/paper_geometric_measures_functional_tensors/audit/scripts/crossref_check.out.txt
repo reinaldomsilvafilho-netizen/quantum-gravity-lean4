@@ -1,0 +1,14 @@
+OK  Bakry-Emery 1985                                        10.1007/BFb0075847 | Diffusions hypercontractives | Bakry, Émery | 1985 | Lecture Notes in Mathematics vol None pages 177-206
+OK  Benamou-Brenier 2000 (Zenodo print)                     10.1007/s002110050475 | Simplicial grid refinement: on Freudenthal's algorithm and the optimal number of congruenc | Bey | 2000 | Numerische Mathematik vol 85 pages 1-29
+OK  Bengtsson-Zyczkowski 2017                               10.1017/9781139207010 | Geometry of Quantum States | Bengtsson, Życzkowski | 2017 |  vol None pages None
+OK  Chazal et al 2016                                       10.1007/978-3-319-42545-0 | The Structure and Stability of Persistence Modules | Chazal, de Silva, Glisse, Oudot | 2016 | SpringerBriefs in Mathematics vol None pages None
+OK  Edelsbrunner-Harer 2010                                 10.1090/mbk/069 | Computational Topology | Edelsbrunner, Harer | 2009 |  vol None pages None
+OK  Hormander 2003                                          10.1007/978-3-642-61497-2 | The Analysis of Linear Partial Differential Operators I | Hörmander | 2003 | Classics in Mathematics vol None pages None
+OK  Safranek 2017 (Zenodo: 052320)                          10.1103/PhysRevA.95.052320 | Discontinuities of the quantum Fisher information and the Bures metric | Šafránek | 2017 | Physical Review A vol 95 pages None
+OK  Safranek 2017 (local tex: 062320)                       10.1103/PhysRevA.95.062320 | Bipartite entanglement in fermion systems | Gigena, Rossignoli | 2017 | Physical Review A vol 95 pages None
+OK  Verstraete-Cirac 2010                                   10.1103/PhysRevLett.104.190405 | Continuous Matrix Product States for Quantum Fields | Verstraete, Cirac | 2010 | Physical Review Letters vol 104 pages None
+OK  Villani 2009                                            10.1007/978-3-540-71050-9 | Optimal Transport | Villani | 2009 | Grundlehren der mathematischen Wissenschaften vol None pages None
+OK  von Renesse-Sturm 2005                                  10.1002/cpa.20060 | Transport inequalities, gradient estimates, entropy and Ricci curvature | von Renesse, Sturm | 2004 | Communications on Pure and Applied Mathematics vol 58 pages 923-940
+OK  Willmore 1993                                           10.1093/oso/9780198532538.001.0001 | Riemannian Geometry | Willmore | 1993 |  vol None pages None
+OK  Cohen-Steiner-Edelsbrunner-Harer 2007 (not cited; classical stability) 10.1007/s00454-006-1276-5 | Stability of Persistence Diagrams | Cohen-Steiner, Edelsbrunner, Harer | 2006 | Discrete &amp; Computational Geometry vol 37 pages 103-120
+FAIL NEGATIVE CONTROL mutated                                10.1103/PhysRevA.95.999999 HTTP 404

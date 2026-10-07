@@ -1,0 +1,64 @@
+== A1: original 3x3 pair
+Dgm1(B)=[(2.0, 0.0)] Dgm1(A)=[] E(B)=-0.0000 E(A)=0.0000
+PASS 3x3: Dgm1(B)={(2,0)}, Dgm1(A)=empty
+PASS 3x3: E(B)=E(A)=0 (entropy does NOT separate this pair)
+PASS 3x3 pixel cross-check beta1: B=1, A=0 on (0,2]
+== A1: replacement 5x5 pair
+PASS 5x5: A=PBP^T symmetric, isospectral
+PASS 5x5: A has its 0 at the corner (1,1)
+Dgm1(B)=[(3.0, 0.0), (3.0, 1.0)] Dgm1(A)=[(3.0, 1.0)] E(B)=0.673012 (expected 0.673012) E(A)=-0.000000
+PASS 5x5: Dgm1(B)={(3,0),(3,1)}
+PASS 5x5: Dgm1(A)={(3,1)}
+PASS 5x5: E(B)=-0.6ln0.6-0.4ln0.4 > 0 = E(A)
+pixel beta1(t) B: {0.5: 1, 2.0: 2, 3.0: 2}  A: {0.5: 0, 2.0: 1, 3.0: 1}
+PASS 5x5 pixel cross-check: B beta1 = 1 on (0,1), 2 on (1,3); A = 0 on (0,1), 1 on (1,3)
+== A1: reflection pair (equal entropies with N_1 = 2 distinct lifetimes)
+PASS reflection: C=JBJ^T != B, isospectral, Dgm1(C)=Dgm1(B), N_1=2 distinct lifetimes, E equal
+PASS NEG CTRL: entropy built from births differs from E(B)
+PASS union-find barcode reproduces pixel beta1 on 40 random symmetric 5x5 matrices
+== A2: fixed Gaussian window, f = Heaviside, x0 off the jump
+xi=200 |V|=4.3027e-08 xi|V|=8.6054e-06  g(-x0)=8.8518e-06
+xi=1000 |V|=8.8416e-09 xi|V|=8.8416e-06  g(-x0)=8.8518e-06
+xi=3000 |V|=2.9502e-09 xi|V|=8.8507e-06  g(-x0)=8.8518e-06
+PASS fixed window: xi|V(x0,xi)| -> g(-x0) != 0 (only 1/xi decay off the interface)
+== A2: Hormander cut-off, half-plane H(y1), product bump chi=b(y1)b(y2)
+t=100  t|FT(bH)(t)|=3.5739e-01 (b(0)=3.6788e-01)
+t=400  t|FT(bH)(t)|=3.6799e-01 (b(0)=3.6788e-01)
+t=1600  t|FT(bH)(t)|=3.6788e-01 (b(0)=3.6788e-01)
+PASS on the conormal: t|FT| -> b(0) (not rapid)
+t=50  t^4 |FT(b)(t)| = 1.074e+04
+t=200  t^4 |FT(b)(t)| = 1.586e+04
+t=800  t^4 |FT(b)(t)| = 8.503e+02
+t=1600  t^4 |FT(b)(t)| = 2.637e+00
+PASS off the conormal (tangential factor): t^4|FT(b)| decreases by > 1e3 from t=50 to t=1600
+PASS NEG CTRL fixed window on a smooth function: |V| at xi=200 below 1e-12
+== A3: Dixmier trace on T^1, T = M_f |D|^{-1} (|D|^{-1}:=0 on ker D)
+f=1            linear(diagonal) slope 0.3183 vs (1/pi)int f = 0.3183 | singular-value slope 0.3177
+PASS f=1: linear Dixmier = (1/pi) int f
+PASS f=1: singular-value sum gives (1/pi) int|f| (within 2%)
+f=cos2pix      linear(diagonal) slope 0.0000 vs (1/pi)int f = 0.0000 | singular-value slope 0.2024
+PASS f=cos2pix: linear Dixmier = (1/pi) int f
+PASS f=cos2pix: singular-value sum gives (1/pi) int|f| (within 2%)
+f=0.3+cos2pix  linear(diagonal) slope 0.0955 vs (1/pi)int f = 0.0955 | singular-value slope 0.2115
+PASS f=0.3+cos2pix: linear Dixmier = (1/pi) int f
+PASS NEG CTRL: for f=cos the singular-value version is NOT (1/pi)int f = 0
+== A4: Clifford traces in d=2
+PASS tr(g^mu g^nu) = 2 delta (no epsilon part without grading)
+PASS gamma = -i g1 g2 = sigma3 and tr(gamma g^mu g^nu) = 2i eps^{mu nu}
+PASS NEG CTRL: tr(gamma g^1 g^2) != 0 while tr(g^1 g^2) == 0
+degree-0 map: deg=0.00e+00  tau_2(ungraded)=-0.916603 (direct quadrature -0.916603)
+PASS ungraded tau_2 != 0 = c_2 deg for a degree-0 map
+rotated degree-1 maps: deg [1. 1. 1. 1. 1.]
+   ungraded tau_2: [-0.0146  0.0361 -0.0012  0.0009  0.0369]
+   (i/4) * antisymmetrised graded tau: [1.+0.j 1.+0.j 1.+0.j 1.+0.j 1.+0.j]
+PASS degree = 1 for all rotations (to 1e-2)
+PASS ungraded tau_2 varies at fixed degree (spread > 1e-2)
+PASS (i/4) sum_sigma sgn tau^gamma = deg F (to 1e-2)
+PASS NEG CTRL constant map: graded cocycle 0
+== A5: QFI metric
+PASS g = 2 sum Re(<i|d_mu rho|j><j|d_nu rho|i>)/(l_i+l_j) equals the SLD oracle (5 random states)
+PASS NEG CTRL: the formula without the factor 2 disagrees with the oracle
+PASS gauge orbit: det g > 0 (constant modulo gauge does not give Vol = 0)
+PASS rho(x)=R(x1+x2): d_1 rho, d_2 rho nonzero and det g = 0
+PASS det g > 0 iff {d_mu rho} linearly independent (30 random cases)
+failures=0

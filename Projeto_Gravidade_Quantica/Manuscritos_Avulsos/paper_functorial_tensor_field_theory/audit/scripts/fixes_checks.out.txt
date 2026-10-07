@@ -1,0 +1,14 @@
+[PASS] V1 QFI of product qubit field = sin^2(2 theta) * identity: max err 3.2e-07; mutated oracle sin^2(theta) min err 1.12e-01
+[PASS] V2 FRW data: endpoints satisfy vacuum constraints, interior does not: 2 nnG == R+K^2-K.K symbolically: True; Hamiltonian residual (N=1) at t=0,1/2,1: {0: 0.0, 1/2: 2.16, 1: 0.0}; G_tt(1/2) = 1.0800 (oracle 3*(0.375/0.625)^2 = 1.08)
+[PASS] V2c control: static flat metric has zero residual: d_t g = 0
+[PASS] V3a alpha(s) = s + s(1-s)(s-1/2) is an orientation-preserving diffeo fixing 0, 1/2, 1 with alpha'(1/2) = 5/4: min alpha' on grid 0.5000 (analytic min 1/2)
+[PASS] V3b lapse ((d_t S)^2+s0^2)^(1/4)/sqrt(k0) is not reparametrization covariant: 4-volumes id: 2.208193, u^2: 1.956547, alpha: 2.042547; covariant control spread 4.4e-16
+[PASS] V4 dS/dt finite and O(h^2)-convergent at constant rank 2 in chi=3; unbounded at a rank change: FD errors ['2.0e-06', '5.0e-07', '1.2e-07'], observed rates ['2.00', '2.00']; control diag(1-t,t,0): dS/dt at t=1e-2,1e-4,1e-6 = ['4.60', '9.21', '13.82']
+[PASS] V4b Riesz-contour formula for S on a rank-deficient rho (contour in Re z > 0): |contour - eig| = 1.2e-15; control err 6.89e-01
+[PASS] V5 amplitudes invariant under (Q,R) -> (XQX^-1, XRX^-1); not under R alone: rel diff 6.8e-16; control 1.69e-01
+[PASS] V6 QFI invariant under fixed unitary, local phase, complex conjugation; positive definite: max diffs U 2.4e-11, phase 2.9e-09, conj 0.0e+00; controls: x-dependent unitary 4.38e+01, unprojected under phase 3.16e+01
+[PASS] V7 constant path with ||R||^2 = 2 + cos x: slice t=0 has K_xx = -cos(x)/(2 N0) != 0: K_xx (Christoffel) = -cos(x)/(2*N0); oracle (1/N0) f'' = -cos(x)/(2*N0)
+[PASS] V8 sitting paths: lapse continuous across the junction; non-sitting control jumps by the predicted amount: jump sitting 0.0e+00; control 1.537252e-03 vs analytic one-sided limits 1.537245e-03
+[INFO] V9 l_P^2 = hbar G / c^3 = 2.6123e-70 m^2 (dimension m^2); Area 1 m^2: A/(4 l_P^2) = 9.570e+68, ln(chi) >= A/(8 l_P^2) = 4.785e+68
+[PASS] V9 Planck area matches CODATA l_P = 1.616255e-35 m: l_P = 1.616255e-35 m
+FAILED CHECKS: 0

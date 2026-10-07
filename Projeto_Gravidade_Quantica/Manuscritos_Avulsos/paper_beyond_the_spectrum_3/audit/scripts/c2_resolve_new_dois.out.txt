@@ -1,0 +1,14 @@
+== Crooks1999 | 10.1103/PhysRevE.60.2721
+    ('crossref', 'Entropy production fluctuation theorem and the nonequilibrium work relation for free energy differences', 'Crooks', 1999, 'Physical Review E', '60', '2721-2726')
+== KigamiLapidus1993 | 10.1007/BF02097233
+    ('crossref', "Weyl's problem for the spectral distribution of Laplacians on P.C.F. self-similar fractals", 'Kigami', 1993, 'Communications in Mathematical Physics', '158', '93-125')
+== Aamari2019 | 10.1214/19-EJS1551
+    ('crossref', 'Estimating the reach of a manifold', 'Aamari', 2019, 'Electronic Journal of Statistics', '13', None)
+== Lindqvist1990 | 10.1090/S0002-9939-1990-1007505-7
+    ('crossref', 'On the equation 𝑑𝑖𝑣(|∇𝑢|^{𝑝-2}∇𝑢)+𝜆|𝑢|^{𝑝-2}𝑢=0', 'Lindqvist', 1990, 'Proceedings of the American Mathematical Society', '109', '157-164')
+== GibsonEtAl1976 | 10.1007/BFb0095244
+    ('crossref', 'Topological Stability of Smooth Mappings', 'Gibson', 1976, 'Lecture Notes in Mathematics', None, None)
+== SilvaFilhoBTS | 10.5281/zenodo.22644743
+    ('datacite', 'Beyond the Spectrum: The Complete Three-Volume Monograph on Functional Tensor Realizations, Metric Measure Geometry, and Higher Topological Invariants', 'Silva-Filho, Reinaldo M.', 2026, 'Zenodo')
+NEG CONTROL mutated DOI -> FAIL (expected)
+unresolved: 0

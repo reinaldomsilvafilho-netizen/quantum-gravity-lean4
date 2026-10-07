@@ -1,0 +1,119 @@
+paper: paper_functorial_tensor_field_theory; bibitems now 42, before 8, added 34, removed []
+sample (seed 20261007): ['gourgoulhon2012', 'miyaji2015', 'baezdolan1995', 'curiel2017', 'israel1966', 'selinger2007', 'uhlmann1976', 'provost1980', 'haegeman2014geometry', 'mohr2025codata']
+neg control: fake DOI does not resolve (ok)
+neg control: title similarity of a wrong title = 0.00 (must be < 0.5)
+
+====================================================================================================
+KEY gourgoulhon2012
+BIBITEM: \'E.~Gourgoulhon, \emph{3+1 Formalism in General Relativity}, Lecture Notes in Physics \textbf{846}, Springer, Berlin, 2012, ISBN 978-3-642-24524-4, \href{https://doi.org/10.1007/978-3-642-24525-1}{doi:10.1007/978-3-642-24525-1}.
+DOI 10.1007/978-3-642-24525-1: resolved via Crossref
+ISBN 978-3-642-24524-4 (not resolved here)
+[Crossref] title: 3+1 Formalism in General Relativity
+  authors: Eric Gourgoulhon
+  year: 2012 venue: Lecture Notes in Physics vol None p None
+  title-in-bibitem similarity: 1.00
+  abstract: (none)
+  CITED AT: sharper, categorical question: is there a functorial bridge from continuous tensor manifolds to 4-dimensional spacetime cobordisms, in the sense of the functorial axioms of topological quantum field theory \cite{atiyah1988topological}? Concretely, one assigns to a smooth field $x\mapsto\mathcal{T}(x)$ of continuous matrix product states (cMPS) \cite{verstraete2010continuous,haegeman2013calculus} on a compact 3-manifold $\mathcal{M}$ the spatial metric $h=g^{\QFI}(\mathcal{T})$, and to a path of such fields the Lorentzian metric in the Arnowitt--Deser--Misner (ADM) form \cite[Sec.~3]{adm2008},~\cite[Ch.~4]{gourgoulhon2012} \begin{equation}\label{eq:adm} g=-N^2\,dt^2+h_{ij}(t)\,(dx^i+N^i dt)(dx^j+N^j dt) \end{equation} on $\mathcal{M}\times[0,L]$, with lapse $N$ built from the rate of change of the bond entanglement entropy and shift $N^i$ built from the cMPS generators. \subsection*{What is proved} \begin{enumerate}[label=(\roman*)] \item The QFI metric of a projectively immersed unit-vector field is a smooth Riemannian metric with the invariances listed in Proposition~\ref{prop:qfi}; cMPS fields are invariant under pointwise gauge transformations (Lemma~\ref{lem:gauge}, Corollary~\ref{cor:gauge}).
+  CITED AT: With the extrinsic curvature $K_{ij}=-\nabla_in_j=-\frac{1}{2N}(\partial_th_{ij}-\mathcal{L}_{\vec N}h_{ij})$, the constraints of the Einstein equations $G_{\mu\nu}+\Lambda g_{\mu\nu}=8\pi G_NT_{\mu\nu}$ read (cf.~\cite[Ch.~5]{gourgoulhon2012}, where $\Lambda=0$ and $G_N=1$) \begin{equation}\label{eq:constraints} R[h]+K^2-K_{ij}K^{ij}-2\Lambda=16\pi G_N\rho_{\mathrm{matt}},\qquad \nabla_j(K^j{}_i-\delta^j_iK)=8\pi G_N j_i, \end{equation} with $\rho_{\mathrm{matt}}$ and $j_i$ as in Proposition~\ref{prop:densities}.
+
+====================================================================================================
+KEY miyaji2015
+BIBITEM: M.~Miyaji, T.~Numasawa, N.~Shiba, T.~Takayanagi, and K.~Watanabe, \emph{Distance between quantum states and gauge-gravity duality}, Phys. Rev. Lett. \textbf{115} (2015), 261602, \href{https://doi.org/10.1103/PhysRevLett.115.261602}{doi:10.1103/PhysRevLett.115.261602}.
+DOI 10.1103/PhysRevLett.115.261602: resolved via Crossref
+[Crossref] title: Distance between Quantum States and Gauge-Gravity Duality
+  authors: Masamichi Miyaji; Tokiro Numasawa; Noburo Shiba; Tadashi Takayanagi; Kento Watanabe
+  year: 2015 venue: Physical Review Letters vol 115 p None
+  title-in-bibitem similarity: 1.00
+  abstract: We study a quantum information metric (or fidelity susceptibility) in conformal field theories with respect to a small perturbation by a primary operator. We argue that its gravity dual is approximately given by a volume of maximal time slice in an anti-de Sitter spacetime when the perturbation is exactly marginal. We confirm our claim in several examples.
+  CITED AT: . Geometry has been read off quantum states in several other ways: from the connectivity of spacetime and entanglement \cite{vanraamsdonk2010}; from entanglement renormalization \cite{swingle2012} and its continuum version, cMERA \cite{haegeman2013cmera}, for which a metric in the holographic direction is proposed in \cite{nozaki2012}; from the quantum information metric, whose gravity dual is argued to be approximately the volume of a maximal time slice \cite{miyaji2015}; from Fubini--Study complexity geometry \cite{erdmenger2023}; and from mutual information on an abstract Hilbert space \cite{cao2017}.
+
+====================================================================================================
+KEY baezdolan1995
+BIBITEM: J.~C. Baez and J.~Dolan, \emph{Higher-dimensional algebra and topological quantum field theory}, J. Math. Phys. \textbf{36} (1995), 6073--6105, \href{https://doi.org/10.1063/1.531236}{doi:10.1063/1.531236}.
+DOI 10.1063/1.531236: resolved via Crossref
+[Crossref] title: Higher-dimensional algebra and topological quantum field theory
+  authors: John C. Baez; James Dolan
+  year: 1995 venue: Journal of Mathematical Physics vol 36 p 6073-6105
+  title-in-bibitem similarity: 1.00
+  abstract: The study of topological quantum field theories increasingly relies upon concepts from higher-dimensional algebra such as n-categories and n-vector spaces. We review progress towards a definition of n-category suited for this purpose, and outline a program in which n-dimensional topological quantum field theories (TQFTs) are to be described as n-category representations. First we describe a ‘‘suspension’’ operation on n-categories, and hypothesize that the k-fold suspension of a weak n-category stabilizes for k≥n+2. We give evidence for this hypothesis and describe its relation to stable homotopy theory. We then propose a description of n-dimensional unitary extended TQFTs as weak n-functors from the ‘‘free stable weak n-category with duals on one object’’ to the n-category of ‘‘n-Hilbert spaces.’’ We conclude by describing n-categorical generalizations of deformation quantization and the quantum double construction.
+  CITED AT: . The higher-categorical programme and the cobordism hypothesis are developed in \cite{baezdolan1995,lurie2009}, and the analogy between the category of cobordisms and the category of Hilbert spaces, both $*$-categories with a non-cartesian monoidal structure, is discussed in \cite{baez2006quandaries}.
+  CITED AT: . For topological field theories, the monoidal structure with duals is the setting of the cobordism hypothesis \cite{baezdolan1995,lurie2009}. \end{problem} \begin{problem}[Topology change and duals] Extend the source category by morphisms that change $\mathcal{M}$, and decide whether a dagger-compact structure \cite[Def.~2.6]{selinger2007} compatible with geometric time reversal (Remark~\ref{rem:limits}(e)) exists.
+
+====================================================================================================
+KEY curiel2017
+BIBITEM: E.~Curiel, \emph{A primer on energy conditions}, in D.~Lehmkuhl, G.~Schiemann, and E.~Scholz (eds.), \emph{Towards a Theory of Spacetime Theories}, Einstein Studies, Birkh\"auser, New York, 2017, pp.~43--104, \href{https://doi.org/10.1007/978-1-4939-3210-8_3}{doi:10.1007/978-1-4939-3210-8\_3}.
+DOI 10.1007/978-1-4939-3210-8_3: resolved via Crossref
+[Crossref] title: A Primer on Energy Conditions
+  authors: Erik Curiel
+  year: 2017 venue: Einstein Studies Towards a Theory of Spacetime Theories vol None p 43-104
+  title-in-bibitem similarity: 1.00
+  abstract: (none)
+  CITED AT: . The null convergence condition $R_{\mu\nu}k^\mu k^\nu\ge0$, the geometric form of the null energy condition \cite[Sec.~2.1]{curiel2017}, follows only where the Einstein equations hold. \item The null energy condition does not exclude closed timelike curves: G\"odel's rotating dust solution \cite{godel1949} has positive density, so $T_{\mu\nu}k^\mu k^\nu=\rho\,(u_\mu k^\mu)^2\ge0$, and it contains closed timelike curves. \item For free and superrenormalizable bosonic quantum field theories, the quantum null energy condition $\langle T_{kk}\rangle\ge\frac{\hbar}{2\pi}S''/A$ (in the limit of vanishing area $A$, with $S''$ the second null variation of the entropy) is proved in \cite{bousso2016}.
+
+====================================================================================================
+KEY israel1966
+BIBITEM: W.~Israel, \emph{Singular hypersurfaces and thin shells in general relativity}, Nuovo Cimento B \textbf{44} (1966), 1--14, \href{https://doi.org/10.1007/BF02710419}{doi:10.1007/BF02710419}.
+DOI 10.1007/BF02710419: resolved via Crossref
+[Crossref] title: Singular hypersurfaces and thin shells in general relativity
+  authors: W. Israel
+  year: 1966 venue: Il Nuovo Cimento B Series 10 vol 44 p 1-14
+  title-in-bibitem similarity: 1.00
+  abstract: (none)
+  CITED AT: Moreover, gluing two smooth Einstein cobordisms with matching induced metrics but different extrinsic curvatures gives a metric that is only continuous across the junction; such junctions, characterized by the extrinsic curvatures of the hypersurface, are the thin shells of \cite{israel1966}.
+
+====================================================================================================
+KEY selinger2007
+BIBITEM: P.~Selinger, \emph{Dagger compact closed categories and completely positive maps}, Electron. Notes Theor. Comput. Sci. \textbf{170} (2007), 139--163, \href{https://doi.org/10.1016/j.entcs.2006.12.018}{doi:10.1016/j.entcs.2006.12.018}.
+DOI 10.1016/j.entcs.2006.12.018: resolved via Crossref
+[Crossref] title: Dagger Compact Closed Categories and Completely Positive Maps
+  authors: Peter Selinger
+  year: 2007 venue: Electronic Notes in Theoretical Computer Science vol 170 p 139-163
+  title-in-bibitem similarity: 1.00
+  abstract: Dagger compact closed categories were recently introduced by Abramsky and Coecke, under the name “strongly compact closed categories”, as an axiomatic framework for quantum mechanics. We present a graphical language for dagger compact closed categories, and sketch a proof of its completeness for equational reasoning. We give a general construction, the CPM construction, which associates to each dagger compact closed category its “category of completely positive maps”, and we show that the resulting category is again dagger compact closed. We apply these ideas to Abramsky and Coecke's interpretation of quantum protocols, and to D'Hondt and Panangaden's predicate transformer semantics.
+  CITED AT: \begin{problem}[Topology change and duals] Extend the source category by morphisms that change $\mathcal{M}$, and decide whether a dagger-compact structure \cite[Def.~2.6]{selinger2007} compatible with geometric time reversal (Remark~\ref{rem:limits}(e)) exists.
+
+====================================================================================================
+KEY uhlmann1976
+BIBITEM: A.~Uhlmann, \emph{The ``transition probability'' in the state space of a $*$-algebra}, Rep. Math. Phys. \textbf{9} (1976), 273--279, \href{https://doi.org/10.1016/0034-4877(76)90060-4}{doi:10.1016/0034-4877(76)90060-4}.
+DOI 10.1016/0034-4877(76)90060-4: resolved via Crossref
+[Crossref] title: The “transition probability” in the state space of a ∗-algebra
+  authors: A. Uhlmann
+  year: 1976 venue: Reports on Mathematical Physics vol 9 p 273-279
+  title-in-bibitem similarity: 1.00
+  abstract: (none)
+  CITED AT: . For density operators, Braunstein and Caves define a Riemannian metric from statistical distinguishability \cite{braunstein1994}; Uhlmann's transition probability extends the pure-state overlap to states of a $*$-algebra \cite{uhlmann1976}; and Petz constructs and characterizes the monotone metrics on matrix spaces \cite{petz1996}, a family to which all versions of the QFI belong \cite[Sec.~2.1]{liu2020qfi}.
+
+====================================================================================================
+KEY provost1980
+BIBITEM: J.~P. Provost and G.~Vall\'ee, \emph{Riemannian structure on manifolds of quantum states}, Commun. Math. Phys. \textbf{76} (1980), 289--301, \href{https://doi.org/10.1007/BF02193559}{doi:10.1007/BF02193559}.
+DOI 10.1007/BF02193559: resolved via Crossref
+[Crossref] title: Riemannian structure on manifolds of quantum states
+  authors: J. P. Provost; G. Vallee
+  year: 1980 venue: Communications in Mathematical Physics vol 76 p 289-301
+  title-in-bibitem similarity: 1.00
+  abstract: (none)
+  CITED AT: \subsection*{Related work} Metrics on manifolds of quantum states defined from the Hilbert-space structure go back to Provost and Vall\'ee \cite{provost1980}.
+
+====================================================================================================
+KEY haegeman2014geometry
+BIBITEM: J.~Haegeman, M.~Mari\"en, T.~J. Osborne, and F.~Verstraete, \emph{Geometry of matrix product states: metric, parallel transport, and curvature}, J. Math. Phys. \textbf{55} (2014), 021902, \href{https://doi.org/10.1063/1.4862851}{doi:10.1063/1.4862851}.
+DOI 10.1063/1.4862851: resolved via Crossref
+[Crossref] title: Geometry of matrix product states: Metric, parallel transport, and curvature
+  authors: Jutho Haegeman; Michaël Mariën; Tobias J. Osborne; Frank Verstraete
+  year: 2014 venue: Journal of Mathematical Physics vol 55 p None
+  title-in-bibitem similarity: 1.00
+  abstract: We study the geometric properties of the manifold of states described as (uniform) matrix product states. Due to the parameter redundancy in the matrix product state representation, matrix product states have the mathematical structure of a (principal) fiber bundle. The total space or bundle space corresponds to the parameter space, i.e., the space of tensors associated to every physical site. The base manifold is embedded in Hilbert space and can be given the structure of a Kähler manifold by inducing the Hilbert space metric. Our main interest is in the states living in the tangent space to the base manifold, which have recently been shown to be interesting in relation to time dependence and elementary excitations. By lifting these tangent vectors to the (tangent space) of the bundle space using a well-chosen prescription (a principal bundle connection), we can define and efficiently compute an inverse metric, and introduce differential geometric concepts such as parallel transport (related to the Levi-Civita connection) and the Riemann curvature tensor.
+  CITED AT: . For uniform matrix product states, the parameter space is a principal fibre bundle over the manifold of states, whose gauge redundancy is the fibre, and the induced Hilbert-space metric makes the base a K\"ahler manifold \cite{haegeman2014geometry}.
+
+====================================================================================================
+KEY mohr2025codata
+BIBITEM: P.~J. Mohr, D.~B. Newell, B.~N. Taylor, and E.~Tiesinga, \emph{CODATA recommended values of the fundamental physical constants: 2022}, Rev. Mod. Phys. \textbf{97} (2025), 025002, \href{https://doi.org/10.1103/RevModPhys.97.025002}{doi:10.1103/RevModPhys.97.025002}.
+DOI 10.1103/RevModPhys.97.025002: resolved via Crossref
+[Crossref] title: CODATA recommended values of the fundamental physical constants: 2022
+  authors: Peter J. Mohr; David B. Newell; Barry N. Taylor; Eite Tiesinga
+  year: 2025 venue: Reviews of Modern Physics vol 97 p None
+  title-in-bibitem similarity: 1.00
+  abstract: This review contains the 2022 self-consistent set of values of the constants and conversion factors of physics and chemistry recommended by the Committee on Data for Science and Technology (CODATA). The CODATA values are based on a least-squares adjustment that takes into account all data available up to the end of 2022. Details of the data selection and methodology are described.
+  CITED AT: . If such a state were to carry the entropy $\mathrm{Area}/(4\ell_P^2)$ of the Ryu--Takayanagi formula \cite{ryu2006holographic}, then $\log\chi\ge\mathrm{Area}/(8\ell_P^2)$, where $\ell_P^2=\hbar G_N/c^3=2.61\times10^{-70}\,\mathrm{m}^2$ (CODATA 2022 \cite{mohr2025codata}).
+
+resolver failures=0

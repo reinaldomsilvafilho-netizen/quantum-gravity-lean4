@@ -1,0 +1,100 @@
+=== work: exit=0 axiom declarations=0 imports Mathlib=False
+C:\Users\monar\Documents\antigravity\resilient-turing\Projeto_Gravidade_Quantica\Manuscritos_Avulsos\paper_functorial_tensor_field_theory\audit\scripts\_lean_concat_work.lean:142:0: warning: Definition `canonicalQFI` is a proposition; use `theorem` instead of `def`
+C:\Users\monar\Documents\antigravity\resilient-turing\Projeto_Gravidade_Quantica\Manuscritos_Avulsos\paper_functorial_tensor_field_theory\audit\scripts\_lean_concat_work.lean:143:0: warning: Definition `canonicalADM` is a proposition; use `theorem` instead of `def`
+C:\Users\monar\Documents\antigravity\resilient-turing\Projeto_Gravidade_Quantica\Manuscritos_Avulsos\paper_functorial_tensor_field_theory\audit\scripts\_lean_concat_work.lean:208:0: warning: Definition `canPosDef` is a proposition; use `theorem` instead of `def`
+C:\Users\monar\Documents\antigravity\resilient-turing\Projeto_Gravidade_Quantica\Manuscritos_Avulsos\paper_functorial_tensor_field_theory\audit\scripts\_lean_concat_work.lean:209:0: warning: Definition `canLapseSmooth` is a proposition; use `theorem` instead of `def`
+C:\Users\monar\Documents\antigravity\resilient-turing\Projeto_Gravidade_Quantica\Manuscritos_Avulsos\paper_functorial_tensor_field_theory\audit\scripts\_lean_concat_work.lean:210:0: warning: Definition `canEinstein` is a proposition; use `theorem` instead of `def`
+C:\Users\monar\Documents\antigravity\resilient-turing\Projeto_Gravidade_Quantica\Manuscritos_Avulsos\paper_functorial_tensor_field_theory\audit\scripts\_lean_concat_work.lean:241:0: warning: Definition `emergentPosDefMap` is a proposition; use `theorem` instead of `def`
+C:\Users\monar\Documents\antigravity\resilient-turing\Projeto_Gravidade_Quantica\Manuscritos_Avulsos\paper_functorial_tensor_field_theory\audit\scripts\_lean_concat_work.lean:243:0: warning: Definition `emergentLapseMap` is a proposition; use `theorem` instead of `def`
+C:\Users\monar\Documents\antigravity\resilient-turing\Projeto_Gravidade_Quantica\Manuscritos_Avulsos\paper_functorial_tensor_field_theory\audit\scripts\_lean_concat_work.lean:244:0: warning: Definition `emergentEinsteinMap` is a proposition; use `theorem` instead of `def`
+C:\Users\monar\Documents\antigravity\resilient-turing\Projeto_Gravidade_Quantica\Manuscritos_Avulsos\paper_functorial_tensor_field_theory\audit\scripts\_lean_concat_work.lean:323:0: warning: Definition `tensorQFI` is a proposition; use `theorem` instead of `def`
+C:\Users\monar\Documents\antigravity\resilient-turing\Projeto_Gravidade_Quantica\Manuscritos_Avulsos\paper_functorial_tensor_field_theory\audit\scripts\_lean_concat_work.lean:324:0: warning: Definition `tensorADM` is a proposition; use `theorem` instead of `def`
+C:\Users\monar\Documents\antigravity\resilient-turing\Projeto_Gravidade_Quantica\Manuscritos_Avulsos\paper_functorial_tensor_field_theory\audit\scripts\_lean_concat_work.lean:338:0: warning: Definition `disjointPosDef` is a proposition; use `theorem` instead of `def`
+C:\Users\monar\Documents\antigravity\resilient-turing\Projeto_Gravidade_Quantica\Manuscritos_Avulsos\paper_functorial_tensor_field_theory\audit\scripts\_lean_concat_work.lean:348:0: warning: Definition `emergentMetric_tensor_distrib` is a proposition; use `theorem` instead of `def`
+C:\Users\monar\Documents\antigravity\resilient-turing\Projeto_Gravidade_Quantica\Manuscritos_Avulsos\paper_functorial_tensor_field_theory\audit\scripts\_lean_concat_work.lean:364:0: warning: Definition `transposeLapse` is a proposition; use `theorem` instead of `def`
+C:\Users\monar\Documents\antigravity\resilient-turing\Projeto_Gravidade_Quantica\Manuscritos_Avulsos\paper_functorial_tensor_field_theory\audit\scripts\_lean_concat_work.lean:365:0: warning: Definition `transposeEinstein` is a proposition; use `theorem` instead of `def`
+C:\Users\monar\Documents\antigravity\resilient-turing\Projeto_Gravidade_Quantica\Manuscritos_Avulsos\paper_functorial_tensor_field_theory\audit\scripts\_lean_concat_work.lean:375:0: warning: Definition `emergentCobordismMetric_swap` is a proposition; use `theorem` instead of `def`
+'QuantumGravity.map_id_preservation' depends on axioms: [propext]
+'QuantumGravity.map_comp_preservation' depends on axioms: [propext]
+'QuantumGravity.object_monoidal_isomorphism' depends on axioms: [propext, Quot.sound]
+'QuantumGravity.braiding_naturality' depends on axioms: [propext, Classical.choice, Quot.sound]
+'QuantumGravity.null_energy_condition' depends on axioms: [propext, Quot.sound]
+=== HEAD: exit=0 axiom declarations=32 imports Mathlib=False
+'QuantumGravity.map_id_preservation' depends on axioms: [propext,
+ ADM_Constraints_Satisfied,
+ ADM_Lapse_Smooth,
+ AbstractMatterField,
+ AbstractMetric,
+ Einstein_Equations_Satisfied,
+ LorentzianMetric,
+ PositiveDefinite3D,
+ QFI_NonDegenerate,
+ emergentCobordismMetric,
+ emergentEinsteinMap,
+ emergentLapseMap,
+ emergentMetricMap,
+ emergentPosDefMap]
+'QuantumGravity.map_comp_preservation' depends on axioms: [propext,
+ ADM_Constraints_Satisfied,
+ ADM_Lapse_Smooth,
+ AbstractMatterField,
+ AbstractMetric,
+ Einstein_Equations_Satisfied,
+ LorentzianMetric,
+ PositiveDefinite3D,
+ QFI_NonDegenerate,
+ emergentCobordismMetric,
+ emergentEinsteinMap,
+ emergentLapseMap,
+ emergentMetricMap,
+ emergentPosDefMap]
+'QuantumGravity.object_monoidal_isomorphism' depends on axioms: [propext,
+ ADM_Constraints_Satisfied,
+ AbstractMatterField,
+ AbstractMetric,
+ LorentzianMetric,
+ PositiveDefinite3D,
+ QFI_NonDegenerate,
+ disjointLorMetric,
+ disjointPosDef,
+ disjointUnionDomainMetric,
+ disjointUnionMatter,
+ emergentMetricMap,
+ emergentMetric_tensor_distrib,
+ emergentPosDefMap,
+ tensorADM,
+ tensorQFI,
+ Quot.sound]
+'QuantumGravity.braiding_naturality' depends on axioms: [propext,
+ Classical.choice,
+ ADM_Constraints_Satisfied,
+ ADM_Lapse_Smooth,
+ AbstractMatterField,
+ AbstractMetric,
+ Einstein_Equations_Satisfied,
+ LorentzianMetric,
+ PositiveDefinite3D,
+ QFI_NonDegenerate,
+ disjointLorMetric,
+ disjointPosDef,
+ disjointUnionDomainMetric,
+ disjointUnionMatter,
+ emergentCobordismMetric,
+ emergentCobordismMetric_swap,
+ emergentEinsteinMap,
+ emergentLapseMap,
+ emergentMetricMap,
+ emergentPosDefMap,
+ tensorADM,
+ tensorQFI,
+ transposeEinstein,
+ transposeLapse,
+ transposeMetric,
+ Quot.sound]
+'QuantumGravity.null_energy_condition' depends on axioms: [propext, Quot.sound]
+C:\Users\monar\Documents\antigravity\resilient-turing\Projeto_Gravidade_Quantica\Manuscritos_Avulsos\paper_functorial_tensor_field_theory\audit\scripts\_lean_concat_HEAD.lean:461:0: warning: declaration uses `sorry`
+=== negative control (2+2=5 must fail): exit=1
+C:\Users\monar\Documents\antigravity\resilient-turing\Projeto_Gravidade_Quantica\Manuscritos_Avulsos\paper_functorial_tensor_field_theory\audit\scripts\_lean_concat_work_neg.lean:142:0: warning: Definition `canonicalQFI` is a proposition; use `theorem` instead of `def`
+
+Note: This linter can be disabled with `set_option linter.defProp false`
+C:\Users\monar\Documents\antigravity\resilient-turing\Projeto_Gravidade_Quantica\Manuscritos_Avulsos\paper_functorial_tensor_field_theory\audit\scripts\_lean_concat_work_neg.lean:143:0: warning: Definition `canonicalADM` is a proposition; use `theorem` ins

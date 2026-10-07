@@ -1,0 +1,9 @@
+random pairs: max W2 / bound = 0.8915 (must be <= 1)
+near-extremal eps=0.1: W2=0.31531 bound=0.31623 ratio=0.9971 ; mutated bound diam/2*sqrt(L1)=0.22361 violated: True
+near-extremal eps=0.01: W2=0.09970 bound=0.10000 ratio=0.9970 ; mutated bound diam/2*sqrt(L1)=0.07071 violated: True
+near-extremal eps=0.001: W2=0.03153 bound=0.03162 ratio=0.9970 ; mutated bound diam/2*sqrt(L1)=0.02236 violated: True
+Gibbs a=2: Neumann gap (N=200,400,800) = ['10.9418', '10.9420', '10.9421']  >= K=a: True
+Gibbs a=10: Neumann gap (N=200,400,800) = ['16.5713', '16.5717', '16.5718']  >= K=a: True
+Gibbs a=50: Neumann gap (N=200,400,800) = ['53.9361', '53.9373', '53.9376']  >= K=a: True
+NEG CTRL double well: gap=10.2592 ; max V''=1104.0, min V''=-96.0 -> using K=max V'' would give a FALSE bound: True
+failures=0

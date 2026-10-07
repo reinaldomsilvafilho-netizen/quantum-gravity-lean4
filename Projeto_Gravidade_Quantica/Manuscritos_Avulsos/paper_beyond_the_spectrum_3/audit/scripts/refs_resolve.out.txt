@@ -1,0 +1,179 @@
+bibitems in .tex: 72 (distinct 72); cited keys: 72
+cited but no bibitem: none
+bibitem never cited: none
+bibitem not in REFS table: none
+REFS entry not in .tex: none
+
+[OK ] Aamari2019
+       Crossref: J=1.00 author=ok year=2019 | Estimating the reach of a manifold
+[OK ] Aurell2011
+       Crossref: J=1.00 author=ok year=2011 | Optimal Protocols and Optimal Transport in Stochastic Thermodynamics
+[OK ] BakryEmery1985
+       Crossref: J=1.00 author=ok year=1985 | Diffusions hypercontractives
+       OpenLibrary ISBN: title=ok author=n/a | Séminaire de Probabilités XIX 1983/84 Proceedings / Jaques Azéma, Marc Yor
+       ISBN 9783540152309 checksum ok
+[OK ] Crooks1999
+       Crossref: J=1.00 author=ok year=1999 | Entropy production fluctuation theorem and the nonequilibrium work relation for free energ
+[OK ] DuttaFaulkner2019
+       Crossref: J=1.00 author=ok year=2021 | A canonical purification for the entanglement wedge cross-section
+[OK ] EkelandHofer1989
+       Crossref: J=1.00 author=ok year=1989 | Symplectic topology and Hamiltonian dynamics
+[OK ] Federer1959
+       Crossref: J=1.00 author=ok year=1959 | Curvature measures
+[OK ] GibsonEtAl1976
+       Crossref: J=1.00 author=ok year=1976 | Topological Stability of Smooth Mappings
+[OK ] Gromov1987
+       Crossref: J=1.00 author=ok year=1987 | Hyperbolic Groups
+       OpenLibrary ISBN: title=ok author=n/a | Essays in group theory  / S. M. Gersten
+       ISBN 9780387966182 checksum ok
+[OK ] HoferZehnder1994
+       Crossref: J=1.00 author=ok year=1994 | Symplectic Invariants and Hamiltonian Dynamics
+[OK ] Jarzynski1997
+       Crossref: J=1.00 author=ok year=1997 | Nonequilibrium Equality for Free Energy Differences
+[OK ] KashiwaraSchapira1990
+       Crossref: J=1.00 author=ok year=1990 | Sheaves on Manifolds
+       OpenLibrary ISBN: title=ok author=ok | Sheaves on Manifolds With a Short History "Les debuts de la  / Masaki Kashiwara, Pierre Schapira
+       ISBN 9783540518617 checksum ok
+[OK ] BridsonHaefliger1999
+       Crossref: J=1.00 author=ok year=1999 | Metric Spaces of Non-Positive Curvature
+       OpenLibrary ISBN: title=ok author=ok | Metric spaces of non-positive curvature  / Martin R. Bridson
+       ISBN 9783540643241 checksum ok
+[OK ] JuutinenLindqvistManfredi1999
+       Crossref: J=0.99 author=ok year=1999 | The ∞-Eigenvalue Problem
+[OK ] OttoVillani2000
+       Crossref: J=1.00 author=ok year=2000 | Generalization of an Inequality by Talagrand and Links with the Logarithmic Sobolev Inequa
+[OK ] KawohlFridman2003
+       landing https://dml.cz/handle/10338.dmlcz/119420: HTTP 200, title words found 9/9 | DML-CZ - Czech Digital Mathematics Library: Isoperimetric estimates for the firs
+[OK ] Lindqvist1990
+       Crossref: J=0.99 author=ok year=1990 | On the equation 𝑑𝑖𝑣(|∇𝑢|^{𝑝-2}∇𝑢)+𝜆|𝑢|^{𝑝-2}𝑢=0
+[OK ] SilvaFilhoBTS
+       DataCite: J=0.99 author=ok year=2026 | Beyond the Spectrum: The Complete Three-Volume Monograph on Functional Tensor Realizations
+[OK ] SivakCrooks2012
+       Crossref: J=1.00 author=ok year=2012 | Thermodynamic Metrics and Optimal Paths
+[OK ] ArtsteinAvidanKarasevOstrover2014
+       Crossref: J=1.00 author=ok year=2014 | From symplectic measurements to the Mahler conjecture
+[OK ] ArtsteinAvidanOstrover2008
+       Crossref: J=1.00 author=ok year=2010 | A Brunn-Minkowski Inequality for Symplectic Capacities of Convex Domains
+[OK ] AkersRath2020
+       Crossref: J=1.00 author=ok year=2020 | Entanglement wedge cross sections require tripartite entanglement
+[OK ] BelloniKawohlJuutinen2006
+       Crossref: J=1.00 author=ok year=2006 | The p-Laplace eigenvalue problem as p goes to infinity in a Finsler metric
+[OK ] BlaberSivak2023
+       Crossref: J=1.00 author=ok year=2023 | Optimal control in stochastic thermodynamics
+[OK ] BoissonnatLieutierWintraecken2019
+       Crossref: J=1.00 author=ok year=2019 | The reach, metric distortion, geodesic convexity and the variation of tangent spaces
+[OK ] Carlson1963
+       Crossref: J=1.00 author=ok year=1963 | Lauricella's hypergeometric function FD
+[OK ] ChampionDePascaleJimenez2008
+       DataCite: J=0.67 author=ok year=2008 | The \infty eigenvalue problem and a problem of optimal transportation
+[OK ] Cheeger1970
+       Crossref: J=1.00 author=ok year=2015 | A Lower Bound for the Smallest Eigenvalue of the Laplacian
+[OK ] Chow2022
+       DataCite: J=1.00 author=ok year=2022 | Schlömilch integrals and probability distributions on the simplex
+[OK ] CieliebakHoferLatschevSchlenk2005
+       DataCite: J=1.00 author=ok year=2005 | Quantitative symplectic geometry
+[OK ] Crooks2007
+       Crossref: J=1.00 author=ok year=2007 | Measuring Thermodynamic Length
+[OK ] DLMF
+       landing https://dlmf.nist.gov/5.12: HTTP 200, title words found 1/4 | DLMF: §5.12 Beta Function ‣ Properties ‣ Chapter 5 Gamma Function
+       OpenLibrary ISBN: title=ok author=n/a | NIST Handbook of Mathematical Functions Hardback and CD-ROM  / Daniel W. Lozier, Ronald F. Boisvert, Charles W. Clark
+       ISBN 9780521192255 checksum ok
+[OK ] EkelandHofer1990
+       Crossref: J=0.67 author=ok year=1990 | Syplectic topology and Hamiltonian dynamics II
+[OK ] FloerHofer1994
+       Crossref: J=1.00 author=ok year=1994 | Symplectic homology I open sets in ℂ n
+[OK ] FukagaiItoNarukawa1999
+       Crossref: J=0.99 author=ok year=1999 | Limit as $p\to\infty$ of $p$-Laplace eigenvalue problems and $L^\infty$-inequality of the 
+[OK ] Gromov1985
+       Crossref: J=1.00 author=ok year=1985 | Pseudo holomorphic curves in symplectic manifolds
+[OK ] HaimKislevOstrover2026
+       Crossref: J=1.00 author=ok year=2026 | A counterexample to Viterbo's conjecture
+[OK ] HaydenLemmSorce2023
+       Crossref: J=0.99 author=ok year=2023 | Reflected entropy: Not a correlation measure
+[OK ] HaydenParrikarSorce2021
+       Crossref: J=1.00 author=ok year=2021 | The Markov gap for geometric reflected entropy
+[OK ] JordanKinderlehrerOtto1998
+       Crossref: J=1.00 author=ok year=1998 | The Variational Formulation of the Fokker--Planck Equation
+[OK ] Kashiwara1985
+       landing http://www.numdam.org/item?id=AST_1985__130__193_0: HTTP 200, title words found 4/4 | Index theorem for constructible sheaves
+[OK ] LiebRuskai1973
+       Crossref: J=1.00 author=ok year=1973 | Proof of the strong subadditivity of quantum-mechanical entropy
+[OK ] Lindqvist2008
+       Crossref: J=1.00 author=ok year=2008 | A nonlinear eigenvalue problem
+       OpenLibrary ISBN: title=ok author=n/a | Topics in mathematical analysis  / Paolo Ciatti
+       ISBN 9789812811059 checksum ok
+[OK ] MacPherson1974
+       Crossref: J=1.00 author=ok year=1974 | Chern Classes for Singular Algebraic Varieties
+[OK ] Mather2012
+       Crossref: J=1.00 author=ok year=2012 | Notes on Topological Stability
+[OK ] Mercer1909
+       Crossref: J=0.99 author=ok year=1909 | XVI. Functions of positive and negative type, and their connection the theory of integral 
+[OK ] NakazatoIto2021
+       Crossref: J=1.00 author=ok year=2021 | Geometrical aspects of entropy production in stochastic thermodynamics based on Wasserstei
+[OK ] NguyenEtAl2018
+       Crossref: J=1.00 author=ok year=2018 | Entanglement of purification: from spin chains to holography
+[OK ] NiyogiSmaleWeinberger2008
+       Crossref: J=1.00 author=ok year=2008 | Finding the Homology of Submanifolds with High Confidence from Random Samples
+[OK ] OrroTrotman2010
+       Crossref: J=1.00 author=ok year=2010 | Regularity of the transverse intersection of two regular stratifications
+       OpenLibrary ISBN: title=ok author=n/a | Real and complex singularities  / International Workshop on Real and Complex Singularities (10
+       ISBN 9780521169691 checksum ok
+[OK ] RatajZahle2019
+       Crossref: J=1.00 author=ok year=2019 | Curvature Measures of Singular Sets
+       OpenLibrary ISBN: title=ok author=ok | Curvature Measures of Singular Sets  / Jan Rataj, Martina Zähle
+       ISBN 9783030181826 checksum ok
+[OK ] SalamonBerry1983
+       Crossref: J=1.00 author=ok year=1983 | Thermodynamic Length and Dissipated Availability
+[OK ] Schapira1991
+       Crossref: J=1.00 author=ok year=1991 | Operations on constructible functions
+[OK ] Schapira2017
+       DataCite: J=1.00 author=ok year=2017 | Microlocal analysis and beyond
+[OK ] SchmiedlSeifert2007
+       Crossref: J=1.00 author=ok year=2007 | Optimal Finite-Time Processes In Stochastic Thermodynamics
+[OK ] Schmidt1907
+       Crossref: J=1.00 author=ok year=1907 | Zur Theorie der linearen und nichtlinearen Integralgleichungen
+[OK ] Schwarz2000
+       Crossref: J=1.00 author=ok year=2000 | On the action spectrum for closed symplectically aspherical manifolds
+[OK ] Seifert2012
+       Crossref: J=1.00 author=ok year=2012 | Stochastic thermodynamics, fluctuation theorems and molecular machines
+[OK ] silvafilho2026book
+       DataCite: J=1.00 author=ok year=2026 | Geometry, Tensors, and Quantum Gravity
+[OK ] Srednicki1993
+       Crossref: J=1.00 author=ok year=1993 | Entropy and area
+[OK ] Talagrand1996
+       Crossref: J=1.00 author=ok year=1996 | Transportation cost for Gaussian and other product measures
+[OK ] Trotman2020
+       Crossref: J=1.00 author=ok year=2020 | Stratification Theory
+       OpenLibrary ISBN: title=ok author=n/a | Handbook of Geometry and Topology of Singularities I  / José Luis Cisneros Molina, Dũng Tráng Lê, José Seade
+       ISBN 9783030530600 checksum ok
+[OK ] UmemotoTakayanagi2018
+       Crossref: J=1.00 author=ok year=2018 | Entanglement of purification through holographic duality
+[OK ] VanVuSaito2023
+       Crossref: J=1.00 author=ok year=2023 | Thermodynamic Unification of Optimal Transport: Thermodynamic Uncertainty Relation, Minimu
+[OK ] Villani2009
+       Crossref: J=0.99 author=ok year=2009 | Optimal Transport
+       OpenLibrary ISBN: title=ok author=ok | Optimal transport old and new / Cédric Villani
+       ISBN 9783540710493 checksum ok
+[OK ] Viro1988
+       Crossref: J=1.00 author=ok year=1988 | Some integral calculus based on Euler characteristic
+       OpenLibrary ISBN: title=ok author=n/a | Topology and geometry - Rohlin Seminar  / V. A. Rokhlin
+       ISBN 9783540502371 checksum ok
+[OK ] Viterbo1992
+       Crossref: J=1.00 author=ok year=1992 | Symplectic topology as the geometry of generating functions
+[OK ] Viterbo2000
+       Crossref: J=1.00 author=ok year=2000 | Metric and isoperimetric problems in symplectic geometry
+[OK ] vonRenesseSturm2005
+       Crossref: J=1.00 author=ok year=2004 | Transport inequalities, gradient estimates, entropy and Ricci curvature
+[OK ] Weyl1939
+       Crossref: J=1.00 author=ok year=1939 | On the Volume of Tubes
+[OK ] Whitney1965
+       Crossref: J=1.00 author=ok year=1965 | Tangents to an Analytic Variety
+[OK ] ZhongDeWeese2024
+       Crossref: J=1.00 author=ok year=2024 | Beyond Linear Response: Equivalence between Thermodynamic Geometry and Optimal Transport
+
+resolved and matched: 72/72
+
+Negative controls (each must FAIL):
+  fake DOI: FAILED as required | ['DOI 10.1090/S0002-9947-2099-9999999-9 NOT FOUND']
+  wrong title: FAILED as required | ['Crossref: J=0.00 author=ok year=1959 | Curvature measures']
+  bad ISBN: FAILED as required | ['ISBN 9783540518618 checksum BAD']

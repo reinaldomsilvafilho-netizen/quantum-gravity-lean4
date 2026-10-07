@@ -1,0 +1,311 @@
+bibitems: 68   cited keys: 68
+cited but missing: none
+bibitems never cited: none
+
+PASS ambrosio2003direct: 10.4171/IFB/72 [crossref]
+     tex: A direct variational approach to a problem arising in image reconstruction
+     reg: A direct variational approach to a problem arising in image reconstruction | ['Ambrosio', 'Masnou'] | 2003 | Interfaces and Free Boundaries, Mathematical Analysis, Compu | title ratio 1.00 author_ok=True year_ok=True
+PASS ambrosio2008gradient: 10.1007/978-3-7643-8722-8 [crossref]
+     tex: Gradient Flows in Metric Spaces and in the Space of Probability Measures
+     reg: Gradient Flows | [] | 2008 |  | title ratio 0.33 author_ok=True year_ok=True
+     registry ISBN: ['9783764387211', '9783764387228']
+PASS atienza2020stability: 10.1016/j.patcog.2020.107509 [crossref]
+     tex: On the stability of persistent entropy and new summary functions for topological data analysis
+     reg: On the stability of persistent entropy and new summary functions for topological data analysis | ['Atienza', 'Gonzalez-Díaz', 'Soriano-Trigueros'] | 2020 | Pattern Recognition | title ratio 1.00 author_ok=True year_ok=True
+PASS bakry1985diffusions: 10.1007/BFb0075847 [crossref]
+     tex: Diffusions hypercontractives
+     reg: Diffusions hypercontractives | ['Bakry', 'Émery'] | 1985 | Lecture Notes in Mathematics Séminaire de Probabilités XIX 1 | title ratio 1.00 author_ok=True year_ok=True
+     registry ISBN: ['9783540152309', '9783540393979']
+     ISBN 978-3-540-15230-9 checksum OK
+PASS bakry2014analysis: 10.1007/978-3-319-00227-9 [crossref]
+     tex: Analysis and Geometry of Markov Diffusion Operators
+     reg: Analysis and Geometry of Markov Diffusion Operators | ['Bakry', 'Gentil', 'Ledoux'] | 2014 | Grundlehren der mathematischen Wissenschaften | title ratio 1.00 author_ok=True year_ok=True
+     registry ISBN: ['9783319002262', '9783319002279']
+PASS benamou2000computational: 10.1007/s002110050002 [crossref]
+     tex: A computational fluid mechanics solution to the Monge-Kantorovich mass transfer problem
+     reg: A computational fluid mechanics solution to the Monge-Kantorovich mass transfer problem | ['Benamou', 'Brenier'] | 2000 | Numerische Mathematik | title ratio 1.00 author_ok=True year_ok=True
+PASS bhatia2019bures: 10.1016/j.exmath.2018.01.002 [crossref]
+     tex: On the Bures--Wasserstein distance between positive definite matrices
+     reg: On the Bures–Wasserstein distance between positive definite matrices | ['Bhatia', 'Jain', 'Lim'] | 2019 | Expositiones Mathematicae | title ratio 1.00 author_ok=True year_ok=True
+PASS braunstein1994statistical: 10.1103/PhysRevLett.72.3439 [crossref]
+     tex: Statistical distance and the geometry of quantum states
+     reg: Statistical distance and the geometry of quantum states | ['Braunstein', 'Caves'] | 1994 | Physical Review Letters | title ratio 1.00 author_ok=True year_ok=True
+PASS brenier1991polar: 10.1002/cpa.3160440402 [crossref]
+     tex: Polar factorization and monotone rearrangement of vector-valued functions
+     reg: Polar factorization and monotone rearrangement of vector‐valued functions | ['Brenier'] | 1991 | Communications on Pure and Applied Mathematics | title ratio 1.00 author_ok=True year_ok=True
+PASS buser1982note: 10.24033/asens.1426 [crossref]
+     tex: A note on the isoperimetric constant
+     reg: A note on the isoperimetric constant | ['Buser'] | 1982 | Annales scientifiques de l'École normale supérieure | title ratio 1.00 author_ok=True year_ok=True
+PASS caffarelli2000monotonicity: 10.1007/s002200000257 [crossref]
+     tex: Monotonicity properties of optimal transportation and the FKG and related inequalities
+     reg: Monotonicity Properties of Optimal Transportation�and the FKG and Related Inequalities | ['Caffarelli'] | 2000 | Communications in Mathematical Physics | title ratio 1.00 author_ok=True year_ok=True
+PASS chan2003euler: 10.1137/S0036139901390088 [crossref]
+     tex: Euler's elastica and curvature-based inpainting
+     reg: Euler's Elastica and Curvature-Based Inpainting | ['Shen', 'Kang', 'Chan'] | 2003 | SIAM Journal on Applied Mathematics | title ratio 1.00 author_ok=True year_ok=True
+PASS chazal2009proximity: 10.1145/1542362.1542407 [crossref]
+     tex: Proximity of persistence modules and their diagrams
+     reg: Proximity of persistence modules and their diagrams | ['Chazal', 'Cohen-Steiner', 'Glisse'] | 2009 | Proceedings of the twenty-fifth annual symposium on Computat | title ratio 1.00 author_ok=True year_ok=True
+PASS chazal2016structure: 10.1007/978-3-319-42545-0 [crossref]
+     tex: The Structure and Stability of Persistence Modules
+     reg: The Structure and Stability of Persistence Modules | ['Chazal', 'de Silva', 'Glisse'] | 2016 | SpringerBriefs in Mathematics | title ratio 1.00 author_ok=True year_ok=True
+     registry ISBN: ['9783319425436', '9783319425450']
+     ISBN 978-3-319-42545-0 checksum OK
+CHECK cheeger1970lower: 10.1515/9781400869312-013 [crossref]
+     tex: A lower bound for the smallest eigenvalue of the Laplacian
+     reg: A Lower Bound for the Smallest Eigenvalue of the Laplacian | ['Cheeger'] | 2015 | Problems in Analysis: A Symposium in Honor of Salomon Bochne | title ratio 1.00 author_ok=True year_ok=False
+     registry ISBN: ['9781400869312']
+PASS chen2014entanglement: 10.1088/1742-5468/2014/10/P10011 [crossref]
+     tex: Entanglement contour
+     reg: Entanglement contour | ['Chen', 'Vidal'] | 2014 | Journal of Statistical Mechanics: Theory and Experiment | title ratio 1.00 author_ok=True year_ok=True
+PASS chintakunta2015entropy: 10.1016/j.patcog.2014.06.023 [crossref]
+     tex: An entropy-based persistence barcode
+     reg: An entropy-based persistence barcode | ['Chintakunta', 'Gentimis', 'Gonzalez-Diaz'] | 2015 | Pattern Recognition | title ratio 1.00 author_ok=True year_ok=True
+PASS chowdhury2019gromov: 10.1093/imaiai/iaz026 [crossref]
+     tex: The Gromov--Wasserstein distance between networks and stable network invariants
+     reg: The Gromov–Wasserstein distance between networks and stable network invariants | ['Chowdhury', 'Mémoli'] | 2019 | Information and Inference: A Journal of the IMA | title ratio 1.00 author_ok=True year_ok=True
+PASS cohensteiner2007stability: 10.1007/s00454-006-1276-5 [crossref]
+     tex: Stability of persistence diagrams
+     reg: Stability of Persistence Diagrams | ['Cohen-Steiner', 'Edelsbrunner', 'Harer'] | 2007 | Discrete &amp; Computational Geometry | title ratio 1.00 author_ok=True year_ok=True
+PASS connes1985noncommutative: 10.1007/BF02698807 [crossref]
+     tex: Non-commutative differential geometry
+     reg: Non-commutative differential geometry | ['Connes'] | 1985 | Publications Mathématiques de l'IHÉS | title ratio 1.00 author_ok=True year_ok=True
+PASS connes1988action: 10.1007/BF01218391 [crossref]
+     tex: The action functional in non-commutative geometry
+     reg: The action functional in non-commutative geometry | ['Connes'] | 1988 | Communications in Mathematical Physics | title ratio 1.00 author_ok=True year_ok=True
+NODOI connes1994noncommutative
+     Open Library ISBN 978-0-12-185860-5: 200 | Noncommutative geometry | title ratio 1.00
+     ISBN 978-0-12-185860-5 checksum OK
+PASS connes1995local: 10.1007/BF01895667 [crossref]
+     tex: The local index formula in noncommutative geometry
+     reg: The local index formula in noncommutative geometry | ['Connes', 'Moscovici'] | 1995 | Geometric and Functional Analysis | title ratio 1.00 author_ok=True year_ok=True
+PASS crawley2015decomposition: 10.1142/S0219498815500668 [crossref]
+     tex: Decomposition of pointwise finite-dimensional persistence modules
+     reg: Decomposition of pointwise finite-dimensional persistence modules | ['Crawley-Boevey'] | 2015 | Journal of Algebra and Its Applications | title ratio 1.00 author_ok=True year_ok=True
+PASS edelsbrunner2002topological: 10.1007/s00454-002-2885-2 [crossref]
+     tex: Topological persistence and simplification
+     reg: Topological Persistence and Simplification | ['Edelsbrunner', 'Letscher', 'Zomorodian'] | 2002 | Discrete &amp; Computational Geometry | title ratio 1.00 author_ok=True year_ok=True
+PASS edelsbrunner2010computational: 10.1090/mbk/069 [crossref]
+     tex: Computational Topology: An Introduction
+     reg: Computational Topology | ['Edelsbrunner', 'Harer'] | 2009 |  | title ratio 0.73 author_ok=True year_ok=True
+     registry ISBN: ['9780821849255', '9781470412081']
+     ISBN 978-0-8218-4925-5 checksum OK
+PASS evans2015measure: 10.1201/b18333 [crossref]
+     tex: Measure Theory and Fine Properties of Functions
+     reg: Measure Theory and Fine Properties of Functions, Revised Edition | ['Evans', 'Gariepy'] | 2015 |  | title ratio 0.85 author_ok=True year_ok=True
+     registry ISBN: ['9781482242393']
+PASS gordon1992one: 10.1090/S0273-0979-1992-00289-6 [crossref]
+     tex: One cannot hear the shape of a drum
+     reg: One cannot hear the shape of a drum | ['Gordon', 'Webb', 'Wolpert'] | 1992 | Bulletin of the American Mathematical Society | title ratio 1.00 author_ok=True year_ok=True
+PASS grochenig2001foundations: 10.1007/978-1-4612-0003-1 [crossref]
+     tex: Foundations of Time-Frequency Analysis
+     reg: Foundations of Time-Frequency Analysis | ['Gröchenig'] | 2001 | Applied and Numerical Harmonic Analysis | title ratio 1.00 author_ok=True year_ok=True
+     registry ISBN: ['9781461265689', '9781461200031']
+     ISBN 978-1-4612-6568-9 checksum OK
+PASS guillemin1985new: 10.1016/0001-8708(85)90018-0 [crossref]
+     tex: A new proof of Weyl's formula on the asymptotic distribution of eigenvalues
+     reg: A new proof of Weyl's formula on the asymptotic distribution of eigenvalues | ['Guillemin'] | 1985 | Advances in Mathematics | title ratio 1.00 author_ok=True year_ok=True
+PASS helstrom1967minimum: 10.1016/0375-9601(67)90366-0 [crossref]
+     tex: Minimum mean-squared error of estimates in quantum statistics
+     reg: Minimum mean-squared error of estimates in quantum statistics | ['Helstrom'] | 1967 | Physics Letters A | title ratio 1.00 author_ok=True year_ok=True
+PASS hormander2003analysis: 10.1007/978-3-642-61497-2 [crossref]
+     tex: The Analysis of Linear Partial Differential Operators I: Distribution Theory and Fourier Analysis
+     reg: The Analysis of Linear Partial Differential Operators I | ['Hörmander'] | 2003 | Classics in Mathematics | title ratio 0.73 author_ok=True year_ok=True
+     registry ISBN: ['9783540006626', '9783642614972']
+     ISBN 978-3-540-00662-6 checksum OK
+PASS jordan1998variational: 10.1137/S0036141096303359 [crossref]
+     tex: The variational formulation of the Fokker--Planck equation
+     reg: The Variational Formulation of the Fokker--Planck Equation | ['Jordan', 'Kinderlehrer', 'Otto'] | 1998 | SIAM Journal on Mathematical Analysis | title ratio 1.00 author_ok=True year_ok=True
+PASS kac1966can: 10.1080/00029890.1966.11970915 [crossref]
+     tex: Can one hear the shape of a drum?
+     reg: Can One Hear the Shape of a Drum? | ['Kac'] | 1966 | The American Mathematical Monthly | title ratio 1.00 author_ok=True year_ok=True
+PASS kaczynski2004computational: 10.1007/b97315 [crossref]
+     tex: Computational Homology
+     reg: Computational Homology | ['Kaczynski', 'Mischaikow', 'Mrozek'] | 2004 | Applied Mathematical Sciences | title ratio 1.00 author_ok=True year_ok=True
+     registry ISBN: ['9781441923547', '9780387215976']
+     ISBN 978-0-387-21597-6 checksum OK
+PASS kantorovich2006translocation: 10.1007/s10958-006-0049-2 [crossref]
+     tex: On the translocation of masses
+     reg: On the Translocation of Masses | ['Kantorovich'] | 2006 | Journal of Mathematical Sciences | title ratio 1.00 author_ok=True year_ok=True
+PASS ledoux1994simple: 10.1090/S0002-9939-1994-1186991-X [crossref]
+     tex: A simple analytic proof of an inequality by P.~Buser
+     reg: A simple analytic proof of an inequality by P. Buser | ['Ledoux'] | 1994 | Proceedings of the American Mathematical Society | title ratio 1.00 author_ok=True year_ok=True
+PASS liu2020quantum: 10.1088/1751-8121/ab5d4d [crossref]
+     tex: Quantum Fisher information matrix and multiparameter estimation
+     reg: Quantum Fisher information matrix and multiparameter estimation | ['Liu', 'Yuan', 'Lu'] | 2020 | Journal of Physics A: Mathematical and Theoretical | title ratio 1.00 author_ok=True year_ok=True
+     arXiv 1907.08037: Quantum Fisher information matrix and multiparameter estimation | ratio 1.00
+PASS lombardini2019fractional: 10.1515/ans-2018-2016 [crossref]
+     tex: Fractional perimeters from a fractal perspective
+     reg: Fractional Perimeters from a Fractal Perspective | ['Lombardini'] | 2019 | Advanced Nonlinear Studies | title ratio 1.00 author_ok=True year_ok=True
+     arXiv 1603.06088: Fractional perimeter from a fractal perspective | ratio 0.99
+PASS lord2013singular: 10.1515/9783110262551 [crossref]
+     tex: Singular Traces: Theory and Applications
+     reg: Singular Traces | ['Lord', 'Sukochev', 'Zanin'] | 2012 |  | title ratio 0.56 author_ok=True year_ok=True
+     registry ISBN: ['9783110262506']
+     ISBN 978-3-11-026250-6 checksum OK
+PASS lott2009ricci: 10.4007/annals.2009.169.903 [crossref]
+     tex: Ricci curvature for metric-measure spaces via optimal transport
+     reg: Ricci curvature for metric-measure spaces via optimal transport | ['Lott', 'Villani'] | 2009 | Annals of Mathematics | title ratio 1.00 author_ok=True year_ok=True
+PASS lovasz2012large: 10.1090/coll/060 [crossref]
+     tex: Large Networks and Graph Limits
+     reg: Large Networks and Graph Limits | ['Lovász'] | 2012 | Colloquium Publications | title ratio 1.00 author_ok=True year_ok=True
+     registry ISBN: ['9780821890851', '9780821894453', '9781470415839']
+PASS marques2014minmax: 10.4007/annals.2014.179.2.6 [crossref]
+     tex: Min-max theory and the Willmore conjecture
+     reg: The Min-Max theory and the Willmore conjecture | ['Marques', 'Neves'] | 2014 | Annals of Mathematics | title ratio 0.95 author_ok=True year_ok=True
+PASS mccann1997convexity: 10.1006/aima.1997.1634 [crossref]
+     tex: A convexity principle for interacting gases
+     reg: A Convexity Principle for Interacting Gases | ['McCann'] | 1997 | Advances in Mathematics | title ratio 1.00 author_ok=True year_ok=True
+PASS memoli2011gromov: 10.1007/s10208-011-9093-5 [crossref]
+     tex: Gromov--Wasserstein distances and the metric approach to object matching
+     reg: Gromov–Wasserstein Distances and the Metric Approach to Object Matching | ['Mémoli'] | 2011 | Foundations of Computational Mathematics | title ratio 1.00 author_ok=True year_ok=True
+PASS otto2000generalization: 10.1006/jfan.1999.3557 [crossref]
+     tex: Generalization of an inequality by Talagrand and links with the logarithmic Sobolev inequality
+     reg: Generalization of an Inequality by Talagrand and Links with the Logarithmic Sobolev Inequality | ['Otto', 'Villani'] | 2000 | Journal of Functional Analysis | title ratio 1.00 author_ok=True year_ok=True
+PASS petz1996monotone: 10.1016/0024-3795(94)00211-8 [crossref]
+     tex: Monotone metrics on matrix spaces
+     reg: Monotone metrics on matrix spaces | ['Petz'] | 1996 | Linear Algebra and its Applications | title ratio 1.00 author_ok=True year_ok=True
+PASS peyre2018comparison: 10.1051/cocv/2017050 [crossref]
+     tex: Comparison between $W_2$ distance and $\dot{H}^{-1}$ norm, and localization of Wasserstein distance
+     reg: Comparison between W<sub>2</sub> distance and Ḣ<sup>−1</sup> norm, and Localization of Wasserstein distance | ['Peyre'] | 2018 | ESAIM: Control, Optimisation and Calculus of Variations | title ratio 0.91 author_ok=True year_ok=True
+     arXiv 1104.4631: ERR The read operation timed out
+PASS provost1980riemannian: 10.1007/BF02193559 [crossref]
+     tex: Riemannian structure on manifolds of quantum states
+     reg: Riemannian structure on manifolds of quantum states | ['Provost', 'Vallee'] | 1980 | Communications in Mathematical Physics | title ratio 1.00 author_ok=True year_ok=True
+PASS safranek2017discontinuities: 10.1103/PhysRevA.95.052320 [crossref]
+     tex: Discontinuities of the quantum Fisher information and the Bures metric
+     reg: Discontinuities of the quantum Fisher information and the Bures metric | ['Šafránek'] | 2017 | Physical Review A | title ratio 1.00 author_ok=True year_ok=True
+PASS sard1942measure: 10.1090/S0002-9904-1942-07811-6 [crossref]
+     tex: The measure of the critical values of differentiable maps
+     reg: The measure of the critical values of differentiable maps | ['Sard'] | 1942 | Bulletin of the American Mathematical Society | title ratio 1.00 author_ok=True year_ok=True
+PASS silvafilho2026beyond: 10.5281/zenodo.22644743 [datacite]
+     tex: Beyond the Spectrum: Functional Realizations of Matrices and Tensors, Emerging Invariants, and Geometric Measu
+     reg: Beyond the Spectrum: The Complete Three-Volume Monograph on Functional Tensor Realizations, Metric Measure Geo | ['Silva-Filho'] | 2026 | Zenodo | title ratio 0.46 author_ok=True year_ok=True
+PASS silvafilho2026geometry: 10.5281/zenodo.22290043 [datacite]
+     tex: Geometry, Tensors, and Quantum Gravity
+     reg: Geometry, Tensors, and Quantum Gravity | ['Silva-Filho'] | 2026 | Zenodo | title ratio 1.00 author_ok=True year_ok=True
+PASS sturm2006geometryI: 10.1007/s11511-006-0002-8 [crossref]
+     tex: On the geometry of metric measure spaces. I
+     reg: On the geometry of metric measure spaces | ['Sturm'] | 2006 | Acta Mathematica | title ratio 0.98 author_ok=True year_ok=True
+PASS sturm2006geometryII: 10.1007/s11511-006-0003-7 [crossref]
+     tex: On the geometry of metric measure spaces. II
+     reg: On the geometry of metric measure spaces. II | ['Sturm'] | 2006 | Acta Mathematica | title ratio 1.00 author_ok=True year_ok=True
+PASS sturm2023space: 10.1090/memo/1443 [crossref]
+     tex: The Space of Spaces: Curvature Bounds and Gradient Flows on the Space of Metric Measure Spaces
+     reg: The Space of Spaces: Curvature Bounds and Gradient Flows on the Space of Metric Measure Spaces | ['Sturm'] | 2023 | Memoirs of the American Mathematical Society | title ratio 1.00 author_ok=True year_ok=True
+PASS triebel1983theory: 10.1007/978-3-0346-0416-1 [crossref]
+     tex: Theory of Function Spaces
+     reg: Theory of Function Spaces | ['Triebel'] | 1983 |  | title ratio 1.00 author_ok=True year_ok=True
+     registry ISBN: ['9783034604154', '9783034604161']
+     ISBN 978-3-0346-0415-4 checksum OK
+PASS uhlmann1976transition: 10.1016/0034-4877(76)90060-4 [crossref]
+     tex: The ``transition probability'' in the state space of a $*$-algebra
+     reg: The “transition probability” in the state space of a ∗-algebra | ['Uhlmann'] | 1976 | Reports on Mathematical Physics | title ratio 1.00 author_ok=True year_ok=True
+PASS vandam2003which: 10.1016/S0024-3795(03)00483-X [crossref]
+     tex: Which graphs are determined by their spectrum?
+     reg: Which graphs are determined by their spectrum? | ['van Dam', 'Haemers'] | 2003 | Linear Algebra and its Applications | title ratio 1.00 author_ok=True year_ok=True
+PASS verstraete2010continuous: 10.1103/PhysRevLett.104.190405 [crossref]
+     tex: Continuous matrix product states for quantum fields
+     reg: Continuous Matrix Product States for Quantum Fields | ['Verstraete', 'Cirac'] | 2010 | Physical Review Letters | title ratio 1.00 author_ok=True year_ok=True
+PASS villani2009optimal: 10.1007/978-3-540-71050-9 [crossref]
+     tex: Optimal Transport: Old and New
+     reg: Optimal Transport | ['Villani'] | 2009 | Grundlehren der mathematischen Wissenschaften | title ratio 0.74 author_ok=True year_ok=True
+     registry ISBN: ['9783540710493', '9783540710509']
+     ISBN 978-3-540-71049-3 checksum OK
+PASS visintin1991generalized: 10.1007/BF03167679 [crossref]
+     tex: Generalized coarea formula and fractal sets
+     reg: Generalized coarea formula and fractal sets | ['Visintin'] | 1991 | Japan Journal of Industrial and Applied Mathematics | title ratio 1.00 author_ok=True year_ok=True
+PASS von2005transport: 10.1002/cpa.20060 [crossref]
+     tex: Transport inequalities, gradient estimates, entropy and Ricci curvature
+     reg: Transport inequalities, gradient estimates, entropy and Ricci curvature | ['von Renesse', 'Sturm'] | 2005 | Communications on Pure and Applied Mathematics | title ratio 1.00 author_ok=True year_ok=True
+PASS wagner2012efficient: 10.1007/978-3-642-23175-9_7 [crossref]
+     tex: Efficient computation of persistent homology for cubical data
+     reg: Efficient Computation of Persistent Homology for Cubical Data | ['Wagner', 'Chen', 'Vuçini'] | 2012 | Mathematics and Visualization Topological Methods in Data An | title ratio 1.00 author_ok=True year_ok=True
+     registry ISBN: ['9783642231742', '9783642231759']
+PASS white1973global: 10.1090/S0002-9939-1973-0324603-1 [crossref]
+     tex: A global invariant of conformal mappings in space
+     reg: A global invariant of conformal mappings in space | ['White'] | 1973 | Proceedings of the American Mathematical Society | title ratio 1.00 author_ok=True year_ok=True
+PASS wodzicki1987noncommutative: 10.1007/BFb0078372 [crossref]
+     tex: Noncommutative residue. Chapter I. Fundamentals
+     reg: Noncommutative residue Chapter I. Fundamentals | ['Wodzicki'] | 1987 | Lecture Notes in Mathematics K-Theory, Arithmetic and Geomet | title ratio 1.00 author_ok=True year_ok=True
+     registry ISBN: ['9783540185710', '9783540480167']
+PASS zanardi2007information: 10.1103/PhysRevLett.99.100603 [crossref]
+     tex: Information-theoretic differential geometry of quantum phase transitions
+     reg: Information-Theoretic Differential Geometry of Quantum Phase Transitions | ['Zanardi', 'Giorda', 'Cozzini'] | 2007 | Physical Review Letters | title ratio 1.00 author_ok=True year_ok=True
+PASS zomorodian2005computing: 10.1007/s00454-004-1146-y [crossref]
+     tex: Computing persistent homology
+     reg: Computing Persistent Homology | ['Zomorodian', 'Carlsson'] | 2005 | Discrete &amp; Computational Geometry | title ratio 1.00 author_ok=True year_ok=True
+
+summary: PASS 66  CHECK 1  FAIL 0
+
+NEGATIVE CONTROLS
+mutated DOI 10.1007/BF01218391x9 -> 404 (expected 404)
+wrong-title ratio (Connes 1988 vs McCann title): 0.24 (expected < 0.8)
+ISBN checksum of mutated 978-0-12-185860-6: False (expected False)
+
+CITATION TRAVERSAL (OpenAlex)
+
+[memoli2011gromov] Gromov–Wasserstein Distances and the Metric Approach to Object Matching | cited_by=535 | refs=130
+  backward (most cited refs):
+    1996   6639 Probability and Measure. https://doi.org/10.2307/2291440
+    2002   6358 Shape matching and object recognition using shape contexts https://doi.org/10.1109/34.993558
+    1984   6006 Combinatorial Optimization: Algorithms and Complexity. https://doi.org/10.2307/2322374
+    2003   4601 Topics in Optimal Transportation https://doi.org/10.1090/gsm/058
+    1993   4018 Protein Structure Comparison by Alignment of Distance Matrices https://doi.org/10.1006/jmbi.1993.1489
+    1984   3590 Combinatorial optimization:Algorithms and complexity https://doi.org/10.1109/tassp.1984.1164450
+    2001   2691 A Course in Metric Geometry https://doi.org/10.1090/gsm/033
+    2007   1798 Metric Structures for Riemannian and Non-Riemannian Spaces https://doi.org/10.1007/978-0-8176-4583-0
+  forward since 2023: 259 works; most cited:
+    2024    71 Optimal transport for single-cell and spatial omics https://doi.org/10.1038/s43586-024-00334-2
+    2023    63 Partial alignment of multislice spatially resolved transcriptomics data https://doi.org/10.1101/gr.277670.123
+    2023    60 The Space of Spaces: Curvature Bounds and Gradient Flows on the Space of Metric Measure Sp https://doi.org/10.1090/memo/1443
+    2024    50 Recent Advances in Optimal Transport for Machine Learning https://doi.org/10.1109/tpami.2024.3489030
+    2023    39 Elastic Shape Analysis of Surfaces with Second-Order Sobolev Metrics: A Comprehensive Nume https://doi.org/10.1007/s11263-022-01743-0
+    2024    37 Gromov–Wasserstein unsupervised alignment reveals structural correspondences between the c https://doi.org/10.1038/s41598-024-65604-1
+    2023    32 Robust Attributed Graph Alignment via Joint Structure Learning and Optimal Transport https://doi.org/10.1109/icde55515.2023.00129
+    2023    30 CAJAL enables analysis and integration of single-cell morphological data using metric geom https://doi.org/10.1038/s41467-023-39424-2
+    2024    28 Inverse Design of Multistructured Terahertz Metamaterial Sensors Based on Improved Conditi https://doi.org/10.1021/acsami.4c10921
+    2023    28 A survey of Optimal Transport for Computer Graphics and Computer Vision https://doi.org/10.1111/cgf.14778
+
+[chowdhury2019gromov] The Gromov–Wasserstein distance between networks and stable network invariants | cited_by=76 | refs=47
+  backward (most cited refs):
+    1999  14150 Convergence of Probability Measures https://doi.org/10.1002/9780470316962
+    1999   9099 Authoritative sources in a hyperlinked environment https://doi.org/10.1145/324133.324140
+    2010   7040 Networks: An Introduction https://doi.org/10.1093/acprof:oso/9780199206650.001.0001
+    2003   4601 Topics in Optimal Transportation https://doi.org/10.1090/gsm/058
+    2013   3835 Optimal Transport: Old and New https://doi.org/10.1007/978-3-540-71050-9
+    1995   3644 Classical Descriptive Set Theory https://doi.org/10.1007/978-1-4612-4190-4
+    2005   2312 Gradient Flows: In Metric Spaces and in the Space of Probability Measures https://doi.org/10.1007/978-3-7643-8722-8
+    1984   2294 Real Analysis: Modern Techniques and Their Applications None
+  forward since 2023: 29 works; most cited:
+    2023    17 Efficient Approximation of Gromov-Wasserstein Distance Using Importance Sparsification https://doi.org/10.1080/10618600.2023.2165500
+    2023    14 The Ultrametric Gromov–Wasserstein Distance https://doi.org/10.1007/s00454-023-00583-0
+    2023    12 Populations of unlabelled networks: graph space geometry and generalized geodesic principa https://doi.org/10.1093/biomet/asad024
+    2024     8 On the Existence of Monge Maps for the Gromov–Wasserstein Problem https://doi.org/10.1007/s10208-024-09643-0
+    2025     7 Flexible and Probabilistic Topology Tracking With Partial Optimal Transport https://doi.org/10.1109/tvcg.2025.3561300
+    2024     7 The Gromov–Wasserstein Distance Between Spheres https://doi.org/10.1007/s10208-024-09678-3
+    2023     7 Distributed IoT Community Detection via Gromov–Wasserstein Metric https://doi.org/10.1109/jiot.2023.3332740
+    2023     6 Intrusion Detection in Networks by Wasserstein Enabled Many-Objective Evolutionary Algorit https://doi.org/10.3390/math11102342
+    2025     5 Self-Supervised Hypergraph Training Framework via Structure-Aware Learning https://doi.org/10.1109/tpami.2025.3594487
+    2024     5 Reversible Gromov–Monge Sampler for Simulation-Based Inference https://doi.org/10.1137/23m1550384
+
+[atienza2020stability] On the stability of persistent entropy and new summary functions for topological data analysis | cited_by=99 | refs=57
+  backward (most cited refs):
+    2001 134153 Random Forests https://doi.org/10.1023/a:1010933404324
+    1948  83017 A Mathematical Theory of Communication https://doi.org/10.1002/j.1538-7305.1948.tb01338.x
+    1948  49840 A Mathematical Theory of Communication https://doi.org/10.1002/j.1538-7305.1948.tb00917.x
+    2001  37725 Elements of Information Theory https://doi.org/10.1002/0471200611
+    2005  13148 Elements of Information Theory https://doi.org/10.1002/047174882x
+    2015   3738 2015 IEEE Conference on Computer Vision and Pattern Recognition (CVPR) https://doi.org/10.1109/cvpr31182.2015
+    2002   1834 Topological Persistence and Simplification https://doi.org/10.1007/s00454-002-2885-2
+    2010   1751 Computational topology an introduction None
+  forward since 2023: 63 works; most cited:
+    2023    76 A Survey of Vectorization Methods in Topological Data Analysis https://doi.org/10.1109/tpami.2023.3308391
+    2025    49 Visualizing nanoparticle surface dynamics and instabilities enabled by deep denoising https://doi.org/10.1126/science.ads2688
+    2023    40 Topological data analysis and machine learning https://doi.org/10.1080/23746149.2023.2202331
+    2023    18 Configuration feature extraction and mechanical properties prediction of particle reinforc https://doi.org/10.1016/j.coco.2023.101688
+    2024    17 Topological and geometric analysis of cell states in single-cell transcriptomic data https://doi.org/10.1093/bib/bbae176
+    2024    16 Predicting the generalization gap in neural networks using topological data analysis https://doi.org/10.1016/j.neucom.2024.127787
+    2023    15 Persistent Homology-Based Machine Learning Method for Filtering and Classifying Mammograph https://doi.org/10.3390/cancers15092606
+    2024    14 Topological feature search method for multichannel EEG: Application in ADHD classification https://doi.org/10.1016/j.bspc.2024.107153
+    2024    14 Investigation of Indian stock markets using topological data analysis and geometry-inspire https://doi.org/10.1016/j.physa.2024.129785
+    2023    14 Persistent homology analysis distinguishes pathological bone microstructure in non-linear  https://doi.org/10.1038/s41598-023-28985-3

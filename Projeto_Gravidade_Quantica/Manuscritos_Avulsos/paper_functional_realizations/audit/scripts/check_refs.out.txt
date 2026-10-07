@@ -1,0 +1,28 @@
+OK   [1] Auffinger-BenArous-Cerny: 10.1002/cpa.21422
+     Random Matrices and Complexity of Spin Glasses | Auffinger | 2012 | Communications on Pure and Applied Mathematics | vol 66 pp 165-201
+OK   [2] Evans-Gariepy: 10.1201/b18333
+     Measure Theory and Fine Properties of Functions, Revised Edition | Evans | 2015 |  | vol None pp None
+OK   [3] Lovasz-Szegedy 2006: 10.1016/j.jctb.2006.05.002
+     Limits of dense graph sequences | Lovász | 2006 | Journal of Combinatorial Theory, Series B | vol 96 pp 933-957
+OK   [4] Lovasz book: 10.1090/coll/060
+     Large Networks and Graph Limits | Lovász | 2012 | Colloquium Publications | vol None pp None
+OK   [5] Lim 2005: 10.1109/CAMAP.2005.1574201
+     Singular Values and Eigenvalues of Tensors: A Variational Approach | Lek-Heng Lim | None | 1st IEEE International Workshop on Computational Advances in Multi-Sensor Adaptive Processing, 2005. | vol None pp 129-132
+OK   [6] Qi 2005: 10.1016/j.jsc.2005.05.007
+     Eigenvalues of a real supersymmetric tensor | Qi | 2005 | Journal of Symbolic Computation | vol 40 pp 1302-1324
+OK   [7] Rudin-Osher-Fatemi: 10.1016/0167-2789(92)90242-F
+     Nonlinear total variation based noise removal algorithms | Rudin | 1992 | Physica D: Nonlinear Phenomena | vol 60 pp 259-268
+OK   [8] Milnor: 10.1515/9781400881802
+     Morse Theory. (AM-51) | Milnor | 1963 |  | vol None pp None
+OK   [9] Tomioka-Suzuki (arXiv): 10.48550/arXiv.1407.1870
+     Spectral norm of random tensors | Tomioka, Ryota | 2014 | DataCite
+OK   [10] Nguyen-Drineas-Tran: 10.1093/imaiai/iav004
+     Tensor sparsification via a bound on the spectral norm of random tensors: Algorithm 1. | Nguyen | 2015 | Information and Inference | vol 4 pp 195-229
+OK   missing: De Silva-Lim 2008: 10.1137/06066518X
+     Tensor Rank and the Ill-Posedness of the Best Low-Rank Approximation Problem | de Silva | 2008 | SIAM Journal on Matrix Analysis and Applications | vol 30 pp 1084-1127
+OK   missing: Hillar-Lim 2013: 10.1145/2512329
+     Most Tensor Problems Are NP-Hard | Hillar | 2013 | Journal of the ACM | vol 60 pp 1-39
+OK   missing: Lovasz-Szegedy GAFA 2007: 10.1007/s00039-007-0599-6
+     Szemerédi’s Lemma for the Analyst | Lovász | 2007 | GAFA Geometric And Functional Analysis | vol 17 pp 252-270
+FAIL NEG CONTROL fake: 10.9999/fake.doi.000000 -> HTTP Error 404: Not Found
+failures: 0

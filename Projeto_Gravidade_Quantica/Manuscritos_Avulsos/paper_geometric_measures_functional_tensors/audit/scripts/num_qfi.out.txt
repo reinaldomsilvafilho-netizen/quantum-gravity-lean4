@@ -1,0 +1,8 @@
+trial 0: oracle SLD 0.845094 | oracle Bures 0.845093 | paper(7.6) 0.422547 | 2x paper 0.845094
+trial 1: oracle SLD 1.521144 | oracle Bures 1.520638 | paper(7.6) 0.760572 | 2x paper 1.521144
+trial 2: oracle SLD 0.481310 | oracle Bures 0.481281 | paper(7.6) 0.240655 | 2x paper 0.481310
+trial 3: oracle SLD 0.802149 | oracle Bures 0.802212 | paper(7.6) 0.401074 | 2x paper 0.802149
+trial 4: oracle SLD 0.711003 | oracle Bures 0.711023 | paper(7.6) 0.355501 | 2x paper 0.711003
+counterexample (local-tex 7.2b): rho depends on x1 only; g=[[0.2333, 0.0], [0.0, 0.0]] det=0.000e+00 ; rho non-constant (d1 rho norm 0.338) -> Vol=0 but rho not constant
+gauge orbit rho=U(x) rho0 U(x)^dag: det g = 18.5165 > 0 -> 'constant modulo gauge' does NOT give Vol=0
+failures=0

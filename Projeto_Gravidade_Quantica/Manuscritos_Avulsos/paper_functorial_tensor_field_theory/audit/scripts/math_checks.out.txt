@@ -1,0 +1,16 @@
+[PASS] C1a Re Tr(rho[Q,dQ])=0 for Q in u(chi): max over 200 samples 1.78e-15; negative control (generic Q) min 1.86e-03
+[PASS] C1b Re Tr(R^dag dR) = (1/2) d||R||^2: errors over h-refinement ['2.1e-03', '2.1e-05', '2.1e-07']
+[PASS] C1c identity flow gives K_xx != 0 (F(id) is not the static cylinder): K_xx = -cos(x)/2  (control: ||R|| constant gives K_xx = 0)
+[PASS] C2 lapse N unbounded (not smooth) at a rank change of rho: N(t) for t=[0.01, 0.0001, 1e-06, 1e-08]: ['2.169', '3.044', '3.722', '4.295'] (grows like |log t|^(1/2)); FD-vs-analytic rel err 3.6e-08; control N max 1.219
+[PASS] C3 F not well defined on reparametrization classes: paper lapse 4-volumes {identity: 2.208193, t^2: 1.956547, smoothstep: 1.912048}; covariant-lapse control spread 4.4e-16
+[PASS] C4a sympy Einstein tensor matches Friedmann oracle: G_tt = 3*Derivative(a(t), t)**2/a(t)**2
+[PASS] C4b Lemma 5.1 fails: endpoints on-shell, interior violates G_tt + Lam g_tt = 8 pi G T_tt = 0: residual at t=0: -Lambda*N**2; at t=1 -Lambda*N**2; at t=1/2 with Lam=0: 3 = 3.0000 (N=1)
+[PASS] C4c control: de Sitter satisfies the same test: residual 0
+[PASS] C5 T_kk = ||k.nabla Psi||_HS^2 >= 0 for null k (algebraic NEC): max rel gap 6.9e-14; min T_kk 1.363e+00; control (timelike) mismatches 500/500
+[PASS] C6 j_i sign: -n h T equals -Re Tr(pi^dag d_i psi), opposite to Eq. (2.3): max|j_geom + j_paper| = 3.0e-12; min|j_geom - j_paper| = 2.8e-02
+[PASS] C6b rho_matt = n n T matches Eq. (2.2) (V=0): max err 1.9e-12
+[PASS] C7 g_QFI(T*) = g_QFI(T); projector matters: max diff 0.0e+00; eig [1.21727649 2.71687238]; control unprojected g_xx 3.2679 vs 2.1488
+[INFO] C8 Area 1.00e-30 m^2 -> log chi ~ 9.57e+38 (chi ~ 10^4.16e+38)
+[INFO] C8 Area 1.00e+00 m^2 -> log chi ~ 9.57e+68 (chi ~ 10^4.16e+68)
+[INFO] C8 Area 5.10e+14 m^2 -> log chi ~ 4.88e+83 (chi ~ 10^2.12e+83)
+FAILED CHECKS: 0

@@ -1,0 +1,156 @@
+{
+ "created": "2026-09-21T01:22:59.292804+00:00",
+ "modified": "2026-09-21T01:23:01.540249+00:00",
+ "id": 22866175,
+ "conceptrecid": "22644743",
+ "doi": "10.5281/zenodo.22866175",
+ "conceptdoi": "10.5281/zenodo.22644743",
+ "doi_url": "https://doi.org/10.5281/zenodo.22866175",
+ "metadata": {
+  "title": "Beyond the Spectrum: The Complete Three-Volume Monograph on Functional Tensor Realizations, Metric Measure Geometry, and Higher Topological Invariants",
+  "doi": "10.5281/zenodo.22866175",
+  "publication_date": "2026-09-21",
+  "description": "<p>This consolidated monograph unifies the complete three-part mathematical research program **Beyond the Spectrum** (Volumes I, II, and III), establishing a rigorous, non-perturbative foundational architecture that bridges continuous multilinear algebra, infinite-dimensional metric measure geometry, persistent homology, microlocal sheaf theory, non-commutative geometry, and symplectic Floer cohomology.</p>\n<p>### Overview of the Three Volumes in this Compendium:</p>\n<p>1. **Volume I: Functional Realizations of Matrices and Tensors, Emerging Invariants, and Geometric Measures**<br>&nbsp; &nbsp;- Continuous embedding of discrete matrix and tensor networks into infinite-dimensional Hilbert spaces $L^2(\\mathbb{T}^d)$.<br>&nbsp; &nbsp;- Gaussian measure concentration and sharp functional Johnson&ndash;Lindenstrauss embeddings with optimal order-independent multilinear scaling $\\alpha = 1/2$.<br>&nbsp; &nbsp;- Explicit upper bounds via Dudley entropy chaining $\\mathbb{E}[\\sup |X|] = \\mathcal{O}(\\sqrt{kd})$, matching lower bounds via gradient projection identities, and continuous simplicial residues $\\mathrm{Res}_\\Delta(T)$.</p>\n<p>2. **Volume II: Metric Measure Geometry, Persistent Homology, and Non-Commutative Invariants of Functional Tensor Varieties**<br>&nbsp; &nbsp;- Riemannian, symplectic, and optimal transport ($\\mathcal{W}_2$) geometry of continuous functional tensor varieties.<br>&nbsp; &nbsp;- Topological isospectral separation via persistent homology $\\mathrm{H}_1$, Bottleneck stability bounds ($d_B \\le \\|\\Phi(A) - \\Phi(B)\\|_\\infty$), and uniform Bakry&ndash;&Eacute;mery Ricci curvature lower bounds $\\mathrm{Ric}_\\infty(M) \\ge K &gt; 0$ with exponential variance decay.<br>&nbsp; &nbsp;- Conformal Willmore bending energy divergence, Reilly&ndash;Bochner boundary formulas on convex exhaustions, quantized cyclic cocycles via Connes' Dixmier trace/Wodzicki residue, and faithful Quantum Fisher Information (QFI) volume metrics.</p>\n<p>3. **Volume III: Higher Invariants, Bipartite Kernels, and Non-Equilibrium Geometry of Metric Spaces**<br>&nbsp; &nbsp;- Microlocal sheaf quantization, singular support propagation in $T^*\\Omega$, and critical Besov regularity exponent $s^*(A) \\le 1/2$.<br>&nbsp; &nbsp;- Non-equilibrium stochastic thermodynamics on Wasserstein manifolds: exact Sivak&ndash;Crooks geometric dissipation bounds driven by the Bakry&ndash;&Eacute;mery spectral gap.<br>&nbsp; &nbsp;- Non-smooth geometric measure theory via the Federer reach invariant $\\mathrm{reach}(M) \\ge 1/\\kappa^*$ and Symplectic Floer cohomology $\\mathrm{HF}_*(M)$ for non-perturbative gauge fields.</p>\n<p>---</p>\n<p>To ensure mathematical soundness and semantic non-vacuity, all analytical results are validated across a tripartite verification pipeline:<br>- **Formal Verification (Lean 4 &amp; Mathlib 4):** Complete, machine-checked interactive proofs across 9 formal modules (`formal_proofs_bts/BTS/`), compiling with **0 sorry, 0 admit, 0 unproven axioms, and 0 compiler warnings** (`lake build BTS`).<br>- **Numerical Stress-Testing (Python 3):** Exhaustive empirical test batteries verifying all scaling laws, metric contractions, and topological invariants under extreme perturbations.</p>",
+  "access_right": "open",
+  "creators": [
+   {
+    "name": "Silva-Filho, Reinaldo M.",
+    "affiliation": "Universidade Federal de Lavras"
+   }
+  ],
+  "keywords": [
+   "Mathematical Physics",
+   "Quantum Field Theory",
+   "Non-Pertubative Gauge Theory",
+   "Yang Mills",
+   "Multilinear Algebra",
+   "Metric Measure Spaces",
+   "Bakry-\u00c9mery Ricci Curvature",
+   "Persistent Homology",
+   "Federer Reach",
+   "Symplectic Floer Homology",
+   "Lean 4",
+   "Formal Verification"
+  ],
+  "related_identifiers": [
+   {
+    "identifier": "10.5281/zenodo.22290043",
+    "relation": "isSupplementTo",
+    "resource_type": "publication-book",
+    "scheme": "doi"
+   }
+  ],
+  "dates": [
+   {
+    "type": "other"
+   }
+  ],
+  "language": "eng",
+  "resource_type": {
+   "title": "Preprint",
+   "type": "publication",
+   "subtype": "preprint"
+  },
+  "license": {
+   "id": "cc-by-4.0"
+  },
+  "grants": [
+   {
+    "code": "Finance code 001",
+    "internal_id": "00x0ma614::Finance code 001",
+    "funder": {
+     "name": "Coordena\u00e7\u00e3o de Aperfeicoamento de Pessoal de N\u00edvel Superior"
+    }
+   }
+  ],
+  "relations": {
+   "version": [
+    {
+     "index": 2,
+     "is_last": true,
+     "parent": {
+      "pid_type": "recid",
+      "pid_value": "22644743"
+     }
+    }
+   ]
+  },
+  "notes": "<p>### Publication &amp; Institutional Metadata</p>\n<p>- **Author:** Reinaldo Maia Silva-Filho (ORCID: 0009-0003-8068-3330)<br>- **Affiliation:** Programa de P&oacute;s-Gradua&ccedil;&atilde;o em Estat&iacute;stica e Experimenta&ccedil;&atilde;o Agropecu&aacute;ria (PPGEE/DES), Departamento de Estat&iacute;stica (DES), Universidade Federal de Lavras (UFLA), Lavras, MG, Brazil.<br>- **Contact:** reinaldo.filho1@estudante.ufla.br<br>- **Funding:** Supported by Coordena&ccedil;&atilde;o de Aperfei&ccedil;oamento de Pessoal de N&iacute;vel Superior (CAPES) -- Finance Code 001.<br>- **Permanent Open-Source Repository:** https://github.com/reinaldomsilvafilho-netizen/quantum-gravity-lean4</p>\n<p>&nbsp;</p>\n<p>### Related Works &amp; Cross-References<br>-\"Geometry, Tensors, and Quantum Gravity, Zenodo DOI: [10.5281/zenodo.22290043](https://doi.org/10.5281/zenodo.22290043).<br><br></p>"
+ },
+ "title": "Beyond the Spectrum: The Complete Three-Volume Monograph on Functional Tensor Realizations, Metric Measure Geometry, and Higher Topological Invariants",
+ "links": {
+  "self": "https://zenodo.org/api/records/22866175",
+  "self_html": "https://zenodo.org/records/22866175",
+  "preview_html": "https://zenodo.org/records/22866175?preview=1",
+  "doi": "https://doi.org/10.5281/zenodo.22866175",
+  "self_doi": "https://doi.org/10.5281/zenodo.22866175",
+  "self_doi_html": "https://zenodo.org/doi/10.5281/zenodo.22866175",
+  "reserve_doi": "https://zenodo.org/api/records/22866175/draft/pids/doi",
+  "parent": "https://zenodo.org/api/records/22644743",
+  "parent_html": "https://zenodo.org/records/22644743",
+  "parent_doi": "https://doi.org/10.5281/zenodo.22644743",
+  "parent_doi_html": "https://zenodo.org/doi/10.5281/zenodo.22644743",
+  "self_iiif_manifest": "https://zenodo.org/api/iiif/record:22866175/manifest",
+  "self_iiif_sequence": "https://zenodo.org/api/iiif/record:22866175/sequence/default",
+  "files": "https://zenodo.org/api/records/22866175/files",
+  "media_files": "https://zenodo.org/api/records/22866175/media-files",
+  "thumbnails": {
+   "10": "https://zenodo.org/api/iiif/record:22866175:beyond_the_spectrum_trilogy.pdf/full/%5E10,/0/default.jpg",
+   "50": "https://zenodo.org/api/iiif/record:22866175:beyond_the_spectrum_trilogy.pdf/full/%5E50,/0/default.jpg",
+   "100": "https://zenodo.org/api/iiif/record:22866175:beyond_the_spectrum_trilogy.pdf/full/%5E100,/0/default.jpg",
+   "250": "https://zenodo.org/api/iiif/record:22866175:beyond_the_spectrum_trilogy.pdf/full/%5E250,/0/default.jpg",
+   "750": "https://zenodo.org/api/iiif/record:22866175:beyond_the_spectrum_trilogy.pdf/full/%5E750,/0/default.jpg",
+   "1200": "https://zenodo.org/api/iiif/record:22866175:beyond_the_spectrum_trilogy.pdf/full/%5E1200,/0/default.jpg"
+  },
+  "archive": "https://zenodo.org/api/records/22866175/files-archive",
+  "archive_media": "https://zenodo.org/api/records/22866175/media-files-archive",
+  "latest": "https://zenodo.org/api/records/22866175/versions/latest",
+  "latest_html": "https://zenodo.org/records/22866175/latest",
+  "versions": "https://zenodo.org/api/records/22866175/versions",
+  "draft": "https://zenodo.org/api/records/22866175/draft",
+  "access_links": "https://zenodo.org/api/records/22866175/access/links",
+  "access_grants": "https://zenodo.org/api/records/22866175/access/grants",
+  "access_users": "https://zenodo.org/api/records/22866175/access/users",
+  "access_request": "https://zenodo.org/api/records/22866175/access/request",
+  "access": "https://zenodo.org/api/records/22866175/access",
+  "communities": "https://zenodo.org/api/records/22866175/communities",
+  "communities-suggestions": "https://zenodo.org/api/records/22866175/communities-suggestions",
+  "request_deletion": "https://zenodo.org/api/records/22866175/request-deletion",
+  "file_modification": "https://zenodo.org/api/records/22866175/file-modification",
+  "quota_increase": "https://zenodo.org/api/records/22866175/quota-increase",
+  "requests": "https://zenodo.org/api/records/22866175/requests"
+ },
+ "updated": "2026-09-21T01:23:01.540249+00:00",
+ "recid": "22866175",
+ "revision": 4,
+ "files": [
+  {
+   "id": "108305c8-2d60-403c-83fd-bff8b5ae7020",
+   "key": "beyond_the_spectrum_trilogy.pdf",
+   "size": 1391818,
+   "checksum": "md5:8d872f4d98a616fd97873deb230ee5f5",
+   "links": {
+    "self": "https://zenodo.org/api/records/22866175/files/beyond_the_spectrum_trilogy.pdf/content"
+   }
+  }
+ ],
+ "swh": null,
+ "owners": [
+  {
+   "id": "1864645"
+  }
+ ],
+ "status": "published",
+ "stats": {
+  "downloads": 16,
+  "unique_downloads": 16,
+  "views": 35,
+  "unique_views": 32,
+  "version_downloads": 5,
+  "version_unique_downloads": 5,
+  "version_unique_views": 11,
+  "version_views": 11
+ },
+ "state": "done",
+ "submitted": true
+}

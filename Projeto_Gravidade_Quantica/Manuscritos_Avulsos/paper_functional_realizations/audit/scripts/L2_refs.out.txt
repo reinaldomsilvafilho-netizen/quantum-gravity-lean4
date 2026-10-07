@@ -1,0 +1,22 @@
+OK  adler2007random: 10.1007/978-0-387-48116-6 | Random Fields and Geometry |  | 2007 | vol None p None | title True auth True year True vol True page True
+OK  auffinger2013random: 10.1002/cpa.21422 | Random Matrices and Complexity of Spin Glasses | Auffinger | 2013 | vol 66 p 165 | title True auth True year True vol True page True
+OK  cartwright2013number: 10.1016/j.laa.2011.05.040 | The number of eigenvalues of a tensor | Cartwright | 2013 | vol 438 p 942 | title True auth True year True vol True page True
+OK  desilva2008illposed: 10.1137/06066518X | Tensor Rank and the Ill-Posedness of the Best Low-Rank Approximation P | de Silva | 2008 | vol 30 p 1084 | title True auth True year True vol True page True
+OK  evans2015measure: 10.1201/b18333 | Measure Theory and Fine Properties of Functions, Revised Edition | Evans | 2015 | vol None p None | title True auth True year True vol True page True
+OK  fleming1960integral: 10.1007/BF01236935 | An integral formula for total gradient variation | Fleming | 1960 | vol 11 p 218 | title True auth True year True vol True page True
+OK  hillar2013most: 10.1145/2512329 | Most Tensor Problems Are NP-Hard | Hillar | 2013 | vol 60 p 1 | title True auth True year True vol True page True
+OK  lovasz2006limits: 10.1016/j.jctb.2006.05.002 | Limits of dense graph sequences | Lovász | 2006 | vol 96 p 933 | title True auth True year True vol True page True
+OK  lovasz2007szemeredi: 10.1007/s00039-007-0599-6 | Szemerédi’s Lemma for the Analyst | Lovász | 2007 | vol 17 p 252 | title True auth True year True vol True page True
+OK  lovasz2012large: 10.1090/coll/060 | Large Networks and Graph Limits | Lovász | 2012 | vol None p None | title True auth True year True vol True page True
+OK  lim2005singular: 10.1109/CAMAP.2005.1574201 | Singular Values and Eigenvalues of Tensors: A Variational Approach | Lek-Heng Lim | None | vol None p 129 | title True auth True year True vol True page True
+OK  qi2005eigenvalues: 10.1016/j.jsc.2005.05.007 | Eigenvalues of a real supersymmetric tensor | Qi | 2005 | vol 40 p 1302 | title True auth True year True vol True page True
+OK  rudin1992nonlinear: 10.1016/0167-2789(92)90242-F | Nonlinear total variation based noise removal algorithms | Rudin | 1992 | vol 60 p 259 | title True auth True year True vol True page True
+OK  milnor1963morse: 10.1515/9781400881802 | Morse Theory. (AM-51) | Milnor | 1963 | vol None p None | title True auth True year True vol True page True
+OK  silvafilho2026book: 10.5281/zenodo.22290043 | Geometry, Tensors, and Quantum Gravity | Silva-Filho | 2026 | vol None p None | title True auth True year True vol True page True
+OK  tomioka2014spectral: 10.48550/arXiv.1407.1870 | Spectral norm of random tensors | Tomioka | 2014 | vol None p None | title True auth True year True vol True page True
+OK  nguyen2015tensor: 10.1093/imaiai/iav004 | Tensor sparsification via a bound on the spectral norm of random tenso | Nguyen | 2015 | vol 4 p 195 | title True auth True year True vol True page True
+OK  vershynin2018high: 10.1017/9781108231596 | High-Dimensional Probability | Vershynin | 2018 | vol None p None | title True auth True year True vol True page True
+OK  zhao2015hypergraph: 10.1002/rsa.20537 | Hypergraph limits: A regularity approach | Zhao | 2015 | vol 47 p 205 | title True auth True year True vol True page True
+OK  body DOI 10.5281/zenodo.22644743: Beyond the Spectrum: The Complete Three-Volume Monograph on Functional Tensor Re | Silva-Filho, Reinaldo M. | 2026
+OK  NEG fake DOI rejected: HTTP Error 404: Not Found
+failures: 0

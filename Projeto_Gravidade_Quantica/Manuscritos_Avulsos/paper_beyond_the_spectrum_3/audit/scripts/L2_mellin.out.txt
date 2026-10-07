@@ -1,0 +1,76 @@
+== (1) 2D integral over Delta_3 vs Gamma formula ==
+s=+1.70: 2D quad=0.071937024969  formula=0.071937024969
+[PASS] 2D integral = formula at s=1.7
+s=+0.50: 2D quad=0.353328935380  formula=0.353328935380
+[PASS] 2D integral = formula at s=0.5
+s=-0.40: 2D quad=3.829778066330  formula=3.829778066330
+[PASS] 2D integral = formula at s=-0.4
+s=-0.65: 2D quad=33.433071454210  formula=33.433071454210
+[PASS] 2D integral = formula at s=-0.65
+== (2)-(3) continuation and residues, b non-integer ==
+s=(-2.2 + 0.3j): continuation=(10.467293771021 + 0.77543278235623j) formula=(10.467293771021 + 0.77543278235623j)
+[PASS] continuation = formula at s=(-2.2 + 0.3j)
+s=(-3.9 - 0.7j): continuation=(-0.68153622182164 - 0.10804044849673j) formula=(-0.68153622182164 - 0.10804044849673j)
+[PASS] continuation = formula at s=(-3.9 - 0.7j)
+s=(-1.2 + 0.0j): continuation=(-10.797611147156 + 0.0j) formula=(-10.797611147156 + 0.0j)
+[PASS] continuation = formula at s=(-1.2 + 0.0j)
+k=0: Taylor c_k/B=1.81674699319 formula=1.81674699319 contour=1.81674699319
+[PASS] residue k=0: Taylor route = formula
+[PASS] residue k=0: contour = formula
+[PASS] residue k=0: formula non-zero
+[PASS] negative control k=0 Gamma(b+k) (identical at k=0, skipped)
+k=1: Taylor c_k/B=-4.63270483262 formula=-4.63270483262 contour=-4.63270483262
+[PASS] residue k=1: Taylor route = formula
+[PASS] residue k=1: contour = formula
+[PASS] residue k=1: formula non-zero
+[PASS] negative control k=1: (-1)^(k+1) fails
+[PASS] negative control k=1: Gamma(b+k) fails
+k=2: Taylor c_k/B=3.59034624528 formula=3.59034624528 contour=3.59034624528
+[PASS] residue k=2: Taylor route = formula
+[PASS] residue k=2: contour = formula
+[PASS] residue k=2: formula non-zero
+[PASS] negative control k=2: (-1)^(k+1) fails
+[PASS] negative control k=2: Gamma(b+k) fails
+k=3: Taylor c_k/B=-0.658230144968 formula=-0.658230144968 contour=-0.658230144968
+[PASS] residue k=3: Taylor route = formula
+[PASS] residue k=3: contour = formula
+[PASS] residue k=3: formula non-zero
+[PASS] negative control k=3: (-1)^(k+1) fails
+[PASS] negative control k=3: Gamma(b+k) fails
+k=4: Taylor c_k/B=-0.0740508913089 formula=-0.0740508913089 contour=-0.0740508913089
+[PASS] residue k=4: Taylor route = formula
+[PASS] residue k=4: contour = formula
+[PASS] residue k=4: formula non-zero
+[PASS] negative control k=4: (-1)^(k+1) fails
+[PASS] negative control k=4: Gamma(b+k) fails
+== (4) integer b = 2 (alpha = (0.7, 0.9, 1.1)): poles only at k = 0, 1 ==
+b=2 k=0: contour residue = (1.19 + 3.52084068e-34j)
+[PASS] b=2 k=0: residue = formula
+b=2 k=1: contour residue = (-1.19 - 3.37759964e-32j)
+[PASS] b=2 k=1: residue = formula
+b=2 k=2: contour residue = (1.321165399e-16 - 3.063432318e-33j)
+[PASS] b=2 k=2: no pole (cancellation)
+b=2 k=3: contour residue = (4.403884664e-17 - 3.167251979e-34j)
+[PASS] b=2 k=3: no pole (cancellation)
+b=2 k=4: contour residue = (2.201942332e-17 - 3.547171753e-34j)
+[PASS] b=2 k=4: no pole (cancellation)
+== Prop 7.1: Z_A entire ==
+[PASS] quadrature integrates the Dirichlet density to 1
+[PASS] |Z(-0.70)| = 0.7645 <= max(c1^s, c2^s) = 0.9993
+[PASS] |Z(-1.70)| = 0.5287 <= max(c1^s, c2^s) = 0.9982
+[PASS] |Z(-2.70)| = 0.3724 <= max(c1^s, c2^s) = 0.9972
+[PASS] |Z(-3.70)| = 0.2672 <= max(c1^s, c2^s) = 0.9961
+[PASS] |Z(-1.30)| = 0.6114 <= max(c1^s, c2^s) = 0.9986
+[PASS] |Z(-2.30)| = 0.4275 <= max(c1^s, c2^s) = 0.9976
+[PASS] |Z(-3.30)| = 0.3045 <= max(c1^s, c2^s) = 0.9965
+[PASS] |Z(-4.30)| = 0.2210 <= max(c1^s, c2^s) = 0.9955
+[PASS] |Z(-2.25)| = 0.4350 <= max(c1^s, c2^s) = 0.9976
+[PASS] |Z(-3.25)| = 0.3095 <= max(c1^s, c2^s) = 0.9966
+[PASS] |Z(-4.25)| = 0.2244 <= max(c1^s, c2^s) = 0.9955
+[PASS] |Z(-5.25)| = 0.1659 <= max(c1^s, c2^s) = 0.9945
+max |contour integral of Z| around the 12 claimed poles = 1.04e-17
+[PASS] Z_A has no residue at any claimed pole (|.| < 1e-12)
+control: same contour routine on M_1 at -a1 gives (1.816746993 - 3.730285561e-32j)
+[PASS] negative control: contour routine detects the pole of M_1
+[PASS] Z(1) = E[Phi] matches independent 2D QUADPACK
+failures: 0

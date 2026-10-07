@@ -1,0 +1,38 @@
+== Construction 3.7 / Thm 4.1, random 5x5 A ==
+M=  64  ||f||^2=29.08283425  E_fd=645.75737784  err_vs_corrected=3.696e+01
+M= 128  ||f||^2=29.08283425  E_fd=673.29151483  err_vs_corrected=9.431e+00
+M= 256  ||f||^2=29.08283425  E_fd=680.35260831  err_vs_corrected=2.370e+00
+M= 512  ||f||^2=29.08283425  E_fd=682.12915441  err_vs_corrected=5.932e-01
+M=1024  ||f||^2=29.08283425  E_fd=682.57399824  err_vs_corrected=1.483e-01
+observed FD convergence orders: [1.97, 1.99, 2.0, 2.0] (expected 2)
+corrected ||f||^2 = (2pi/n)^2 ||A||_F^2 = 29.08283424913583
+paper     ||f||^2 = ||A||_F^2           = 18.416919936227263
+corrected E = (2pi/n)^2 sum(k1^2+k2^2)a^2 = 682.7223424566381
+paper     E = sum(k1^2+k2^2)a^2            = 432.3389739798504
+corrected formulas match oracle: True | paper formulas match oracle (neg. control, must be False): False
+sum (k1^2+k2^2)a^2 == ||DA||^2+||AD||^2 : True
+
+== Thm 4.1 'consequently' for general A: permutation-invariant counterexamples ==
+I_n: max ratio over all 720 permutations = 1.000, min = 1.000
+J_n: max ratio over all 720 permutations = 1.000, min = 1.000
+E_11 vs E_nn ratio (paper's example), n=10: 100.0
+
+== Example 4.2 checkerboard ==
+ n   E(checker)   E(J)   E/n^3   E/n^4  (paper's normalisation)
+   8       3264.0       3264.0    6.375   0.7969
+  16      47872.0      47872.0   11.688   0.7305
+  32     732160.0     732160.0   22.344   0.6982
+  64   11448320.0   11448320.0   43.672   0.6824
+ 128  181059584.0  181059584.0   86.336   0.6745
+closed form 2n * n(n+1)(2n+1)/6 at n=128: 181059584.0
+checkerboard and all-ones J have identical energy -> 'maximally rough' claim fails; growth is n^4 (paper normalisation) or n^2 (true normalisation), never n^3
+
+== Thm 5.4: lambda = 0 makes the 'uniform' sup bound fail (H^1 not in L^inf in 2D) ==
+N=   8  sup|f|/||grad f|| = 0.2593   sup|f|/||Lap f|| = 0.0528
+N=  32  sup|f|/||grad f|| = 0.3441   sup|f|/||Lap f|| = 0.0232
+N= 128  sup|f|/||grad f|| = 0.4153   sup|f|/||Lap f|| = 0.0085
+N= 512  sup|f|/||grad f|| = 0.4768   sup|f|/||Lap f|| = 0.0028
+(first ratio grows like sqrt(log N): no uniform C when lambda=0; second stays bounded)
+softmax slice N=64: sup|f| on grid = 1.0 <= 1 (trivial bound)
+
+failures: 0

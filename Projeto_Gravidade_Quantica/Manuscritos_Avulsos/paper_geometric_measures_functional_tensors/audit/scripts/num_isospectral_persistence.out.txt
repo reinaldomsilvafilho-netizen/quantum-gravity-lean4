@@ -1,0 +1,20 @@
+A=
+[[0. 2. 2.]
+ [2. 2. 2.]
+ [2. 2. 2.]]
+eig B [-1.46410162e+00 -7.22708839e-16  5.46410162e+00] claim [-1.46410162  0.          5.46410162] match True; eig A [-1.46410162e+00 -2.22044605e-16  5.46410162e+00]
+||A||_F^2=32 ||B||_F^2=32
+B: beta1(X_t) for t in (0,2]: [1] ; H1 births at [np.float64(1.9956140350877194)]
+A: beta1(X_t) for t in (0,2]: [0] ; H1 births at []
+perturbed ring B' (heights 2,2.2,2.4): number of H1 bars N_1 = 1 (births [np.float64(1.9996871088861077)]) -> E_pers^(1)(B') = 0 since a single bar
+200 random symmetric 3x3 with low centre: max number of H1 bars = 1 (so E_pers^(1) = 0 always)
+NEGATIVE CONTROL two interior holes: beta1 = 2 (must be 2)
+eps=0.050  ||Phi_eps - Phi||_inf = 1.493 (paper: ->0)
+    mollified: beta1 values over t in [0.05,1.95]: B [1], A [0]
+eps=0.020  ||Phi_eps - Phi||_inf = 1.483 (paper: ->0)
+    mollified: beta1 values over t in [0.05,1.95]: B [1], A [0]
+eps=0.010  ||Phi_eps - Phi||_inf = 1.466 (paper: ->0)
+    mollified: beta1 values over t in [0.05,1.95]: B [1], A [0]
+eps=0.005  ||Phi_eps - Phi||_inf = 1.431 (paper: ->0)
+    mollified: beta1 values over t in [0.05,1.95]: B [1], A [0]
+failures=0

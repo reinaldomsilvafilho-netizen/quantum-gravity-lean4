@@ -1,0 +1,73 @@
+== DOIs in paper_beyond_the_spectrum_3.tex ==
+Aamari2019: crossref 'Estimating the reach of a manifold' Aamari 2019 | title sim 1.00 year-in-item True author-in-item True
+[PASS] Aamari2019: resolves, title sim >= 0.85, year and first author match
+Aurell2011: crossref 'Optimal Protocols and Optimal Transport in Stochastic Thermodynamics' Aurell 2011 | title sim 1.00 year-in-item True author-in-item True
+[PASS] Aurell2011: resolves, title sim >= 0.85, year and first author match
+BakryEmery1985: crossref 'Diffusions hypercontractives' Bakry 1985 | title sim 1.00 year-in-item True author-in-item True
+[PASS] BakryEmery1985: resolves, title sim >= 0.85, year and first author match
+Crooks1999: crossref 'Entropy production fluctuation theorem and the nonequilibrium work rel' Crooks 1999 | title sim 1.00 year-in-item True author-in-item True
+[PASS] Crooks1999: resolves, title sim >= 0.85, year and first author match
+DuttaFaulkner2019: crossref 'A canonical purification for the entanglement wedge cross-section' Dutta 2021 | title sim 1.00 year-in-item True author-in-item True
+[PASS] DuttaFaulkner2019: resolves, title sim >= 0.85, year and first author match
+EkelandHofer1989: crossref 'Symplectic topology and Hamiltonian dynamics' Ekeland 1989 | title sim 1.00 year-in-item True author-in-item True
+[PASS] EkelandHofer1989: resolves, title sim >= 0.85, year and first author match
+Federer1959: crossref 'Curvature measures' Federer 1959 | title sim 1.00 year-in-item True author-in-item True
+[PASS] Federer1959: resolves, title sim >= 0.85, year and first author match
+GibsonEtAl1976: crossref 'Topological Stability of Smooth Mappings' Gibson 1976 | title sim 1.00 year-in-item True author-in-item True
+[PASS] GibsonEtAl1976: resolves, title sim >= 0.85, year and first author match
+Gromov1987: crossref 'Hyperbolic Groups' Gromov 1987 | title sim 1.00 year-in-item True author-in-item True
+[PASS] Gromov1987: resolves, title sim >= 0.85, year and first author match
+HoferZehnder1994: crossref 'Symplectic Invariants and Hamiltonian Dynamics' Hofer 1994 | title sim 1.00 year-in-item True author-in-item True
+[PASS] HoferZehnder1994: resolves, title sim >= 0.85, year and first author match
+Jarzynski1997: crossref 'Nonequilibrium Equality for Free Energy Differences' Jarzynski 1997 | title sim 1.00 year-in-item True author-in-item True
+[PASS] Jarzynski1997: resolves, title sim >= 0.85, year and first author match
+KashiwaraSchapira1990: crossref 'Sheaves on Manifolds' Kashiwara 1990 | title sim 1.00 year-in-item True author-in-item True
+[PASS] KashiwaraSchapira1990: resolves, title sim >= 0.85, year and first author match
+BridsonHaefliger1999: crossref 'Metric Spaces of Non-Positive Curvature' Bridson 1999 | title sim 1.00 year-in-item True author-in-item True
+[PASS] BridsonHaefliger1999: resolves, title sim >= 0.85, year and first author match
+JuutinenLindqvistManfredi1999: crossref 'The ∞-Eigenvalue Problem' Juutinen 1999 | title sim 1.00 year-in-item True author-in-item True
+[PASS] JuutinenLindqvistManfredi1999: resolves, title sim >= 0.85, year and first author match
+OttoVillani2000: crossref 'Generalization of an Inequality by Talagrand and Links with the Logari' Otto 2000 | title sim 1.00 year-in-item True author-in-item True
+[PASS] OttoVillani2000: resolves, title sim >= 0.85, year and first author match
+KawohlFridman2003: no DOI; link https://eudml.org/doc/249339
+Lindqvist1990: crossref 'On the equation 𝑑𝑖𝑣(|∇𝑢|^{𝑝-2}∇𝑢)+𝜆|𝑢|^{𝑝-2}𝑢=0' Lindqvist 1990 | title sim 1.00 year-in-item True author-in-item True
+[PASS] Lindqvist1990: resolves, title sim >= 0.85, year and first author match
+SilvaFilhoBTS: datacite 'Beyond the Spectrum: The Complete Three-Volume Monograph on Functional' Silva-Filho, Reinaldo M. 2026 | title sim 1.00 year-in-item True author-in-item True
+[PASS] SilvaFilhoBTS: resolves, title sim >= 0.85, year and first author match
+SivakCrooks2012: crossref 'Thermodynamic Metrics and Optimal Paths' Sivak 2012 | title sim 1.00 year-in-item True author-in-item True
+[PASS] SivakCrooks2012: resolves, title sim >= 0.85, year and first author match
+[PASS] negative control: mutated DOI does not resolve
+== Declarations ==
+[PASS] declarations block equals the standard (volume variant, Lean sentence)
+   extra text after the standard block: ''
+[PASS] negative control: mutated block fails
+== Affiliation ==
+   Master's student, Postgraduate Program in Statistics and Agricultural Experimentation (PPGEE/DES), Department of Statistics (DES), Federal University of Lavras (UFLA), Lavras, MG, Brazil
+[PASS] affiliation: Master's student, PPGEE/DES, UFLA, Statistics and Agricultural Experimentation
+== House style / forbidden claims in the .tex body (outside Declarations) ==
+[PASS] no 'earlier version' in body
+[PASS] no 'withdrawn' in body
+[PASS] no '\bcorrected\b' in body
+[PASS] no 'audit/' in body
+[PASS] no 'machine-checked' in body
+[PASS] no 'formally verified' in body
+[PASS] no '\bLean\b' in body
+[PASS] no 'GitHub' in body
+[PASS] no 'pending' in body
+[PASS] no '\bv2\b' in body
+[PASS] no 'previous version' in body
+[PASS] no 'rigorously' in body
+[PASS] no 'definitively' in body
+== Notes ==
+[PASS] CORRECTIONS_2026-10-06.md: no 'github'
+[PASS] CORRECTIONS_2026-10-06.md: no 'pending'
+[PASS] CORRECTIONS_2026-10-06.md: no 'TODO'
+   CORRECTIONS_2026-10-06.md 'layer 2': ...nt Duals", "Barnes–Kigami").  ## What still needs work  - **Layer 2.** A targeted re-check of every change above by a session t...
+[FAIL] CORRECTIONS_2026-10-06.md: no 'layer 2'
+[PASS] CORRECTIONS_2026-10-06.md: no 'layer-2'
+[PASS] ZENODO_DESCRIPTION_VOL3.md: no 'github'
+[PASS] ZENODO_DESCRIPTION_VOL3.md: no 'pending'
+[PASS] ZENODO_DESCRIPTION_VOL3.md: no 'TODO'
+[PASS] ZENODO_DESCRIPTION_VOL3.md: no 'layer 2'
+[PASS] ZENODO_DESCRIPTION_VOL3.md: no 'layer-2'
+failures: 1

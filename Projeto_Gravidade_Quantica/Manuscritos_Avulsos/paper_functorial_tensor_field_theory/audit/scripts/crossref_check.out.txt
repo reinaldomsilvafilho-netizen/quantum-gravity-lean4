@@ -1,0 +1,9 @@
+atiyah1988topological: DOI 10.1007/BF02698547 OK | Topological quantum field theory | Michael F. Atiyah | Publications Mathématiques de l'IHÉS 68 (1988) p.175-186 art.None
+verstraete2010continuous: DOI 10.1103/PhysRevLett.104.190405 OK | Continuous Matrix Product States for Quantum Fields | F. Verstraete; J. I. Cirac | Physical Review Letters 104 (2010) p.None art.190405
+ryu2006holographic: DOI 10.1103/PhysRevLett.96.181602 OK | Holographic Derivation of Entanglement Entropy from the anti–de Sitter Space/Conformal Field Theory Correspondence | Shinsei Ryu; Tadashi Takayanagi | Physical Review Letters 96 (2006) p.None art.181602
+choquet1952: DOI 10.1007/BF02392131 OK | Théorème d'existence pour certains systèmes d'équations aux dérivées partielles non linéaires | Y. Fourès-Bruhat | Acta Mathematica 88 (1952) p.141-225 art.None
+bousso2016: DOI 10.1103/PhysRevD.93.024017 OK | Proof of the quantum null energy condition | Raphael Bousso; Zachary Fisher; Jason Koeller; Stefan Leichenauer; Aron C. Wall | Physical Review D 93 (2016) p.None art.024017
+segal2004definition candidate: 10.1017/cbo9780511526398.017 | Conformal field theory in four and six dimensions | Topology, Geometry and Quantum Field Theory (2004) p.405-420
+segal2004definition candidate: 10.1017/cbo9780511526398.019 | The definition of CFT | Topology, Geometry and Quantum Field Theory (2004) p.432-575
+segal2004definition candidate: 10.1017/cbo9780511526398.014 | Open and closed string field theory interpreted in classical algebraic topology | Topology, Geometry and Quantum Field Theory (2004) p.344-357
+negative control (fake DOI) correctly fails: HTTP Error 404: Not Found
