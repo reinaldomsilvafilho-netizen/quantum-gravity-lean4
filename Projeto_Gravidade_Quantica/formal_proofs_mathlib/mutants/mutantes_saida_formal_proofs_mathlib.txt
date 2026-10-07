@@ -1,0 +1,277 @@
+== mutants/M1_KK_3para2.lean
+mutants/M1_KK_3para2.lean:25:43: error: linarith failed to find a contradiction
+K : Matrix (Fin 3) (Fin 3) ℝ
+hK : K.IsSymm
+κ R Λ G ρ : ℝ
+hb : IIBound K κ
+hH : HamiltonianConstraint K R Λ G ρ
+hH' : K.IsHermitian
+hR : R + K.trace ^ 2 - frobSq K = 2 * Λ + 16 * Real.pi * G * ρ
+hF : frobSq K = hH'.eigenvalues 0 ^ 2 + hH'.eigenvalues 1 ^ 2 + hH'.eigenvalues 2 ^ 2
+hT : K.trace = hH'.eigenvalues 0 + hH'.eigenvalues 1 + hH'.eigenvalues 2
+b1 : hH'.eigenvalues 0 ^ 2 + hH'.eigenvalues 1 ^ 2 + hH'.eigenvalues 2 ^ 2 ≤ 3 * κ ^ 2
+b2 :
+  2 * Λ + 16 * Real.pi * G * ρ - 6 * κ ^ 2 ≤
+    2 * Λ + 16 * Real.pi * G * ρ + (hH'.eigenvalues 0 ^ 2 + hH'.eigenvalues 1 ^ 2 + hH'.eigenvalues 2 ^ 2) -
+      (hH'.eigenvalues 0 + hH'.eigenvalues 1 + hH'.eigenvalues 2) ^ 2
+b3 :
+  2 * Λ + 16 * Real.pi * G * ρ + (hH'.eigenvalues 0 ^ 2 + hH'.eigenvalues 1 ^ 2 + hH'.eigenvalues 2 ^ 2) -
+      (hH'.eigenvalues 0 + hH'.eigenvalues 1 + hH'.eigenvalues 2) ^ 2 ≤
+    2 * Λ + 16 * Real.pi * G * ρ + 2 * κ ^ 2
+h0 : 0 ≤ frobSq K - K.trace ^ 2 / 3
+a✝ : 2 * κ ^ 2 < frobSq K
+⊢ False
+failed
+'LeanReal.Chap12.Mutant.m' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]
+== mutants/M2_shear_div3para2.lean
+mutants/M2_shear_div3para2.lean:25:60: error: linarith failed to find a contradiction
+K : Matrix (Fin 3) (Fin 3) ℝ
+hK : K.IsSymm
+κ R Λ G ρ : ℝ
+hb : IIBound K κ
+hH : HamiltonianConstraint K R Λ G ρ
+hH' : K.IsHermitian
+hR : R + K.trace ^ 2 - frobSq K = 2 * Λ + 16 * Real.pi * G * ρ
+hF : frobSq K = hH'.eigenvalues 0 ^ 2 + hH'.eigenvalues 1 ^ 2 + hH'.eigenvalues 2 ^ 2
+hT : K.trace = hH'.eigenvalues 0 + hH'.eigenvalues 1 + hH'.eigenvalues 2
+b1 : hH'.eigenvalues 0 ^ 2 + hH'.eigenvalues 1 ^ 2 + hH'.eigenvalues 2 ^ 2 ≤ 3 * κ ^ 2
+b2 :
+  2 * Λ + 16 * Real.pi * G * ρ - 6 * κ ^ 2 ≤
+    2 * Λ + 16 * Real.pi * G * ρ + (hH'.eigenvalues 0 ^ 2 + hH'.eigenvalues 1 ^ 2 + hH'.eigenvalues 2 ^ 2) -
+      (hH'.eigenvalues 0 + hH'.eigenvalues 1 + hH'.eigenvalues 2) ^ 2
+b3 :
+  2 * Λ + 16 * Real.pi * G * ρ + (hH'.eigenvalues 0 ^ 2 + hH'.eigenvalues 1 ^ 2 + hH'.eigenvalues 2 ^ 2) -
+      (hH'.eigenvalues 0 + hH'.eigenvalues 1 + hH'.eigenvalues 2) ^ 2 ≤
+    2 * Λ + 16 * Real.pi * G * ρ + 2 * κ ^ 2
+h0 : 0 ≤ frobSq K - K.trace ^ 2 / 3
+a✝ : 3 * κ ^ 2 - K.trace ^ 2 / 2 < frobSq K - K.trace ^ 2 / 3
+⊢ False
+failed
+'LeanReal.Chap12.Mutant.m' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]
+== mutants/M3_inferior_6para5.lean
+mutants/M3_inferior_6para5.lean:26:23: error: linarith failed to find a contradiction
+case refine_1
+K : Matrix (Fin 3) (Fin 3) ℝ
+hK : K.IsSymm
+κ R Λ G ρ : ℝ
+hb : IIBound K κ
+hH : HamiltonianConstraint K R Λ G ρ
+hH' : K.IsHermitian
+hR :
+  R + (hH'.eigenvalues 0 + hH'.eigenvalues 1 + hH'.eigenvalues 2) ^ 2 -
+      (hH'.eigenvalues 0 ^ 2 + hH'.eigenvalues 1 ^ 2 + hH'.eigenvalues 2 ^ 2) =
+    2 * Λ + 16 * Real.pi * G * ρ
+hF : frobSq K = hH'.eigenvalues 0 ^ 2 + hH'.eigenvalues 1 ^ 2 + hH'.eigenvalues 2 ^ 2
+hT : K.trace = hH'.eigenvalues 0 + hH'.eigenvalues 1 + hH'.eigenvalues 2
+b1 : hH'.eigenvalues 0 ^ 2 + hH'.eigenvalues 1 ^ 2 + hH'.eigenvalues 2 ^ 2 ≤ 3 * κ ^ 2
+b2 :
+  2 * Λ + 16 * Real.pi * G * ρ - 6 * κ ^ 2 ≤
+    2 * Λ + 16 * Real.pi * G * ρ + (hH'.eigenvalues 0 ^ 2 + hH'.eigenvalues 1 ^ 2 + hH'.eigenvalues 2 ^ 2) -
+      (hH'.eigenvalues 0 + hH'.eigenvalues 1 + hH'.eigenvalues 2) ^ 2
+b3 :
+  2 * Λ + 16 * Real.pi * G * ρ + (hH'.eigenvalues 0 ^ 2 + hH'.eigenvalues 1 ^ 2 + hH'.eigenvalues 2 ^ 2) -
+      (hH'.eigenvalues 0 + hH'.eigenvalues 1 + hH'.eigenvalues 2) ^ 2 ≤
+    2 * Λ + 16 * Real.pi * G * ρ + 2 * κ ^ 2
+h0 : 0 ≤ frobSq K - K.trace ^ 2 / 3
+a✝ : R < 2 * Λ + 16 * Real.pi * G * ρ - 5 * κ ^ 2
+⊢ False
+failed
+'LeanReal.Chap12.Mutant.m' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]
+== mutants/M4_superior_2para1.lean
+mutants/M4_superior_2para1.lean:27:23: error: linarith failed to find a contradiction
+case refine_2
+K : Matrix (Fin 3) (Fin 3) ℝ
+hK : K.IsSymm
+κ R Λ G ρ : ℝ
+hb : IIBound K κ
+hH : HamiltonianConstraint K R Λ G ρ
+hH' : K.IsHermitian
+hR :
+  R + (hH'.eigenvalues 0 + hH'.eigenvalues 1 + hH'.eigenvalues 2) ^ 2 -
+      (hH'.eigenvalues 0 ^ 2 + hH'.eigenvalues 1 ^ 2 + hH'.eigenvalues 2 ^ 2) =
+    2 * Λ + 16 * Real.pi * G * ρ
+hF : frobSq K = hH'.eigenvalues 0 ^ 2 + hH'.eigenvalues 1 ^ 2 + hH'.eigenvalues 2 ^ 2
+hT : K.trace = hH'.eigenvalues 0 + hH'.eigenvalues 1 + hH'.eigenvalues 2
+b1 : hH'.eigenvalues 0 ^ 2 + hH'.eigenvalues 1 ^ 2 + hH'.eigenvalues 2 ^ 2 ≤ 3 * κ ^ 2
+b2 :
+  2 * Λ + 16 * Real.pi * G * ρ - 6 * κ ^ 2 ≤
+    2 * Λ + 16 * Real.pi * G * ρ + (hH'.eigenvalues 0 ^ 2 + hH'.eigenvalues 1 ^ 2 + hH'.eigenvalues 2 ^ 2) -
+      (hH'.eigenvalues 0 + hH'.eigenvalues 1 + hH'.eigenvalues 2) ^ 2
+b3 :
+  2 * Λ + 16 * Real.pi * G * ρ + (hH'.eigenvalues 0 ^ 2 + hH'.eigenvalues 1 ^ 2 + hH'.eigenvalues 2 ^ 2) -
+      (hH'.eigenvalues 0 + hH'.eigenvalues 1 + hH'.eigenvalues 2) ^ 2 ≤
+    2 * Λ + 16 * Real.pi * G * ρ + 2 * κ ^ 2
+h0 : 0 ≤ frobSq K - K.trace ^ 2 / 3
+a✝ : 2 * Λ + 16 * Real.pi * G * ρ + 1 * κ ^ 2 < R
+⊢ False
+failed
+'LeanReal.Chap12.Mutant.m' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]
+== mutants/M5_autovalor_meio.lean
+mutants/M5_autovalor_meio.lean:16:2: error: Type mismatch: After simplification, term
+  h
+ has type
+  |hK.eigenvalues i| ≤ κ
+but is expected to have type
+  |hK.eigenvalues i| ≤ κ / 2
+'LeanReal.Chap12.Mutant.m' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]
+== mutants/M6_frobshear_div3para2.lean
+Try this:
+  [apply] ring_nf
+  
+  The `ring` tactic failed to close the goal. Use `ring_nf` to obtain a normal form.
+    
+  Note that `ring` works primarily in *commutative* rings. If you have a noncommutative ring, abelian group or module, consider using `noncomm_ring`, `abel` or `module` instead.
+mutants/M6_frobshear_div3para2.lean:8:53: error: unsolved goals
+K : Matrix (Fin 3) (Fin 3) ℝ
+⊢ K 0 0 * K 1 1 * (-2 / 3) + K 0 0 * K 2 2 * (-2 / 3) + K 0 0 ^ 2 * (2 / 3) + K 1 1 * K 2 2 * (-2 / 3) +
+                    K 1 1 ^ 2 * (2 / 3) +
+                  K 2 2 ^ 2 * (2 / 3) +
+                K 0 1 ^ 2 +
+              K 0 2 ^ 2 +
+            K 1 0 ^ 2 +
+          K 1 2 ^ 2 +
+        K 2 0 ^ 2 +
+      K 2 1 ^ 2 =
+    -(K 0 0 * K 1 1) - K 0 0 * K 2 2 + K 0 0 ^ 2 * (1 / 2) - K 1 1 * K 2 2 + K 1 1 ^ 2 * (1 / 2) + K 2 2 ^ 2 * (1 / 2) +
+                K 0 1 ^ 2 +
+              K 0 2 ^ 2 +
+            K 1 0 ^ 2 +
+          K 1 2 ^ 2 +
+        K 2 0 ^ 2 +
+      K 2 1 ^ 2
+'LeanReal.Chap12.Mutant.m' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]
+== mutants/M7_traco_sem_quadrado.lean
+mutants/M7_traco_sem_quadrado.lean:8:45: error: unsolved goals
+K : Matrix (Fin 3) (Fin 3) ℝ
+hK : K.IsHermitian
+V U : Matrix (Fin 3) (Fin 3) ℝ
+hs : K = U * diagonal (RCLike.ofReal ∘ hK.eigenvalues) * V
+hU : V * U = 1
+h2 : K * K = U * diagonal (RCLike.ofReal ∘ hK.eigenvalues) * V * (U * diagonal (RCLike.ofReal ∘ hK.eigenvalues) * V)
+h3 :
+  U * diagonal (RCLike.ofReal ∘ hK.eigenvalues) * V * (U * diagonal (RCLike.ofReal ∘ hK.eigenvalues) * V) =
+    U * (diagonal (RCLike.ofReal ∘ hK.eigenvalues) * (V * U) * diagonal (RCLike.ofReal ∘ hK.eigenvalues)) * V
+⊢ ∑ x, hK.eigenvalues x * hK.eigenvalues x = ∑ i, hK.eigenvalues i
+mutants/M7_traco_sem_quadrado.lean:25:8: warning: This simp argument is unused:
+  sq
+
+Hint: Omit it from the simp argument list.
+  [apply] simp
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+'LeanReal.Chap12.Mutant.m' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]
+== mutants/M8_sharp_6para5.lean
+Try this:
+  [apply] ring_nf
+  
+  The `ring` tactic failed to close the goal. Use `ring_nf` to obtain a normal form.
+    
+  Note that `ring` works primarily in *commutative* rings. If you have a noncommutative ring, abelian group or module, consider using `noncomm_ring`, `abel` or `module` instead.
+mutants/M8_sharp_6para5.lean:9:58: error: unsolved goals
+κ Λ G ρ : ℝ
+hκ : 0 ≤ κ
+⊢ Λ * 2 + Real.pi * G * ρ * 16 + κ ^ 2 = Λ * 2 + Real.pi * G * ρ * 16
+'LeanReal.Chap12.Mutant.m' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]
+== mutants/M9_M14_chap03_chap12reduced.lean
+Try this:
+  [apply] ring_nf
+  
+  The `ring` tactic failed to close the goal. Use `ring_nf` to obtain a normal form.
+    
+  Note that `ring` works primarily in *commutative* rings. If you have a noncommutative ring, abelian group or module, consider using `noncomm_ring`, `abel` or `module` instead.
+mutants/M9_M14_chap03_chap12reduced.lean:19:62: error: unsolved goals
+x y : ℂ
+hx : ∀ (n : ℕ), x ≠ -↑n
+hx0 : x ≠ 0
+hy : (Gamma y)⁻¹ = y * (Gamma (y + 1))⁻¹
+hxy : (Gamma (x - y))⁻¹ = (x - y) * (Gamma (x - y + 1))⁻¹
+hG : Gamma (x + 1) = x * Gamma x
+e1 : x - 1 + 1 = x
+e2 : x - 1 - y + 1 = x - y
+e3 : y - 1 + 1 = y
+e4 : x - 1 - (y - 1) + 1 = x - y + 1
+⊢ -(Gamma x * y * (Gamma (1 + y))⁻¹ * (Gamma (1 - y + x))⁻¹ * 2) +
+      Gamma x * (Gamma (1 + y))⁻¹ * x * (Gamma (1 - y + x))⁻¹ =
+    Gamma x * (Gamma (1 + y))⁻¹ * x * (Gamma (1 - y + x))⁻¹
+mutants/M9_M14_chap03_chap12reduced.lean:48:18: error: Tactic `rewrite` failed: Did not find an occurrence of the pattern
+  n - (k + 1) + 1
+in the target expression
+  Gamma n * (Gamma k)⁻¹ * (Gamma (n - k + 1))⁻¹ *
+        (Gamma (n + 1) * (Gamma (k + 2 + 1))⁻¹ * (Gamma (n - (k + 2) + 1))⁻¹) *
+      (Gamma (n + 1 + 1) * (Gamma (k + 1))⁻¹ * (Gamma (n + 1 - k + 1))⁻¹) =
+    Gamma n * (Gamma (k + 1))⁻¹ * (Gamma (n - 1 - k + 1))⁻¹ *
+        (Gamma (n + 1) * (Gamma k)⁻¹ * (Gamma (n - (k - 1) + 1))⁻¹) *
+      (Gamma (n + 1 + 1) * (Gamma (k + 1 + 1))⁻¹ * (Gamma (n + 1 - (k + 1) + 1))⁻¹)
+
+n k : ℂ
+a1 : n - 1 + 1 = n
+a2 : k - 1 + 1 = k
+a3 : n - 1 - (k - 1) + 1 = n - k + 1
+a4 : n - (k + 1) + 1 = n - k
+a5 : n + 1 - k + 1 = n - k + 2
+a6 : n - 1 - k + 1 = n - k
+a7 : n - (k - 1) + 1 = n - k + 2
+a8 : n + 1 - (k + 1) + 1 = n - k + 1
+⊢ Gamma n * (Gamma k)⁻¹ * (Gamma (n - k + 1))⁻¹ *
+        (Gamma (n + 1) * (Gamma (k + 2 + 1))⁻¹ * (Gamma (n - (k + 2) + 1))⁻¹) *
+      (Gamma (n + 1 + 1) * (Gamma (k + 1))⁻¹ * (Gamma (n + 1 - k + 1))⁻¹) =
+    Gamma n * (Gamma (k + 1))⁻¹ * (Gamma (n - 1 - k + 1))⁻¹ *
+        (Gamma (n + 1) * (Gamma k)⁻¹ * (Gamma (n - (k - 1) + 1))⁻¹) *
+      (Gamma (n + 1 + 1) * (Gamma (k + 1 + 1))⁻¹ * (Gamma (n + 1 - (k + 1) + 1))⁻¹)
+mutants/M9_M14_chap03_chap12reduced.lean:57:58: error: linarith failed to find a contradiction
+x y : ℝ
+hx : 0 < x
+hy0 : 0 ≤ y
+hyx : y ≤ x + 3
+h1 : 0 < Real.Gamma (x + 1)
+h2 : 0 < Real.Gamma (y + 1)
+a✝ : x - y + 1 ≤ 0
+⊢ False
+failed
+mutants/M9_M14_chap03_chap12reduced.lean:64:2: error: Type mismatch: After simplification, term
+  Eq.symm h
+ has type
+  ∑ x ∈ (Finset.range m).piAntidiag n, Nat.multinomial (Finset.range m) x = m ^ n
+but is expected to have type
+  ∑ k ∈ (Finset.range m).piAntidiag n, Nat.multinomial (Finset.range m) k = m ^ n + 1
+mutants/M9_M14_chap03_chap12reduced.lean:80:4: error: linarith failed to find a contradiction
+case inl
+k₁ k₂ k₃ κ s : ℝ
+h₁ : |k₁| ≤ κ
+h₂ : |k₂| ≤ κ
+h₃ : |k₃| ≤ κ
+a₁ : -κ ≤ k₁
+b₁ : k₁ ≤ κ
+a₂ : -κ ≤ k₂
+b₂ : k₂ ≤ κ
+a₃ : -κ ≤ k₃
+b₃ : k₃ ≤ κ
+hκ : 0 ≤ κ
+p₁ : 0 ≤ (κ - k₁) * (κ - k₂)
+p₂ : 0 ≤ (κ + k₁) * (κ + k₂)
+q₁ : 0 ≤ (κ - k₁) * (κ - k₂) * (κ - k₃)
+q₂ : 0 ≤ (κ + k₁) * (κ + k₂) * (κ + k₃)
+hpos : 0 < κ
+a✝ : s + κ ^ 2 < s + (k₁ ^ 2 + k₂ ^ 2 + k₃ ^ 2) - (k₁ + k₂ + k₃) ^ 2
+⊢ False
+failed
+mutants/M9_M14_chap03_chap12reduced.lean:94:2: error: linarith failed to find a contradiction
+k₁ k₂ k₃ κ : ℝ
+h₁ : |k₁| ≤ κ
+h₂ : |k₂| ≤ κ
+h₃ : |k₃| ≤ κ
+a₁ : -κ ≤ k₁
+b₁ : k₁ ≤ κ
+a₂ : -κ ≤ k₂
+b₂ : k₂ ≤ κ
+a₃ : -κ ≤ k₃
+b₃ : k₃ ≤ κ
+a✝ : 2 * κ ^ 2 < k₁ ^ 2 + k₂ ^ 2 + k₃ ^ 2
+⊢ False
+failed
+'LeanReal.Mutant.m9' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]
+'LeanReal.Mutant.m10' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]
+'LeanReal.Mutant.m11' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]
+'LeanReal.Mutant.m12' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]
+'LeanReal.Mutant.m13' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]
+'LeanReal.Mutant.m14' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]

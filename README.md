@@ -2,8 +2,8 @@
 ## Companion repository: numerical checks and Lean 4 material
 
 [![Zenodo: Monograph](https://zenodo.org/badge/DOI/10.5281/zenodo.22290043.svg)](https://doi.org/10.5281/zenodo.22290043)
-[![Lean 4](https://img.shields.io/badge/Lean_4-v4.33.1-blue.svg)](https://github.com/leanprover/lean4)
-[![Formalization](https://img.shields.io/badge/Formalization-in%20progress%20%28not%20verified%29-orange.svg)](#status-of-the-lean-4-code)
+[![Lean 4](https://img.shields.io/badge/Lean_4-v4.35.0--rc2_%2B_Mathlib-blue.svg)](https://github.com/leanprover/lean4)
+[![Formalization](https://img.shields.io/badge/Formalization-two%20chapters%2C%20partial-orange.svg)](#status-of-the-lean-4-code)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 **Author:** Reinaldo Maia Silva-Filho
@@ -19,7 +19,7 @@ This repository accompanies a research monograph and several companion papers ar
 - the LaTeX sources;
 - the records of an independent audit of the whole text;
 - the Python scripts used to check formulas and numbers;
-- Lean 4 files that are an early, incomplete step towards a formalization.
+- a small Lean 4 + Mathlib formalization of selected results (`formal_proofs_mathlib/`), plus older Lean files that are only a naming skeleton.
 
 This is ongoing work by a single author. Comments, criticism and corrections are welcome and will be credited.
 
@@ -38,7 +38,7 @@ Outcomes:
 - **Errors in earlier versions.** Several statements were **wrong**. They have been corrected or withdrawn, and others are now labelled as conjectures. The corrected versions are released as new Zenodo versions. Each carries a note listing what changed and what still needs updating.
 - **New proofs.** The audit also produced new proofs. Examples: the asymptotics of continuous multinomial integrals, an inversion formula for the Radon–Beta transform, and U-turn curvature bounds in constant-curvature spaces.
 - **Yang–Mills.** **None of the papers claims a solution of the Yang–Mills mass-gap problem.** The Yang–Mills paper states a *conditional* result: a gap follows from hypotheses that are not established.
-- **Lean 4.** **The Lean 4 code does not verify the mathematics** (see below).
+- **Lean 4.** Only `formal_proofs_mathlib/` verifies mathematics, and only the results listed there: part of Chapter 3 and the pointwise algebraic content of one theorem of Chapter 12. **The other Lean folders verify nothing** (see below).
 
 ## Works
 
@@ -61,13 +61,14 @@ Outcomes:
 | [`…/unified_quantum_gravity_book/audit/`](Projeto_Gravidade_Quantica/unified_quantum_gravity_book/audit/) | Audit records: per-chapter claim ledgers, blind referee reports and correction logs (`audit/verify/`), and the scripts used as independent checks |
 | [`Projeto_Gravidade_Quantica/submission_package_jhep_scipost/`](Projeto_Gravidade_Quantica/submission_package_jhep_scipost/) | LaTeX source, corrections note and check scripts of *Simplicial Quantum Gravity on Δ₄ × Δ₂* |
 | [`Projeto_Gravidade_Quantica/Manuscritos_Avulsos/`](Projeto_Gravidade_Quantica/Manuscritos_Avulsos/) | LaTeX sources, corrections notes and check scripts of the Yang–Mills and fermion-mass papers |
+| [`Projeto_Gravidade_Quantica/formal_proofs_mathlib/`](Projeto_Gravidade_Quantica/formal_proofs_mathlib/) | Lean 4 + Mathlib formalization: statements, `#print axioms` output, negative controls and how to reproduce, in its `README.md` |
 | [`Projeto_Gravidade_Quantica/formal_proofs_book/`](Projeto_Gravidade_Quantica/formal_proofs_book/) | Lean 4 files named after the monograph chapters (naming skeleton, see below) |
 | [`Projeto_Gravidade_Quantica/formal_proofs_lean4/`](Projeto_Gravidade_Quantica/formal_proofs_lean4/) | Lean 4 files for the functorial-cobordism paper (same status) |
 | [`Projeto_Gravidade_Quantica/Manuscritos_Avulsos/paper_yang_mills_mass_gap/`](Projeto_Gravidade_Quantica/Manuscritos_Avulsos/paper_yang_mills_mass_gap/) | Numerical scripts and Lean 4 files for the Yang–Mills paper (same status) |
 
 ### What still needs updating
 
-- **Lean 4.** The files remain a skeleton. A real formalization in Mathlib is not started beyond a few lemmas, and `formal_proofs_lean4/SpectralDimension.lean` states a formula that differs from the monograph.
+- **Lean 4.** The Mathlib formalization covers only the results listed in `formal_proofs_mathlib/README.md`. The skeleton folders remain, and `formal_proofs_lean4/SpectralDimension.lean` states a formula that differs from the monograph.
 - **Python checks for chapters 1–11.** These scripts predate the audit and do not yet follow the independent-oracle standard. The checks used during the audit are in `audit/scripts/` and `audit/verify/scripts/`.
 - **Final consistency check.** The last integration pass (titles, cross-references, notation) has not yet had its own independent re-check.
 - **Build.** The master volume is still assembled from per-chapter PDFs rather than compiled from a single source.
@@ -75,13 +76,17 @@ Outcomes:
 
 ## Status of the Lean 4 code
 
-The Lean 4 files in this repository **do not verify the mathematics of the monograph or the papers**:
+**Machine-checked: `formal_proofs_mathlib/` only.** It holds statements in Mathlib with no `sorry` and no `axiom`. `#print axioms` gives only `propext`, `Classical.choice` and `Quot.sound`, and each result has a negative control, a mutated false statement that must fail. Its `README.md` links each Lean statement to the result in the text and says how much of it is covered. It covers:
+- in Chapter 3, the continuous binomial coefficient: the Stifel recurrence, the Star of David identity, and the zero loci and positivity;
+- in Chapter 12, Theorem "Pointwise Constraint Bounds", which is also Theorem `minimax_shear` of the *Simplicial Quantum Gravity* paper. Only its algebraic content is formalized: one point, an orthonormal frame, and the Hamiltonian constraint taken as a hypothesis.
 
-- They do not import Mathlib.
+Nothing else in the monograph or the papers is machine-checked.
+
+**Not machine-checked: every other Lean folder.** This means `formal_proofs_book/`, `formal_proofs_lean4/`, and the Lean folders inside `Manuscritos_Avulsos/`. Each has a `README_SKELETON.md`. These files **do not verify the mathematics of the monograph or the papers**:
+
+- Apart from two trivial lemmas in `formal_proofs_book/BookReal`, they do not import Mathlib.
 - Most "theorems" are fields of a `structure` returned as the conclusion: the hypothesis *is* the statement, so the "proof" is trivial and says nothing about the mathematics.
-- Counts such as "N/N obligations" or "0 sorry" in earlier versions of this README did not measure mathematical verification. They have been removed.
-
-The files are a naming skeleton for a future formalization. A genuine formalization, with statements in Mathlib and no `sorry` or `axiom`, has started for a few elementary lemmas. It will be reported result by result, with a table linking each formalized statement to the corresponding result in the text.
+- Counts such as "N/N obligations" or "0 sorry" in earlier versions of this README did not measure mathematical verification. They have been removed. Messages such as "PROVEN" printed by a skeleton `Main.lean` mean nothing either.
 
 ## Status of the Python scripts
 
@@ -89,7 +94,7 @@ The scripts check formulas and numbers. For chapters 12 and 13 they were rewritt
 
 ## Running the checks
 
-Requirements: Python 3.10+ with `numpy`, `scipy`, `sympy` and `mpmath`. Lean 4 is optional (via `elan`; toolchain `v4.33.1`).
+Requirements: Python 3.10+ with `numpy`, `scipy`, `sympy` and `mpmath`. Lean 4 is optional (via `elan`; `formal_proofs_mathlib/` pins its toolchain and Mathlib commit).
 
 ```bash
 cd Projeto_Gravidade_Quantica/unified_quantum_gravity_book
@@ -102,7 +107,7 @@ Each audit script compares a claim against an independent computation. It also r
 
 To rebuild the PDFs you need a LaTeX distribution with `pdflatex`. Run `python Projeto_Gravidade_Quantica/build_pdfs_safe.py`. It compiles every chapter, the dictionary, the master volume and the three papers, and it replaces a PDF only if the compilation succeeds.
 
-The Lean projects can be built with `lake build` inside each Lean folder. A successful build shows that the files type-check. For the reasons above, it does not show that the mathematics is correct.
+To check the formalization, run `lake exe cache get && lake build` in `Projeto_Gravidade_Quantica/formal_proofs_mathlib/`, then inspect the `#print axioms` lines. The skeleton projects can also be built with `lake build`. A successful build there shows only that the files type-check. For the reasons above, it does not show that the mathematics is correct.
 
 ## License
 
