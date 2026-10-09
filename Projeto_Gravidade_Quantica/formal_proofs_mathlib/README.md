@@ -224,3 +224,16 @@ Fidelity review: `L2_FIDELIDADE_RODADA2.md`, with blind back-translation. F3 is 
 | `BeyondSpectrum1_B2` | *Beyond the Spectrum* I, `prop:optimal_permutation` (rearrangement) | full for the reduced sum; it builds on `BeyondSpectrum1` |
 | `BeyondSpectrum1_B4` | cut norm: the maximum of a bilinear form on `[0,1]ⁿ` is attained at vertices, with sharp constant 4 | finite matrices |
 | `YangMills_Y5` | Yang–Mills `prop:tight_binding`: the range of `E(θ) = −2t cos θ`, and the finite circulant ring | the spectrum on `ℓ²(ℤ)` is not proved |
+
+## Round 3 (2026-10-09)
+
+Fidelity review: `L2_FIDELIDADE_RODADA3.md`, with blind back-translation. G2 is faithful; the others are declared reductions. Only the standard axioms appear.
+
+| Module | Source and statement | Coverage |
+|---|---|---|
+| `Chap07BallBound` | Book ch. 7, `prop:ball_bound` for curves: a closed curve with `|f''| ≤ κ` inside a ball of radius `R` has `κR ≥ 1`; equality for the circle | twice-differentiable closed curves (`k = 1`), a subclass of the chapter's `C^{1,1}` immersions. The lemma "maximum ⇒ second derivative ≤ 0", which Mathlib lacks, is proved here |
+| `Chap09MouthHalfturn` | Book ch. 9, `prop:mouth_halfturn`: `y(L) − y(0) ≥ 2ρ`, and also `a ≥ 2ρ`; equality for the semicircle | differentiable tangent angle in `[0, π]`; the chapter allows Lipschitz |
+| `YangMills_Y4` | Yang–Mills `lem:gz_convex`(b): `−log det` is convex and strictly convex on the PD cone; on a Galerkin pencil it is strict iff `L` is injective (with `M₀ ≻ 0`) | part (a) and the boundary limit are not included |
+| `BeyondSpectrum3_T3` | *Beyond the Spectrum* III, Mellin transform of a vertex coordinate: Beta formula, holomorphy, residues, rational case | the Dirichlet aggregation is not included |
+| `BeyondSpectrum2_G2` | *Beyond the Spectrum* II, QFI metric in an eigenbasis: SLD entries, QFI formula, reality, change of basis | full, for full-rank `ρ` (the paper's hypothesis) |
+
