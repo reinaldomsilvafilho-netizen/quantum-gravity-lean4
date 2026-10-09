@@ -9,12 +9,18 @@ The other Lean folders (`formal_proofs_book/`, `formal_proofs_lean4/`, and the L
 `Manuscritos_Avulsos/`) are a naming skeleton with Bool, Float or Nat placeholders. They verify no
 mathematics; see the `README_SKELETON.md` in each of them.
 
-**Scope.** Two pieces of the monograph are formalized:
+**Scope.** The following pieces are formalized:
 - part of Chapter 3 (continuous Pascal triangle);
 - the algebraic, pointwise content of one theorem of Chapter 12. The same theorem appears in the
-  *Simplicial Quantum Gravity* paper.
+  *Simplicial Quantum Gravity* paper;
+- since 2026-10-09: elementary statements of four Zenodo works. These are the fermion-mass paper
+  (Koide identity, CKM of two commuting sectors), the Yang–Mills paper (convexity of the truncated
+  Gribov region, unique nearest point in its closure, tree-level bound), *Beyond the Spectrum* I
+  together with Book Ch. 1 (the algebraic part of `thm:dirichlet_blindness`), and *Functorial Bridge*
+  (`prop:cov-nogo`). See "Zenodo papers" below and `FORMALIZACAO_ZENODO_2026-10-09.md`.
 
-Nothing else in the monograph or in the papers is machine-checked.
+Nothing else in the monograph or in the papers is machine-checked. The plan for further statements is in
+`PLANO_FORMALIZACAO.md`.
 
 - Toolchain: `leanprover/lean4:v4.35.0-rc2` (`lean-toolchain`).
 - Mathlib: commit `b1007d8abfd0c776eb8a75e8f6bf26db5eae4a69`, pinned in `lakefile.toml` and
@@ -33,25 +39,25 @@ no `sorryAx` and no project axiom appears.
 `cbinom x y = Γ(x+1)·Γ(y+1)⁻¹·Γ(x−y+1)⁻¹` on ℂ. This is the Definition "Continuous Binomial Coefficient".
 Mathlib's `Γ⁻¹` is 0 at the poles, so it equals the entire function `1/Γ` used in the text.
 
-| Lean name | Statement formalized | Coverage | Axioms |
-|---|---|---|---|
-| `inv_Gamma_neg_nat` | `Γ(−n)⁻¹ = 0` (auxiliary: Mathlib's `Γ⁻¹` agrees with `1/Γ`) | auxiliary | std |
-| `stifel` | Prop. "Global Stifel Recurrence": `C(x−1,y) + C(x−1,y−1) = C(x,y)`, all `y ∈ ℂ`, `x ∉ {0,−1,−2,…}` | full | std |
-| `star_of_david` | Thm. "Continuous Star of David" (`thm:star_of_david`), eq. `sod_product` | full; holds for all `n, k ∈ ℂ`, which is stronger than the text | std |
-| `cbinom_zero_of_y_neg` | Prop. "Global Meromorphic Extension and Zero Loci", zeros for `y ∈ ℤ_{<0}` | full (zero part) | std |
-| `cbinom_zero_of_xy_neg` | same Prop., zeros for `x − y ∈ ℤ_{<0}` | full (zero part) | std |
-| `cbinom_real_pos` | same Prop., positivity for real `x > 0`, `0 ≤ y ≤ x` | full (positivity part) | std |
-| `row_sum` | discrete identity `∑ C(n,k) = 2ⁿ` quoted in Ch. 3, a classical result already in Mathlib | full (classical) | std |
-| `multinomial_row_sum` | discrete identity `∑ multinomial = mⁿ` quoted in Ch. 3, classical | full (classical) | std |
+| Lean name | Statement formalized | Coverage | Axioms | Non-vacuity witness |
+|---|---|---|---|---|
+| `inv_Gamma_neg_nat` | `Γ(−n)⁻¹ = 0` (auxiliary: Mathlib's `Γ⁻¹` agrees with `1/Γ`) | auxiliary | std | no hypotheses (instance as `example`) |
+| `stifel` | Prop. "Global Stifel Recurrence": `C(x−1,y) + C(x−1,y−1) = C(x,y)`, all `y ∈ ℂ`, `x ∉ {0,−1,−2,…}` | full | std | `stifel_nonvacuous` (x = 1) |
+| `star_of_david` | Thm. "Continuous Star of David" (`thm:star_of_david`), eq. `sod_product` | full; holds for all `n, k ∈ ℂ`, which is stronger than the text | std | no hypotheses (instance as `example`) |
+| `cbinom_zero_of_y_neg` | Prop. "Global Meromorphic Extension and Zero Loci", zeros for `y ∈ ℤ_{<0}` | full (zero part) | std | no hypotheses (instance as `example`) |
+| `cbinom_zero_of_xy_neg` | same Prop., zeros for `x − y ∈ ℤ_{<0}` | full (zero part) | std | no hypotheses (instance as `example`) |
+| `cbinom_real_pos` | same Prop., positivity for real `x > 0`, `0 ≤ y ≤ x` | full (positivity part) | std | `cbinom_real_pos_nonvacuous` (x = 1, y = 1/2) |
+| `row_sum` | discrete identity `∑ C(n,k) = 2ⁿ` quoted in Ch. 3, a classical result already in Mathlib | full (classical) | std | no hypotheses (instance as `example`) |
+| `multinomial_row_sum` | discrete identity `∑ multinomial = mⁿ` quoted in Ch. 3, classical | full (classical) | std | no hypotheses (instance as `example`) |
 
 The same Proposition also asserts a meromorphic extension. That part is **not** formalized.
 
 ### `LeanReal/Chap12Constraint.lean` — Book, Ch. 12, Thm. "Pointwise Constraint Bounds" (`thm:minimax_hamiltonian_regularization`)
 
-| Lean name | Statement formalized | Coverage | Axioms |
-|---|---|---|---|
-| `constraint_bounds` | items (i)–(ii) for principal curvatures `k₁,k₂,k₃` with `|kᵢ| ≤ κ`: `0 ≤ ∑kᵢ² ≤ 3κ²` and `s − 6κ² ≤ s + ∑kᵢ² − (∑kᵢ)² ≤ s + 2κ²`, where `s = 2Λ + 16πGρ` | **reduced form**: the diagonalization of `K_ij` and the Hamiltonian constraint are not part of this statement; they enter as the shape of `³R` | std |
-| `constraint_bounds_sharp` | both endpoints are attained by `(κ,κ,κ)` and `(κ,κ,−κ)` | reduced form | std |
+| Lean name | Statement formalized | Coverage | Axioms | Non-vacuity witness |
+|---|---|---|---|---|
+| `constraint_bounds` | items (i)–(ii) for principal curvatures `k₁,k₂,k₃` with `|kᵢ| ≤ κ`: `0 ≤ ∑kᵢ² ≤ 3κ²` and `s − 6κ² ≤ s + ∑kᵢ² − (∑kᵢ)² ≤ s + 2κ²`, where `s = 2Λ + 16πGρ` | **reduced form**: the diagonalization of `K_ij` and the Hamiltonian constraint are not part of this statement; they enter as the shape of `³R` | std | `constraint_bounds_nonvacuous` (k = (1/2, −1, 0), κ = 1) |
+| `constraint_bounds_sharp` | both endpoints are attained by `(κ,κ,κ)` and `(κ,κ,−κ)` | reduced form | std | no hypotheses (instance as `example`) |
 
 ### `LeanReal/Chap12ConstraintMatrix.lean` — same theorem, pointwise matrix form; also SQG Thm. `thm:minimax_shear`
 
@@ -62,22 +68,22 @@ This file states the theorem at one point of a spacelike hypersurface, in an ort
 - `IIBound K κ` is `∀ v, |vᵀKv| ≤ κ vᵀv`. This is the text's definition of `‖II‖ ≤ κ*` (SQG eq. `minimax_bound_def`) at that point;
 - `HamiltonianConstraint` is SQG eq. `wdw_constraint`, taken as a **hypothesis**.
 
-| Lean name | Statement formalized | Coverage | Axioms |
-|---|---|---|---|
-| `frobSq_shear` | `σ_ijσ^ij = K_ijK^ij − K²/3` | full | std |
-| `hamiltonian_iff` | SQG form of the constraint ⟺ Book eq. `wdw_hamiltonian`: `³R + K² − K_ijK^ij = 2Λ + 16πGρ` | full | std |
-| `frobSq_eq_trace_mul` | `K_ijK^ij = tr(K²)` for symmetric `K` (auxiliary) | auxiliary | std |
-| `trace_mul_self_eq` | `tr(K²) = ∑ λᵢ²`, by Mathlib's spectral theorem | auxiliary | std |
-| `trace_eq_sum` | `tr K = ∑ λᵢ` (auxiliary) | auxiliary | std |
-| `abs_eigenvalue_le` | `IIBound K κ ⟹ |λᵢ| ≤ κ` | full | std |
-| `IIBound_of_abs_eigenvalue_le` | `(∀ i, |λᵢ| ≤ κ) ⟹ IIBound K κ` (auxiliary) | auxiliary | std |
-| `IIBound_iff` | `IIBound K κ ⟺ ∀ i, |λᵢ| ≤ κ` ("no further relation among the λᵢ") | full | std |
-| `IIBound_of_l2_opNorm_le` | Mathlib ℓ² operator norm `‖K‖ ≤ κ ⟹ IIBound K κ`; the converse is not proved | one direction | std |
-| `constraint_bounds_matrix` | (i) `0 ≤ K_ijK^ij ≤ 3κ²`, `0 ≤ σσ ≤ 3κ² − K²/3`; (ii) `2Λ+16πGρ−6κ² ≤ ³R ≤ 2Λ+16πGρ+2κ²` | pointwise, orthonormal frame, constraint as hypothesis | std |
-| `constraint_bounds_opNorm` | same conclusion, hypothesis `‖K‖_op ≤ κ` | same | std |
-| `constraint_bounds_vacuum` | case `ρ = 0` | same | std |
-| `IIBound_diagonal` | diagonal matrices with entries in `[−κ, κ]` satisfy `IIBound` (auxiliary) | auxiliary | std |
-| `constraint_bounds_matrix_sharp` | sharpness: `diag(κ,κ,κ)` and `diag(κ,κ,−κ)` are admissible, attain `KK = 3κ²` and `σσ = 3κ² − K²/3`, and satisfy the constraint with `³R` at the lower and upper endpoint | algebraic, pointwise | std |
+| Lean name | Statement formalized | Coverage | Axioms | Non-vacuity witness |
+|---|---|---|---|---|
+| `frobSq_shear` | `σ_ijσ^ij = K_ijK^ij − K²/3` | full | std | no hypotheses |
+| `hamiltonian_iff` | SQG form of the constraint ⟺ Book eq. `wdw_hamiltonian`: `³R + K² − K_ijK^ij = 2Λ + 16πGρ` | full | std | no hypotheses |
+| `frobSq_eq_trace_mul` | `K_ijK^ij = tr(K²)` for symmetric `K` (auxiliary) | auxiliary | std | `abs_eigenvalue_le_nonvacuous` (`Kw` Hermitian) |
+| `trace_mul_self_eq` | `tr(K²) = ∑ λᵢ²`, by Mathlib's spectral theorem | auxiliary | std | `abs_eigenvalue_le_nonvacuous` |
+| `trace_eq_sum` | `tr K = ∑ λᵢ` (auxiliary) | auxiliary | std | `abs_eigenvalue_le_nonvacuous` |
+| `abs_eigenvalue_le` | `IIBound K κ ⟹ |λᵢ| ≤ κ` | full | std | `abs_eigenvalue_le_nonvacuous` (`Kw`, κ = 1) |
+| `IIBound_of_abs_eigenvalue_le` | `(∀ i, |λᵢ| ≤ κ) ⟹ IIBound K κ` (auxiliary) | auxiliary | std | `IIBound_of_abs_eigenvalue_le_nonvacuous` |
+| `IIBound_iff` | `IIBound K κ ⟺ ∀ i, |λᵢ| ≤ κ` ("no further relation among the λᵢ") | full | std | `abs_eigenvalue_le_nonvacuous` |
+| `IIBound_of_l2_opNorm_le` | Mathlib ℓ² operator norm `‖K‖ ≤ κ ⟹ IIBound K κ`; the converse is not proved | one direction | std | `IIBound_of_l2_opNorm_le_nonvacuous` (‖Kw‖ ≤ 1) |
+| `constraint_bounds_matrix` | (i) `0 ≤ K_ijK^ij ≤ 3κ²`, `0 ≤ σσ ≤ 3κ² − K²/3`; (ii) `2Λ+16πGρ−6κ² ≤ ³R ≤ 2Λ+16πGρ+2κ²` | pointwise, orthonormal frame, constraint as hypothesis | std | `constraint_bounds_matrix_nonvacuous` (`Kw`, κ = 1, Λ = G = ρ = 1, ³R = 4 + 16π) |
+| `constraint_bounds_opNorm` | same conclusion, hypothesis `‖K‖_op ≤ κ` | same | std | `constraint_bounds_opNorm_nonvacuous` (same data, ‖Kw‖ ≤ 1) |
+| `constraint_bounds_vacuum` | case `ρ = 0` | same | std | `constraint_bounds_vacuum_nonvacuous` (`Kw`, κ = 1, Λ = 1, ³R = 4) |
+| `IIBound_diagonal` | diagonal matrices with entries in `[−κ, κ]` satisfy `IIBound` (auxiliary) | auxiliary | std | `IIBound_diagonal_nonvacuous` (d = (1, −1, 1/2)) |
+| `constraint_bounds_matrix_sharp` | sharpness: `diag(κ,κ,κ)` and `diag(κ,κ,−κ)` are admissible, attain `KK = 3κ²` and `σσ = 3κ² − K²/3`, and satisfy the constraint with `³R` at the lower and upper endpoint | algebraic, pointwise | std | `constraint_bounds_matrix_sharp_nonvacuous` (κ = 1) |
 
 **Not formalized:**
 - the Lorentzian manifold, the ADM foliation, and the derivation of the constraint from Einstein's equations (Gauss equation);
@@ -88,28 +94,89 @@ This file states the theorem at one point of a spacelike hypersurface, in an ort
 
 Sharpness is shown at the level of matrices at a point. It is not shown at the level of spacetimes.
 
+## Zenodo papers (added 2026-10-09)
+
+Each module quotes the paper's statement and location in its header and lists what it does not cover.
+Non-vacuity witnesses are `example`s inside each module. Each mutant (`mutant_*`) is a mutated statement
+whose negation is proved there, by an explicit counterexample.
+
+### `LeanReal/Fermions.lean` — fermion-mass paper (10.5281/zenodo.22373916)
+
+| Lean name | Statement formalized | Coverage | Axioms |
+|---|---|---|---|
+| `sum_v`, `sum_sq_v` | `∑ v_j = 3a`, `∑ v_j² = 3a² + 6b²` for `v_j = a + 2b cos(δ + 2πj/3)` | full | std |
+| `norm_v1`, `norm_v2`, `v2_trace_zero` | `‖v_𝟏‖² = 3a²`, `‖v_𝟐‖² = 6b²`, `v_𝟐` trace-zero (Prop. `thm:koide_exact`) | full | std |
+| `koide_ratio` | `Q = 1/3 + 2b²/(3a²)` (eq. `koide_general`) | full; any real `b, δ`, `a ≠ 0` | std |
+| `koide_iff_equipartition`, `koide_iff_ratio`, `koide_iff_angle` | the three equivalences of eq. `norm_equipartition` | full; the angle is `arccos(⟨v,𝟏⟩/(‖v‖‖𝟏‖))` written out | std |
+| `ckm_entries_of_commute` | Remark `rem:dft`: if `C_uC_d = C_dC_u` and unitaries diagonalize them with **distinct** eigenvalues, then each column of `V = U_u†U_d` has at most one non-zero entry, and every `|V_ij|` is 0 or 1 | the hypothesis of a non-degenerate spectrum is added; it is not in the remark | std |
+| `ckm_circulant` | the modulus part |V_ij| ∈ {0,1}, for two circulant 3×3 sectors with non-degenerate spectra | as above | std |
+| `mutant_koide_false`, `mutant_ckm_no_commute`, `mutant_ckm_degenerate` | negations of mutants: `2b² → b²`; drop commutation; drop non-degeneracy | negative controls | std |
+
+### `LeanReal/YangMills.lean` — Yang–Mills paper (10.5281/zenodo.22301093)
+
+| Lean name | Statement formalized | Coverage | Axioms |
+|---|---|---|---|
+| `gribov_convex`, `zero_mem_gribov` | Prop. `prop:gribov_region`(a): `Ω = {A : M₀ + L(A) > 0}` is convex, and `0 ∈ Ω` if `M₀ > 0` | abstract affine pencil, any real vector space; `M₀ > 0` is a hypothesis | std |
+| `unique_nearest_of_closed_convex`, `gribov_closure_unique_nearest` | Prop. `prop:gribov_region`(d): every point has a unique nearest point in `Ω̄` (Federer's `reach = +∞`) | complete real inner-product space; Federer's reach itself is not in Mathlib | std |
+| `tree_level_bound`, `tree_level_eq_iff`, `propagator_max` | Prop. `prop:amgm_tree`: `k² + λ⁴/k² ≥ 2λ²`, equality iff `k = λ`, and `D(k) = k²/(k⁴+λ⁴)` is maximal exactly at `k = λ` | algebraic; the GZ quadratic form is not derived | std |
+| `mutant_gribov_nonaffine`, `mutant_tree_level` | negations: convexity for a non-affine pencil; constant `2 → 3` | negative controls | std |
+
+The Yang–Mills mass gap is not touched. Items (b), (c), openness of `Ω` and `reach(Ω) = 0` are not formalized.
+
+### `LeanReal/BeyondSpectrum1.lean` — *Beyond the Spectrum* I (10.5281/zenodo.22644743) and Book Ch. 1, `thm:dirichlet_blindness`
+
+| Lean name | Statement formalized | Coverage | Axioms |
+|---|---|---|---|
+| `energy_eq_frob` | `∑(k₁²+k₂²)a² = ‖DA‖_F² + ‖AD‖_F²` | the Parseval step `𝓔(f_A) = ∑…` is **not** formalized; `energy` is defined as the sum | std |
+| `energy_bounds`, `ratio_le` | `2‖A‖² ≤ 𝓔 ≤ 2n²‖A‖²`; `𝓔(P₂AP₂ᵀ) ≤ n²𝓔(P₁AP₁ᵀ)` | full (coefficient form) | std |
+| `frobSq_perm`, `charpoly_perm`, `rank_perm` | permutation conjugation keeps `‖·‖_F`, characteristic polynomial, rank | full | std |
+| `blindness_sharp` | `A = E₁₁` and the transposition `(1 n)` attain the ratio `n²` | full (coefficient form), every `n ≥ 1` | std |
+| `mutant_ratio`, `mutant_energy_invariant` | negations: `n² → n² − 1`; energy invariant under conjugation | negative controls | std |
+
+### `LeanReal/FunctorialBridge.lean` — *Functorial Bridge* (10.5281/zenodo.22441676), `prop:cov-nogo`
+
+| Lean name | Statement formalized | Coverage | Axioms |
+|---|---|---|---|
+| `no_covariant_lapse` | `N(s) = α'(s)N(α(s))` for all `α` in a subclass of `Diff⁺([0,1])` ⟹ `N = 0` on `(0,1)` | constant paths, fixed `x`; the subclass only weakens the hypothesis | std |
+| `no_covariant_lapse_continuous` | with continuity on `[0,1]`: `N ≡ 0` there | same | std |
+| `alpha_isDiffPlus` | the paper's `α(s) = s + ½s(1−s)(s−s₀)` is admissible (`α' > 0` on `[0,1]`) | full | std |
+| `mutant_no_jacobian` | negation: without the factor `α'` the conclusion fails (`N ≡ 1`) | negative control | std |
+
+## Non-vacuity witnesses (`LeanReal/Witnesses.lean`)
+
+For each theorem with hypotheses, a `…_nonvacuous` theorem proves that concrete data satisfy all its
+hypotheses at once (last column of the tables above). Theorems without hypotheses cannot be vacuous; for
+them an `example` applies the theorem to concrete data. The matrix witness is the non-diagonal symmetric
+`Kw = [[0,1,0],[1,0,0],[0,0,1]]` (eigenvalues 1, −1, 1): `IIBound Kw 1`, Mathlib's ℓ² operator norm
+`‖Kw‖ ≤ 1` (`Kw_opNorm_le`), `tr Kw = 1`, `K_ijK^ij = 3`, and the Hamiltonian constraint with
+`Λ = G = ρ = 1`, `³R = 4 + 16π` (`Kw_hamiltonian`), which is the upper endpoint of item (ii).
+
 ## Negative controls (`mutants/`)
 
-Each mutant restates one verified theorem with a single change and reuses the original proof. Every mutated
-statement is mathematically false; the counterexample is in each file's header or comment. All 14 fail to
+Each mutant restates one verified theorem with a single change and reuses the original proof. All 14 fail to
 compile, and `#print axioms` shows `sorryAx` for each one. Full output: `mutants/mutantes_saida_formal_proofs_mathlib.txt`.
 
-| file | mutation | failure |
-|---|---|---|
-| `M1_KK_3para2` | `KK ≤ 2κ²` | linarith |
-| `M2_shear_div3para2` | `σσ ≤ 3κ² − K²/2` | linarith |
-| `M3_inferior_6para5` | `³R ≥ s − 5κ²` | linarith |
-| `M4_superior_2para1` | `³R ≤ s + κ²` | linarith |
-| `M5_autovalor_meio` | `|λᵢ| ≤ κ/2` | type mismatch |
-| `M6_frobshear_div3para2` | `σσ = KK − K²/2` | unsolved goals |
-| `M7_traco_sem_quadrado` | `tr(K²) = ∑ λᵢ` | unsolved goals |
-| `M8_sharp_6para5` | `diag(κ,κ,κ)` with `³R = s − 5κ²` | unsolved goals |
-| `M9_M14_chap03_chap12reduced` (m9) | Stifel with `−` | unsolved goals |
-| (m10) | Star of David, `k+1 → k+2` on one side | rewrite fails |
-| (m11) | positivity with `y ≤ x + 3` | linarith |
-| (m12) | `∑ multinomial = mⁿ + 1` | type mismatch |
-| (m13) | reduced upper bound `s + κ²` | linarith |
-| (m14) | reduced `∑kᵢ² ≤ 2κ²` | linarith |
+Failing to compile does not show that a statement is false. So `LeanReal/Falsified.lean` states each mutated
+statement verbatim and proves its negation, `¬ (∀ …, mutated)`, by an explicit counterexample with concrete
+numbers (`norm_num`, `simp`, `linarith`, `omega`; no `decide`, no `native_decide`). The counterexamples are
+listed in that file's header. All 14 negations compile, and `#print axioms` gives std for each.
+
+| file | mutation | failure | proved false by (`Falsified.lean`) |
+|---|---|---|---|
+| `M1_KK_3para2` | `KK ≤ 2κ²` | linarith | `m1_false` |
+| `M2_shear_div3para2` | `σσ ≤ 3κ² − K²/2` | linarith | `m2_false` |
+| `M3_inferior_6para5` | `³R ≥ s − 5κ²` | linarith | `m3_false` |
+| `M4_superior_2para1` | `³R ≤ s + κ²` | linarith | `m4_false` |
+| `M5_autovalor_meio` | `|λᵢ| ≤ κ/2` | type mismatch | `m5_false` |
+| `M6_frobshear_div3para2` | `σσ = KK − K²/2` | unsolved goals | `m6_false` |
+| `M7_traco_sem_quadrado` | `tr(K²) = ∑ λᵢ` | unsolved goals | `m7_false` |
+| `M8_sharp_6para5` | `diag(κ,κ,κ)` with `³R = s − 5κ²` | unsolved goals | `m8_false` |
+| `M9_M14_chap03_chap12reduced` (m9) | Stifel with `−` | unsolved goals | `m9_false` |
+| (m10) | Star of David, `k+1 → k+2` on one side | rewrite fails | `m10_false` |
+| (m11) | positivity with `y ≤ x + 3` | linarith | `m11_false` |
+| (m12) | `∑ multinomial = mⁿ + 1` | type mismatch | `m12_false` |
+| (m13) | reduced upper bound `s + κ²` | linarith | `m13_false` |
+| (m14) | reduced `∑kᵢ² ≤ 2κ²` | linarith | `m14_false` |
 
 `M1`–`M8` are generated by `mutants/gerar_mutantes.py`.
 
@@ -128,9 +195,16 @@ Mathlib `.olean` files already built under `../formal_proofs_book/.lake/packages
 that folder exists locally with the same toolchain and commit.
 
 ```bash
-./verificar.sh                                   # the three modules, in dependency order
+./verificar.sh                                   # the nine modules in dependency order, then LeanReal.lean
 ARQ=mutants/M1_KK_3para2.lean ./verificar.sh     # one file
 ```
 
-Last full run: 2026-10-07. All three modules compiled with 0 errors and 0 warnings, and all 24
-`#print axioms` lines gave std. All 14 mutants failed with `sorryAx`.
+Last full run: 2026-10-09. All nine modules and `LeanReal.lean` compiled with 0 errors and 0 warnings,
+and all 98 `#print axioms` lines gave only propext, Classical.choice and Quot.sound (independent fidelity
+review: `L2_FIDELIDADE_2026-10-09.md`). The GitHub Actions workflow repeats the build, the axiom scan and a
+leanchecker kernel replay on every push. All 14 mutants failed with `sorryAx` (run of 2026-10-07), and all 14 mutated
+statements are proved false in `Falsified.lean`.
+
+Run of 2026-10-09 for the four Zenodo modules (`Fermions`, `YangMills`, `BeyondSpectrum1`,
+`FunctorialBridge`), followed by `LeanReal.lean`: 0 errors, 0 warnings, and all 36 `#print axioms`
+lines gave std.

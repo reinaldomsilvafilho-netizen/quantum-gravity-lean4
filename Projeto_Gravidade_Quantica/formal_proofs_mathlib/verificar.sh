@@ -7,7 +7,7 @@
 # Canonical route on a clean machine instead of this script:
 #   lake exe cache get && lake build
 #
-# Usage: ./verificar.sh                    -> the three LeanReal modules, in dependency order
+# Usage: ./verificar.sh                    -> the nine LeanReal modules, in dependency order, then LeanReal.lean
 #        ARQ=mutants/M1_KK_3para2.lean ./verificar.sh  -> one file (run the modules first)
 set -e
 here="$(cd "$(dirname "$0")" && pwd)"
@@ -20,6 +20,7 @@ done
 export LEAN_PATH="$lp"
 lean="${LEAN:-$HOME/.elan/toolchains/leanprover--lean4---v4.35.0-rc2/bin/lean.exe}"
 if [ -n "$ARQ" ]; then echo "== $ARQ"; "$lean" "$ARQ"; exit; fi
-for m in Chap03Pascal Chap12Constraint Chap12ConstraintMatrix; do
+for m in Chap03Pascal Chap12Constraint Chap12ConstraintMatrix Falsified Witnesses Fermions YangMills BeyondSpectrum1 FunctorialBridge; do
   echo "== $m"; "$lean" "$here/LeanReal/$m.lean" -o "$here/.olean_local/LeanReal/$m.olean"
 done
+echo "== LeanReal.lean"; "$lean" "$here/LeanReal.lean"
