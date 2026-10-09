@@ -102,7 +102,7 @@ jobs:
         env:
           LEAN_NUM_THREADS: "1"
         run: |
-          lake env leanchecker LeanReal LeanReal.Chap03Pascal LeanReal.Chap12Constraint LeanReal.Chap12ConstraintMatrix LeanReal.Falsified LeanReal.Witnesses LeanReal.Fermions LeanReal.YangMills LeanReal.BeyondSpectrum1 LeanReal.FunctorialBridge
+          lake env leanchecker LeanReal LeanReal.Chap03Pascal LeanReal.Chap12Constraint LeanReal.Chap12ConstraintMatrix LeanReal.Falsified LeanReal.Witnesses LeanReal.Fermions LeanReal.YangMills LeanReal.BeyondSpectrum1 LeanReal.FunctorialBridge LeanReal.FunctorialBridge2 LeanReal.FunctorialBridge3 LeanReal.FermionsEuler LeanReal.BeyondSpectrum2Iso LeanReal.Chap02Graphon LeanReal.BeyondSpectrum3_T1 LeanReal.BeyondSpectrum1_B2 LeanReal.BeyondSpectrum1_B4 LeanReal.YangMills_Y5
 
       - name: Negative controls must fail
         working-directory: ${{ env.PKG }}

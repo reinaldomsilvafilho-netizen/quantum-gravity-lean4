@@ -208,3 +208,19 @@ statements are proved false in `Falsified.lean`.
 Run of 2026-10-09 for the four Zenodo modules (`Fermions`, `YangMills`, `BeyondSpectrum1`,
 `FunctorialBridge`), followed by `LeanReal.lean`: 0 errors, 0 warnings, and all 36 `#print axioms`
 lines gave std.
+
+## Round 2 (2026-10-09)
+
+Fidelity review: `L2_FIDELIDADE_RODADA2.md`, with blind back-translation. F3 is faithful; the others are declared reductions. All 48 `#print axioms` lines show only the standard axioms. Every module has a non-vacuity witness and a mutant proved false.
+
+| Module | Work and statement | Coverage |
+|---|---|---|
+| `FunctorialBridge2` | *Functorial Bridge*, `prop:nec`: `T_{μν}k^μk^ν = ‖k^μ∂_μΨ‖²_HS` for null `k` | pointwise linear algebra; the `∂_μΨ` are given matrices, with no manifold |
+| `FunctorialBridge3` | *Functorial Bridge*, `prop:noid`: no idempotent cobordism | abstract argument; the additivity and positivity of the volume are hypotheses |
+| `FermionsEuler` | fermion paper, eq. `euler` (alternating binomial sums) | full (combinatorics); says nothing about vacuum energy |
+| `BeyondSpectrum2Iso` | *Beyond the Spectrum* II, `thm:isospectral_separation`(a): the 3×3 isospectral pair and its spectrum | spectrum only; persistence diagrams are not formalized |
+| `Chap02Graphon` | Book ch. 2, the Dirichlet energy of the graph Laplacian: `⟨u, L_W u⟩ = ½∑W_ij(u_i−u_j)²` | finite graph, symmetric `W`; the `L^∞([0,1]²)` graphon case is not included |
+| `BeyondSpectrum3_T1` | *Beyond the Spectrum* III, OBL-014: partial trace, `Tr Tr₂K = Tr K`, `Tr₂` preserves PSD, a rank bound | finite-dimensional analogue only |
+| `BeyondSpectrum1_B2` | *Beyond the Spectrum* I, `prop:optimal_permutation` (rearrangement) | full for the reduced sum; it builds on `BeyondSpectrum1` |
+| `BeyondSpectrum1_B4` | cut norm: the maximum of a bilinear form on `[0,1]ⁿ` is attained at vertices, with sharp constant 4 | finite matrices |
+| `YangMills_Y5` | Yang–Mills `prop:tight_binding`: the range of `E(θ) = −2t cos θ`, and the finite circulant ring | the spectrum on `ℓ²(ℤ)` is not proved |

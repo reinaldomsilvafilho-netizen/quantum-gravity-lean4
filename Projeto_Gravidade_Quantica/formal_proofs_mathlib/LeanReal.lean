@@ -7,3 +7,12 @@ import LeanReal.Fermions
 import LeanReal.YangMills
 import LeanReal.BeyondSpectrum1
 import LeanReal.FunctorialBridge
+import LeanReal.FunctorialBridge2
+import LeanReal.FunctorialBridge3
+import LeanReal.FermionsEuler
+import LeanReal.BeyondSpectrum2Iso
+import LeanReal.Chap02Graphon
+import LeanReal.BeyondSpectrum3_T1
+import LeanReal.BeyondSpectrum1_B2
+import LeanReal.BeyondSpectrum1_B4
+import LeanReal.YangMills_Y5
