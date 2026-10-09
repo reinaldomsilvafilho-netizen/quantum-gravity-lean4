@@ -1,0 +1,125 @@
+# PROPOSAL (2026-10-09). Not committed and not yet run on GitHub.
+# To activate: copy to <repo root>/.github/workflows/lean_mathlib.yml, then commit and push.
+# The first run should be started by hand: Actions tab -> "Lean Mathlib check" -> Run workflow.
+#
+# What it does, on GitHub's free runner (ubuntu-latest: 4 CPU, 16 GB RAM; free and unlimited
+# for public repositories, per docs.github.com, read 2026-10-09). Nothing runs on the author's PC.
+#   1. lake exe cache get + lake build of formal_proofs_mathlib (via leanprover/lean-action@v1).
+#   2. Forbidden-token scan of LeanReal/*.lean: sorry, admit, native_decide, decide +native,
+#      axiom declarations, unsafe, implemented_by, extern, debug.skipKernelTC, custom elab/macro/syntax.
+#   3. Axiom scan of EVERY declaration in the LeanReal.* modules, not only the ones with a
+#      #print axioms line. Allowed: propext, Classical.choice, Quot.sound. Anything else fails,
+#      including sorryAx and Lean.trustCompiler, the axiom added by native_decide. The scan also
+#      fails if it finds zero declarations, which guards against a vacuous pass.
+#      The metaprogram was tested locally on Lean v4.35.0-rc2 against Init.Core: positive case passes;
+#      two negative controls, propext removed from the allowed list and an empty module prefix,
+#      both fail.
+#   4. leanchecker, bundled with Lean >= v4.28.0: it replays the LeanReal environment through the
+#      kernel. LEAN_NUM_THREADS=1, as the lean-action README requires for Mathlib projects.
+#   5. Negative controls: each file in mutants/ must FAIL to compile, and the output must contain
+#      at least as many "sorryAx" lines as the file has theorems.
+
+name: Lean Mathlib check
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "Projeto_Gravidade_Quantica/formal_proofs_mathlib/**"
+      - ".github/workflows/lean_mathlib.yml"
+  pull_request:
+    paths:
+      - "Projeto_Gravidade_Quantica/formal_proofs_mathlib/**"
+  workflow_dispatch:
+
+concurrency:
+  group: lean-mathlib-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+env:
+  PKG: Projeto_Gravidade_Quantica/formal_proofs_mathlib
+
+jobs:
+  lean:
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    steps:
+      - uses: actions/checkout@v4  # v4 is the version known to exist; bump only after checking the releases page
+
+      - name: Build with Mathlib cache
+        uses: leanprover/lean-action@v1
+        with:
+          lake-package-directory: ${{ env.PKG }}
+          use-mathlib-cache: "true"
+          build: "true"
+          test: "false"
+          lint: "false"
+
+      - name: Forbidden tokens in proof sources
+        working-directory: ${{ env.PKG }}
+        run: |
+          set -u
+          PATTERN='\bsorry\b|\badmit\b|native_decide|decide[[:space:]]*\+native|^[[:space:]]*(private[[:space:]]+|protected[[:space:]]+)?axiom\b|\bunsafe\b|implemented_by|@\[extern|skipKernelTC|^[[:space:]]*(elab|macro|macro_rules|syntax)\b'
+          if grep -nE "$PATTERN" LeanReal.lean LeanReal/*.lean; then
+            echo "::error::forbidden token found in LeanReal sources"
+            exit 1
+          fi
+          echo "no forbidden tokens"
+
+      - name: Axiom scan of every LeanReal declaration
+        working-directory: ${{ env.PKG }}
+        run: |
+          set -u
+          cat > "$RUNNER_TEMP/AxiomScan.lean" <<'EOF'
+          import LeanReal
+          open Lean Elab Command
+
+          def scanAxioms (pfx : Name) (allowed : List Name) : CommandElabM Unit := do
+            let env ← getEnv
+            let mut bad : Array (Name × Name) := #[]
+            let mut n : Nat := 0
+            for i in [0:env.header.moduleNames.size] do
+              let mod := env.header.moduleNames[i]!
+              if pfx.isPrefixOf mod then
+                for nm in env.header.moduleData[i]!.constNames do
+                  n := n + 1
+                  let axs ← liftCoreM <| Lean.collectAxioms nm
+                  for a in axs do
+                    if !allowed.contains a then bad := bad.push (nm, a)
+            logInfo m!"checked {n} declarations in modules under {pfx}; forbidden = {bad.size}"
+            if n == 0 then throwError "no declarations found: the scan would pass vacuously"
+            if !bad.isEmpty then throwError m!"forbidden axioms: {bad.toList}"
+
+          #eval scanAxioms `LeanReal [``propext, ``Classical.choice, ``Quot.sound]
+          EOF
+          lake env lean "$RUNNER_TEMP/AxiomScan.lean"
+
+      - name: leanchecker (kernel replay)
+        working-directory: ${{ env.PKG }}
+        env:
+          LEAN_NUM_THREADS: "1"
+        run: |
+          lake env leanchecker LeanReal LeanReal.Chap03Pascal LeanReal.Chap12Constraint LeanReal.Chap12ConstraintMatrix
+
+      - name: Negative controls must fail
+        working-directory: ${{ env.PKG }}
+        run: |
+          set -u
+          fail=0
+          for f in mutants/*.lean; do
+            rc=0
+            out=$(lake env lean "$f" 2>&1) || rc=$?
+            nthm=$(grep -cE '^theorem' "$f" || true)
+            nsorry=$(printf '%s\n' "$out" | grep -c 'sorryAx' || true)
+            if [ "$rc" -eq 0 ]; then
+              echo "::error::$f compiled; a negative control must fail"; fail=1
+            elif [ "$nsorry" -lt "$nthm" ]; then
+              echo "::error::$f has $nthm theorems but only $nsorry sorryAx lines"; fail=1
+            else
+              echo "ok: $f failed as expected ($nthm theorems, $nsorry sorryAx)"
+            fi
+          done
+          exit $fail
