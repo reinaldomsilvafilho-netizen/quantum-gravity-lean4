@@ -21,3 +21,8 @@ import LeanReal.Chap09MouthHalfturn
 import LeanReal.YangMills_Y4
 import LeanReal.BeyondSpectrum3_T3
 import LeanReal.BeyondSpectrum2_G2
+import LeanReal.BeyondSpectrum3_T2
+import LeanReal.FunctorialBridge_R4
+import LeanReal.YangMills_Y4a
+import LeanReal.BeyondSpectrum1_B3
+import LeanReal.L2_Rodada4_Extra

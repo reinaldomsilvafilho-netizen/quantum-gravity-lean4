@@ -232,8 +232,21 @@ Fidelity review: `L2_FIDELIDADE_RODADA3.md`, with blind back-translation. G2 is 
 | Module | Source and statement | Coverage |
 |---|---|---|
 | `Chap07BallBound` | Book ch. 7, `prop:ball_bound` for curves: a closed curve with `|f''| ≤ κ` inside a ball of radius `R` has `κR ≥ 1`; equality for the circle | twice-differentiable closed curves (`k = 1`), a subclass of the chapter's `C^{1,1}` immersions. The lemma "maximum ⇒ second derivative ≤ 0", which Mathlib lacks, is proved here |
-| `Chap09MouthHalfturn` | Book ch. 9, `prop:mouth_halfturn`: `y(L) − y(0) ≥ 2ρ`, and also `a ≥ 2ρ`; equality for the semicircle | differentiable tangent angle in `[0, π]`; the chapter allows Lipschitz |
+| `Chap09MouthHalfturn` | Book ch. 9, `prop:mouth_halfturn`: `y(L) − y(0) ≥ 2ρ`, and also `a ≥ 2ρ`; equality for the semicircle | differentiable tangent angle in `[0, π]`; the chapter allows Lipschitz. The range hypothesis is shown necessary for the signed inequality (`mutant_no_range_false`); the teardrop counterexample for the width is not formalized |
 | `YangMills_Y4` | Yang–Mills `lem:gz_convex`(b): `−log det` is convex and strictly convex on the PD cone; on a Galerkin pencil it is strict iff `L` is injective (with `M₀ ≻ 0`) | part (a) and the boundary limit are not included |
 | `BeyondSpectrum3_T3` | *Beyond the Spectrum* III, Mellin transform of a vertex coordinate: Beta formula, holomorphy, residues, rational case | the Dirichlet aggregation is not included |
 | `BeyondSpectrum2_G2` | *Beyond the Spectrum* II, QFI metric in an eigenbasis: SLD entries, QFI formula, reality, change of basis | full, for full-rank `ρ` (the paper's hypothesis) |
 
+## Round 4 (2026-10-09)
+
+Fidelity review: `L2_FIDELIDADE_RODADA4.md`, with blind back-translation. All four modules are
+declared reductions; only the standard axioms appear.
+
+| Module | Source and statement | Coverage |
+|---|---|---|
+| `BeyondSpectrum3_T2` | *Beyond the Spectrum* III, `thm:reflected_entropy_prop`: a von Neumann entropy API (defined here; Mathlib has none); the reflected entropy `S_R` of the canonical purification is non-negative and symmetric, and `S_R = I(11*:2)`; `S_R ≥ I(1:2)` | finite dimensions, any density matrix. `S_R ≥ I` is proved **conditionally on strong subadditivity** (Lieb–Ruskai), an explicit hypothesis that is not proved in Lean |
+| `FunctorialBridge_R4` | Functorial Bridge, `def:pathcat` and `lem:category`: Moore paths with sitting instants form a category with strictly associative concatenation (a Mathlib `Category` instance), for every `C^n` including `C^∞` | data in a **normed** space `E`, with the conditions on a datum as an arbitrary pointwise predicate. The paper's Fréchet space of fields on `ℳ`, joint smoothness in `(x,t)`, and rank constant along the path are not modelled. The last one is recovered by one instance per rank |
+| `YangMills_Y4a` | Yang–Mills `lem:gz_convex`(a): `M_N(A)` is symmetric and affine, and `Ω_N` is open, convex and contains `0` | an abstract integration-by-parts model (derivations and an integral killing derivatives). `0 ∈ Ω_N` assumes two torus facts as hypotheses. The model and both facts are proved only for the circle `T¹`. The Faddeev–Popov operator is not formalized |
+| `BeyondSpectrum1_B3` | *Beyond the Spectrum* I, `thm:morse_matrix`, algebraic part: critical points of `xᵀAx` on the sphere are the unit eigenvectors; `2n` of them for distinct eigenvalues; the Hessian along great circles is non-degenerate with index `i − 1` | eigen-coordinates (`A = diag λ`) for the count and the index. No manifold Morse theory: the Morse polynomial (iii) and `χ(S^{n−1})` are not included |
+
+Extra non-vacuity witnesses from the fidelity review (SSA in the smallest case; `0 ∈ Ω`, `2 ∉ Ω` on the circle) are in `LeanReal/L2_Rodada4_Extra.lean`.

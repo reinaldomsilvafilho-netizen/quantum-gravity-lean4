@@ -24,7 +24,13 @@ Formal version (pointwise in `x`; the derivatives `∂_μρ`, `∂_νρ` enter a
   (no hermiticity needed for this complex identity).
 * `qfi_eigen_re` : the paper's formula, with `Re` inside the sum, for `Re ½Tr(ρ{L,M})`.
 * `qfi_im_zero` : if `D`, `E` are Hermitian (as `∂_μρ` is), then `½Tr(ρ{L,M})` is real, so `g^QFI`
-  equals the paper's formula without taking a real part.
+  equals the paper's formula without taking a real part. Reason: the double sum
+  `S = ∑_{i,j} D_ij E_ji/(λ_i+λ_j)` is real because `D`, `E` are Hermitian and the `λ_i` are real,
+  so complex conjugation maps the `(i,j)` term to the `(j,i)` term (`conj S = S`). It is NOT real
+  for arbitrary complex `D`, `E`; the identity `qfi_eigen` holds without any real part.
+  (Note on the paper's proof: its intermediate equality
+  `½Tr(ρ{L_μ,L_ν}) = ½∑(λ_i+λ_j) Re(L_ij L_ji)` uses this fact, which holds because `∂_μρ` is
+  Hermitian.)
 * `basis_change` : for a general `ρ = UΛUᴴ` (`UᴴU = UUᴴ = 1`), the SLD equation and `Tr(ρ{L,M})`
   are carried to the eigenbasis by `X ↦ UᴴXU`; this is the meaning of `⟨i|X|j⟩` in the paper.
 REDUCTIONS (declared): no dependence on `x`, no differentiability, no `Tr ρ = 1` (not used by the
@@ -120,7 +126,9 @@ theorem qfi_eigen_re {l : χ → ℝ} (hl : ∀ i, 0 < l i) {D E L M : Matrix χ
   have : ((l i : ℂ) + l j) = ((l i + l j : ℝ) : ℂ) := by push_cast; ring
   rw [this, Complex.div_ofReal_re]
 
-/-- For Hermitian `D`, `E` (as `∂_μρ`, `∂_νρ` are), `½Tr(ρ{L,M})` is real. -/
+/-- For Hermitian `D`, `E` (as `∂_μρ`, `∂_νρ` are), `½Tr(ρ{L,M})` is real: the sum
+`S = ∑ D_ij E_ji/(λ_i+λ_j)` is real because conjugation swaps the `(i,j)` and `(j,i)` terms
+(Hermitian `D`, `E`, real `λ`). -/
 theorem qfi_im_zero {l : χ → ℝ} (hl : ∀ i, 0 < l i) {D E L M : Matrix χ χ ℂ}
     (hD : D.IsHermitian) (hE : E.IsHermitian)
     (hL : IsSLD (Λ l) D L) (hM : IsSLD (Λ l) E M) : (qfi (Λ l) L M).im = 0 := by
@@ -132,6 +140,7 @@ theorem qfi_im_zero {l : χ → ℝ} (hl : ∀ i, 0 < l i) {D E L M : Matrix χ 
   have he : ∀ i j, conj (E i j) = E j i := fun i j => by
     have := congrFun (congrFun hE j) i
     simpa [conjTranspose_apply] using this
+  -- `conj (D_ij E_ji/(λ_i+λ_j)) = D_ji E_ij/(λ_j+λ_i)`: the (j,i) term. Hence `conj S = S`.
   have hconj : conj S = S := by
     rw [hS, map_sum, Finset.sum_comm]
     refine Finset.sum_congr rfl fun i _ => ?_

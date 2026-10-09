@@ -156,6 +156,28 @@ theorem mutant_no_curvature_false :
   have := h semi id (fun _ => 1) π 2 hL two_pos h1 h2 h3 h4 h6 h7 h8
   linarith
 
+/-- Mutante 3 (sem a hipotese de faixa `θ([0,L]) ⊂ [0,π]`): falso para a desigualdade COM SINAL
+`y(L) - y(0) ≥ 2ρ`. Contraexemplo: o semicirculo refletido, `θ(s) = -s`,
+`γ(s) = (sin s, cos s)`, `L = π`, `ρ = 1`, que DESCE `-2 < 2`. A reflexao `θ ↦ -θ` nao altera
+`|Δy| = 2ρ`, entao este mutante nao serve para `mouth_width` (largura `a`); o contraexemplo do
+livro para a largura (a gota `γ_a`, `a < 2ρ`) continua nao formalizado. -/
+theorem mutant_no_range_false :
+    ¬ (∀ (γ : ℝ → ℝ × ℝ) (θ θ' : ℝ → ℝ) (L ρ : ℝ), 0 ≤ L → 0 < ρ →
+        ContinuousOn γ (Icc 0 L) → (∀ s ∈ Ioo 0 L, HasDerivAt γ (cos (θ s), sin (θ s)) s) →
+        ContinuousOn θ (Icc 0 L) → (∀ s ∈ Ioo 0 L, HasDerivAt θ (θ' s) s) →
+        (∀ s ∈ Ioo 0 L, |θ' s| ≤ 1 / ρ) → θ 0 = 0 → cos (θ L) = -1 →
+        (γ L).2 - (γ 0).2 ≥ 2 * ρ) := by
+  intro h
+  have := h (fun s => (sin s, cos s)) (fun s => -s) (fun _ => -1) π 1 pi_pos.le one_pos
+    (continuous_sin.prodMk continuous_cos).continuousOn
+    (fun s _ => by
+      have := (hasDerivAt_sin s).prodMk (hasDerivAt_cos s)
+      simpa [cos_neg, sin_neg] using this)
+    continuous_neg.continuousOn (fun s _ => by simpa using (hasDerivAt_neg s))
+    (fun s _ => by norm_num) (by simp) (by simp)
+  simp at this
+  linarith
+
 end LeanReal.Chap09MouthHalfturn
 
 #print axioms LeanReal.Chap09MouthHalfturn.mouth_halfturn
@@ -163,3 +185,4 @@ end LeanReal.Chap09MouthHalfturn
 #print axioms LeanReal.Chap09MouthHalfturn.witness_semicircle
 #print axioms LeanReal.Chap09MouthHalfturn.mutant_strict_false
 #print axioms LeanReal.Chap09MouthHalfturn.mutant_no_curvature_false
+#print axioms LeanReal.Chap09MouthHalfturn.mutant_no_range_false
