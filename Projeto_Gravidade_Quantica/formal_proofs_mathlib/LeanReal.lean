@@ -26,3 +26,6 @@ import LeanReal.FunctorialBridge_R4
 import LeanReal.YangMills_Y4a
 import LeanReal.BeyondSpectrum1_B3
 import LeanReal.L2_Rodada4_Extra
+import LeanReal.BeyondSpectrum2_G3
+import LeanReal.Chap09Winding
+import LeanReal.L2_Rodada5_Extra

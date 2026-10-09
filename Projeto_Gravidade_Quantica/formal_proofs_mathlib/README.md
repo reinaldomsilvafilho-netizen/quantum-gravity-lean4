@@ -250,3 +250,12 @@ declared reductions; only the standard axioms appear.
 | `BeyondSpectrum1_B3` | *Beyond the Spectrum* I, `thm:morse_matrix`, algebraic part: critical points of `xᵀAx` on the sphere are the unit eigenvectors; `2n` of them for distinct eigenvalues; the Hessian along great circles is non-degenerate with index `i − 1` | eigen-coordinates (`A = diag λ`) for the count and the index. No manifold Morse theory: the Morse polynomial (iii) and `χ(S^{n−1})` are not included |
 
 Extra non-vacuity witnesses from the fidelity review (SSA in the smallest case; `0 ∈ Ω`, `2 ∉ Ω` on the circle) are in `LeanReal/L2_Rodada4_Extra.lean`.
+
+## Round 5 (2026-10-09)
+
+Fidelity review: `L2_FIDELIDADE_RODADA5.md`, with blind back-translation. Both modules are declared reductions; only the standard axioms appear. Extra mutant and witnesses: `LeanReal/L2_Rodada5_Extra.lean`.
+
+| Module | Source and statement | Coverage |
+|---|---|---|
+| `BeyondSpectrum2_G3` | *Beyond the Spectrum* II, `prop:cocycle` ("Cocycles on 𝕋²") and the first claim of `rem:tau_not_topological`: the Pauli/Clifford trace identities, `tr G = −2Φ₀∇Φ₁·∇Φ₂` and `tr(σ₃G) = −2iΦ₀ dΦ₁∧dΦ₂` pointwise, the constant `1/(4π)`, the `S₃` antisymmetrisation `= 2F·(∂₁F×∂₂F)`, hence the forms of (a), (b), (c) and the vanishing of the antisymmetrised ungraded cochain | **algebraic part only**, on an arbitrary measure space with the gradients as free data. (a)–(c) are **conditional**: Connes' trace theorem (with `[𝓓,Φ] = iγ·∇Φ`) is assumed in the form `τ = (1/4π)∫ tr G`, and in (c) `deg F` is *defined* by `∫F·(∂₁F×∂₂F) = 4π deg`. The Dixmier trace, the torus, differentiation and Brouwer degree are not formalized. Witness: a one-point space (degrees `1` and `−1`), not a map `𝕋² → 𝕊²` |
+| `Chap09Winding` | Book ch. 9, `prop:winding_total_curvature`: `∫|θ'| ≤ ∫|κ| + π` for a unit-speed curve avoiding `c`, the constant `π` is sharp (for every `C < π` the inequality fails), and the winding bound `2π|w| ≤ VK + π + |Δ₀|` | **`C²` curves** (the book states `C^{1,1}`); the `C¹` regularity of the argument lift is a named hypothesis. The winding bound is conditional on the identity `Δθ(γ) − Δθ(γ₀) = 2πw` from `thm:loop_bounding`(1); homotopy classes are not formalized. Witnesses: a straight line (`κ = 0`) and a full circle (`κ = 1`, `w = 1`) |

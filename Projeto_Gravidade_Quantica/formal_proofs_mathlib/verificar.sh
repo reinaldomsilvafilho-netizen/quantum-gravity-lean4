@@ -20,7 +20,7 @@ done
 export LEAN_PATH="$lp"
 lean="${LEAN:-$HOME/.elan/toolchains/leanprover--lean4---v4.35.0-rc2/bin/lean.exe}"
 if [ -n "$ARQ" ]; then echo "== $ARQ"; "$lean" "$ARQ"; exit; fi
-for m in Chap03Pascal Chap12Constraint Chap12ConstraintMatrix Falsified Witnesses Fermions YangMills BeyondSpectrum1 FunctorialBridge FunctorialBridge2 FunctorialBridge3 FermionsEuler BeyondSpectrum2Iso Chap02Graphon BeyondSpectrum3_T1 BeyondSpectrum1_B2 BeyondSpectrum1_B4 YangMills_Y5 Chap07BallBound Chap09MouthHalfturn YangMills_Y4 BeyondSpectrum3_T3 BeyondSpectrum2_G2 BeyondSpectrum3_T2 FunctorialBridge_R4 YangMills_Y4a BeyondSpectrum1_B3 L2_Rodada4_Extra; do
+for m in Chap03Pascal Chap12Constraint Chap12ConstraintMatrix Falsified Witnesses Fermions YangMills BeyondSpectrum1 FunctorialBridge FunctorialBridge2 FunctorialBridge3 FermionsEuler BeyondSpectrum2Iso Chap02Graphon BeyondSpectrum3_T1 BeyondSpectrum1_B2 BeyondSpectrum1_B4 YangMills_Y5 Chap07BallBound Chap09MouthHalfturn YangMills_Y4 BeyondSpectrum3_T3 BeyondSpectrum2_G2 BeyondSpectrum3_T2 FunctorialBridge_R4 YangMills_Y4a BeyondSpectrum1_B3 L2_Rodada4_Extra BeyondSpectrum2_G3 Chap09Winding L2_Rodada5_Extra; do
   echo "== $m"; "$lean" "$here/LeanReal/$m.lean" -o "$here/.olean_local/LeanReal/$m.olean"
 done
 echo "== LeanReal.lean"; "$lean" "$here/LeanReal.lean"
