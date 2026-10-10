@@ -31,3 +31,6 @@ import LeanReal.Chap09Winding
 import LeanReal.L2_Rodada5_Extra
 import LeanReal.Chap08Pointwise
 import LeanReal.L2_LIVRO_B1_Extra
+import LeanReal.Chap08UTurn
+import LeanReal.Chap09SubloopCorridor
+import LeanReal.L2_LIVRO_B2_Extra
