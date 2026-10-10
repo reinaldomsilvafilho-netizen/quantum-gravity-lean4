@@ -44,7 +44,7 @@ Fonte: `unified_quantum_gravity_book/chap07_minimax_extrinsic_curvature_submanif
    (a derivacao dessa formula a partir da imersao NAO e formalizada); para a curva complexa,
    `|II(v,v)| = |a|`, `‖II‖_F = 2|a|`, e a isotropia `‖II‖_op = ‖II‖_F/√2` e falsa.
 
-Nenhum `sorry`/`axiom`. Testemunhas nao degeneradas (com igualdade nas cotas) e mutantes
+Sem lacunas nem axiomas extras. Testemunhas nao degeneradas (com igualdade nas cotas) e mutantes
 provados falsos em cada secao.
 -/
 
