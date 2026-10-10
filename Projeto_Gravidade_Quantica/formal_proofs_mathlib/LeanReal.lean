@@ -66,3 +66,6 @@ import LeanReal.L2_LIVRO_A3_Extra
 import LeanReal.Chap10Generalization
 import LeanReal.Chap09WindingBounds
 import LeanReal.L2_LIVRO_B8_Extra
+import LeanReal.Chap02Heat
+import LeanReal.Chap02Flows
+import LeanReal.L2_LIVRO_A_B2_Extra
