@@ -63,3 +63,6 @@ import LeanReal.Chap02Tangent
 import LeanReal.Chap02Toda
 import LeanReal.Chap01Tensor
 import LeanReal.L2_LIVRO_A3_Extra
+import LeanReal.Chap10Generalization
+import LeanReal.Chap09WindingBounds
+import LeanReal.L2_LIVRO_B8_Extra
