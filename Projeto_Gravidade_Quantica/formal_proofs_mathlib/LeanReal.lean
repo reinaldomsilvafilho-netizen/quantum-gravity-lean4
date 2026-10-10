@@ -39,3 +39,6 @@ import LeanReal.Chap04Modulational
 import LeanReal.Chap05Barycentric
 import LeanReal.Chap06Kigami
 import LeanReal.L2_LIVRO_A1_Extra
+import LeanReal.Chap12Spectral
+import LeanReal.Chap13Numbers
+import LeanReal.L2_LIVRO_B3_Extra
