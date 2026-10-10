@@ -42,3 +42,5 @@ import LeanReal.L2_LIVRO_A1_Extra
 import LeanReal.Chap12Spectral
 import LeanReal.Chap13Numbers
 import LeanReal.L2_LIVRO_B3_Extra
+import LeanReal.Chap07Bounds
+import LeanReal.L2_LIVRO_B4_Extra
