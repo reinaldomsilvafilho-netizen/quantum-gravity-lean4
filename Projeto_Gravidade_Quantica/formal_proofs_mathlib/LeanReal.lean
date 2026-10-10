@@ -54,3 +54,6 @@ import LeanReal.L2_LIVRO_A2_Extra
 import LeanReal.Chap08SpaceForms
 import LeanReal.Chap09Teardrop
 import LeanReal.L2_LIVRO_B6_Extra
+import LeanReal.Chap11MinCut
+import LeanReal.Chap11Fisher
+import LeanReal.L2_LIVRO_B7_Extra
