@@ -44,3 +44,6 @@ import LeanReal.Chap13Numbers
 import LeanReal.L2_LIVRO_B3_Extra
 import LeanReal.Chap07Bounds
 import LeanReal.L2_LIVRO_B4_Extra
+import LeanReal.Chap09Covering
+import LeanReal.Chap08Chronology
+import LeanReal.L2_LIVRO_B5_Extra
