@@ -57,3 +57,9 @@ import LeanReal.L2_LIVRO_B6_Extra
 import LeanReal.Chap11MinCut
 import LeanReal.Chap11Fisher
 import LeanReal.L2_LIVRO_B7_Extra
+import LeanReal.Chap04SelfAdjoint
+import LeanReal.Chap05Coupled
+import LeanReal.Chap02Tangent
+import LeanReal.Chap02Toda
+import LeanReal.Chap01Tensor
+import LeanReal.L2_LIVRO_A3_Extra
