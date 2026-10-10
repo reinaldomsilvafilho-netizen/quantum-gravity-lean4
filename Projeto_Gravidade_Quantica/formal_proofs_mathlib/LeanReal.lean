@@ -29,3 +29,5 @@ import LeanReal.L2_Rodada4_Extra
 import LeanReal.BeyondSpectrum2_G3
 import LeanReal.Chap09Winding
 import LeanReal.L2_Rodada5_Extra
+import LeanReal.Chap08Pointwise
+import LeanReal.L2_LIVRO_B1_Extra
