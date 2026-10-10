@@ -71,3 +71,5 @@ import LeanReal.Chap02Flows
 import LeanReal.L2_LIVRO_A_B2_Extra
 import LeanReal.Chap03Special
 import LeanReal.L2_LIVRO_A_B3_Extra
+import LeanReal.Chap07Control
+import LeanReal.L2_LIVRO_B9_Extra
