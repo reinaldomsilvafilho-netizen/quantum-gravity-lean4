@@ -69,3 +69,5 @@ import LeanReal.L2_LIVRO_B8_Extra
 import LeanReal.Chap02Heat
 import LeanReal.Chap02Flows
 import LeanReal.L2_LIVRO_A_B2_Extra
+import LeanReal.Chap03Special
+import LeanReal.L2_LIVRO_A_B3_Extra
