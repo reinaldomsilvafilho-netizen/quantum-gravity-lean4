@@ -47,3 +47,7 @@ import LeanReal.L2_LIVRO_B4_Extra
 import LeanReal.Chap09Covering
 import LeanReal.Chap08Chronology
 import LeanReal.L2_LIVRO_B5_Extra
+import LeanReal.Chap03Analysis
+import LeanReal.Chap04Symbol
+import LeanReal.Chap01Rayleigh
+import LeanReal.L2_LIVRO_A2_Extra
