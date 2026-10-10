@@ -51,3 +51,6 @@ import LeanReal.Chap03Analysis
 import LeanReal.Chap04Symbol
 import LeanReal.Chap01Rayleigh
 import LeanReal.L2_LIVRO_A2_Extra
+import LeanReal.Chap08SpaceForms
+import LeanReal.Chap09Teardrop
+import LeanReal.L2_LIVRO_B6_Extra
