@@ -34,3 +34,8 @@ import LeanReal.L2_LIVRO_B1_Extra
 import LeanReal.Chap08UTurn
 import LeanReal.Chap09SubloopCorridor
 import LeanReal.L2_LIVRO_B2_Extra
+import LeanReal.Chap01KacRice
+import LeanReal.Chap04Modulational
+import LeanReal.Chap05Barycentric
+import LeanReal.Chap06Kigami
+import LeanReal.L2_LIVRO_A1_Extra
