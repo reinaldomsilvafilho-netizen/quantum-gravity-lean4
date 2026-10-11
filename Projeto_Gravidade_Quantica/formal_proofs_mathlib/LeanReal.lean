@@ -82,3 +82,6 @@ import LeanReal.Chap01Attention
 import LeanReal.Chap04Conservation
 import LeanReal.Chap04Moments
 import LeanReal.L2_LIVRO_A_B4_Extra
+import LeanReal.Chap01Hypergraphon
+import LeanReal.FermionsF4
+import LeanReal.L2_LIVRO_FINAL_Extra
