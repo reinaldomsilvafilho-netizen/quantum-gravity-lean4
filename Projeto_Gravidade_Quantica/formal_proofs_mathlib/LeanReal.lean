@@ -77,3 +77,8 @@ import LeanReal.Chap02PathIntegral
 import LeanReal.Chap06PascalMod2
 import LeanReal.Chap06Multifractal
 import LeanReal.L2_LIVRO_A_B5_Extra
+import LeanReal.Chap01Gaussian
+import LeanReal.Chap01Attention
+import LeanReal.Chap04Conservation
+import LeanReal.Chap04Moments
+import LeanReal.L2_LIVRO_A_B4_Extra
