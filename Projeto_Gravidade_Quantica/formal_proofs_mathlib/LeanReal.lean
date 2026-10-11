@@ -73,3 +73,7 @@ import LeanReal.Chap03Special
 import LeanReal.L2_LIVRO_A_B3_Extra
 import LeanReal.Chap07Control
 import LeanReal.L2_LIVRO_B9_Extra
+import LeanReal.Chap02PathIntegral
+import LeanReal.Chap06PascalMod2
+import LeanReal.Chap06Multifractal
+import LeanReal.L2_LIVRO_A_B5_Extra
