@@ -4,6 +4,7 @@
 \usepackage[T1]{fontenc}
 \usepackage{amsmath,amssymb,amsfonts,amsthm,mathtools}
 \usepackage{mathrsfs}
+\usepackage{fixcmex}
 \usepackage{microtype}
 \usepackage{booktabs}
 \usepackage{tabularx}
@@ -89,7 +90,7 @@
 \begin{document}
 
 \begin{abstract}
-While static functional realizations map finite discrete arrays into infinite-dimensional spaces, dynamical processes in high-dimensional data, network physics, and optimization require a non-equilibrium geometric foundation. In this treatise, we establish a rigorous framework for \emph{Geometric Flows, Non-Local Partial Differential Equations, and Variational Dynamics} operating on matrix and tensor manifolds, as well as their infinite-dimensional continuum limits. 
+While static functional realizations map finite discrete arrays into infinite-dimensional spaces, dynamical processes in high-dimensional data, network physics, and optimization require a non-equilibrium geometric foundation. In this chapter, we establish a rigorous framework for \emph{Geometric Flows, Non-Local Partial Differential Equations, and Variational Dynamics} operating on matrix and tensor manifolds, as well as their infinite-dimensional continuum limits. 
 
 We systematically investigate: (i) canonical Riemannian metrics on matrix manifolds---including the affine-invariant geometry of the positive definite cone $\mathcal{S}_{++}^n$, Bures-Wasserstein optimal transport geometries, and the embedded Riemannian submanifold structure of fixed-rank matrix varieties $\mathcal{M}_r$; (ii) continuous Hamiltonian and gradient dynamics, recalling that the Toda lattice flow interpolates the QR algorithm applied to $e^{A_0}$ via isospectral Lax-pair equations, and projected gradient flows on $\mathcal{M}_r$ either exist for all time or reach a lower-rank matrix in finite time; (iii) \emph{Graphon Partial Differential Equations}: for the non-local graphon heat equation we give the exact solution, prove contraction of the cut norm, and show that discontinuities persist (no parabolic smoothing); and (iv) curvature-driven evolutions, namely an \emph{Ollivier-Wasserstein Ricci Flow} on graphons (with decay and growth estimates conditional on curvature bounds) and the formal coupling of the Coarea formula to level-set Mean Curvature Flow. Finally, we give a formal derivation, via the McLachlan variational principle, of imaginary-time Schr\"odinger evolution projected onto continuous Matrix Product States as an energy-non-increasing gradient flow for a gauge-degenerate metric. We also prove that the continuum limit of contracted tensor-ring chains recovers non-Abelian Wilson-loop holonomies with an explicit $\mathcal{O}(1/k)$ error bound.
 \end{abstract}
@@ -126,12 +127,12 @@ Despite the ubiquity of these dynamical processes, an overarching geometric and 
 \end{enumerate}
 
 \subsection*{Core Contributions}
-In this treatise, we develop the differential geometry and PDE theory of matrix and tensor flows. We prove:
+In this chapter, we develop the differential geometry and PDE theory of matrix and tensor flows. We prove:
 \begin{enumerate}[label=\arabic*.]
     \item The equivalence of Toda lattice Hamiltonian flows with the continuous QR eigenvalue algorithm under isospectral commutator dynamics (Theorem~\ref{thm:toda_qr});
     \item Rank preservation and energy decay for projected Riemannian gradient flows on $\mathcal{M}_r$, and convergence to a matrix of lower rank when the existence time is finite (Theorem~\ref{thm:rank_preservation});
     \item Global well-posedness, contraction of the cut norm, and persistence of discontinuities with amplitude $e^{-2t}$ for non-local Graphon Heat Equations $\partial_t W = \Delta_\otimes W$ (Theorems~\ref{thm:graphon_heat_existence} and \ref{thm:heat_smoothing});
-    \item Exponential decay of negatively curved bridges in graphon Ricci flows, conditional on curvature bounds along the flow (Proposition~\ref{thm:ricci_neckpinch});
+    \item Exponential decay of negatively curved bridges in graphon Ricci flows, conditional on curvature bounds along the flow, which fail for the discrete metric and for the codegree curvature (Proposition~\ref{thm:ricci_neckpinch} and the Remark after it);
     \item Perimeter dissipation of level sets under smooth level-set Mean Curvature Flow via the Coarea identity (Proposition~\ref{thm:mean_curvature_coarea}).
 \end{enumerate}
 
@@ -180,7 +181,7 @@ Substituting $\gamma(t) = A^{1/2} \exp(t \log(A^{-1/2} B A^{-1/2})) A^{1/2}$ sat
 \end{proof}
 
 \subsection{The Bures-Wasserstein Optimal Transport Metric}
-In quantum mechanics and optimal transport of Gaussian probability measures $\mathcal{N}(0, A)$ (see Bhatia~\cite{bhatia2009positive} and Villani~\cite{villani2009optimal}), the relevant Riemannian structure is the \emph{Bures-Wasserstein metric}:
+In quantum mechanics and optimal transport of Gaussian probability measures $\mathcal{N}(0, A)$ (see Bhatia~\cite{bhatia2009positive}, Bhatia, Jain and Lim~\cite{bhatia2019bures}, and Villani~\cite{villani2009optimal}), the relevant Riemannian structure is the \emph{Bures-Wasserstein metric}:
 \begin{equation}
     \label{eq:bures_metric}
     g_A^{\mathrm{BW}}(U, V) \coloneqq \frac{1}{2} \Tr(\mathcal{S}_A(U) V),
@@ -197,7 +198,7 @@ Let $\mathcal{M}_r \coloneqq \{A \in \R^{m \times n} \colon \rank(A) = r\}$ wher
 
 \begin{proposition}[Tangent Space Projection on $\mathcal{M}_r$]
 \label{prop:tangent_proj_mr}
-Let $A \in \mathcal{M}_r$ with thin singular value decomposition $A = U \Sigma V^T$, where $U \in \R^{m \times r}, \Sigma \in \R^{r \times r}, V \in \R^{n \times r}$. The tangent space $T_A \mathcal{M}_r$ is an embedded subspace of dimension $r(m + n - r)$, given by:
+Let $A \in \mathcal{M}_r$ with thin singular value decomposition $A = U \Sigma V^T$, where $U \in \R^{m \times r}, \Sigma \in \R^{r \times r}, V \in \R^{n \times r}$. The set $\mathcal{M}_r$ is a smooth embedded submanifold of $\R^{m \times n}$, and the tangent space $T_A \mathcal{M}_r$ is a linear subspace of dimension $r(m + n - r)$, given by:
 \begin{equation}
     T_A \mathcal{M}_r = \{ U M V^T + U_p V^T + U V_p^T \colon M \in \R^{r \times r}, \ U_p^T U = 0, \ V_p^T V = 0 \}.
 \end{equation}
@@ -207,6 +208,13 @@ The orthogonal projection operator $\mathcal{P}_{T_A \mathcal{M}_r} \colon \R^{m
     \mathcal{P}_{T_A \mathcal{M}_r}(Z) = U U^T Z + Z V V^T - U U^T Z V V^T.
 \end{equation}
 \end{proposition}
+\begin{proof}
+The manifold structure, the dimension and the description of $T_A\mathcal{M}_r$ are proved in Vandereycken~\cite{vandereycken2013lowrank}, in the description of the manifold of fixed-rank matrices and its tangent space, and \eqref{eq:tangent_proj_formula} is the tangent-space projection formula given there, written as $P_U Z P_V + P_U^{\perp} Z P_V + P_U Z P_V^{\perp}$ with $P_U = UU^T$, $P_V = VV^T$. We sketch the argument for the tangent space and the projection. Call $\mathcal{T}_A$ the set on the right-hand side of the display. Given $M$, $U_p$, $V_p$ as there, the curve $t \mapsto (U + tU_p\Sigma^{-1})(\Sigma + tM)(V + tV_p\Sigma^{-1})^T$ lies in $\mathcal{M}_r$ for small $|t|$, since its three factors have full rank $r$, and its velocity at $t = 0$ is $UMV^T + U_pV^T + UV_p^T$. Hence $\mathcal{T}_A \subseteq T_A\mathcal{M}_r$. The map $(M, U_p, V_p) \mapsto X = UMV^T + U_pV^T + UV_p^T$ is injective, because $M = U^TXV$, $U_p = (\Id - UU^T)XV$ and $V_p = (\Id - VV^T)X^TU$. So $\dim\mathcal{T}_A = r^2 + r(m-r) + r(n-r) = r(m+n-r) = \dim T_A\mathcal{M}_r$, and $\mathcal{T}_A = T_A\mathcal{M}_r$. Next, $\mathcal{P}(Z) = Z - (\Id - UU^T)Z(\Id - VV^T)$ is self-adjoint and idempotent, since $\Id - UU^T$ and $\Id - VV^T$ are orthogonal projections. It fixes every element of $T_A\mathcal{M}_r$, because $(\Id - UU^T)U = 0$ and $V^T(\Id - VV^T) = 0$. Its range lies in $T_A\mathcal{M}_r$, because
+\begin{equation*}
+    \mathcal{P}(Z) = U(U^TZV)V^T + \big[(\Id - UU^T)ZV\big]V^T + U\big[(\Id - VV^T)Z^TU\big]^T
+\end{equation*}
+has the form of the display. Hence $\mathcal{P}$ is the orthogonal projection onto $T_A\mathcal{M}_r$.
+\end{proof}
 
 \subsection{The Tensor-Train (MPS) Riemannian Variety}
 \label{subsec:tensor_train_manifold}
@@ -292,43 +300,57 @@ The \emph{Toda flow} is the differential equation on $\operatorname{Sym}_n(\R)$:
 
 \begin{theorem}[Isospectrality and QR Interpolation]
 \label{thm:toda_qr}
-Let $A(t)$ solve the Toda lattice equation \eqref{eq:toda_flow} with initial condition $A(0) = A_0 \in \operatorname{Sym}_n(\R)$. Then:
+Let $A_0 \in \operatorname{Sym}_n(\R)$. The Toda lattice equation \eqref{eq:toda_flow} with initial condition $A(0) = A_0$ has a unique solution $A(t)$; it is defined for all $t \in \R$ and is symmetric. Moreover:
 \begin{enumerate}[label=(\roman*)]
-    \item The flow is \emph{strictly isospectral}: the spectrum $\sigma(A(t)) = \sigma(A_0)$ is invariant for all $t \ge 0$.
-    \item There exists an orthogonal matrix curve $Q(t) \in O(n)$ such that $A(t) = Q(t)^T A_0 Q(t)$, where $Q(t)$ satisfies the kinematic equation $\dot{Q}(t) = Q(t) \Pi_{\mathfrak{so}}(A(t))$.
-    \item Let $\exp(t A_0) = Q(t) R(t)$ be the $QR$ factorization of the matrix exponential at time $t$. Then:
+    \item The flow is \emph{strictly isospectral}: the spectrum $\sigma(A(t)) = \sigma(A_0)$, with multiplicities, is invariant for all $t \in \R$.
+    \item The solution $Q(t)$ of the kinematic equation $\dot{Q}(t) = Q(t) \Pi_{\mathfrak{so}}(A(t))$ with $Q(0) = \Id$ is unique, lies in $O(n)$ for all $t \in \R$, and satisfies $A(t) = Q(t)^T A_0 Q(t)$.
+    \item Let $\exp(t A_0) = Q(t) R(t)$ be the $QR$ factorization of the matrix exponential at time $t$ in which $R(t)$ is upper triangular with positive diagonal; it is unique and smooth in $t$. Then $Q(t)$ is the curve of (ii), so that
     \begin{equation}
         A(t) = Q(t)^T A_0 Q(t).
     \end{equation}
-    In particular, $e^{A(t+1)} = R_1 Q_1$ whenever $e^{A(t)} = Q_1 R_1$: at integer times the flow reproduces the iterates of the unshifted QR algorithm applied to $e^{A_0}$ (not to $A_0$) \cite{symes1982qr, deift1983ode}.
+    In particular, $e^{A(t+1)} = R_1 Q_1$ whenever $e^{A(t)} = Q_1 R_1$ with $R_1$ upper triangular with positive diagonal: at integer times the flow reproduces the iterates of the unshifted QR algorithm applied to $e^{A_0}$ (not to $A_0$) \cite{symes1982qr, deift1983ode}.
 \end{enumerate}
 \end{theorem}
 
 \begin{proof}
-To prove (i), let $A(t) = Q(t)^T A_0 Q(t)$ with $Q(0) = \Id$ and $\dot{Q}(t) = Q(t) K(t)$, where $K(t) = \Pi_{\mathfrak{so}}(A(t))$. Since $K(t)$ is skew-symmetric ($K^T = -K$), $Q(t)$ remains strictly orthogonal for all $t$:
+\emph{Existence, uniqueness and symmetry.} For every $X \in \R^{n \times n}$ the matrix $\Pi_{\mathfrak{so}}(X) = X_{<0} - X_{<0}^T$ is skew-symmetric. The right-hand side $F(X) \coloneqq [X, \Pi_{\mathfrak{so}}(X)]$ of \eqref{eq:toda_flow} is a quadratic polynomial map on $\R^{n \times n}$, hence locally Lipschitz. By the Picard--Lindel\"of theorem there is a unique maximal solution $A \colon J \to \R^{n \times n}$ with $A(0) = A_0$, defined on an open interval $J \ni 0$. Put $K(t) \coloneqq \Pi_{\mathfrak{so}}(A(t))$, a continuous skew-symmetric curve on $J$. Then $A$ solves the \emph{linear} equation
 \begin{equation}
-    \frac{\dif}{\dif t}(Q Q^T) = \dot{Q} Q^T + Q \dot{Q}^T = Q K Q^T + Q (-K) Q^T = 0.
+    \label{eq:toda_linear}
+    \dot Y = Y K(t) - K(t) Y, \qquad Y(0) = A_0,
 \end{equation}
-Differentiating $A(t)$:
-\begin{align}
-    \frac{\dif A(t)}{\dif t} &= \dot{Q}^T A_0 Q + Q^T A_0 \dot{Q} = -K Q^T A_0 Q + Q^T A_0 Q K \notag \\
-    &= -K A(t) + A(t) K = [A(t), K(t)].
-\end{align}
-This exactly reproduces \eqref{eq:toda_flow}, proving (i) and (ii).
+whose coefficients are continuous on $J$, so \eqref{eq:toda_linear} has exactly one solution on $J$. The transpose $A^T$ also solves \eqref{eq:toda_linear}: $\frac{\dif}{\dif t}A^T = (AK - KA)^T = K^T A^T - A^T K^T = A^T K - K A^T$ and $A_0^T = A_0$. Hence $A^T = A$ on $J$.
 
-To prove (iii), define $X(t) \coloneqq \exp(t A_0)$. By the Lie-group factorization on $GL(n) = O(n) \cdot \mathcal{B}^+$, let $X(t) = Q(t) R(t)$ be the QR factorization. Differentiating with respect to $t$:
+\emph{Proof of (ii).} Let $Q \colon J \to \R^{n \times n}$ solve the linear equation $\dot Q = Q K(t)$, $Q(0) = \Id$. It exists on all of $J$, is $C^1$ and is unique, since the coefficient $K$ is continuous. Since $K^T = -K$,
 \begin{equation}
-    A_0 X(t) = \dot{Q}(t) R(t) + Q(t) \dot{R}(t).
+    \frac{\dif}{\dif t}(Q Q^T) = \dot{Q} Q^T + Q \dot{Q}^T = Q K Q^T + Q K^T Q^T = 0,
+\end{equation}
+so $Q Q^T = \Id$ and $Q(t) \in O(n)$. Put $B(t) \coloneqq Q(t)^T A_0 Q(t)$. Then $B(0) = A_0$ and
+\begin{align}
+    \dot B &= \dot{Q}^T A_0 Q + Q^T A_0 \dot{Q} = K^T Q^T A_0 Q + Q^T A_0 Q K \notag \\
+    &= B K(t) - K(t) B,
+\end{align}
+so $B$ solves \eqref{eq:toda_linear}. By uniqueness for \eqref{eq:toda_linear}, $A(t) = B(t) = Q(t)^T A_0 Q(t)$ for $t \in J$.
+
+\emph{Proof of (i) and global existence.} Since $Q(t)^T = Q(t)^{-1}$, $A(t)$ is similar to $A_0$, so the two matrices have the same characteristic polynomial and the same eigenvalues with multiplicities. Moreover $\|A(t)\|_F = \|A_0\|_F$ for $t \in J$, because the Frobenius norm is invariant under orthogonal conjugation. A maximal solution of an ODE with locally Lipschitz right-hand side on a finite-dimensional space leaves every compact set as $t$ tends to a finite endpoint of its interval. The solution $A$ stays in the compact ball of radius $\|A_0\|_F$, so $J$ has no finite endpoint and $J = \R$. In particular (i) and (ii) hold for all $t \in \R$.
+
+\emph{Proof of (iii).} Put $X(t) \coloneqq \exp(t A_0)$, which is invertible for every $t$. A factorization $X = QR$ with $Q \in O(n)$ and $R$ upper triangular with positive diagonal exists (Gram--Schmidt applied to the columns of $X$) and is unique: if $QR = Q'R'$, then $Q'^T Q = R' R^{-1}$ is orthogonal and upper triangular with positive diagonal. Its inverse is its transpose, which is lower triangular, so it is diagonal with entries $\pm 1$, hence equal to $\Id$. The factor $R(t)$ is the Cholesky factor in $X(t)^T X(t) = R(t)^T R(t)$. Its entries are obtained from those of the positive definite matrix $X(t)^T X(t)$ by finitely many arithmetic operations and square roots of positive numbers, so $R$ and $Q = X R^{-1}$ are smooth in $t$. Also $X(0) = \Id$ gives $Q(0) = R(0) = \Id$. Differentiating $X = QR$ and using $\dot X = A_0 X$:
+\begin{equation}
+    A_0 Q(t) R(t) = \dot{Q}(t) R(t) + Q(t) \dot{R}(t).
 \end{equation}
 Multiplying on the left by $Q(t)^T$ and on the right by $R(t)^{-1}$:
 \begin{equation}
     Q(t)^T A_0 Q(t) = Q(t)^T \dot{Q}(t) + \dot{R}(t) R(t)^{-1}.
 \end{equation}
-Notice that $Q^T A_0 Q = A(t)$ is symmetric. On the right-hand side, $Q^T \dot{Q}$ is skew-symmetric, while $\dot{R} R^{-1}$ is upper-triangular. Taking the skew-symmetric projection on both sides:
+Differentiating $Q^T Q = \Id$ shows that $Q^T \dot{Q}$ is skew-symmetric, while $\dot{R} R^{-1}$ is upper triangular. The projection $\Pi_{\mathfrak{so}}$ fixes skew-symmetric matrices and annihilates upper-triangular ones, so
 \begin{equation}
-    \Pi_{\mathfrak{so}}(A(t)) = Q(t)^T \dot{Q}(t),
+    \label{eq:toda_closed_Q}
+    \dot{Q}(t) = Q(t)\, \Pi_{\mathfrak{so}}\big(Q(t)^T A_0 Q(t)\big), \qquad Q(0) = \Id.
 \end{equation}
-which implies $\dot{Q}(t) = Q(t) \Pi_{\mathfrak{so}}(A(t))$. Since $A(t) = Q(t)^T A_0 Q(t)$ satisfies the initial condition $A(0) = A_0$, by uniqueness of ODE solutions, the trajectory coincides with the continuous QR interpolation. Finally, $e^{A(1)} = Q(1)^T e^{A_0} Q(1) = Q(1)^T Q(1) R(1) Q(1) = R(1) Q(1)$, one unshifted QR step applied to $e^{A_0} = Q(1)R(1)$; since the flow is autonomous, the same holds between any times $t$ and $t+1$.
+The curve of (ii) also solves \eqref{eq:toda_closed_Q}, because $\Pi_{\mathfrak{so}}(A(t)) = \Pi_{\mathfrak{so}}(Q(t)^T A_0 Q(t))$ by (ii). The right-hand side of \eqref{eq:toda_closed_Q} is a polynomial in the entries of $Q$, hence locally Lipschitz, so the two curves coincide on $\R$, and $A(t) = Q(t)^T A_0 Q(t)$ with the $QR$ factor $Q(t)$. Finally, since $e^{Q^T A_0 Q} = Q^T e^{A_0} Q$ for orthogonal $Q$,
+\begin{equation}
+    e^{A(1)} = Q(1)^T e^{A_0} Q(1) = Q(1)^T Q(1) R(1) Q(1) = R(1) Q(1),
+\end{equation}
+one unshifted QR step applied to $e^{A_0} = Q(1)R(1)$. The equation is autonomous, so by uniqueness $s \mapsto A(t+s)$ is the solution with initial value $A(t)$; applying the case just proved to it gives $e^{A(t+1)} = R_1 Q_1$, where $e^{A(t)} = Q_1 R_1$ with $R_1$ upper triangular with positive diagonal.
 \end{proof}
 
 \subsection{Projected Gradient Flows on Low-Rank Varieties}
@@ -393,6 +415,7 @@ The \emph{Unnormalized Graphon Laplacian} $\mathcal{L}_W \colon L^2([0, 1]) \to 
 \end{definition}
 
 \begin{proposition}[Dirichlet Energy of the Graphon Laplacian]
+\label{prop:graphon_dirichlet_energy}
 Assume in addition that $0 \le W \in L^\infty([0,1]^2)$. Then the operator $\mathcal{L}_W$ is bounded with $\|\mathcal{L}_W\| \le 2\|W\|_\infty$, self-adjoint, and positive semi-definite on $L^2([0, 1])$. Its quadratic form satisfies:
 \begin{equation}
     \label{eq:graphon_dirichlet}
@@ -462,7 +485,7 @@ Because $\mathcal{K}$ is an integral operator, the convolution term $\mathcal{K}
 % =========================================================================
 
 \subsection{Ollivier-Wasserstein Ricci Curvature on Graphons}
-In discrete geometry, Yann Ollivier \cite{ollivier2009ricci} defined Ricci curvature along edges via optimal transport:
+In discrete geometry, Yann Ollivier \cite{ollivier2009ricci} defined Ricci curvature along edges via optimal transport. A discrete Ricci flow driven by this curvature was used for community detection by Ni et al.~\cite{ni2019community}:
 \begin{equation}
     \kappa(x, y) \coloneqq 1 - \frac{W_1(m_x, m_y)}{d(x, y)},
 \end{equation}
@@ -497,12 +520,31 @@ For fixed $(x,y)$, \eqref{eq:graphon_ricci} gives $W(t) = W_0 \exp\big(2\int_0^t
 
 \begin{remark}[What is and is not established]
 Three points are left open by the Proposition, and they are stated here explicitly.
-(a) The flow requires a metric $d$ on $[0,1]$. For a graphon there is no canonical graph distance, and the choice matters. With the discrete metric, $W_1(m_x,m_y)$ is the total variation distance, so $\kappa \ge 0$ everywhere and no negatively curved bridge can occur.
-(b) That the curvature bounds hold initially and persist along the flow is a hypothesis. It has not been proved for any explicit choice of $d$.
-(c) By item (ii), the limit $W(t) \to \mathbf{1}_{[0,1/2]^2} + \mathbf{1}_{[1/2,1]^2}$ (asymptotic disconnection into two communities of density $1$) requires a normalized flow, for instance $\partial_t W = 2(\kappa_W - \bar\kappa_W)W$ with a suitable mean $\bar\kappa_W$, or a truncation. We record it as a conjecture for such normalized flows.
+
+(a) \emph{Choice of metric.} The flow requires a metric $d$ on $[0,1]$. For a graphon there is no canonical graph distance, and the choice matters. With the discrete metric, $W_1(m_x,m_y)$ is the total variation distance, so the curvature is $\kappa^{\mathrm{TV}}_W(x,y) = 1-\mathrm{TV}(m_x,m_y) = 1 - \tfrac12\|m_x-m_y\|_{L^1} \in [0,1]$ for $x \ne y$ and no negatively curved bridge can occur. This curvature is not continuous for the cut norm, and it is not the large-$n$ limit of the Ollivier curvature of graphs. Let $W_n$ be the step graphon of an Erd\H{o}s--R\'enyi graph $G(n,\tfrac12)$ with adjacency matrix $A$. Almost surely $\cutnorm{W_n-\tfrac12} \le 2n^{-1/2}+(2n)^{-1}$ for all large $n$: the cut norm of a step kernel is attained at unions of cells, the diagonal cells contribute at most $(2n)^{-1}$, for fixed $S,T\subseteq\{1,\dots,n\}$ Hoeffding's inequality bounds by $2e^{-4n}$ the probability that $\big|\sum_{i\in S,\,j\in T,\,i\ne j}(A_{ij}-\tfrac12)\big| > 2n^{3/2}$, and $\sum_n 4^n e^{-4n}<\infty$. On the other hand, for $x,y$ in distinct cells $i\ne j$,
+\begin{equation*}
+    \kappa^{\mathrm{TV}}_{W_n}(x,y) = \frac{|N(i)\cap N(j)|}{\max(\deg i,\deg j)} \longrightarrow \frac12
+\end{equation*}
+almost surely and uniformly in $i\ne j$ (Hoeffding's inequality and a union bound over pairs), whereas $\kappa^{\mathrm{TV}}_{1/2}\equiv 1$. Hence $\|\kappa^{\mathrm{TV}}_{W_n}-\kappa^{\mathrm{TV}}_{1/2}\|_{L^1}\to\tfrac12$ although $\cutnorm{W_n-\tfrac12}\to0$. For the graphs themselves, the Ollivier curvature of an edge of $G(n,p)$ with fixed $p\in(0,1)$ (simple random walk, graph distance) converges in probability to $p$ \cite[Thm.~6.3(f)]{bhattacharya2015exact}, not to $\kappa^{\mathrm{TV}}_p\equiv1$. For dense $W$-random graphs with $\delta\le W\le1-\delta$, a natural candidate limit for the Ollivier curvature of the edges is the codegree ratio
+\begin{equation*}
+    \kappa^{\square}_W(x,y) \coloneqq \frac{\int_0^1 W(x,z)W(y,z)\dif z}{\max(d_W(x),d_W(y))},
+\end{equation*}
+and one expects convergence to it, as well as continuity of $\kappa^{\square}_W$ from the cut norm to $L^1$ on graphons with degrees bounded below; neither statement is proved in this chapter. Since $\int_0^1 W(x,z)W(y,z)\dif z \le \min(d_W(x),d_W(y))$, also $0\le\kappa^{\square}_W\le1$. For neither $\kappa^{\mathrm{TV}}_W$ nor $\kappa^{\square}_W$ can the bridge hypothesis $\kappa_{W(t)}\le-c_2<0$ of Proposition~\ref{thm:ricci_neckpinch} hold.
+
+(b) \emph{Persistence.} That the curvature bounds hold initially and persist along the flow is a hypothesis. It has not been proved for any explicit choice of $d$. In the discrete analogue it fails numerically. On the barbell graph $K_6$--$K_6$ (two copies of $K_6$ joined by one edge), take the lazy random walk with idleness $\tfrac12$ and the edge-length flow $\dot\ell_e = -\kappa_e\,d_\ell(e)$, where $d_\ell$ is the weighted shortest-path distance; it is the counterpart of \eqref{eq:graphon_ricci} for the weights $1/\ell_e$. From unit lengths, the bridge curvature equals $-\tfrac23$ at $t=0$ and becomes positive near $t\approx4.1$; the bridge length stays below $1.82$ on $[0,10]$, while the clique edges contract (Runge--Kutta of order $4$, step $0.02$); this is the flow of~\cite{ni2019community} in continuous time. This is a numerical observation, not a theorem.
+
+(c) \emph{Normalization.} By item (ii), the limit $W(t) \to \mathbf{1}_{[0,1/2]^2} + \mathbf{1}_{[1/2,1]^2}$ (asymptotic disconnection into two communities of density $1$) requires a normalized flow or a truncation. The mass-preserving normalization $\partial_t W = 2(\kappa_W - \bar\kappa_W)W$ with $\bar\kappa_W = \int\kappa_W W/\int W$ and $\kappa_W=\kappa^{\square}_W$ does not produce it. The class of $2$-block graphons, equal to $p$ on $[0,1/2]^2\cup[1/2,1]^2$ and to $q$ elsewhere, is invariant. With $s = p+q$ one has $d_W\equiv s/2$, $\kappa_{\mathrm{in}} = (p^2+q^2)/s$, $\kappa_{\mathrm{out}} = 2pq/s$ and $\bar\kappa_W = (p\,\kappa_{\mathrm{in}}+q\,\kappa_{\mathrm{out}})/s$, so that
+\begin{equation*}
+    \dot q = 2(\kappa_{\mathrm{out}}-\bar\kappa_W)\,q = -\frac{2pq(p-q)^2}{s^2}, \qquad \dot p = -\dot q.
+\end{equation*}
+From the initial datum of Proposition~\ref{thm:ricci_neckpinch} ($p=1$, $q=\epsilon$), $s = 1+\epsilon$ is conserved, $q(t)$ decreases to $0$ with exponential rate $2(1+\epsilon)$, and $W(t)\to(1+\epsilon)\big(\mathbf{1}_{[0,1/2]^2}+\mathbf{1}_{[1/2,1]^2}\big)$, which is not $[0,1]$-valued. This limit is unstable. On the invariant class $q=0$ with values $p_1$ on $[0,1/2]^2$ and $p_2$ on $[1/2,1]^2$, one has $\kappa^{\square}_W = p_k$ on the $k$-th block and $\bar\kappa_W = (p_1^2+p_2^2)/S$ with $S = p_1+p_2$ conserved, so
+\begin{equation*}
+    \dot p_1 = \frac{2p_1p_2(p_1-p_2)}{S} = -\dot p_2 .
+\end{equation*}
+Near $p_1=p_2$ the asymmetry $(p_1-p_2)/S$ grows at rate $S$, and if $p_1>p_2$ then $p_1\to S$ and $p_2\to0$: one community absorbs all the mass. A normalization under which two-community graphons converge to the disconnected limit remains to be found.
 \end{remark}
 \subsection{Matrix Level-Set Mean Curvature Flow}
-In \cite{silvafilho2026functional} we recalled the classical coarea formula of Fleming and Rishel, $\TV(W_A) = \int_{-\infty}^\infty \mathcal{H}^1(\partial^* E_c(W_A)) \dif c$, where $E_c(u) \coloneqq \{x \in \Omega \colon u(x) > c\}$. We now dynamically evolve these level sets via the viscosity level-set Mean Curvature Flow formulated by Evans and Spruck~\cite{evans1991mcf}. To avoid conflating the flow time with the level-set threshold, we reserve $t$ for time and $c$ for the slicing parameter throughout this subsection.
+In \cite{silvafilho2026functional} we recalled the classical coarea formula of Fleming and Rishel, $\TV(W_A) = \int_{-\infty}^\infty \mathcal{H}^1(\partial^* E_c(W_A)) \dif c$, where $E_c(u) \coloneqq \{x \in \Omega \colon u(x) > c\}$. We now dynamically evolve these level sets via the viscosity level-set Mean Curvature Flow formulated by Evans and Spruck~\cite{evans1991mcf} and, independently and simultaneously, by Chen, Giga and Goto~\cite{chen1991uniqueness}. To avoid conflating the flow time with the level-set threshold, we reserve $t$ for time and $c$ for the slicing parameter throughout this subsection.
 
 \begin{proposition}[Dissipation of Level-Set Perimeter under MCF]
 \label{thm:mean_curvature_coarea}
@@ -511,7 +553,7 @@ Let $\Omega = \Tor^2 = \R^2/\Z^2$ be the flat torus, so that level curves have n
     \label{eq:mcf_pde}
     \partial_t u = |\nabla u| \operatorname{div}\left( \frac{\nabla u}{|\nabla u|} \right), \quad u(0, \cdot) = u_0,
 \end{equation}
-where $u_0$ is continuous. (The Evans--Spruck viscosity theory~\cite{evans1991mcf} requires continuous initial data. The step realization $W_A$ must therefore first be extended periodically to $\R^2$ and mollified, e.g.\ $u_0 = W_A^{\mathrm{per}} * \rho_\delta$. On a domain with boundary, level curves meeting $\partial\Omega$ would contribute boundary terms that depend on the boundary condition.) Assume moreover that on $[0,T)$ the solution is smooth and that, for a.e.\ $c$, the level set $\{u(t,\cdot) = c\}$ is a smooth curve moving by its curvature (no singularities or fattening). Then the total perimeter of all level curves dissipates at rate proportional to the squared mean curvature:
+where $u_0$ is continuous. (The viscosity theory~\cite{evans1991mcf, chen1991uniqueness} requires continuous initial data. The step realization $W_A$ must therefore first be extended periodically to $\R^2$ and mollified, e.g.\ $u_0 = W_A^{\mathrm{per}} * \rho_\delta$. On a domain with boundary, level curves meeting $\partial\Omega$ would contribute boundary terms that depend on the boundary condition.) Assume moreover that on $[0,T)$ the solution is smooth and that, for a.e.\ $c$, the level set $\{u(t,\cdot) = c\}$ is a smooth curve moving by its curvature (no singularities or fattening). Then the total perimeter of all level curves dissipates at rate proportional to the squared mean curvature:
 \begin{equation}
     \frac{\dif}{\dif t} \TV(u(t)) = -\int_{-\infty}^\infty \left( \int_{\partial^* E_c(u(t))} H(x)^2 \dif \mathcal{H}^1(x) \right) \dif c \le 0,
 \end{equation}
@@ -598,7 +640,7 @@ Let $\mathcal{A} \in C^1([0, 1], \mathfrak{gl}(r))$ be a continuous gauge potent
         \label{eq:dyson_error_bound}
         \left| Z_k - \Tr\left( \mathcal{P} \exp\left( \oint_0^1 \mathcal{A}(s) \dif s \right) \right) \right| \le \frac{r}{k} \left( M + \frac{a_1 + a_0^2}{2} \right) \exp\left( \|\mathcal{A}\|_{L^1} + \frac{M + a_1/2}{k} \right).
     \end{equation}
-    The factor $e^{M/k}$ cannot be dropped: for $r = 1$, $\mathcal{A} \equiv 0$ and $\mathcal{R}_j \equiv M$, the error is $(1 + M/k^2)^k - 1$, which exceeds $M/k$ for every $k \ge 2$ and is at most $\frac{M}{k}e^{M/k}$.
+    The factor $e^{M/k}$ cannot be dropped: for $r = 1$, $\mathcal{A} \equiv 0$ and $\mathcal{R}_j \equiv M > 0$, the error is $(1 + M/k^2)^k - 1$, which exceeds $M/k$ for every $k \ge 2$ and is at most $\frac{M}{k}e^{M/k}$.
     \item \textbf{Gauge Invariance:} Let $\Omega \in C^2([0, 1], GL(r))$ be a periodic gauge transformation ($\Omega(0) = \Omega(1)$). Under the local gauge transformation of tensor cores:
     \begin{equation}
         \label{eq:continuous_gauge_field}
@@ -704,11 +746,18 @@ Open problems include:
 
 \bibitem{silvafilho2026functional} R.~M. Silva-Filho, \emph{Functional Realizations of Matrices and Hypertensors: Emergent Invariants and Geometric Measures}, Chapter~1 of \emph{Geometry, Tensors, and Quantum Gravity}, Universidade Federal de Lavras, 2026.
 
+
 \bibitem{lubich2015tt}
 C.~Lubich, I.~V. Oseledets, and B.~Vandereycken,
 \emph{Time integration of tensor trains},
 SIAM J. Numer. Anal. \textbf{53} (2015), no.~2, 917--941,
 \href{https://doi.org/10.1137/140976546}{DOI: 10.1137/140976546}.
+
+\bibitem{vandereycken2013lowrank}
+B.~Vandereycken,
+\emph{Low-rank matrix completion by Riemannian optimization},
+SIAM J. Optim. \textbf{23} (2013), no.~2, 1214--1236,
+\doi{10.1137/110845768}.
 
 \bibitem{absil2009optimization}
 P.-A. Absil, R.~Mahony, and R.~Sepulchre,
@@ -727,6 +776,24 @@ P.~Deift, T.~Nanda, and C.~Tomei,
 \emph{Ordinary differential equations and the symmetric eigenvalue problem},
 SIAM Journal on Numerical Analysis, \textbf{20} (1983), no.~1, 1--22,
 \doi{10.1137/0720001}.
+
+\bibitem{ni2019community}
+C.-C.~Ni, Y.-Y.~Lin, F.~Luo, and J.~Gao,
+\emph{Community detection on networks with Ricci flow},
+Scientific Reports \textbf{9} (2019), article no.~9984,
+\href{https://doi.org/10.1038/s41598-019-46380-9}{doi:10.1038/s41598-019-46380-9}.
+
+\bibitem{chen1991uniqueness}
+Y.~G.~Chen, Y.~Giga, and S.~Goto,
+\emph{Uniqueness and existence of viscosity solutions of generalized mean curvature flow equations},
+J. Differential Geom. \textbf{33} (1991), no.~3, 749--786,
+\href{https://doi.org/10.4310/jdg/1214446564}{doi:10.4310/jdg/1214446564}.
+
+\bibitem{bhatia2019bures}
+R.~Bhatia, T.~Jain, and Y.~Lim,
+\emph{On the Bures--Wasserstein distance between positive definite matrices},
+Expo. Math. \textbf{37} (2019), no.~2, 165--191,
+\href{https://doi.org/10.1016/j.exmath.2018.01.002}{doi:10.1016/j.exmath.2018.01.002}.
 
 \bibitem{evans1991mcf}
 L.~C. Evans and J.~Spruck,
@@ -776,6 +843,12 @@ L.~Lov{\'a}sz,
 American Mathematical Society Colloquium Publications, Vol.~60, AMS, Providence, RI, 2012,
 ISBN: 978-0-8218-9085-1,
 \doi{10.1090/coll/060}.
+
+\bibitem{bhattacharya2015exact}
+B.~B. Bhattacharya and S.~Mukherjee,
+\emph{Exact and asymptotic results on coarse Ricci curvature of graphs},
+Discrete Mathematics, \textbf{338} (2015), no.~1, 23--42,
+\doi{10.1016/j.disc.2014.08.012}.
 
 \bibitem{ollivier2009ricci}
 Y.~Ollivier,

@@ -1,0 +1,35 @@
+C1: G(n,1/2)
+  n=100: mean 1-TV = 0.4720, mean codegree ratio = 0.4720, ||A-J/2||/n = 0.0964
+  n=100 graph kappa_0 on 20 edges: mean 0.4418; LP vs POT max diff 5.6e-16
+[PASS] graph Ollivier kappa_0 on G(100,1/2) near 1/2
+[PASS] LP oracle agrees with POT
+  n=400: mean 1-TV = 0.4829, mean codegree ratio = 0.4829, ||A-J/2||/n = 0.0505
+  n=1600: mean 1-TV = 0.4943, mean codegree ratio = 0.4943, ||A-J/2||/n = 0.0249
+[PASS] 1-TV on G(n,1/2) near 1/2 (n=1600)
+[PASS] NEG: 1-TV on G(n,1/2) near the limit value 1 must fail
+[PASS] spectral (>= cut) norm of W_n - 1/2 small
+C2: normalised flow, symmetric blocks, eps=0.1
+  t=12: block average 1.1000000000, bridge value 5.877e-13, round-off block asymmetry 6.90e-06 (grows at rate S, see C3)
+[PASS] block value -> 1+eps
+[PASS] NEG: block value -> 1 (indicator) must fail
+  bridge decay rate 2.19999 (theory 2(1+eps) = 2.20000)
+[PASS] bridge rate 2(1+eps)
+  reduced vs generic at t=3: 4.3e-19
+[PASS] reduced 2-block ODE matches generic integrator
+C3: winner-take-all, q=0, p1=p2=1.1 with relative asymmetry 1e-9
+  fitted asymmetry growth rate 2.2000 (theory S=2.2); t=40: p1=2.200000, p2=1.56e-31
+[PASS] asymmetry grows at rate S
+[PASS] NEG: rate S/2 must fail
+[PASS] one block absorbs the mass: p1 -> S
+C4: barbell K6-K6, alpha=1/2, phi=1
+  t=0 bridge curvature: LP -0.666666666667, POT -0.666666666667
+[PASS] bridge kappa_{1/2}(0) = -2/3
+[PASS] NEG: bridge kappa_{1/2}(0) = -4/3 must fail
+  t= 0.00: bridge kappa -0.6667, bridge length 1.0000, min length 1.00e+00
+  t= 2.50: bridge kappa -0.0508, bridge length 1.7542, min length 2.23e-01
+  t= 5.00: bridge kappa +0.0110, bridge length 1.8040, min length 4.98e-02
+  t= 7.50: bridge kappa +0.0224, bridge length 1.7236, min length 1.11e-02
+  t=10.00: bridge kappa +0.0247, bridge length 1.6237, min length 2.48e-03
+  first t with bridge kappa > 0: 4.14; max bridge length on [0,10]: 1.8136; RK4 time 18.1s
+[PASS] bridge curvature becomes positive along the flow (persistence of kappa<=-c fails)
+FAILURES: 0

@@ -88,6 +88,7 @@ where $1/\Gamma$ denotes the entire reciprocal Gamma function. For fixed $x$ the
 \end{definition}
 
 \begin{proposition}[Global Stifel Recurrence]
+\label{prop:stifel}
 For all $x, y \in \mathbb{C}$ where the functions are defined,
 \begin{equation}
 \binom{x-1}{y} + \binom{x-1}{y-1} = \binom{x}{y}.
@@ -103,7 +104,8 @@ Using the fundamental recurrence $\Gamma(z+1) = z\Gamma(z)$, we compute directly
 \end{proof}
 
 \begin{proposition}[Digamma Partial Differential Equation System]
-Let $\psi(z) \coloneqq \frac{d}{dz}\ln \Gamma(z) = \frac{\Gamma'(z)}{\Gamma(z)}$ be the Digamma function \cite{olver1997}. The continuous binomial surface satisfies the first-order system of PDEs:
+\label{prop:digamma_pde}
+Let $\psi(z) \coloneqq \frac{d}{dz}\ln \Gamma(z) = \frac{\Gamma'(z)}{\Gamma(z)}$ be the Digamma function \cite{olver1997}. On the open set where none of $x+1$, $y+1$, $x-y+1$ lies in $\mathbb{Z}_{\le 0}$, the continuous binomial coefficient satisfies the first-order system of PDEs:
 \begin{align}
 \frac{\partial}{\partial x}\binom{x}{y} &= \binom{x}{y}\Big[\psi(x+1) - \psi(x-y+1)\Big], \label{eq:pde_x}\\
 \frac{\partial}{\partial y}\binom{x}{y} &= \binom{x}{y}\Big[\psi(x-y+1) - \psi(y+1)\Big]. \label{eq:pde_y}
@@ -112,9 +114,14 @@ Summing \eqref{eq:pde_x} and \eqref{eq:pde_y} yields the advective transport equ
 \begin{equation}
 \left(\frac{\partial}{\partial x} + \frac{\partial}{\partial y}\right)\binom{x}{y} = \binom{x}{y}\Big[\psi(x+1) - \psi(y+1)\Big].
 \end{equation}
+On the lines $y \in \mathbb{Z}_{<0}$ and $x - y \in \mathbb{Z}_{<0}$ (which do not meet when $x \notin \mathbb{Z}_{<0}$), $\binom{x}{y} = 0$ while $\psi(y+1)$ or $\psi(x-y+1)$ has a pole, so the right-hand sides above are literally undefined. Since $\psi(z)/\Gamma(z) = -\frac{d}{dz}\frac{1}{\Gamma(z)}$ is entire, each product of $\binom{x}{y}$ with a Digamma value extends holomorphically across these lines; for instance $\binom{x}{y}\psi(y+1) = -\Gamma(x+1)\,\frac{1}{\Gamma(x-y+1)}\,\big(\tfrac{1}{\Gamma}\big)'(y+1)$. With the products read as these extensions, the three identities hold for all $x \in \mathbb{C} \setminus \mathbb{Z}_{<0}$ and $y \in \mathbb{C}$. The transport equation holds literally whenever $y+1 \notin \mathbb{Z}_{\le 0}$. For example, at $y = -1$ the extended \eqref{eq:pde_y} gives $\frac{\partial}{\partial y}\binom{x}{y} = \frac{1}{x+1}$.
 \end{proposition}
+\begin{proof}
+On the stated open set, $\binom{x}{y}$ is a product of holomorphic non-vanishing factors there, so logarithmic differentiation, $\frac{d}{dz}\ln\Gamma(z) = \psi(z)$, gives \eqref{eq:pde_x} and \eqref{eq:pde_y}, and their sum is the transport equation. Both sides of each identity, with the products extended as above, are holomorphic on $(\mathbb{C} \setminus \mathbb{Z}_{<0}) \times \mathbb{C}$ and agree on the dense open subset just treated, so they agree everywhere. On the line $x - y \in \mathbb{Z}_{<0}$ with $y+1 \notin \mathbb{Z}_{\le 0}$, the transport equation needs no extension: $\binom{x}{y}$ vanishes identically along the direction $(1,1)$, which keeps $x-y$ fixed, and its right-hand side is $0$ times a finite number.
+\end{proof}
 
 \begin{proposition}[Global Meromorphic Extension and Zero Loci]
+\label{prop:meromorphic_zero_loci}
 Using Euler's reflection formula $\Gamma(z)\Gamma(1-z) = \frac{\pi}{\sin(\pi z)}$, the continuous binomial coefficient admits the representation:
 \begin{equation}
 \binom{x}{y} = -\frac{1}{\pi}\frac{\sin(\pi y)\sin(\pi(x-y))}{\sin(\pi x)} \frac{\Gamma(y-x)\Gamma(-y)}{\Gamma(-x)}.
@@ -151,7 +158,7 @@ The rate in \eqref{eq:J_rate} is far from sharp. Numerically $2^x - I(x)$ lies i
 \end{remark}
 
 \begin{proof}
-The classical integral $\int_0^{\pi/2} \cos^{x} t\, \cos(bt)\,dt = \frac{\pi\,\Gamma(x+1)}{2^{x+1}\,\Gamma(1 + \frac{x+b}{2})\,\Gamma(1 + \frac{x-b}{2})}$, valid for $x > -1$ and all real $b$ \cite[\S 3.631]{gradshteyn2015}, with $b = x - 2y$ and $t = \theta/2$ gives, for every real $y$,
+The classical integral $\int_0^{\pi/2} \cos^{x} t\, \cos(bt)\,dt = \frac{\pi\,\Gamma(x+1)}{2^{x+1}\,\Gamma(1 + \frac{x+b}{2})\,\Gamma(1 + \frac{x-b}{2})}$, valid for $x > -1$ and all real $b$ \cite[3.631.9]{gradshteyn2015}, with $b = x - 2y$ and $t = \theta/2$ gives, for every real $y$,
 \begin{equation}
 \binom{x}{y} = \frac{1}{\pi}\int_0^\pi \left(2\cos\frac{\theta}{2}\right)^x \cos\left(\frac{(x-2y)\theta}{2}\right)\,d\theta.
 \end{equation}
@@ -310,9 +317,10 @@ Evaluating $S(\xi^*)$ gives $S(\xi^*) = \ln\phi$. The second derivative at the s
 S''(\xi^*) = \frac{1}{1-\xi^*} - \frac{1}{\xi^*} - \frac{4}{1-2\xi^*} = -\sqrt{5} - 4\sqrt{5} = -5\sqrt{5}.
 \end{equation}
 Applying Laplace's method for Gaussian integration around $\xi^*$ \cite{olver1997, wong2001}:
-\begin{equation}
-\int_0^{x/2} \binom{x-y}{y}dy = x \int_0^{1/2} \binom{x(1-\xi)}{x\xi}d\xi \sim x \cdot \frac{e^{x S(\xi^*)}}{\sqrt{2\pi x \xi^*(1-2\xi^*)/(1-\xi^*)}} \cdot \sqrt{\frac{2\pi}{x |S''(\xi^*)|}} = \frac{\phi^{x+1}}{\sqrt{5}},
-\end{equation}
+\begin{multline}
+\int_0^{x/2} \binom{x-y}{y}dy = x \int_0^{1/2} \binom{x(1-\xi)}{x\xi}d\xi \sim x \cdot \frac{e^{x S(\xi^*)}}{\sqrt{2\pi x \xi^*(1-2\xi^*)/(1-\xi^*)}} \\
+\cdot \sqrt{\frac{2\pi}{x |S''(\xi^*)|}} = \frac{\phi^{x+1}}{\sqrt{5}},
+\end{multline}
 since $\sqrt{\frac{1-\xi^*}{\xi^*(1-2\xi^*) |S''(\xi^*)|}} = \sqrt{\frac{\phi^2}{5}} = \frac{\phi}{\sqrt{5}}$. Laplace's method is justified as in the proof of Theorem~\ref{thm:simplex_integral}. Stirling's formula holds uniformly on $|\xi - \xi^*| \le x^{-2/5}$, and outside this window the Stirling-type bounds used there give an integrand of size at most $C\sqrt{x}\,e^{x(S(\xi^*) - c x^{-4/5})}$, which is negligible.
 
 For general $\alpha > 0$ the same computation applies with
@@ -412,6 +420,7 @@ Theorem~\ref{conj:dixon} is proved by an \emph{exact} vanishing $F(\pi j)=0$ for
 \subsection{Continuous Alternating Row Integrals (Zero Sum)}
 
 \begin{theorem}[Alternating Row Integrals]
+\label{thm:alternating_row_integrals}
 For all $x > 0$:
 \begin{equation}
 A(x) \coloneqq \int_0^x \cos(\pi y) \binom{x}{y}\,dy.
@@ -469,16 +478,28 @@ The absorption identity $y_j y_k \binom{x}{\mathbf{y}} = x(x-1)\binom{x-2}{\dots
 
 \subsection{Continuous Row Entropy via the Barnes \texorpdfstring{$G$}{G}-Function}
 
-\begin{theorem}[Closed Form for Continuous Row Log-Product]
-The continuous row entropy $\mathcal{E}(x) \coloneqq \int_0^x \ln \binom{x}{y}\,dy$ is given explicitly by
+Let $G(z)$ be the Barnes $G$-function \cite{barnes1900}, the solution of $G(z+1) = \Gamma(z)G(z)$, $G(1) = 1$ given by the Weierstrass product in \cite[Eq.~5.17.3]{dlmf517}. For real $x > -1$ the classical theorem of Alexeiewsky and Barnes \cite[Sec.~6]{adamchik2003barnes}, \cite[Eq.~5.17.4]{dlmf517} states
 \begin{equation}
-\mathcal{E}(x) = x(x+1) - x\ln(2\pi) - x\ln\Gamma(x+1) + 2\ln G(x+1),
-\end{equation}
-where $G(z)$ is the Barnes $G$-function \cite{barnes1900} satisfying $G(z+1) = \Gamma(z)G(z)$ and $G(1) = 1$, evaluated via Alexeiewsky's theorem:
-\begin{equation}
+\label{eq:alexeiewsky}
 \int_0^x \ln\Gamma(y+1)\,dy = x\ln\Gamma(x+1) - \ln G(x+1) + \frac{x}{2}\ln(2\pi) - \frac{x(x+1)}{2}.
 \end{equation}
-\end{theorem}
+
+\begin{corollary}[Closed Form for Continuous Row Log-Product]
+\label{cor:row_log_product}
+For real $x \ge 0$, the continuous row entropy $\mathcal{E}(x) \coloneqq \int_0^x \ln \binom{x}{y}\,dy$ equals
+\begin{equation}
+\mathcal{E}(x) = x(x+1) - x\ln(2\pi) - x\ln\Gamma(x+1) + 2\ln G(x+1).
+\end{equation}
+\end{corollary}
+\begin{proof}
+Since $\ln\binom{x}{y} = \ln\Gamma(x+1) - \ln\Gamma(y+1) - \ln\Gamma(x-y+1)$ and the substitution $y \mapsto x-y$ maps $\int_0^x \ln\Gamma(x-y+1)\,dy$ onto $\int_0^x \ln\Gamma(y+1)\,dy$,
+\begin{equation*}
+\mathcal{E}(x) = x\ln\Gamma(x+1) - 2\int_0^x \ln\Gamma(y+1)\,dy .
+\end{equation*}
+Inserting \eqref{eq:alexeiewsky} gives the stated formula.
+\end{proof}
+
+The identity is therefore a direct consequence of a classical result; its content is the continuous counterpart, recorded in Table~\ref{tab:dictionary}, of the discrete product $\prod_{k=0}^n \binom{n}{k} = (n!)^{n+1}/\mathrm{sf}(n)^2$.
 
 \subsection{Dictionary of Discrete vs. Continuous Combinatorial Identities}
 
@@ -504,7 +525,7 @@ To facilitate cross-disciplinary reading, Table~\ref{tab:dictionary} provides a 
 \textbf{Absorption Law} & $k\binom{n}{k} = n\binom{n-1}{k-1}$ & $\langle y_j \rangle = \frac{x}{m}$, $\mathrm{Var}(y_j) \sim \frac{m-1}{m^2}x$ (Thm.~\ref{thm:moments}) \\
 \textbf{Alternating Sum} & $\sum (-1)^k \binom{n}{k} = 0$ & $\int_0^x \cos(\pi y)\binom{x}{y}dy = 0$ ($x \in 2\mathbb{N}+1$) \\
 \textbf{Cubic Sum (Dixon)} & $\sum (-1)^k \binom{2n}{n+k}^3 = \frac{(3n)!}{(n!)^3}$ \cite{dixon1891} & Theorem~\ref{conj:dixon}: $\int_{-x}^x \cos(\pi t)\binom{2x}{x+t}^3 dt \sim \frac{1}{2}\binom{3x}{x,x,x}$ (real $x\ge1$) \\
-\textbf{Row Term Product} & $\prod_{k=0}^n \binom{n}{k} = \frac{(n!)^{n+1}}{\mathrm{sf}(n)^2}$, $\mathrm{sf}(n) = \prod_{k=0}^n k! = G(n+2)$ & $\int_0^x \ln\binom{x}{y}dy = \mathcal{E}(x)$ via Barnes $G(x+1)$ \cite{barnes1900} \\
+\textbf{Row Term Product} & $\prod_{k=0}^n \binom{n}{k} = \frac{(n!)^{n+1}}{\mathrm{sf}(n)^2}$, $\mathrm{sf}(n) = \prod_{k=0}^n k! = G(n+2)$ & $\int_0^x \ln\binom{x}{y}dy = \mathcal{E}(x)$ via Barnes $G(x+1)$ (Cor.~\ref{cor:row_log_product}) \\
 \bottomrule
 \end{tabularx}
 \end{table}
@@ -637,7 +658,7 @@ $m$ & Layer $x$ & Numerical $I_m(x)$ & Asymptotic $m^x$ & Error (\%) & Defect Mo
 \section{Conclusion and Future Research}
 % ==============================================================================
 
-We have developed the analytic continuation of Pascal's triangle and the Pascal $m$-simplex: an exact trigonometric representation of the row integral for $m = 2$ (which has no analogue on the torus for $m \ge 3$), exact continuous identities (Stifel, Star of David, Barnes $G$), asymptotic counterparts of classical identities (Fibonacci, $L^p$ norms, hockey stick, moments), a proved explicit-error asymptotic for the continuous Dixon cubic integral at integer $x$ (Theorem~\ref{conj:dixon}) and, combining Cohl--Volkmer's exact real-line identity with the same tail bound, at every real $x \ge 1$ (Corollary~\ref{cor:dixon_real}), the leading asymptotics $I_m(x) \sim m^x$, and Beta-kernel operators with their Fourier symbols. Two structural facts distinguish the continuous theory from the lattice one. First, the continuous kernel does not inherit the multinomial generating function or the semigroup law of the lattice construction. Second, the resulting Laplacian is bounded, so it has no Weyl law at high energies. Establishing the precise boundary defect $m^n - I_m(n)$, the exponential rate of $1 - \mathcal{J}_m(x)$, the $\mathcal{O}(1)$ corrections to the moments, and explicit constants for $\sum_{j\text{ odd}\ge3}|I_j(n)| = O(\sqrt{\log n})$ (Remark after Corollary~\ref{cor:dixon_higher}) remain open. Future research includes studying nonlinear simplicial Schrödinger equations and investigating applications to anomalous diffusion in anisotropic porous media.
+We have developed the analytic continuation of Pascal's triangle and the Pascal $m$-simplex: an exact trigonometric representation of the row integral for $m = 2$ (which has no analogue on the torus for $m \ge 3$), exact continuous identities (Stifel, Star of David, and a Barnes $G$ closed form that follows from Alexeiewsky's theorem), asymptotic counterparts of classical identities (Fibonacci, $L^p$ norms, hockey stick, moments), a proved explicit-error asymptotic for the continuous Dixon cubic integral at integer $x$ (Theorem~\ref{conj:dixon}) and, combining Cohl--Volkmer's exact real-line identity with the same tail bound, at every real $x \ge 1$ (Corollary~\ref{cor:dixon_real}), the leading asymptotics $I_m(x) \sim m^x$, and Beta-kernel operators with their Fourier symbols. Two structural facts distinguish the continuous theory from the lattice one. First, the continuous kernel does not inherit the multinomial generating function or the semigroup law of the lattice construction. Second, the resulting Laplacian is bounded, so it has no Weyl law at high energies. Establishing the precise boundary defect $m^n - I_m(n)$, the exponential rate of $1 - \mathcal{J}_m(x)$, the $\mathcal{O}(1)$ corrections to the moments, and explicit constants for $\sum_{j\text{ odd}\ge3}|I_j(n)| = O(\sqrt{\log n})$ (Remark after Corollary~\ref{cor:dixon_higher}) remain open. Future research includes studying nonlinear simplicial Schrödinger equations and investigating applications to anomalous diffusion in anisotropic porous media.
 
 \input{declarations_chapter}
 
@@ -659,7 +680,18 @@ Moscow Mathematical Journal, \textbf{7} (2007), no.~3, 355--386,
 E.~W. Barnes,
 \emph{The Theory of the G-Function},
 Quarterly Journal of Pure and Applied Mathematics, \textbf{31} (1900), 264--314,
-JFM~30.0389.01.
+JFM~30.0389.02.
+
+\bibitem{adamchik2003barnes}
+V.~S. Adamchik,
+\emph{Contributions to the Theory of the Barnes Function},
+preprint, 2003, arXiv:math/0308086,
+\doi{10.48550/arXiv.math/0308086}.
+
+\bibitem{dlmf517}
+F.~W.~J. Olver et al. (eds.),
+\emph{NIST Digital Library of Mathematical Functions}, Chapter~5 (R.~A. Askey and R.~Roy), \S5.17 Barnes' $G$-Function,
+\href{https://dlmf.nist.gov/5.17}{\texttt{https://dlmf.nist.gov/5.17}}, accessed 6~October 2026.
 
 \bibitem{podlubny1998}
 I.~Podlubny,
@@ -672,7 +704,7 @@ ISBN: 978-0-12-558840-9,
 A.~C. Dixon,
 \emph{On the Sum of the Cubes of the Coefficients in a Certain Expansion by the Binomial Theorem},
 Messenger of Mathematics, \textbf{20} (1891), 79--80,
-JFM~23.0259.01.
+JFM~22.0258.01.
 
 \bibitem{cohlvolkmer2025}
 H.~S. Cohl and H.~Volkmer,

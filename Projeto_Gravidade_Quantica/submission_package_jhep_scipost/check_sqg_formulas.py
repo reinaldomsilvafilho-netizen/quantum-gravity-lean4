@@ -176,5 +176,61 @@ Hinf = math.sqrt(0.036 * 2.1e-9 * np.pi ** 2 * Mred ** 2 / 2)
 print(f'     H_inf <= {Hinf:.2e} GeV, |alpha_t| <= {(Hinf / MP) ** 2:.2e}')
 check('H_inf <= 4.7e13 GeV and |alpha_t| <= 1.5e-11', abs(Hinf / 4.7e13 - 1) < 0.03 and abs((Hinf / MP) ** 2 / 1.5e-11 - 1) < 0.05)
 
+
+# 10. Saturated |alpha_t| = x/(1+x), x = (H_inf/M*)^2, for M* < M_P (section 11 (ii)).
+def alpha_pade(p, M):
+    # consistency check: alpha_t = (d_s - 4)/2 from the postulated Pade form d_s = 2 + 2/(1 + (p/M)^2)
+    # (algebraically identical to eq. tensor_running / alpha_closed; floating-point only, see sympy oracle below)
+    ds = 2 + 2 / (1 + (p / M) ** 2)
+    return abs((ds - 4) / 2)
+
+
+def alpha_closed(p, M):
+    x = (p / M) ** 2
+    return x / (1 + x)
+
+
+def alpha_mutated(p, M):  # negative control: unsaturated (H/M*)^2
+    return (p / M) ** 2
+
+
+# independent symbolic oracle: prove the algebraic identity exactly (not floating point),
+# with a negative control (a mutated formula that must NOT simplify to zero).
+import sympy as sp
+
+x_sym, p_sym, M_sym = sp.symbols('x p M', positive=True)
+ds_sym = 2 + 2 / (1 + (p_sym / M_sym) ** 2)
+lhs = sp.Abs((ds_sym - 4) / 2)
+rhs = (p_sym / M_sym) ** 2 / (1 + (p_sym / M_sym) ** 2)
+check('sympy oracle: (ds - 4)/2 == x/(1+x) identically (x = (p/M)^2)',
+      sp.simplify(lhs - rhs) == 0)
+rhs_mutated = (p_sym / M_sym) ** 2  # negative control: drop the (1+x) saturation
+check('NEG: sympy oracle rejects unsaturated (p/M)^2 as identical to (ds-4)/2',
+      sp.simplify(lhs - rhs_mutated) != 0)
+
+# target values are independently fixed from H_inf of block 9 (already an independent oracle
+# there), tolerance 3% as before.
+targets = {MP: 1.48e-11, 1e16: 2.2e-5, 4.1e14: 1.30e-2, 1e10: 1.0}
+for M, val in targets.items():
+    a_o, a_c = alpha_pade(Hinf, M), alpha_closed(Hinf, M)
+    print(f'     M* = {M:.2e} GeV: |alpha_t| oracle {a_o:.3e}, closed {a_c:.3e}')
+    # tolerance 1e-4: the oracle subtracts two numbers near 2, losing ~1e-16/x of relative precision
+    check(f'|alpha_t| at M* = {M:.1e} GeV ~ {val:.2e}', abs(a_o / a_c - 1) < 1e-4 and abs(a_c / val - 1) < 0.03)
+check('window 4.1e14..1e16 GeV: |alpha_t| <= 1.3e-2 (at most of order 1e-2)',
+      max(alpha_closed(Hinf, M) for M in np.geomspace(4.1e14, 1e16, 50)) < 1.31e-2)
+check('NEG: unsaturated (H/M*)^2 fails at M* = 4.1e14 GeV', abs(alpha_mutated(Hinf, 4.1e14) / alpha_pade(Hinf, 4.1e14) - 1) > 0.005)
+check('NEG: unsaturated (H/M*)^2 fails at M* = 1e10 GeV', abs(alpha_mutated(Hinf, 1e10) / alpha_pade(Hinf, 1e10) - 1) > 0.5)
+
+# 11. Scale conversions of section 11 (i): l* = hbar c / M* and the GWTC-3 bound A_4 = xi l*^2.
+hbarc_GeV_m = hbar * c / 1.602176634e-10  # GeV m (CODATA exact e)
+l_crab = hbarc_GeV_m / 4.1e14
+print(f'     Crab: l* < {l_crab:.2e} m')
+check('Crab M*/sqrt(a) > 4.1e14 GeV <=> l* < 4.8e-31 m (xi = 1)', abs(l_crab / 4.8e-31 - 1) < 0.02)
+hbarc_eV_m = hbar * c / 1.602176634e-19  # eV m
+l_gwtc3 = math.sqrt(0.30e4) * hbarc_eV_m  # A_4 < 0.30e4 eV^-2 (A_4 > 0 branch), xi = 1
+print(f'     GWTC-3: l* < {l_gwtc3:.2e} m')
+check('GWTC-3 A_4 < 0.30e4 eV^-2 (A_4 > 0 branch) <=> l* < 1.1e-5 m (xi = 1)', abs(l_gwtc3 / 1.1e-5 - 1) < 0.03)
+check('NEG: A_4 = l*^4 (mutated power) does not give 1.1e-5 m', abs(0.30e4 ** 0.25 * hbarc_eV_m / 1.1e-5 - 1) > 0.5)
+
 print('FAILURES:', fail if fail else 'none')
 sys.exit(1 if fail else 0)

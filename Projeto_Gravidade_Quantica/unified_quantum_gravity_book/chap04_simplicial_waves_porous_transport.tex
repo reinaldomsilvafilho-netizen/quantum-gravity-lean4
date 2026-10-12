@@ -108,6 +108,7 @@ As introduced in the canonical formalism \cite{silvafilho2026simplex}, the param
 \end{remark}
 
 \begin{proposition}[Self-Adjointness and Positivity]
+\label{prop:self_adjoint_positive}
 The operator $-\Delta_{\Delta_m}^\alpha$ is linear, symmetric, and positive semi-definite on $L^2(\mathbb{R}^{m-1})$:
 \begin{equation}
 \langle u, -\Delta_{\Delta_m}^\alpha u \rangle_{L^2} = \frac{1}{2\alpha^2 I_m(\alpha)}\int_{\mathbb{R}^{m-1}} d\mathbf{x} \int_{\Delta_{m-1}(\alpha)} \binom{\alpha}{\mathbf{y}} |u(\mathbf{x}+\mathbf{y}) - u(\mathbf{x})|^2 d\mathbf{y} \ge 0.
@@ -168,6 +169,7 @@ where $M > 0$ is the effective mass, $V(\mathbf{x})$ is an external real-valued 
 \subsection{Fundamental Conservation Laws}
 
 \begin{theorem}[Global Conservation of Mass and Energy]
+\label{thm:nlse_conservation}
 Let $V$ be real-valued and independent of $t$, and let $\psi(\mathbf{x}, t)$ be a smooth solution to \eqref{eq:nlse_main} decaying sufficiently fast at spatial infinity. Use the unitary Fourier transform $\widehat{\psi}(\mathbf{k}) = (2\pi)^{-(m-1)/2}\int \psi(\mathbf{x})e^{-i\mathbf{k}\cdot\mathbf{x}}d\mathbf{x}$, so that $\int \sigma |\widehat\psi|^2 d\mathbf{k} = \langle \psi, -\Delta^\alpha_{\Delta_m}\psi\rangle$. Then:
 \begin{enumerate}
     \item \textbf{Conservation of Total Mass (Particle Number):}
@@ -214,15 +216,17 @@ Let $V \equiv 0$. Consider a uniform plane-wave background state with amplitude 
 \end{equation}
 
 \begin{theorem}[Simplicial Modulational Instability]
+\label{thm:modulational_instability}
 Linearizing \eqref{eq:nlse_main} with respect to perturbations $(\delta u, \delta v) \propto e^{i(\mathbf{k}\cdot\mathbf{x} - \Omega t)}$, the perturbation frequency satisfies the dispersion relation:
 \begin{equation}
 \hbar^2 \Omega^2(\mathbf{k}) = \frac{\hbar^2 \sigma_{\Delta_m}^\alpha(\mathbf{k})}{2M} \left[ \frac{\hbar^2 \sigma_{\Delta_m}^\alpha(\mathbf{k})}{2M} - 2\kappa p \rho_0^p \right].
 \end{equation}
-In the focusing regime ($\kappa > 0$), the plane wave is modulationally unstable ($\Omega^2 < 0$) for wavevectors satisfying
+In the focusing regime ($\kappa > 0$), the plane wave is modulationally unstable ($\Omega^2 < 0$) exactly for the wavevectors satisfying
 \begin{equation}
-\sigma_{\Delta_m}^\alpha(\mathbf{k}) < \frac{4M\kappa p \rho_0^p}{\hbar^2},
+0 < \sigma_{\Delta_m}^\alpha(\mathbf{k}) < \frac{4M\kappa p \rho_0^p}{\hbar^2};
 \end{equation}
-with maximum instability growth rate $\gamma_{\max} = \frac{\kappa p \rho_0^p}{\hbar}$ attained on the resonant set $\{\sigma_{\Delta_m}^\alpha(\mathbf{k}) = 2M\kappa p\rho_0^p/\hbar^2\}$. This set is non-empty when $2M\kappa p\rho_0^p/\hbar^2 < \sup_{\mathbf{k}}\sigma_{\Delta_m}^\alpha$ ($\le 2/\alpha^2$), by continuity of $\sigma$ and $\sigma(\mathbf{0}) = 0$. In the case of equality it is non-empty exactly when the supremum is attained. Since the symbol is bounded, for $4M\kappa p\rho_0^p/\hbar^2 > \sup\sigma$ \emph{every} wavevector $\mathbf{k} \ne \mathbf{0}$ is unstable, unlike the local NLSE ($\mathbf{k} = \mathbf{0}$ gives $\Omega = 0$).
+where $\sigma_{\Delta_m}^\alpha(\mathbf{k}) = 0$, in particular at $\mathbf{k} = \mathbf{0}$, one has $\Omega = 0$.
+The maximum instability growth rate $\gamma_{\max} = \frac{\kappa p \rho_0^p}{\hbar}$ is attained on the resonant set $\{\sigma_{\Delta_m}^\alpha(\mathbf{k}) = 2M\kappa p\rho_0^p/\hbar^2\}$. This set is non-empty when $2M\kappa p\rho_0^p/\hbar^2 < \sup_{\mathbf{k}}\sigma_{\Delta_m}^\alpha$ ($\le 2/\alpha^2$), by continuity of $\sigma$ and $\sigma(\mathbf{0}) = 0$. In the case of equality it is non-empty exactly when the supremum is attained. Since the symbol is bounded, for $4M\kappa p\rho_0^p/\hbar^2 > \sup\sigma$ \emph{every} wavevector $\mathbf{k} \ne \mathbf{0}$ is unstable, unlike the local NLSE ($\mathbf{k} = \mathbf{0}$ gives $\Omega = 0$).
 \end{theorem}
 \begin{proof}
 Linearizing gives $\hbar\,\partial_t \delta u = \varepsilon\,\delta v$ and $\hbar\,\partial_t \delta v = -(\varepsilon - 2\kappa p\rho_0^p)\,\delta u$ in Fourier variables, with $\varepsilon = \hbar^2\sigma/(2M)$. Hence $\hbar^2\Omega^2 = \varepsilon(\varepsilon - 2\kappa p\rho_0^p)$, which is minimized at $\varepsilon = \kappa p\rho_0^p$, giving $\hbar^2\Omega^2 = -(\kappa p\rho_0^p)^2$.
@@ -267,6 +271,7 @@ with initial condition $u(\mathbf{x}, 0) = u_0(\mathbf{x})$, where $\beta \in (0
 \subsection{Exact Propagator via Mittag-Leffler Functions}
 
 \begin{theorem}[Closed-Form Solution in Frequency Domain]
+\label{thm:frequency_closed_form}
 The spatial Fourier transform of the exact solution to \eqref{eq:fract_diff} is given by
 \begin{equation}
 \widehat{u}(\mathbf{k}, t) = E_\beta\left(-\mathcal{K}_{\text{diff}}\,\sigma_{\Delta_m}^\alpha(\mathbf{k})\,t^\beta\right) \widehat{u}_0(\mathbf{k}),
@@ -331,7 +336,7 @@ Fourier--Laplace solutions with Mittag-Leffler propagators are standard for cont
 \section{Conclusion}
 % ==============================================================================
 
-In this paper, we have formulated and analyzed the physical dynamics governed by the Fractional Simplicial Laplacian introduced in \cite{silvafilho2026simplex}. We established the conservation laws and the modulational instability of the Nonlinear Simplicial Schr\"odinger Equation, stated the symmetry of its solitary waves as a conjecture, and derived the exact Mittag-Leffler propagator and simplicial permeability tensor for anomalous porous diffusion. Future research will explore split-step Fourier numerical solvers and experimental transport validation in lithographic microfluidic rock networks.
+In this chapter, we have formulated and analyzed the physical dynamics governed by the Fractional Simplicial Laplacian introduced in \cite{silvafilho2026simplex}. We established the conservation laws and the modulational instability of the Nonlinear Simplicial Schr\"odinger Equation, stated the symmetry of its solitary waves as a conjecture, and derived the exact Mittag-Leffler propagator and simplicial permeability tensor for anomalous porous diffusion. Future research will explore split-step Fourier numerical solvers and experimental transport validation in lithographic microfluidic rock networks.
 
 \input{declarations_chapter}
 

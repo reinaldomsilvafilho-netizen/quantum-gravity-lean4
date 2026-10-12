@@ -67,7 +67,7 @@ We examine connections between the analytic continuation of Pascal's $m$-simplex
 \section{Introduction and Historical Context}
 % ==============================================================================
 
-The emergence of fractal structures from combinatorics is historically rooted in Lucas' Theorem (1878) \cite{lucas1878}, which states that for prime $p$, the binomial coefficient $\binom{n}{k} \pmod p$ is non-zero if and only if the base-$p$ digits of $k$ do not exceed those of $n$. In the simplest case $p=2$, the distribution of odd binomial coefficients in Pascal's triangle converges in the Hausdorff metric to the \textbf{Sierpi\'nski Gasket} $K \subset \mathbb{R}^2$ with Hausdorff dimension:
+The emergence of fractal structures from combinatorics is historically rooted in Lucas' Theorem (1878) \cite{lucas1878}, which states that for prime $p$, the binomial coefficient $\binom{n}{k} \pmod p$ is non-zero if and only if the base-$p$ digits of $k$ do not exceed those of $n$. In the simplest case $p=2$, the distribution of odd binomial coefficients in Pascal's triangle converges in the Hausdorff metric to the \textbf{Sierpi\'nski Gasket} $K \subset \mathbb{R}^2$~\cite{wolfram1984} with Hausdorff dimension:
 \begin{equation}
 d_H = \frac{\ln 3}{\ln 2} \approx 1.58496.
 \end{equation}
@@ -132,7 +132,8 @@ $\mathcal{E}_k(u,u) = (m+3)^k \sum_{|w|=k} c_k \int_{F_w(K)} d\mathbf{x}\int_{\D
 Any positive answer requires a construction on $(K,\mu)$ itself, such as \eqref{eq:beta_forms}, for example via Mosco convergence as in \cite{kigami2001}. The renormalization factor $m+3$ is then given by Proposition~\ref{assump:kigami_decimation}.
 \end{remark}
 
-\begin{theorem}[Spectral Dimension of the Sierpi\'nski Simplex; Kigami--Lapidus \cite{kigamilapidus1993}, see also \cite{kigami2001}]
+\begin{theorem}[Spectral Dimension of the Sierpi\'nski Simplex; Kigami--Lapidus \cite{kigamilapidus1993}, see also \cite{kigami2001,rammal1983}]
+\label{thm:sierpinski_spectral_dimension}
 The eigenvalue counting function of Kigami's Laplacian on the Sierpi\'nski $m$-simplex satisfies the fractal Weyl law
 \begin{equation}
 c_1 \lambda^{d_s / 2} \le N(\lambda) \le c_2 \lambda^{d_s / 2} \quad \text{for } \lambda \ge 1,
@@ -141,7 +142,7 @@ where the spectral dimension $d_s$ is given analytically by
 \begin{equation}
 d_s = \frac{2 d_H}{d_w} = \frac{2\ln(m+1)}{\ln(m+3)}, \qquad d_w = \log_2(m+3).
 \end{equation}
-with constants $0 < c_1 \le c_2$. In general $N(\lambda)/\lambda^{d_s/2}$ has no limit: for the gasket it oscillates log-periodically. This is a classical result about Kigami's Laplacian. It does not depend on Problem~\ref{thm:kigami_convergence}.
+with constants $0 < c_1 \le c_2$. In general $N(\lambda)/\lambda^{d_s/2}$ has no limit: for the gasket it oscillates log-periodically~\cite{fukushima1992}. This is a classical result about Kigami's Laplacian. It does not depend on Problem~\ref{thm:kigami_convergence}.
 \end{theorem}
 
 % ==============================================================================
@@ -206,10 +207,13 @@ The chapter has one new proved result: the asymptotic expansion of the continuou
 \bibitem{kumagaisturm2005} T. Kumagai and K.-T. Sturm, \emph{Construction of diffusion processes on fractals, $d$-sets, and general metric measure spaces}, Journal of Mathematics of Kyoto University, vol. 45, no. 2, pp. 307--327, 2005, \href{https://doi.org/10.1215/kjm/1250281992}{doi:10.1215/kjm/1250281992}.
 \bibitem{kigami2001} J. Kigami, \emph{Analysis on Fractals}, Cambridge Tracts in Mathematics, vol. 143, Cambridge University Press, Cambridge, 2001, \href{https://doi.org/10.1017/cbo9780511470943}{doi:10.1017/cbo9780511470943}.
 \bibitem{strichartz2006} R. S. Strichartz, \emph{Differential Equations on Fractals: A New Approach}, Princeton University Press, Princeton, 2006, \href{https://doi.org/10.1515/9780691186832}{doi:10.1515/9780691186832}.
-\bibitem{barnes1900} E. W. Barnes, \emph{The Theory of the G-Function}, Quarterly Journal of Pure and Applied Mathematics, vol. 31, pp. 264--314, 1900, \href{https://zbmath.org/?q=an:31.0425.01}{JFM 31.0425.01}.
+\bibitem{barnes1900} E. W. Barnes, \emph{The Theory of the G-Function}, Quarterly Journal of Pure and Applied Mathematics, vol. 31, pp. 264--314, 1900, \href{https://zbmath.org/?q=an:30.0389.02}{JFM 30.0389.02}.
 \bibitem{halsey1986} T. C. Halsey, M. H. Jensen, L. P. Kadanoff, I. Procaccia, B. I. Shraiman, \emph{Fractal measures and their singularities: The characterization of strange sets}, Physical Review A, vol. 33, no. 2, pp. 1141--1151, 1986, \href{https://doi.org/10.1103/PhysRevA.33.1141}{doi:10.1103/PhysRevA.33.1141}.
 \bibitem{falconer2014} K. Falconer, \emph{Fractal Geometry: Mathematical Foundations and Applications}, 3rd ed., John Wiley \& Sons, Chichester, 2014, ISBN~978-1-119-94239-9.
-\bibitem{lucas1878} E. Lucas, \emph{Th\'eorie des Fonctions Num\'eriques Simplement P\'eriodiques}, American Journal of Mathematics, vol. 1, no. 2, pp. 184--240, 1878, \href{https://doi.org/10.2307/2369308}{doi:10.2307/2369308}.
+\bibitem{lucas1878} E. Lucas, \emph{Th\'eorie des Fonctions Num\'eriques Simplement P\'eriodiques}, American Journal of Mathematics, vol. 1, no. 2--4, pp. 184--196, 197--240, 289--321, 1878, \href{https://doi.org/10.2307/2369308}{doi:10.2307/2369308}.
+\bibitem{rammal1983} R. Rammal and G. Toulouse, \emph{Random walks on fractal structures and percolation clusters}, Journal de Physique Lettres, vol. 44, no. 1, pp. L13--L22, 1983, \href{https://doi.org/10.1051/jphyslet:0198300440101300}{doi:10.1051/jphyslet:0198300440101300}.
+\bibitem{fukushima1992} M. Fukushima and T. Shima, \emph{On a spectral analysis for the Sierpinski gasket}, Potential Analysis, vol. 1, no. 1, pp. 1--35, 1992, \href{https://doi.org/10.1007/BF00249784}{doi:10.1007/BF00249784}.
+\bibitem{wolfram1984} S. Wolfram, \emph{Geometry of binomial coefficients}, American Mathematical Monthly, vol. 91, no. 9, pp. 566--571, 1984, \href{https://doi.org/10.1080/00029890.1984.11971496}{doi:10.1080/00029890.1984.11971496}.
 \end{thebibliography}
 
 \end{document}

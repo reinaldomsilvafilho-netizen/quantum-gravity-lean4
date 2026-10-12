@@ -14,6 +14,7 @@
 }
 \usepackage{tikz}
 \usetikzlibrary{arrows.meta, calc, decorations.markings}
+\usepackage{fixcmex}
 \usepackage{microtype}
 \usepackage{booktabs}
 \usepackage{array}
@@ -61,6 +62,10 @@
 \providecommand{\BV}{\mathrm{BV}}
 \providecommand{\TV}{\mathrm{TV}}
 \providecommand{\cutnorm}[1]{\|#1\|_{\square}}
+% \xref{label}{fallback}: standalone prints the fallback number; the book's
+% master (common_preamble.tex) overrides this to \ref{label} so the cited
+% cross-chapter number stays correct under the book's own numbering.
+\providecommand{\xref}[2]{#2}
 
 \begin{document}
 
@@ -93,7 +98,7 @@ where $\mathcal{C}$ is the class of $C^{1,1}$ curves in $\bar\Omega \setminus \o
 \begin{equation}
 \kappa(t) = \frac{|\ddot{\gamma}(t) - \langle \ddot{\gamma}(t), \dot{\gamma}(t) \rangle \frac{\dot{\gamma}(t)}{|\dot{\gamma}(t)|^2}|}{|\dot{\gamma}(t)|^2}.
 \end{equation}
-By Proposition~5.1 of Chapter~7 (existence for curves), the infimum is attained whenever $\mathcal{C} \neq \emptyset$.
+By Proposition~\xref{chap07:thm:existence}{5.1} of Chapter~7 (existence for curves), the infimum is attained whenever $\mathcal{C} \neq \emptyset$.
 
 For $m \ge 1$ the free space has nontrivial topology, and admissible paths split into homotopy classes with fixed endpoints:
 \begin{equation}
@@ -102,7 +107,7 @@ For $m \ge 1$ the free space has nontrivial topology, and admissible paths split
 A continuous deformation that stays in the free space cannot change the class. Local optimizers (gradient descent, sequential quadratic programming, shooting) that deform the path continuously and keep it feasible at every step therefore explore only the class of their seed, and a global method must decide which classes to search. Penalty methods, such as step~4 of Algorithm~\ref{alg:universal_minimax}, and discrete steps can cross thin obstacles and change the class, but in an uncontrolled way.
 
 \subsection{Embedded and Immersed Paths}
-If $\gamma$ must be embedded, it cannot cross itself. If self-intersections are allowed, the path can use loops, for instance a loop around an obstacle or a ``teardrop'' turn, to spread its turning over larger arcs. Whether this lowers $\kappa^*$ depends on the geometry (Section~\ref{sec:benchmark}).
+If $\gamma$ must be embedded, it cannot cross itself. If self-intersections are allowed, the path can use loops, for instance a loop around an obstacle, to spread its turning over larger arcs. Whether this lowers $\kappa^*$ depends on the geometry (Section~\ref{sec:benchmark}). The embedded \emph{teardrop} U-turn of Section~\ref{sec:mouth_uturn} is a different device: it is itself a simple curve, with no self-intersection, and it operates inside a convex balloon with no obstacle, where every loop is null-homotopic.
 
 \subsection{Scope and Tameness}
 We work in the plane throughout, under the assumptions of Section~1.1: $\bar\Omega$ and each $\mathcal{O}_i$ are closed topological disks, the $\mathcal{O}_i$ are pairwise disjoint and contained in the open set $\Omega$. The free space $\mathcal{F} = \bar\Omega \setminus \operatorname{int}\mathcal{O}$ is then a compact region bounded by $m+1$ disjoint Jordan curves. By the Schoenflies theorem it is homeomorphic to a closed round disk with $m$ disjoint open round disks removed. In particular $\mathcal{F}$ is compact and locally contractible, it is homotopy equivalent to its interior $\Omega \setminus \mathcal{O}$ (a collar argument), and both deformation retract onto a wedge of $m$ circles. We therefore write $\pi_1(\Omega \setminus \mathcal{O})$ and $\pi_1(\mathcal{F})$ interchangeably. The assumptions cannot simply be dropped: an obstacle with empty interior (a point or a segment) does not change $\pi_1$; an annular obstacle disconnects the free space; and if $\Omega$ is an annulus with a radial slit, $\Omega$ is simply connected but $\bar\Omega$ is not, and $\pi_1(\mathcal{F})$ has rank $m+1$. Positive reach of each obstacle \cite{federer1959} is convenient for the contact analysis of Chapter~7, but it is not needed for the topology.
@@ -238,7 +243,7 @@ If $\tilde{\gamma}(t_a) = \tilde{\gamma}(t_b)$ with $t_a < t_b$, then $\tilde\ga
 \end{proof}
 
 \begin{remark}
-Minimax minimizers need not be irreducible, for a trivial reason: minimizers are not unique. If a minimizer with value $\kappa^* > 0$ contains a straight piece, its length is at least $2\pi/\kappa^*$ below the length bound, and the free space contains a closed disk of radius $1/\kappa^*$ tangent to that piece, then the boundary circle of that disk can be inserted at the point of tangency. This adds length $2\pi/\kappa^*$ and curvature of absolute value $\kappa^*$, so the result is again admissible and again a minimizer, and it has a null-homotopic sub-loop. Such loops are not unfolded in $\Cover$. Whether a null-homotopic sub-loop (for instance a ``teardrop'' turn) can make the peak curvature \emph{strictly} smaller than that of every irreducible path in the same class is open; see the Conclusion.
+Minimax minimizers need not be irreducible, for a trivial reason: minimizers are not unique. If a minimizer with value $\kappa^* > 0$ contains a straight piece, its length is at least $2\pi/\kappa^*$ below the length bound, and the free space contains a closed disk of radius $1/\kappa^*$ tangent to that piece, then the boundary circle of that disk can be inserted at the point of tangency. This adds length $2\pi/\kappa^*$ and curvature of absolute value $\kappa^*$, so the result is again admissible and again a minimizer, and it has a null-homotopic sub-loop. Such loops are not unfolded in $\Cover$. Whether a null-homotopic sub-loop (for instance the inserted circle just described) can make the peak curvature \emph{strictly} smaller than that of every irreducible path in the same class is open; see the Conclusion.
 \end{remark}
 
 \section{A Heuristic Search Pipeline}
@@ -321,11 +326,125 @@ Here $\pi_1(\Omega_H) = \Z$, and we index the classes by the winding $w \in \Z$ 
 \end{proposition}
 
 \begin{proof}
-Every admissible path reverses its direction inside the strip $|y| \le H$ of width $2H$, so the U-turn bound (Chapter~7, Proposition~4.6(3)) gives $\|\kappa\|_{L^\infty} \ge 2/(2H) = 1/H$. For $w = 0$, take the segment $y = -H$ from $P_{\mathrm{in}}$ to $(-c, -H)$, the semicircle of radius $H$ centred at $(-c, 0)$, and the segment back along $y = H$, with $c > H + R_0$. For $w = 1$, use the semicircle of radius $H$ centred at the origin, which avoids $B_{R_0}(0)$ since $H > R_0$. Both paths are embedded, lie in $\Omega_H$, and have curvature $1/H$ on the arc and $0$ elsewhere (numerical check in the accompanying code repository). For $w \ge 2$, insert $w-1$ full turns of the circle of radius $H$ centred at the origin, which lies in the strip and avoids $B_{R_0}(0)$, into the $w = 1$ path; the result is immersed, not embedded, and has the same peak curvature $1/H$.
+Every admissible path reverses its direction inside the strip $|y| \le H$ of width $2H$, so the U-turn bound (Chapter~7, Proposition~\xref{chap07:thm:lower_bounds}{4.6}(3)) gives $\|\kappa\|_{L^\infty} \ge 2/(2H) = 1/H$. For $w = 0$, take the segment $y = -H$ from $P_{\mathrm{in}}$ to $(-c, -H)$, the semicircle of radius $H$ centred at $(-c, 0)$, and the segment back along $y = H$, with $c > H + R_0$. For $w = 1$, use the semicircle of radius $H$ centred at the origin, which avoids $B_{R_0}(0)$ since $H > R_0$. Both paths are embedded, lie in $\Omega_H$, and have curvature $1/H$ on the arc and $0$ elsewhere (numerical check in the accompanying code repository). For $w \ge 2$, insert $w-1$ full turns of the circle of radius $H$ centred at the origin, which lies in the strip and avoids $B_{R_0}(0)$, into the $w = 1$ path; the result is immersed, not embedded, and has the same peak curvature $1/H$.
 \end{proof}
 
 \begin{remark}[No gap in this geometry]
-The class around the obstacle does not need self-intersections: its optimal path is embedded, and the classes $w = 0$ and $w = 1$ have the same optimal value $1/H$. When the ports are at $|y| < H$ and $X$ is large, a path of curvature at most $1/H$ can first move from the port height to $y = -H$, in both classes, before the U-turn, so the conclusion is unchanged; we do not write out the details. A strict gap between embedded and immersed curves does exist for knotted closed curves in $\R^3$ (Chapter~7, Proposition~1.2), but this benchmark does not exhibit one.
+The class around the obstacle does not need self-intersections: its optimal path is embedded, and the classes $w = 0$ and $w = 1$ have the same optimal value $1/H$. When the ports are at $|y| < H$ and $X$ is large, a path of curvature at most $1/H$ can first move from the port height to $y = -H$, in both classes, before the U-turn, so the conclusion is unchanged; we do not write out the details. A strict gap between embedded and immersed curves does exist for knotted closed curves in $\R^3$ (Chapter~7, Proposition~\xref{chap07:prop:knot_gap}{1.2}), but this benchmark does not exhibit one.
+\end{remark}
+
+\subsection{Reversing through a narrow mouth}
+\label{sec:mouth_uturn}
+
+Fix $\kappa^*>0$ and put $\rho := 1/\kappa^*$. Coordinates are centred at the midpoint $M=(0,0)$ of the mouth.
+
+\begin{definition}[Corridor, mouth, balloon; mouth U-turn]
+\label{def:mouth_uturn}
+Let $w>0$, $a\in(0,w]$ and $\ell>0$. The \emph{corridor} is $S=(-\infty,-\ell]\times[-\tfrac w2,\tfrac w2]$, the \emph{neck} is $N=[-\ell,0]\times[-\tfrac a2,\tfrac a2]$, and the \emph{mouth} is the segment $W_a=\{0\}\times[-\tfrac a2,\tfrac a2]$ of the line $\{x=0\}$. A \emph{balloon} is a closed set $B\subset\{x\ge0\}$, and the domain is $\Omega=S\cup N\cup B$. For $R>0$ let $D_R=\{(x,y): x\ge0,\ x^2+y^2\le R^2\}$. A curve is \emph{admissible} if it is $C^{1,1}$, parametrized by arc length, and satisfies $|\kappa|\le\kappa^*$ almost everywhere. A \emph{mouth U-turn} in $B$ is an admissible curve $\gamma\colon[0,L]\to B$ with $\gamma(0),\gamma(L)\in W_a$, $\dot\gamma(0)=(1,0)$ and $\dot\gamma(L)=(-1,0)$.
+\end{definition}
+
+A mouth U-turn $\gamma$ with $\gamma(0)=(0,y_0)$ and $\gamma(L)=(0,y_1)$ extends to an admissible curve in $\Omega$: run along $y=y_0$ from $x=-X$ to $x=0$, follow $\gamma$, and return along $y=y_1$. The tangents agree at the junctions and $|y_0|,|y_1|\le a/2\le w/2$. If $\gamma$ is embedded, $y_0\ne y_1$ and $\gamma$ meets $\{x=0\}$ only at its end points, the extension is embedded. If $w<2\rho$, no admissible curve contained in $S\cup N$ reverses its direction (Chapter~7, Proposition~\xref{chap07:thm:lower_bounds}{4.6}(3)), so any reversal must use the balloon.
+
+\begin{proposition}[Teardrop U-turn]
+\label{prop:teardrop}
+Let $a\in(0,2\rho]$. Put
+\begin{gather*}
+\beta=\beta(a)=\arccos\frac{1+a/(2\rho)}{2}\in[0,\pi/3),\\
+r_*(a)=\rho\bigl(1+2\sin\beta(a)\bigr)=\rho\Bigl(1+\sqrt{4-\bigl(1+\tfrac{a}{2\rho}\bigr)^2}\Bigr).
+\end{gather*}
+Let $\gamma_a$ be the curve that starts at $(0,-a/2)$ with tangent $(1,0)$ and consists of three arcs of radius $\rho$: a right turn through $\beta$, a left turn through $\pi+2\beta$, and a right turn through $\beta$.
+\begin{enumerate}
+\item[(i)] $\gamma_a$ is admissible and embedded. It ends at $(0,a/2)$ with tangent $(-1,0)$ and meets $\{x=0\}$ only at its end points. Its maximal distance from $M$ is $r_*(a)$. Hence $\gamma_a$ is a mouth U-turn in every balloon $B\supseteq D_{r_*(a)}$, and its extension is an embedded admissible curve in $\Omega$ that reverses direction.
+\item[(ii)] Let $\mathcal F_a$ be the set of curves made of three arcs of radius $\rho$ with turning pattern right--left--right or left--right--left, outer turning angles $\alpha_1,\alpha_3\in[0,\pi/2]$ and middle turning angle $\alpha_2\in[0,2\pi)$, that start on $\{x=0\}$ with tangent $(1,0)$ and end on $\{x=0\}$ with tangent $(-1,0)$, with both end points in $W_a$. Every $\gamma\in\mathcal F_a$ satisfies $\max|\gamma|\ge r_*(a)$. Equality holds only for $\gamma_a$ and its mirror image under $(x,y)\mapsto(x,-y)$.
+\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+Write $c=\cos\beta$, $s=\sin\beta$, so that $a/2=\rho(2c-1)$. For $a=2\rho$ we have $\beta=0$, and $\gamma_a$ is the half of the circle $|p|=\rho$ with $x\ge0$; all claims are immediate. Let $a<2\rho$, so $0<\beta<\pi/3$.
+
+\emph{Arcs.} The centres of the three arcs are $C_1=(0,-2\rho c)$, $C_2=C_1+2\rho(s,c)=(2\rho s,0)$ and $C_3=C_2+2\rho(-s,c)=(0,2\rho c)$. Arc~1 is $p(u)=(\rho\sin u,\ \rho\cos u-2\rho c)$ for $u\in[0,\beta]$, with tangent angle $-u$. Arc~2 is $p(\psi)=C_2+\rho(\cos\psi,\sin\psi)$ for $\psi\in[-\tfrac\pi2-\beta,\tfrac\pi2+\beta]$, traversed counterclockwise, with tangent angle $\psi+\tfrac\pi2$ running from $-\beta$ to $\pi+\beta$. Arc~3 is the image of arc~1 under $\sigma(x,y)=(x,-y)$, traversed backwards, since $\sigma$ exchanges $C_1$ and $C_3$ and fixes $C_2$. The final point is $C_3-(0,\rho)=(0,a/2)$ and the final tangent angle is $\pi$. Consecutive arcs share their tangent at the junctions, so $\gamma_a$ is $C^1$, its unit tangent is Lipschitz with constant $\kappa^*$, and $|\kappa|=\kappa^*$ on each arc.
+
+\emph{Distances from $M$.} On arc~1,
+\[
+|p(u)|^2=\rho^2\bigl(1+4c\,(c-\cos u)\bigr),
+\]
+which increases strictly in $u$ from $(a/2)^2$ to $\rho^2$. Also $y=\rho(\cos u-2c)\le-a/2<0$ and $x=\rho\sin u\ge0$, with $x=0$ only at $u=0$. On arc~2,
+\[
+|p(\psi)|^2=\rho^2\bigl(1+4s\,(s+\cos\psi)\bigr).
+\]
+Since $|\psi|\le\tfrac\pi2+\beta<\pi$, we have $\cos\psi\ge-s$, with equality only at the two ends. Hence $|p|\ge\rho$ on arc~2, with equality only at the junctions. The maximum $\rho(1+2s)=r_*(a)$ is attained at $\psi=0$. Moreover $x=2\rho s+\rho\cos\psi\ge\rho s>0$ on arc~2. By the symmetry $\sigma$, arc~3 lies in $\{y>0\}\cap\{|p|\le\rho\}$.
+
+\emph{Embedding.} Each arc is injective, because arc~2 turns through $\pi+2\beta<2\pi$. Arcs~1 and~3 are disjoint because they lie in $y<0$ and $y>0$. Arc~2 meets the closed disc $|p|\le\rho$, which contains arcs~1 and~3, only at its two end points, and these are the junctions. So $\gamma_a$ is embedded. It lies in $\{x\ge0\}$, meets $\{x=0\}$ only at its end points, and $\max|\gamma_a|=r_*(a)$. This proves~(i).
+
+\emph{Family.} Take the right--left--right pattern and start at $(0,y_0)$; the mirror pattern follows by $\sigma$. The tangent condition gives $\alpha_2\equiv\pi+\alpha_1+\alpha_3\pmod{2\pi}$. Computing the centres as above gives the end point
+\[
+\bigl(2\rho(\sin\alpha_1-\sin\alpha_3),\ y_0+2\rho(\cos\alpha_1+\cos\alpha_3-1)\bigr).
+\]
+Since the end lies on $\{x=0\}$, $\sin\alpha_1=\sin\alpha_3$, and so $\alpha_1=\alpha_3=:\beta'\in[0,\pi/2]$. If $\beta'=\pi/2$, then $\alpha_2=0$ and the curve is a half circle of radius $\rho$ with vertical span $2\rho$. It fits in $W_a$ only if $a=2\rho$, where it is the mirror image of $\gamma_{2\rho}$. Otherwise $\alpha_2=\pi+2\beta'$, and the vertical span $2\rho|2\cos\beta'-1|$ is at most $a$, so $\cos\beta'\le\cos\beta(a)$, that is, $\beta'\ge\beta(a)$. The middle arc has centre $C_2'=(2\rho\sin\beta',\,t)$ with $t=y_0+\rho(2\cos\beta'-1)$, and it sweeps the polar angles $[-\tfrac\pi2-\beta',\tfrac\pi2+\beta']$ about $C_2'$. These contain the direction of $C_2'$ from $M$, which lies in $[-\tfrac\pi2,\tfrac\pi2]$. Therefore
+\[
+\max|\gamma|\ \ge\ |C_2'|+\rho=\rho+\sqrt{4\rho^2\sin^2\beta'+t^2}\ \ge\ \rho(1+2\sin\beta')\ \ge\ r_*(a).
+\]
+Equality forces $\beta'=\beta(a)$ and $t=0$, and then $y_0=-a/2$, so $\gamma=\gamma_a$. This proves~(ii).
+\end{proof}
+
+The teardrop turns through $\pi+2\beta$ on its middle arc. Its tangent angle leaves $[0,\pi]$, and this is necessary for a reversal through a mouth narrower than $2\rho$.
+
+\begin{proposition}[Mouth width under a half-turn range]
+\label{prop:mouth_halfturn}
+Let $\gamma\colon[0,L]\to\mathbb{R}^2$ be admissible, with $\gamma(0),\gamma(L)\in W_a$, $\dot\gamma(0)=(1,0)$ and $\dot\gamma(L)=(-1,0)$. Suppose a continuous tangent angle $\theta$ with $\theta(0)=0$ satisfies $\theta([0,L])\subset[0,\pi]$. Then $y(L)-y(0)\ge2\rho$. In particular $a\ge2\rho$, whatever the balloon.
+\end{proposition}
+
+\begin{proof}
+We have $\theta(L)=\pi$ and $\sin\theta\ge0$. Since $|\dot\theta|\le\kappa^*$ almost everywhere, $\sin\theta\ge\rho\,\sin\theta\,\dot\theta$. Integrating,
+\[
+y(L)-y(0)=\int_0^L\sin\theta\,ds\ \ge\ \rho\bigl(\cos\theta(0)-\cos\theta(L)\bigr)=2\rho.
+\]
+Both end points lie in $W_a$, so $y(L)-y(0)\le a$.
+\end{proof}
+
+The teardrop $\gamma_a$ with $a<2\rho$ shows that the range hypothesis cannot be dropped. Without it, a weaker statement still holds; it concerns the balloon rather than the mouth.
+
+\begin{proposition}[Height of the balloon]
+\label{prop:balloon_height}
+Every admissible curve whose unit tangent turns from $(1,0)$ to $(-1,0)$ contains two points whose $y$-coordinates differ by at least $2\rho$. Consequently, if a mouth U-turn lies in $D_R$, then $R\ge\rho$, for every $a$ and with no condition on the tangent angle.
+\end{proposition}
+
+\begin{proof}
+The proof of Chapter~7, Proposition~\xref{chap07:thm:lower_bounds}{4.6}(3), finds a subinterval $[s_1,s_2]$ on which $\theta$ runs from $0$ to $\pm\pi$ with $\sin\theta$ of constant sign. It shows that $|y(s_2)-y(s_1)|\ge2/\kappa^*=2\rho$. The set $D_R$ has height $2R$.
+\end{proof}
+
+For embedded curves that stay away from the mouth disc, a lemma of Ahn, Cheong, Matou\v{s}ek and Vigneron \cite[Lemma~2]{ahn2012reachability} gives a sharper bound. In \cite{ahn2012reachability} the same lemma yields the theorem of Pestov and Ionin that a simple closed curve of curvature at most $1$ contains a unit disc in its interior. The lemma is stated for curvature at most $1$; we apply it after scaling by $\kappa^*$.
+
+\begin{proposition}[Lower bound for the balloon radius]
+\label{prop:teardrop_lower}
+Let $a\in(0,2\rho)$. Let $\gamma$ be an embedded admissible curve in $\{x\ge0\}$, with end points $q_0\ne q_1$ in $W_a$ and arbitrary tangents there, that meets the closed disc $K$ with diameter $[q_0,q_1]$ only at $q_0$ and $q_1$. If $\gamma\subset D_R$, then
+\[
+R\ \ge\ \rho+\sqrt{\rho^2-a^2/4}.
+\]
+The curve $\gamma_a$ of Proposition~\ref{prop:teardrop} satisfies the hypothesis. The bound is attained by the arc of radius $\rho$ centred at $\bigl(\sqrt{\rho^2-a^2/4},\,0\bigr)$ that joins $(0,-a/2)$ to $(0,a/2)$ inside $\{x\ge0\}$; this arc crosses the mouth obliquely, so it is not a mouth U-turn.
+\end{proposition}
+
+\begin{proof}
+Let $r_K=|q_1-q_0|/2\le a/2<\rho$; the centre $m$ of $K$ lies on $\{x=0\}$, so $\partial K$ splits into the \emph{right arc} (in $\{x\ge0\}$) and the \emph{left arc} (in $\{x\le0\}$). Let $P$ be the bounded region enclosed by $\gamma$ and the right arc; this closed curve is a Jordan curve because $\gamma\cap K=\{q_0,q_1\}$, and $\gamma$ together with both arcs of $\partial K$ forms a theta graph. Points of $K$ with $x\ge0$ lie in $D_R$, since $|p|\le\max(|q_0|,|q_1|)\le R$ for such points; in particular the right arc $\subset D_R$, and $\gamma\subset D_R$ by hypothesis, so $\partial P\subset D_R$ and, by convexity of $D_R$, $\bar P\subset D_R$. Likewise $\gamma\subset\{x\ge0\}$ and the right arc $\subset\{x\ge0\}$ give $\partial P\subset\{x\ge0\}$, so $\bar P\subset\{x\ge0\}$ as well, by the same convexity argument applied to the convex set $\{x\ge0\}$.
+
+The set $\operatorname{int}K$ is connected and meets neither $\gamma$ (as $\gamma\cap K=\{q_0,q_1\}\subset\partial K$) nor the right arc (as $\operatorname{int}K\cap\partial K=\emptyset$), hence it is disjoint from $\partial P$; since $\operatorname{int}K$ contains points with $x<0$ while $\bar P\subset\{x\ge0\}$, it is disjoint from $\bar P$. Consequently the region bounded by $\gamma$ and the left arc is $\bar P\cup\operatorname{int}K\cup(\text{right arc})\subset K\cup\bar P$, and the region bounded by $\gamma$ and the right arc is $P$ itself, also contained in $K\cup\bar P$: either possible region is contained in $K\cup\bar P$.
+
+We apply \cite[Lemma~2]{ahn2012reachability} with their $\Gamma=\gamma$ and $D=K$, reading the \emph{exterior arc} of $\partial K$ as the arc farther from $\gamma$ -- here the left arc. This is the reading the authors themselves use when they invoke Lemma~2 inside the proof of their own Lemma~3 (the Pocket lemma), where the disc it produces is said to be ``contained in $K\cup D$''. Under this reading, Lemma~2 gives a closed disc $\Delta=\bar B(c,\rho)$ lying in the region bounded by $\gamma$ and the left arc, hence $\Delta\subset K\cup\bar P$. Under the other, near-arc reading of ``exterior arc'' the same containment holds a fortiori, since then $\Delta$ lies in the smaller region $P\subset K\cup\bar P$; the argument below uses only $\Delta\subset K\cup\bar P$ and is therefore valid under either reading. Since $\bar P\subset D_R$, we get $\Delta\subset K\cup D_R$, and since $\bar P\subset\{x\ge0\}$, every point of $\Delta$ with $x<0$ lies in $K$.
+
+Write $c=(c_1,c_2)$. Every vertical chord of $\Delta$ on a line $x=t<0$ lies in $K$, so its length is at most $2r_K$. If $c_1<0$, the chord on $x=c_1$ has length $2\rho>2r_K$, which is impossible. If $0\le c_1<\sqrt{\rho^2-r_K^2}$, the chords on $x=t$ have length tending to $2\sqrt{\rho^2-c_1^2}>2r_K$ as $t\to0^-$, which is impossible as well. Therefore $c_1\ge\sqrt{\rho^2-r_K^2}>0$. The point $f=c+\rho\,c/|c|$ of $\Delta$ has $x>0$, so $f\in D_R$ and $R\ge|f|=|c|+\rho\ge\rho+\sqrt{\rho^2-a^2/4}$. For $\gamma_a$ we have $K=\{|p|\le a/2\}$, and the proof of Proposition~\ref{prop:teardrop} gives $|p|>a/2$ on $\gamma_a$ away from its end points.
+\end{proof}
+
+For $a\in(0,2\rho)$ the bounds satisfy $\rho+\sqrt{\rho^2-a^2/4}<r_*(a)$, and the gap closes as $a\to2\rho$; as $a\to0^+$ they tend to $2\rho$ and $(1+\sqrt3)\rho$. Proposition~\ref{prop:teardrop_lower} does not use the headings at the mouth. Whether horizontal headings force the larger radius $r_*(a)$ is the content of the following conjecture.
+
+\begin{conjecture}[Minimal balloon radius]
+\label{conj:teardrop_radius}
+Let $a\in(0,2\rho)$. Every embedded mouth U-turn $\gamma$ satisfies $\max|\gamma|\ge r_*(a)$, with equality only for $\gamma_a$ and its mirror image.
+\end{conjecture}
+
+The conjecture fails without the horizontal headings: the oblique arc in Proposition~\ref{prop:teardrop_lower} has radius $\rho+\sqrt{\rho^2-a^2/4}<r_*(a)$. A numerical search over curves of five arcs with curvature in $[-\kappa^*,\kappa^*]$ and horizontal headings at the mouth did not require embeddedness. For $a/\rho\in\{0.05,0.25,0.5,1,1.5,1.9\}$, every feasible curve it found had radius at least $r_*(a)$, and random starts reached $r_*(a)$. This is evidence, not a proof.
+
+\begin{remark}[Scope of the contribution]
+The function $r_*(a)$ is the maximal distance from $M$ reached by a path of three circular arcs of radius $\rho$, in the RLR pattern, that reverses heading inside a mouth of width $a<2\rho$. With circular arcs only, $\gamma_a$ is the classical \emph{Omega-turn} of headland path planning in agricultural field operations, and $r_*(a)$ is its elementary depth formula; we do not claim it as new. Continuous-curvature versions, in which clothoid segments join the circular arcs, are treated by Sabelhaus, R\"oben, Meyer zu Helligen and Schulze Lammers, \emph{Biosystems Engineering} \textbf{116} (2013), 399--409, doi:10.1016/j.biosystemseng.2013.08.012. What Proposition~\ref{prop:teardrop} adds is the minimality of $\gamma_a$ within the three-arc family $\mathcal F_a$ and its role in the corridor-mouth-balloon setting of Definition~\ref{def:mouth_uturn}; Conjecture~\ref{conj:teardrop_radius} concerns all admissible curves.
 \end{remark}
 
 \section{Conclusion}
@@ -391,6 +510,11 @@ Computer-Aided Design \textbf{36} (2004), no.~11, 1029--1046, \href{https://doi.
 A.~Braides,
 \emph{$\Gamma$-convergence for Beginners},
 Oxford Lecture Series in Mathematics and its Applications, vol.~22, Oxford University Press, 2002, \href{https://doi.org/10.1093/acprof:oso/9780198507840.001.0001}{doi:10.1093/acprof:oso/9780198507840.001.0001}.
+
+\bibitem{ahn2012reachability}
+H.-K.~Ahn, O.~Cheong, J.~Matou\v{s}ek and A.~Vigneron,
+\emph{Reachability by paths of bounded curvature in a convex polygon},
+Comput. Geom. \textbf{45} (2012), 21--32, \href{https://doi.org/10.1016/j.comgeo.2011.07.003}{doi:10.1016/j.comgeo.2011.07.003}.
 
 \end{thebibliography}
 

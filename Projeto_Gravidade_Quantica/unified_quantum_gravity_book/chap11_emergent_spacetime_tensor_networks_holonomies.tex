@@ -4,6 +4,7 @@
 \usepackage[T1]{fontenc}
 \usepackage{amsmath,amssymb,amsfonts,amsthm,mathtools}
 \usepackage{mathrsfs}
+\usepackage{fixcmex}
 \usepackage{microtype}
 \usepackage{booktabs}
 \usepackage[dvipsnames]{xcolor}
@@ -65,6 +66,10 @@
 \newcommand{\inner}[2]{\left\langle #1, #2 \right\rangle}
 \newcommand{\dif}{\,\mathrm{d}}
 \newcommand{\abs}[1]{\left|#1\right|}
+% \xref{label}{fallback}: standalone prints the fallback number; the book's
+% master (common_preamble.tex) overrides this to \ref{label} so the cited
+% cross-chapter number stays correct under the book's own numbering.
+\providecommand{\xref}[2]{#2}
 
 \title[Emergent Spacetime and Quantum Geometry]{Emergent Spacetime and Quantum Geometry:\\ Tensor Networks, Holonomies, and Entanglement\\ (Established Results and Conjectures)}
 
@@ -85,7 +90,7 @@ Lavras, Minas Gerais, Brazil}
 \begin{document}
 
 \begin{abstract}
-We review and organize the mathematical links between quantum information, tensor networks and gravitational geometry that this treatise uses. For each link we separate established results, which we state with sources and short proofs, from conjectures.
+We review and organize the mathematical links between quantum information, tensor networks and gravitational geometry that this book uses. For each link we separate established results, which we state with sources and short proofs, from conjectures.
 
 Established: (i) the Hessian of quantum relative entropy is the Kubo--Mori metric, which differs from the symmetric-logarithmic-derivative (SLD) quantum Fisher metric unless the perturbation commutes with the state; (ii) the first law of entanglement, and, assuming the Ryu--Takayanagi formula, the \emph{linearized} Einstein equations in the bulk (Faulkner--Guica--Hartman--Myers--Van Raamsdonk), with a second-order extension by Faulkner et al.\ for states prepared by sources in the Euclidean path integral, to second order in the sources; (iii) the min-cut bound $S_A \le (\#\text{cut bonds})\log\chi$ for tensor networks, and monotonicity of area along smooth mean curvature flow; (iv) spin-network states are contracted tensor networks, and the kinematical LQG area spectrum $8\pi\gamma\ell_P^2\sum\sqrt{j(j+1)}$ for edges crossing a surface, with free Barbero--Immirzi parameter $\gamma$.
 
@@ -114,7 +119,7 @@ while Quantum Field Theory (QFT) describes matter by operator algebras on Hilber
     \item \textbf{Information and horizons:} the thermality of Hawking radiation is in tension with unitary evolution.
 \end{enumerate}
 
-A line of work starting with Jacobson \cite{jacobson1995thermodynamics}, Ryu--Takayanagi \cite{ryu2006holographic}, Van Raamsdonk \cite{vanraamsdonk2010building} and Swingle \cite{swingle2012entanglement} relates geometry to entanglement. This chapter collects the parts of that line which the treatise uses, and it connects them with the functional realizations and flows of Chapters~1 and~2 \cite{silvafilho2026functional, silvafilho2026flows}. We do \emph{not} claim that spacetime has been derived from entanglement in general, nor that GR and QFT have been reconciled. Section~\ref{sec:status} lists what is established and what is conjectural.
+A line of work starting with Jacobson \cite{jacobson1995thermodynamics}, Ryu--Takayanagi \cite{ryu2006holographic}, Van Raamsdonk \cite{vanraamsdonk2010building} and Swingle \cite{swingle2012entanglement} relates geometry to entanglement. This chapter collects the parts of that line which the book uses, and it connects them with the functional realizations and flows of Chapters~1 and~2 \cite{silvafilho2026functional, silvafilho2026flows}. We do \emph{not} claim that spacetime has been derived from entanglement in general, nor that GR and QFT have been reconciled. Section~\ref{sec:status} lists what is established and what is conjectural.
 
 % =========================================================================
 \section{The Quantum State Manifold and Information Geometry}
@@ -155,7 +160,7 @@ $\frac{\dif}{\dif\lambda}S = \Tr\big(X(\log\rho(\lambda) - \log\rho_0)\big) + \T
 
 \begin{remark}[SLD versus Kubo--Mori]
 \label{rem:sld_vs_bkm}
-$g^{\mathrm{SLD}}$ and $g^{\mathrm{BKM}}$ are both monotone metrics in Petz's classification \cite{petz1996}. In an eigenbasis $\rho_0 = \sum_i p_i |i\rangle\langle i|$, $g^{\mathrm{SLD}}(X,X) = \sum_{ij} \frac{2}{p_i + p_j}|X_{ij}|^2$ and $g^{\mathrm{BKM}}(X,X) = \sum_{ij} \frac{\log p_i - \log p_j}{p_i - p_j}|X_{ij}|^2$ (read as $1/p_i$ when $p_i = p_j$). Since the logarithmic mean of two distinct positive numbers is smaller than their arithmetic mean, $g^{\mathrm{BKM}}(X,X) \ge g^{\mathrm{SLD}}(X,X)$, with equality if and only if $X_{ij} = 0$ whenever $p_i \ne p_j$, i.e.\ $[\rho_0, X] = 0$; in that case both reduce to the classical Fisher--Rao metric $\sum_i X_{ii}^2/p_i$. The ratio $g^{\mathrm{BKM}}/g^{\mathrm{SLD}}$ is unbounded: for $X_{ij} \ne 0$ with $p_i \to 0$ and $p_j$ fixed, the logarithmic mean of $p_i$ and $p_j$ tends to $0$ while their arithmetic mean tends to $p_j/2$. For qutrit states drawn from the Hilbert--Schmidt measure, with random traceless Hermitian $X$, its median is about $1.16$, and $95\%$ of the samples lie below $1.6$ (numerical check in the accompanying code repository). The same distinction is expected for perturbations of the vacuum restricted to a Rindler wedge that do not commute with the modular Hamiltonian; this is heuristic, since the local algebras of quantum field theory are of type~III and have no density matrices, so the statement refers to regularized versions. Where the literature identifies relative-entropy Hessians with ``quantum Fisher information'' (e.g.\ \cite{lashkari2016canonical}), the metric meant is the Kubo--Mori one.
+$g^{\mathrm{SLD}}$ and $g^{\mathrm{BKM}}$ are both monotone metrics in Petz's classification \cite{petz1996}. In an eigenbasis $\rho_0 = \sum_i p_i |i\rangle\langle i|$, $g^{\mathrm{SLD}}(X,X) = \sum_{ij} \frac{2}{p_i + p_j}|X_{ij}|^2$ and $g^{\mathrm{BKM}}(X,X) = \sum_{ij} \frac{\log p_i - \log p_j}{p_i - p_j}|X_{ij}|^2$ (read as $1/p_i$ when $p_i = p_j$). Since the logarithmic mean of two distinct positive numbers is smaller than their arithmetic mean, $g^{\mathrm{BKM}}(X,X) \ge g^{\mathrm{SLD}}(X,X)$, with equality if and only if $X_{ij} = 0$ whenever $p_i \ne p_j$, i.e.\ $[\rho_0, X] = 0$; in that case both equal $\operatorname{Tr}(\rho_0^{-1}X^2)$, which in an eigenbasis of $\rho_0$ that also diagonalizes $X$ is the classical Fisher--Rao metric $\sum_i X_{ii}^2/p_i$. The ratio $g^{\mathrm{BKM}}/g^{\mathrm{SLD}}$ is unbounded: for $X_{ij} \ne 0$ with $p_i \to 0$ and $p_j$ fixed, the logarithmic mean of $p_i$ and $p_j$ tends to $0$ while their arithmetic mean tends to $p_j/2$. For qutrit states drawn from the Hilbert--Schmidt measure, with random traceless Hermitian $X$, its median is about $1.16$, and about $95\%$ of the samples lie below $1.61$ (numerical check in the accompanying code repository). The same distinction is expected for perturbations of the vacuum restricted to a Rindler wedge that do not commute with the modular Hamiltonian; this is heuristic, since the local algebras of quantum field theory are of type~III and have no density matrices, so the statement refers to regularized versions. Where the literature identifies relative-entropy Hessians with ``quantum Fisher information'' (e.g.\ \cite{lashkari2016canonical}), the metric meant is the Kubo--Mori one.
 \end{remark}
 
 % =========================================================================
@@ -306,7 +311,7 @@ This is the definition of spin network functions \cite{rovelli2004quantum}, writ
 \end{enumerate}
 \end{proposition}
 \begin{proof}[Comments]
-(1) By the Magnus expansion, the exact transport along an arc of parameter length $h = 1/k$ is $\exp(\Omega)$ with $\Omega = \int A(\dot\gamma) + \mathcal{O}(h^3)$, the commutator term being $\mathcal{O}(h^3)$; the midpoint rule gives $\int A(\dot\gamma) = h\,A(\gamma(s_e))\dot\gamma(s_e) + \mathcal{O}(h^3)$. So each factor differs from the exact transport by $\mathcal{O}(k^{-3})$, and since there are $k$ factors, all in the compact group $SU(2)$, the total error is $\mathcal{O}(k^{-2})$ (a numerical check gives observed order $2$). (2) Discreteness of area was derived by Rovelli and Smolin \cite{rovellismolin1995} and by Ashtekar and Lewandowski \cite{ashtekarlewandowski1997}, without the Barbero--Immirzi parameter; the dependence on $\gamma_{\mathrm{BI}}$ and the prefactor $8\pi\gamma_{\mathrm{BI}}\ell_P^2$ in the form above are due to Immirzi \cite{immirzi1997} and Rovelli--Thiemann \cite{rovelli1998immirzi}, see also \cite{rovelli2004quantum}. The result is kinematical: it concerns the spectrum of the area operator on the kinematical Hilbert space of LQG, with $\gamma_{\mathrm{BI}}$ a free parameter. The triad acts as $\widehat{E}_i^a = -i\,8\pi\gamma_{\mathrm{BI}}\ell_P^2\,\delta/\delta A_a^i$, which on the holonomy of a crossing edge inserts the generator $J_i$. The regularized area operator then reduces to the Casimir $\sqrt{J^2} = \sqrt{j(j+1)}$ of each \emph{edge} crossing $\mathcal{S}$. Vertices lying on $\mathcal{S}$ give a more complicated spectrum \cite{ashtekarlewandowski1997}. The spectrum comes from the edges, not from the Casimirs of the nodes.
+(1) By the Magnus expansion~\cite{magnus1954}, the exact transport along an arc of parameter length $h = 1/k$ is $\exp(\Omega)$ with $\Omega = \int A(\dot\gamma) + \mathcal{O}(h^3)$, the commutator term being $\mathcal{O}(h^3)$; the midpoint rule gives $\int A(\dot\gamma) = h\,A(\gamma(s_e))\dot\gamma(s_e) + \mathcal{O}(h^3)$. So each factor differs from the exact transport by $\mathcal{O}(k^{-3})$, and since there are $k$ factors, all in the compact group $SU(2)$, the total error is $\mathcal{O}(k^{-2})$ (a numerical check gives observed order $2$). (2) Discreteness of area was derived by Rovelli and Smolin \cite{rovellismolin1995} and by Ashtekar and Lewandowski \cite{ashtekarlewandowski1997}, without the Barbero--Immirzi parameter; the dependence on $\gamma_{\mathrm{BI}}$ and the prefactor $8\pi\gamma_{\mathrm{BI}}\ell_P^2$ in the form above are due to Immirzi \cite{immirzi1997} and Rovelli--Thiemann \cite{rovelli1998immirzi}, see also \cite{rovelli2004quantum}. The result is kinematical: it concerns the spectrum of the area operator on the kinematical Hilbert space of LQG, with $\gamma_{\mathrm{BI}}$ a free parameter. The triad acts as $\widehat{E}_i^a = -i\,8\pi\gamma_{\mathrm{BI}}\ell_P^2\,\delta/\delta A_a^i$, which on the holonomy of a crossing edge inserts the generator $J_i$. The regularized area operator then reduces to the Casimir $\sqrt{J^2} = \sqrt{j(j+1)}$ of each \emph{edge} crossing $\mathcal{S}$. Vertices lying on $\mathcal{S}$ give a more complicated spectrum \cite{ashtekarlewandowski1997}. The spectrum comes from the edges, not from the Casimirs of the nodes.
 \end{proof}
 
 % =========================================================================
@@ -321,17 +326,17 @@ Let $\mathcal{W}_0$ be the space of symmetric measurable kernels $W \colon [0, 1
     \label{eq:graphon_ricci_flow_sec}
     \partial_t W(t, x, y) = 2 \kappa_W(t, x, y) W(t, x, y),
 \end{equation}
-starting from $W(0) = W_0 \in \mathcal{W}_0$, where $\kappa_W$ is an Ollivier-type curvature \cite{ollivier2009ricci} and $W$ is a connection strength, so negatively curved entries decrease. The curvature $\kappa_W$ is computed with respect to a metric $d$ on $[0,1]$ that has to be specified, and it depends on this choice; with the discrete metric, for instance, $\kappa_W \ge 0$ (Chapter~2). The flow does not preserve $\mathcal{W}_0$: Chapter~2 shows that entries can grow beyond $1$, so the flow acts on nonnegative kernels rather than on graphons. Proposition~6.1 of Chapter~12 \cite{silvafilho2026grand} gives the exponential decay $W(t,x,y) \le W_0(x,y) e^{-2ct}$ at points $(x,y)$ where $\kappa_W(s,x,y) \le -c < 0$ for all $s \in [0,t]$, i.e.\ along the whole flow, not only at the initial time.
+starting from $W(0) = W_0 \in \mathcal{W}_0$, where $\kappa_W$ is an Ollivier-type curvature \cite{ollivier2009ricci} and $W$ is a connection strength, so negatively curved entries decrease. The curvature $\kappa_W$ is computed with respect to a metric $d$ on $[0,1]$ that has to be specified, and it depends on this choice; with the discrete metric, for instance, $\kappa_W \ge 0$ (Chapter~2). The flow does not preserve $\mathcal{W}_0$: Chapter~2 shows that entries can grow beyond $1$, so the flow acts on nonnegative kernels rather than on graphons. Proposition~\xref{chap12:thm:neckpinch_condensation}{6.1} of Chapter~12 \cite{silvafilho2026grand} gives the exponential decay $W(t,x,y) \le W_0(x,y) e^{-2ct}$ at points $(x,y)$ where $\kappa_W(s,x,y) \le -c < 0$ for all $s \in [0,t]$, i.e.\ along the whole flow, not only at the initial time.
 
 \begin{conjecture}[Geometric condensation]
 \label{thm:geometric_condensation}
-Starting from a random kernel modelling a branched-polymer phase, the graphon Ricci flow disconnects one-dimensional bottlenecks, and the remaining clusters with $4$-dimensional volume growth converge, after rescaling, to the kernel of a smooth $4$-dimensional Einstein geometry.
+Starting from a kernel $W_0$ with degree $d_{W_0}(x) = \int_0^1 W_0(x,y)\dif y > 0$ for almost every $x$, intended to model a branched-polymer phase, and for a suitable metric on $[0,1]$ defining $\kappa_W$, the graphon Ricci flow \eqref{eq:graphon_ricci_flow_sec} disconnects one-dimensional bottlenecks, and the remaining clusters with $4$-dimensional volume growth converge, after rescaling, to the kernel of a smooth $4$-dimensional Einstein geometry.
 \end{conjecture}
 
 The corresponding conjecture of Chapter~12 does not require the limit to be Einstein; the version above is stronger.
 
 \begin{remark}[Why this is not a theorem]
-Three obstacles stand in the way. First, the hypothesis $\kappa_W \le -c/\epsilon$ with $\epsilon \to 0$ on bottlenecks is impossible for the graph distance with the random walk on neighbours, where Ollivier curvature satisfies $\kappa \ge -2$. On general metric spaces the lower bound is $\kappa(x,y) \ge -(J(x) + J(y))/d(x,y)$, with $J$ the mean jump length of the random walk, which becomes unbounded only if $d(x,y) \to 0$ with fixed jumps; in that regime the hypothesis would need a separate justification. Second, cut-metric limits of graphons carry no dimension or metric tensor unless a reconstruction map is specified. Third, the Ollivier expansion $\kappa(x,y) = \frac{r^2}{2(N+2)}\Ric(v,v) + \mathcal{O}(r^3)$ \cite{ollivier2009ricci} relates the flow to Ricci flow only formally. Even for Ricci flow on $4$-manifolds, convergence to an Einstein metric is known only under strong curvature hypotheses, such as positive curvature operator \cite{hamilton1986}, not in general.
+Three obstacles stand in the way. First, the hypothesis $\kappa_W \le -c/\epsilon$ with $\epsilon \to 0$ on bottlenecks is impossible for the graph distance with the random walk on neighbours, where Ollivier curvature satisfies $\kappa \ge -2$. On general metric spaces the lower bound is $\kappa(x,y) \ge -(J(x) + J(y))/d(x,y)$, with $J$ the mean jump length of the random walk, which becomes unbounded only if $d(x,y) \to 0$ with fixed jumps; in that regime the hypothesis would need a separate justification. Second, a graphon carries no differentiable structure or metric tensor, so the target requires a correspondence between kernels and Riemannian manifolds; moreover, graphs with $o(n^2)$ edges, among them trees, branched polymers and bounded-degree triangulations, converge in cut norm to the zero kernel, on which $\kappa_W$ and \eqref{eq:graphon_ricci_flow_sec} are not defined (Chapter~12 \cite{silvafilho2026grand}). Third, the Ollivier expansion $\kappa(x,y) = \frac{r^2}{2(N+2)}\Ric(v,v) + \mathcal{O}(r^3)$ \cite{ollivier2009ricci} relates the flow to Ricci flow only formally. Even for Ricci flow on $4$-manifolds, convergence to an Einstein metric is known only under strong curvature hypotheses, such as positive curvature operator \cite{hamilton1986}, not in general.
 \end{remark}
 
 % =========================================================================
@@ -339,7 +344,7 @@ Three obstacles stand in the way. First, the hypothesis $\kappa_W \le -c/\epsilo
 \label{sec:horizon_scrambling}
 % =========================================================================
 
-The Maldacena--Shenker--Stanford bound \cite{maldacena2016bound} states that out-of-time-order correlators in a thermal system grow at most with Lyapunov exponent $\lambda_L \le 2\pi k_B T/\hbar$. Black holes in Einstein gravity saturate it. The SYK model \cite{kitaev2015simple} of $N$ Majorana fermions with random $q$-body couplings, $\mathbb{E}[\mathcal{J}^2_{i_1\dots i_q}] = (q-1)!J^2/N^{q-1}$, approaches the bound only as $\beta J \to \infty$ \cite{maldacena2016remarks}.
+The Maldacena--Shenker--Stanford bound \cite{maldacena2016bound} states that out-of-time-order correlators in a thermal system grow at most with Lyapunov exponent $\lambda_L \le 2\pi k_B T/\hbar$. Black holes in Einstein gravity saturate it. The SYK model \cite{sachdev1993, kitaev2015simple} of $N$ Majorana fermions with random $q$-body couplings, $\mathbb{E}[\mathcal{J}^2_{i_1\dots i_q}] = (q-1)!J^2/N^{q-1}$, approaches the bound only as $\beta J \to \infty$ \cite{maldacena2016remarks}.
 
 A different random object is the spherical $k$-spin landscape $X(u) = \sum \mathcal{J}_{i_1 \dots i_k} u_{i_1}\cdots u_{i_k}$ on $\Sph^{N-1}$ with Gaussian couplings.
 
@@ -361,7 +366,7 @@ The identification of $\log\mathcal{N}_{\mathrm{crit}}$ with the Bekenstein--Haw
 \label{sec:master_dictionary}
 % =========================================================================
 
-Table~\ref{tab:grand_dictionary} lists the correspondences used in the treatise, each with its status.
+Table~\ref{tab:grand_dictionary} lists the correspondences used in the book, each with its status.
 
 \begin{table}[htbp]
 \centering
@@ -421,6 +426,8 @@ T.~Jacobson,
 \emph{Thermodynamics of spacetime: the Einstein equation of state},
 Physical Review Letters, \textbf{75} (1995), no.~7, 1260--1263,
 \doi{10.1103/PhysRevLett.75.1260}.
+
+\bibitem{sachdev1993} S.~Sachdev and J.~Ye, \emph{Gapless spin-fluid ground state in a random quantum Heisenberg magnet}, Physical Review Letters, \textbf{70} (1993), no.~21, 3339--3342, \href{https://doi.org/10.1103/PhysRevLett.70.3339}{doi:10.1103/PhysRevLett.70.3339}.
 
 \bibitem{kitaev2015simple} A.~Kitaev, \emph{A simple model of quantum holography}, KITP Strings Seminar, 2015, \href{http://online.kitp.ucsb.edu/online/entangled15/kitaev/}{KITP: entangled15/kitaev}.
 
@@ -592,6 +599,12 @@ C.~Rovelli and T.~Thiemann,
 \emph{Immirzi parameter in quantum general relativity},
 Physical Review D, \textbf{57} (1998), 1009--1014,
 \doi{10.1103/PhysRevD.57.1009}.
+
+\bibitem{magnus1954}
+W.~Magnus,
+\emph{On the exponential solution of differential equations for a linear operator},
+Communications on Pure and Applied Mathematics, \textbf{7} (1954), no.~4, 649--673,
+\href{https://doi.org/10.1002/cpa.3160070404}{doi:10.1002/cpa.3160070404}.
 
 \bibitem{ledoux2001}
 M.~Ledoux,

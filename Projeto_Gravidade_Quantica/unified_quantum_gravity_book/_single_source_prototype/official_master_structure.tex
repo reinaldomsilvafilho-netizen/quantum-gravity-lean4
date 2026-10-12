@@ -1,0 +1,201 @@
+\documentclass[11pt,a4paper,openright,twoside]{book}
+
+% F-19: common_preamble already loads morewrites, inputenc, fontenc, the
+% amsmath family, mathrsfs, microtype, booktabs, tabularx, array, xcolor,
+% hyperref, geometry, enumitem, graphicx, cite, silence, tikz, plus the
+% theorem environments and auto-harvested macros every chapter body needs
+% (see common_preamble.tex). Only the two packages below are NOT in it:
+% pdfpages (for the Dictionary's \includepdf) and emptypage (blank-page
+% headers), both specific to this top-level master.
+\input{common_preamble}
+\usepackage{pdfpages}
+\usepackage{emptypage}
+\usepackage{longtable}
+
+\geometry{
+  top=3cm,
+  bottom=3cm,
+  left=3cm,
+  right=2.8cm,
+  headheight=14pt
+}
+
+\hypersetup{
+  colorlinks=true,
+  linkcolor=NavyBlue,
+  citecolor=Mahogany,
+  urlcolor=TealBlue,
+  pdftitle={Geometry, Tensors, and Quantum Gravity: Foundations of Simplicial Geometry, Minimax Foliations, and Emergent Spacetime},
+  pdfauthor={Reinaldo M. Silva-Filho}
+}
+
+\begin{document}
+
+\frontmatter
+\begin{titlepage}
+    \centering
+    \vspace*{2cm}
+    
+    {\Huge \textbf{Geometry, Tensors, and Quantum Gravity} \par}
+    \vspace{0.6cm}
+    {\LARGE \textbf{Foundations of Simplicial Geometry, Minimax Foliations,} \\ \textbf{and Emergent Spacetime} \par}
+    \vspace{1cm}
+    {\large \textit{From Simplicial Fractional Calculus and Minimax Foliations} \\ \textit{to Emergent Holographic Spacetime and Observational Signatures} \par}
+    
+    \vspace{3cm}
+    
+    {\Large \textbf{Reinaldo M. Silva-Filho} \par}
+    \vspace{0.5cm}
+    {\normalsize Programa de P\'os-Gradua\c{c}\~ao em Estat\'istica e Experimenta\c{c}\~ao Agropecu\'aria (PPGEE/DES) \par}
+    {\normalsize Departamento de Estat\'istica (DES) \par}
+    {\normalsize Universidade Federal de Lavras (UFLA) \par}
+    
+    \vspace{0.8cm}
+    {\normalsize ORCID: \href{https://orcid.org/0009-0003-8068-3330}{0009-0003-8068-3330} \par}
+    {\normalsize E-mail: \href{mailto:reinaldo.filho1@estudante.ufla.br}{reinaldo.filho1@estudante.ufla.br} \par}
+    
+    \vspace{1.5cm}
+    {\normalsize \textit{Supported by Coordena\c{c}\~ao de Aperfei\c{c}oamento de Pessoal de N\'ivel Superior} \par}
+    {\normalsize \textit{(CAPES) -- Finance Code 001} \par}
+    
+    \vfill
+    {\large \today \par}
+\end{titlepage}
+
+\vspace*{0.2\textheight}
+\begin{flushright}
+\textit{"Either mathematics is too big for the human mind, \\
+or the human mind is more than a machine."} \\
+\vspace{0.2cm}
+--- Kurt G\"odel
+\end{flushright}
+
+\vspace{1.5cm}
+
+\begin{flushright}
+\textit{"Mathematics resides in the dialectic between the discrete and the continuous."} \\
+\vspace{0.2cm}
+--- Reinaldo M. Silva-Filho
+\end{flushright}
+\vfill
+\clearpage
+
+\chapter*{Author's Preface}
+This monograph collects work on three programs: functional tensor algebra and geometric flows, fractional calculus on continuous Pascal simplices, and the variational theory of minimax extrinsic curvature with causal Jordan embeddings.
+
+The objective of this work is to develop the mathematics of these three programs rigorously, and to state precisely what they do and do not imply for the problem of reconciling General Relativity with Quantum Field Theory. Throughout, statements labelled \emph{Theorem}, \emph{Proposition} or \emph{Lemma} are proved in the text or cited as classical results. Statements whose proof is not available are labelled \emph{Conjecture}. Phenomenological parametrizations and heuristic analogies are identified as such, and Chapter~13 records order-of-magnitude estimates of the observational signatures discussed in Part~IV.
+
+\section*{Principal Results}
+Most of the classical material is cited. The results proved in the text that belong to this book include: the Fourier symbol of the simplicial Beta-kernel Laplacian and its long-wavelength moment matrix (Chapter~3); the continuous Star of David identity, the golden-ratio asymptotics of the continuous Fibonacci diagonal, and a tail estimate for the continuous Dixon integral at integer order (Chapter~3); the exact Sobolev gain $\gamma = 1$ of the Beta-kernel trace, an inversion formula from the family of traces, and the sharp Lipschitz constant $\alpha/(\alpha+m)$ of the induced barycentric map (Chapter~5); the knot gap $4\pi/L$, the contact principle at obstacles, the structure of the minimiser of the linear wall problem, and the bound $\kappa R \ge 1$ for closed submanifolds in a ball, which rules out corrugated competitors of Nash--Kuiper type (Chapter~7); U-turn bounds in tubes of the space forms and pointwise bounds on slices of bounded extrinsic curvature (Chapters~8 and~12); the minimality of the three-arc teardrop U-turn among three-arc curves through a narrow mouth (Chapter~9); and a counterexample to curvature-based generalization bounds for interpolating linear regression (Chapter~10). A formalization in \textsc{Lean}~4 against \textsc{Mathlib} covers selected results of Chapters~1--12 and the numerical bounds of Chapter~13, each in a declared form (full, finite-dimensional, pointwise or conditional on named classical theorems). The Results Index at the end of the book lists, for every theorem, proposition, lemma and corollary, its proof, its numerical checks, its \textsc{Lean} module with the declared reduction, and its audit status.
+
+\section*{Status of the Verification Material}
+The accompanying repository contains two kinds of supporting material. Their status is stated here explicitly.
+{\sloppy
+\begin{enumerate}
+    \item \textbf{Numerical scripts.} The scripts \texttt{verify\_chapXX\_numerical.py} (one per chapter) and the auxiliary checking scripts of the repository evaluate formulas of the text numerically, for example by comparing closed forms with direct quadrature. Such checks catch algebraic and numerical errors. They do not replace proofs, and a check can only be as independent as its reference computation. The checks compare against an independent computation and include a negative control, a mutated formula that must fail.
+    \item \textbf{\textsc{Lean 4} files} (\texttt{formal\_proofs\_book}, \texttt{formal\_proofs\_lean4}). The modules under \texttt{formal\_proofs\_book/Book} are a \emph{naming skeleton}: each chapter's results are recorded as named structures whose fields are Boolean or floating-point placeholders, and the accompanying Lean ``theorems'' only restate their hypotheses. They therefore verify \emph{no} mathematical content of this book and should not be read as a formalization. A separate formalization against \textsc{Mathlib} covers selected results, listed with their axiom check in \texttt{formal\_proofs\_mathlib/README.md}; the chapters concerned and the level of each formalization are stated under ``Verification status'' in the Declarations below. Only results stated with their \textsc{Lean} statement and axiom check in a published repository should be regarded as machine-checked.
+\end{enumerate}
+\par}
+
+{\sloppy
+The source files, numerical scripts, and \textsc{Lean} material are hosted at
+\begin{center}
+\url{https://github.com/reinaldomsilvafilho-netizen/quantum-gravity-lean4}
+\end{center}
+together with an audit log (\texttt{WORKPLAN.md}) recording known issues, corrections, and the verification status of each result.
+}
+
+% Declarations: single source. The text lives in ../declarations_chapter.tex
+% (shared with the standalone chapter PDFs); extract.py drops the per-chapter
+% copies from gen/chapNN_body.tex, so the book has exactly one Declarations section.
+\newcommand{\gtqgdeclscope}{book}
+\input{../declarations_chapter}
+
+\tableofcontents
+
+\mainmatter
+
+% ==============================================================================
+\part{Foundations of Functional Algebra, Hypertensors, and Geometric Flows}
+% ==============================================================================
+
+\chapter{Functional Realizations of Matrices and Hypertensors: Emergent Invariants and Geometric Measures}
+\chaptermark{Realizations of Matrices and Hypertensors}
+\input{gen/chap01_body}
+
+\chapter{Geometric Flows, Partial Differential Equations, and Variational Dynamics on Matrix and Tensor Manifolds}
+\chaptermark{Geometric Flows on Matrix and Tensor Manifolds}
+\input{gen/chap02_body}
+
+% ==============================================================================
+\part{Continuous Simplicial Geometry and Fractional Calculus on Pascal Simplices}
+% ==============================================================================
+
+\chapter{Analytic Continuation of Pascal's Simplex: Continuous Multinomial Integrals, Polytope Boundary Recurrences, and Simplicial Fractional Calculus}
+\chaptermark{Analytic Continuation of Pascal's Simplex}
+\input{gen/chap03_body}
+
+\chapter{Nonlinear Simplicial Waves and Anomalous Porous Transport Induced by Beta-Kernel Fractional Laplacians}
+\chaptermark{Nonlinear Simplicial Waves and Porous Transport}
+\input{gen/chap04_body}
+
+\chapter{Inter-Dimensional Simplicial Transforms, Fractional Boundary Traces, and Matrix Beta-Kernels}
+\chaptermark{Inter-Dimensional Simplicial Transforms}
+\input{gen/chap05_body}
+
+\chapter{Continuous Pascal Simplexes, Sierpi\'nski Gasket Laplacians, and Multifractal Singularity Spectra}
+\chaptermark{Sierpi\'nski Gasket Laplacians}
+\input{gen/chap06_body}
+
+% ==============================================================================
+\part{Non-Euclidean Minimax Extrinsic Curvature and Relativistic Foliations}
+% ==============================================================================
+
+\chapter{Minimax-Flat \texorpdfstring{$k$}{k}-Submanifolds in Obstacle Environments: Variational Theory, Constructive Heuristics, and Explicit Candidates}
+\chaptermark{Minimax-Flat Submanifolds}
+\input{gen/chap07_body}
+
+\chapter{Minimax Extrinsic Curvature in Non-Euclidean Geometries and General Relativity: Variational Theory, Space Forms, and ADM Spacetime Slicings}
+\chaptermark{Minimax Curvature and ADM Slicings}
+\input{gen/chap08_body}
+
+\chapter{Global Minimax Curvature in Multiply-Connected Domains: Homotopy Search, Universal Covering Spaces, and Non-Trivial Loop Dynamics}
+\chaptermark{Global Minimax Curvature}
+\input{gen/chap09_body}
+
+\chapter{Minimax Curvature Trajectories on Statistical Manifolds: A Proposal for Deep Learning and Its Limits}
+\chaptermark{Minimax Trajectories on Statistical Manifolds}
+\input{gen/chap10_body}
+
+% ==============================================================================
+\part{Emergent Spacetime: Established Results, Conjectures, and Heuristics}
+% ==============================================================================
+
+\chapter[Emergent Spacetime and Quantum Geometry: Tensor Networks, Holo\-no\-mies, and Entanglement (Established Results and Conjectures)]{Emergent Spacetime and Quantum Geometry: Tensor Networks, Holonomies, and Entanglement (Established Results and Conjectures)}
+\chaptermark{Emergent Spacetime and Quantum Geometry}
+\input{gen/chap11_body}
+
+\chapter{Emergent Spacetime, Holographic Entanglement, and Quantum Geometry: Proved Results, Conjectures, and Observational Limits}
+\chaptermark{Holographic Entanglement and Quantum Geometry}
+\input{gen/chap12_body}
+
+% ==============================================================================
+\part{Observational Signatures: Order-of-Magnitude Estimates}
+% ==============================================================================
+
+\chapter{Observational Signatures of a Running Spectral Dimension: Parametrization and Order-of-Magnitude Assessment}
+\chaptermark{Observational Signatures}
+\input{gen/chap13_body}
+
+\backmatter
+
+\chapter[Comprehensive Dictionary of Terms, Symbols, and Core Formulations]{Comprehensive Dictionary of Terms, Symbols, and Core Formulations}
+\chaptermark{Dictionary of Terms and Symbols}
+\includepdf[pages=1-]{DICTIONARY_TERMS_AND_SYMBOLS.pdf}
+
+% Results Index: generated by gen_results_index.py from the chapter labels and
+% formal_proofs_mathlib/README.md; the file lives one level up, like the declarations.
+\input{../appendix_results_index}
+
+\end{document}
+

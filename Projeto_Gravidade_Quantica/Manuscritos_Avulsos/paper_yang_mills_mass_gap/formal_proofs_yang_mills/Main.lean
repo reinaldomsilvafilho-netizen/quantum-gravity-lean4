@@ -2,8 +2,9 @@ import YangMills
 
 def main : IO Unit := do
   IO.println "============================================================"
-  IO.println "UNCONDITIONAL YANG-MILLS MASS GAP: FORMAL PROOF KERNEL"
+  IO.println "Placeholder skeleton: no Mathlib, verifies nothing;"
+  IO.println "the mass-gap result of the paper is conditional."
   IO.println "Author: Reinaldo M. Silva-Filho (PPGEE/DES, UFLA)"
-  IO.println "Status: 100% Certified across Part I, Part II, and Part III"
-  IO.println "Zero sorry, zero axiomatic cheats, zero vacuous hypotheses"
+  IO.println "No sorry, no axiom; the statements below are Nat-valued"
+  IO.println "stand-ins, not formalizations of the paper's mathematics."
   IO.println "============================================================"

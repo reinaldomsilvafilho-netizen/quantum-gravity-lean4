@@ -204,11 +204,11 @@ def jarlskog_matrix(s12, s23, s13, d):
     return (Vm[0, 1] * Vm[1, 2] * np.conj(Vm[0, 2]) * np.conj(Vm[1, 1])).imag
 
 
-J_paper = jarlskog(gst_corr, 0.0422, 0.00369, d_ans)
-J_pdgin = jarlskog(gst_corr, S23F, S13F, d_ans)
+J_paper = jarlskog(gst, 0.0422, 0.00369, d_ans)
+J_pdgin = jarlskog(gst, S23F, S13F, d_ans)
 J_fit = jarlskog(S12F, S23F, S13F, DELF)
 print(f"  J(paper inputs s23=0.0422, s13=0.00369) = {J_paper:.3e}")
-print(f"  J(PDG 2024 fit s23, s13; GST s12; ansatz delta) = {J_pdgin:.3e}  pull {(J_pdgin - J_PDG) / 0.12e-5:+.2f} sigma")
+print(f"  J(PDG 2024 fit s23, s13; GST s12 = sqrt(m_d/m_s) = {gst:.4f}; ansatz delta) = {J_pdgin:.3e}  pull {(J_pdgin - J_PDG) / 0.12e-5:+.2f} sigma")
 print(f"  J(PDG 2024 fit, all four) = {J_fit:.3e};  PDG quoted J = {J_PDG:.2e}")
 check("J formula == Im of quartet (oracle)", abs(J_fit - jarlskog_matrix(S12F, S23F, S13F, DELF)) < 1e-12)
 check("PDG fit reproduces quoted J within error", abs(J_fit - J_PDG) < SJ_PDG)

@@ -1,0 +1,28 @@
+== Corollary: E(x) quadrature vs closed form (dps 40)
+   x=   0.3: quad 0.006094051919285854002504806  closed 0.006094051919285854002504806  diff 3.43e-41
+   x=   1.0: quad 0.1621229335906545164393405  closed 0.1621229335906545164393405  diff 4.02e-41
+   x=   2.5: quad 1.614538370654308012180306  closed 1.614538370654308012180306  diff 2.3e-41
+   x=  7.25: quad 18.94336750869301123173258  closed 18.94336750869301123173258  diff 7.35e-40
+   x=  15.3: quad 96.54832483502092927699056  closed 96.54832483502092927699056  diff 0.0
+[cor] ok   max diff 7.35e-40
+[cor-NEG-sign] ok   sign flip on 2 ln G: max diff 629.52
+[cor-NEG-coef] ok   coefficient x/2 ln 2pi: max diff 14.06
+== DLMF 5.17.4 as displayed in the chapter (eq:alexeiewsky)
+   z=   0.3: diff 1.69e-41
+   z=   1.0: diff 2.01e-41
+   z=   2.5: diff 0.0
+   z=  7.25: diff 3.67e-40
+   z=  15.3: diff 5.88e-39
+   z=  -0.5: diff 8.61e-42
+   z=  -0.9: diff 1.15e-41
+[dlmf] ok   valid also for -1 < x < 0 (chapter says x > -1)
+[dlmf-NEG] ok   mutated -z(z-1)/2 rejected
+== Adamchik Sec. 6 form (int log Gamma(t)) is equivalent
+[adamchik] ok   max diff 2.94e-39; differs from DLMF form by z ln z - z
+== Integer x: G(n+1) = prod_{k<n} k!, no barnesg; discrete product identity
+[integer] ok   factorial-product G, max diff 1.1e-39; prod C(n,k) = (n!)^(n+1)/sf(n)^2, sf(n)=G(n+2) for n<12
+== refinement: quadrature error vs working precision, x = 7.25
+   dps 15: |quad - closed(dps60)| = 3.27e-16
+   dps 25: |quad - closed(dps60)| = 1.59e-25
+   dps 40: |quad - closed(dps60)| = 4.55e-41
+[refine] ok   error decreases with precision

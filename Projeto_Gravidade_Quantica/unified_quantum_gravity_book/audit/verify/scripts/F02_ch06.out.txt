@@ -1,0 +1,23 @@
+[PASS] Box/Hausdorff dim of Pascal mod 2 = ln3/ln2; #P_k = 3^k (brute force) (book line ~70-74,180-191)
+       #P_k brute force = {2: 9, 3: 27, 4: 81, 5: 243, 6: 729}; dim from log-log fit = 1.584963 vs ln3/ln2 = 1.584963
+[PASS] NEGATIVE CONTROL: #P_k = 4^k (dim=2, 'all odd') must fail (book line ~70-74,180-191)
+       brute-force counts {2: 9, 3: 27, 4: 81, 5: 243, 6: 729} vs 4^k = [16, 64, 256, 1024, 4096]
+[PASS] Schur-complement conductance c = (m+1)/(m+3) (independent graph-Laplacian build) (book line ~103-109)
+       (m, numeric c, formula c): [(2, np.float64(0.6), 0.6), (3, np.float64(0.6666666666666667), 0.6666666666666666), (4, np.float64(0.7142857142857141), 0.7142857142857143), (5, np.float64(0.7499999999999999), 0.75), (6, np.float64(0.7777777777777777), 0.7777777777777778)]
+[PASS] NEGATIVE CONTROL: wrong formula c = m/(m+2) must disagree (book line ~103-109)
+       checked m=2..6, mutated formula disagrees with numeric Schur complement
+[PASS] Spectral dimension d_s=2ln(m+1)/ln(m+3): recomputed for m=2..6 from Claim 2's INDEPENDENT numeric Schur complement (rho=1/c_numeric, r=(m+1)*rho), not from the book's own typed ln(m+3) (book line ~140-144)
+       (m, d_s from Schur-derived r, book formula): [(2, 1.365212, 1.365212), (3, 1.547411, 1.547411), (4, 1.654175, 1.654175), (5, 1.723308, 1.723308), (6, 1.771244, 1.771244)]
+[PASS] NEGATIVE CONTROL: mutated renormalization factor r=m+2 (dropping +1) must disagree with the Schur-complement-derived d_s, for every m=2..6 (book line ~140-144)
+       (m, Schur-derived d_s, mutated-r d_s): [(2, 1.36521, 1.58496), (3, 1.54741, 1.72271), (4, 1.65417, 1.79649), (5, 1.72331, 1.84156), (6, 1.77124, 1.87157)]
+[PASS] x^2*(E(x) - series_upto_x^0) -> -1/180 (Barnes G oracle via mpmath.barnesg) (book line ~153-163)
+       x^2*diff at x=1e3,5e3,2e4: [-0.005555554365080159, -0.005555555507936509, -0.005555555552579365] (-> should -> -0.005556)
+[PASS] NEGATIVE CONTROL: replacing -1/6 ln x by -1/12 ln x leaves ~0.77 error at x=1e4 (book's own stated mutation, independently re-verified) (book line ~153-163)
+       computed residual error at x=1e4: -0.7675 (book states ~0.77)
+[PASS] Definitional equality int_0^x ln C(x,y) dy = Barnes-G closed form, checked by DIRECT quadrature of the defining integral at a few x (independent of mpmath.barnesg) (book line ~153-163)
+       (x, quad value, closed-form value, rel.err): [(5, 8.199076914314935, 8.199076914314935, 2.2401423262087895e-41), (20, 170.75042838591264, 170.75042838591264, 1.721070866313664e-41), (60, 1680.936783216834, 1680.936783216834, 5.594472618168192e-41)]
+[PASS] NEGATIVE CONTROL: dropping the 2 ln G(x+1) term from the closed form must disagree with the direct quadrature of the definitional integral (book line ~153-163)
+       quadrature value=170.750428; closed form without the Barnes-G term=-463.469871
+
+======================================================================
+Chapter 6 summary: 10 PASS, 0 FAIL

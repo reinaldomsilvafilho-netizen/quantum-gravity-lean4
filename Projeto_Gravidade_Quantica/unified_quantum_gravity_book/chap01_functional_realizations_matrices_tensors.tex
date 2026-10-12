@@ -79,7 +79,7 @@
 \begin{document}
 
 \begin{abstract}
-Finite-dimensional multilinear algebra treats matrices and higher-order tensors as elements of discrete linear spaces, extracting intrinsic invariants such as eigenvalues, singular values, operator rank, and trace polynomials. However, pure algebraic representations fundamentally obscure spatial locality, topological connectivity, and geometric regularity due to basis-permutation invariance in coordinates. In this treatise, we introduce a unified mathematical framework termed \emph{Functional Realization Operators} $\Phi \colon \mathcal{T}^k(V) \to \mathcal{F}(\Omega)$, mapping discrete algebraic arrays into function spaces over continuous domains $\Omega$. We construct a systematic taxonomy of continuous, piecewise continuous, step-like, and operator-valued realization families.
+Finite-dimensional multilinear algebra treats matrices and higher-order tensors as elements of discrete linear spaces, extracting intrinsic invariants such as eigenvalues, singular values, operator rank, and trace polynomials. However, pure algebraic representations fundamentally obscure spatial locality, topological connectivity, and geometric regularity due to basis-permutation invariance in coordinates. In this chapter, we introduce a unified mathematical framework termed \emph{Functional Realization Operators} $\Phi \colon \mathcal{T}^k(V) \to \mathcal{F}(\Omega)$, mapping discrete algebraic arrays into function spaces over continuous domains $\Omega$. We construct a systematic taxonomy of continuous, piecewise continuous, step-like, and operator-valued realization families.
 
 We prove, or recall with references, that embedding matrices and tensors into function spaces produces quantities that are not functions of the spectrum or of other permutation-invariant data: (i) Dirichlet energies and Sobolev $H^s(\Omega)$ norms, which differ between permutation-conjugate matrices; (ii) total variation ($\BV$) norms and the Hausdorff measures of level sets via the coarea formula; (iii) Morse indices of critical points and the Euler characteristic of spheres; and (iv) the cut-norm topology of graphons, which compares matrices of different sizes and has convergent subsequences as $n \to \infty$. These quantities are explicit functions of the entries; their interest lies in the spatial information they record.
 
@@ -116,7 +116,7 @@ While undeniably foundational, this purely algebraic framework suffers from a si
 To transcend these limitations, one must bridge the gap between multilinear algebra and \emph{infinite-dimensional functional analysis, geometric measure theory, and differential topology}. 
 
 \subsection*{Core Thesis and Contributions}
-This paper demonstrates that by formally mapping matrices and tensors into function spaces via \emph{Functional Realization Operators} $\Phi \colon \mathcal{T}^k(V) \to \mathcal{F}(\Omega)$, we unlock a spectrum of geometric and analytical invariants that:
+This chapter demonstrates that by formally mapping matrices and tensors into function spaces via \emph{Functional Realization Operators} $\Phi \colon \mathcal{T}^k(V) \to \mathcal{F}(\Omega)$, we unlock a spectrum of geometric and analytical invariants that:
 \begin{enumerate}[label=\arabic*.]
     \item Discriminate between spectrally indistinguishable arrays according to spatial energy, harmonic smoothness, and Sobolev scale $H^s(\Omega)$;
     \item Measure internal perimeter and level-set geometry through functions of bounded variation ($\BV$) and the geometric Coarea formula;
@@ -187,6 +187,7 @@ For a $d$-th order symmetric tensor $\mathcal{T} \in \operatorname{Sym}^d(\R^n)$
 \end{construction}
 
 \begin{proposition}[Spectral and Critical Correspondence]
+\label{prop:spectral_critical}
 Let $A \in \operatorname{Sym}_n(\R)$ be symmetric with eigendecomposition $A = V \Lambda V^T$, where $\Lambda = \operatorname{diag}(\lambda_1, \dots, \lambda_n)$ with $\lambda_1 \le \lambda_2 \le \dots \le \lambda_n$. Then:
 \begin{enumerate}[label=(\roman*)]
     \item The global extrema of $f_A|_{\Sph^{n-1}}$ satisfy:
@@ -474,7 +475,7 @@ If $A$ has repeated eigenvalues, say $\lambda_k = \dots = \lambda_{k+m}$, the cr
 
 In the functional domain, both $W_A$ and $W_B$ reside in the universal Lebesgue space $\mathcal{W} \coloneqq \{W \in L^\infty([0, 1]^2) \colon W(x, y) = W(y, x)\}$.
 
-\begin{definition}[The Cut Norm (Frieze--Kannan / Lov\'asz--Szegedy)]
+\begin{definition}[The Cut Norm (Frieze--Kannan~\cite{frieze1999quick} / Lov\'asz--Szegedy)]
 For any kernel $W \in L^1([0, 1]^2)$, the \emph{Cut Norm} is defined by:
 \begin{equation}
     \label{eq:cut_norm_def}
@@ -493,7 +494,11 @@ where $\|T_W\|_{L^\infty \to L^1} \coloneqq \sup_{\|u\|_\infty \le 1, \|v\|_\inf
 \end{theorem}
 
 \begin{proof}
-For any indicator functions $u = \mathbf{1}_S$ and $v = \mathbf{1}_T$, we have $\inner{u}{T_W v} = \int_{S \times T} W(x,y) \dif x \dif y$. Decomposing any $u, v$ with $\|u\|_\infty \le 1, \|v\|_\infty \le 1$ into positive and negative parts $u = u_+ - u_-$ and $v = v_+ - v_-$:
+For any indicator functions $u = \mathbf{1}_S$ and $v = \mathbf{1}_T$, we have $\inner{u}{T_W v} = \int_{S \times T} W(x,y) \dif x \dif y$. We first show that $\left|\int W u v\right| \le \cutnorm{W}$ whenever $0 \le u, v \le 1$. Fix such a $v$ and put $g(x) \coloneqq \int_0^1 W(x,y) v(y) \dif y$, which lies in $L^1([0,1])$ by Fubini's theorem because $|Wv| \le |W|$. For $0 \le u \le 1$,
+\begin{equation*}
+    \int_{\{g<0\}} g \le \int_0^1 u\, g \le \int_{\{g>0\}} g,
+\end{equation*}
+so $\left|\int W u v\right| = \left|\int u g\right| \le \left|\int \mathbf{1}_S\, g\right| = \left|\int W \mathbf{1}_S v\right|$ for $S = \{g>0\}$ or $S = \{g<0\}$. With this $S$ fixed, the same argument applied to $h(y) \coloneqq \int_S W(x,y) \dif x$ gives a measurable $T$ with $\left|\int W \mathbf{1}_S v\right| \le \left|\int_{S \times T} W\right| \le \cutnorm{W}$. Now decompose any $u, v$ with $\|u\|_\infty \le 1, \|v\|_\infty \le 1$ into positive and negative parts $u = u_+ - u_-$ and $v = v_+ - v_-$, which take values in $[0,1]$:
 \begin{align}
     \left|\int_{[0,1]^2} W u v \dif x \dif y\right| 
     &\le \left|\int W u_+ v_+\right| + \left|\int W u_+ v_-\right| + \left|\int W u_- v_+\right| + \left|\int W u_- v_-\right| \notag \\
@@ -523,7 +528,7 @@ Thus, in the continuous cut metric, $I_n \to 0$. Discrete full rank vanishes int
 \label{sec:tensors}
 % =========================================================================
 
-When transitioning from 2-tensors (matrices) to higher-order tensors $\mathcal{T} \in \bigotimes_{\alpha=1}^k \R^{d_\alpha}$ ($k \ge 3$), classical multilinear algebra confronts severe algebraic obstructions: tensor rank computation is NP-hard (Hillar and Lim~\cite{hillar2013most}), and low-rank tensor varieties fail to be topologically closed. In this section, we develop the functional machinery that overcomes these bottlenecks and extends our theory to high-order continuum limits.
+When transitioning from 2-tensors (matrices) to higher-order tensors $\mathcal{T} \in \bigotimes_{\alpha=1}^k \R^{d_\alpha}$ ($k \ge 3$), classical multilinear algebra confronts severe algebraic obstructions: tensor rank computation is NP-hard (H{\aa}stad~\cite{hastad1990}; over $\R$ and $\C$, Hillar and Lim~\cite{hillar2013most}), and low-rank tensor varieties fail to be topologically closed. In this section, we develop the functional machinery that overcomes these bottlenecks and extends our theory to high-order continuum limits.
 
 \subsection{Variational Realization and Resolution of the Border-Rank Pathology}
 \label{subsec:tensors_border_rank}
@@ -608,7 +613,7 @@ where $\bar{\Pi}$ is the group of measure-preserving bijections of $[0, 1]$. The
 \end{enumerate}
 \end{theorem}
 \begin{proof}
-The proof generalizes Theorem~\ref{thm:grothendieck_cutnorm}. Decomposing each test function $u^{(\alpha)} \in L^\infty([0, 1])$ with $\|u^{(\alpha)}\|_\infty \le 1$ into positive and negative parts $u_+^{(\alpha)} - u_-^{(\alpha)}$, the multilinear integral splits into $2^k$ signed orthant integrals, each bounded by $\|W\|_{\square, k}$. The compactness of $\widetilde{\mathcal{W}}_k$ in this (product-set) cut distance is proved by Zhao~\cite{zhao2015hypergraph} via a weak regularity lemma; see also Gowers~\cite{gowers2007hypergraph} and Lov{\'a}sz~\cite{lovasz2012large}. For this cut norm the counting lemma fails for general $k$-uniform hypergraph densities, so the limit captures fewer invariants than in the graph case.
+The proof generalizes Theorem~\ref{thm:grothendieck_cutnorm}. Decomposing each test function $u^{(\alpha)} \in L^\infty([0, 1])$ with $\|u^{(\alpha)}\|_\infty \le 1$ into positive and negative parts $u_+^{(\alpha)} - u_-^{(\alpha)}$, the multilinear integral splits into $2^k$ signed orthant integrals, each bounded by $\|W\|_{\square, k}$. For this bound, note that the form $\int W\, u^{(1)} \otimes \dots \otimes u^{(k)}$ with $0 \le u^{(\alpha)} \le 1$ is affine in each factor separately. Fixing all factors but one and arguing as in the proof of Theorem~\ref{thm:grothendieck_cutnorm}, that factor can be replaced by an indicator $\mathbf{1}_{S_\alpha}$ without decreasing the absolute value. Doing this for $\alpha = 1, \dots, k$ in turn bounds each orthant integral by $\left|\int_{S_1 \times \dots \times S_k} W\right| \le \|W\|_{\square, k}$. The compactness of $\widetilde{\mathcal{W}}_k$ in this (product-set) cut distance follows from the weak regularity lemma for $k$-dimensional arrays of Frieze and Kannan~\cite{frieze1999quick} by the martingale argument of Lov\'asz and Szegedy~\cite{lovasz2007szemeredi}, as remarked by Zhao~\cite[\S 3]{zhao2015hypergraph}; see also Gowers~\cite{gowers2007hypergraph} and Lov{\'a}sz~\cite{lovasz2012large}. For this cut norm the counting lemma fails for general $k$-uniform hypergraph densities, so the limit captures fewer invariants than in the graph case.
 \end{proof}
 
 \subsection{Multivariate Sobolev Regularization on Transformer Attention Tensors}
@@ -723,7 +728,7 @@ is an exact linear combination of independent standard Gaussian random variables
 \begin{equation}
     \operatorname{Var}(X(v)) = \sum_{j_1, \dots, j_k = 1}^d (v_{j_1}^{(1)})^2 \dots (v_{j_k}^{(k)})^2 = \prod_{\alpha=1}^k \|v^{(\alpha)}\|_2^2 = 1.
 \end{equation}
-Hence $X(v) \sim \mathcal{N}(0, 1)$ is identically a standard normal scalar for every $v \in \mathcal{M}$. Let $\mathcal{N}_\epsilon$ be an optimal $\epsilon$-net of $\Sph^{d-1}$ with cardinality $|\mathcal{N}_\epsilon| \le (1 + 2/\epsilon)^d$. The product net $\mathcal{N} \coloneqq \prod_{\alpha=1}^k \mathcal{N}_\epsilon \subset \mathcal{M}$ satisfies $|\mathcal{N}| \le (1 + 2/\epsilon)^{k d}$. By the standard Gaussian maximal inequality over the finite net $\mathcal{N}$:
+Hence $X(v) \sim \mathcal{N}(0, 1)$ is identically a standard normal scalar for every $v \in \mathcal{M}$. Let $\mathcal{N}_\epsilon$ be an optimal $\epsilon$-net of $\Sph^{d-1}$ with cardinality $|\mathcal{N}_\epsilon| \le (1 + 2/\epsilon)^d$~\cite[\S 4.2]{vershynin2018}. The product net $\mathcal{N} \coloneqq \prod_{\alpha=1}^k \mathcal{N}_\epsilon \subset \mathcal{M}$ satisfies $|\mathcal{N}| \le (1 + 2/\epsilon)^{k d}$. By the standard Gaussian maximal inequality over the finite net $\mathcal{N}$:
 \begin{equation}
     \mathbb{E}\left[ \sup_{v \in \mathcal{N}} |X(v)| \right] \le \sqrt{2 \log(2 |\mathcal{N}|)} \le \sqrt{2 k d \log(1 + 2/\epsilon) + 2\log 2} = C(k, \epsilon) \sqrt{d}.
 \end{equation}
@@ -766,7 +771,7 @@ Our functional realization on $\Sph^{n-1}$ (Theorem~\ref{thm:morse_matrix} and T
 \begin{equation}
     M_E \coloneqq \left\{ \sigma \in \Sph^{n-1} \colon f_J(\sigma) \le E \right\}.
 \end{equation}
-We emphasize that identifying RSB with the onset of large zeroth Betti numbers $\beta_0(M_E) \gg 1$ is a structural conjecture rather than a consequence proved in this treatise: the critical-point count furnished by Theorem~\ref{thm:kac_rice_tensors} bounds the number of stationary points but does not by itself determine the connectivity of sub-level sets, which requires an independent Betti-number computation. We record this correspondence as an open problem in Section~\ref{sec:conclusion}.
+We emphasize that identifying RSB with the onset of large zeroth Betti numbers $\beta_0(M_E) \gg 1$ is a structural conjecture rather than a consequence proved in this chapter: the critical-point count furnished by Theorem~\ref{thm:kac_rice_tensors} bounds the number of stationary points but does not by itself determine the connectivity of sub-level sets, which requires an independent Betti-number computation. We record this correspondence as an open problem in Section~\ref{sec:conclusion}.
 
 % -------------------------------------------------------------------------
 \subsection{Complex Networks: Size-Independent Metrics on Massive Graphs}
@@ -896,6 +901,7 @@ Archiv der Mathematik, \textbf{11} (1960), 218--222,
 H.~Federer,
 \emph{Geometric Measure Theory},
 Die Grundlehren der mathematischen Wissenschaften, Band 153, Springer-Verlag, New York, 1969,
+reprinted in Classics in Mathematics, Springer, Berlin, 1996,
 ISBN: 978-3-540-60656-7,
 \href{https://doi.org/10.1007/978-3-642-62010-2}{DOI: 10.1007/978-3-642-62010-2}.
 
@@ -904,6 +910,24 @@ Y.~Zhao,
 \emph{Hypergraph limits: a regularity approach},
 Random Structures \& Algorithms \textbf{47} (2015), no.~2, 205--226,
 \href{https://doi.org/10.1002/rsa.20537}{DOI: 10.1002/rsa.20537}.
+
+\bibitem{frieze1999quick}
+A.~Frieze and R.~Kannan,
+\emph{Quick approximation to matrices and applications},
+Combinatorica \textbf{19} (1999), no.~2, 175--220,
+\href{https://doi.org/10.1007/s004930050052}{DOI: 10.1007/s004930050052}.
+
+\bibitem{hastad1990}
+J.~H{\aa}stad,
+\emph{Tensor rank is NP-complete},
+Journal of Algorithms \textbf{11} (1990), no.~4, 644--654,
+\href{https://doi.org/10.1016/0196-6774(90)90014-6}{DOI: 10.1016/0196-6774(90)90014-6}.
+
+\bibitem{vershynin2018}
+R.~Vershynin,
+\emph{High-Dimensional Probability: An Introduction with Applications in Data Science},
+Cambridge University Press, Cambridge, 2018,
+\href{https://doi.org/10.1017/9781108231596}{DOI: 10.1017/9781108231596}.
 
 \bibitem{gowers2007hypergraph}
 W.~T. Gowers,

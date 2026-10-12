@@ -1,0 +1,117 @@
+% F-19 prototype: single shared preamble for all chapter bodies.
+% Union of packages/macros/theorem environments found across chap01-13
+% (see INVENTARIO.md). Macros use \providecommand so the FIRST definition
+% wins; the handful of cosmetic variants found by inventory.py
+% (\mathrm{BV} vs \operatorname{BV}, etc.) render identically.
+
+% morewrites MUST load before hyperref/other packages claim \write streams:
+% 13 chapters x (bibliography + hyperref + float aux) exhaust the classic
+% 16-stream limit; morewrites raises the ceiling to 9000+ via etex registers.
+\usepackage{morewrites}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath,amssymb,amsfonts,amsthm,mathtools}
+\usepackage{mathrsfs}
+\usepackage{microtype}
+\usepackage{booktabs}
+\usepackage{tabularx}
+\usepackage{array}
+\usepackage[dvipsnames]{xcolor}
+\usepackage{hyperref}
+\usepackage{geometry}
+\usepackage{enumitem}
+\usepackage{graphicx}
+% chap13's \includegraphics uses a bare filename (figure lives next to the
+% chapter source, one level up from this prototype folder); point graphicx
+% there instead of editing the chapter body.
+\graphicspath{{../}}
+\usepackage{cite}
+\usepackage{silence}
+\WarningFilter{nameref}{The definition of \label has changed!}
+\usepackage{tikz}
+% chap13 is revtex4-2; extract.py rewrites its \ruledtabular table into a
+% plain booktabs \toprule/\bottomrule + center (see extract.py), so no
+% \ruledtabular shim is needed here.
+% revtex4-2's \acknowledgments environment (chap13) is just a run-in
+% "Acknowledgments." heading; book has no built-in equivalent.
+\newenvironment{acknowledgments}
+  {\par\medskip\noindent\textbf{Acknowledgments.}\ }
+  {\par}
+
+\numberwithin{equation}{chapter}
+
+% Paragraph reflow: each chapter was authored against its OWN margin
+% (0.9in for ch. 3-6, 1in for ch. 7-9, a custom \geometry for ch. 1-2,
+% class defaults for ch. 10-13) before being unified here to 3cm/2.8cm
+% (the real master's own geometry). Raising tolerance/emergency stretch
+% is the standard, honest way to let TeX re-justify those paragraphs at
+% the new width instead of flagging every minor over/underfull line;
+% it changes glue stretch, not the visible word choice.
+\tolerance=1000
+\emergencystretch=2em
+
+% F-19 adoption: attempt to clear the remaining overfull \hbox WITHOUT
+% editing any chapter. \allowdisplaybreaks lets long multi-line align/
+% gather blocks break across pages instead of being forced into a cramped
+% single page. A first attempt also tried \everydisplay{\small} (a
+% smaller display-math font); REVERTED -- \small is a text-mode size
+% switch and \everydisplay inserts it already inside math mode, which
+% raised a "Command \small invalid in math mode" LaTeX Font Warning on
+% every single display equation in the book (dozens), failing the
+% 0-warnings gate outright, and even made the worst remaining overfull
+% box bigger (64pt vs. 26pt) through inconsistent math sizing. Any
+% working display-font-shrink would need a different hook (e.g.
+% \AtBeginEnvironment{equation}{\small} from etoolbox, repeated for every
+% display environment the chapters use) and is left for a future pass;
+% see ADOCAO_F19.md for the resulting overfull count with just
+% \allowdisplaybreaks plus the existing \tolerance/\emergencystretch.
+\allowdisplaybreaks[4]
+
+% --- Theorem environments (union across chapters; numbered per chapter) ---
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}[chapter]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{problem}[theorem]{Problem}
+\newtheorem{algorithm}[theorem]{Algorithm}
+
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{example}[theorem]{Example}
+\newtheorem{construction}[theorem]{Construction}
+\newtheorem{assumption}[theorem]{Assumption}
+
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+% --- Custom notation: AUTO-HARVESTED from every chapter's preamble by
+% extract.py (union, first definition wins, each as \providecommand).
+% See gen/common_macros.tex. Do not hand-list macros here: re-run
+% extract.py after touching a chapter's \newcommand/\providecommand block.
+\input{gen/common_macros}
+
+% 2026-10-11: \xref{label}{fallback} is harvested above as a standalone
+% fallback (\providecommand{\xref}[2]{#2}, defined in whichever chapter's
+% preamble extract.py scans first -- see chap05/09/11/12). In the master,
+% EVERY chapter shares one numbering, so override it here to resolve the
+% real cross-chapter number via \ref; #1 is already the target label with
+% its chapNN: prefix (e.g. chap07:thm:lower_bounds), untouched by
+% extract.py's own \ref-prefixing because \xref is not in its REF_CMDS list.
+\renewcommand{\xref}[2]{\ref{#1}}
+
+% book's default "headings" pagestyle puts the CURRENT SECTION title
+% (via \sectionmark/\rightmark) in the running head on right-hand pages.
+% Several chapters have section titles far longer than the text width
+% (e.g. "2.6. TENSOR NETWORKS: GAUGE THEORY, PATH INTEGRALS, AND CONTINUOUS
+% LIMITS"), which overflows the head rule regardless of \chapter[short]{}.
+% Drop section titles from the running head; keep the chapter's short
+% title (set via \chaptermark in the generated master) on both sides.
+\renewcommand{\sectionmark}[1]{}
+
+% --- Manual "Abstract" block (book class has no native abstract env;
+% \quotation/\endquotation is a standard LaTeX kernel environment) ---
+\newenvironment{chapterabstract}
+  {\begin{quotation}\noindent\textbf{Abstract.}\ }
+  {\end{quotation}}

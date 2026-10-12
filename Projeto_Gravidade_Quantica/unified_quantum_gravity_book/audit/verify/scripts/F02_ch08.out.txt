@@ -1,0 +1,23 @@
+[PASS] K_M = Kbar + kappa^2 for a small 2-sphere in S^3 (finite-difference embedding + flat-ambient codim-2 Gauss formula) (book line ~172-184)
+       K1 (ambient contribution)=1.690000 vs Kbar=1.690000; K2 (own contribution)=1.726889 vs kappa^2=1.726889; K_M numeric=3.416889 vs Kbar+kappa^2=3.416889
+[PASS] NEGATIVE CONTROL: mutated relation K_M = Kbar - kappa^2 must disagree with the embedding-based computation (book line ~172-184)
+       K_M numeric=3.416889; correct Kbar+kappa^2=3.416889; mutated Kbar-kappa^2=-0.036889
+[PASS] Hyperbolic sum-to-product identity holds, and numerical minimization of the ratio over the box matches c*coth(cw/2) (book line ~220-244)
+       identity check over 50 random (a,b,c): True; numeric min of ratio=1.612759 vs formula c*coth(cw/2)=1.612752
+[PASS] NEGATIVE CONTROL: wrong identity sinh(ca)+sinh(cb) = 2cosh(.)cosh(.) must fail (book line ~220-244)
+       mutated sinh-identity holds for the tested (a,b,c): False (should be False)
+[PASS] RN apparent horizon: theta_l RE-DERIVED symbolically (sympy Christoffel symbols of the flat PG spatial metric, K_ij=D_(i)N_j), not plugged into the book's own closed form; theta_l(r+)=0, theta_l(1.1 r+)>0 (book line ~331-345)
+       (M,Q,r+,f(r+),beta^2(r+),theta_l(r+),theta_l(1.1r+)): [1.0, 0.0, 2.0, 0.0, 1.0, 0.0, 0.04230674, 1.0, 0.6, 1.8, 0.0, 1.0, 0.0, 0.0421556, 2.0, 1.5, 3.32287566, 0.0, 1.0, 0.0, 0.02065375, 1.5, 0.9, 2.7, 0.0, 1.0, 0.0, 0.02810373]
+[PASS] NEGATIVE CONTROL: wrong horizon radius r=M (dropping sqrt(M^2-Q^2)) does not satisfy the symbolically re-derived MOTS condition theta_l=0 (book line ~331-345)
+       checked for all Q != 0 test cases
+[PASS] e2(lambda) ranges exactly over [-kappa^2, 3kappa^2] on the cube (brute-force dense grid search) (book line ~284-294)
+       grid min=-2.890000 (expect -2.890000), grid max=8.670000 (expect 8.670000)
+[PASS] NEGATIVE CONTROL: mutated wrong range [-3kappa^2, kappa^2] must be contradicted by the grid extrema (book line ~284-294)
+       grid extrema (-2.8900,8.6700) vs mutated claimed range (-8.669999999999998, 2.8899999999999997)
+[PASS] Morris-Thorne principal curvature kappa, SOLVED FOR via the Gauss equation 1/r^2 = K_ambient + kappa^2 with K_ambient computed from the full symbolic Riemann tensor of the 3-metric (sympy), independent of sqrt(1-b/r) -- matches sqrt(1-b(r)/r)/r and vanishes at throat; intrinsic Gauss curv=1/r0^2 (book line ~367-393)
+       (r, kappa from Gauss eq., formula sqrt(1-b/r)/r): [2.0, 0.0, np.float64(0.0), 2.5, 0.279428, np.float64(0.279428), 3.0, 0.279623, np.float64(0.279623), 3.5, 0.257684, np.float64(0.257684), 4.0, 0.233854, np.float64(0.233854)]; kappa at throat=0.00e+00 (should be ~0); Gauss curvature 1/r0^2=0.250000
+[PASS] NEGATIVE CONTROL: mutated formula kappa = sqrt(1-b/r) (missing 1/r) must disagree with the Gauss-equation-derived kappa (book line ~367-393)
+       checked for r != r0 in the test grid
+
+======================================================================
+Chapter 8 summary: 10 PASS, 0 FAIL

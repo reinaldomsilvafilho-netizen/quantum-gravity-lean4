@@ -1,0 +1,23 @@
+[PASS] TT-variety dim = sum d_a r_{a-1} r_a - sum r_a^2 (numerical Jacobian rank, finite differences) (book line ~228-233)
+       feasible=True, numeric Jacobian rank=16, formula gives 16 (raw parameter count = 24, gauge-orbit dim = 8)
+[PASS] NEGATIVE CONTROL: raw parameter count (no gauge subtraction) must disagree with numeric rank (book line ~228-233)
+       raw count = 24 vs numeric Jacobian rank = 16
+[PASS] Toda flow is isospectral and A(1)=Q(1)^T A0 Q(1) via QR of expm(A0) (independent RK45 integration + scipy QR) (book line ~293-332)
+       max|eig(A0)-eig(A(1))|=1.10e-12; max|A1_ode-A1_qr|=9.50e-13
+[PASS] NEGATIVE CONTROL: commutator with non-skew, non-antisymmetrized generator instead of Pi_so(A) must break isospectrality (book line ~293-332)
+       max|eig(A0)-eig(A_wrong(1))| = 0.3601 (should be >0)
+[PASS] Graphon heat equation closed form (independent RK45 integration of the discretized linear PDE) (book line ~419-424)
+       max|W_numeric - W_closed| = 1.36e-13
+[PASS] NEGATIVE CONTROL: wrong decay rate e^{-t} (halved exponents) must disagree with RK45 integration (book line ~419-424)
+       max|W_numeric - W_wrong| = 1.40e-01 (should be large)
+[PASS] Dyson tightness example: (1+M/k^2)^k - 1 exceeds M/k and is <= (M/k)e^{M/k} for all tested (M,k) (book line ~615-620)
+       checked 24 (M,k) pairs; sample: [(0.5, 2, 0.265625, 0.25, 0.32100635417193535, True, True), (0.5, 3, 0.17609739368998628, 0.16666666666666666, 0.19689340214427434, True, True), (0.5, 5, 0.1040808032, 0.1, 0.11051709180756476, True, True)]
+[PASS] NEGATIVE CONTROL: the naive un-fixed bound 'error <= M/k' (F-48 defect) is indeed violated (book line ~615-620)
+       confirmed error > M/k for the tested (M,k) grid, as the book states
+[PASS] Discrete-to-holonomy convergence rate O(1/k) (independent high-accuracy ODE solve + log-log fit) (book line ~602-619)
+       errors at k=[10, 20, 40, 80, 160, 320]: ['3.21e-02', '1.61e-02', '8.09e-03', '4.05e-03', '2.03e-03', '1.01e-03']; fitted log-log slope = -0.997 (expect ~-1)
+[PASS] NEGATIVE CONTROL: artificially tightened O(1/k^2) rate must disagree with the fitted slope (book line ~602-619)
+       fitted slope -0.997 is not compatible with a -2 (1/k^2) decay
+
+======================================================================
+Chapter 2 summary: 10 PASS, 0 FAIL

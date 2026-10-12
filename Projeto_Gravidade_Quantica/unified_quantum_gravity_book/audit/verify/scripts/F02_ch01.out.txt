@@ -1,0 +1,21 @@
+[PASS] ||T_A||_HS = (1/n)||A||_F  (fine-grid numerical double integration) (book line ~262-267)
+       (n, HS numeric, HS formula, rel.err): [(3, 1.274999471918637, 1.274999471918637, 0.0), (5, 1.1179039672592161, 1.1179039672592161, 0.0), (8, 0.9344894560770768, 0.9344894560770769, 1.188053024467282e-16)]
+[PASS] NEGATIVE CONTROL: (1/n^2)||A||_F must disagree with numeric HS norm (book line ~262-267)
+       checked n=3,5,8; mutated formula disagrees
+[PASS] Dirichlet energy E(f_A) = sum (k1^2+k2^2)|a|^2 (finite-difference quadrature oracle) (book line ~293-336)
+       (n, numeric, formula, rel.err): [(3, 87.06579213965922, 87.19500238220718, 0.0014818537647556954), (4, 182.52525212983107, 182.98658022870063, 0.0025211034508267212), (5, 482.47837809881605, 484.3039135537058, 0.0037694005846337377)]
+[PASS] NEGATIVE CONTROL: sum (k1+k2)^2|a|^2 must disagree with numeric gradient energy (book line ~293-336)
+       checked n=3,4,5; mutated exponent formula disagrees
+[PASS] Example: E(f_{A1})=2 (E_11), E(f_{A2})=2n^2 (E_nn), ratio=n^2 (book line ~324-335)
+       (n, E1, E2, ratio): [(4, 1.9995984370231943, 31.897323649438746, 15.951864663849381), (6, 1.9995984370231943, 71.48103517559645, 35.747695063219986), (8, 1.9995984370231943, 126.36349833813227, 63.19443744227458)]
+[PASS] Checkerboard energy = 2n*sum k^2 = n(n+1)(2n+1)/3 (sympy symbolic oracle) (book line ~339-344)
+       (n, brute double-sum, sympy closed form): [(5, 550, 550), (10, 7700, 7700), (20, 114800, 114800), (50, 4292500, 4292500)]
+[PASS] NEGATIVE CONTROL: wrong leading power (2/3)n^3 must disagree (actual growth is n^3, not n^4 -- checking against true (2/3)n^4+O(n^3)) (book line ~339-344)
+       checked n=20,50,100; cubic-only approx diverges from exact quartic+cubic sum
+[PASS] TV(W_A) formula vs mollified-gradient numerical oracle (sigma->0 Richardson extrapolation) (book line ~359-365)
+       (n, TV mollified-extrapolated, TV formula, rel.err): [(3, 4.2317377549792905, 4.783333333333334, 0.11531614878481745), (4, 4.127083777772954, 4.6274999999999995, 0.10813964823923182)] (coarse independent numerical method, 15% tolerance)
+[PASS] NEGATIVE CONTROL: dropping the 1/n prefactor must disagree with mollified oracle (book line ~359-365)
+       checked n=3,4; mutated (unscaled by n) formula disagrees
+
+======================================================================
+Chapter 1 summary: 9 PASS, 0 FAIL

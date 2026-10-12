@@ -63,7 +63,7 @@
 \date{\today}
 
 \begin{abstract}
-We transfer the $L^\infty$ minimax curvature problem of Chapters~7--9 to parameter spaces of statistical models with the (regularized) Fisher--Rao metric. Here the training trajectory is a path of bounded length from an initialization $\theta_0$ to a set $\Sigma^*$ of low empirical risk that avoids an ill-conditioned region and minimizes its peak covariant acceleration. We state precisely what this functional can and cannot measure. Its value $\kappa^*_{\mathrm{info}}$ vanishes whenever a Fisher geodesic of admissible length from $\theta_0$ reaches $\Sigma^*$ without meeting the obstacle, so it carries no information about the sharpness of the endpoint (Proposition~\ref{prop:degenerate}); without the length bound it can vanish even when no such geodesic exists (Remark~\ref{rem:length_bound}). As a consequence, ``Hessian trace'' and ``PAC-Bayes'' bounds in terms of $\kappa^*_{\mathrm{info}}$ cannot hold. In Gaussian linear regression with random labels, $\kappa^*_{\mathrm{info}} = 0$, the loss Hessian has positive trace, and the generalization gap is at least $1/2$ for every distribution of the inputs (about $0.70$ for Gaussian inputs with $N = 50$, $D = 200$), against $0.19$ for such a bound (Proposition~\ref{prop:counterexample}). The claims about vanishing gradients, orthogonal initialization and curvature-uniform learning-rate schedules have no proofs. They are recorded as conjectures and proposals, with pointers to the literature on dynamical isometry and sharpness-aware minimization.
+We transfer the $L^\infty$ minimax curvature problem of Chapters~7--9 to parameter spaces of statistical models with the (regularized) Fisher--Rao metric. Here the training trajectory is a path of bounded length from an initialization $\theta_0$ to a set $\Sigma^*$ of low empirical risk that avoids an ill-conditioned region and minimizes its peak covariant acceleration. We state precisely what this functional can and cannot measure. Its value $\kappa^*_{\mathrm{info}}$ vanishes whenever a Fisher geodesic of admissible length from $\theta_0$ reaches $\Sigma^*$ without meeting the obstacle, so it carries no information about the sharpness of the endpoint (Proposition~\ref{prop:degenerate}); without the length bound it can vanish even when no such geodesic exists (Remark~\ref{rem:length_bound}). As a consequence, ``Hessian trace'' and ``PAC-Bayes'' bounds in terms of $\kappa^*_{\mathrm{info}}$ cannot hold. In Gaussian linear regression with random labels, $\kappa^*_{\mathrm{info}} = 0$, the loss Hessian has positive trace, and the generalization gap is at least $1/2$ for every input distribution with a density (about $0.70$ for Gaussian inputs with $N = 50$, $D = 200$), against $0.19$ for such a bound (Proposition~\ref{prop:counterexample}). The claims about vanishing gradients, orthogonal initialization and curvature-uniform learning-rate schedules have no proofs. They are recorded as conjectures and proposals, with pointers to the literature on dynamical isometry and sharpness-aware minimization.
 \end{abstract}
 
 \maketitle
@@ -115,10 +115,10 @@ The functional depends on the loss only through the sublevel set $\Sigma^* = \{\
 
 \begin{proposition}[Counterexample to curvature-based generalization bounds]
 \label{prop:counterexample}
-Consider Gaussian linear regression $y = x^\top\theta + \xi$, $\xi \sim \mathcal{N}(0,1)$, with $N$ samples $X \in \R^{N \times D}$, $D > N$. Its Fisher metric is the constant matrix $X^\top X/N$, so $\tilde{g}^{\Fisher}$ is constant and its geodesics are straight lines. Take $\Lambda_{\max} > \operatorname{cond}(\tilde g^{\Fisher})$, so that $\mathcal{O}_{\mathrm{sing}} = \emptyset$, let $\theta_0 = 0$, and let $\theta^* = X^+y$ be the minimum-norm interpolant. If $L_{\max}$ is at least the $\tilde g^{\Fisher}$-length of the segment from $0$ to $\theta^*$, then $\kappa^*_{\mathrm{info}} = 0$, while:
+Consider Gaussian linear regression $y = x^\top\theta + \xi$, $\xi \sim \mathcal{N}(0,1)$, with $N$ samples $X \in \R^{N \times D}$, $D > N$, of full row rank $N$. Its Fisher metric is the constant matrix $X^\top X/N$, so $\tilde{g}^{\Fisher}$ is constant and its geodesics are straight lines. Take $\Lambda_{\max} > \operatorname{cond}(\tilde g^{\Fisher})$, so that $\mathcal{O}_{\mathrm{sing}} = \emptyset$, let $\theta_0 = 0$, and let $\theta^* = X^+y$ be the minimum-norm interpolant. If $L_{\max}$ is at least the $\tilde g^{\Fisher}$-length of the segment from $0$ to $\theta^*$, then $\kappa^*_{\mathrm{info}} = 0$, while:
 \begin{enumerate}
     \item the loss Hessian $H = X^\top X/N$ has $\operatorname{Tr} H > 0$, so the bound $\E[\operatorname{Tr} H_{\Loss}] \le D\,\lambda_{\max}(\tilde g^{\Fisher})\,\kappa^*_{\mathrm{info}}$ fails;
-    \item with labels $y_i \in \{\pm1\}$ drawn uniformly and independently of the inputs, and the squared loss clipped to $[0,1]$, the generalization gap of $\theta^*$ is at least $1/2$, for every distribution of the inputs. A candidate PAC-Bayes-type bound $\sqrt{(D\ln(1 + L^2\kappa^{*2}_{\mathrm{info}}/2\sigma^2) + \ln(2/\delta))/2N}$, with path length $L$ and prior scale $\sigma > 0$, equals $\sqrt{\ln(2/\delta)/2N}$ at $\kappa^*_{\mathrm{info}} = 0$, which is $0.19$ for $N = 50$ and $\delta = 0.05$, and is below $1/2$ for all $N \ge 8$ at $\delta = 0.05$.
+    \item with labels $y_i \in \{\pm1\}$ drawn uniformly and independently of the inputs, and the squared loss clipped to $[0,1]$, the generalization gap of $\theta^*$ is at least $1/2$ for every distribution of the inputs under which $X$ has rank $N$ almost surely, for instance any distribution with a density on $\R^D$. Without this hypothesis the conclusion can fail: for $x \equiv 0$ one has $\theta^* = 0$, and training and test loss both equal $1$. A candidate PAC-Bayes-type bound $\sqrt{(D\ln(1 + L^2\kappa^{*2}_{\mathrm{info}}/2\sigma^2) + \ln(2/\delta))/2N}$, with path length $L$ and prior scale $\sigma > 0$, equals $\sqrt{\ln(2/\delta)/2N}$ at $\kappa^*_{\mathrm{info}} = 0$, which is $0.19$ for $N = 50$ and $\delta = 0.05$, and is below $1/2$ for all $N \ge 8$ at $\delta = 0.05$.
 \end{enumerate}
 \end{proposition}
 
@@ -128,7 +128,7 @@ For (2), the training loss of an interpolant is $0$. A fresh label $y$ is unifor
 \end{proof}
 
 \begin{remark}[Paths versus endpoints]
-The observation that SGD paths are rough (in the stochastic-differential-equation approximation of SGD they have nonzero quadratic variation; the discrete iterates are merely jagged), so that curvature should be measured for the evolution of the parameter distribution in $\mathcal{P}_2(\Theta)$ rather than for single paths, is reasonable. Making it precise requires an $L^\infty$ curvature notion for curves in Wasserstein space, which we do not develop. The empirical link between flat minima and generalization \cite{hochreiter1997, keskar2016, dziugaite2017} and sharpness-aware minimization \cite{foret2020} concern the \emph{endpoint}, which $\kappa^*_{\mathrm{info}}$ does not see.
+The observation that SGD paths are rough (in the stochastic-differential-equation approximation of SGD~\cite{li2017sme} they have nonzero quadratic variation; the discrete iterates are merely jagged), so that curvature should be measured for the evolution of the parameter distribution in $\mathcal{P}_2(\Theta)$ rather than for single paths, is reasonable. Making it precise requires an $L^\infty$ curvature notion for curves in Wasserstein space, which we do not develop. The empirical link between flat minima and generalization \cite{hochreiter1997, keskar2016, dziugaite2017} (flatness is not invariant under reparametrization~\cite{dinh2017sharp}) and sharpness-aware minimization \cite{foret2020} concern the \emph{endpoint}, which $\kappa^*_{\mathrm{info}}$ does not see.
 \end{remark}
 
 \section{Vanishing Gradients and Initialization}
@@ -245,6 +245,18 @@ ICLR 2014, \href{https://doi.org/10.48550/arXiv.1312.6120}{doi:10.48550/arXiv.13
 J.~Pennington, S.~S.~Schoenholz, and S.~Ganguli,
 \emph{Resurrecting the sigmoid in deep learning through dynamical isometry: theory and practice},
 NeurIPS 2017, \href{https://doi.org/10.48550/arXiv.1711.04735}{doi:10.48550/arXiv.1711.04735}.
+
+\bibitem{li2017sme}
+Q.~Li, C.~Tai, and W.~E,
+\emph{Stochastic modified equations and adaptive stochastic gradient algorithms},
+Proceedings of the 34th International Conference on Machine Learning (ICML 2017), PMLR \textbf{70} (2017), 2101--2110,
+\href{https://doi.org/10.48550/arXiv.1511.06251}{doi:10.48550/arXiv.1511.06251}.
+
+\bibitem{dinh2017sharp}
+L.~Dinh, R.~Pascanu, S.~Bengio, and Y.~Bengio,
+\emph{Sharp minima can generalize for deep nets},
+Proceedings of the 34th International Conference on Machine Learning (ICML 2017), PMLR \textbf{70} (2017), 1019--1028,
+\href{https://doi.org/10.48550/arXiv.1703.04933}{doi:10.48550/arXiv.1703.04933}.
 
 \end{thebibliography}
 

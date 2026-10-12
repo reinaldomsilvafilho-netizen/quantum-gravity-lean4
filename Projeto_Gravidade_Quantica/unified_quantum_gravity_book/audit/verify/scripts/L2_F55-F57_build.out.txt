@@ -1,0 +1,3 @@
+chap02_geometric_flows_tensor_varieties: exit 0, errors 0, warnings 0, overfull 0, undefined 0, underfull 9, pages ['17']
+chap03_pascal_simplex_continuous_multinomials: exit 0, errors 0, warnings 0, overfull 0, undefined 0, underfull 0, pages ['17']
+DICTIONARY_TERMS_AND_SYMBOLS: exit 0, errors 0, warnings 0, overfull 0, undefined 0, underfull 22, pages ['6']

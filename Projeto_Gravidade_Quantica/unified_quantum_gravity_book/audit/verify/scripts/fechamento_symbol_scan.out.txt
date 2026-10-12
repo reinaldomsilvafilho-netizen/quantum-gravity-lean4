@@ -1,0 +1,52 @@
+=== ch01 chap01_functional_realizations_matrices_tensors.tex
+  macros used and absent from Dictionary: \R(65), \dif(51), \Sph(44), \Tor(13), \cutnorm(11), \TV(9), \inner(6), \Tr(5), \rank(4), \C(4), \Per(3), \Z(1)
+  frequent symbols absent (display+inline count >= 3, top 30):
+    \mathcal{T}(117)  \mathcal{M}(19)  \epsilon(16)  \mathcal{N}(16)  \mathcal{A}(14)  \mathcal{W}(14)  \Theta(13)  v_i(13)  \varphi(11)  j_k(11)  \operatorname{Sym}(11)  \mathbf{m}(11)  Q_{ij}(8)  \mathbf{i}(6)  \operatorname{Crit}(6)  \mathcal{X}(6)  \mathbb{P}(6)  \operatorname{div}(5)  \mathcal{L}(5)  \Pi(5)  \Gamma_{i,j}(4)  \operatorname{mult}(4)  x_{i_1}(3)  x_{i_d}(3)  \varphi_1(3)  \varphi_2(3)  \chi(3)  \operatorname{Hess}(3)  \delta_{\square,k}(3)  \operatorname{Var}(3)
+=== ch02 chap02_geometric_flows_tensor_varieties.tex
+  macros used and absent from Dictionary: \dif(88), \R(48), \Id(36), \doi(17), \Tr(15), \cutnorm(13), \rank(5), \inner(4), \C(4), \TV(3), \Sph(3), \Ric(1), \Tor(1), \Z(1), \N(1)
+  frequent symbols absent (display+inline count >= 3, top 30):
+    \mathcal{M}(54)  \mathcal{A}(53)  \mathcal{P}(39)  \mathcal{L}(35)  \Psi(35)  \mathcal{T}(26)  \mathbf{r}(21)  \Pi(19)  \mathfrak{so}(16)  s_j(16)  U_k(12)  s_{j-1}(9)  \epsilon(8)  U_p(7)  r_{\alpha-1}(6)  \operatorname{Sym}(5)  X_{<0}(5)  \mathcal{I}(4)  Z_k(4)  P_U(4)  P_V(4)  \operatorname{div}(3)  \operatorname{Re}(3)  s_m(3)  P_{\ge\alpha+1}(3)  \mathfrak{b}(3)  \mathcal{W}(3)  P_i(3)  \Gamma_c(3)
+=== ch03 chap03_pascal_simplex_continuous_multinomials.tex
+  macros used and absent from Dictionary: \doi(11), \Id(6)
+  frequent symbols absent (display+inline count >= 3, top 30):
+    \phi(54)  y_j(24)  \xi^*(19)  \mathbb{Z}(16)  y_m(11)  \mathcal{P}(7)  \boldsymbol{\lambda}(7)  \mathcal{G}(7)  \boldsymbol{\delta}(7)  \varphi_x(6)  \mathbf{0}(5)  \operatorname{Si}(4)  \xi^*}(4)  \tau_n(4)  \Sigma_x(4)  \delta_j(3)  \theta_j(3)  y_k(3)  y_{m-1}(3)  \mathbf{e}(3)
+=== ch04 chap04_simplicial_waves_porous_transport.tex
+  macros used and absent from Dictionary: \doi(6)
+  frequent symbols absent (display+inline count >= 3, top 30):
+    \mathbf{0}(15)  \rho_0(13)  \phi(8)  \varepsilon(6)  \mathcal{N}(5)  y_j(4)  \operatorname{Re}(3)  x_j(3)  \phi_n(3)  \operatorname{Dom}(3)  \mathcal{L}(3)
+=== ch05 chap05_interdimensional_transforms_barnes_lie.tex
+  macros used and absent from Dictionary: 
+  frequent symbols absent (display+inline count >= 3, top 30):
+    \phi(11)  y_j(8)  \mathbf{X}(8)  \operatorname{dist}(7)  c_{1,j}(7)  c_{2,j}(7)  c_j(6)  \mathbf{Y}(5)  \Gamma_m(4)  \mathcal{M}(3)  \mathcal{G}(3)  \mathbf{0}(3)  \operatorname{Sym}(3)  \mathbf{w}(3)
+=== ch06 chap06_sierpinski_fractal_resolvents_spectral_reduction.tex
+  macros used and absent from Dictionary: 
+  frequent symbols absent (display+inline count >= 3, top 30):
+    \mathbb{Z}(6)  c_k(5)  P_k(5)  r_m(3)  \zeta(3)
+=== ch07 chap07_minimax_extrinsic_curvature_submanifolds.tex
+  macros used and absent from Dictionary: \R(66), \C(8), \Hsn(8), \dist(5), \medial(2), \reach(2)
+  frequent symbols absent (display+inline count >= 3, top 30):
+    \mathcal{A}(24)  \varepsilon(15)  \chi(15)  U_i(13)  v_j(13)  P_W(12)  \phi_j(10)  \varphi(9)  P_j(9)  \tau_1(8)  C_r(7)  \tau_2(7)  \epsilon(7)  \gamma^*(7)  Q_B(6)  \operatorname{int}(6)  \mathbf{e}(6)  \phi(5)  \sigma^*(5)  s_k(5)  N_p(4)  J_n(4)  \theta_u(4)  \mathbb{Z}(4)  P_{T_x}(4)  \eta_0(3)  \tau_0(3)  \theta_0(3)  \mathcal{T}(3)  N_{p_0}(3)
+=== ch08 chap08_noneuclidean_minimax_relativity_adm.tex
+  macros used and absent from Dictionary: \dif(32), \Sph(19), \Hyp(16), \R(15)
+  frequent symbols absent (display+inline count >= 3, top 30):
+    \mathcal{M}(22)  s_b(15)  s_a(13)  \epsilon(10)  \mathcal{A}(8)  e_x(8)  \theta_l(7)  e_b(6)  \phi(6)  \Sigma_t(6)  \mathcal{B}(6)  \mathbf{n}(6)  e_a(5)  \chi(5)  N_p(4)  \mathcal{L}(4)  e_y(4)  \operatorname{tr}(3)  \tau_1(3)  \tau_2(3)  \mathbb{Z}(3)  \mathscr{I}(3)
+=== ch09 chap09_global_homotopy_covering_spaces_jordan_loops.tex
+  macros used and absent from Dictionary: \R(8), \Cover(7), \Z(5), \dist(2)
+  frequent symbols absent (display+inline count >= 3, top 30):
+    \varphi(18)  \theta_i(16)  \operatorname{Hol}(13)  \operatorname{int}(11)  \operatorname{tr}(10)  \rho_i(7)  c_i(7)  w_i(6)  r_K(6)  \operatorname{sgn}(4)  \Omega_H(4)  \varepsilon(4)  B_{R_0}(3)  \phi(3)
+=== ch10 chap10_information_geometry_minimax_deep_learning.tex
+  macros used and absent from Dictionary: \Fisher(21), \Loss(7), \R(5), \E(3)
+  frequent symbols absent (display+inline count >= 3, top 30):
+    \Sigma^*(17)  \theta_0(11)  \Theta(6)  \epsilon(6)  \theta_{\max}(6)  L_{\max}(5)  \mathcal{N}(5)  \theta^*(5)  \Lambda_{\max}(4)  \operatorname{cond}(3)
+=== ch11 chap11_emergent_spacetime_tensor_networks_holonomies.tex
+  macros used and absent from Dictionary: \doi(31), \dif(30), \Tr(26), \Area(9), \Sph(2), \R(1), \Ric(1)
+  frequent symbols absent (display+inline count >= 3, top 30):
+    \chi(12)  \epsilon(12)  \rho_0(10)  \Psi(10)  j_e(7)  \mathcal{L}(6)  \mathbf{H}(6)  \mathbf{j}(5)  \boldsymbol{\iota}(5)  \mathscr{H}(5)  s_e(5)  \mathcal{P}(4)  X_{ij}(4)  \rho_A(4)  \mathbb{H}(4)  \iota_v(3)  \mathcal{W}(3)
+=== ch12 chap12_grand_unification_quantum_gravity_treatise.tex
+  macros used and absent from Dictionary: \dif(63), \doi(47), \R(9), \Tr(7), \Area(4), \Sph(3), \cutnorm(2), \Id(1)
+  frequent symbols absent (display+inline count >= 3, top 30):
+    \chi(27)  \mathbf{v}(16)  \varphi(13)  \mathcal{M}(10)  \mathscr{H}(9)  \epsilon(9)  v_i(5)  \mathbf{H}(5)  \mathcal{G}(5)  \tau_1(5)  \tau_2(5)  \mathcal{P}(4)  \mathcal{W}(4)  \boldsymbol{\alpha}(4)  \mathbf{Y}(4)  \mathbf{s}(3)  \mathbf{C}(3)  \mathbf{2}(3)  Q_l(3)  \operatorname{Ai}(3)  n_t(3)  \Sigma_t(3)  \Sigma^*(3)  \rho_A(3)  \mathfrak{su}(3)  v_j(3)  Q_{cbt}(3)  v_g(3)
+=== ch13 chap13_experimental_observational_signatures_quantum_gravity.tex
+  macros used and absent from Dictionary: \doi(24), \dif(6)
+  frequent symbols absent (display+inline count >= 3, top 30):
+    n_t(3)  v_g(3)

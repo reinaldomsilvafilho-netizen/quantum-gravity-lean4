@@ -1,0 +1,19 @@
+[PASS] PAC-Bayes bound at kappa*=0: sqrt(ln(2/delta)/2N) = 0.19 at N=50,delta=0.05; below 1/2 for all N>=8 (book line ~121,127)
+       value at N=50: 0.192065 (book: 0.19); value at N=7: 0.513314 (>=0.5); value at N=8: 0.480161 (<0.5); exact threshold N* = 2ln(40) = 7.3778
+[PASS] NEGATIVE CONTROL: mutated formula sqrt(ln(1/delta)/2N) (missing the factor 2 in the log) disagrees with 0.19 (book line ~121,127)
+       mutated value at N=50: 0.173082 vs book's 0.19 (correct value 0.192065)
+[PASS] Clipped expected test loss >= 1/2, with equality at f=+-1 (independent dense-grid global minimization) (book line ~121,127)
+       grid-search min = 0.500000 (book: 1/2) attained at f = -1.0000 (book: +-1)
+[PASS] NEGATIVE CONTROL: without the [0,1] clipping the minimum is 1 (at f=0), not 1/2 -- clipping is essential (book line ~121,127)
+       unclipped grid-search min = 1.000000 (expected 1.0, not 0.5)
+[PASS] Monte Carlo reproduction: Tr(X^TX/N)>0; random-label gap ~0.70 at N=50,D=200; linear-teacher gap ~0 at N>>D (book line ~66,121,127)
+       mean Tr(H)=199.745 (>0); random-label gap over 60 trials = 0.7062 +- 0.0016 (book: ~0.70); linear-teacher (N=4000>>D=10) gap = 0.00010 (book: close to 0)
+[PASS] NEGATIVE CONTROL: trivial predictor f=0 gives generalization gap = 1 (clearly different from theta*'s ~0.70) (book line ~66,121,127)
+       f=0 gap = 1.0000 vs theta* Monte Carlo gap = 0.7062
+[PASS] Reflection-teacher loss minimized over SO(2)^2 lies in [1.3,2.1] (independent 2D grid+local search, 40 fresh samples) (book line ~144)
+       minimum MSE over SO(2)^2 found = 1.4750 (book's stated range: [1.3, 2.1])
+[PASS] NEGATIVE CONTROL: allowing the teacher's own reflection component (full O(2)^2) reaches ~0, unlike SO(2)^2's [1.3,2.1] (book line ~144)
+       minimum MSE over full O(2)^2 = 0.00000 (should be ~0, far below SO(2)^2's 1.4750)
+
+======================================================================
+Chapter 10 summary: 8 PASS, 0 FAIL

@@ -5,6 +5,7 @@
 \usepackage{amsmath,amssymb,amsfonts,amsthm,mathtools}
 \usepackage{mathrsfs}
 \usepackage{microtype}
+\DeclareMicrotypeSet[expansion]{textT1}{encoding=T1}\UseMicrotypeSet[expansion]{textT1}
 \usepackage{booktabs}
 \usepackage{tabularx}
 \usepackage{array}
@@ -87,7 +88,7 @@ Departamento de Estat\'istica (DES), Universidade Federal de Lavras (UFLA)\\
 Caixa Postal 3037, CEP 37200-900, Lavras, Minas Gerais, Brazil}
 \email{reinaldo.filho1@estudante.ufla.br}
 
-\thanks{This research was supported by the Coordena\c{c}\~ao de Aperfei\c{c}oamento de Pessoal de N\'ivel Superior (CAPES) -- Finance Code 001. Code repository (Lean~4 naming skeleton and numerical scripts): \url{https://github.com/reinaldomsilvafilho-netizen/quantum-gravity-lean4}.}
+\thanks{This research was supported by the Coordena\c{c}\~ao de Aperfei\c{c}oamento de Pessoal de N\'ivel Superior (CAPES) -- Finance Code 001. Code repository (Lean~4 files, including a partial Mathlib formalization of selected results, and numerical scripts): \url{https://github.com/reinaldomsilvafilho-netizen/quantum-gravity-lean4}.}
 
 \date{\today}
 
@@ -97,12 +98,12 @@ Caixa Postal 3037, CEP 37200-900, Lavras, Minas Gerais, Brazil}
 We study a mathematical framework for quantum geometry and gauge fields formulated on the simplicial product $\mathcal{M} = \Delta_4 \times \Delta_2$, where $\Delta_4$ is the standard 4-simplex used as a model of a spacetime cell and $\Delta_2$ is an internal flavor 2-simplex. The framework combines an $L^\infty$-minimax extrinsic curvature principle with non-local integro-differential operators on simplices. We separate proved statements, phenomenological models and conjectures throughout.
 
 The proved results are elementary but exact:
-(1) for the \emph{assumed} isotropic two-scale symbol $k^2 + \ell_P^2 k^4$ in four Euclidean dimensions we give a closed form for the spectral dimension $d_s(\tau)$, which interpolates between $d_s = 4$ at large diffusion times and $d_s = 2$ at short ones, the same end values as in Causal Dynamical Triangulations and in Ho\v{r}ava--Lifshitz gravity (where they arise from a different, anisotropic operator); the kernel is not positive, so $d_s$ is a heat-kernel-trace property; the symbol is not derived from the simplicial operators, and in Lorentzian signature its isotropic $k^4$ term carries a ghost;
+(1) for the \emph{assumed} isotropic two-scale symbol $k^2 + \ell^2 k^4$ in four Euclidean dimensions, with $\ell > 0$ a free length, we give a closed form for the spectral dimension $d_s(\tau)$ of its heat-kernel trace, which interpolates between $d_s = 4$ at large diffusion times and $d_s = 2$ at short ones, the same end values as in Causal Dynamical Triangulations and in Ho\v{r}ava--Lifshitz gravity (where they arise from a different, anisotropic operator); the kernel is not positive, so no diffusion process is implied; no translation-invariant operator with non-negative jump kernel and non-negative potential, and no continuous refinement limit of such operators, has this symbol, so it is not derived from the simplicial operators; in Lorentzian signature its $k^4$ term carries a ghost, and under the standard hypotheses (Remark~\ref{rem:kl_obstruction}) a positive K\"all\'en--Lehmann weight forces the heat-kernel trace to have $d_s \ge 4$ at every scale;
 (2) on a spacelike hypersurface whose second fundamental form is bounded in operator norm by $\kappa^*$, one has $\sigma_{ij}\sigma^{ij} \le 3(\kappa^*)^2 - \frac{1}{3}K^2$, and the vacuum Hamiltonian constraint confines the scalar curvature to the sharp interval $2\Lambda - 6(\kappa^*)^2 \le {}^{(3)}R \le 2\Lambda + 2(\kappa^*)^2$; in FLRW the same cutoff bounds the Hubble rate and hence the energy density, but it does not by itself produce a bounce;
 (3) in an obstacle-problem model of wave-packet localization, Caffarelli's optimal $C^{1,1}$ regularity applies under its standard hypotheses.
 We also record what the framework does \emph{not} give: phase-space volumes on $\mathbb{C}P^{N-1}$ of the natural attraction regions are state-independent and do not reproduce the Born rule; the Dirac--K\"ahler formulation yields four degenerate tastes rather than an evasion of the Nielsen--Ninomiya theorem, and three generations enter as an input through the choice of $\Delta_2$; the Koide relation $Q_l = 2/3$ admits an $S_3$ reformulation but is not derived; and the alternating sum of facet volumes of $\Delta_4$ does not vanish, so the chain identity $\partial \circ \partial = 0$ gives no cancellation of vacuum energy. A Yang--Mills mass gap on the Gribov region and the condensation of graphon Ricci flows into smooth four-dimensional geometries are stated as conjectures, with the missing steps identified.
 
-Order-of-magnitude estimates show that Planck-suppressed observational signatures of the kind considered here lie many orders of magnitude below current and planned experimental reach. The accompanying Lean~4 files are a naming skeleton and do not verify the mathematics of this paper.
+Order-of-magnitude estimates show that Planck-suppressed observational signatures of the kind considered here lie many orders of magnitude below current and planned experimental reach; in the anisotropic $z = 3$ realization the scale $M_\ast$ cannot be the Planck mass, and we quote the bounds that apply to it. The constraint bounds of statement (2) are formalized in Lean~4 with Mathlib (\texttt{formal\_proofs\_mathlib}); the remaining accompanying Lean~4 files are a naming skeleton and verify nothing else in this paper.
 \end{abstract}
 
 \maketitle
@@ -115,6 +116,8 @@ Order-of-magnitude estimates show that Planck-suppressed observational signature
 % =========================================================================
 
 The unification of General Relativity (GR) and the Standard Model (SM) of particle physics within a single non-perturbative framework remains the preeminent problem of fundamental theoretical physics \cite{jaffe2006quantum, ambjorn2012nonperturbative}. When smooth pseudo-Riemannian manifolds $(M^4, g)$ and the Einstein--Hilbert action are extrapolated to trans-Planckian scales ($\ell \ll \ell_P = \sqrt{\hbar G/c^3} \approx 1.616 \times 10^{-35}\text{ m}$), one meets ultraviolet divergences and perturbative non-renormalizability \cite{goroff1986ultraviolet} and curvature singularities (Big Bang and black holes) \cite{hawking1970singularities}.
+
+Simplicial discretizations of spacetime go back to Regge's coordinate-free formulation of general relativity \cite{regge1961general} and underlie non-perturbative approaches such as Causal Dynamical Triangulations \cite{ambjorn2001dynamically}; the framework below belongs to this lineage, with a different choice of simplicial cell and a different variational principle.
 
 This paper does not resolve these problems. Its aim is narrower: to formulate a candidate framework, which we call \emph{Simplicial Quantum Gravity (SQG)}, and to record precisely which of its statements are proved, which are models resting on stated assumptions, and which remain conjectural. Statements labelled \emph{Theorem} or \emph{Proposition} are proved here or in the cited literature; statements labelled \emph{Conjecture} are not; \emph{Remarks} record heuristics, models, and negative results. The framework is formulated on the Cartesian product
 \begin{equation}
@@ -222,6 +225,7 @@ where the convolution kernel is:
 \begin{equation}
     \mathcal{K}_\alpha(\mathbf{x}, \mathbf{y}) \coloneqq C(m, \alpha) \prod_{i=1}^m |x_i - y_i|^{1 - \alpha},
 \end{equation}
+with a normalizing constant $C(m,\alpha) > 0$,
 and the boundary barrier potential is:
 \begin{equation}
     \label{eq:boundary_barrier}
@@ -233,34 +237,43 @@ The boundary potential $B_\alpha(\mathbf{x})$ diverges as $\mathbf{x} \to \parti
 
 \begin{remark}[The kernel is integrable]
 \label{rem:kernel_integrable}
-The weight $1/\mathcal{K}_\alpha(\mathbf{x}, \mathbf{y}) = C(m,\alpha)^{-1} \prod_i |x_i - y_i|^{\alpha - 1}$ in \eqref{eq:beta_laplacian_formula} is locally integrable for $\alpha > 0$, so no principal value is needed. The first term of \eqref{eq:beta_laplacian_formula} is therefore not a fractional Laplacian of order $2\alpha$ (whose kernel behaves like $\|\mathbf{x} - \mathbf{y}\|^{-m - 2\alpha}$), and it does not have the symbol $|k|^{2\alpha}$. The same holds for the Beta-kernel operators of \cite{silvafilho2026treatise} (Chapters~3--4), whose symbols are bounded. The spectral-dimension results below concern model symbols and do not follow from Definition~\ref{def:beta_laplacian}.
+The weight $1/\mathcal{K}_\alpha(\mathbf{x}, \mathbf{y}) = C(m,\alpha)^{-1} \prod_i |x_i - y_i|^{\alpha - 1}$ in \eqref{eq:beta_laplacian_formula} is locally integrable for $\alpha > 0$, so no principal value is needed. The first term of \eqref{eq:beta_laplacian_formula} is therefore not a fractional Laplacian of order $2\alpha$ (whose kernel behaves like $\|\mathbf{x} - \mathbf{y}\|^{-m - 2\alpha}$), and it does not have the symbol $|k|^{2\alpha}$. The same holds for the Beta-kernel operators of \cite{silvafilho2026treatise} (Chapters~3--4), whose symbols are bounded; functional realizations of matrices and tensors are studied in \cite{silvafilho2026trilogy}. The spectral-dimension results below concern model symbols and do not follow from Definition~\ref{def:beta_laplacian}. No refinement or rescaling of the translation-invariant interior model of the operator of Definition~\ref{def:beta_laplacian} yields the symbol $k^2 + \ell^2 k^4$: pointwise limits of such symbols, when continuous, are negative definite functions (for operators with nonnegative kernel and nonnegative potential), which grow at most quadratically and have a nonpositive $k^4$ coefficient when it exists \cite{berg1975potential}, by the L\'evy--Khintchine representation; concentrating the kernel at mesh $h$ gives $k^2$ for the jump part (the boundary potential contributes a divergent term under this normalization, which only reinforces the conclusion), with $\ell \propto h \to 0$. This concerns the symbol, not $d_s$ in general: Markov processes on random geometries can still show a running $d_s$.
 \end{remark}
 
 For $\alpha > 0$ let $(-\Delta)^\alpha$ denote the Fourier multiplier with symbol $|k|^{2\alpha}$ on $\R^m$. Its heat kernel has diagonal $P(\tau) = C(m,\alpha)\,\tau^{-m/(2\alpha)}$, so the spectral dimension $d_s \coloneqq -2\, \dif \ln P / \dif \ln \tau = m/\alpha$ is \emph{constant} \cite{silvafilho2026treatise}. A running spectral dimension therefore needs a symbol with two scales. Numerical simulations of Causal Dynamical Triangulations (CDT) in $3+1$ dimensions show $d_s$ decreasing from $\approx 4$ at large diffusion times to $\approx 2$ at short ones \cite{ambjorn2005spectral}, and similar short-distance values occur in several other approaches \cite{carlip2017dimension}. In Ho\v{r}ava--Lifshitz gravity with anisotropic scaling exponent $z$ in $3+1$ dimensions the ultraviolet value is $d_s = 1 + 3/z$, so $d_s = 2$ requires $z = 3$, while $z = 2$ (a spatial $k^4$ term) gives $5/2$ \cite{horava2009spectral}. In $2+1$ dimensions, Sotiriou, Visser and Weinfurtner showed that Ho\v{r}ava--Lifshitz-type dispersion relations reproduce the CDT flow of $d_s$ to high accuracy \cite{sotiriou2011spectral}. Here we consider a different, isotropic operator.
 
 \begin{proposition}[Closed Form of the Spectral Dimension for a Two-Scale Symbol]
 \label{thm:spectral_dimension_flow}
-Consider the heat equation on $\R^4$ with the \emph{assumed} isotropic Euclidean symbol $k^2(1 + \ell_P^2 k^2)$, and let $P(\tau) = P(\tau; \mathbf{x}, \mathbf{x})$ be the diagonal of its heat kernel. With $z \coloneqq \sqrt{\tau}/(2\ell_P)$,
+Consider the heat equation on $\R^4$ with the \emph{assumed} isotropic Euclidean symbol $k^2(1 + \ell^2 k^2)$, $\ell > 0$ a length (nothing in the framework fixes $\ell$; $\ell = \ell_P$ is a reference value), and let $P(\tau) = P(\tau; \mathbf{x}, \mathbf{x})$ be the diagonal of its heat kernel. With $z \coloneqq \sqrt{\tau}/(2\ell)$,
 \begin{equation}
     \label{eq:ds_return_probability}
-    P(\tau) = \frac{1}{(2\pi)^4} \int_{\R^4} e^{-\tau (k^2 + \ell_P^2 k^4)} \dif^4 k = \frac{1}{32 \pi^2 \ell_P^2 \tau} \left[ 1 - \sqrt{\pi}\, z\, e^{z^2} \operatorname{erfc}(z) \right],
+    P(\tau) = \frac{1}{(2\pi)^4} \int_{\R^4} e^{-\tau (k^2 + \ell^2 k^4)} \dif^4 k = \frac{1}{32 \pi^2 \ell^2 \tau} \left[ 1 - \sqrt{\pi}\, z\, e^{z^2} \operatorname{erfc}(z) \right],
 \end{equation}
 and the spectral dimension $d_s(\tau) \coloneqq -2\, \dif \ln P / \dif \ln \tau$ is
 \begin{equation}
     \label{eq:ds_analytic_formula}
-    d_s(\tau) = 1 - \frac{\tau}{2\ell_P^2} + \left[ 1 - \frac{\sqrt{\pi \tau}}{2\ell_P} \exp\!\left(\frac{\tau}{4\ell_P^2}\right) \operatorname{erfc}\!\left(\frac{\sqrt{\tau}}{2\ell_P}\right) \right]^{-1}.
+    d_s(\tau) = 1 - \frac{\tau}{2\ell^2} + \left[ 1 - \frac{\sqrt{\pi \tau}}{2\ell} \exp\!\left(\frac{\tau}{4\ell^2}\right) \operatorname{erfc}\!\left(\frac{\sqrt{\tau}}{2\ell}\right) \right]^{-1}.
 \end{equation}
-Consequently $\lim_{\tau \to 0} d_s(\tau) = 2$ and $\lim_{\tau \to \infty} d_s(\tau) = 4$, with $d_s = 4 - 12\ell_P^2/\tau + \mathcal{O}(\ell_P^4/\tau^2)$ as $\tau \to \infty$.
+Consequently $\lim_{\tau \to 0} d_s(\tau) = 2$ and $\lim_{\tau \to \infty} d_s(\tau) = 4$, with $d_s = 4 - 12\ell^2/\tau + \mathcal{O}(\ell^4/\tau^2)$ as $\tau \to \infty$.
 \end{proposition}
 \begin{proof}
-In polar coordinates, with $u = k^2$, $P(\tau) = \frac{1}{16\pi^2} \int_0^\infty u\, e^{-\tau u - \tau \ell_P^2 u^2} \dif u$. Completing the square, $\tau u + \tau \ell_P^2 u^2 = \tau\ell_P^2 (u + \frac{1}{2\ell_P^2})^2 - z^2$, and the two elementary Gaussian integrals give \eqref{eq:ds_return_probability}. Taking the logarithmic derivative yields \eqref{eq:ds_analytic_formula}. As $z \to 0$, $\operatorname{erfc}(z) = 1 - 2z/\sqrt{\pi} + \mathcal{O}(z^3)$ gives $d_s \to 1 + 1 = 2$. As $z \to \infty$, $\sqrt{\pi}\, z\, e^{z^2} \operatorname{erfc}(z) = 1 - 1/(2z^2) + 3/(4z^4) + \mathcal{O}(z^{-6})$, so the reciprocal bracket is $2z^2 + 3 + \mathcal{O}(z^{-2})$; it cancels the term $-\tau/(2\ell_P^2) = -2z^2$ and gives $d_s \to 4$. We have checked \eqref{eq:ds_return_probability} and \eqref{eq:ds_analytic_formula} against direct numerical quadrature for $\tau/\ell_P^2 \in [10^{-3}, 10^2]$ (script \texttt{check\_\allowbreak sqg\_\allowbreak formulas.py} in the accompanying repository).
+In polar coordinates, with $u = k^2$, $P(\tau) = \frac{1}{16\pi^2} \int_0^\infty u\, e^{-\tau u - \tau \ell^2 u^2} \dif u$. Completing the square, $\tau u + \tau \ell^2 u^2 = \tau\ell^2 (u + \frac{1}{2\ell^2})^2 - z^2$, and the two elementary Gaussian integrals give \eqref{eq:ds_return_probability}. Taking the logarithmic derivative yields \eqref{eq:ds_analytic_formula}. As $z \to 0$, $\operatorname{erfc}(z) = 1 - 2z/\sqrt{\pi} + \mathcal{O}(z^3)$ gives $d_s \to 1 + 1 = 2$. As $z \to \infty$, $\sqrt{\pi}\, z\, e^{z^2} \operatorname{erfc}(z) = 1 - 1/(2z^2) + 3/(4z^4) + \mathcal{O}(z^{-6})$, so the reciprocal bracket is $2z^2 + 3 + \mathcal{O}(z^{-2})$; it cancels the term $-\tau/(2\ell^2) = -2z^2$ and gives $d_s \to 4$. We have checked \eqref{eq:ds_return_probability} and \eqref{eq:ds_analytic_formula} against direct numerical quadrature for $\tau/\ell^2 \in [10^{-3}, 10^2]$ (script \texttt{check\_\allowbreak sqg\_\allowbreak formulas.py} in the accompanying repository).
 \end{proof}
+
+Closed forms of this kind are prior art: Sotiriou, Visser and Weinfurtner \cite{sotiriou2011dispersion} evaluate the return probability of the anisotropic operator $-\partial_t^2 + f(-\nabla^2)$ with the two-scale symbol $f(k^2) = k^2(1 + k^2/4K^2)$ in terms of the error function in $2+1$ dimensions, and with $f(k^2) = k^2(1 + k^2/8K^2)$ in terms of Bessel functions in $3+1$ dimensions; the isotropic four-dimensional case of \eqref{eq:ds_return_probability}--\eqref{eq:ds_analytic_formula} reduces to theirs.
 
 \begin{remark}[Scope of the heat-kernel model]
 \label{rem:ds_scope}
-The formula \eqref{eq:ds_analytic_formula} gives the spectral dimension of this particular heat-kernel model. The symbol is an assumption: it is not induced by the kernel of Definition~\ref{def:beta_laplacian} (Remark~\ref{rem:kernel_integrable}), and whether quantum spacetime diffuses according to it is not established. The operator is isotropic in four Euclidean dimensions, so its $k^4$ term contains fourth time derivatives. Continued to Lorentzian signature, the propagator $1/[p^2(1 + \ell_P^2 p^2)]$ has, besides the massless pole, a pole at $p^2 = -1/\ell_P^2$ with negative residue, i.e.\ a ghost. Ho\v{r}ava--Lifshitz gravity avoids higher time derivatives by using an \emph{anisotropic} operator, for which the ultraviolet value is $d_s = 1 + 3/z$ \cite{horava2009spectral}; the anisotropic operator $\omega^2 + k^2 + \ell_P^2 k^4$ ($z = 2$) gives $5/2$, not $2$. That $d_s = 2$ at short scales is associated with power-counting renormalizability of gravity is a heuristic argument used in Ho\v{r}ava--Lifshitz gravity; it is not established here.
+The formula \eqref{eq:ds_analytic_formula} gives the spectral dimension of this particular heat-kernel model. The symbol is an assumption: it is not induced by the kernel of Definition~\ref{def:beta_laplacian} (Remark~\ref{rem:kernel_integrable}), and whether quantum spacetime diffuses according to it is not established. The operator is isotropic in four Euclidean dimensions, so its $k^4$ term contains fourth time derivatives. Continued to Lorentzian signature, the propagator $1/[p^2(1 + \ell^2 p^2)]$ has, besides the massless pole, a pole at $p^2 = -1/\ell^2$ with residue $-1$, i.e.\ a ghost; this is the spin-2 structure of quadratic gravity \cite{stelle1977renormalization}. Ho\v{r}ava--Lifshitz gravity avoids higher time derivatives by using an \emph{anisotropic} operator, for which the ultraviolet value is $d_s = 1 + 3/z$ \cite{horava2009spectral}; the anisotropic operator $\omega^2 + k^2 + \ell^2 k^4$ ($z = 2$) gives $5/2$, not $2$. That $d_s = 2$ at short scales is associated with power-counting renormalizability of gravity is a heuristic argument used in Ho\v{r}ava--Lifshitz gravity; it is not established here.
 
-The heat kernel of the Euclidean operator $-\Delta + \ell_P^2 \Delta^2$ takes negative values for every diffusion time, so no genuine Markov process underlies it: a classical theorem of Marcinkiewicz rules out any polynomial of degree above two in the exponent of a characteristic function \cite{marcinkiewicz1939}, and the same non-positivity afflicts Ho\v{r}ava--Lifshitz and other modified diffusion equations \cite{calcagni2013probing}. A local ghost-free Lorentzian realization with ultraviolet spectral dimension $d_s = 2$ exists in a $z = 3$ Ho\v{r}ava--Lifshitz theory, $\omega^2 = c^2k^2 + ak^4/M_\ast^2 + k^6/M_\ast^4$, whose equations of motion remain second order in time; the price is a preferred foliation and an extra scalar mode that is strongly coupled or unstable unless the non-projectable, ``healthy'' extension is used \cite{blas2009extra}, whose weak-coupling window is $M_\ast \lesssim 10^{15}$--$10^{16}$\,GeV \cite{blas2011models}, and protecting matter from Lorentz violation suggests $M_\ast \lesssim 10^{10}$\,GeV \cite{pospelov2012lorentz}. Nonlocal, Lorentz-invariant operators whose entire form factor makes the full inverse propagator grow like $k^4$ at large Euclidean $k$ give another ghost-free option with $d_s = 2$, since the heat-kernel trace of an isotropic symbol homogeneous of degree $4$ in four Euclidean dimensions scales as $\tau^{-1}$; this is a different family from Modesto's ghost-free entire form factors \cite{modesto2012}, which target power-counting renormalizability and give $d_s = 4/(\gamma+2)$ with $\gamma \ge 3$, i.e.\ $d_s \le 4/5$, not $2$. Neither realization is the operator used here, and neither is derived from the simplicial operators of this paper.
+The heat kernel of the Euclidean operator $-\Delta + \ell^2 \Delta^2$ takes negative values for every diffusion time, so no genuine Markov process underlies it: a classical theorem of Marcinkiewicz rules out any polynomial of degree above two in the exponent of a characteristic function \cite{marcinkiewicz1939}, and the same non-positivity afflicts Ho\v{r}ava--Lifshitz and other modified diffusion equations \cite{calcagni2013probing}. A local ghost-free Lorentzian realization with ultraviolet spectral dimension $d_s = 2$ exists in a $z = 3$ Ho\v{r}ava--Lifshitz theory, $\omega^2 = c^2k^2 + ak^4/M_\ast^2 + k^6/M_\ast^4$, whose equations of motion remain second order in time; the price is a preferred foliation and an extra scalar mode that is strongly coupled or unstable unless the non-projectable, ``healthy'' extension is used \cite{blas2009extra}, whose weak-coupling window is $M_\ast \lesssim 10^{15}$--$10^{16}$\,GeV \cite{blas2011models}, so that $M_\ast$ cannot be the Planck mass $M_P \approx 1.22\times10^{19}$\,GeV, and protecting matter from Lorentz violation suggests $M_\ast \lesssim 10^{10}$\,GeV \cite{pospelov2012lorentz}. Nonlocal, Lorentz-invariant operators whose entire form factor makes the full inverse propagator grow like $k^4$ at large Euclidean $k$ give another ghost-free option with $d_s = 2$, since the heat-kernel trace of an isotropic symbol homogeneous of degree $4$ in four Euclidean dimensions scales as $\tau^{-1}$; this is a different family from Modesto's ghost-free entire form factors \cite{modesto2012}, which target power-counting renormalizability and give $d_s = 4/(\gamma+2)$ with $\gamma \ge 3$, i.e.\ $d_s \le 4/5$, not $2$. Neither realization is the operator used here, and neither is derived from the simplicial operators of this paper.
+\end{remark}
+
+\begin{remark}[A K\"all\'en--Lehmann obstruction]
+\label{rem:kl_obstruction}
+Let $G(z) = w_0/z + \int \rho(\dif\mu^2)/(z+\mu^2)$, $z = k^2 \ge 0$, be the Euclidean continuation of a K\"all\'en--Lehmann representation of a physical (not gauge) field component, with $w_0 \ge 0$, $\rho$ a non-zero positive measure and $\int \rho(\dif\mu^2)/(1+\mu^2) < \infty$ (no subtractions), and define $d_s$ from the heat-kernel trace of the Euclidean symbol $S = 1/G$, assuming $P(\tau) < \infty$. Then $zG(z)$ is non-decreasing, so $S(z) \le z/c$ for large $z$, with $c \coloneqq z_0G(z_0) > 0$ for any fixed $z_0 > 0$, and $\liminf_{\tau\to0} d_s(\tau) \ge 4$. In fact $d_s(\tau) \ge 4$ for every $\tau > 0$: integrating by parts, $P(\tau) \propto \tau\int_0^\infty e^{-\tau u} F(u)\dif u$ with $u = S$ and $F(u) = u^2 g(u)$, $g$ non-decreasing because $S(z)/z$ is non-increasing, and comparison with the $\mathrm{Gamma}(3)$ density by monotone likelihood ratio gives $d_s = 2(\tau\langle u\rangle' - 1) \ge 4$, where $\langle\cdot\rangle'$ is the mean under the weight $e^{-\tau u}F(u)$. The underlying observation, that with $\rho \ge 0$ the propagator cannot fall faster than $1/k^2$, is Weinberg's \cite[\S10.7]{weinberg1995quantum}, and its consequence for the spectral dimension is noted in \cite[\S IV]{belenchia2016spectral}; we claim no novelty. The hypothesis $P(\tau) < \infty$ is needed: $\rho(\dif t) = \dif t/\log^2 t$ on $t > e$ gives $S \sim \log z$ and $P(\tau) = \infty$ for $\tau < 2$.
+
+The symbol $k^2 + \ell^2 k^4$ has $\rho = \delta(\mu^2) - \delta(\mu^2 - \ell^{-2})$ and evades the bound only through the negative weight, i.e.\ the ghost. Known ghost-free routes to $d_s = 2$ leave a hypothesis of the representation: the anisotropic $z = 3$ operator gives up Lorentz invariance, entire form factors give up the Stieltjes representation, and the fakeon prescription \cite{anselmi2018fakeons} keeps the symbol, defines the Lorentzian theory from the Euclidean one and leaves $d_s$ unchanged, at the price of a violation of causality at scales below $\ell$. This list classifies known examples and is not an exhaustive dichotomy. Complex-conjugate poles do not by themselves exclude $d_s = 2$: $G(z) = (1+z)/(z(1+z+z^2))$, in units $\ell = 1$, is positive for $z > 0$, has a pair of complex-conjugate poles with residues $-\tfrac12 \pm \tfrac{1}{2\sqrt3}\,i$, and its heat-kernel trace has $d_s$ running from $2$ to $4$. For polynomial symbols with $S(0) = 0$, by contrast, a pair of complex zeros forces degree at least $3$, hence $d_s \le 4/3$ in the ultraviolet.
 \end{remark}
 
 % =========================================================================
@@ -441,7 +454,12 @@ Decompose $\mathbf{v} = (\sqrt{m_e}, \sqrt{m_\mu}, \sqrt{m_\tau}) = \mathbf{v}_{
     \label{eq:koide_exact}
     Q_l = \frac{1}{3} + \frac{2b^2}{3a^2}, \qquad Q_l = \frac{2}{3} \iff \|\mathbf{v}_{\mathbf{2}}\|^2 = \|\mathbf{v}_{\mathbf{1}}\|^2 \iff \frac{b}{a} = \frac{1}{\sqrt{2}},
 \end{equation}
-i.e.\ $\mathbf{v}$ makes an angle of $45^\circ$ with $(1,1,1)$. This is a known reformulation \cite{foot1994note}; the $S_3$ structure makes the relation natural but does not derive it. The parametrization $(a, b/a, \delta)$ has three parameters for three masses, and $Q_l = 2/3$ is the single constraint $b/a = 1/\sqrt{2}$; the parametrization $\sqrt{m_k} = v_0 (1 + \sqrt{2} \cos(\delta + 2\pi k/3))$ of \cite{foot1994note} imposes this constraint and so gives $Q_l = 2/3$ identically for every $(v_0, \delta)$. Empirically, $Q_l = 0.666661 \pm 0.000007$ with current charged-lepton masses. Note also that the projector $\mathbf{P} = \mathbf{I}_3 - \frac{1}{3}\mathbf{J}_3$ onto the standard representation has $\Tr(\mathbf{P}) = \|\mathbf{P}\|_F^2 = 2$, so the ratio of these invariants is $1$ and does not produce the value $2/3$.
+i.e.\ $\mathbf{v}$ makes an angle of $45^\circ$ with $(1,1,1)$. This is a known reformulation \cite{foot1994note}; the $S_3$ structure makes the relation natural but does not derive it. The parametrization $(a, b/a, \delta)$ has three parameters for three masses, and $Q_l = 2/3$ is the single constraint $b/a = 1/\sqrt{2}$; the parametrization $\sqrt{m_k} = v_0 (1 + \sqrt{2} \cos(\delta + 2\pi k/3))$ appears in Rosen \cite{rosen2007heuristic}, see also Brannen \cite{brannen2010spin}, and imposes this constraint, so it gives $Q_l = 2/3$ identically for every $(v_0, \delta)$. Empirically, $Q_l = 0.666661 \pm 0.000007$ with current charged-lepton masses. Note also that the projector $\mathbf{P} = \mathbf{I}_3 - \frac{1}{3}\mathbf{J}_3$ onto the standard representation has $\Tr(\mathbf{P}) = \|\mathbf{P}\|_F^2 = 2$, so the ratio of these invariants is $1$ and does not produce the value $2/3$.
+\end{remark}
+
+\begin{remark}[Residual symmetries of $\Delta_2$ and lepton mixing]
+\label{rem:tm1_mixing}
+With circulant charged-lepton mass matrices the charged leptons keep the $\mathbb{Z}_3$ of rotations of $\Delta_2$, and the lepton mixing matrix is then fixed, up to two parameters, by the residual $\mathbb{Z}_2$ of the neutrino mass matrix \cite{lam2008unique}. A residual transposition of two vertices forces a vanishing entry of the mixing matrix, which the data exclude, so the automorphism group $S_3$ of $\Delta_2$ gives no viable mixing. Allowing an orientation sign at each vertex enlarges the symmetry to the signed permutations $B_3 \cong S_4 \times \mathbb{Z}_2$, the symmetry group of the cube. A sign change at two vertices fixes the column $(1,1,1)/\sqrt3$ (trimaximal mixing TM$_2$, in the basis of \cite{ma2001softly}); a transposition composed with a sign change fixes $(2,1,1)/\sqrt6$ (TM$_1$). Against the NuFIT~6.1 global fit with normal ordering \cite{nufit61}, TM$_2$ is excluded at $4.8\sigma$, while TM$_1$ is compatible at $1.4\sigma$ and gives $\sin^2\theta_{12} = 1 - 2/(3\cos^2\theta_{13}) = 0.3180 \pm 0.0004$ and $\cos\delta = -\cot 2\theta_{23}\,(1 - 5s_{13}^2)/(2\sqrt2\, s_{13}\sqrt{1 - 3s_{13}^2})$ \cite{albright2009,albright2010}, i.e.\ $\delta \approx 262^\circ$ at the best-fit $\theta_{23}$; the other root, $\delta \approx 97^\circ$, is disfavoured at more than $3\sigma$ by the measured phase. These are predictions of the known $S_4$ realization of TM$_1$ \cite{king2013,varzielas2013,luhn2013}, and $S_4$ as a group of signed permutation matrices is used in flavour model building \cite{hagedorn2006}. TM$_1$ is also a special case of the partial $\mu$--$\tau$ symmetry $|U_{\mu1}| = |U_{\tau1}|$ \cite{xing2014partial}. The simplex adds only a geometric reading of that group as the symmetry of $\Delta_2$ with oriented vertices. Why the vertices carry an orientation, and why the neutrino sector keeps exactly this $\mathbb{Z}_2$, are not derived here.
 \end{remark}
 
 \subsection{Quartic Vacuum Energy and the Boundary of \texorpdfstring{$\Delta_4$}{Delta4}}
@@ -477,10 +495,13 @@ where $W$ is a connection strength (not a distance), so entries with negative Ol
 
 \begin{conjecture}[Graphon Condensation]
 \label{conj:graphon_condensation}
-Starting from a random kernel $W_0$ modelling a branched-polymer phase, the graphon Ricci flow \eqref{eq:graphon_ricci} disconnects one-dimensional bottlenecks in finite time, and the remaining positively curved clusters converge, after suitable rescaling, to the kernel of a smooth $4$-dimensional geometry.
+Starting from a kernel $W_0$ with $d_{W_0} > 0$ almost everywhere, intended to model a branched-polymer phase, and for a suitable metric on $[0,1]$ defining $\kappa_W$, the graphon Ricci flow \eqref{eq:graphon_ricci} disconnects one-dimensional bottlenecks in finite time, and the remaining positively curved clusters converge, after suitable rescaling, to the kernel of a smooth $4$-dimensional geometry.
 \end{conjecture}
 
-A graphon limit carries no dimension, differentiable structure or metric tensor, so the phrase ``converges to a $4$-dimensional Einstein manifold'' acquires a meaning only once a reconstruction map from kernels to Riemannian manifolds is specified; constructing such a map is part of the conjecture.
+\begin{remark}[Scope of Conjecture~\ref{conj:graphon_condensation}]
+\label{rem:graphon_scope}
+A graphon carries no differentiable structure or metric tensor, so the phrase ``the kernel of a smooth $4$-dimensional geometry'' acquires a meaning only once a correspondence between kernels and Riemannian manifolds is specified; constructing it is part of the conjecture. Three elementary facts constrain the conjecture. First, if $e(G_n) = o(n^2)$, the step graphons satisfy $\cutnorm{W_{G_n}} \le \|W_{G_n}\|_{L^1} = 2e(G_n)/n^2 \to 0$, so trees, branched polymers and bounded-degree triangulations all converge in cut norm to the zero kernel \cite{borgs2008convergent}, on which the densities $m_x = W(x,\cdot)/d_W(x)$, hence $\kappa_W$ and \eqref{eq:graphon_ricci}, are not defined; this is why the conjecture is posed for a kernel with $d_{W_0} > 0$ almost everywhere, and which such kernel models a branched-polymer phase is left open. Second, with the discrete metric on $[0,1]$ the $1$-Wasserstein distance is the total-variation distance, so $\kappa_W(x,y) = 1 - \tfrac12\|m_x - m_y\|_{L^1} \in [0,1]$ for $x \ne y$, and \eqref{eq:graphon_ricci} gives $W(t) = W_0 \exp\bigl(2\int_0^t \kappa_{W(s)}\dif s\bigr) \ge W_0$ pointwise for as long as the solution exists; in that setting no entry decreases, so no bottleneck disconnects. Third, if $\operatorname{ess\,inf} W \ge \delta > 0$, two given vertices of the $W$-random graph $G(n,W)$ have no common neighbour with probability at most $(1-\delta^2)^{n-2}$, so by a union bound and the Borel--Cantelli lemma $G(n,W)$ has diameter at most $2$ for all large $n$, almost surely. Its graph metric, normalised by the diameter, then takes values in $\{0,\tfrac12,1\}$ or $\{0,1\}$, so a covering by balls of radius $\tfrac14$ needs $n$ balls; since a sequence of compact metric spaces that converges in the Gromov--Hausdorff sense is uniformly totally bounded \cite{burago2001course}, neither these spaces nor any subsequence of them has a Gromov--Hausdorff limit. For such kernels the sampled graphs therefore carry no Gromov--Hausdorff length scale; the argument does not cover dense kernels whose sampled graphs have unbounded diameter. The quantum Fisher geometry of cMPS fields, and obstructions to a functor from such fields to spacetime cobordisms, are studied in \cite{silvafilho2026cobordisms}.
+\end{remark}
 
 % =========================================================================
 \section{Physical Problems and Geometric Mechanisms in the SQG Framework}
@@ -499,7 +520,7 @@ Table~\ref{tab:fundamental_problems} lists twelve central problems of theoretica
 \toprule
 \textbf{ID} & \textbf{Problem} & \textbf{Proposed mechanism} & \textbf{Status in this paper} \\
 \midrule
-\textbf{01} & UV renormalizability & Running spectral dimension $d_s: 4 \to 2$. & Closed form for an \emph{assumed} symbol (Prop.~\ref{thm:spectral_dimension_flow}); not induced by the simplicial kernel; renormalizability not established; Lorentzian ghost; ghost-free realizations exist (local anisotropic $z=3$; nonlocal entire form factors), neither derived here (Rem.~\ref{rem:ds_scope}). \\
+\textbf{01} & UV renormalizability & Running spectral dimension $d_s: 4 \to 2$. & Closed form for an \emph{assumed} symbol (Prop.~\ref{thm:spectral_dimension_flow}); not induced by the simplicial kernel; renormalizability not established; Lorentzian ghost; no Markov refinement of the simplicial operator gives the symbol (Rem.~\ref{rem:kernel_integrable}); with a positive K\"all\'en--Lehmann weight $d_s \ge 4$ (Rem.~\ref{rem:kl_obstruction}); ghost-free realizations exist (local anisotropic $z=3$ with $M_\ast \ne M_P$; nonlocal entire form factors), neither derived here (Rem.~\ref{rem:ds_scope}). \\
 \textbf{02} & Spacetime singularities & Minimax ceiling $\|\II\|_{\mathrm{op}} \le \ell_P^{-1}$. & Bounds on ${}^{(3)}R$ and on $H$, $\rho$ (Thm.~\ref{thm:minimax_shear}, Prop.~\ref{thm:planck_bounce}); no bounce derived; open. \\
 \textbf{03} & Wave-packet localization & Obstacle problem with Caffarelli $C^{1,1}$ regularity. & Regularity proved in the static model (Thm.~\ref{thm:caffarelli_regularity}); link to quantum dynamics is an interpretation. \\
 \textbf{04} & Born rule & Fubini--Study volumes of attraction regions on $\mathbb{C}P^{N-1}$. & Fails: each region has volume $1/N$, independent of the state (Rem.~\ref{prop:born_rule}). \\
@@ -551,7 +572,7 @@ The project keeps an accompanying \textbf{Lean~4} repository:
 \begin{itemize}[leftmargin=1.8em]
     \item \textbf{Repository:} \href{https://github.com/reinaldomsilvafilho-netizen/quantum-gravity-lean4}{\texttt{quantum-gravity-lean4}}.
     \item \textbf{Naming skeleton:} The modules in \texttt{formal\_\allowbreak proofs\_\allowbreak book/\allowbreak Book} record operator names, signatures and theorem statements. They do not use Mathlib, and their ``obligations'' are Boolean placeholders; they verify no mathematics, and in particular none of the results of this paper.
-    \item \textbf{Mathlib formalization:} A formalization against Mathlib has been started in \texttt{formal\_\allowbreak proofs\_\allowbreak book/\allowbreak BookReal}. At the time of writing it contains only elementary lemmas from another part of the programme. No statement of this paper is machine-checked; the elementary inequalities of Theorem~\ref{thm:minimax_shear} are natural first targets.
+    \item \textbf{Mathlib formalization:} The constraint bounds of Theorem~\ref{thm:minimax_shear} are formalized in \textsc{Lean 4} with Mathlib in \texttt{formal\_\allowbreak proofs\_\allowbreak mathlib} (module \texttt{Chap12\allowbreak Constraint\allowbreak Matrix.lean} in \texttt{LeanReal}, shared with Chapter~12 of the companion book): the Frobenius identity $\sigma_{ij}\sigma^{ij} = K_{ij}K^{ij} - K^2/3$, the equivalence with the book's Hamiltonian-constraint form, and the bounds on $\sigma_{ij}\sigma^{ij}$ and ${}^{(3)}R$, each pointwise in an orthonormal frame with the Hamiltonian constraint taken as a hypothesis. Not formalized: the minimax problem $\kappa^\ast = \inf_\Sigma \|\mathrm{II}_\Sigma\|_{L^\infty}$ itself, the Lorentzian manifold and ADM foliation, and the derivation of the constraint from Einstein's equations. No other statement of this paper is machine-checked.
     \item \textbf{Numerical checks:} The closed forms and numerical values quoted in this paper are checked against independent oracles, each with a negative control, by the script \texttt{check\_\allowbreak sqg\_\allowbreak formulas.py}.
 \end{itemize}
 
@@ -565,7 +586,7 @@ A framework touching quantum gravity should state what it implies for observatio
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=\textwidth]{fig_observability_estimates.pdf}
-\caption{\textbf{Order-of-magnitude assessment.} (a) Arrival-time delay $|\Delta t_{\mathrm{disp}}|$ relative to $10$\,Hz, Eq.~\eqref{eq:delta_t} with $\xi = 1/2$. Blue: $\ell_\ast = \ell_P$ at $z = 1, 3, 8$. Red: the value $\ell_\ast \approx 3.0 \times 10^{-7}$\,m that would be required to reach a $0.1$\,ms delay at $1$\,kHz for $z = 3$. Dash-dotted: $0.1$\,ms timing benchmark. (b) The tilt-running ansatz \eqref{eq:tensor_running} as a function of $p/M_\ast$, with $p$ the physical momentum of the mode at horizon exit. The shaded region, $p = H_{\mathrm{inf}} \le 4.7 \times 10^{13}$\,GeV, contains the CMB modes for $M_\ast = M_P$ and $r < 0.036$. Figure reproduced from \cite{silvafilho2026treatise}, Chapter~13.}
+\caption{\textbf{Order-of-magnitude assessment.} (a) Arrival-time delay $|\Delta t_{\mathrm{disp}}|$ relative to $10$\,Hz, Eq.~\eqref{eq:delta_t} with $\xi = 1/2$. Blue: $\ell_\ast = \ell_P$ at redshifts $1, 3, 8$, a reference value outside the weak-coupling window of the $z = 3$ Ho\v{r}ava--Lifshitz branch. Red: the value $\ell_\ast \approx 3.0 \times 10^{-7}$\,m that would be required to reach a $0.1$\,ms delay at $1$\,kHz for redshift $3$. Dash-dotted: $0.1$\,ms timing benchmark. (b) The tilt-running ansatz \eqref{eq:tensor_running} as a function of $p/M_\ast$, with $p$ the physical momentum of the mode at horizon exit. The shaded region, $p = H_{\mathrm{inf}} \le 4.71 \times 10^{13}$\,GeV, contains the CMB modes for $M_\ast = M_P$ and $r < 0.036$. Figure reproduced from \cite{silvafilho2026treatise}, Chapter~13.}
 \label{fig:experimental}
 \end{figure}
 
@@ -575,21 +596,21 @@ A framework touching quantum gravity should state what it implies for observatio
         \label{eq:delta_t}
         |\Delta t_{\mathrm{disp}}| = \frac{6\pi^2 \xi \ell_\ast^2}{c^3}\, D_2(z) \left(f_2^2 - f_1^2\right), \qquad D_2(z) = \frac{c}{H_0} \int_0^z \frac{(1+z')^2 \dif z'}{\sqrt{\Omega_m(1+z')^3 + \Omega_\Lambda}}.
     \end{equation}
-    For $\ell_\ast = \ell_P$, $f_1 = 10$\,Hz, $f_2 = 1$\,kHz, $H_0 = 70$\,km\,s$^{-1}$\,Mpc$^{-1}$ and $\Omega_m = 0.3$ this gives $|\Delta t_{\mathrm{disp}}| \approx 6 \times 10^{-62}$, $3 \times 10^{-61}$ and $1.2 \times 10^{-60}$\,s at $z = 1, 3, 8$. Taking an optimistic timing benchmark of $10^{-4}$\,s for third-generation detectors (Einstein Telescope, Cosmic Explorer; actual dispersion tests fit the waveform phase), the signal is $56$--$57$ orders of magnitude below reach; LISA, at millihertz frequencies, is less sensitive to an $f^2$ effect. This figure is specific to $\ell_\ast = \ell_P$; for $\ell_\ast = \hbar c/(10^{10}\,\mathrm{GeV})$, the value suggested by the Lorentz-violation bound of the $z = 3$ branch, the delays scale by $(\ell_\ast/\ell_P)^2 \approx 1.5 \times 10^{18}$, to $\sim 10^{-43}$--$10^{-42}$\,s, still some $38$ orders of magnitude below the benchmark. A $10^{-4}$\,s delay at $z = 3$ would require $\ell_\ast \approx 3.0 \times 10^{-7}$\,m, an energy scale $\hbar c/\ell_\ast \approx 0.7$\,eV. Nothing in the framework points to such a scale, and it would have to be confronted with existing constraints on gravitational-wave propagation, among them $|v_g - c|/c \lesssim 10^{-15}$ from GW170817 \cite{abbott2017gravitational}.
+    For $\ell_\ast = \ell_P$, $f_1 = 10$\,Hz, $f_2 = 1$\,kHz, $H_0 = 70$\,km\,s$^{-1}$\,Mpc$^{-1}$ and $\Omega_m = 0.3$ this gives $|\Delta t_{\mathrm{disp}}| \approx 6 \times 10^{-62}$, $3 \times 10^{-61}$ and $1.2 \times 10^{-60}$\,s at redshifts $1, 3, 8$. Taking an optimistic timing benchmark of $10^{-4}$\,s for third-generation detectors (Einstein Telescope, Cosmic Explorer; actual dispersion tests fit the waveform phase), the signal is $56$--$57$ orders of magnitude below reach; LISA, at millihertz frequencies, is less sensitive to an $f^2$ effect. This figure is specific to $\ell_\ast = \ell_P$, which lies outside the weak-coupling window of the $z = 3$ branch; for $\ell_\ast = \hbar c/(10^{10}\,\mathrm{GeV})$, the value suggested by the Lorentz-violation bound of the $z = 3$ branch if the quartic term is not shared by matter fields, as in the scale-separation scenario of \cite{pospelov2012lorentz}, the delays scale by $(\ell_\ast/\ell_P)^2 \approx 1.5 \times 10^{18}$, to $\sim 10^{-43}$--$10^{-42}$\,s, still some $38$ orders of magnitude below the benchmark. A $10^{-4}$\,s delay at redshift $3$ would require $\ell_\ast \approx 3.0 \times 10^{-7}$\,m, an energy scale $\hbar c/\ell_\ast \approx 0.7$\,eV, and nothing in the framework points to such a scale. Read in a preferred frame, the quartic ansatz is weakly constrained by gravitational waves alone: the superluminal side of the GW170817 speed bound gives $\ell_\ast < 1.0 \times 10^{-2}$\,m for $\xi = 1$ \cite{abbott2017gravitational}, and the dispersion test of GWTC-3, $A_4 < 0.30 \times 10^4$\,eV$^{-2}$ for $A_4 > 0$, gives $\ell_\ast < 1.1 \times 10^{-5}$\,m for $\xi = 1$ \cite{gwtc3tgr}. If the same quartic term acts on photons, superluminal photon bounds are far stronger: the LHAASO observation of GRB~221009A gives $E_{\mathrm{QG},2} > 7.0 \times 10^{11}$\,GeV \cite{lhaaso2024}, and photon splitting in the Crab Nebula spectrum gives $M_\ast/\sqrt{a} > 4.1 \times 10^{14}$\,GeV in the notation of Remark~\ref{rem:ds_scope}, i.e.\ $\ell_\ast < 4.82 \times 10^{-31}$\,m for $\xi = 1$ \cite{satunin2019}. These photon bounds rest on that universality assumption, which neither quadratic gravity nor Ho\v{r}ava--Lifshitz gravity implies.
 
     \item \textbf{Tensor-tilt running (LiteBIRD, CMB-S4).} If one \emph{postulates} that the running of the tensor tilt tracks a two-point Pad\'e form of the spectral dimension, $d_s(p) = 2 + 2/(1 + (p/M_\ast)^2)$,
     \begin{equation}
         \label{eq:tensor_running}
         \alpha_t = \frac{1}{2}\left(d_s(p) - 4\right) = -\frac{(p/M_\ast)^2}{1 + (p/M_\ast)^2},
     \end{equation}
-    the momentum $p$ must be physical. A local effect with scale $M_\ast$ acts on a tensor mode when it is generated, at horizon exit, where $p = k/a = H_{\mathrm{inf}}$; the comoving wavenumber measured today is not an invariant scale. The bound $r < 0.036$ \cite{bicepkeck2021constraints} and $A_s \approx 2.1 \times 10^{-9}$ \cite{planck2018parameters} give, through $2H_{\mathrm{inf}}^2/(\pi^2 M_{\mathrm{red}}^2) = rA_s$ with $M_{\mathrm{red}} = M_P/\sqrt{8\pi}$, the bound $H_{\mathrm{inf}} \le 4.7 \times 10^{13}$\,GeV. For $M_\ast = M_P$, $|\alpha_t| \approx (H_{\mathrm{inf}}/M_P)^2 \le 1.5 \times 10^{-11}$ ($3.7 \times 10^{-10}$ for $M_\ast = M_{\mathrm{red}}$), nearly the same for all CMB multipoles. LiteBIRD \cite{litebird2023probing} and CMB-S4 target the tensor amplitude at the level $r \sim 10^{-3}$; the ansatz predicts no observable modification of $C_\ell^{BB}$.
+    the momentum $p$ must be physical. A local effect with scale $M_\ast$ acts on a tensor mode when it is generated, at horizon exit, where $p = k/a = H_{\mathrm{inf}}$; the comoving wavenumber measured today is not an invariant scale. The bound $r < 0.036$ \cite{bicepkeck2021constraints} and $A_s \approx 2.1 \times 10^{-9}$ \cite{planck2018parameters} give, through $2H_{\mathrm{inf}}^2/(\pi^2 M_{\mathrm{red}}^2) = rA_s$ with $M_{\mathrm{red}} = M_P/\sqrt{8\pi}$, the bound $H_{\mathrm{inf}} \le 4.71 \times 10^{13}$\,GeV. For $M_\ast = M_P$, $|\alpha_t| \approx (H_{\mathrm{inf}}/M_P)^2 \le 1.5 \times 10^{-11}$ ($3.74 \times 10^{-10}$ for $M_\ast = M_{\mathrm{red}}$), nearly the same for all CMB multipoles. LiteBIRD \cite{litebird2023probing} and CMB-S4 target the tensor amplitude at the level $r \sim 10^{-3}$; for $M_\ast = M_P$ the ansatz predicts no observable modification of $C_\ell^{BB}$. For $M_\ast < M_P$ it gives $|\alpha_t| = x/(1+x)$, $x = (H_{\mathrm{inf}}/M_\ast)^2$, which saturates to $1$ as $M_\ast \to 0$; since $H_{\mathrm{inf}}$ is only bounded above, the values that follow are upper bounds. In a $z = 3$ realization, if the quartic term is universal with unit coefficient, photon dispersion bounds leave the window $4.1\times10^{14} \lesssim M_\ast \lesssim 10^{15}$--$10^{16}$\,GeV, where $|\alpha_t|$ is at most of order $10^{-2}$; for $M_\ast \sim 10^{10}$\,GeV it is at most of order one. No cited source establishes whether a shift of this size would be observable.
 
     \item \textbf{Quantum simulators.} Programmable Rydberg arrays \cite{ebadi2021quantum} and superconducting circuits can measure quantum Fisher metrics and out-of-time-order correlators, whose Lyapunov exponent obeys the Maldacena--Shenker--Stanford bound \cite{maldacena2016bound}. Such experiments probe the many-body systems realized; they would test the framework only if a concrete model were identified in which it makes a quantitative prediction. We do not have such a model.
 
     \item \textbf{Atom interferometry.} For $^{87}$Sr atoms in long-baseline instruments (MAGIS-100, AION) \cite{abe2021matter, badurina2020aion}, $\ell_P/\lambda_{\mathrm{dB}} = m v\, \ell_P/(2\pi\hbar) \approx 3.5 \times 10^{-27}\,(v/1\,\mathrm{m\,s^{-1}})$, which stays below $2 \times 10^{-25}$ for launch velocities $v \lesssim 45$\,m\,s$^{-1}$. No prediction of the framework is attached to this ratio, and no test is proposed.
 \end{enumerate}
 
-In summary, with the scale set by $\ell_P$ the observational ans\"atze give effects suppressed by factors of order $(\ell_P k)^2$ for gravitational waves and $(H_{\mathrm{inf}}/M_P)^2$ for the tensor tilt, far below current or planned experimental reach. In its present form the framework makes no observable prediction; obtaining one would require an independent mechanism that enhances Planck-suppressed effects, or a lower scale $\ell_\ast$ justified from first principles.
+In summary, with the scale set by $\ell_P$ the observational ans\"atze give effects suppressed by factors of order $(\ell_P k)^2$ for gravitational waves and $(H_{\mathrm{inf}}/M_P)^2$ for the tensor tilt, far below current or planned experimental reach. In the only known local ghost-free realization with $d_s = 2$ the scale is not $\ell_P$, and the bounds above apply to it. In its present form the framework makes no observable prediction; obtaining one would require an independent mechanism that enhances Planck-suppressed effects, or a lower scale $\ell_\ast$ justified from first principles.
 
 % =========================================================================
 \section{Conclusion and Outlook}
@@ -598,12 +619,51 @@ In summary, with the scale set by $\ell_P$ the observational ans\"atze give effe
 
 We have separated what the Simplicial Quantum Gravity framework on $\Delta_4 \times \Delta_2$ establishes from what it suggests.
 \begin{enumerate}
-    \item \textbf{Established:} a closed-form spectral dimension $d_s: 4 \to 2$ for the assumed two-scale symbol $k^2 + \ell_P^2 k^4$ (Proposition~\ref{thm:spectral_dimension_flow}); sharp pointwise bounds on $K_{ij}K^{ij}$, $\sigma_{ij}\sigma^{ij}$ and ${}^{(3)}R$ on slices of bounded extrinsic curvature (Theorem~\ref{thm:minimax_shear}) and the resulting Hubble-rate and density bound in FLRW (Proposition~\ref{thm:planck_bounce}); the Clifford structure of Dirac--K\"ahler fields (Proposition~\ref{thm:nielsen_ninomiya_evasion}); Caffarelli's optimal regularity in the obstacle model (Theorem~\ref{thm:caffarelli_regularity}); and an exponential-decay estimate for the graphon Ricci flow, conditional on a curvature hypothesis whose validity depends on the chosen metric.
+    \item \textbf{Established:} a closed-form spectral dimension $d_s: 4 \to 2$ for the heat-kernel trace of the assumed two-scale symbol $k^2 + \ell^2 k^4$ (Proposition~\ref{thm:spectral_dimension_flow}), a symbol that no refinement of a translation-invariant operator with non-negative kernel and potential produces (Remark~\ref{rem:kernel_integrable}); sharp pointwise bounds on $K_{ij}K^{ij}$, $\sigma_{ij}\sigma^{ij}$ and ${}^{(3)}R$ on slices of bounded extrinsic curvature (Theorem~\ref{thm:minimax_shear}) and the resulting Hubble-rate and density bound in FLRW (Proposition~\ref{thm:planck_bounce}); the Clifford structure of Dirac--K\"ahler fields (Proposition~\ref{thm:nielsen_ninomiya_evasion}); and Caffarelli's optimal regularity in the obstacle model (Theorem~\ref{thm:caffarelli_regularity}).
     \item \textbf{Conjectured:} a Yang--Mills mass gap on the Gribov region under hypotheses (H1)--(H2) (Conjecture~\ref{thm:yang_mills_gap}), and the condensation of graphon Ricci flows into smooth four-dimensional geometries (Conjecture~\ref{conj:graphon_condensation}).
-    \item \textbf{Not obtained:} a bounce or any modification of the Friedmann equation; the Born rule from phase-space volumes; an evasion of fermion doubling; a derivation of three generations or of the Koide relation; a cancellation of vacuum energy from $\partial \circ \partial = 0$; a simplicial realization of the double copy.
-    \item \textbf{Observationally:} Planck-suppressed signatures of the kind considered here are many orders of magnitude below experimental reach (Section~\ref{sec:experimental_signatures}).
+    \item \textbf{Not obtained:} a bounce or any modification of the Friedmann equation; the Born rule from phase-space volumes; an evasion of fermion doubling; a derivation of three generations or of the Koide relation; a cancellation of vacuum energy from $\partial \circ \partial = 0$; a simplicial realization of the double copy; a Lorentzian completion of the two-scale symbol that is local, ghost-free and Lorentz invariant, which a positive K\"all\'en--Lehmann weight rules out (Remark~\ref{rem:kl_obstruction}); a derivation of lepton mixing (Remark~\ref{rem:tm1_mixing} only reads a known $S_4$ pattern on $\Delta_2$).
+    \item \textbf{Observationally:} Planck-suppressed signatures of the kind considered here are many orders of magnitude below experimental reach (Section~\ref{sec:experimental_signatures}); in the $z = 3$ realization $M_\ast < M_P$ is bounded as in Section~\ref{sec:experimental_signatures}.
 \end{enumerate}
-The framework does not, at present, constitute a UV-complete theory of quantum gravity, and the problems listed in Table~\ref{tab:fundamental_problems} remain open. Deriving the two-scale symbol from a simplicial operator, posing a well-defined minimax slicing problem with boundary conditions, and proving the conjectures above are the natural programme for future work.
+The framework does not, at present, constitute a UV-complete theory of quantum gravity, and the problems listed in Table~\ref{tab:fundamental_problems} remain open. Since no translation-invariant operator with non-negative kernel and potential has the two-scale symbol, deriving it would require a simplicial operator outside that class; this, a well-defined minimax slicing problem with boundary conditions, and the conjectures above are the natural programme for future work.
+
+% =========================================================================
+\section*{Declarations}
+% =========================================================================
+\noindent\textbf{Competing interests.} The author declares no competing
+interests.
+
+\medskip\noindent\textbf{Tool and computational resource disclosure.} In line with
+the Leiden Declaration on Artificial Intelligence and Mathematics
+(arXiv:2609.35334), the author discloses the automated tools used in preparing
+this work. Large language model assistants (Anthropic Claude; Google Gemini,
+through the Antigravity agent environment) were used extensively: under the
+author's direction they drafted and edited text and \LaTeX{} source, proposed and
+wrote derivations, proofs and counterexamples, wrote the numerical check scripts
+and the \textsc{Lean 4} files, and searched the literature. The mathematics was
+then checked in three steps by AI sessions that had not written it: a blind
+review of every statement, a correction made by a separate session, and a
+targeted re-check of each correction. Every numerical claim is checked by a
+script that compares it with an independent computation and includes a negative
+control, a deliberately altered formula that must fail. Every reference with a
+DOI was resolved through Crossref or DataCite; where a result builds on a
+specific prior idea, the author has sought to identify and cite its source, and
+states explicitly where a satisfactory attribution could not be established.
+These checks were carried out by AI systems; they are not peer review, and no
+result in this paper has yet been checked by an independent human expert.
+
+\medskip\noindent\textbf{Authorship and responsibility.} AI tools are not
+authors of this work, and credit and responsibility for its content belong
+solely to the human author. The author chose the questions, directed the work,
+decided what to publish, and is responsible for the content, including any
+remaining errors.
+
+\medskip\noindent\textbf{Publication status.} This work is distributed as a
+preprint on Zenodo. It has not yet been through peer review; Zenodo is a
+repository, not a peer-reviewed venue.
+
+\medskip\noindent The funding statement and the code repository are given in the
+first-page footnote; the verification status of each result is stated in
+Section~\ref{sec:conclusion} and in Section~\ref{sec:lean4_verification}.
 
 % =========================================================================
 % REFERENCES
@@ -619,28 +679,28 @@ Zenodo Monograph Archive, version~2.3, \href{https://doi.org/10.5281/zenodo.2229
 
 \bibitem{silvafilho2026trilogy}
 R.~M. Silva-Filho,
-\emph{Beyond the Spectrum: Functional Realizations of Matrices and Tensors, Emerging Invariants, and Geometric Measures (Volumes I--III)},
-Zenodo Monograph Archive, \href{https://doi.org/10.5281/zenodo.22441676}{DOI: 10.5281/zenodo.22441676}, 2026.
+\emph{Beyond the Spectrum: Functional Realizations of Matrices and Tensors (Volumes I--III)},
+Zenodo Monograph Archive, \href{https://doi.org/10.5281/zenodo.22644743}{DOI: 10.5281/zenodo.22644743} (all versions), 2026.
 
 \bibitem{silvafilho2026yangmills}
 R.~M. Silva-Filho,
-\emph{A Geometric and Metric-Measure Framework for the Yang--Mills Mass Gap, Gribov--Zwanziger Horizon Regularization, and Confinement on Gauge Orbit Varieties},
-Zenodo Research Paper, \href{https://doi.org/10.5281/zenodo.22699843}{DOI: 10.5281/zenodo.22699843}, 2026.
-
-\bibitem{silvafilho2026lagrangian}
-R.~M. Silva-Filho,
-\emph{Geometric Condensation of Fundamental Interactions: From the Classical Multi-Component Lagrangian to the Simplicial Action Functional on $\Delta_4 \times \Delta_2$},
-Zenodo Research Paper, \href{https://doi.org/10.5281/zenodo.22707110}{DOI: 10.5281/zenodo.22707110}, 2026.
-
-\bibitem{silvafilho2026fermions}
-R.~M. Silva-Filho,
-\emph{Geometric Foundations of the Fermion Mass Hierarchy, Flavor Mixing, and Vacuum Energy Suppression in Simplicial Spacetime},
-Zenodo Research Paper, \href{https://doi.org/10.5281/zenodo.22707125}{DOI: 10.5281/zenodo.22707125}, 2026.
+\emph{A Geometric and Metric-Measure Framework for the Yang--Mills Mass Gap},
+Zenodo Research Paper, \href{https://doi.org/10.5281/zenodo.22301093}{DOI: 10.5281/zenodo.22301093} (all versions), 2026.
 
 \bibitem{silvafilho2026cobordisms}
 R.~M. Silva-Filho,
-\emph{A Functorial Bridge from Continuous Tensor Manifolds to 4-Dimensional Spacetime Cobordisms},
-Zenodo Monograph, \href{https://doi.org/10.5281/zenodo.22441676}{DOI: 10.5281/zenodo.22441676}, ISBN: 978-65-87456-12-8, 2026.
+\emph{Quantum Fisher Geometry of Continuous Matrix Product State Fields and Lorentzian Cylinders: A Moore-Path Functor and Obstructions to a Cobordism Functor},
+Zenodo preprint, \href{https://doi.org/10.5281/zenodo.22441676}{DOI: 10.5281/zenodo.22441676}, 2026.
+
+\bibitem{borgs2008convergent}
+C.~Borgs, J.~T. Chayes, L.~Lov\'asz, V.~T. S\'os, and K.~Vesztergombi,
+\emph{Convergent sequences of dense graphs I: Subgraph frequencies, metric properties and testing},
+Adv. Math. \textbf{219} (2008), 1801--1851, \href{https://doi.org/10.1016/j.aim.2008.07.008}{DOI: 10.1016/j.aim.2008.07.008}.
+
+\bibitem{burago2001course}
+D.~Burago, Yu.~Burago, and S.~Ivanov,
+\emph{A Course in Metric Geometry},
+Graduate Studies in Mathematics \textbf{33}, American Mathematical Society, Providence, RI, 2001, \href{https://doi.org/10.1090/gsm/033}{DOI: 10.1090/gsm/033}.
 
 % --- Quantum Gravity & Dynamical Triangulations ---
 \bibitem{regge1961general}
@@ -673,6 +733,11 @@ T.~P. Sotiriou, M.~Visser, and S.~Weinfurtner,
 \emph{Spectral dimension as a probe of the ultraviolet continuum regime of causal dynamical triangulations},
 Phys. Rev. Lett. \textbf{107} (2011), 131303, \href{https://doi.org/10.1103/PhysRevLett.107.131303}{DOI: 10.1103/PhysRevLett.107.131303}.
 
+\bibitem{sotiriou2011dispersion}
+T.~P. Sotiriou, M.~Visser, and S.~Weinfurtner,
+\emph{From dispersion relations to spectral dimension---and back again},
+Phys. Rev. D \textbf{84} (2011), 104018, \href{https://doi.org/10.1103/PhysRevD.84.104018}{DOI: 10.1103/PhysRevD.84.104018}.
+
 \bibitem{modesto2012}
 L.~Modesto,
 \emph{Super-renormalizable quantum gravity},
@@ -703,25 +768,35 @@ J.~Marcinkiewicz,
 \emph{Sur une propri\'et\'e de la loi de Gauss},
 Math. Z. \textbf{44} (1939), 612--618, \href{https://doi.org/10.1007/BF01210677}{DOI: 10.1007/BF01210677}.
 
+\bibitem{berg1975potential}
+C.~Berg and G.~Forst,
+\emph{Potential Theory on Locally Compact Abelian Groups},
+Springer, Berlin, Heidelberg, 1975, \href{https://doi.org/10.1007/978-3-642-66128-0}{DOI: 10.1007/978-3-642-66128-0}.
+
+\bibitem{stelle1977renormalization}
+K.~S. Stelle,
+\emph{Renormalization of higher-derivative quantum gravity},
+Phys. Rev. D \textbf{16} (1977), 953--969, \href{https://doi.org/10.1103/PhysRevD.16.953}{DOI: 10.1103/PhysRevD.16.953}.
+
+\bibitem{weinberg1995quantum}
+S.~Weinberg,
+\emph{The Quantum Theory of Fields, Vol.~I: Foundations},
+Cambridge University Press, Cambridge, 1995, \href{https://doi.org/10.1017/CBO9781139644167}{DOI: 10.1017/CBO9781139644167}.
+
+\bibitem{belenchia2016spectral}
+A.~Belenchia, D.~M.~T. Benincasa, A.~Marcian\`o, and L.~Modesto,
+\emph{Spectral dimension from nonlocal dynamics on causal sets},
+Phys. Rev. D \textbf{93} (2016), 044017, \href{https://doi.org/10.1103/PhysRevD.93.044017}{DOI: 10.1103/PhysRevD.93.044017}.
+
+\bibitem{anselmi2018fakeons}
+D.~Anselmi and M.~Piva,
+\emph{Quantum gravity, fakeons and microcausality},
+JHEP \textbf{2018} (2018), no.~11, 021, \href{https://doi.org/10.1007/JHEP11(2018)021}{DOI: 10.1007/JHEP11(2018)021}.
+
 \bibitem{carlip2017dimension}
 S.~Carlip,
 \emph{Dimension and dimensional reduction in quantum gravity},
 Class. Quantum Grav. \textbf{34} (2017), 193001, \href{https://doi.org/10.1088/1361-6382/aa8535}{DOI: 10.1088/1361-6382/aa8535}.
-
-\bibitem{hamber2009quantum}
-H.~W. Hamber,
-\emph{Quantum Gravitation: The Feynman Path Integral Approach},
-Springer, Berlin, 2009, ISBN: 978-3-540-85292-6, \href{https://doi.org/10.1007/978-3-540-85293-3}{DOI: 10.1007/978-3-540-85293-3}.
-
-\bibitem{oriti2009approaches}
-D.~Oriti (ed.),
-\emph{Approaches to Quantum Gravity: Toward a New Understanding of Space, Time and Matter},
-Cambridge University Press, Cambridge, 2009, ISBN: 978-0-521-51452-1, \href{https://doi.org/10.1017/CBO9780511575549}{DOI: 10.1017/CBO9780511575549}.
-
-\bibitem{freidel2005group}
-L.~Freidel,
-\emph{Group field theory: An overview},
-Int. J. Theor. Phys. \textbf{44} (2005), 1769--1783, \href{https://doi.org/10.1007/s10773-005-8894-1}{DOI: 10.1007/s10773-005-8894-1}.
 
 \bibitem{ashtekar2006quantum}
 A.~Ashtekar, T.~Pawlowski, and P.~Singh,
@@ -746,7 +821,7 @@ in \emph{Gravitation: An Introduction to Current Research}, L.~Witten (ed.), Wil
 \bibitem{dirac1964lectures}
 P.~A.~M. Dirac,
 \emph{Lectures on Quantum Mechanics},
-Belfer Graduate School of Science, Yeshiva University, New York, 1964, ISBN: 978-0-486-41713-4.
+Belfer Graduate School of Science, Yeshiva University, New York, 1964; reprinted by Dover, New York, 2001, ISBN: 978-0-486-41713-4.
 
 \bibitem{dewitt1967quantum}
 B.~S. DeWitt,
@@ -769,22 +844,12 @@ D.~Kinderlehrer and G.~Stampacchia,
 \emph{An Introduction to Variational Inequalities and Their Applications},
 Academic Press, New York, 1980; reprinted by SIAM, 2000, ISBN: 978-0-89871-466-1, \href{https://doi.org/10.1137/1.9780898719451}{DOI: 10.1137/1.9780898719451}.
 
-\bibitem{evans1998partial}
-L.~C. Evans,
-\emph{Partial Differential Equations},
-Graduate Studies in Mathematics, Vol.~19, American Mathematical Society, Providence, RI, 1998, ISBN: 978-0-8218-0772-9, \href{https://doi.org/10.1090/gsm/019}{DOI: 10.1090/gsm/019}.
-
 \bibitem{federer1959curvature}
 H.~Federer,
 \emph{Curvature measures},
 Trans. Amer. Math. Soc. \textbf{93} (1959), 418--491, \href{https://doi.org/10.1090/S0002-9947-1959-0110078-1}{DOI: 10.1090/S0002-9947-1959-0110078-1}.
 
 % --- Gauge Theory, Gribov-Zwanziger & Confinement ---
-\bibitem{faddeev1967feynman}
-L.~D. Faddeev and V.~N. Popov,
-\emph{Feynman diagrams for the Yang-Mills field},
-Phys. Lett. B \textbf{25} (1967), 29--30, \href{https://doi.org/10.1016/0370-2693(67)90067-6}{DOI: 10.1016/0370-2693(67)90067-6}.
-
 \bibitem{gribov1978quantization}
 V.~N. Gribov,
 \emph{Quantization of non-Abelian gauge theories},
@@ -805,20 +870,10 @@ G.~K. Savvidy,
 \emph{Infrared instability of the vacuum state of gauge theories and asymptotic freedom},
 Phys. Lett. B \textbf{71} (1977), 133--134, \href{https://doi.org/10.1016/0370-2693(77)90759-6}{DOI: 10.1016/0370-2693(77)90759-6}.
 
-\bibitem{thooft1978phase}
-G.~'t~Hooft,
-\emph{On the phase transition towards permanent quark confinement},
-Nucl. Phys. B \textbf{138} (1978), 1--25, \href{https://doi.org/10.1016/0550-3213(78)90153-0}{DOI: 10.1016/0550-3213(78)90153-0}.
-
 \bibitem{wilson1974confinement}
 K.~G. Wilson,
 \emph{Confinement of quarks},
 Phys. Rev. D \textbf{10} (1974), 2445--2459, \href{https://doi.org/10.1103/PhysRevD.10.2445}{DOI: 10.1103/PhysRevD.10.2445}.
-
-\bibitem{polyakov1975compact}
-A.~M. Polyakov,
-\emph{Compact gauge fields and the infrared catastrophe},
-Phys. Lett. B \textbf{59} (1975), 82--84, \href{https://doi.org/10.1016/0370-2693(75)90162-8}{DOI: 10.1016/0370-2693(75)90162-8}.
 
 \bibitem{jaffe2006quantum}
 A.~Jaffe and E.~Witten,
@@ -841,11 +896,6 @@ J.~M. Rabin,
 \emph{Homology theory of lattice fermion doubling},
 Nucl. Phys. B \textbf{201} (1982), 315--332, \href{https://doi.org/10.1016/0550-3213(82)90434-5}{DOI: 10.1016/0550-3213(82)90434-5}.
 
-\bibitem{banks1982geometric}
-T.~Banks, Y.~Dothan, and D.~Horn,
-\emph{Geometric fermions},
-Phys. Lett. B \textbf{117} (1982), 413--417, \href{https://doi.org/10.1016/0370-2693(82)90571-8}{DOI: 10.1016/0370-2693(82)90571-8}.
-
 \bibitem{nielsen1981absence}
 H.~B. Nielsen and M.~Ninomiya,
 \emph{Absence of neutrinos on a lattice: (I). Proof by homotopy theory},
@@ -867,10 +917,66 @@ R.~Foot,
 \emph{A note on Koide's lepton mass relation},
 Preprint (1994), \href{https://arxiv.org/abs/hep-ph/9402242}{arXiv:hep-ph/9402242}, \href{https://doi.org/10.48550/arXiv.hep-ph/9402242}{DOI: 10.48550/arXiv.hep-ph/9402242}.
 
-\bibitem{harari1978charge}
-H.~Harari, H.~Haut, and J.~Weyers,
-\emph{Quark masses and Cabibbo angles},
-Phys. Lett. B \textbf{78} (1978), 459--461, \href{https://doi.org/10.1016/0370-2693(78)90485-9}{DOI: 10.1016/0370-2693(78)90485-9}.
+\bibitem{rosen2007heuristic}
+G.~Rosen,
+\emph{Heuristic development of a Dirac--Goldhaber model for lepton and quark structure},
+Mod. Phys. Lett. A \textbf{22} (2007), 283--288, \href{https://doi.org/10.1142/S0217732307022621}{DOI: 10.1142/S0217732307022621}.
+
+\bibitem{brannen2010spin}
+C.~A. Brannen,
+\emph{Spin path integrals and generations},
+Found. Phys. \textbf{40} (2010), 1681--1699, \href{https://doi.org/10.1007/s10701-010-9465-8}{DOI: 10.1007/s10701-010-9465-8}.
+
+% --- Lepton Mixing ---
+\bibitem{lam2008unique}
+C.~S. Lam,
+\emph{Unique horizontal symmetry of leptons},
+Phys. Rev. D \textbf{78} (2008), 073015, \href{https://doi.org/10.1103/PhysRevD.78.073015}{DOI: 10.1103/PhysRevD.78.073015}.
+
+\bibitem{ma2001softly}
+E.~Ma and G.~Rajasekaran,
+\emph{Softly broken $A_4$ symmetry for nearly degenerate neutrino masses},
+Phys. Rev. D \textbf{64} (2001), 113012, \href{https://doi.org/10.1103/PhysRevD.64.113012}{DOI: 10.1103/PhysRevD.64.113012}.
+
+\bibitem{nufit61}
+I.~Esteban, M.~C. Gonzalez-Garcia, M.~Maltoni, I.~Martinez-Soler, J.~P. Pinheiro, and T.~Schwetz,
+\emph{NuFit-6.0: updated global analysis of three-flavor neutrino oscillations},
+JHEP \textbf{2024} (2024), no.~12, 216, \href{https://doi.org/10.1007/JHEP12(2024)216}{DOI: 10.1007/JHEP12(2024)216}; updated fit NuFIT~6.1 (November 2025), \url{http://www.nu-fit.org}.
+
+\bibitem{albright2009}
+C.~H. Albright and W.~Rodejohann,
+\emph{Comparing trimaximal mixing and its variants with deviations from tri-bimaximal mixing},
+Eur. Phys. J. C \textbf{62} (2009), 599--608, \href{https://doi.org/10.1140/epjc/s10052-009-1074-3}{DOI: 10.1140/epjc/s10052-009-1074-3}.
+
+\bibitem{albright2010}
+C.~H. Albright, A.~Dueck, and W.~Rodejohann,
+\emph{Possible alternatives to tri-bimaximal mixing},
+Eur. Phys. J. C \textbf{70} (2010), 1099--1110, \href{https://doi.org/10.1140/epjc/s10052-010-1492-2}{DOI: 10.1140/epjc/s10052-010-1492-2}.
+
+\bibitem{king2013}
+S.~F. King and C.~Luhn,
+\emph{Neutrino mass and mixing with discrete symmetry},
+Rep. Prog. Phys. \textbf{76} (2013), 056201, \href{https://doi.org/10.1088/0034-4885/76/5/056201}{DOI: 10.1088/0034-4885/76/5/056201}.
+
+\bibitem{varzielas2013}
+I.~de Medeiros Varzielas and L.~Lavoura,
+\emph{Flavour models for TM$_1$ lepton mixing},
+J. Phys. G \textbf{40} (2013), 085002, \href{https://doi.org/10.1088/0954-3899/40/8/085002}{DOI: 10.1088/0954-3899/40/8/085002}.
+
+\bibitem{luhn2013}
+C.~Luhn,
+\emph{Trimaximal TM$_1$ neutrino mixing in $S_4$ with spontaneous CP violation},
+Nucl. Phys. B \textbf{875} (2013), 80--100, \href{https://doi.org/10.1016/j.nuclphysb.2013.07.003}{DOI: 10.1016/j.nuclphysb.2013.07.003}.
+
+\bibitem{hagedorn2006}
+C.~Hagedorn, M.~Lindner, and R.~N. Mohapatra,
+\emph{$S_4$ flavor symmetry and fermion masses: towards a grand unified theory of flavor},
+JHEP \textbf{2006} (2006), no.~06, 042, \href{https://doi.org/10.1088/1126-6708/2006/06/042}{DOI: 10.1088/1126-6708/2006/06/042}.
+
+\bibitem{xing2014partial}
+Z.-z. Xing and S.~Zhou,
+\emph{A partial $\mu$--$\tau$ symmetry and its prediction for leptonic CP violation},
+Phys. Lett. B \textbf{737} (2014), 196--200, \href{https://doi.org/10.1016/j.physletb.2014.08.047}{DOI: 10.1016/j.physletb.2014.08.047}.
 
 % --- Holography, Scattering Amplitudes & Entanglement ---
 \bibitem{bern2008new}
@@ -878,62 +984,31 @@ Z.~Bern, J.~J.~M. Carrasco, and H.~Johansson,
 \emph{New relations for gauge-theory amplitudes},
 Phys. Rev. D \textbf{78} (2008), 085011, \href{https://doi.org/10.1103/PhysRevD.78.085011}{DOI: 10.1103/PhysRevD.78.085011}.
 
-\bibitem{ryu2006holographic}
-S.~Ryu and T.~Takayanagi,
-\emph{Holographic derivation of entanglement entropy from AdS/CFT},
-Phys. Rev. Lett. \textbf{96} (2006), 181602, \href{https://doi.org/10.1103/PhysRevLett.96.181602}{DOI: 10.1103/PhysRevLett.96.181602}.
-
-\bibitem{hubeny2007covariant}
-V.~E. Hubeny, M.~Rangamani, and T.~Takayanagi,
-\emph{A covariant holographic entanglement entropy proposal},
-J. High Energ. Phys. \textbf{2007} (2007), 062, \href{https://doi.org/10.1088/1126-6708/2007/07/062}{DOI: 10.1088/1126-6708/2007/07/062}.
-
-\bibitem{faulkner2014gravitation}
-T.~Faulkner, M.~Guica, T.~Hartman, R.~C. Myers, and M.~Van~Raamsdonk,
-\emph{Gravitation from entanglement in holographic CFTs},
-J. High Energ. Phys. \textbf{2014} (2014), 51, \href{https://doi.org/10.1007/JHEP03(2014)051}{DOI: 10.1007/JHEP03(2014)051}.
-
-\bibitem{vanraamsdonk2010building}
-M.~Van~Raamsdonk,
-\emph{Building up spacetime with quantum entanglement},
-Gen. Relativ. Gravit. \textbf{42} (2010), 2323--2329, \href{https://doi.org/10.1007/s10714-010-1034-0}{DOI: 10.1007/s10714-010-1034-0}.
-
 \bibitem{maldacena2016bound}
 J.~Maldacena, S.~H. Shenker, and D.~Stanford,
 \emph{A bound on chaos},
 J. High Energ. Phys. \textbf{2016} (2016), 106, \href{https://doi.org/10.1007/JHEP08(2016)106}{DOI: 10.1007/JHEP08(2016)106}.
-
-\bibitem{verstraete2010renormalization}
-F.~Verstraete and J.~I. Cirac,
-\emph{Continuous matrix product states for quantum fields},
-Phys. Rev. Lett. \textbf{104} (2010), 190405, \href{https://doi.org/10.1103/PhysRevLett.104.190405}{DOI: 10.1103/PhysRevLett.104.190405}.
-
-\bibitem{swingle2012entanglement}
-B.~Swingle,
-\emph{Entanglement renormalization and holography},
-Phys. Rev. D \textbf{86} (2012), 065007, \href{https://doi.org/10.1103/PhysRevD.86.065007}{DOI: 10.1103/PhysRevD.86.065007}.
-
-% --- Formal Verification & Foundations ---
-\bibitem{avigad2018mechanization}
-J.~Avigad,
-\emph{The mechanization of mathematics},
-Notices Amer. Math. Soc. \textbf{65} (2018), 671--678, \href{https://doi.org/10.1090/noti1688}{DOI: 10.1090/noti1688}.
-
-\bibitem{hales2017formal}
-T.~Hales et~al.,
-\emph{A formal proof of the Kepler conjecture},
-Forum of Mathematics, Pi \textbf{5} (2017), e2, \href{https://doi.org/10.1017/fmp.2017.1}{DOI: 10.1017/fmp.2017.1}.
-
-\bibitem{gonthier2008formal}
-G.~Gonthier,
-\emph{Formal proof---the four-color theorem},
-Notices Amer. Math. Soc. \textbf{55} (2008), 1382--1393.
 
 % --- Observational References & Quantum Simulation ---
 \bibitem{abbott2017gravitational}
 B.~P. Abbott et~al. (LIGO Scientific and Virgo Collaborations),
 \emph{Gravitational waves and gamma-rays from a binary neutron star merger: GW170817 and GRB 170817A},
 Astrophys. J. Lett. \textbf{848} (2017), L13, \href{https://doi.org/10.3847/2041-8213/aa920c}{DOI: 10.3847/2041-8213/aa920c}.
+
+\bibitem{gwtc3tgr}
+R.~Abbott et~al. (LIGO Scientific, Virgo and KAGRA Collaborations),
+\emph{Tests of general relativity with GWTC-3},
+Phys. Rev. D \textbf{112} (2025), 084080, \href{https://doi.org/10.1103/PhysRevD.112.084080}{DOI: 10.1103/PhysRevD.112.084080}.
+
+\bibitem{lhaaso2024}
+Z.~Cao et~al. (LHAASO Collaboration),
+\emph{Stringent tests of Lorentz invariance violation from LHAASO observations of GRB 221009A},
+Phys. Rev. Lett. \textbf{133} (2024), 071501, \href{https://doi.org/10.1103/PhysRevLett.133.071501}{DOI: 10.1103/PhysRevLett.133.071501}.
+
+\bibitem{satunin2019}
+P.~Satunin,
+\emph{New constraints on Lorentz invariance violation from Crab Nebula spectrum beyond 100 TeV},
+Eur. Phys. J. C \textbf{79} (2019), 1011, \href{https://doi.org/10.1140/epjc/s10052-019-7520-y}{DOI: 10.1140/epjc/s10052-019-7520-y}.
 
 \bibitem{jacob2008lorentz}
 U.~Jacob and T.~Piran,
@@ -957,7 +1032,7 @@ Astron. Astrophys. \textbf{641} (2020), A6, \href{https://doi.org/10.1051/0004-6
 
 \bibitem{litebird2023probing}
 E.~Allys et~al. (LiteBIRD Collaboration),
-\emph{Probing cosmic inflation with the LiteBIRD cosmic microwave background polarization satellite},
+\emph{Probing cosmic inflation with the LiteBIRD cosmic microwave background polarization survey},
 Prog. Theor. Exp. Phys. \textbf{2023} (2023), 042F01, \href{https://doi.org/10.1093/ptep/ptac150}{DOI: 10.1093/ptep/ptac150}.
 
 \bibitem{ebadi2021quantum}

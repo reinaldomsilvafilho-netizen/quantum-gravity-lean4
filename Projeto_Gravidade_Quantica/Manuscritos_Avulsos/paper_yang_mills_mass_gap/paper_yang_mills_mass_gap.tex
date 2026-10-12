@@ -34,6 +34,8 @@
 \newtheorem{remark}[theorem]{Remark}
 \newtheorem{example}[theorem]{Example}
 
+\raggedbottom
+
 \newcommand{\R}{\mathbb{R}}
 \newcommand{\C}{\mathbb{C}}
 \newcommand{\Z}{\mathbb{Z}}
@@ -55,15 +57,15 @@
 \title[Gribov--Zwanziger Metric-Measure Framework]{A Metric-Measure Framework for the Gribov--Zwanziger Formulation of Yang--Mills Theory: Conditional Mass-Gap Criteria and Open Problems}
 
 \author{Reinaldo M. Silva-Filho}
-\address{Programa de P\'os-Gradua\c{c}\~ao em Estat\'istica e Experimenta\c{c}\~ao Agropecu\'aria (PPGEE/DES), \\
-Departamento de Estat\'istica (DES), \\
-Universidade Federal de Lavras (UFLA), Lavras, MG, Brazil}
+\address{Master's student, Postgraduate Program in Statistics and Agricultural Experimentation (PPGEE/DES), \\
+Department of Statistics (DES), \\
+Federal University of Lavras (UFLA), Lavras, MG, Brazil}
 \email{reinaldo.filho1@estudante.ufla.br}
 
 \date{\today}
 
 \begin{abstract}
-The existence of four-dimensional quantum Yang--Mills theory with a mass gap is an open problem, and this paper does not solve it. We organize the Gribov--Zwanziger (GZ) formulation of pure $\mathrm{SU}(N)$ Yang--Mills theory, due to Gribov (1978), Zwanziger (1989) and, in its refined form, Dudal, Gracey, Sorella, Vandersickel and Verschelde (2008), as a metric-measure problem on the Gribov region, and we separate what can be proved from what must be assumed. Our main result is a conditional criterion: if the ground-state measures of regularized Yang--Mills Hamiltonians on the Gribov region satisfy a uniform Bakry--\'Emery bound $\mathrm{CD}(K,\infty)$ and the Hamiltonians converge in the strong resolvent sense, then the continuum Hamiltonian has a gap of at least $g^2K/2$ above the vacuum; whether the GZ construction supplies such a bound is open, so no mass gap is established here. Along the way we prove three elementary facts. First, the gap criterion is linear in the curvature bound (it is not $\sqrt{K}$). Second, the $L^2$ distance from the origin to the Gribov horizon on a torus of side $L$ scales exactly as $L^{1/2}$, so it defines no volume-independent confinement length. Third, since the Gribov region is convex, its Federer reach is infinite. We also record the tree-level estimate $k^2+\lambda^4/k^2\ge 2\lambda^2$ at $A=0$, the tree-level irrelevance of fractional regulators, a tight-binding $\theta$-vacuum model, and the Vafa--Witten inequality, each with its range of validity. The Wilson area law, vacuum uniqueness and Osterwalder--Schrader positivity of the GZ measure remain open.
+The existence of four-dimensional quantum Yang--Mills theory with a mass gap is an open problem, and this paper does not solve it. We organize the Gribov--Zwanziger (GZ) formulation of pure $\mathrm{SU}(N)$ Yang--Mills theory, due to Gribov (1978), Zwanziger (1989) and, in its refined form, Dudal, Gracey, Sorella, Vandersickel and Verschelde (2008), as a metric-measure problem on the Gribov region, and we separate what can be proved from what must be assumed. Our main result is a conditional criterion: if the ground-state measures of regularized Yang--Mills Hamiltonians on the Gribov region satisfy a uniform Bakry--\'Emery bound $\mathrm{CD}(K,\infty)$ and the Hamiltonians converge in the strong resolvent sense after an isometric identification of their Hilbert spaces, then the continuum Hamiltonian has a gap of at least $g^2K/2$ above the vacuum; whether the GZ construction supplies such a bound is open, so no mass gap is established here. Along the way we prove three elementary facts. First, the gap criterion is linear in the curvature bound (it is not $\sqrt{K}$). Second, the $L^2$ distance from the origin to the Gribov horizon on a torus of side $L$ scales exactly as $L^{1/2}$, so it defines no volume-independent confinement length. Third, since the Gribov region is convex, its closure has infinite Federer reach. We also show that on every finite-dimensional Galerkin truncation of the Gribov region, in the flat coordinates of the Landau slice, the Faddeev--Popov term $-\log\det\mathcal{M}$ and the horizon function are convex (with an analogue for lattice $\mathrm{SU}(2)$ in one chart); the strong-convexity modulus of the horizon function tends to zero as the cutoff is removed, so this gives no uniform curvature bound. We also record the tree-level estimate $k^2+\lambda^4/k^2\ge 2\lambda^2$ at $A=0$, the tree-level irrelevance of fractional regulators, a tight-binding $\theta$-vacuum model, and the Vafa--Witten inequality, each with its range of validity. The Wilson area law, vacuum uniqueness and Osterwalder--Schrader positivity of the GZ measure remain open.
 \end{abstract}
 
 \maketitle
@@ -71,7 +73,7 @@ The existence of four-dimensional quantum Yang--Mills theory with a mass gap is 
 \tableofcontents
 
 \section{Introduction}
-The existence of a mathematically rigorous quantum Yang--Mills theory on $\R^4$ with a spectral gap $\Delta > 0$ between the vacuum and the rest of the spectrum is one of the Millennium Prize problems \cite{jaffe2006quantum}. In the axiomatic formulations of Wightman and of Osterwalder--Schrader \cite{wightman1956quantum, osterwalder1973axioms}, a solution requires:
+The existence of a mathematically rigorous quantum Yang--Mills theory on $\R^4$ with a spectral gap $\Delta > 0$ between the vacuum and the rest of the spectrum is one of the Millennium Prize problems \cite{jaffe2006quantum}. In the axiomatic formulations of Wightman and of Osterwalder--Schrader \cite{wightman1956quantum, osterwalder1973axioms, osterwalder1975axioms}, a solution requires:
 \begin{enumerate}[label=(\textbf{A\arabic*})]
     \item \textbf{Covariance:} invariance under the Poincar\'e (Euclidean) group;
     \item \textbf{Spectral condition:} the joint spectrum of the energy-momentum operators lies in the closed forward cone $\bar{V}_+ = \{p \in \R^4 : p^2 \ge 0,\ p^0 \ge 0\}$;
@@ -90,19 +92,21 @@ and the two-loop renormalization-group invariant scale is
 \end{equation}
 whose logarithmic $\mu$-derivative vanishes up to terms of order $g^4$ (checked symbolically, Section~\ref{sec:numerics}). If the theory exists, $\Lambda_{\MSbar}$ is its only scale, so any mass gap is $\Delta = C_N \Lambda_{\MSbar}$ with a pure number $C_N$. Perturbation theory cannot decide whether $C_N > 0$. Lattice Monte Carlo simulations give strong numerical evidence that it is: for $\mathrm{SU}(3)$, the lightest glueball ($0^{++}$) has $r_0 m_{0^{++}} = 4.21(11)$ \cite{morningstar1999glueball} (see also \cite{athenodorou2020glueball}) and $r_0\Lambda_{\MSbar} = 0.602(48)$ \cite{capitani1999nonperturbative}, so $m_{0^{++}}/\Lambda_{\MSbar} \approx 7.0$, i.e.\ $m_{0^{++}} \approx 1.7\,\mathrm{GeV}$. The static potential rises linearly, and $\sqrt{\sigma}\approx 440\,\mathrm{MeV}$ is the conventional value of the string tension. These are numerical results, not proofs.
 
-The Gribov--Zwanziger (GZ) approach restricts the Landau-gauge functional integral to the Gribov region, where the Faddeev--Popov operator is positive \cite{gribov1978quantization}. Zwanziger implemented the restriction by a horizon term, showed that it can be written as a local, renormalizable action \cite{zwanziger1982nonperturbative, zwanziger1989local}, and reviewed the subject with Vandersickel \cite{vandersickel2012gribov}. The refined GZ (RGZ) framework of Dudal, Gracey, Sorella, Vandersickel and Verschelde adds dimension-two condensates and reproduces the infrared lattice propagators \cite{dudal2008new, dudal2008condensates}. None of these works constructs a measure satisfying the Osterwalder--Schrader axioms, and neither does the present paper.
+Rigorous results in four dimensions are partial. Ba\l{}aban's renormalization-group analysis of pure lattice gauge theories completes a proof of ultraviolet stability in four dimensions \cite{balaban1987renormalization, balaban1989large}. Magnen, Rivasseau and S\'en\'eor provide the basis for a construction of the Schwinger functions of pure $\mathrm{SU}(2)$ Yang--Mills theory in four dimensions with a fixed infrared cutoff and no ultraviolet cutoff, in a regularized axial gauge \cite{magnen1993construction}. Neither result gives the infinite-volume continuum theory or a mass gap; for a survey of the problem from the lattice side see \cite{chatterjee2019yangmills}.
+
+The Gribov--Zwanziger (GZ) approach restricts the Landau-gauge functional integral to the Gribov region, where the Faddeev--Popov operator is positive \cite{gribov1978quantization}. Zwanziger implemented the restriction by a horizon term, showed that it can be written as a local, renormalizable action \cite{zwanziger1982nonperturbative, zwanziger1989local, zwanziger1993renormalizability}, and reviewed the subject with Vandersickel \cite{vandersickel2012gribov}. The refined GZ (RGZ) framework of Dudal, Gracey, Sorella, Vandersickel and Verschelde adds dimension-two condensates and reproduces the infrared lattice propagators \cite{dudal2008new, dudal2008condensates}. None of these works constructs a measure satisfying the Osterwalder--Schrader axioms, and neither does the present paper.
 
 \subsection*{What this paper does}
 We state the GZ setting as a metric-measure problem and label every statement as classical (with a citation), proved here, conditional (with explicit hypotheses) or open.
 \begin{itemize}
-    \item \emph{Proved or classical:} separability and Gauss law for gauge-invariant cylindrical states (Proposition~\ref{prop:hilbert}); tree-level irrelevance of fractional regulators (Proposition~\ref{prop:irrelevance}); convexity and boundedness of the Gribov region and infinite Federer reach (Proposition~\ref{prop:gribov_region}); the tree-level estimate at $A = 0$ (Proposition~\ref{prop:amgm_tree}); the ground-state gap criterion in finite dimensions (Proposition~\ref{prop:ground_state}); the exact $L^{1/2}$ scaling of the distance to the horizon (Proposition~\ref{prop:horizon_scaling}); the tight-binding $\theta$-vacuum model (Proposition~\ref{prop:tight_binding}); the Vafa--Witten inequality (Theorem~\ref{thm:vafa_witten}).
-    \item \emph{Conditional:} a mass gap $\Delta \ge g^2 K/2$ under Hypothesis~\ref{hyp:cd} (Conditional Theorem~\ref{thm:conditional_gap}).
+    \item \emph{Proved or classical:} separability and Gauss law for gauge-invariant cylindrical states (Proposition~\ref{prop:hilbert}); tree-level irrelevance of fractional regulators (Proposition~\ref{prop:irrelevance}); convexity and boundedness of the Gribov region and infinite Federer reach of its closure (Proposition~\ref{prop:gribov_region}); the tree-level estimate at $A = 0$ (Proposition~\ref{prop:amgm_tree}); convexity of $-\log\det\mathcal{M}$ and of the horizon function on Galerkin truncations of $\Omega$ in flat slice coordinates, and on lattice $\mathrm{SU}(2)$ in the chart $\operatorname{tr}U_l \ge 0$ on every link (Lemmas~\ref{lem:gz_convex} and~\ref{lem:gz_lattice}), without a uniform modulus (Remark~\ref{rem:gz_convex_scope}); the ground-state gap criterion in finite dimensions (Proposition~\ref{prop:ground_state}); the exact $L^{1/2}$ scaling of the distance to the horizon (Proposition~\ref{prop:horizon_scaling}); the tight-binding $\theta$-vacuum model (Proposition~\ref{prop:tight_binding}); the Vafa--Witten inequality (Theorem~\ref{thm:vafa_witten}).
+    \item \emph{Conditional:} a mass gap $\Delta \ge g^2 K/2$ under Hypotheses~\ref{hyp:measure} and~\ref{hyp:cd} (Conditional Theorem~\ref{thm:conditional_gap}); no unconditional mass gap is claimed.
     \item \emph{Open:} Hypothesis~\ref{hyp:cd} itself, the Wilson area law (Conjecture~\ref{conj:area_law}), vacuum uniqueness at fixed $\theta$, and Osterwalder--Schrader positivity of the GZ measure.
 \end{itemize}
 
 \begin{remark}[Relation to the simplicial framework]
 \label{rem:simplicial}
-The author's monograph \cite{silvafilho2026book} and the related preprint \cite{silvafilho2026master} use a product of simplices $\Delta_4 \times \Delta_2$ as a model space. In its current form the monograph specifies the action on this space only through its gauge-kinetic form and its Dirac operator (Chapter~12); it contains no construction of the gauge-field measure, no gauge-Laplacian spectral gap and no treatment of Gribov copies. $\Delta_4\times\Delta_2$ is convex, hence contractible. This does not exclude Gribov copies: copies are a property of the gauge-group action on the gauge-fixing surface, and they occur already on the flat torus and on spheres \cite{singer1978some}. Nothing in the present paper depends on the simplicial framework.
+The author's monograph \cite{silvafilho2026book} and the related preprint \cite{silvafilho2026master} use a product of simplices $\Delta_4 \times \Delta_2$ as a model space. In its current form the monograph specifies the action on this space only through its gauge-kinetic form and its Dirac operator (Chapter~12); it contains no construction of the gauge-field measure, no gauge-Laplacian spectral gap and no treatment of Gribov copies. $\Delta_4\times\Delta_2$ is convex, hence contractible. This does not exclude Gribov copies: copies are a property of the gauge-group action on the gauge-fixing surface, and no continuous gauge fixing exists on the four-sphere \cite{singer1978some} or on the flat four-torus \cite{killingback1984gribov}. Nothing in the present paper depends on the simplicial framework.
 \end{remark}
 
 \section{Physical Hilbert Space and Gauge-Invariant Cylindrical States}
@@ -140,7 +144,7 @@ Products of Wilson loops are linearly dependent because of the Mandelstam identi
 
 \section{Fractional Regulators and Power Counting}
 
-Fractional operators appear in the monograph as models of scale-dependent diffusion \cite[Ch.~12]{silvafilho2026book}. There, a homogeneous symbol $|k|^{2\alpha}$ on $\R^m$ has \emph{constant} spectral dimension $d_s = m/\alpha$. A running $d_s$ needs two scales: for $k^2 + \ell^2 k^4$ in four dimensions, $d_s$ interpolates between $4$ at long diffusion times and $2$ at short ones, the same end values as in Causal Dynamical Triangulations and Ho\v{r}ava--Lifshitz gravity \cite{horava2009spectral}. By the same computation, a symbol $k^2 + k^{2+2\alpha}/\Lambda_{\mathrm{UV}}^{2\alpha}$ has ultraviolet value $d_s = 4/(1+\alpha)$.
+Fractional operators appear in the monograph as models of scale-dependent diffusion \cite[Ch.~12]{silvafilho2026book}. There, a homogeneous symbol $|k|^{2\alpha}$ on $\R^m$ has \emph{constant} spectral dimension $d_s = m/\alpha$. A running $d_s$ needs two scales: for $k^2 + \ell^2 k^4$ in four dimensions, $d_s$ interpolates between $4$ at long diffusion times and $2$ at short ones. These are the end values of Ho\v{r}ava--Lifshitz gravity with $z = 3$ \cite{horava2009spectral}, and they agree within errors with the values $4.02\pm0.1$ and $1.80\pm0.25$ measured in Causal Dynamical Triangulations \cite{ambjorn2005spectral}. By the same computation, a symbol $k^2 + k^{2+2\alpha}/\Lambda_{\mathrm{UV}}^{2\alpha}$ has ultraviolet value $d_s = 4/(1+\alpha)$.
 
 \begin{proposition}[Tree-level irrelevance of fractional regulators]
 \label{prop:irrelevance}
@@ -178,20 +182,20 @@ The operator $\mathcal{M}(A)$ is not $D_A^* D_A$. The latter is non-negative for
 
 \begin{proposition}[Classical properties of $\Omega$]
 \label{prop:gribov_region}
-On a finite torus (or a finite lattice):
+On a finite torus (or a finite-dimensional Galerkin truncation, Definition~\ref{def:galerkin} below):
 \begin{enumerate}[label=(\alph*)]
     \item $\Omega$ is convex and contains $0$;
     \item $\Omega$ is bounded in every direction \cite{zwanziger1982nonperturbative, dell1989ellipsoidal};
     \item every gauge orbit intersects $\Omega$ \cite{dell1991every}, and $\Omega$ still contains distinct gauge-equivalent configurations (Gribov copies), whereas the interior of $\Lambda_{\mathrm{mod}}$ contains none \cite{vanbaal1992more, vandersickel2012gribov};
-    \item $\reach(\Omega) = +\infty$ in the sense of Federer.
+    \item for the $L^2$ distance, the closure $\bar{\Omega}$ satisfies $\reach(\bar{\Omega}) = +\infty$ in the sense of Federer. On a finite-dimensional Galerkin truncation $\Omega$ itself is open and not closed, so $\reach(\Omega) = 0$.
 \end{enumerate}
 \end{proposition}
 
 \begin{proof}
-(a) $\mathcal{M}(tA + (1-t)B) = t\mathcal{M}(A) + (1-t)\mathcal{M}(B)$, and a convex combination of positive operators is positive. (b)--(c) are the cited results. (d) Every point outside a closed convex set of a Hilbert space has a unique nearest point in it, so the closure $\bar{\Omega}$ has infinite reach \cite[\S4]{federer1959curvature}. (The random-sampling check in Section~\ref{sec:numerics} illustrates (a) for a finite-dimensional affine operator pencil.)
+(a) $\mathcal{M}(tA + (1-t)B) = t\mathcal{M}(A) + (1-t)\mathcal{M}(B)$, and a convex combination of positive operators is positive. (b)--(c) are the cited results. (d) The closure $\bar{\Omega}$, taken in the $L^2$ completion of $\cA_T$ (on a finite-dimensional Galerkin truncation, in the space $V_N$ of Definition~\ref{def:galerkin} below), is closed and, as the closure of a convex set, convex. Every point outside a nonempty closed convex set of a Hilbert space has a unique nearest point in it, so $\reach(\bar{\Omega}) = +\infty$ (\cite[Remark~4.2]{federer1959curvature} states this in $\R^n$; in a Hilbert space the projection theorem gives the same). By the same remark of Federer, a set of positive reach is closed. On a finite-dimensional Galerkin truncation $\mathcal{M}(A)$ is a finite matrix depending affinely on $A$ (Lemma~\ref{lem:gz_convex}(a) below; for compact lattice fields, where $\mathcal{M}$ is not affine, see Lemma~\ref{lem:gz_lattice} below), so its lowest eigenvalue is continuous and $\Omega$ is open; it is nonempty and, by (b), not the whole space, hence not closed, and therefore $\reach(\Omega) = 0$. (The random-sampling check in Section~\ref{sec:numerics} illustrates (a) for a finite-dimensional affine operator pencil.)
 \end{proof}
 
-Because of (d), the Federer reach of $\Omega$ carries no scale. The natural geometric quantity is the distance from the origin to the horizon, which is studied in Section~\ref{sec:horizon}.
+Because of (d), the Federer reach of $\bar{\Omega}$ carries no scale (and, on a finite-dimensional truncation, that of $\Omega$ is $0$). The natural geometric quantity is the distance from the origin to the horizon, which is studied in Section~\ref{sec:horizon}.
 
 \begin{definition}[Gribov--Zwanziger action]
 \label{def:gz}
@@ -208,7 +212,7 @@ where $V$ is the spacetime volume. The Gribov parameter $\gamma$ is fixed by the
     \label{eq:gap}
     \frac{3}{4}\, N g^2 \int \frac{\diff^4k}{(2\pi)^4} \frac{1}{k^4 + \lambda^4} = 1, \qquad \lambda^4 = 2g^2N\gamma^4 .
 \end{equation}
-The tree-level transverse gluon propagator is $D(k) = k^2/(k^4 + \lambda^4)$ \cite{gribov1978quantization}. The horizon function can be localized with auxiliary bosonic fields $(\bar\varphi,\varphi)$ and ghosts $(\bar\omega,\omega)$, which gives a local, renormalizable action \cite{zwanziger1989local}.
+The tree-level transverse gluon propagator is $D(k) = k^2/(k^4 + \lambda^4)$ \cite{gribov1978quantization}. The horizon function can be localized with auxiliary bosonic fields $(\bar\varphi,\varphi)$ and ghosts $(\bar\omega,\omega)$, which gives a local, renormalizable action \cite{zwanziger1989local, zwanziger1993renormalizability}.
 \end{definition}
 
 The integral in \eqref{eq:gap} diverges logarithmically in the ultraviolet: with a cutoff $\Lambda_{\mathrm{UV}}$ it equals $\ln(1 + \Lambda_{\mathrm{UV}}^4/\lambda^4)/(32\pi^2)$. After renormalization the gap equation expresses $\lambda$ as a scheme-dependent multiple of $\Lambda_{\MSbar}$ \cite{vandersickel2012gribov}. We do not compute that multiple.
@@ -230,14 +234,92 @@ At $A = 0$, $\mathcal{M}(0) = -\partial^2$ and $f^{abc}f^{dbc} = N\delta^{ad}$, 
 i.e.\ $\frac12\lambda^4/k^2$ per mode. The inequality is $(k - \lambda^2/k)^2 \ge 0$. Finally, $D'(k) = 2k(\lambda^4 - k^4)/(k^4+\lambda^4)^2$ vanishes at $k = \lambda$.
 \end{proof}
 
+\subsection*{Convexity of the Gribov--Zwanziger additions on finite-dimensional truncations}
+Throughout this subsection $f^{abc}$ are the structure constants of $\mathfrak{g}$ in a basis orthonormal for the inner product $\langle X,Y\rangle = -2\Tr(XY)$ of Section~2; they are real and totally antisymmetric, and $f^{acd}f^{bcd} = N\delta^{ab}$, the normalization used in the proof of Proposition~\ref{prop:amgm_tree}. We work on a torus $T^d$, $d \ge 2$ ($d = 4$ for the Euclidean slice, $d = 3$ for the Coulomb slice), and write $\langle\cdot,\cdot\rangle$ also for the $L^2$ inner product of $\mathfrak{g}$-valued functions.
+
+\begin{definition}[Galerkin truncation]
+\label{def:galerkin}
+Let $V_N$ be a finite-dimensional linear space of smooth transverse ($\partial\cdot A = 0$) connections on $T^d$, and $G_N$ a finite-dimensional space of $\mathfrak{g}$-valued functions orthogonal to the constants, with $L^2$-orthogonal projection $P_N$. For $A \in V_N$ put $\mathcal{M}_N(A) = P_N\mathcal{M}(A)P_N|_{G_N}$, $\Omega_N = \{A \in V_N : \mathcal{M}_N(A) > 0\}$, $(X^{\mu c}(A))^a = P_N\big(f^{abc}A^b_\mu\big)$ and
+\begin{equation*}
+    h_N(A) = g^2\sum_{\mu=1}^{d}\sum_{c}\big\langle X^{\mu c}(A),\, \mathcal{M}_N(A)^{-1}X^{\mu c}(A)\big\rangle \qquad (A \in \Omega_N).
+\end{equation*}
+\end{definition}
+
+Before compression, $\sum_{\mu,c}\langle X^{\mu c},\mathcal{M}^{-1}X^{\mu c}\rangle$ is the integral in Definition~\ref{def:gz}, since $f^{dec}A^e_\mu = (X^{\mu c})^d$; $h_N$ is its Galerkin truncation, and $\Omega_N$ is the corresponding truncation of $\Omega$.
+
+\begin{lemma}[Convexity of the Gribov--Zwanziger additions; Galerkin truncations]
+\label{lem:gz_convex}
+In the setting of Definition~\ref{def:galerkin}, with the flat (linear) coordinates of $V_N$:
+\begin{enumerate}[label=(\alph*)]
+    \item $\mathcal{M}_N(A)$ is symmetric and $A \mapsto \mathcal{M}_N(A) = \mathcal{M}_N(0) + L(A)$ is affine, with $L$ linear; hence $\Omega_N$ is an open convex set containing $0$;
+    \item $-\log\det\mathcal{M}_N$ is convex on $\Omega_N$, strictly convex if and only if $L$ is injective, and tends to $+\infty$ at $\partial\Omega_N$;
+    \item $h_N$ is convex on $\Omega_N$, with
+    \begin{gather*}
+        \Hess h_N(A)[\alpha,\alpha] = 2g^2\sum_{\mu,c}\big\langle w^{\mu c}, \mathcal{M}_N(A)^{-1}w^{\mu c}\big\rangle \ge 0, \\
+        w^{\mu c} = X^{\mu c}(\alpha) - L(\alpha)\,\mathcal{M}_N(A)^{-1}X^{\mu c}(A);
+    \end{gather*}
+    \item $h_N(0) = 0$, $\nabla h_N(0) = 0$, and $\langle A, \nabla h_N(A)\rangle \ge h_N(A) \ge 0$ on $\Omega_N$;
+    \item if $V_N$ is spanned by transverse Fourier modes and $G_N$ contains every mode $f^{\,\cdot\,bc}\alpha^b_\mu$ with $\alpha \in V_N$, then $\Hess h_N(0)$ is diagonal on the Fourier modes of $V_N$, with eigenvalue $2g^2N/|k|^2$ on modes of momentum $k$. In particular the strong-convexity modulus of $h_N$ on $\Omega_N$ is at most $2g^2N/k_{\max}^2$, where $k_{\max}$ is the largest $|k|$ among the modes of $V_N$.
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+(a) Integrating by parts on the torus, $\langle\psi,\mathcal{M}(A)\omega\rangle = \int \partial_\mu\psi^a\,\partial_\mu\omega^a + g\,T(\psi,\omega)$ with $T(\psi,\omega) = \int f^{abc}\,\partial_\mu\psi^a A^b_\mu\,\omega^c$. A second integration by parts, $\partial_\mu A^b_\mu = 0$ and the total antisymmetry of $f$ give $T(\psi,\omega) = -\int f^{abc}\psi^a A^b_\mu\,\partial_\mu\omega^c = T(\omega,\psi)$. Compression by the orthogonal projection $P_N$ preserves symmetry, and $\mathcal{M}(A)$ is affine in $A$. A convex combination of positive matrices is positive, so $\Omega_N$ is convex; it is open, and $\mathcal{M}_N(0) = P_N(-\partial^2)P_N > 0$ on $G_N$.
+
+Fix $A \in \Omega_N$ and $\alpha \in V_N$, and write $M = \mathcal{M}_N(A) > 0$, $B = L(\alpha)$, so $\mathcal{M}_N(A + t\alpha) = M + tB$ is positive for small $|t|$.
+
+(b) Let $\lambda_i$ be the eigenvalues of the symmetric matrix $M^{-1/2}BM^{-1/2}$. Then $-\log\det(M + tB) = -\log\det M - \sum_i\log(1 + t\lambda_i)$, whose second derivative at $t = 0$ is $\sum_i\lambda_i^2 \ge 0$, with equality if and only if $B = 0$. A function on an open convex set whose second derivative along every line is non-negative is convex; strict convexity holds exactly when $L(\alpha) \ne 0$ for all $\alpha \ne 0$. As $A$ tends to a point of $\partial\Omega_N$, the smallest eigenvalue of $\mathcal{M}_N(A)$ tends to $0$ while $\|\mathcal{M}_N(A)\|$ stays bounded, so $\det\mathcal{M}_N(A) \to 0$.
+
+(c) For one pair $(\mu,c)$ write $x(t) = X^{\mu c}(A + t\alpha) = x + t\,\delta x$, with $\delta x = X^{\mu c}(\alpha)$ because $X^{\mu c}$ is linear, and $q(t) = x(t)^{\mathsf T}(M + tB)^{-1}x(t)$. With $z = M^{-1}x$ and $\frac{\diff}{\diff t}(M + tB)^{-1} = -(M + tB)^{-1}B(M + tB)^{-1}$,
+\begin{equation*}
+    q''(0) = 2\,\delta x^{\mathsf T}M^{-1}\delta x - 4\,\delta x^{\mathsf T}M^{-1}Bz + 2\,z^{\mathsf T}BM^{-1}Bz = 2(\delta x - Bz)^{\mathsf T}M^{-1}(\delta x - Bz) \ge 0 .
+\end{equation*}
+Summing over $(\mu,c)$ with weight $g^2$ gives the formula. Equivalently, $(x,Y) \mapsto x^{\mathsf T}Y^{-1}x$ is jointly convex on $\R^n \times \{Y > 0\}$ (the matrix fractional function \cite[Example~3.4]{boyd2004convex}), and $h_N$ is its composition with the affine map $A \mapsto (X^{\mu c}(A), \mathcal{M}_N(A))$, summed.
+
+(d) $X^{\mu c}(0) = 0$ gives $h_N(0) = 0$ and $\nabla h_N(0) = 0$; $h_N \ge 0$ because $\mathcal{M}_N^{-1} > 0$. Convexity gives $h_N(0) \ge h_N(A) + \langle\nabla h_N(A), 0 - A\rangle$, which is the stated inequality.
+
+(e) At $A = 0$, $z = 0$, so $w^{\mu c} = X^{\mu c}(\alpha)$ and
+\begin{equation*}
+    \Hess h_N(0)[\alpha,\alpha] = 2g^2\sum_{\mu,c}\big\langle X^{\mu c}(\alpha), \mathcal{M}_N(0)^{-1}X^{\mu c}(\alpha)\big\rangle .
+\end{equation*}
+Under the stated hypothesis $X^{\mu c}(\alpha)$ lies in $G_N$, where $\mathcal{M}_N(0)^{-1}$ acts on momentum $k$ as $|k|^{-2}$. For $\alpha$ of momentum $k$, $\sum_{\mu,a,c}(f^{abc}\alpha^b_\mu)^2 = N\|\alpha\|^2$ by $f^{abc}f^{ab'c} = N\delta^{bb'}$, so $\Hess h_N(0)[\alpha,\alpha] = 2g^2N|k|^{-2}\|\alpha\|^2$; modes of different momentum are orthogonal, and so are their images under $X^{\mu c}$. The smallest eigenvalue $2g^2N/k_{\max}^2$ bounds the modulus of strong convexity on $\Omega_N$ from above, since $0 \in \Omega_N$.
+\end{proof}
+
+At $A = 0$, (e) gives $\gamma^4\Hess h_N(0) = \lambda^4/k^2$ per mode with $\lambda^4 = 2g^2N\gamma^4$, the horizon part of the kernel in Proposition~\ref{prop:amgm_tree}.
+
+\begin{lemma}[Lattice $\mathrm{SU}(2)$ in one chart]
+\label{lem:gz_lattice}
+Consider $\mathrm{SU}(2)$ lattice gauge fields on a periodic hypercubic lattice, with links $U_l = u_{0,l} + i\,u_l\cdot\sigma$ ($\sigma$ the Pauli matrices) restricted to the chart $u_{0,l} = +\sqrt{1 - |u_l|^2}$ on every link, and coordinates $u = (u_l)_l$, $|u_l| \le 1$. Let $S$ be the lattice Landau slice $\sum_\mu\big(u_\mu(x) - u_\mu(x - \hat\mu)\big) = 0$ for all $x$. Let $\mathcal{M}(u)$ be the Hessian at $g \equiv \mathbf{1}$ of the gauge functional $\sum_l\big(1 - \tfrac12\operatorname{tr}\,g_xU_lg^\dagger_{x+\hat\mu}\big)$ along $g_x = e^{t\,\omega_x\cdot i\sigma/2}$, restricted to $\omega \perp$ constants:
+\begin{equation*}
+    \langle\omega,\mathcal{M}(u)\omega\rangle = \sum_{l = (x,\mu)}\Big[\tfrac{u_{0,l}}{4}\,|\omega_x - \omega_{x+\hat\mu}|^2 + \tfrac12\,\omega_x\cdot\big(u_l\times\omega_{x+\hat\mu}\big)\Big].
+\end{equation*}
+Put $\Omega_{\mathrm{lat}} = \{u \in S : \mathcal{M}(u) > 0\}$ and $h_{\mathrm{lat}}(u) = \sum_{\mu,c}\langle x^{\mu c}(u), \mathcal{M}(u)^{-1}x^{\mu c}(u)\rangle$, where $x^{\mu c}(u)^a_x$ is the projection orthogonal to constants of $\epsilon^{abc}u^b_\mu(x)$. Then $\mathcal{M}$ is matrix-concave on $S$, $\Omega_{\mathrm{lat}}$ is convex in the coordinates $u$, and $-\log\det\mathcal{M}$ and $h_{\mathrm{lat}}$ are convex on $\Omega_{\mathrm{lat}}$.
+\end{lemma}
+
+\begin{proof}
+The displayed form follows from expanding $\tfrac12\operatorname{tr}\,g_xU_lg^\dagger_{x+\hat\mu}$ to second order in $t$, using $\tfrac12\operatorname{tr}\big((a\cdot\sigma)(b\cdot\sigma)(c\cdot\sigma)\big) = i\,a\cdot(b\times c)$. It has the form $\mathcal{M}(u) = \sum_l\sqrt{1 - |u_l|^2}\,E_l + B(u)$, where $E_l \ge 0$ is the edge Laplacian of the link $l$ and $B$ is linear in $u$. The condition defining $S$ is linear, so $S$ is convex. Since $\sqrt{1 - |u_l|^2}$ is concave on the unit ball, $\mathcal{M}(\theta u + (1-\theta)v) \ge \theta\mathcal{M}(u) + (1-\theta)\mathcal{M}(v)$ in the Loewner order, for $\theta \in [0,1]$. Hence $\Omega_{\mathrm{lat}}$ is convex. The map $Y \mapsto -\log\det Y$ is convex and decreasing in the Loewner order, so $-\log\det\mathcal{M}(\theta u + (1-\theta)v) \le -\log\det\big(\theta\mathcal{M}(u) + (1-\theta)\mathcal{M}(v)\big) \le \theta(-\log\det\mathcal{M}(u)) + (1-\theta)(-\log\det\mathcal{M}(v))$. The matrix fractional function $(x,Y) \mapsto x^{\mathsf T}Y^{-1}x$ is jointly convex and decreasing in $Y$, and $x^{\mu c}(u)$ is linear in $u$; the same two-step argument gives convexity of $h_{\mathrm{lat}}$.
+\end{proof}
+
+\begin{remark}[What Lemmas~\ref{lem:gz_convex} and~\ref{lem:gz_lattice} do and do not give]
+\label{rem:gz_convex_scope}
+On every Galerkin truncation of $\Omega$ the Faddeev--Popov factor $\det\mathcal{M}_N$ and the horizon factor $e^{-\gamma^4h_N}$ are log-concave, and $D^2\big(S_{\mathrm{YM}} - \log\det\mathcal{M}_N + \gamma^4h_N\big) \ge D^2S_{\mathrm{YM}}$ in the flat coordinates of the slice. So, in this finite-dimensional, flat-coordinate setting, every negative direction of the Hessian of the Euclidean weight is a negative direction of $\Hess S_{\mathrm{YM}}$. The ingredients are classical convex analysis applied to the affine pencil $A \mapsto \mathcal{M}_N(A)$; we state the lemma as an observation. It does not establish Hypothesis~\ref{hyp:cd}, and it gives no uniform curvature bound $\mathrm{CD}(K,\infty)$, for the following reasons.
+\begin{enumerate}[label=(\alph*)]
+    \item The strong-convexity modulus of $h_N$ is at most $2g^2N/k_{\max}^2$ (Lemma~\ref{lem:gz_convex}(e)), which tends to $0$ as the cutoff is removed. Convexity passes to limits; a positive modulus does not.
+    \item The second variation of $-\log\det\mathcal{M}$ is an ultraviolet-divergent ghost loop for $d \ge 2$: $M^{-1/2}L(\alpha)M^{-1/2}$ has order $-1$ and is Hilbert--Schmidt only for $d < 2$. The continuum $-\log\det\mathcal{M}$ is not defined without regularization, and its renormalized form, which subtracts a divergent quadratic counterterm whose sign is not controlled, need not be convex.
+    \item The convexity is with respect to the flat $L^2$ structure of the slice. The metric of the orbit space $\cA/\cG$ in slice coordinates is not flat, and a Bakry--\'Emery Hessian in that metric differs from the flat one by Christoffel terms that are not controlled here.
+    \item Hypothesis~\ref{hyp:cd} concerns the time-zero ground-state measure $\mu_0$, not the Euclidean weight (Remark~\ref{rem:no_extension}(vi)).
+    \item Lemma~\ref{lem:gz_lattice} covers only $\mathrm{SU}(2)$ and only the chart $u_{0,l} \ge 0$ on every link. The full lattice Gribov region also contains Landau-gauge configurations with $u_{0,l} < 0$ on some links, where matrix concavity fails. $h_{\mathrm{lat}}$ uses $\epsilon^{abc}u^b$ as the lattice analogue of $f^{abc}A^b$; the lattice horizon function built from the full lattice covariant derivative is not covered. For $\mathrm{SU}(N)$, $N \ge 3$, no analogue is claimed. In the ambient matrix coordinates $\mathcal{M}$ is linear in $U$, but $\mathrm{SU}(N)$ is not a convex set, so convexity there says nothing along the group.
+\end{enumerate}
+\end{remark}
+
 \begin{remark}[Why Proposition~\ref{prop:amgm_tree} does not extend to a uniform bound on $\Omega$]
 \label{rem:no_extension}
 A uniform positive lower bound on the Hessian of $S_{\mathrm{GZ}}$ over $\Omega$, i.e.\ log-concavity of $e^{-S_{\mathrm{GZ}}}$, would be the natural next step. It is not established, for the following reasons.
 \begin{enumerate}[label=(\roman*)]
-    \item Away from $A = 0$, the Hessian of $S_{\mathrm{YM}}$ on transverse fluctuations contains the term $\langle \alpha, [F_A, \alpha]\rangle$, which has negative directions (the Savvidy--Nielsen--Olesen instability \cite{savvidy1977infrared}). $\Omega$ is bounded in $L^2$, but not in norms that control $F_A$ pointwise, so this term is not bounded on $\Omega$ by the geometry of $\Omega$ alone.
-    \item The operator inequality $T + c\,T^{-1} \ge 2\sqrt{c}$ requires the \emph{same} positive operator $T$ in both terms. For $A \ne 0$, the kinetic Hessian involves the covariant Laplacian on $1$-forms, while the horizon Hessian involves $\mathcal{M}(A)^{-1}$ on functions together with further terms from differentiating $\mathcal{M}(A)^{-1}$. For different operators the inequality fails (a $2\times 2$ counterexample is in Section~\ref{sec:numerics}).
-    \item The saturation at $k = \lambda$ leaves no margin, so any correction of indefinite sign at $k\approx\lambda$ can destroy the bound.
-    \item For $A$ valued in a Cartan subalgebra, $\mathrm{ad}(A_\mu) \ne 0$, so the horizon term does not vanish there. The behaviour in such directions is governed by the same unresolved Hessian estimate.
+    \item Away from $A = 0$, the Hessian of $S_{\mathrm{YM}}$ on transverse fluctuations contains the term $\langle \alpha, [F_A, \alpha]\rangle$, which has negative directions (the Savvidy--Nielsen--Olesen instability \cite{savvidy1977infrared, nielsen1978unstable}). $\Omega$ is bounded in $L^2$, but not in norms that control $F_A$ pointwise, so this term is not bounded on $\Omega$ by the geometry of $\Omega$ alone.
+    \item The operator inequality $T + c\,T^{-1} \ge 2\sqrt{c}$ requires the \emph{same} positive operator $T$ in both terms. For $A \ne 0$, the kinetic Hessian involves the covariant Laplacian on $1$-forms, while the horizon Hessian involves $\mathcal{M}(A)^{-1}$ on functions together with further terms from differentiating $\mathcal{M}(A)^{-1}$. For different operators the inequality fails (a $2\times 2$ counterexample is in Section~\ref{sec:numerics}). On every Galerkin truncation, in the flat slice coordinates, the horizon part of the Hessian, these further terms included, is a non-negative form (Lemma~\ref{lem:gz_convex}(c)); this does not make the kinetic part positive (item (i)), and it is not a statement about the continuum limit.
+    \item The saturation at $k = \lambda$ leaves no margin, so any correction of indefinite sign at $k\approx\lambda$ can destroy the bound. On every Galerkin truncation, in the flat slice coordinates, such a correction can come only from $\Hess S_{\mathrm{YM}}$, because the Hessians of $-\log\det\mathcal{M}_N$ and of $h_N$ are non-negative there (Lemma~\ref{lem:gz_convex}). This does not carry over to the renormalized continuum action or to the orbit-space metric, where the log-determinant and the metric can also contribute corrections of either sign (Remark~\ref{rem:gz_convex_scope}(b),(c)).
+    \item For $A$ valued in a Cartan subalgebra, $\mathrm{ad}(A_\mu) \ne 0$, so the horizon term does not vanish there. The behaviour in such directions is governed by the same unresolved Hessian estimate; on Galerkin truncations the horizon Hessian is non-negative in these directions as well (Lemma~\ref{lem:gz_convex}(c)).
     \item On the orbit space $\cA/\cG$ with the $L^2$ metric, O'Neill's formula gives formally non-negative sectional curvature $K(X,Y) = \frac34 \|[\tilde X, \tilde Y]^{\mathrm{vert}}\|^2$ for orthonormal $X,Y$ \cite{oneill1966fundamental, singer1981geometry, babelon1981riemannian}. The Ricci curvature is an infinite trace and requires regularization \cite{singer1981geometry, babelon1981riemannian}.
     \item Finally, $S_{\mathrm{GZ}}$ is a four-dimensional Euclidean action. The Hamiltonian gap is controlled by the \emph{time-zero ground-state measure} $\mu_0$ (Section~\ref{sec:gap}), which is not $e^{-S_{\mathrm{GZ}}}$ restricted to a slice.
 \end{enumerate}
@@ -253,9 +335,9 @@ In the RGZ framework \cite{dudal2008new, dudal2008condensates}, the condensates 
 
 \begin{proposition}[Ground-state representation and Bakry--\'Emery gap; finite dimensions]
 \label{prop:ground_state}
-Let $(X, g_X)$ be a complete Riemannian manifold of finite dimension, $\varepsilon > 0$, and $H = -\frac{\varepsilon}{2}\Delta_{g_X} + V$ a self-adjoint Schr\"odinger operator with a strictly positive, normalized ground state $\psi_0 = e^{-W}$ and ground energy $E_0$. Put $\mu_0 = \psi_0^2\,\mathrm{vol}_{g_X}$ and $\cL = -\Delta_{g_X} + 2\nabla W \cdot \nabla$. Then:
+Let $(X, g_X)$ be a geodesically complete, connected Riemannian manifold of finite dimension without boundary, $\varepsilon > 0$, and $H = -\frac{\varepsilon}{2}\Delta_{g_X} + V$ a self-adjoint Schr\"odinger operator on $L^2(X,\mathrm{vol}_{g_X})$ that is the closure of its restriction to $C_c^\infty(X)$, with a strictly positive, normalized ground state $\psi_0 = e^{-W}$, $W \in C^\infty(X)$, and ground energy $E_0$. Put $\mu_0 = \psi_0^2\,\mathrm{vol}_{g_X}$ and $\cL = -\Delta_{g_X} + 2\nabla W \cdot \nabla$. Then:
 \begin{enumerate}[label=(\alph*)]
-    \item $U f = \psi_0 f$ is unitary from $L^2(\mu_0)$ onto $L^2(\mathrm{vol})$, and $U^{-1}(H - E_0)U = \frac{\varepsilon}{2}\,\cL$, where $\cL$ is the generator of the Dirichlet form $\int |\nabla f|^2 \diff\mu_0$;
+    \item $U f = \psi_0 f$ is unitary from $L^2(\mu_0)$ onto $L^2(\mathrm{vol})$, and $U^{-1}(H - E_0)U = \frac{\varepsilon}{2}\,\cL$, where $\cL$ denotes the closure of $\cL|_{C_c^\infty(X)}$ in $L^2(\mu_0)$, the generator of the closure of the Dirichlet form $\int |\nabla f|^2 \diff\mu_0$ on $C_c^\infty(X)$;
     \item if $\Ric_{g_X} + 2\,\Hess\, W \ge K g_X$ with $K > 0$ (the condition $\mathrm{CD}(K,\infty)$ for $\mu_0$), then $\lambda_1(\cL) \ge K$ and
     \begin{equation}
         \mathrm{spec}(H) \cap \big(E_0,\ E_0 + \tfrac{\varepsilon}{2} K\big) = \emptyset .
@@ -265,23 +347,34 @@ The gap bound is linear in $K$ and is sharp for the harmonic oscillator.
 \end{proposition}
 
 \begin{proof}
-(a) From $H\psi_0 = E_0\psi_0$ we get $V - E_0 = \frac{\varepsilon}{2}\Delta\psi_0/\psi_0$. Hence $\psi_0^{-1}(H - E_0)(\psi_0 f) = -\frac{\varepsilon}{2}\big(\Delta f + 2\psi_0^{-1}\nabla\psi_0\cdot\nabla f\big) = \frac{\varepsilon}{2}\big(-\Delta f + 2\nabla W\cdot\nabla f\big)$; this is the ground-state representation \cite{glimm1987quantum}. (b) Under $\mathrm{CD}(K,\infty)$ the measure $\mu_0$ satisfies the Poincar\'e inequality $\mathrm{Var}_{\mu_0}(f) \le K^{-1}\int|\nabla f|^2\diff\mu_0$ (Bakry--\'Emery \cite{bakry1985diffusions}; \cite[\S4.8]{bakry2014analysis}), so $\lambda_1(\cL) \ge K$, and (a) transfers the bound to $H$. For $X = \R$, $V = \frac12\omega^2x^2$ and $\varepsilon = 1$ we have $W = \frac12\omega x^2$, $K = 2\omega$, and the gap is exactly $\omega = \frac{\varepsilon}{2}K$.
+(a) From $H\psi_0 = E_0\psi_0$ we get $V - E_0 = \frac{\varepsilon}{2}\Delta\psi_0/\psi_0$. Hence $\psi_0^{-1}(H - E_0)(\psi_0 f) = -\frac{\varepsilon}{2}\big(\Delta f + 2\psi_0^{-1}\nabla\psi_0\cdot\nabla f\big) = \frac{\varepsilon}{2}\big(-\Delta f + 2\nabla W\cdot\nabla f\big)$ for $f \in C_c^\infty(X)$; this is the ground-state representation \cite{glimm1987quantum}. Since $\psi_0$ is smooth and positive, $U$ maps $C_c^\infty(X)$ onto itself, so $\frac{\varepsilon}{2}\cL|_{C_c^\infty(X)}$ is unitarily equivalent to $(H - E_0)|_{C_c^\infty(X)}$. The latter is essentially self-adjoint by assumption, hence so is $\cL|_{C_c^\infty(X)}$, and taking closures gives the identity. Integration by parts gives $\langle f, \cL f\rangle_{\mu_0} = \int |\nabla f|^2\diff\mu_0$ on $C_c^\infty(X)$, and the closure of an essentially self-adjoint, non-negative operator is the generator of the closure of its form. (b) Under $\mathrm{CD}(K,\infty)$ the measure $\mu_0$ satisfies the Poincar\'e inequality $\mathrm{Var}_{\mu_0}(f) \le K^{-1}\int|\nabla f|^2\diff\mu_0$ (Bakry--\'Emery \cite{bakry1985diffusions}; \cite[\S4.8]{bakry2014analysis}), so $\lambda_1(\cL) \ge K$, and (a) transfers the bound to $H$. For $X = \R$, $V = \frac12\omega^2x^2$ and $\varepsilon = 1$ we have $W = \frac12\omega x^2$, $K = 2\omega$, and the gap is exactly $\omega = \frac{\varepsilon}{2}K$.
 \end{proof}
 
 \begin{remark}
 The relation between the Hamiltonian gap and the gap of the diffusion generator is linear, $\Delta = \frac{\varepsilon}{2}\lambda_1(\cL)$, not $\Delta = \sqrt{\lambda_1}$ (numerical confirmation for a harmonic and an anharmonic oscillator in Section~\ref{sec:numerics}). The Parisi--Wu stochastic-quantization generator acts in a fictitious fifth time. Its spectrum describes relaxation in that time and is not the energy spectrum of the physical Hamiltonian.
 \end{remark}
 
+\begin{remark}[Stochastic quantization in three and four dimensions; context only]
+\label{rem:stochastic_3d4d}
+In three dimensions, Chandra, Chevyrev, Hairer and Shen \cite{chandra2024stochastic} construct, on $T^3$, a nonlinear metric space of distributional connections that serves as a state space for the stochastic Yang--Mills--Higgs flow, prove local-in-time solutions of the renormalized flow by the theory of regularity structures, show that a unique choice of renormalization counterterms makes the solutions gauge covariant in law, and obtain a canonical Markov process on the space of gauge orbits, up to a possible finite-time blow-up. Whether this process has an invariant measure, which would be a candidate for the Yang--Mills--Higgs measure on $T^3$, is left open there. Regularity structures apply to locally subcritical equations, which correspond to superrenormalizable theories \cite{hairer2014theory}; pure Yang--Mills theory in four dimensions is only renormalizable, i.e.\ scaling-critical, and we know of no comparable construction of its Langevin dynamics in four dimensions. On a finite lattice the Langevin dynamics is a finite-dimensional diffusion in any dimension; at strong coupling it is studied, also in infinite volume, in \cite{shen2023stochastic} (see Remark~\ref{rem:status_cd}). None of this is used in the present paper. Even an invariant measure of the Langevin dynamics would be a Euclidean measure, and by the previous remark its relaxation spectrum is not the Hamiltonian spectrum, so such a construction would not by itself verify Hypothesis~\ref{hyp:cd} below.
+\end{remark}
+
 For Yang--Mills theory on $\Sigma$, $H = \frac{g^2}{2}\int_\Sigma |E|^2 + \frac{1}{2g^2}\int_\Sigma |B|^2$ with $E = -i\,\delta/\delta A$. On the Coulomb-gauge slice, the Laplacian carries the Faddeev--Popov Jacobian \cite{christ1980operator}, and the kinetic coefficient is $\varepsilon = g^2$.
 
 \begin{hypothesis}[Uniform curvature of regularized ground-state measures]
 \label{hyp:cd}
-There are finite-dimensional regularizations $H_n$ of the Yang--Mills Hamiltonian restricted to the spatial Gribov region (e.g.\ lattice truncations), each of the form in Proposition~\ref{prop:ground_state} with kinetic coefficient $\varepsilon_n$ and ground-state measure $\mu_0^{(n)}$, such that:
+There are finite-dimensional regularizations $H_n$ of the Yang--Mills Hamiltonian restricted to the spatial Gribov region (e.g.\ lattice truncations), each satisfying all assumptions of Proposition~\ref{prop:ground_state} on a complete Riemannian manifold $(X_n, g_n)$, with kinetic coefficient $\varepsilon_n$, ground energy $E_0^{(n)}$ and ground-state measure $\mu_0^{(n)}$, and acting on $\cH_n = L^2(X_n, \mathrm{vol}_{g_n})$, such that:
 \begin{enumerate}[label=(\alph*)]
-    \item $\mu_0^{(n)}$ satisfies $\mathrm{CD}(K_n,\infty)$ with $\varepsilon_n K_n \ge 2m$ for a constant $m > 0$ independent of $n$ (boundary effects at the horizon included);
-    \item $H_n - E_0^{(n)} \to H - E_0$ in the strong resolvent sense, where $H$ is the continuum Hamiltonian on $L^2(\Omega_\Sigma,\mu_0)$ of Hypothesis~\ref{hyp:measure}.
+    \item $\mu_0^{(n)}$ satisfies $\mathrm{CD}(K_n,\infty)$ with $\varepsilon_n K_n \ge 2m$ for a constant $m > 0$ independent of $n$;
+    \item there are linear isometries $J_n : \cH_n \to L^2(\Omega_\Sigma,\mu_0)$ with $J_n J_n^* \to \mathbf{1}$ strongly, such that for every $z \in \C\setminus\R$
+    \begin{equation}
+        J_n \big(H_n - E_0^{(n)} - z\big)^{-1} J_n^* \longrightarrow (H - E_0 - z)^{-1} \quad \text{strongly},
+    \end{equation}
+    where $H$ is the continuum Hamiltonian on $L^2(\Omega_\Sigma,\mu_0)$ of Hypothesis~\ref{hyp:measure}, assumed self-adjoint, with ground energy $E_0$.
 \end{enumerate}
 \end{hypothesis}
+
+Completeness of $(X_n, g_n)$ is part of the hypothesis. A Galerkin or lattice truncation of the Gribov region with the flat metric of the slice is a bounded open convex set and is not complete; using it would require either a complete metric on the truncation or a version of Proposition~\ref{prop:ground_state} with a boundary condition at the truncated horizon. Neither is provided here.
 
 \begin{condtheorem}[Mass gap under Hypothesis~\ref{hyp:cd}]
 \label{thm:conditional_gap}
@@ -289,11 +382,16 @@ Under Hypotheses~\ref{hyp:measure} and~\ref{hyp:cd}, $\mathrm{spec}(H) \cap (E_0
 \end{condtheorem}
 
 \begin{proof}
-By Proposition~\ref{prop:ground_state}, $\mathrm{spec}(H_n - E_0^{(n)}) \subset \{0\} \cup [m, \infty)$. If $A_n \to A$ in the strong resolvent sense, every point of $\mathrm{spec}(A)$ is a limit of points of $\mathrm{spec}(A_n)$ \cite[Thm.~VIII.24]{reed1980methods}. A point of $\mathrm{spec}(H - E_0)$ in $(0,m)$ would be such a limit, which is impossible because $\{0\}\cup[m,\infty)$ is closed.
+By Proposition~\ref{prop:ground_state}, $A_n := H_n - E_0^{(n)}$ satisfies $\mathrm{spec}(A_n) \subset \{0\} \cup [m, \infty)$. Put $A := H - E_0$ and $P_n := J_n J_n^*$, the orthogonal projection onto $\mathrm{Ran}\,J_n$. Since $J_n$ is a unitary map of $\cH_n$ onto $\mathrm{Ran}\,J_n$, the operator $B_n := J_n A_n J_n^*$ on $\mathrm{Ran}\,J_n$, extended by $0$ on $(\mathrm{Ran}\,J_n)^\perp$, is self-adjoint on $L^2(\Omega_\Sigma,\mu_0)$ with $\mathrm{spec}(B_n) \subset \mathrm{spec}(A_n) \cup \{0\} \subset \{0\} \cup [m,\infty)$, and for $z \in \C\setminus\R$
+\begin{equation}
+    (B_n - z)^{-1} = J_n (A_n - z)^{-1} J_n^* - z^{-1}(\mathbf{1} - P_n).
+\end{equation}
+The second term tends to $0$ strongly because $P_n \to \mathbf{1}$ strongly, so Hypothesis~\ref{hyp:cd}(b) gives $B_n \to A$ in the strong resolvent sense on the single Hilbert space $L^2(\Omega_\Sigma,\mu_0)$. If $B_n \to A$ in the strong resolvent sense, every point of $\mathrm{spec}(A)$ is a limit of points of $\mathrm{spec}(B_n)$ \cite[Thm.~VIII.24]{reed1980methods}. A point of $\mathrm{spec}(H - E_0)$ in $(0,m)$ would be such a limit, which is impossible because $\{0\}\cup[m,\infty)$ is closed.
 \end{proof}
 
 \begin{remark}[Status of Hypothesis~\ref{hyp:cd}]
-Hypothesis~\ref{hyp:cd} is not known to hold, and establishing it would be a substantial part of a solution of the Millennium problem. It concerns the time-zero ground-state measure, not the Euclidean GZ weight. Proposition~\ref{prop:amgm_tree} is a tree-level statement about the latter at $A=0$, and Remark~\ref{rem:no_extension} lists the obstacles to a uniform bound. Dimensional transmutation implies that, if the theory exists and $m$ is chosen optimally, $m = C_N\Lambda_{\MSbar}$. The lattice value $m_{0^{++}}/\Lambda_{\MSbar}\approx 7.0$ for $\mathrm{SU}(3)$ is an empirical input and is not derived here.
+\label{rem:status_cd}
+Hypothesis~\ref{hyp:cd} is not known to hold, and establishing it would be a substantial part of a solution of the Millennium problem. It concerns the time-zero ground-state measure, not the Euclidean GZ weight. Proposition~\ref{prop:amgm_tree} is a tree-level statement about the latter at $A=0$, and Remark~\ref{rem:no_extension} lists the obstacles to a uniform bound. On the lattice at fixed spacing, Bakry--\'Emery arguments do give spectral information: for lattice Yang--Mills theory with structure group $\mathrm{SO}(N)$ or $\mathrm{SU}(N)$, under an explicit strong-coupling assumption that is uniform in $N$, Shen, Zhu and Zhu verify a Bakry--\'Emery condition for the Euclidean Wilson measure and deduce log-Sobolev and Poincar\'e inequalities, uniqueness of the infinite-volume measure and exponential decay of correlations \cite{shen2023stochastic}. For finite gauge groups at weak coupling, exponential decay of correlations is proved in \cite{adhikari2025correlation}. These results concern Euclidean lattice measures, and in \cite{shen2023stochastic} the curvature comes from the compact group and the regime is strong coupling, away from the continuum limit; they do not bear directly on Hypothesis~\ref{hyp:cd}. Dimensional transmutation implies that, if the theory exists and $m$ is chosen optimally, $m = C_N\Lambda_{\MSbar}$. The lattice value $m_{0^{++}}/\Lambda_{\MSbar}\approx 7.0$ for $\mathrm{SU}(3)$ is an empirical input and is not derived here.
 \end{remark}
 
 \begin{remark}[Relation to the Millennium problem]
@@ -327,7 +425,7 @@ In the dual-superconductor picture of confinement \cite{nambu1974strings, mandel
 For pure $\mathrm{SU}(N)$ Yang--Mills theory in four dimensions there is $\sigma > 0$ such that rectangular Wilson loops satisfy $\langle W(R\times T)\rangle \le C\,e^{-\sigma RT}$ for large $R, T$.
 \end{conjecture}
 
-By reflection positivity and the transfer matrix, $\langle W(R\times T)\rangle \sim e^{-V(R)T}$ as $T\to\infty$, where $V(R)$ is the static potential. The conjecture is therefore equivalent to $V(R) \ge \sigma R - c$ for large $R$. On the lattice, the area law is a theorem at strong coupling \cite{osterwalder1978gauge, wilson1974confinement}. In the continuum it is open, and nothing in this paper proves it.
+By reflection positivity and the transfer matrix, $\langle W(R\times T)\rangle \sim e^{-V(R)T}$ as $T\to\infty$, where $V(R)$ is the static potential. The conjecture is therefore equivalent to $V(R) \ge \sigma R - c$ for large $R$. On the lattice, the area law is a theorem at strong coupling \cite{osterwalder1978gauge}, as anticipated by Wilson's strong-coupling expansion \cite{wilson1974confinement}; for $\mathrm{SO}(N)$ lattice gauge theory at strong coupling, an area-law upper bound holds in the 't~Hooft limit \cite{chatterjee2019rigorous}. In the continuum it is open, and nothing in this paper proves it.
 
 \section{\texorpdfstring{$\theta$}{Theta}-Vacua}
 
@@ -364,7 +462,7 @@ The inequality says that $\theta = 0$ minimizes the vacuum energy; strict minima
 \section{Numerical Checks}
 \label{sec:numerics}
 
-The script \texttt{check\_ym\_claims\_2026\_09\_25.py} in the paper's folder checks the quick claims of this paper against independent computations. Each check has an independent oracle, and where meaningful a negative control: a mutated formula that must fail. All 33 checks behave as documented (output in \texttt{check\_ym\_claims\_2026\_09\_25.out}). The checks support the formulas; they are not proofs. The DOIs of the bibliography are resolved by \texttt{check\_dois\_2026\_09\_25.py}.
+The script \texttt{check\_ym\_claims\_2026\_09\_25.py} checks the quick claims of this paper against independent computations. Each check has an independent oracle, and where meaningful a negative control: a mutated formula that must fail. All 33 checks behave as documented. The checks support the formulas; they are not proofs. The DOIs of the bibliography were resolved through Crossref or DataCite, and the arXiv identifiers through the arXiv API.
 
 \begin{table}[htbp]
 \centering
@@ -393,8 +491,8 @@ $m_{0^{++}}/\Lambda_{\MSbar}$ ($\mathrm{SU}(3)$) & lattice values \cite{mornings
 
 \section{Conclusions}
 \begin{enumerate}
-    \item \emph{Proved or classical.} Gauge-invariant cylindrical states span a separable space on which the Gauss law holds, given a ground-state measure (Hypothesis~\ref{hyp:measure}). Fractional regulators are irrelevant at tree level. The Gribov region is convex, bounded in every direction and of infinite Federer reach. The tree-level GZ kernel at $A=0$ satisfies $k^2 + \lambda^4/k^2 \ge 2\lambda^2$, with zero margin at $k = \lambda$. The ground-state representation turns a $\mathrm{CD}(K,\infty)$ bound into a Hamiltonian gap $\frac{\varepsilon}{2}K$, linear in $K$. The $L^2$ distance to the horizon on $T^3_L$ scales exactly as $L^{1/2}$. The tight-binding $\theta$-model and the Vafa--Witten inequality hold within their stated ranges.
-    \item \emph{Conditional.} If regularized ground-state measures satisfy a uniform $\mathrm{CD}(K,\infty)$ bound and the Hamiltonians converge in the strong resolvent sense, the continuum Hamiltonian has a gap $\ge g^2K/2$ (Conditional Theorem~\ref{thm:conditional_gap}).
+    \item \emph{Proved or classical.} Gauge-invariant cylindrical states span a separable space on which the Gauss law holds, given a ground-state measure (Hypothesis~\ref{hyp:measure}). Fractional regulators are irrelevant at tree level. The Gribov region is convex and bounded in every direction, and its closure has infinite Federer reach. The tree-level GZ kernel at $A=0$ satisfies $k^2 + \lambda^4/k^2 \ge 2\lambda^2$, with zero margin at $k = \lambda$. On every Galerkin truncation of the Gribov region, in flat slice coordinates, $-\log\det\mathcal{M}_N$ and the horizon function $h_N$ are convex, and the same holds for lattice $\mathrm{SU}(2)$ in the chart $\operatorname{tr}U_l \ge 0$ on every link; the strong-convexity modulus of $h_N$ tends to $0$ as the cutoff is removed, so this yields no uniform $\mathrm{CD}(K,\infty)$ bound. The ground-state representation turns a $\mathrm{CD}(K,\infty)$ bound into a Hamiltonian gap $\frac{\varepsilon}{2}K$, linear in $K$. The $L^2$ distance to the horizon on $T^3_L$ scales exactly as $L^{1/2}$. The tight-binding $\theta$-model and the Vafa--Witten inequality hold within their stated ranges.
+    \item \emph{Conditional.} If regularized ground-state measures satisfy a uniform $\mathrm{CD}(K,\infty)$ bound and the Hamiltonians converge in the strong resolvent sense after an isometric identification of their Hilbert spaces, the continuum Hamiltonian has a gap $\ge g^2K/2$ (Conditional Theorem~\ref{thm:conditional_gap}). This is the only mass-gap statement of the paper, and it is conditional: no mass gap is established here.
     \item \emph{Open.} The existence of the measure and of the uniform curvature bound (log-concavity-type estimates for GZ-type measures on the orbit space), the Wilson area law, vacuum uniqueness at fixed $\theta$, and reflection positivity of the GZ measure. The Yang--Mills existence and mass gap problem remains open.
 \end{enumerate}
 
@@ -404,11 +502,56 @@ $m_{0^{++}}/\Lambda_{\MSbar}$ ($\mathrm{SU}(3)$) & lattice values \cite{mornings
 
 \medskip\noindent\textbf{Competing interests.} The author declares no competing interests.
 
-\medskip\noindent\textbf{Use of generative AI tools.} Large language model assistants (Anthropic Claude; Google Gemini, used through the Antigravity agent environment) were used extensively in preparing this work: drafting and editing text and \LaTeX{} source; proposing, expanding and revising derivations and proofs under the author's direction; writing the Python verification scripts; searching and checking the literature and references; and adversarial auditing of proofs, numerical claims and code. These audits found errors, some of them originally introduced with AI assistance; they are recorded in the file \texttt{CORRECTIONS\_2026-09-25.md} in the paper's folder. AI tools are not authors. The author chose the research questions and the overall framework, reviewed the material, and is responsible for the content, including any remaining errors.
+\medskip\noindent\textbf{Tool and computational resource disclosure.} In line with
+the Leiden Declaration on Artificial Intelligence and Mathematics
+(arXiv:2609.35334), the author discloses the automated tools used in preparing
+this work. Large language model assistants (Anthropic Claude; Google Gemini,
+through the Antigravity agent environment) were used extensively: under the
+author's direction they drafted and edited text and \LaTeX{} source, proposed and
+wrote derivations, proofs and counterexamples, wrote the numerical check scripts
+and the \textsc{Lean 4} files, and searched the literature. The mathematics was
+then checked in three steps by AI sessions that had not written it: a blind
+review of every statement, a correction made by a separate session, and a
+targeted re-check of each correction. Every numerical claim is checked by a
+script that compares it with an independent computation, with a negative
+control, a deliberately altered formula that must fail, wherever one is
+meaningful. Every reference was resolved through Crossref, DataCite, arXiv or,
+for the two books without a DOI, their ISBN records. These checks were carried
+out by AI systems; they are not peer review, and no result in this paper has
+yet been checked by an independent human expert.
 
-\medskip\noindent\textbf{Verification status.} Results labelled Theorem, Proposition or Lemma are proved in the text or cited as classical. The Conditional Theorem holds under its stated hypotheses, which are not proved. Statements labelled Conjecture are not proved. The numerical scripts are checks, not proofs. Lean files in the folder \texttt{formal\_proofs\_yang\_mills} do not verify the mathematics of this paper.
+\medskip\noindent\textbf{Authorship and responsibility.} AI tools are not
+authors of this work, and credit and responsibility for its content belong
+solely to the human author. The author chose the questions, directed the work,
+decided what to publish, and is responsible for the content, including any
+remaining errors.
 
-\medskip\noindent\textbf{Code and data availability.} The scripts cited in Section~\ref{sec:numerics} are distributed with the source of this paper.
+\medskip\noindent\textbf{Verification status.} Results labelled Theorem,
+Proposition or Lemma are proved in the text or cited as classical results;
+the Conditional Theorem holds under its stated hypotheses, which are not proved;
+statements labelled Conjecture are not proved. The numerical scripts are checks,
+not proofs. Selected results are formalized in \textsc{Lean 4} with Mathlib in
+this project's \texttt{formal\_proofs\_mathlib} repository folder: module
+\texttt{YangMills} (the convexity of the truncated Gribov region and that $0$
+lies in it, the unique nearest point in its closure, and the tree-level
+propagator bound); \texttt{YangMills\_Y4} (convexity, and on a Galerkin pencil
+strict convexity, of $-\log\det M_N$); \texttt{YangMills\_Y4a} (that $M_N(A)$ is
+symmetric and affine and that $\Omega_N$ is open, convex and contains $0$, in an
+abstract integration-by-parts model proved only for the circle $T^1$, with two
+torus facts assumed as hypotheses); and \texttt{YangMills\_Y5} (the
+tight-binding spectrum range) -- each at the declared reduction stated in that
+folder's \texttt{README.md}. The older \textsc{Lean 4} files in
+\texttt{formal\_proofs\_yang\_mills} are a placeholder skeleton without Mathlib
+and verify none of the mathematics.
+
+\medskip\noindent\textbf{Publication status.} This work is distributed as a
+preprint on Zenodo. It has not yet been through peer review; Zenodo is a
+repository, not a peer-reviewed venue.
+
+\medskip\noindent\textbf{Code availability.} The numerical check scripts and the
+\textsc{Lean}~4 files are available in the public repository
+\url{https://github.com/reinaldomsilvafilho-netizen/quantum-gravity-lean4}, and from the
+author on request.
 
 \begin{thebibliography}{99}
 \bibitem{jaffe2006quantum}
@@ -419,6 +562,21 @@ A.~S.~Wightman, \emph{Quantum field theory in terms of vacuum expectation values
 
 \bibitem{osterwalder1973axioms}
 K.~Osterwalder and R.~Schrader, \emph{Axioms for Euclidean Green's functions}, Commun. Math. Phys. \textbf{31}(2), 83--112 (1973). DOI: \href{https://doi.org/10.1007/BF01645738}{10.1007/BF01645738}.
+
+\bibitem{osterwalder1975axioms}
+K.~Osterwalder and R.~Schrader, \emph{Axioms for Euclidean Green's functions II}, Commun. Math. Phys. \textbf{42}(3), 281--305 (1975). DOI: \href{https://doi.org/10.1007/BF01608978}{10.1007/BF01608978}.
+
+\bibitem{balaban1987renormalization}
+T.~Ba\l{}aban, \emph{Renormalization group approach to lattice gauge field theories. I. Generation of effective actions in a small field approximation and a coupling constant renormalization in four dimensions}, Commun. Math. Phys. \textbf{109}(2), 249--301 (1987). DOI: \href{https://doi.org/10.1007/BF01215223}{10.1007/BF01215223}.
+
+\bibitem{balaban1989large}
+T.~Ba\l{}aban, \emph{Large field renormalization. II. Localization, exponentiation, and bounds for the R operation}, Commun. Math. Phys. \textbf{122}(3), 355--392 (1989). DOI: \href{https://doi.org/10.1007/BF01238433}{10.1007/BF01238433}.
+
+\bibitem{magnen1993construction}
+J.~Magnen, V.~Rivasseau, and R.~S\'en\'eor, \emph{Construction of $\mathrm{YM}_4$ with an infrared cutoff}, Commun. Math. Phys. \textbf{155}(2), 325--383 (1993). DOI: \href{https://doi.org/10.1007/BF02097397}{10.1007/BF02097397}.
+
+\bibitem{chatterjee2019yangmills}
+S.~Chatterjee, \emph{Yang--Mills for probabilists}, in \emph{Probability and Analysis in Interacting Physical Systems}, Springer Proc. Math. Stat. \textbf{283}, Springer, Cham, pp.~1--16 (2019). DOI: \href{https://doi.org/10.1007/978-3-030-15338-0_1}{10.1007/978-3-030-15338-0\_1}; arXiv:\href{https://arxiv.org/abs/1803.01950}{1803.01950}.
 
 \bibitem{wilson1974confinement}
 K.~G.~Wilson, \emph{Confinement of quarks}, Phys. Rev. D \textbf{10}(8), 2445--2459 (1974). DOI: \href{https://doi.org/10.1103/PhysRevD.10.2445}{10.1103/PhysRevD.10.2445}.
@@ -441,6 +599,9 @@ D.~Zwanziger, \emph{Non-perturbative modification of the Faddeev-Popov formula a
 \bibitem{zwanziger1989local}
 D.~Zwanziger, \emph{Local and renormalizable action from the Gribov horizon}, Nucl. Phys. B \textbf{323}(3), 513--544 (1989). DOI: \href{https://doi.org/10.1016/0550-3213(89)90122-3}{10.1016/0550-3213(89)90122-3}.
 
+\bibitem{zwanziger1993renormalizability}
+D.~Zwanziger, \emph{Renormalizability of the critical limit of lattice gauge theory by BRS invariance}, Nucl. Phys. B \textbf{399}(2--3), 477--513 (1993). DOI: \href{https://doi.org/10.1016/0550-3213(93)90506-K}{10.1016/0550-3213(93)90506-K}.
+
 \bibitem{dell1989ellipsoidal}
 G.~Dell'Antonio and D.~Zwanziger, \emph{Ellipsoidal bound on the Gribov horizon contradicts the perturbative renormalization group}, Nucl. Phys. B \textbf{326}, 333--350 (1989). DOI: \href{https://doi.org/10.1016/0550-3213(89)90135-1}{10.1016/0550-3213(89)90135-1}.
 
@@ -457,7 +618,7 @@ N.~Vandersickel and D.~Zwanziger, \emph{The Gribov problem and QCD dynamics}, Ph
 D.~Dudal, S.~P.~Sorella, N.~Vandersickel, and H.~Verschelde, \emph{New features of the gluon and ghost propagator in the infrared region from the Gribov-Zwanziger approach}, Phys. Rev. D \textbf{77}, 071501 (2008). DOI: \href{https://doi.org/10.1103/PhysRevD.77.071501}{10.1103/PhysRevD.77.071501}.
 
 \bibitem{dudal2008condensates}
-D.~Dudal, J.~A.~Gracey, S.~P.~Sorella, N.~Vandersickel, and H.~Verschelde, \emph{A refinement of the Gribov-Zwanziger approach in the Landau gauge: infrared propagators in harmony with the lattice results}, Phys. Rev. D \textbf{78}(6), 065047 (2008). DOI: \href{https://doi.org/10.1103/PhysRevD.78.065047}{10.1103/PhysRevD.78.065047}.
+D.~Dudal, J.~A.~Gracey, S.~P.~Sorella, N.~Vandersickel, and H.~Verschelde, \emph{Refinement of the Gribov-Zwanziger approach in the Landau gauge: infrared propagators in harmony with the lattice results}, Phys. Rev. D \textbf{78}(6), 065047 (2008). DOI: \href{https://doi.org/10.1103/PhysRevD.78.065047}{10.1103/PhysRevD.78.065047}.
 
 \bibitem{cucchieri2008constraints}
 A.~Cucchieri and T.~Mendes, \emph{Constraints on the infrared behavior of the gluon propagator in Yang-Mills theories}, Phys. Rev. Lett. \textbf{100}, 241601 (2008). DOI: \href{https://doi.org/10.1103/PhysRevLett.100.241601}{10.1103/PhysRevLett.100.241601}.
@@ -467,6 +628,9 @@ I.~L.~Bogolubsky, E.-M.~Ilgenfritz, M.~M\"uller-Preussker, and A.~Sternbeck, \em
 
 \bibitem{singer1978some}
 I.~M.~Singer, \emph{Some remarks on the Gribov ambiguity}, Commun. Math. Phys. \textbf{60}(1), 7--12 (1978). DOI: \href{https://doi.org/10.1007/BF01609471}{10.1007/BF01609471}.
+
+\bibitem{killingback1984gribov}
+T.~P.~Killingback, \emph{The Gribov ambiguity in gauge theories on the four-torus}, Phys. Lett. B \textbf{138}(1--3), 87--90 (1984). DOI: \href{https://doi.org/10.1016/0370-2693(84)91878-1}{10.1016/0370-2693(84)91878-1}.
 
 \bibitem{singer1981geometry}
 I.~M.~Singer, \emph{The geometry of the orbit space for non-Abelian gauge theories}, Phys. Scripta \textbf{24}, 817--820 (1981). DOI: \href{https://doi.org/10.1088/0031-8949/24/5/002}{10.1088/0031-8949/24/5/002}.
@@ -479,6 +643,9 @@ B.~O'Neill, \emph{The fundamental equations of a submersion}, Mich. Math. J. \te
 
 \bibitem{savvidy1977infrared}
 G.~K.~Savvidy, \emph{Infrared instability of the vacuum state of gauge theories and asymptotic freedom}, Phys. Lett. B \textbf{71}(1), 133--134 (1977). DOI: \href{https://doi.org/10.1016/0370-2693(77)90759-6}{10.1016/0370-2693(77)90759-6}.
+
+\bibitem{nielsen1978unstable}
+N.~K.~Nielsen and P.~Olesen, \emph{An unstable Yang-Mills field mode}, Nucl. Phys. B \textbf{144}(2--3), 376--396 (1978). DOI: \href{https://doi.org/10.1016/0550-3213(78)90377-2}{10.1016/0550-3213(78)90377-2}.
 
 \bibitem{federer1959curvature}
 H.~Federer, \emph{Curvature measures}, Trans. Amer. Math. Soc. \textbf{93}(3), 418--491 (1959). DOI: \href{https://doi.org/10.1090/S0002-9947-1959-0110078-1}{10.1090/S0002-9947-1959-0110078-1}.
@@ -504,6 +671,9 @@ R.~Giles, \emph{Reconstruction of gauge potentials from Wilson loops}, Phys. Rev
 \bibitem{horava2009spectral}
 P.~Ho\v{r}ava, \emph{Spectral dimension of the universe in quantum gravity at a Lifshitz point}, Phys. Rev. Lett. \textbf{102}, 161301 (2009). DOI: \href{https://doi.org/10.1103/PhysRevLett.102.161301}{10.1103/PhysRevLett.102.161301}.
 
+\bibitem{ambjorn2005spectral}
+J.~Ambj{\o}rn, J.~Jurkiewicz, and R.~Loll, \emph{The spectral dimension of the universe is scale dependent}, Phys. Rev. Lett. \textbf{95}, 171301 (2005). DOI: \href{https://doi.org/10.1103/PhysRevLett.95.171301}{10.1103/PhysRevLett.95.171301}; arXiv:\href{https://arxiv.org/abs/hep-th/0505113}{hep-th/0505113}.
+
 \bibitem{nambu1974strings}
 Y.~Nambu, \emph{Strings, monopoles, and gauge fields}, Phys. Rev. D \textbf{10}, 4262--4268 (1974). DOI: \href{https://doi.org/10.1103/PhysRevD.10.4262}{10.1103/PhysRevD.10.4262}.
 
@@ -516,6 +686,15 @@ G.~'t~Hooft, \emph{Topology of the gauge condition and new confinement phases in
 \bibitem{osterwalder1978gauge}
 K.~Osterwalder and E.~Seiler, \emph{Gauge field theories on a lattice}, Ann. Phys. \textbf{110}, 440--471 (1978). DOI: \href{https://doi.org/10.1016/0003-4916(78)90039-8}{10.1016/0003-4916(78)90039-8}.
 
+\bibitem{chatterjee2019rigorous}
+S.~Chatterjee, \emph{Rigorous solution of strongly coupled $\mathrm{SO}(N)$ lattice gauge theory in the large $N$ limit}, Commun. Math. Phys. \textbf{366}(1), 203--268 (2019). DOI: \href{https://doi.org/10.1007/s00220-019-03353-3}{10.1007/s00220-019-03353-3}; arXiv:\href{https://arxiv.org/abs/1502.07719}{1502.07719}.
+
+\bibitem{shen2023stochastic}
+H.~Shen, R.~Zhu, and X.~Zhu, \emph{A stochastic analysis approach to lattice Yang--Mills at strong coupling}, Commun. Math. Phys. \textbf{400}(2), 805--851 (2023). DOI: \href{https://doi.org/10.1007/s00220-022-04609-1}{10.1007/s00220-022-04609-1}; arXiv:\href{https://arxiv.org/abs/2204.12737}{2204.12737}.
+
+\bibitem{adhikari2025correlation}
+A.~Adhikari and S.~Cao, \emph{Correlation decay for finite lattice gauge theories at weak coupling}, Ann. Probab. \textbf{53}(1) (2025). DOI: \href{https://doi.org/10.1214/24-AOP1702}{10.1214/24-AOP1702}; arXiv:\href{https://arxiv.org/abs/2202.10375}{2202.10375}.
+
 \bibitem{callan1976structure}
 C.~G.~Callan, R.~F.~Dashen, and D.~J.~Gross, \emph{The structure of the gauge theory vacuum}, Phys. Lett. B \textbf{63}, 334--340 (1976). DOI: \href{https://doi.org/10.1016/0370-2693(76)90277-X}{10.1016/0370-2693(76)90277-X}.
 
@@ -527,6 +706,15 @@ A.~Floer, \emph{An instanton-invariant for 3-manifolds}, Commun. Math. Phys. \te
 
 \bibitem{vafawitten1984}
 C.~Vafa and E.~Witten, \emph{Parity conservation in quantum chromodynamics}, Phys. Rev. Lett. \textbf{53}(6), 535--536 (1984). DOI: \href{https://doi.org/10.1103/PhysRevLett.53.535}{10.1103/PhysRevLett.53.535}.
+
+\bibitem{boyd2004convex}
+S.~Boyd and L.~Vandenberghe, \emph{Convex Optimization}, Cambridge University Press, Cambridge (2004). DOI: \href{https://doi.org/10.1017/CBO9780511804441}{10.1017/CBO9780511804441}.
+
+\bibitem{chandra2024stochastic}
+A.~Chandra, I.~Chevyrev, M.~Hairer, and H.~Shen, \emph{Stochastic quantisation of Yang--Mills--Higgs in 3D}, Invent. Math. \textbf{237}, 541--696 (2024). DOI: \href{https://doi.org/10.1007/s00222-024-01264-2}{10.1007/s00222-024-01264-2}.
+
+\bibitem{hairer2014theory}
+M.~Hairer, \emph{A theory of regularity structures}, Invent. Math. \textbf{198}(2), 269--504 (2014). DOI: \href{https://doi.org/10.1007/s00222-014-0505-4}{10.1007/s00222-014-0505-4}.
 
 \bibitem{silvafilho2026master}
 R.~M.~Silva-Filho, \emph{Geometric Condensation of Fundamental Interactions: From the Classical Multi-Component Lagrangian to the Simplicial Action Functional on $\Delta_4 \times \Delta_2$}, Zenodo (2026). DOI: \href{https://doi.org/10.5281/zenodo.22707110}{10.5281/zenodo.22707110}.

@@ -1,0 +1,15 @@
+[PASS] Closed sub-loop confinement: width >= 2/K (independent ellipse example, brute-force support-function width + finite-difference curvature) (book line ~155-167)
+       (a, b, K_numeric, width, 2/K): [(2.0, 1.0, 1.9999999999806315, 2.0, 1.0000000000096843), (3.0, 1.5, 1.3333333333304198, 3.0, 1.5000000000032778), (1.0, 0.4, 6.249999999939471, 0.8, 0.3200000000030991)]
+[PASS] NEGATIVE CONTROL: stronger bound 'width >= 4/K' is violated by the sharp circle example (width = 2/K exactly there) (book line ~155-167)
+       circle: K=0.7692, width=2.6000, 2/K=2.6000, 4/K=5.2000 (width < 4/K as required)
+[PASS] Benchmark channel (R0=1, H=1.62): w=1 semicircular arc has curvature exactly 1/H everywhere and avoids the obstacle disk of radius R0 (book line ~309-325)
+       kappa range on arc = [0.61728, 0.61728] vs 1/H = 0.61728; min distance to origin = 1.6200 (must exceed R0 = 1.0)
+[PASS] NEGATIVE CONTROL: with R0=1.8 > H=1.62, the same semicircular arc (radius H) fails to avoid the obstacle (lies entirely inside it) (book line ~309-325)
+       max distance to origin on arc = 1.6200 < R0_wrong = 1.8 (arc entirely inside the enlarged obstacle, as required to fail)
+[PASS] Winding/curvature inequality sharpness: straight line at distance eps from c has int|theta'| -> pi (kappa=0, independent unwrap-based integration) (book line ~187-205)
+       (epsilon, int|theta'|): [(0.05, 3.1415726535897934), (0.01, 3.141588653589793), (0.002, 3.1415918535897935)] (-> should -> pi = 3.1416)
+[PASS] NEGATIVE CONTROL: a tightened additive constant pi/2 (instead of pi) is violated by the straight-line example (book line ~187-205)
+       computed int|theta'| approaches pi > pi/2 for all tested epsilon
+
+======================================================================
+Chapter 9 summary: 6 PASS, 0 FAIL

@@ -1,5 +1,5 @@
 /-
-  Unconditional Yang-Mills: Part II
+  Placeholder skeleton, Part II: no Mathlib, verifies nothing.
   Entropic Repulsion and Caffarelli Regularity on the Gribov Horizon
   Obligations: OBL-U2-001 to OBL-U2-005
   Author: Reinaldo M. Silva-Filho (PPGEE/DES, UFLA)
@@ -42,10 +42,10 @@ theorem ghost_resolvent_uniform_integrability (C0 eps : Nat) (hC : C0 > 0) (heps
   have h1 : 2 * C0 > 0 := by omega
   exact Nat.mul_pos h1 heps
 
-/-- OBL-U2-005: Unconditional Positivity of Bakry-Émery Ricci Curvature:
+/-- OBL-U2-005: Placeholder Nat statement named after Bakry-Émery Ricci positivity:
     K_QCD = 2(1 - c0) * gamma_sq > 0 with c0 = (n-1)/(2n).
-    Strictly discharges Hypothesis 4.1(ii). -/
-theorem unconditional_bakry_emery_positivity (n gamma_sq : Nat) (hn : n ≥ 2) (hg : gamma_sq > 0) :
+    Does not formalize or discharge Hypothesis 4.1(ii). -/
+theorem placeholder_bakry_emery_positivity (n gamma_sq : Nat) (hn : n ≥ 2) (hg : gamma_sq > 0) :
     2 * (2 * n - (n - 1)) * gamma_sq > 0 := by
   have h_diff : 2 * n - (n - 1) > 0 := by omega
   have h_prod : 2 * (2 * n - (n - 1)) > 0 := by omega

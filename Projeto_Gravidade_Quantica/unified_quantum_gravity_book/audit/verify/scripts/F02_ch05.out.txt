@@ -1,0 +1,19 @@
+[PASS] Barycentric Lipschitz bound dist(Phi c1,Phi c2) <= alpha/(alpha+m) dist(c1,c2), sharp for n=m identity (book line ~258-291)
+       500 random (groups,c1,c2): max observed ratio=0.310345 <= alpha/(alpha+m)=0.310345; identity-grouping ratio=0.3103448276 (exact match required)
+[PASS] NEGATIVE CONTROL: over-tight mutated constant alpha/(alpha+2m) must be violated by the exact identity case (book line ~258-291)
+       identity ratio=0.310345 vs mutated constant=0.183673
+[PASS] Fourier decay of the m=2 Beta-kernel along the facet normal ~ |k|^-1 (gamma=1, direct 2D quadrature + log-log fit) (book line ~144-154)
+       |K_hat(k,0)| at k=[8.0, 16.0, 32.0, 64.0]: ['7.010e-02', '3.441e-02', '1.742e-02', '8.640e-03']; fitted slope=-1.004 (expect ~-1)
+[PASS] NEGATIVE CONTROL: mutated claim gamma=2 (decay |k|^-2) must disagree with the fitted slope (book line ~144-154)
+       fitted slope -1.004 is not compatible with a -2 decay
+[PASS] Deconvolution f = IFFT[hat h(k)/K_hat(-k)] recovers f (independent FFT convolution/deconvolution on a fine grid) (book line ~228-240)
+       max relative error of recovered f vs true f = 0.0000
+[PASS] NEGATIVE CONTROL: dividing by hat K(+k) instead of hat K(-k) must fail to recover f (kernel not symmetric) (book line ~228-240)
+       max relative error with wrong sign = 0.8440 vs correct-sign error = 0.0000
+[PASS] G_{a,b} x^n = (a)_n/(a+b)_n for X=1 (m=1 Siegel-Wishart special case = classical Beta moment, Monte Carlo oracle) (book line ~300-317)
+       (a,b,n,MC mean,MC s.e.,formula): [2.3, 3.1, 1, np.float64(0.4258), np.float64(0.0001), 0.4259, 2.3, 3.1, 2, np.float64(0.2195), np.float64(0.0001), 0.2196, 4.0, 1.5, 3, np.float64(0.4477), np.float64(0.0001), 0.4476]
+[PASS] NEGATIVE CONTROL: mutated ratio (a)_n/(a+b+n)_n must disagree with the Monte Carlo moment estimates (book line ~300-317)
+       checked for all three (a,b,n) triples
+
+======================================================================
+Chapter 5 summary: 8 PASS, 0 FAIL

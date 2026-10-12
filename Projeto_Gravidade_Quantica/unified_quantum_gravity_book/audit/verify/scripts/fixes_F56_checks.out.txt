@@ -1,0 +1,6 @@
+x=0.5: E quad=0.0253163624829593 closed err=5.24e-32 NEG err=0.268 DLMF5.17.4 err=3.08e-32
+x=1.0: E quad=0.162122933590655 closed err=0.0 NEG err=0.0 DLMF5.17.4 err=0.0
+x=2.7: E quad=1.94251705010751 closed err=5.92e-31 NEG err=1.54 DLMF5.17.4 err=1.97e-31
+x=7.0: E quad=17.5181378775329 closed err=6.31e-30 NEG err=68.1 DLMF5.17.4 err=3.16e-30
+x=15.3: E quad=96.5483248350209 closed err=0.0 NEG err=630.0 DLMF5.17.4 err=0.0
+FAILURES: 0

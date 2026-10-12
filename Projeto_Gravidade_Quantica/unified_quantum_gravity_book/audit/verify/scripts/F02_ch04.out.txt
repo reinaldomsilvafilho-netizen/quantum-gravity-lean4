@@ -1,0 +1,23 @@
+[PASS] sigma(k) in [0, 2/alpha^2], and M2 (second-moment matrix of the Beta-kernel, computed DIRECTLY from its definition int y y^T K(y) dy / I_m, independent of sigma's own Taylor expansion) has the a*Id+b*11^T structure (equal diagonal entries) (book line ~144-154)
+       bound holds on 15 random k (sup 2/alpha^2=0.2222); M2 (direct moment quadrature): M2_11=1.38743, M2_22=1.38743, M2_12=0.80629
+[PASS] NEGATIVE CONTROL: dropping the 1/2 factor in sigma ~ (1/alpha^2) k^T M2 k must disagree with the direct quadrature of sigma, using M2 from its OWN direct moment quadrature (not from sigma's Taylor coefficients) (book line ~144-154)
+       sigma(0.15,0)=1.724562e-03; correct 1/2-factor prediction=1.734287e-03; mutated (no 1/2) prediction=3.468574e-03
+[PASS] NEGATIVE CONTROL: replacing the Beta-kernel by the uniform density on the same simplex in the moment quadrature must give a visibly different M2_11 (book line ~144-154)
+       M2_11 (Beta-kernel)=1.387430; M2_11 (uniform density on same simplex)=1.500000
+[PASS] MSD tensor <xx^T>(t) = K/(alpha^2 Gamma(beta+1)) M2 t^beta (independent FD second derivative of E_beta(-K sigma t^beta)) (book line ~291-324)
+       numeric (11,22,12)=(0.342985,0.342985,0.198985); formula=(0.343306,0.343306,0.199507)
+[PASS] NEGATIVE CONTROL: dropping the 1/alpha^2 prefactor must disagree with the FD-computed MSD (book line ~291-324)
+       numeric=0.342985; correct formula=0.343306; mutated (no 1/alpha^2) formula=3.089754
+[PASS] F-46: N[psi_w] is w-independent (mass conserved under rescaling) and nonlinear term ~ w^{-(m-1)p} -> infinity as w->0 (book line ~243-245)
+       masses at w=[1.0, 0.5, 0.25, 0.125]: ['3.141593', '3.141593', '3.141593', '3.141593'] (ratio max/min=1.00000); fitted log-log slope of quartic term = -2.0000 (predicted -2.0)
+[PASS] NEGATIVE CONTROL: wrong exponent -(m-1)(p+1) must disagree with the fitted power-law slope (book line ~243-245)
+       fitted slope=-2.0000 vs wrong prediction=-4.0
+[PASS] Full split-step spectral simulation of the NLSE: mass conserved to machine precision; energy drift shrinks ~O(dt^2) under splitting (book line ~170-207)
+       mass drift @dt=0.01: 2.89e-14; energy drift @dt=0.01: 3.55e-10, @dt=0.005: 8.84e-11 (ratio 4.01x, expect ~4x)
+[PASS] NEGATIVE CONTROL: naive explicit-Euler integrator (non-unitary) must visibly violate mass conservation (book line ~170-207)
+       explicit-Euler mass drift = 1.31e-04 (should be >>1e-10, unlike the split-step scheme)
+[PASS] NEGATIVE CONTROL: mutated energy functional (kappa/p instead of kappa/(p+1)) must show an O(1) drift that does NOT shrink ~4x when dt is halved, unlike the correctly-normalized energy (book line ~170-207)
+       mutated-energy drift @dt=0.01: 1.30e-03, @dt=0.005: 1.30e-03 (ratio 1.00x, expect NOT ~4x); correct-energy ratio was 4.01x
+
+======================================================================
+Chapter 4 summary: 10 PASS, 0 FAIL

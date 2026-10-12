@@ -1,5 +1,5 @@
 /-
-  Unconditional Yang-Mills: Part III
+  Placeholder skeleton, Part III: no Mathlib, verifies nothing.
   Non-Perturbative Yang-Mills Mass Gap: Exact GNS Nelson Reconstruction
   Obligations: OBL-U3-001 to OBL-U3-004
   Author: Reinaldo M. Silva-Filho (PPGEE/DES, UFLA)
@@ -26,10 +26,10 @@ theorem osterwalder_schrader_reflection_positivity (norm_phys : Nat) (h : norm_p
 theorem nelson_parisi_wu_isomorphism (lambda_1 : Nat) (h : lambda_1 > 0) :
     lambda_1 > 0 := h
 
-/-- OBL-U3-004: Unconditional Derivation of the Relativistic Mass Gap:
+/-- OBL-U3-004: Placeholder Nat statement named after the relativistic mass gap:
     Δ = C_N * Λ_MS > 0.
-    Strictly discharges Hypothesis 5.1. -/
-theorem unconditional_relativistic_mass_gap (C_N Lambda_MS : Nat) (hC : C_N > 0) (hL : Lambda_MS > 0) :
+    Does not formalize or discharge Hypothesis 5.1. -/
+theorem placeholder_relativistic_mass_gap (C_N Lambda_MS : Nat) (hC : C_N > 0) (hL : Lambda_MS > 0) :
     C_N * Lambda_MS > 0 := Nat.mul_pos hC hL
 
 end YangMills.NelsonReconstruction

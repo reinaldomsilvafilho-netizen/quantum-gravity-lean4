@@ -1,0 +1,31 @@
+[PASS] g^BKM(X,X) >= g^SLD(X,X) always, with equality for diagonal (commuting) X (direct evaluation, 300 random trials) (book line ~156-159)
+       inequality held in all 300 random trials: True; commuting-case equality: SLD=11.207925, BKM=11.207925
+[PASS] NEGATIVE CONTROL: the reversed inequality g^SLD >= g^BKM fails for most generic non-commuting X (book line ~156-159)
+       reversed inequality violated in 50/50 generic random trials (should be most of them)
+[PASS] Cross-check: the eigenbasis SLD/BKM sums agree with their DEFINING equations -- the continuous Lyapunov equation rho*L+L*rho=2X for SLD, and the resolvent integral int_0^inf (rho+s)^-1 X (rho+s)^-1 ds for BKM (independent of the eigenbasis-sum formulas used elsewhere in this script) (book line ~156-159)
+       g_SLD: eigenbasis sum=34.8016335864 vs Lyapunov-equation value=34.8016335864; g_BKM: eigenbasis sum=37.3761898141 vs resolvent-quadrature value=37.3761898141
+[PASS] NEGATIVE CONTROL: a naive mutated guess Tr(X, 2*rho^-1*X) (not solving the actual Lyapunov equation) must disagree with the eigenbasis SLD sum (book line ~156-159)
+       eigenbasis SLD sum=34.8016335864; mutated naive guess=93.4968584936
+[PASS] Qutrit Hilbert-Schmidt Monte Carlo: median(BKM/SLD) ~ 1.16, about 95% of samples below 1.61 (book's current text) -- independent Ginibre-matrix simulation (book line ~158)
+       200000 trials: median=1.1597 (book: ~1.16); fraction below 1.61 = 0.9511 (book: ~0.95); 95th percentile = 1.6058
+[PASS] NEGATIVE CONTROL: the mutated threshold 1.55 ('95% below 1.55') must disagree with the simulation (book line ~158)
+       fraction below the mutated threshold 1.55 = 0.9348 (should be well short of 0.95)
+[PASS] NEGATIVE CONTROL: a uniform-eigenvalue (non-Hilbert-Schmidt) ensemble gives a visibly different median ratio (book line ~158)
+       uniform-eigenvalue median=1.0688 vs Hilbert-Schmidt median=1.1597 (book: ~1.16)
+[PASS] MPS min-cut bound S_A <= |C| log(chi) holds for random and near-saturating tensors, with dim H_A=9 > chi=2 and dim H_B=3 > chi=2 so the bound is NOT implied by the dimension alone (independent SVD-based entropy) (book line ~235-241)
+       log(chi)=0.6931; dim H_A=9, dim H_B=3 (both > chi=2); random-tensor S_A=0.3692 (rank 2); near-saturating S_A=0.5806 (rank 2, should approach the bound)
+[PASS] NEGATIVE CONTROL: artificially tightened bound log(chi)-0.3 is violated by the near-saturating construction (book line ~235-241)
+       near-saturating S_A=0.5806 vs mutated tightened bound=0.3931
+[PASS] NEGATIVE CONTROL (non-vacuity check): the min-cut bound log(chi) must be strictly tighter than the dimension-only bound log(dim H_A), otherwise this test would not discriminate the two (book line ~235-241)
+       log(chi)=0.6931 vs log(dim H_A)=2.1972 (must be strictly smaller)
+[PASS] Midpoint-rule holonomy product converges as O(k^-2), strictly faster than the naive O(k^-1) rule (same connection) (book line ~296-300)
+       midpoint errors at k=[10, 20, 40, 80, 160]: ['8.44e-04', '2.10e-04', '5.23e-05', '1.31e-05', '3.27e-06'], slope=-2.003 (expect ~-2); naive errors: ['3.79e-02', '1.91e-02', '9.55e-03', '4.78e-03', '2.39e-03'], slope=-0.996 (expect ~-1)
+[PASS] NEGATIVE CONTROL: claiming the naive (non-midpoint) rule is ALSO O(k^-2) is contradicted by its fitted slope (book line ~296-300)
+       naive rule fitted slope=-0.996, not compatible with a -2 (k^-2) decay
+[PASS] l_P = sqrt(hbar G/c^3) matches CODATA Planck length (~1.616e-35 m); dimensional exponents of hbar*G/c^3 = L^2 exactly (book line ~304)
+       computed l_P=1.616255e-35 m vs CODATA=1.616255e-35 m; dimension exponents (mass,length,time) of hbar*G/c^3 = (np.int64(0), np.int64(2), np.int64(0)) (expect (0,2,0))
+[PASS] NEGATIVE CONTROL: mutated combination hbar*G/c^2 is NOT dimensionless-length^2 and numerically misses the Planck length (book line ~304)
+       dimension exponents of hbar*G/c^2 = (np.int64(0), np.int64(3), np.int64(-1)) (not (0,2,0)); numeric value sqrt(hbar G/c^2)=2.798467e-31 m vs CODATA Planck length=1.616255e-35 m
+
+======================================================================
+Chapter 11 summary: 14 PASS, 0 FAIL

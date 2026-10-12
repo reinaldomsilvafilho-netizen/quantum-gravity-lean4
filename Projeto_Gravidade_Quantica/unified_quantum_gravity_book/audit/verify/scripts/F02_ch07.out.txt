@@ -1,0 +1,23 @@
+[PASS] Fary-Milnor: total curvature of a trefoil (knotted) curve exceeds 4*pi; Fenchel: round circle total curvature = 2*pi exactly (book line ~132-142)
+       total curvature trefoil = 13.9503 (must be > 4pi=12.5664); total curvature circle = 6.283185 (must equal 2pi=6.283185)
+[PASS] NEGATIVE CONTROL: mutated claim 'every closed curve has total curvature >= 4pi' fails on the (unknotted) circle (book line ~132-142)
+       circle total curvature = 6.2832 < 4pi = 12.5664
+[PASS] Planar U-turn semicircle: kappa = 2/w (generic symbolic curvature formula) (book line ~432-435)
+       sympy curvature formula simplifies to: 2/w
+[PASS] NEGATIVE CONTROL: wrong constant kappa=1/w disagrees with symbolic computation (book line ~432-435)
+       kappa - 1/w = 1/w (nonzero => disagrees, as required)
+[PASS] Circular helix: kappa=a/(a^2+b^2), tau=b/(a^2+b^2) (generic Frenet formulas) (book line ~443-446)
+       kappa computed = a/(a**2 + b**2); tau computed = b/(a**2 + b**2)
+[PASS] NEGATIVE CONTROL: wrong formula kappa=a/(a+b)^2 disagrees (book line ~443-446)
+       kappa - a/(a+b)^2 = a/(a**2 + b**2) - a/(a + b)**2 (nonzero => disagrees)
+[PASS] Clifford torus ||II||_op = sqrt(2)/R (numerical finite-difference second fundamental form) (book line ~454-459)
+       (R, numeric, formula, rel.err): [(1.0, 1.414213561100109, 1.4142135623730951, 9.001371467483256e-10), (2.5, 0.5656854290367577, 0.565685424949238, 7.225782167622031e-09), (5.0, 0.28284271451837883, 0.282842712474619, 7.225782167622031e-09)]
+[PASS] NEGATIVE CONTROL: wrong value 1/R (missing sqrt2) disagrees with numeric computation (book line ~454-459)
+       checked R=1,2.5,5; mutated formula disagrees
+[PASS] Hypercylinder S^2(R) x R: ||II||_op = 1/R (numerical second fundamental form) (book line ~459,477)
+       (R, numeric, formula, rel.err): [(1.0, 1.0000000077420486, 1.0, 7.742048557801695e-09), (2.0, 0.5000000038710243, 0.5, 7.742048557801695e-09), (4.0, 0.25000000193551214, 0.25, 7.742048557801695e-09)]
+[PASS] NEGATIVE CONTROL: wrong value 2/R disagrees with numeric computation (book line ~459,477)
+       checked R=1,2,4; mutated formula disagrees
+
+======================================================================
+Chapter 7 summary: 10 PASS, 0 FAIL

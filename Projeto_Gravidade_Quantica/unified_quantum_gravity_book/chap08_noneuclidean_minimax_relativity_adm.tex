@@ -138,6 +138,7 @@ g(A_\nu(X), Y) = g(\II(X, Y), \nu)
 \end{definition}
 
 \begin{theorem}[Equations of Gauss, Codazzi-Mainardi, and Ricci; classical, see {\cite[Ch.~4]{oneill1983}}, {\cite[Ch.~2--3]{gourgoulhon2012}}]
+\label{thm:gauss_codazzi_ricci}
 With the curvature convention $R(X,Y) = \nabla_X\nabla_Y - \nabla_Y\nabla_X - \nabla_{[X,Y]}$, the ambient curvature tensor $\bar{R}$ and intrinsic curvature $R$ of $M^k$ satisfy:
 \begin{align}
 \label{eq:gauss}
@@ -170,6 +171,7 @@ and in cases (a) and (b) the right-hand side equals $\max_\nu \max_i |\kappa_i^\
 \subsection{Curvature Coupling Theorem in Space Forms}
 Let $N^n(\bar K)$ be an $n$-dimensional Riemannian space form of constant sectional curvature $\bar K \in \R$ (so $\bar K = +c^2$ for $\Sph^n(+c^2)$ and $\bar K = -c^2$ for $\Hyp^n(-c^2)$).
 \begin{theorem}[Sectional-Extrinsic Coupling]
+\label{thm:sectional_extrinsic}
 Let $n \ge 3$ and let $M^k \subset N^n(\bar K)$ be an umbilical hypersurface ($k = n-1 \ge 2$) of constant normal curvature $\kappa$. Then its intrinsic sectional curvature $K_M$ is constant and satisfies:
 \begin{equation}
 K_M = \bar K + \kappa^2
@@ -177,9 +179,10 @@ K_M = \bar K + \kappa^2
 \end{theorem}
 \begin{proof}
 Let $\nu$ be a unit normal. Umbilicity means $\II(X,Y) = \kappa\, g(X,Y)\,\nu$. In a space form $\bar{R}(X,Y)Z = \bar K\,(g(Y,Z)X - g(X,Z)Y)$. For orthonormal $X, Y \in T_pM$, the Gauss equation \eqref{eq:gauss} with $Z = Y$, $W = X$ gives
-\[
-K_M(X,Y) = g(R(X,Y)Y,X) = \bar K + g(\II(X,X),\II(Y,Y)) - g(\II(X,Y),\II(X,Y)) = \bar K + \kappa^2 - 0 .
-\]
+\begin{multline*}
+K_M(X,Y) = g(R(X,Y)Y,X) = \bar K + g(\II(X,X),\II(Y,Y)) - g(\II(X,Y),\II(X,Y)) \\
+= \bar K + \kappa^2 - 0 .
+\end{multline*}
 The value does not depend on the plane $X \wedge Y$, so $K_M$ is constant on $M$ whenever $\kappa$ is. (For $k = n-1 \ge 2$, the Codazzi equation gives $X(\kappa)\,Y - Y(\kappa)\,X = 0$ for independent tangent $X, Y$, so $\kappa$ is constant on connected umbilical hypersurfaces and the hypothesis is automatic.)
 \end{proof}
 
@@ -237,9 +240,10 @@ For $\kappa = 0$ this is Clairaut's relation. The function $u(s) = G(y(s))\cos\t
 G(a) + G(b) = u(s_a) - u(s_b) = \int_{s_a}^{s_b} \kappa\, G(y) \sin\theta \dif s \;\le\; k \int_{s_a}^{s_b} G(y)\, y' \dif s = k \int_a^b G(y) \dif y .
 \]
 In $\Hyp^2(-c^2)$,
-\[
-\cosh(ca) + \cosh(cb) = 2\cosh\tfrac{c(a+b)}{2}\cosh\tfrac{c(b-a)}{2}, \qquad \int_a^b \cosh(cy)\dif y = \tfrac{2}{c}\cosh\tfrac{c(a+b)}{2}\sinh\tfrac{c(b-a)}{2},
-\]
+\begin{multline*}
+\cosh(ca) + \cosh(cb) = 2\cosh\tfrac{c(a+b)}{2}\cosh\tfrac{c(b-a)}{2}, \qquad \\
+\int_a^b \cosh(cy)\dif y = \tfrac{2}{c}\cosh\tfrac{c(a+b)}{2}\sinh\tfrac{c(b-a)}{2},
+\end{multline*}
 so $k \ge c\coth\frac{c(b-a)}{2} \ge c\coth\frac{cw}{2}$, since $0 < b - a \le w$ and $\coth$ is decreasing. In $\Sph^2(+c^2)$ the same identities with $\cos$ and $\sin$ give $k \ge c\cot\frac{c(b-a)}{2} \ge c\cot\frac{cw}{2}$, because $\cos\frac{c(a+b)}{2} > 0$ and $\cot$ is decreasing on $(0, \pi/2)$. For the geodesic semicircle, $\kappa$ is constant and equal to the right-hand side of \eqref{eq:curved_uturn}, $a = -w/2$ and $b = w/2$, so every inequality in the chain is an equality.
 \end{proof}
 
@@ -268,6 +272,7 @@ K_{ij} := -\frac{1}{2} \mathcal{L}_n \gamma_{ij} = -g(\bar{\nabla}_{\partial_i} 
 where the last equality uses $g(n, \partial_j) = 0$. Since the normal component of a vector $V$ is $-g(V,n)\,n$, the second fundamental form of Definition~\ref{def:opnorm}(b) is $\II(\partial_i, \partial_j) = -K_{ij}\, n$, and $\|\II\|_{\op} = \max_i |\lambda_i|$ for the eigenvalues $\lambda_i$ of $K^i{}_j$. With this convention an expanding slicing has $K < 0$: for the hyperboloids $t^2 - |\mathbf{x}|^2 = \tau^2$ of Minkowski space, $K_{ij} = -\gamma_{ij}/\tau$.
 
 \begin{theorem}[ADM Constraint Equations; classical, see \cite{adm1962}, {\cite[Ch.~3]{gourgoulhon2012}}]
+\label{thm:adm_constraints}
 The Einstein field equations $G_{\mu\nu} = 8\pi G T_{\mu\nu}$ project on $\Sigma_t$ as:
 \begin{align}
 \label{eq:hamiltonian_constraint}
@@ -352,6 +357,7 @@ The value $1/r_+$ depends on the slicing. The static slices $t = \text{const}$ o
 Consider two spacetime manifolds $(\mathcal{M}^+, g^+)$ and $(\mathcal{M}^-, g^-)$ joined at a timelike hypersurface $\Sigma$ ($k=3$).
 
 \begin{theorem}[Israel Junction Theorem; classical, \cite{israel1966}, see also \cite{mars1993}]
+\label{thm:israel_junction}
 Let $[g_{ab}] = 0$ (metric continuous across $\Sigma$), let $n$ be the unit (spacelike) normal to $\Sigma$ pointing from $\mathcal{M}^-$ to $\mathcal{M}^+$, and in this subsection let $K_{ab} := h_a{}^\mu h_b{}^\nu \nabla_\mu n_\nu$, the convention of Israel. The Einstein field equations across $\Sigma$ in the sense of distributions produce a surface stress-energy tensor $S_{ab}$ given by the jump in the extrinsic curvature:
 \begin{equation}
 \label{eq:israel}
@@ -476,7 +482,7 @@ Motivated by the discrete $\Gamma$-convergence conjecture of Chapter~7 \cite{sil
     \Sigma^* \in \arg\min_{\Sigma \in \mathcal{C}} \operatorname{ess\,sup}_{p \in \Sigma} \|K_p\|_{\op},
     \end{equation}
     over a class $\mathcal{C}$ of slices with prescribed behaviour, for instance slices that agree with a given slice near spatial infinity and cross the future event horizon. Without such a condition the problem is degenerate (Remark~\ref{rem:minimax_slicing}): the infimum is $0$, attained by the slice $t = \text{const}$, which does not enter the black hole. Existence of a minimizer in a class $\mathcal{C}$ of this kind is not addressed here.
-    \item \textbf{Strong Hyperbolicity Preservation:} One could try to realize such slicings dynamically by coupling the evolution to the \textbf{Bona-Mass\'o slicing family}:
+    \item \textbf{Strong Hyperbolicity Preservation:} One could try to realize such slicings dynamically by coupling the evolution to the \textbf{Bona-Mass\'o slicing family}~\cite{bona1995}:
     \begin{equation}
     \partial_t \alpha - \beta^k \partial_k \alpha = -\alpha^2 f(\alpha) \operatorname{tr}(K)
     \end{equation}
@@ -593,12 +599,18 @@ A naive proof with the cutoff mollifier $h_\epsilon = \chi h + (1-\chi)(h * \rho
 \bibitem{adm1962}
 R.~Arnowitt, S.~Deser, and C.~W.~Misner,
 \emph{The dynamics of general relativity},
-in Gravitation: An Introduction to Current Research, L. Witten ed., Wiley, New York (1962), 227--265., \href{https://doi.org/10.1007/s10714-008-0661-1}{doi:10.1007/s10714-008-0661-1}
+in Gravitation: An Introduction to Current Research, L. Witten ed., Wiley, New York (1962), 227--265; republished in Gen. Relativ. Gravit. \textbf{40} (2008), 1997--2027, \href{https://doi.org/10.1007/s10714-008-0661-1}{doi:10.1007/s10714-008-0661-1}
 
 \bibitem{israel1966}
 W.~Israel,
 \emph{Singular hypersurfaces and thin shells in general relativity},
-Nuovo Cimento B \textbf{44} (1966), 434--449., \href{https://doi.org/10.1007/BF02710419}{doi:10.1007/BF02710419}
+Nuovo Cimento B \textbf{44} (1966), 1--14, \href{https://doi.org/10.1007/BF02710419}{doi:10.1007/BF02710419};
+Erratum: ibid. \textbf{48} (1967), 463, \href{https://doi.org/10.1007/BF02712210}{doi:10.1007/BF02712210}.
+
+\bibitem{bona1995}
+C.~Bona, J.~Mass\'o, E.~Seidel, and J.~Stela,
+\emph{New formalism for numerical relativity},
+Phys. Rev. Lett. \textbf{75} (1995), 600--603, \href{https://doi.org/10.1103/PhysRevLett.75.600}{doi:10.1103/PhysRevLett.75.600}.
 
 \bibitem{morristhorne1988}
 M.~S.~Morris and K.~S.~Thorne,

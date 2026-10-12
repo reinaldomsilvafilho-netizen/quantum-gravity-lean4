@@ -1,5 +1,5 @@
 /-
-  Unconditional Yang-Mills: Part I
+  Placeholder skeleton, Part I: no Mathlib, verifies nothing.
   Constructive Metric-Measure Theory of the Gribov-Zwanziger Domain
   Obligations: OBL-U1-001 to OBL-U1-004
   Author: Reinaldo M. Silva-Filho (PPGEE/DES, UFLA)

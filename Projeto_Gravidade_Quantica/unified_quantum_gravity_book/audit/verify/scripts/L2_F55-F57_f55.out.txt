@@ -1,0 +1,61 @@
+== (a) G(n,1/2): kappa^TV, cut norm, graph Ollivier curvature
+[a-hoeff] ok   2t^2/sum c^2 = 4*n
+[a-c2] ok   sum c^2 <= 2|S||T| in 300/300 trials
+[a-c2-NEG] ok   mutated sum c^2 <= |S||T| violated in 126 trials
+   n=  100: mean kTV 0.4630, max|kTV-1/2| 0.2805, ||kTV - 1||_L1 0.5316, ||T_U||op 0.0965 (bound 0.2050), TV-oracle True
+   n=  200: mean kTV 0.4766, max|kTV-1/2| 0.1979, ||kTV - 1||_L1 0.5208, ||T_U||op 0.0710 (bound 0.1439), TV-oracle True
+   n=  400: mean kTV 0.4820, max|kTV-1/2| 0.1532, ||kTV - 1||_L1 0.5167, ||T_U||op 0.0504 (bound 0.1013), TV-oracle True
+   n=  800: mean kTV 0.4897, max|kTV-1/2| 0.1334, ||kTV - 1||_L1 0.5096, ||T_U||op 0.0358 (bound 0.0713), TV-oracle True
+   n= 1600: mean kTV 0.4937, max|kTV-1/2| 0.0836, ||kTV - 1||_L1 0.5060, ||T_U||op 0.0254 (bound 0.0503), TV-oracle True
+[a-TV-oracle] ok   codeg/maxdeg = 1-TV(rows) on sampled pairs
+[a-kTV->1/2] ok   uniform deviation decays like sqrt(log n/n): max|kTV-1/2|*sqrt(n/log n) = [1.307 1.216 1.251 1.46  1.232]
+[a-L1->1/2] ok   ||kTV_Wn - kTV_1/2||_L1 = 0.5060
+[a-cut] ok   operator-norm upper bound on cut norm <= 2n^-1/2+1/(2n)
+[a-cut-rate] ok   slope of ||T_U||op in log n = -0.484 (expected -1/2)
+[a-NEG] ok   mutated limit kTV_{W_n} -> 1 rejected
+   graph kappa_0 on G(n,1/2) edges (exact LP, primal vs dual):
+   n=40: mean kappa_0 0.4137, primal-dual gap 3.3e-16
+   n=80: mean kappa_0 0.4703, primal-dual gap 4.4e-16
+   n=160: mean kappa_0 0.4663, primal-dual gap 7.8e-16
+[a-BM] ok   graph curvature near p=1/2, not 1 (n=160: 0.4663)
+[a-ksq>=0] ok   kappa^square >= 0 for every W >= 0 (200 random step graphons)
+   note: with W scaled to max 3, kappa^square > 1 in 200/200 cases (upper bound needs W<=1; the bridge conclusion uses only >= 0)
+[a-scope] ok   graph kappa_0 on K6-K6 bridge = -1.333333 (primal) -1.333333 (dual): negative graph curvature exists; the chapter's claim is about the graphon curvatures only
+   (12.3s)
+== (b) barbell K6-K6, alpha=1/2, length flow l' = -kappa d
+[b-k0] ok   bridge kappa_1/2(0) = -0.666667 primal, -0.666667 dual; hand value -(1-a)*2(1-1/6-1/6) = -2/3
+[b-k0-NEG] ok   mutated value -4/3 (alpha=0) rejected for alpha=1/2
+   full flow h=0.02 (302s): orbit spread 1.1e-16, crossing t*=4.1221, max bridge length 1.8136 at t=4.12, bridge length at t=10 1.6237, min length t=10 2.48e-03
+   kappa_bridge at t=0,2.5,5,7.5,10: [-0.6667 -0.0508  0.011   0.0224  0.0247]; first positive sample on the 0.5-grid: t=4.5
+[b-orbit] ok   automorphism orbits keep equal lengths (full flow)
+   reduced RK4 h=0.04: crossing 4.12207, max bridge length 1.81358
+   reduced RK4 h=0.02: crossing 4.12206, max bridge length 1.81358
+   reduced RK4 h=0.01: crossing 4.12205, max bridge length 1.81358
+   reduced RK4 h=0.005: crossing 4.12205, max bridge length 1.81358
+[b-red=full] ok   reduced vs full 31-edge flow at h=0.02: max |diff| 0.0e+00
+   DOP853 rtol 1e-10: crossing (event) 4.12205, max bridge length 1.81358
+   |crossing_h - crossing_DOP853|: ['2.7e-05', '1.3e-05', '5.6e-06', '2.1e-06']
+[b-cross] ok   crossing t* = 4.1220 (chapter: near 4.1)
+[b-cross-NEG] ok   mutated crossing time 4.5 (source O7) rejected
+[b-grid] ok   source's 4.5 = first positive sample on a 0.5-spaced output grid (crossing lies in (4.0,4.5])
+[b-maxlen] ok   bridge length max 1.8136 < 1.82 on [0,10]
+[b-clique] ok   clique edges contract
+[b-NEG-gauss] ok   control phi=gauss: bridge kappa stays < 0 (t=10: -0.0010)
+   (784.4s)
+== (c) normalised flow dW/dt = 2(kappa^sq - kbar) W
+[c-sym-q] ok   qdot = -2pq(p-q)^2/s^2
+[c-sym-p] ok   pdot = -qdot
+[c-sym-wta] ok   p1dot = 2p1p2(p1-p2)/S
+[c-sym-rate] ok   linear growth rate of u at symmetry = S
+   generic 6-cell RK4 vs reduced ODE (DOP853) at t=4: errors ['9.7e-11', '5.8e-12', '4.2e-13'], observed orders 4.06, 3.78
+[c-generic] ok   6-cell kappa^square flow = 2-block ODE, RK4 order ~4
+[c-rate] ok   q decay rate 2.20000 vs 2(1+eps) = 2.2
+[c-rate-NEG] ok   mutated rate (1+eps) rejected
+[c-limit] ok   p(12) = 1.1000000000 -> 1+eps; not [0,1]-valued
+[c-limit-NEG] ok   mutated limit 1 (indicator) rejected
+[c-mass] ok   int W conserved
+[c-wta-rate] ok   asymmetry growth rate 2.2000 vs S = 2.2
+[c-wta-NEG] ok   mutated rate S/2 rejected
+[c-wta-limit] ok   p1 -> 2.20000000 (S), p2 -> 2.02e-65
+[c-unstable] ok   perturbation 1e-9 of (1+eps)1_blocks grows to 4.40e-02 by t=8
+total 786.8s, failures 0

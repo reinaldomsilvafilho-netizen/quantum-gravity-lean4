@@ -14,6 +14,7 @@
 }
 \usepackage{tikz}
 \usetikzlibrary{arrows.meta, calc}
+\usepackage{fixcmex}
 \usepackage{microtype}
 \usepackage{booktabs}
 \usepackage{array}
@@ -85,7 +86,7 @@ We also give counterexamples to several natural-looking statements: a boundary c
 \section{Introduction and Problem Formulation}
 
 \subsection{The \texorpdfstring{$L^\infty$}{L\textasciicircum\textbackslash{}infty} Variational Problem}
-The variational theory of submanifolds spanning prescribed boundaries has historically focused on integral functionals. In the classical Plateau problem \cite{douglas1931}, area minimization yields minimal submanifolds with vanishing mean curvature ($H = 0$). In the Willmore problem \cite{willmore1965, simon1993, riviere2008}, one minimizes bending energy $\mathcal{W}(M) = \int_M H^2 \, dA$, and in elastic rope/rod theory, the total squared curvature $\int |\II|^2 \, dA$ is minimized \cite{langer1984}.
+The variational theory of submanifolds spanning prescribed boundaries has historically focused on integral functionals. In the classical Plateau problem \cite{douglas1931, rado1930}, area minimization yields minimal submanifolds with vanishing mean curvature ($H = 0$). In the Willmore problem \cite{willmore1965, simon1993, riviere2008}, one minimizes bending energy $\mathcal{W}(M) = \int_M H^2 \, dA$, and in elastic rope/rod theory, the total squared curvature $\int |\II|^2 \, dA$ is minimized \cite{langer1984}.
 
 While these $L^1$ and $L^2$ functionals penalize average bending, they do not prevent localized curvature spikes. In several applications (maximum stress in thin shells, and path planning for vehicles with a bounded turning radius \cite{dubins1957, sussmann1995, chitsaz2007}) the relevant quantity is the \textbf{worst-case local bending}.
 
@@ -138,7 +139,7 @@ Let $K$ be a nontrivial knot type in $\R^3$ and $L > 0$. Let $\kappa^*_K(L)$ be 
 \end{proposition}
 
 \begin{proof}
-By the F\'ary--Milnor theorem \cite{milnor1950}, the total curvature of a knotted closed curve exceeds $4\pi$, so $4\pi < \int_0^\ell |\kappa|\,ds \le \ell\,\|\kappa\|_{L^\infty} \le L\,\|\kappa\|_{L^\infty}$. For immersed curves, the total curvature of any closed curve is at least $2\pi$ (Fenchel's theorem \cite{fenchel1929}), which gives $\|\kappa\|_{L^\infty} \ge 2\pi/L$, and the round circle of length $L$ attains $2\pi/L$. All closed immersed curves in $\R^3$ are regularly homotopic, so imposing a regular homotopy class does not change this infimum.
+By the F\'ary--Milnor theorem \cite{fary1949, milnor1950}, the total curvature of a knotted closed curve exceeds $4\pi$, so $4\pi < \int_0^\ell |\kappa|\,ds \le \ell\,\|\kappa\|_{L^\infty} \le L\,\|\kappa\|_{L^\infty}$. For immersed curves, the total curvature of any closed curve is at least $2\pi$ (Fenchel's theorem \cite{fenchel1929}), which gives $\|\kappa\|_{L^\infty} \ge 2\pi/L$, and the round circle of length $L$ attains $2\pi/L$. All closed immersed curves in $\R^3$ are regularly homotopic, so imposing a regular homotopy class does not change this infimum.
 \end{proof}
 
 \begin{remark}[Tie-breaking]
@@ -243,6 +244,196 @@ Given $\Omega \subset \R^n$, boundary $\Sigma^{k-1} \subset \partial\Omega$, and
 \end{enumerate}
 \end{algorithm}
 
+\begin{remark}[Bounded curvature-rate routing: chattering at segment--clothoid junctions]
+\label{rem:fuller_chattering}
+The construction above joins a straight segment to a constant-curvature arc through a clothoid
+of finite length, with the ramp's own curvature kept below the target value. This is a single,
+finite transition. For the stronger problem of \emph{shortest} $C^2$ paths with $|\kappa'(s)|\le B$
+and no further constraint, the transition at a segment is not generically finite: if an extremal
+path contains a straight segment without reducing to it, it contains infinitely many clothoid arcs
+accumulating at each end of the segment \cite{bcl1994,sussmann1997cdc}. This is the planar
+specialisation of A.~T.~Fuller's chattering phenomenon for singular extremals of intrinsic order two
+\cite{fuller1963,fuller1964,zelikinborisov1994}: writing $T-X$ for the excess length of a near-straight
+unit-speed path of horizontal reach $X$ in terms of its heading $\theta$, one has
+$T - X = \tfrac12\int\theta^2\,dt + O\!\big(\int\theta^4\,dt\big)$, which is, up to the factor
+$\tfrac12$, Fuller's cost functional for the reduced system $\theta'=\kappa,\ \kappa'=u$. Two
+qualifications are needed. First, \cite{bcl1994,sussmann1997cdc} establish the chattering behaviour
+for \emph{extremals}; the stronger statement that \emph{optimal} paths chatter infinitely often, for
+generic endpoint data once the endpoint distance exceeds a constant depending on $B$, is stated by
+Kostov and Degtiariova-Kostova~\cite{kostov1995}, Theorem~2.2, who refer its proof to a separate
+report of theirs (reference~[10] of~\cite{kostov1995}). Second, \cite{zhutrelatcerf2016} note that
+the optimality status of Sussmann's chattering extremals in the closely related Markov--Dubins
+angular-acceleration problem ``remains unclear''; the present remark is stated only for the regime
+covered by \cite{kostov1995}.
+\end{remark}
+
+\begin{remark}[Numerical observation: the geometric rate of near-optimal truncation]
+\label{rem:fuller_rate}
+\textup{(Numerical observation, not a theorem.)} In Fuller's reduced problem
+$\min\int_0^\infty x_1^2\,dt$ subject to $x_1'=x_2,\ x_2'=u,\ |u|\le1$, let $J_n$ be the infimum of the
+cost over bang-bang controls with at most $n$ switches steering $x=(1,0)$ to the origin, and $J^*$ the
+Fuller optimum. Writing $k = 0.242121373548157\ldots$ for the self-similarity ratio of the Fuller
+synthesis ($1/k = 4.130159949\ldots$, the classical Fuller constant), a 50-digit numerical computation
+by two independent methods (closed-form Pontryagin elimination and direct optimisation over switching
+times) gives
+\[
+  J_n - J^* \;=\; c\,k^{5n}\,(1+o(1)), \qquad c = 3.18005023144\ldots,
+\]
+with the successive ratio $(J_{n+1}-J^*)/(J_n-J^*)$ converging to $k^5=8.3208108\times10^{-4}$: its
+relative deviation from $k^5$ is $9.6\times10^{-7}$ for $n=2\to3$, $8.0\times10^{-10}$ for
+$n=3\to4$, $6.6\times10^{-13}$ for $n=4\to5$, $5.5\times10^{-16}$ for $n=5\to6$, and
+$4.6\times10^{-19}$ for $n=6\to7$, so the deviation shrinks by a factor $\approx k^{-5}\approx1202$ at
+each step. An upper bound of this shape, $J_n-J^*\le D\,a^5k^{5(n-2)}$ for $n\ge2$ with
+$a=(\tfrac12+C)^{-1/2}$, $C=\sqrt{(\sqrt{33}-1)/24}$ and $D=1.91167489\times10^{-6}$, follows from the
+degree-5 homogeneity of the Fuller value function under $(x_1,x_2,t)\mapsto(\lambda^2x_1,\lambda
+x_2,\lambda t)$: after $n-1$ switches the state lies on the switching curve at scale $a\,k^{n-2}$, one
+further switch steers it to $0$, and homogeneity rescales the one-switch excess $D$ by $(a\,k^{n-2})^5$.
+This argument is a \emph{proof sketch}: the positivity of the excess and the rescaling step are stated,
+not derived in full, and the matching \emph{lower} bound making the rate exact is open. We do not know
+a published closed form for this geometric rate. Practically, one switch already brings the cost
+within $0.35\%$ of $J^*$, and each further switch divides the excess by $k^{-5}\approx1202$:
+``infinitely many switches'' is a statement about exact optimality with no practical cost after two
+or three switches.
+\end{remark}
+
+\begin{definition}[Wall problems]
+\label{def:wall_problems}
+Fix $T>0$ and a nonzero initial state $\xi\in\R^3\setminus\{(0,0,0)\}$. For $B>0$, a
+\emph{$B$-admissible control} for the dynamics $y'=f(\theta)$, $\theta'=\kappa$, $\kappa'=u$ is a
+measurable $u\colon[0,T]\to[-B,B]$ whose trajectory $(y,\theta,\kappa)$ with
+$(y,\theta,\kappa)(0)=\xi$ satisfies the state constraint $y(t)\ge0$ for all $t\in[0,T]$ and the
+endpoint condition $(y,\theta,\kappa)(T)=(0,0,0)$.
+\begin{enumerate}
+\item[(a)] $P_W^T(\xi)$ is the problem of minimising $J(u)=\int_0^T\theta(t)^2\,dt$ over the
+  $1$-admissible controls for $f(\theta)=\theta$.
+\item[(b)] $Q_B^T(\xi)$ is the problem of minimising $J_B(u)=\int_0^T\big(1-\cos\theta(t)\big)\,dt$
+  over the $B$-admissible controls for $f(\theta)=\sin\theta$.
+\end{enumerate}
+A problem is \emph{feasible} if an admissible control exists. For a unit-speed planar path at height
+$y$ above the wall $\{y=0\}$, with heading $\theta$ and curvature $\kappa$, $J_B$ is the length $T$
+minus the horizontal displacement; since $J=2J_1+O\big(\int_0^T\theta^4\,dt\big)$, $P_W^T$ is the
+linearisation of $Q_1^T$ about the straight path along the wall. For an admissible trajectory, the
+\emph{arrival time} is
+$t_*=\min\{t\in[0,T]:(y,\theta,\kappa)(s)=(0,0,0)\text{ for all }s\in[t,T]\}$, so that $[t_*,T]$ is the
+terminal interval on which the trajectory rests at the target (it reduces to $\{T\}$ if there is no
+rest), and the \emph{contact set} is $Z=\{t\in[0,t_*):y(t)=0\}$. A \emph{boundary arc} is an interval
+of positive length on which $y\equiv0$; a \emph{maximal boundary arc} is a connected component of
+positive length of $\{t\in[0,T]:y(t)=0\}$; a \emph{free arc} is a connected component of
+$\{t\in[0,T]:y(t)>0\}$.
+\end{definition}
+
+\begin{lemma}[Structure of the minimiser of $P_W^T$]
+\label{lem:wall_structure}
+Let $\xi\ne(0,0,0)$ and let $P_W^T(\xi)$ be feasible. Then:
+\begin{enumerate}
+\item[(a)] $P_W^T(\xi)$ has exactly one minimiser.
+\item[(b)] If its trajectory satisfies $(y,\theta,\kappa)(\tau)=(0,0,0)$ for some $\tau\in[0,T]$, then
+  $(y,\theta,\kappa)\equiv(0,0,0)$ on $[\tau,T]$. Hence $t_*$ is the first time at which the
+  trajectory reaches the origin, and $t_*>0$.
+\item[(c)] Every boundary arc of the minimiser is contained in $[t_*,T]$; in particular no boundary arc
+  meets $[0,t_*)$.
+\item[(d)] Every point of $Z$ is isolated, $\theta(t)=0<\kappa(t)$ for every $t\in Z\cap(0,t_*)$, and
+  $Z\cap[0,t_*-\varepsilon]$ is finite for every $\varepsilon>0$. Hence $Z$ is either finite or an
+  increasing sequence converging to $t_*$.
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+(a) Write $(y_u,\theta_u,\kappa_u)$ for the trajectory of $u$. Explicitly,
+$\kappa_u(t)=\kappa_0+\int_0^tu$, $\theta_u(t)=\theta_0+\kappa_0t+\int_0^t(t-s)u(s)\,ds$ and
+$y_u(t)=y_0+\theta_0t+\kappa_0t^2/2+\int_0^t\tfrac12(t-s)^2u(s)\,ds$, where $\xi=(y_0,\theta_0,\kappa_0)$.
+The set $U$ of admissible controls is a convex subset of the closed unit ball of $L^\infty(0,T)$, which
+is weak-$*$ compact and metrisable because $L^1(0,T)$ is separable. If $u_n\to u$ weak-$*$, the
+trajectories converge pointwise by the formulas above, and uniformly on $[0,T]$ because they are
+equi-Lipschitz; so the state constraint and the endpoint condition pass to the limit, $U$ is
+weak-$*$ closed, hence compact, and $J(u_n)\to J(u)$. Since $U\ne\emptyset$, $J$ attains its minimum
+on $U$. The map $u\mapsto\theta_u$ is affine and injective, since $u=\theta_u''$ almost everywhere,
+and $\theta\mapsto\int_0^T\theta^2$ is strictly convex. If $u_1\ne u_2$ were two minimisers, the
+control $\tfrac12(u_1+u_2)\in U$ would have strictly smaller cost.
+
+(b) Let $u$ be the minimiser and suppose the state vanishes at $\tau$. The control equal to $u$ on
+$[0,\tau)$ and to $0$ on $[\tau,T]$ is admissible, since its trajectory rests at the origin on
+$[\tau,T]$, and its cost is $\int_0^\tau\theta^2$. By minimality $\int_\tau^T\theta^2=0$, so the
+continuous function $\theta$ vanishes on $[\tau,T]$; then $\kappa=\theta'\equiv0$ and
+$y\equiv y(\tau)=0$ there. So the set of times at which the state vanishes is the interval $[t_*,T]$,
+and $t_*>0$ because the state at $0$ is $\xi\ne(0,0,0)$.
+
+(c) If $y\equiv0$ on an interval $I$ of positive length, then $\theta=y'\equiv0$ and
+$\kappa=\theta'\equiv0$ on $I$, because $y$ and $\theta$ are $C^1$. The state vanishes on $I$, so
+$I\subset[t_*,T]$ by (b).
+
+(d) Let $t\in Z$. If $\theta(t)\ne0$, then $y'(t)\ne0$ and $t$ is an isolated zero of the $C^1$
+function $y$. If $\theta(t)=0$, then $\kappa(t)\ne0$, for otherwise the state would vanish at
+$t<t_*$, contradicting (b). Taylor's formula with $y'''=u$, $|u|\le1$, gives
+$\big|y(s)-\tfrac12\kappa(t)(s-t)^2\big|\le\tfrac16|s-t|^3$ for $s\in[0,T]$. Since $t<t_*\le T$, there
+are points $s\in(t,T]$; if $\kappa(t)<0$, then $y(s)<0$ for $0<s-t<3|\kappa(t)|$, which is impossible.
+Hence $\kappa(t)>0$ and $y(s)>0$ for $s\in[0,T]$ with $0<|s-t|<3\kappa(t)$, so $t$ is isolated. If
+moreover $t>0$, then $t$ is an interior local minimum of $y$, so $\theta(t)=y'(t)=0$ and, by what
+precedes, $\kappa(t)>0$. Finally, $Z\cap[0,t_*-\varepsilon]$ is a compact set (it is the zero set of
+$y$ in $[0,t_*-\varepsilon]$) all of whose points are isolated, hence finite.
+\end{proof}
+
+\begin{conjecture}[Contact with a straight wall under a length cost]
+\label{conj:wall_contact}
+Let $T>0$ and $\xi\ne(0,0,0)$.
+\begin{enumerate}
+\item[(i)] If $P_W^T(\xi)$ is feasible, then the contact set $Z$ of its minimiser is finite. By
+  Lemma~\ref{lem:wall_structure}(d), this is equivalent to saying that the contact points do not
+  accumulate at the arrival time $t_*$.
+\item[(ii)] Let $B>0$ and let $u$ be a minimiser of $Q_B^T(\xi)$. If $[\tau_1,\tau_2]$ is a
+  \emph{maximal} boundary arc of its trajectory with $\tau_1>0$, then infinitely many free arcs
+  accumulate at $\tau_1$ from the left; and if $\tau_2<T$, infinitely many free arcs accumulate at
+  $\tau_2$ from the right.
+\end{enumerate}
+\end{conjecture}
+
+Since a maximal boundary arc $[\tau_1,\tau_2]$ cannot be extended, every left neighbourhood of
+$\tau_1>0$ contains points with $y>0$; so the conclusion of (ii) at $\tau_1$ is equivalent to the
+statement that no free arc has right endpoint $\tau_1$, that is, that the trajectory does not enter the
+wall through a single free arc; the same holds at $\tau_2<T$ for left endpoints. On a boundary arc of
+$Q_B^T$, $y'=\sin\theta\equiv0$ forces $\theta\equiv m\pi$ for an integer $m$, and $\kappa\equiv0$,
+$u\equiv0$. If $m=0$, then $\tau_2=T$: the argument of Lemma~\ref{lem:wall_structure}(b), with
+$1-\cos\theta\ge0$ in place of $\theta^2$, shows that a minimiser whose state vanishes at some time
+rests at the origin from then on, since a continuation of zero cost has $\theta\in2\pi\mathbb{Z}$,
+hence $\theta\equiv0$. The clause of (ii) at $\tau_2$ therefore concerns only arcs with $m\ne0$. For
+$m=0$ the arc is the terminal interval $[t_*,T]$ with $0<t_*<T$, along which the path follows the wall
+to the target, and (ii) asserts that the path cannot merge onto the wall with finitely many pieces.
+
+By Lemma~\ref{lem:wall_structure}(c), the only possible maximal boundary arc of the minimiser of
+$P_W^T$ is $[t_*,T]$, present when $t_*<T$; for such a minimiser, (i) implies that a single free arc
+ends at $t_*$, which is the entry that (ii) excludes for $Q_B^T$. Since $P_W^T$ is the linearisation
+of $Q_1^T$ at the origin, (i) and (ii) would then be in tension. We do not know whether a minimiser of
+$P_W^T$ can reach the origin before time $T$.
+
+Part (i) stands in explicit tension with H.~Robbins' finding for third-order state constraints
+\cite{robbins1980}: in the instance he exhibits, as summarised by Caponigro, Ghezzi, Piccoli and
+Tr\'elat~\cite{caponigro2018} (\S2.2 of the arXiv version), the endpoint lies \emph{on} the boundary
+and an infinite sequence of touch points accumulates \emph{at that endpoint}, which is precisely the
+scenario that (i) excludes for $P_W^T$. Part (i) is therefore a substantive claim about this convex
+quadratic cost against a straight wall, namely that the accumulation which Robbins calls typical does
+not occur for it; it is not a claim about third-order state constraints in general. Supporting
+evidence, not proof: a convex quadratic-programming discretisation of $P_W^T$, run by two independent
+methods with $T=12$, finds a single isolated touch point, no boundary arc and no touch points
+accumulating at the end of the horizon in both of two unrelated feasible cases,
+$\xi\approx(0.489,-1.100,1.121)$ (touch at $t\approx0.962$) and $\xi=(0.95,-1,0)$ (touch at
+$t\approx1.486$). Grid resolution cannot detect accumulation whose effect on the cost is below the
+Fuller-problem scale $k^{10}\approx7\times10^{-7}$, and that scale is only a heuristic guide, since
+$P_W^T$ is a different, wall-constrained problem from the wall-free Fuller problem it is borrowed from.
+
+For a class of problems that they specify, Jacobson, Lele and Speyer~\cite{jls1971} show that ``only
+boundary points, as opposed to boundary arcs, are possible''. Their paper is reference~[1]
+of~\cite{robbins1980}, whose abstract opens by recalling that extremal arcs governed by inequality
+constraints of third order cannot, except in special cases, join an unconstrained arc. Their theorem is the classical
+non-junction result behind (ii), but we do not claim that $Q_B^T$, which is affine in the control with
+$|u|\le B$, belongs to their class, so (ii) is stated as a conjecture and not as a consequence
+of~\cite{jls1971}. Robbins' 1980 example contributes a specific instance, together with evidence,
+short of a general proof, that the accumulation is typical, for a problem different from $Q_B^T$.
+According to~\cite{caponigro2018}, \S2.2 of the arXiv version, Robbins' optimal control in his example
+is $C^1$. Malisani~\cite{malisani2023}, \S7 of the arXiv version, treats numerically a bounded-control
+version of Robbins' problem with $|u|\le1$ and reports Fuller-like behaviour of the control and of the
+adjoint state. A statement stronger than (ii), that the control itself switches infinitely often near
+$\tau_1$, is suggested by that computation and is open.
+
 \section{Contact Principle and Lower Bounds}
 
 \begin{definition}[Curvature loci]
@@ -325,7 +516,7 @@ w \ge |y(b) - y(a)| = \int_a^b |\sin\theta|\,ds \ge \frac{1}{\kappa}\int_a^b |\s
 \end{remark}
 
 \begin{remark}[Homotopy classes and equioscillation]
-The global value is the infimum of the values over homotopy classes of paths in $\Omega$. This is a tautology. Three further statements are natural but unproved: (i) every local minimizer contains arcs of exactly constant curvature $\kappa^*$ (``Chebyshev equioscillation''); (ii) $\kappa^*_{C^2} > \kappa^*_{C^{1,1}}$ strictly; (iii) winding loops are strictly suboptimal in the presence of an open half-space. Item (i) is stronger than Conjecture~\ref{conj:saturated}: it concerns every local minimizer and asks for arcs of constant curvature, whereas the conjecture asks only for one minimizer whose saturated locus has positive measure. Item (ii) fails as a statement about infima whenever the $C^{1,1}$ minimizer can be approximated by admissible $C^2$ curves with peak curvature at most $\kappa^* + \epsilon$, which we expect for Dubins paths without obstacles. What one expects instead is that the infimum over $C^2$ curves is not attained. Item (iii) is open.
+The global value is the infimum of the values over homotopy classes of paths in $\Omega$. This is a tautology. Three further statements are natural but unproved: (i) every local minimizer contains arcs of exactly constant curvature $\kappa^*$ (``Chebyshev equioscillation''); (ii) $\kappa^*_{C^2} > \kappa^*_{C^{1,1}}$ strictly; (iii) winding loops are strictly suboptimal in the presence of an open half-space. Item (i) is stronger than Conjecture~\ref{conj:saturated}: it concerns every local minimizer and asks for arcs of constant curvature, whereas the conjecture asks only for one minimizer whose saturated locus has positive measure. Item (ii) fails as a statement about infima whenever the $C^{1,1}$ minimizer can be approximated by admissible $C^2$ curves with peak curvature at most $\kappa^* + \epsilon$; without obstacles this holds for all curves (Proposition~\ref{prop:regularity_free}). With obstacles, (ii) can hold at the threshold length $V = V_0$, but only because the class of admissible $C^2$ curves is then empty (Remark~\ref{rem:regularity_threshold}). What one expects instead is that the infimum over $C^2$ curves is not attained; for planar curves without obstacles, Proposition~\ref{prop:optimal_regularity} proves this under its hypothesis (H), unless some shortest Dubins path is a single circular arc. Item (iii) is open.
 \end{remark}
 
 \section{Existence, Regularity, and Dimensional Effects}
@@ -349,15 +540,133 @@ The limit of embedded curves may fail to be embedded, since two strands can touc
 
 \begin{conjecture}[Regularity invariance]
 \label{thm:regularity_invariance}
-Let $\Omega \subset \R^n$ be a bounded domain with $C^{1,1}$ boundary and $\Sigma^{k-1} \subset \partial\Omega$ compact and $C^\infty$. Then $\inf_{\mathcal{A}_r} \|\II\|_{L^\infty} = \inf_{\mathcal{A}_{1,1}} \|\II\|_{L^\infty}$ for every $r \ge 2$.
+Let $\Omega \subset \R^n$ be a bounded domain with $C^{1,1}$ boundary and $\Sigma^{k-1} \subset \partial\Omega$ compact and $C^\infty$. For $k = 1$, so that $\Sigma = \{p, q\}$, unit end tangents $T_p, T_q$ may in addition be prescribed; the same tangent data are then imposed in every class below. Let
+\begin{equation}
+\label{eq:volume_threshold}
+V_0 := \inf\big\{ \Hsn^k(M) : M \in \mathcal{A}_{1,1}(\Omega, \Sigma, \infty) \big\}.
+\end{equation}
+Then, for every $V > V_0$ and every $r \ge 2$,
+\begin{equation}
+\inf_{M \in \mathcal{A}_r(\Omega, \Sigma, V)} \|\II_M\|_{L^\infty} = \inf_{M \in \mathcal{A}_{1,1}(\Omega, \Sigma, V)} \|\II_M\|_{L^\infty},
+\end{equation}
+with the convention $\inf \emptyset = +\infty$. In particular, the conjecture asserts that $\mathcal{A}_r(\Omega, \Sigma, V) \neq \emptyset$ whenever $V > V_0$.
 \end{conjecture}
 
+The threshold $V > V_0$ cannot be dropped (Remark~\ref{rem:regularity_threshold}). For curves without prescribed tangents, $V_0$ is the length of a shortest path from $p$ to $q$ in $\bar\Omega$.
+
 \begin{remark}[Status]
-The inequality $\ge$ is immediate from $\mathcal{A}_r \subset \mathcal{A}_{1,1}$. For the reverse, one mollifies a near-minimizer written as a normal graph over a smooth reference submanifold. Mollification does not increase $\|D^2 u\|_{L^\infty}$ and moves $Du$ uniformly little, so the curvature bound worsens only by $o(1)$. Three constraints must then be restored without losing this: the boundary condition $\partial M = \Sigma$, the volume bound, and the obstacle constraint when the near-minimizer touches $\partial\Omega$. We cannot do this in general, so the statement is a conjecture. For planar curves without obstacles we expect a direct proof from Proposition~\ref{prop:dubins_duality}, by smoothing the jumps in the curvature of a Dubins path and correcting the end conditions, but we have not written it out.
+\label{rem:regularity_status}
+The inequality $\ge$ is immediate from $\mathcal{A}_r \subset \mathcal{A}_{1,1}$. For curves, Lemma~\ref{lem:smoothing_interior} below reduces the reverse inequality to a single obstruction. The conjecture can fail for curves only if every near-minimizer has a non-smooth point on $\partial\Omega$. Since $p, q \in \partial\Omega$, this includes non-smoothness at the endpoints. Precisely, let $\mathcal{A}^{\circ}_{1,1}(V)$ be the set of $\gamma \in \mathcal{A}_{1,1}(\Omega, \Sigma, V)$ that are $C^\infty$ near every parameter in $\gamma^{-1}(\partial\Omega)$. The conjecture can fail only if
+\[
+\inf_{\mathcal{A}^{\circ}_{1,1}(V)} \|\kappa\|_{L^\infty} > \inf_{\mathcal{A}_{1,1}(\Omega, \Sigma, V)} \|\kappa\|_{L^\infty}.
+\]
+This is a necessary condition for failure, not a characterization. The model case is a curve that follows the obstacle across a point where the curvature of $\partial\Omega$ jumps. A $C^{1,1}$ curve can follow both one-sided curvatures. A $C^2$ curve must leave the wall before the junction, and this costs length. A proof would need a quantitative estimate of that cost, small as the detachment height tends to zero, and we do not have one.
+
+For $k \ge 2$ one would mollify a near-minimizer written as a normal graph over a smooth reference submanifold. Mollification does not increase $\|D^2 u\|_{L^\infty}$ and moves $Du$ uniformly little. The boundary condition $\partial M = \Sigma$, the volume bound and the obstacle constraint must then be restored without losing this, and we cannot do it in general.
 \end{remark}
 
-\begin{remark}[Optimal regularity]
-In the planar case without obstacles, minimizers of Dubins type are $C^{1,1}$, and their curvature jumps between $0$ and $\pm\kappa^*$, so they are not $C^2$. We expect $C^{1,1}$ to be the natural regularity class in general, by analogy with obstacle problems \cite{caffarelli1998}, but we have no proof.
+\begin{lemma}[Smoothing away from the obstacle]
+\label{lem:smoothing_interior}
+Let $\bar\Omega \subset \R^n$ be closed, $n \ge 2$. Let $\gamma\colon [0,\ell] \to \bar\Omega$ be an embedded $C^{1,1}$ arc parametrized by arc length, with $\|\kappa_\gamma\|_{L^\infty} \le K$, joining $p$ to $q$, and with end tangents $\tau(0) = T_p$, $\tau(\ell) = T_q$ if these are prescribed. Let $N \subset [0,\ell]$ be the set of parameters near which $\gamma$ is not $C^\infty$, and assume $\gamma(N) \subset \operatorname{int}\bar\Omega$. Then for every $\epsilon > 0$ there is an embedded $C^\infty$ arc $\gamma_\epsilon \subset \bar\Omega$ with the same length, endpoints and end tangents, such that $\|\gamma_\epsilon - \gamma\|_{C^1} \le \epsilon$ and $\|\kappa_{\gamma_\epsilon}\|_{L^\infty} \le K + \epsilon$.
+\end{lemma}
+
+\begin{proof}
+Write $\tau = \gamma'$, a $K$-Lipschitz map into $S^{n-1}$. If $N = \emptyset$ there is nothing to prove.
+
+\emph{Localization.} The set $N$ is compact. By compactness it has a neighbourhood $U = U_1 \cup \dots \cup U_m$, a finite union of relatively open intervals with pairwise disjoint closures, such that $\gamma(\bar U_i) \subset \operatorname{int}\bar\Omega$ and $U_i \cap N \ne \emptyset$ for each $i$. On each $U_i$ the map $\tau$ is not constant, since otherwise $\gamma$ would be a segment there. Fix $\chi \in C^\infty([0,\ell])$ with $0 \le \chi \le 1$, $\chi = 1$ near $N$ and $\operatorname{supp}\chi \subset U$.
+
+\emph{Mollification.} Extend $\tau$ to $\R$ by constants and let $\rho_\delta$ be a symmetric mollifier supported in $[-\delta, \delta]$. Put $v_\delta = (1-\chi)\tau + \chi\,(\rho_\delta * \tau)$, which is $C^\infty$. Then $|v_\delta - \tau| \le K\delta$ and $|v_\delta'| \le K + \|\chi'\|_\infty K\delta$. Since $|(v/|v|)'| \le |v'|/|v|$, the map $\sigma_\delta = v_\delta/|v_\delta|$ satisfies $\operatorname{Lip}(\sigma_\delta) \le K + O(\delta)$ and $|\sigma_\delta - \tau| \le 2K\delta$, and $\sigma_\delta = \tau$ outside $U$.
+
+\emph{End tangents.} This step is needed only if an endpoint lies in $N$, say $0 \in U_1$. Let $A_0$ be the skew-symmetric matrix of the minimal rotation taking $\sigma_\delta(0)$ to $T_p$, so $\|A_0\| = O(\delta)$. Let $\psi \in C_c^\infty(U_1)$ with $\psi = 1$ near $0$, and replace $\sigma_\delta$ by $\exp(\psi A_0)\sigma_\delta$. This changes the Lipschitz constant and the distance to $\tau$ by $O(\delta)$. The same is done at $\ell$.
+
+\emph{Integral constraints.} Fix $i$. For fixed $s$, the vectors $B\tau(s)$ with $B$ skew-symmetric fill $\tau(s)^\perp$. If the span of all such vectors over $s \in U_i$ were a proper subspace, a unit vector orthogonal to it would equal $\pm\tau(s)$ for all $s$, and $\tau$ would be constant on $U_i$. Hence there are $s_1, \dots, s_n \in U_i$ and skew-symmetric $B_1, \dots, B_n$ such that the vectors $B_j\tau(s_j)$ form a basis. Choose bumps $\phi_j \in C_c^\infty(U_i)$ with $\int\phi_j = 1$, concentrated near $s_j$ and supported away from the parts of $U_i$ used for the end tangents. For narrow bumps the matrix $M_i = \big[\int \phi_j B_j \tau\, ds\big]_j$ is invertible. For $c \in \R^n$ let $\sigma_c = \exp\big(\sum_j c_j\phi_j B_j\big)\sigma_\delta$ on $U_i$ and $G_\delta(c) = \int_{U_i} (\sigma_c - \tau)\,ds$. Then $G_\delta(0) = O(\delta)$, $DG_\delta(0) = M_i + O(\delta)$, and $D^2G_\delta$ is bounded uniformly in $\delta$ near $c = 0$. By the contraction principle there is $c(\delta) = O(\delta)$ with $G_\delta(c(\delta)) = 0$. Since $\|\tfrac{d}{ds}\exp X(s)\| \le \|X'(s)\|$ for skew-symmetric $X$, the correction changes the Lipschitz constant by $O(\delta)$.
+
+\emph{Conclusion.} Let $\sigma^*$ be the resulting unit field and $\gamma^*(s) = p + \int_0^s \sigma^*$. It is $C^\infty$, has unit speed, length $\ell$ and the prescribed end tangents. Its curvature is bounded by $\operatorname{Lip}(\sigma^*) \le K + O(\delta)$. Since $\sigma^* = \tau$ outside $U$ and $\int_{U_i}(\sigma^* - \tau) = 0$ for each $i$, we have $\gamma^* = \gamma$ outside $U$, in particular $\gamma^*(\ell) = q$. Inside $U_i$, $|\gamma^* - \gamma| = O(\delta)$, so $\gamma^* \subset \bar\Omega$ for small $\delta$, because $\gamma(\bar U_i)$ is a compact subset of $\operatorname{int}\bar\Omega$. Embeddings of a compact arc form a $C^1$-open set, so $\gamma^*$ is embedded for small $\delta$. Take $\gamma_\epsilon = \gamma^*$ with $\delta$ small enough.
+\end{proof}
+
+\begin{proposition}[Regularity invariance for curves without obstacles]
+\label{prop:regularity_free}
+Let $p \ne q \in \R^n$, $n \ge 2$, with or without prescribed unit end tangents, and let $L > 0$ be such that some $C^{1,1}$ curve of length at most $L$ (respectively, exactly $L$) satisfies these conditions. Then the infimum of $\|\kappa\|_{L^\infty}$ over $C^r$ curves from $p$ to $q$ of length at most $L$ (respectively, exactly $L$) with these conditions is the same for every $r \in \{2, 3, \dots, \infty\}$ and equals the infimum over $C^{1,1}$ curves. This holds both for embedded and for immersed curves.
+\end{proposition}
+
+\begin{proof}
+Apply Lemma~\ref{lem:smoothing_interior} with $\bar\Omega = \R^n$, where the hypothesis $\gamma(N) \subset \operatorname{int}\bar\Omega$ is automatic, to every admissible $C^{1,1}$ curve. The construction does not use embeddedness, so it also applies to immersed curves. The reverse inequality holds because $C^r \subset C^{1,1}$.
+\end{proof}
+
+The domain $\R^n$ is not bounded. Proposition~\ref{prop:regularity_free} is therefore the obstacle-free analogue of Conjecture~\ref{thm:regularity_invariance}, not an instance of it. With obstacles, Lemma~\ref{lem:smoothing_interior} proves the conjecture for curves whenever some minimizing sequence in $\mathcal{A}_{1,1}(\Omega, \Sigma, V)$ is $C^\infty$ near every parameter mapped to $\partial\Omega$.
+
+\begin{remark}[The threshold $V > V_0$ is needed]
+\label{rem:regularity_threshold}
+At $V = V_0$ the equality can fail, in a degenerate way. Let $S = \{x \in \R^2 : \dist(x, [(-1,0),(1,0)]) \le 1\}$ be a stadium, $\Omega = B(0,4) \setminus S$, and $\Sigma = \{p, q\}$ with $p = (-4,0)$, $q = (4,0)$, without prescribed tangents. Then $\partial\Omega$ is $C^{1,1}$. The convex hull $K_1$ of $S \cup \{p, q\}$ is bounded by two arcs $\alpha$ and $\beta$, symmetric under $y \mapsto -y$. The arc $\alpha$ consists of the tangent segment from $p$ to the left unit circle, an arc of that circle ending at $e_1 = (-1, 1)$, the segment from $e_1$ to $(1,1)$, and the symmetric arc and segment to $q$. It is a $C^{1,1}$ curve with $|\kappa| \in \{0, 1\}$ and length $V_0 = 2\sqrt8 + 2\arcsin(1/3) + 2 \approx 8.3365$.
+
+Let $\gamma \subset \bar\Omega$ join $p$ to $q$. One of the closed curves $\gamma * \bar\alpha$, $\gamma * \bar\beta$ has nonzero winding number about the points of $\operatorname{int} S$, say the second. It then surrounds $S$, so its convex hull contains $K_1$. By the Cauchy--Crofton formula, a closed curve is at least as long as the perimeter of its convex hull, and perimeter is strictly monotone on nested convex bodies: if $K \subset K'$ and the perimeters are equal, then $K = K'$. Hence $\operatorname{len}\gamma \ge \operatorname{len}\alpha = V_0$. If $\operatorname{len}\gamma = V_0$, all these inequalities are equalities, so the convex hull of $\gamma * \bar\beta$ is $K_1$. Every extreme point of $K_1$ therefore lies on $\gamma * \bar\beta$. The circular arc of $\alpha$ that ends at $e_1$ consists of extreme points of $K_1$ and does not meet $\beta$, so it lies on $\gamma$. In the other case the same holds with $\alpha$ and $\beta$ exchanged. Suppose $\gamma$ is $C^2$. At $e_1$ its tangent is horizontal and its curvature vector is $(0,-1)$. By Taylor's formula, the points of $\gamma$ just beyond $e_1$ lie in $\operatorname{int} S$, which is a contradiction. Hence, at $V = V_0$, the class $\mathcal{A}_{1,1}$ is nonempty, with infimum $1$, while $\mathcal{A}_r$ is empty for every $r \ge 2$. The $C^r$ infimum is $+\infty$ because the class is empty, not because admissible smooth curves bend more.
+
+For every $V > V_0$ both classes are nonempty in this example. Replace the unit circles in the construction of $\alpha$ by circles of radius $1 + h$ about $(\pm1, 0)$ and the top segment by $y = 1 + h$. The resulting curve is $C^{1,1}$. Its curvature jumps occur at distance $h$ from $S$, inside $\Omega$, and it is a segment near $p$ and $q$. Lemma~\ref{lem:smoothing_interior} turns it into a $C^\infty$ admissible curve of the same length, and that length tends to $V_0$ as $h \to 0$.
+\end{remark}
+
+\begin{proposition}[$C^2$ minimizers of the planar problem]
+\label{prop:optimal_regularity}
+In the setting of Proposition~\ref{prop:dubins_duality}, with oriented endpoints $(p, T_p)$, $(q, T_q)$ in $\R^2$ and length at most $L$, assume that the endpoints are not joined by a segment of length at most $L$ with the given tangents. Then $\kappa^*(L) > 0$, and the infimum $\kappa^*(L) = \inf\{\kappa > 0 : d_\kappa \le L\}$ is a minimum, which we denote by $\hat K$. Assume moreover
+\begin{equation}
+\label{eq:hypothesis_H}
+\textup{(H)} \qquad d_{\hat K} = L .
+\end{equation}
+Then $\inf_{C^2} \|\kappa\|_{L^\infty} = \hat K$. This infimum is attained if and only if some shortest Dubins path of curvature bound $\hat K$ is a single circular arc.
+\end{proposition}
+
+\begin{proof}
+By Propositions~\ref{prop:dubins_duality} and~\ref{prop:regularity_free}, the $C^2$ and $C^{1,1}$ infima both equal $\hat K$. A minimizer has $|\kappa| \le \hat K$ and length at most $L = d_{\hat K}$, so it is a shortest Dubins path of bound $\hat K$. By Dubins' theorem \cite{dubins1957} it is of type CSC or CCC, or a subpath of one. Its curvature is therefore piecewise constant, with values in $\{0, \pm\hat K\}$ on finitely many pieces of positive length. If the minimizer is $C^2$, its curvature is continuous, hence constant, so it is a single piece. That piece is not a segment, because the endpoints are not joined by a segment of length at most $L$. Conversely, a single arc is $C^\infty$.
+\end{proof}
+
+Hypothesis (H) says that the length constraint is active at the dual curvature $\hat K$. The infimum defining $\hat K$ is attained because $\kappa \mapsto d_\kappa$ is nonincreasing and lower semicontinuous, so $d_{\hat K} \le L$ always. Equality can fail, because $d_\kappa$ may jump. Without (H), minimizers need not be Dubins paths, and we do not know their regularity. Among data satisfying (H), the terminal poses $(q, T_q)$ that a single arc reaches from $(p, T_p)$ form a two-parameter family, a null set in the three-dimensional space of poses. Whether (H) itself holds for almost every datum is not known to us. So we do not claim that $C^2$ minimizers are absent for generic data. By analogy with obstacle problems \cite{caffarelli1998}, we expect $C^{1,1}$ to be the natural regularity class in general, but we have no proof.
+
+\begin{proposition}[Bounded derivative of the curvature]
+\label{prop:bounded_derivative_rate}
+In the setting of Proposition~\ref{prop:optimal_regularity}, (H) not being needed, let $\hat\kappa_B$ be the infimum of $\|\kappa\|_{L^\infty}$ over $C^2$ curves of length at most $L$ joining the oriented endpoints whose curvature is Lipschitz with $|\kappa'| \le B$. Then there are $C, B_0 > 0$, depending on the data, such that
+\begin{equation}
+\hat K \le \hat\kappa_B \le \hat K + C B^{-2} \qquad (B \ge B_0).
+\end{equation}
+\end{proposition}
+
+\begin{proof}
+The lower bound holds because the class is smaller. For the upper bound, let $\theta$ be the heading of a shortest Dubins path of bound $\hat K$, with pieces of zero length removed. It has length $d_{\hat K} \le L$, and its curvature $\theta'$ has finitely many interior jumps $\Delta_k$ at points $s_k$, with $|\Delta_k| \le 2\hat K$. If there are none, take the path itself. Otherwise, extend $\theta$ affinely beyond both ends and let $\theta_\delta = \rho_\delta * \theta$, where $\rho_\delta = \delta^{-1}\rho(\cdot/\delta)$ and $\rho$ is a symmetric mollifier supported in $[-1,1]$. Let $\delta$ be less than half the shortest piece. Then $\theta_\delta$ agrees with $\theta$ outside the $\delta$-neighbourhoods of the $s_k$, keeps the end headings, and satisfies $|\theta_\delta'| \le \hat K$. Moreover $|\theta_\delta - \theta| \le |\Delta_k|\delta$ near $s_k$, so the endpoint defect $\int_0^{\ell} (e^{i\theta_\delta} - e^{i\theta})\,ds$ is $O(\delta^2)$, and $|\theta_\delta''| = \big|\sum_k \Delta_k\rho_\delta(\cdot - s_k)\big| \le 2\hat K\|\rho\|_\infty/\delta$.
+
+Since the path is not a segment, there are fixed bumps $\phi_1, \phi_2 \in C_c^\infty$, supported inside pieces and away from the $s_k$, for which the vectors $\int i e^{i\theta}\phi_j\,ds$ are linearly independent. By the inverse function theorem there is $c = O(\delta^2)$ such that $\theta_\delta + c_1\phi_1 + c_2\phi_2$ closes up at $q$. It keeps both end headings and the length, and it changes $\|\kappa\|_{L^\infty}$ and $\|\kappa'\|_{L^\infty}$ by $O(\delta^2)$. Choosing $\delta = 2\hat K\|\rho\|_\infty/B\,(1 + o(1))$ gives an admissible curve with $|\kappa'| \le B$ and $\|\kappa\|_{L^\infty} \le \hat K + O(B^{-2})$.
+\end{proof}
+
+\begin{remark}[The rate depends on the Dubins word]
+The exponent $-2$ in Proposition~\ref{prop:bounded_derivative_rate} is not sharp in general. Numerically, replace each curvature jump of the Dubins path by a linear ramp of slope $B$ centred on the jump, and readjust the three piece lengths and the peak curvature to restore the endpoint, the end heading and the length. The resulting competitors have excess $\hat\kappa - \hat K$ proportional to $B^{-3}$ for words of type CSC: fitted exponents lie between $-2.995$ and $-3.000$ in six cases. For words of type CCC the excess is proportional to $B^{-2}$: fitted exponents lie between $-2.017$ and $-2.027$ in three cases. These are numerical observations of upper bounds. No lower bound on $\hat\kappa_B - \hat K$ is known to us for either type.
+
+A heuristic explanation for CSC words is that both jumps occur at the heading of the segment. The leading endpoint defects are then normal to the segment, while the first variation of length with respect to the endpoint is along the segment, so they cost no length at first order. This problem differs from the shortest-path problem with bounded $\kappa'$ alone \cite{bcl1994,kostov1995}. There, minimizers chatter, and only suboptimal paths are constructed explicitly. Here the curvature itself is minimized, and the derivative bound only regularizes it.
+\end{remark}
+
+\begin{proposition}[Closed submanifolds cannot be squeezed]
+\label{prop:ball_bound}
+Let $M^k$ be a compact manifold without boundary, $k \ge 1$, and let $f\colon M \to \R^n$ be a $C^{1,1}$ immersion with $\|\II\|_{L^\infty(M)} \le \kappa$. If $f(M)$ lies in a closed ball of radius $R$, then $\kappa R \ge 1$. Equality holds for the round sphere $S^k(R) \subset \R^{k+1}$.
+\end{proposition}
+
+\begin{proof}
+Translate so that the ball is centred at $0$. Let $p \in M$ maximize $|f|$ and set $R' = |f(p)| \le R$, $e = f(p)/R'$; here $R' > 0$, since an immersion of a manifold of positive dimension is not constant. At a maximum, $\langle f(p), df_p(v)\rangle = 0$ for all $v$, so $e$ is orthogonal to $T = df_p(T_pM)$. By the inverse function theorem applied to the orthogonal projection onto $T$, a neighbourhood of $p$ is parametrized as $F(x) = f(p) + x + u(x)$, $x \in B_r(0) \subset T$, with $u\colon B_r(0) \to T^\perp$ of class $C^{1,1}$, $u(0) = 0$ and $Du(0) = 0$. Put $w = \langle e, u\rangle$. From $|F(x)|^2 \le R'^2$ and $\langle e, x\rangle = 0$ we get
+\begin{equation}
+\label{eq:ball_bound_upper}
+2R'\,w(x) \le -|x|^2 - |u(x)|^2 \le -|x|^2 .
+\end{equation}
+For $0 < \rho \le r$ let $\delta_\rho = \sup_{B_\rho}|Du|$ and $\varepsilon_\rho = \sup_{x \in B_\rho}\|P_{T_x} - P_T\|$, where $P_{T_x}$ is the orthogonal projection onto the tangent space at $F(x)$; both tend to $0$ as $\rho \to 0$ because $Du$ is continuous. At almost every $x \in B_\rho$ the map $u$ is twice differentiable, and for a unit vector $v \in T$ the vector $\partial^2_{vv}u(x) \in T^\perp$ satisfies $|P_{N_x}\partial^2_{vv}u| \ge (1 - \varepsilon_\rho)|\partial^2_{vv}u|$, where $N_x$ is the normal space at $F(x)$, since $|P_{T_x} z| = |(P_{T_x} - P_T)z|$ for $z \in T^\perp$. As $\partial_v F = v + \partial_v u$ and $\partial^2_{vv}F = \partial^2_{vv}u$,
+\[
+|\partial^2_{vv} w(x)| \le |\partial^2_{vv}u(x)| \le \frac{|\II(\partial_vF, \partial_vF)|}{1 - \varepsilon_\rho} \le \frac{1+\delta_\rho^2}{1 - \varepsilon_\rho}\,\kappa =: \kappa_\rho ,
+\]
+because $|\partial_v F|^2 = 1 + |\partial_v u|^2$, the two summands being orthogonal, and $|\II(X,X)| \le \|\II\|_{\op}|X|^2$; we take $\rho$ so small that $\varepsilon_\rho < 1$. Since $D^2 w$ is symmetric, its operator norm is $\max_{|v| = 1}|\partial^2_{vv}w|$, so $Dw$ is Lipschitz on the convex set $B_\rho$ with constant at most $\kappa_\rho$. With $Dw(0) = 0$ this gives $|w(x)| = |\int_0^1 Dw(tx)\cdot x\,dt| \le \tfrac12\kappa_\rho|x|^2$, and \eqref{eq:ball_bound_upper} yields $|x|^2 \le 2R'|w(x)| \le R'\kappa_\rho|x|^2$ for $x \in B_\rho$. Hence $1 \le \kappa_\rho R' \le \kappa_\rho R$, and $\rho \to 0$ gives $\kappa R \ge 1$. The round sphere has $\|\II\|_{\op} \equiv 1/R$.
+\end{proof}
+
+For curves this is the argument of Remark~\ref{rem:compactness_necessity}, applied at the farthest point. Both hypotheses matter: an arc of a circle of radius $\rho$ and length $\ell < \rho$ lies in a ball of radius $\ell/2$ and has $\kappa R = \ell/(2\rho) < 1$, so closedness is needed; and the bound concerns $\|\II\|_{L^\infty}$ only, not the intrinsic geometry.
+
+\begin{remark}[No Nash--Kuiper corrugations under an $L^\infty$ curvature bound]
+\label{rem:nash_kuiper}
+The Nash--Kuiper theorem \cite{nash1954, kuiper1955a, kuiper1955b} states that every short embedding of a compact Riemannian manifold $(M^k, g)$ into $\R^m$ can be approximated in $C^0$ by $C^1$ isometric embeddings; Nash proved it for $m \ge k+2$, and Kuiper extended it to $m \ge k+1$. Since $\lambda u$ is short for any embedding $u$ and small $\lambda > 0$, a compact $(M^k, g)$ that embeds in $\R^m$, $m \ge k+1$, has $C^1$ isometric embeddings into $\R^m$ inside a ball of any prescribed radius $\varepsilon$. By Proposition~\ref{prop:ball_bound}, none of them is $C^{1,1}$ with $\|\II\|_{L^\infty} < 1/\varepsilon$. The constructions add, at each step, a corrugation or spiral of frequency $K$ whose $C^2$ norm grows by a factor of order $K$ while the $C^1$ norm stays bounded \cite[Section~3]{conti2012}. For $N \ge 2$ and every $\beta > 0$, the unit-speed curve of length $2\pi$ with tangent angle $\theta + \beta\sin(N\theta)$ is closed, since $\int_0^{2\pi} e^{i(\theta + \beta\sin N\theta)}\,d\theta = 2\pi\sum_{k \in \mathbb{Z}} J_k(\beta)\,\delta_{1+kN,0} = 0$ (Jacobi--Anger expansion; $1 + kN \ne 0$ for $N \ge 2$); its curvature has $\|\kappa\|_{L^\infty} = 1 + \beta N$. The term $k = 0$ of the same expansion is a circle of radius $J_0(\beta)$, and the remaining terms are $O(1/N)$. For $\beta$ the first zero of $J_0$ the curve therefore lies within $O(1/N)$ of the origin, and its product with itself is an isometric immersion of the flat torus $(\R/2\pi\mathbb{Z})^2$ into $\R^4$ with $\|\II\|_{\op} = 1 + \beta N$.
+
+In the problem \eqref{eq:variational_problem} every admissible competitor has bounded $\|\II\|_{L^\infty}$, so these maps are not competitors, and microstructure cannot arise. If $u_j$ are graph representations over a fixed ball, with $|Du_j| \le 1$, of submanifolds with $\|\II\|_{L^\infty} \le \kappa$, the estimate in the proof above bounds $\mathrm{Lip}(Du_j)$ uniformly in $j$: the tangent planes make an angle of at most $\pi/4$ with the base plane, so the factor $(1+\delta^2)/(1-\varepsilon)$ is at most $2/(1 - 2^{-1/2})$. By Arzel\`a--Ascoli a subsequence has $Du_j \to Du$ uniformly, so the Young measure generated by $(Du_j)$ is the Dirac measure at $Du(x)$, and the limit is $C^{1,1}$. This is the mechanism of Proposition~\ref{thm:existence}, and of Breuning's compactness theorem \cite{breuning2015} for closed immersions. Locally, in graph charts of uniform size and in the interior, a minimizing sequence therefore has no oscillating tangent planes, and the minimizers obtained there are $C^{1,1}$ submanifolds, not corrugated limits.
+
+The rigidity results that separate the regimes concern isometric immersions of surfaces into $\R^3$. If a closed surface $(S^2, g)$ has positive Gauss curvature, a $C^2$ isometric immersion into $\R^3$ is unique up to rigid motion \cite{cohnvossen1927, herglotz1943}; see \cite[Section~1]{conti2012} for this formulation. For $g \in C^2$, Borisov extended this to $C^{1,\alpha}$ immersions with $\alpha > 2/3$; Conti, De Lellis and Sz\'ekelyhidi give a proof \cite[Theorem~1.7, Corollary~1.8]{conti2012}, which covers in particular $C^{1,1}$ immersions. In the other direction, for a $C^2$ metric on a bounded domain of $\R^n$ that is $C^0$-close to a constant metric, short maps into $\R^{n+1}$ are $C^0$-approximated by $C^{1,\alpha}$ isometric immersions for $\alpha < 1/(1+n+n^2)$ \cite[Theorem~1.1, Corollary~1.2]{conti2012}, and for $C^2$ metrics on the $2$-dimensional disk with values in $\R^3$ the same approximation holds for every $\alpha < 1/5$ \cite{delellis2018}. A closed $C^2$ surface in $\R^3$ has a point of positive Gauss curvature: at the point $p$ farthest from the origin, inequality \eqref{eq:ball_bound_upper} gives $D^2 w(0) \le -R'^{-1}\,\mathrm{Id}$, so the second fundamental form is definite there and the Gauss equation gives $K(p) \ge R'^{-2}$. So the flat torus has no $C^2$ isometric immersion into $\R^3$, whereas its $C^1$ isometric embeddings exist and have been rendered explicitly \cite{borrelli2012}.
 \end{remark}
 
 \subsection{Discretization}
@@ -516,7 +825,7 @@ In higher even dimension $2m$, the Gauss equation gives $|\mathrm{Rm}| \le C\kap
 
 \section{Summary of Status}
 \label{sec:status}
-Proved here: Propositions~\ref{prop:knot_gap}, \ref{prop:dubins_duality}, \ref{thm:obstacle_exclusion}, \ref{thm:lower_bounds}, \ref{thm:existence}, \ref{thm:scaling_law}, \ref{prop:gauss_bonnet_floor} and Theorem~\ref{thm:monotonicity}, together with the exact curvatures of the candidates in Section~\ref{sec:examples} and Table~\ref{tab:universal_classification}. The contact principle holds for $C^{1,1}$ submanifolds (Proposition~\ref{thm:obstacle_exclusion}(4)), so it applies to the minimizers of Proposition~\ref{thm:existence}; it constrains the curvature only at contact points, and obstacles that curve away from $\Omega$ can still raise $\kappa^*$. Classical inputs: Dubins, F\'ary--Milnor, Fenchel, Langer--Breuning, Gauss--Bonnet. Open: Conjectures~\ref{conj:saturated}, \ref{thm:regularity_invariance} and \ref{thm:dec_gamma_convergence}, existence for $k \ge 2$ with prescribed boundary, optimality of every candidate except the planar U-turn, and any analogue of the Dubins structure for $k \ge 2$. The constructive pipeline (Algorithm~\ref{alg:constructive}) is a heuristic.
+Proved here: Propositions~\ref{prop:knot_gap}, \ref{prop:dubins_duality}, \ref{thm:obstacle_exclusion}, \ref{thm:lower_bounds}, \ref{thm:existence}, \ref{thm:scaling_law}, \ref{prop:gauss_bonnet_floor}, \ref{prop:regularity_free}, \ref{prop:optimal_regularity} (under hypothesis (H)), \ref{prop:bounded_derivative_rate}, Lemma~\ref{lem:smoothing_interior}, the threshold example of Remark~\ref{rem:regularity_threshold} and Theorem~\ref{thm:monotonicity}, together with the exact curvatures of the candidates in Section~\ref{sec:examples} and Table~\ref{tab:universal_classification}. The contact principle holds for $C^{1,1}$ submanifolds (Proposition~\ref{thm:obstacle_exclusion}(4)), so it applies to the minimizers of Proposition~\ref{thm:existence}; it constrains the curvature only at contact points, and obstacles that curve away from $\Omega$ can still raise $\kappa^*$. Classical inputs: Dubins, F\'ary--Milnor, Fenchel, Langer--Breuning, Gauss--Bonnet. Open: Conjectures~\ref{conj:saturated}, \ref{thm:regularity_invariance} and \ref{thm:dec_gamma_convergence}, existence for $k \ge 2$ with prescribed boundary, optimality of every candidate except the planar U-turn, and any analogue of the Dubins structure for $k \ge 2$. The constructive pipeline (Algorithm~\ref{alg:constructive}) is a heuristic.
 
 \input{declarations_chapter}
 
@@ -526,6 +835,11 @@ Proved here: Propositions~\ref{prop:knot_gap}, \ref{prop:dubins_duality}, \ref{t
 J.~Douglas,
 \emph{Solution of the problem of Plateau},
 Trans. Amer. Math. Soc. \textbf{33} (1931), no. 1, 263--321, \href{https://doi.org/10.1090/s0002-9947-1931-1501590-9}{doi:10.1090/s0002-9947-1931-1501590-9}.
+
+\bibitem{rado1930}
+T.~Rad\'o,
+\emph{On Plateau's problem},
+Ann. of Math. \textbf{31} (1930), no.~3, 457--469, \href{https://doi.org/10.2307/1968237}{doi:10.2307/1968237}.
 
 \bibitem{willmore1965}
 T.~J.~Willmore,
@@ -545,7 +859,7 @@ Amer. J. Math. \textbf{79} (1957), 497--516, \href{https://doi.org/10.2307/23725
 \bibitem{sussmann1995}
 H.~J.~Sussmann,
 \emph{Shortest 3-dimensional paths with a prescribed curvature bound},
-Proceedings of the 34th IEEE Conference on Decision and Control (1995), 3306--3311, \href{https://doi.org/10.1109/cdc.1995.478997}{doi:10.1109/cdc.1995.478997}.
+Proceedings of the 34th IEEE Conference on Decision and Control (1995), 3306--3312, \href{https://doi.org/10.1109/cdc.1995.478997}{doi:10.1109/cdc.1995.478997}.
 
 \bibitem{chitsaz2007}
 H.~Chitsaz and S.~M.~LaValle,
@@ -571,6 +885,11 @@ Math. Ann. \textbf{270} (1985), no. 2, 223--234, \href{https://doi.org/10.1007/b
 P.~Breuning,
 \emph{Immersions with bounded second fundamental form},
 J. Geom. Anal. \textbf{25} (2015), no. 2, 1344--1386, \href{https://doi.org/10.1007/s12220-014-9472-7}{doi:10.1007/s12220-014-9472-7}.
+
+\bibitem{fary1949}
+I.~F\'ary,
+\emph{Sur la courbure totale d'une courbe gauche faisant un n\oe ud},
+Bull. Soc. Math. France \textbf{77} (1949), 128--138, \href{https://doi.org/10.24033/bsmf.1405}{doi:10.24033/bsmf.1405}.
 
 \bibitem{milnor1950}
 J.~W.~Milnor,
@@ -621,6 +940,106 @@ ACM SIGGRAPH 2013 courses, 1--126, \href{https://doi.org/10.1145/2504435.2504442
 M.~Wardetzky, M.~Bergou, D.~Harmon, D.~Zorin, and E.~Grinspun,
 \emph{Discrete quadratic curvature energies},
 Computer Aided Geometric Design \textbf{24} (2007), no. 8--9, 499--518, \href{https://doi.org/10.1016/j.cagd.2007.07.006}{doi:10.1016/j.cagd.2007.07.006}.
+
+\bibitem{nash1954}
+J.~Nash,
+\emph{$C^1$ isometric imbeddings},
+Ann. of Math. \textbf{60} (1954), no.~3, 383--396, \href{https://doi.org/10.2307/1969840}{doi:10.2307/1969840}.
+
+\bibitem{kuiper1955a}
+N.~H.~Kuiper,
+\emph{On $C^1$-isometric imbeddings. I},
+Indag. Math. (Proceedings) \textbf{58} (1955), 545--556, \href{https://doi.org/10.1016/S1385-7258(55)50075-8}{doi:10.1016/S1385-7258(55)50075-8}.
+
+\bibitem{kuiper1955b}
+N.~H.~Kuiper,
+\emph{On $C^1$-isometric imbeddings. II},
+Indag. Math. (Proceedings) \textbf{58} (1955), 683--689, \href{https://doi.org/10.1016/S1385-7258(55)50093-X}{doi:10.1016/S1385-7258(55)50093-X}.
+
+\bibitem{conti2012}
+S.~Conti, C.~De~Lellis and L.~Sz\'ekelyhidi~Jr.,
+\emph{$h$-principle and rigidity for $C^{1,\alpha}$ isometric embeddings},
+in: Nonlinear Partial Differential Equations, Abel Symposia \textbf{7}, Springer, Berlin, 2012, 83--116, \href{https://doi.org/10.1007/978-3-642-25361-4_5}{doi:10.1007/978-3-642-25361-4\_5}.
+
+\bibitem{delellis2018}
+C.~De~Lellis, D.~Inauen and L.~Sz\'ekelyhidi~Jr.,
+\emph{A Nash--Kuiper theorem for $C^{1,1/5-\delta}$ immersions of surfaces in $3$ dimensions},
+Rev. Mat. Iberoam. \textbf{34} (2018), no.~3, 1119--1152, \href{https://doi.org/10.4171/rmi/1019}{doi:10.4171/rmi/1019}.
+
+\bibitem{borrelli2012}
+V.~Borrelli, S.~Jabrane, F.~Lazarus and B.~Thibert,
+\emph{Flat tori in three-dimensional space and convex integration},
+Proc. Natl. Acad. Sci. USA \textbf{109} (2012), no.~19, 7218--7223, \href{https://doi.org/10.1073/pnas.1118478109}{doi:10.1073/pnas.1118478109}.
+
+\bibitem{cohnvossen1927}
+S.~Cohn-Vossen,
+\emph{Zwei S\"atze \"uber die Starrheit der Eifl\"achen},
+Nachr. Ges. Wiss. G\"ottingen, Math.-Phys. Kl. (1927), 125--134.
+
+\bibitem{herglotz1943}
+G.~Herglotz,
+\emph{\"Uber die Starrheit der Eifl\"achen},
+Abh. Math. Sem. Univ. Hamburg \textbf{15} (1943), 127--129, \href{https://doi.org/10.1007/BF02941079}{doi:10.1007/BF02941079}.
+
+\bibitem{fuller1963}
+A.~T.~Fuller,
+\emph{Study of an optimum non-linear control system},
+J. Electronics and Control \textbf{15} (1963), no.~1, 63--71, \href{https://doi.org/10.1080/00207216308937555}{doi:10.1080/00207216308937555}.
+
+\bibitem{fuller1964}
+A.~T.~Fuller,
+\emph{Further study of an optimum non-linear control system},
+J. Electronics and Control \textbf{17} (1964), no.~3, 283--300, \href{https://doi.org/10.1080/00207216408937707}{doi:10.1080/00207216408937707}.
+
+\bibitem{bcl1994}
+J.-D.~Boissonnat, A.~Cerezo and J.~Leblond,
+\emph{A note on shortest paths in the plane subject to a constraint on the derivative of the curvature},
+INRIA Research Report RR-2160 (1994), HAL inria-00074512; see also \cite{bcl1999}.
+
+\bibitem{bcl1999}
+J.-D.~Boissonnat, A.~C\'er\'ezo, E.~Degtiariova-Kostova, V.~Kostov and J.~Leblond,
+\emph{Shortest plane paths with bounded derivative of the curvature},
+C. R. Acad. Sci. Paris S\'er. I Math. \textbf{329} (1999), no.~7, 613--618, \href{https://doi.org/10.1016/S0764-4442(00)80011-7}{doi:10.1016/S0764-4442(00)80011-7}.
+
+\bibitem{sussmann1997cdc}
+H.~J.~Sussmann,
+\emph{The Markov--Dubins problem with angular acceleration control},
+Proceedings of the 36th IEEE Conference on Decision and Control (1997), 2639--2643, \href{https://doi.org/10.1109/CDC.1997.657778}{doi:10.1109/CDC.1997.657778}.
+
+\bibitem{robbins1980}
+H.~M.~Robbins,
+\emph{Junction phenomena for optimal control with state-variable inequality constraints of third order},
+J. Optim. Theory Appl. \textbf{31} (1980), no.~1, 85--99, \href{https://doi.org/10.1007/BF00934790}{doi:10.1007/BF00934790}.
+
+\bibitem{kostov1995}
+V.~P.~Kostov and E.~V.~Degtiariova-Kostova,
+\emph{The planar motion with bounded derivative of the curvature and its suboptimal paths},
+Acta Math. Univ. Comenianae \textbf{64} (1995), no.~2, 185--226.
+
+\bibitem{zelikinborisov1994}
+M.~I.~Zelikin and V.~F.~Borisov,
+\emph{Theory of Chattering Control, with Applications to Astronautics, Robotics, Economics and Engineering},
+Birkh\"auser, 1994, \href{https://doi.org/10.1007/978-1-4612-2702-1}{doi:10.1007/978-1-4612-2702-1}.
+
+\bibitem{zhutrelatcerf2016}
+J.~Zhu, E.~Tr\'elat and M.~Cerf,
+\emph{Planar tilting maneuver of a spacecraft: singular arcs in the minimum time problem and chattering},
+Discrete Contin. Dyn. Syst. Ser. B \textbf{21} (2016), no.~4, 1347--1388, \href{https://doi.org/10.3934/dcdsb.2016.21.1347}{doi:10.3934/dcdsb.2016.21.1347}.
+
+\bibitem{jls1971}
+D.~H.~Jacobson, M.~M.~Lele and J.~L.~Speyer,
+\emph{New necessary conditions of optimality for control problems with state-variable inequality constraints},
+J. Math. Anal. Appl. \textbf{35} (1971), no.~2, 255--284, \href{https://doi.org/10.1016/0022-247X(71)90219-8}{doi:10.1016/0022-247X(71)90219-8}.
+
+\bibitem{caponigro2018}
+M.~Caponigro, R.~Ghezzi, B.~Piccoli and E.~Tr\'elat,
+\emph{Regularization of chattering phenomena via bounded variation controls},
+IEEE Trans. Automat. Control \textbf{63} (2018), no.~7, 2046--2060, \href{https://doi.org/10.1109/TAC.2018.2810540}{doi:10.1109/TAC.2018.2810540}, arXiv:1303.5796.
+
+\bibitem{malisani2023}
+P.~Malisani,
+\emph{Interior point methods in optimal control problems of affine systems: convergence results and solving algorithms},
+SIAM J. Control Optim. \textbf{61} (2023), no.~6, 3390--3414, \href{https://doi.org/10.1137/23M1561233}{doi:10.1137/23M1561233}, arXiv:2308.16554.
 
 \end{thebibliography}
 

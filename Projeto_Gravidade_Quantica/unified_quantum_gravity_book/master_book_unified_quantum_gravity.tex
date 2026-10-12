@@ -1,20 +1,16 @@
 \documentclass[11pt,a4paper,openright,twoside]{book}
 
-\usepackage[utf8]{inputenc}
-\usepackage[T1]{fontenc}
-\usepackage{amsmath,amssymb,amsfonts,amsthm,mathtools}
-\usepackage{mathrsfs}
-\usepackage{microtype}
-\usepackage{booktabs}
-\usepackage{tabularx}
-\usepackage{array}
-\usepackage[dvipsnames]{xcolor}
-\usepackage{hyperref}
-\usepackage{geometry}
-\usepackage{enumitem}
-\usepackage{graphicx}
+% F-19: common_preamble already loads morewrites, inputenc, fontenc, the
+% amsmath family, mathrsfs, microtype, booktabs, tabularx, array, xcolor,
+% hyperref, geometry, enumitem, graphicx, cite, silence, tikz, plus the
+% theorem environments and auto-harvested macros every chapter body needs
+% (see common_preamble.tex). Only the two packages below are NOT in it:
+% pdfpages (for the Dictionary's \includepdf) and emptypage (blank-page
+% headers), both specific to this top-level master.
+\input{common_preamble}
 \usepackage{pdfpages}
 \usepackage{emptypage}
+\usepackage{longtable}
 
 \geometry{
   top=3cm,
@@ -85,16 +81,19 @@ or the human mind is more than a machine."} \\
 \clearpage
 
 \chapter*{Author's Preface}
-This comprehensive monograph consolidates the multidisciplinary investigations developed across three fundamental programs of contemporary theoretical research: functional tensor algebra and geometric flows, fractional calculus on continuous Pascal simplices, and the variational theory of minimax extrinsic curvature with causal Jordan embeddings.
+This monograph collects work on three programs: functional tensor algebra and geometric flows, fractional calculus on continuous Pascal simplices, and the variational theory of minimax extrinsic curvature with causal Jordan embeddings.
 
 The objective of this work is to develop the mathematics of these three programs rigorously, and to state precisely what they do and do not imply for the problem of reconciling General Relativity with Quantum Field Theory. Throughout, statements labelled \emph{Theorem}, \emph{Proposition} or \emph{Lemma} are proved in the text or cited as classical results. Statements whose proof is not available are labelled \emph{Conjecture}. Phenomenological parametrizations and heuristic analogies are identified as such, and Chapter~13 records order-of-magnitude estimates of the observational signatures discussed in Part~IV.
+
+\section*{Principal Results}
+Most of the classical material is cited. The results proved in the text that belong to this book include: the Fourier symbol of the simplicial Beta-kernel Laplacian and its long-wavelength moment matrix (Chapter~3); the continuous Star of David identity, the golden-ratio asymptotics of the continuous Fibonacci diagonal, and a tail estimate for the continuous Dixon integral at integer order (Chapter~3); the exact Sobolev gain $\gamma = 1$ of the Beta-kernel trace, an inversion formula from the family of traces, and the sharp Lipschitz constant $\alpha/(\alpha+m)$ of the induced barycentric map (Chapter~5); the knot gap $4\pi/L$, the contact principle at obstacles, the structure of the minimiser of the linear wall problem, and the bound $\kappa R \ge 1$ for closed submanifolds in a ball, which rules out corrugated competitors of Nash--Kuiper type (Chapter~7); U-turn bounds in tubes of the space forms and pointwise bounds on slices of bounded extrinsic curvature (Chapters~8 and~12); the minimality of the three-arc teardrop U-turn among three-arc curves through a narrow mouth (Chapter~9); and a counterexample to curvature-based generalization bounds for interpolating linear regression (Chapter~10). A formalization in \textsc{Lean}~4 against \textsc{Mathlib} covers selected results of Chapters~1--12 and the numerical bounds of Chapter~13, each in a declared form (full, finite-dimensional, pointwise or conditional on named classical theorems). The Results Index at the end of the book lists, for every theorem, proposition, lemma and corollary, its proof, its numerical checks, its \textsc{Lean} module with the declared reduction, and its audit status.
 
 \section*{Status of the Verification Material}
 The accompanying repository contains two kinds of supporting material. Their status is stated here explicitly.
 {\sloppy
 \begin{enumerate}
-    \item \textbf{Numerical scripts.} The scripts \texttt{verify\_chapXX\_numerical.py} (one per chapter) and the auxiliary checking scripts of the repository evaluate formulas of the text numerically, for example by comparing closed forms with direct quadrature. Such checks catch algebraic and numerical errors. They do not replace proofs, and a check can only be as independent as its reference computation. The scripts are being revised so that every test compares against an independent computation.
-    \item \textbf{\textsc{Lean 4} files} (\texttt{formal\_proofs\_book}, \texttt{formal\_proofs\_lean4}). The modules under \texttt{formal\_proofs\_book/Book} are a \emph{naming skeleton}: each chapter's results are recorded as named structures whose fields are Boolean or floating-point placeholders, and the accompanying Lean ``theorems'' only restate their hypotheses. They therefore verify \emph{no} mathematical content of this book and should not be read as a formalization. A genuine formalization against \textsc{Mathlib}, beginning with the elementary algebraic lemmas (e.g.\ the constraint bounds of Chapter~12, Theorem~3.1), is in progress in \texttt{formal\_proofs\_book/BookReal}. Only results listed there with their \textsc{Lean} statement should be regarded as machine-checked.
+    \item \textbf{Numerical scripts.} The scripts \texttt{verify\_chapXX\_numerical.py} (one per chapter) and the auxiliary checking scripts of the repository evaluate formulas of the text numerically, for example by comparing closed forms with direct quadrature. Such checks catch algebraic and numerical errors. They do not replace proofs, and a check can only be as independent as its reference computation. The checks compare against an independent computation and include a negative control, a mutated formula that must fail.
+    \item \textbf{\textsc{Lean 4} files} (\texttt{formal\_proofs\_book}, \texttt{formal\_proofs\_lean4}). The modules under \texttt{formal\_proofs\_book/Book} are a \emph{naming skeleton}: each chapter's results are recorded as named structures whose fields are Boolean or floating-point placeholders, and the accompanying Lean ``theorems'' only restate their hypotheses. They therefore verify \emph{no} mathematical content of this book and should not be read as a formalization. A separate formalization against \textsc{Mathlib} covers selected results, listed with their axiom check in \texttt{formal\_proofs\_mathlib/README.md}; the chapters concerned and the level of each formalization are stated under ``Verification status'' in the Declarations below. Only results stated with their \textsc{Lean} statement and axiom check in a published repository should be regarded as machine-checked.
 \end{enumerate}
 \par}
 
@@ -106,22 +105,11 @@ The source files, numerical scripts, and \textsc{Lean} material are hosted at
 together with an audit log (\texttt{WORKPLAN.md}) recording known issues, corrections, and the verification status of each result.
 }
 
-\section*{Declarations}
-\textbf{Funding.} This research was financed in part by the Coordena\c{c}\~ao de Aperfei\c{c}oamento de Pessoal de N\'ivel Superior -- Brasil (CAPES) -- Finance Code 001.
-
-\medskip\noindent\textbf{Competing interests.} The author declares no competing interests.
-
-\medskip\noindent\textbf{Use of generative AI tools.} In line with the COPE position on authorship and AI tools, the author discloses that large language model assistants (Anthropic Claude; Google Gemini, used through the Antigravity agent environment) were used extensively in preparing this monograph:
-\begin{itemize}
-    \item drafting and editing text and \LaTeX{} source;
-    \item proposing, expanding and revising derivations and proofs under the author's direction;
-    \item writing the Python verification scripts and the \textsc{Lean 4} files;
-    \item searching and checking the literature and bibliographic references;
-    \item adversarial auditing of proofs, numerical claims and code.
-\end{itemize}
-AI tools are not authors of this work. The author chose the research questions and the overall framework, reviewed the material, and is responsible for the entire content, including any remaining errors.
-
-\medskip\noindent\textbf{Code and data availability.} See the repository cited above. The monograph is archived on Zenodo, \href{https://doi.org/10.5281/zenodo.22290043}{doi:10.5281/zenodo.22290043}, under the CC~BY~4.0 license.
+% Declarations: single source. The text lives in ../declarations_chapter.tex
+% (shared with the standalone chapter PDFs); extract.py drops the per-chapter
+% copies from gen/chapNN_body.tex, so the book has exactly one Declarations section.
+\newcommand{\gtqgdeclscope}{book}
+\input{../declarations_chapter}
 
 \tableofcontents
 
@@ -133,11 +121,11 @@ AI tools are not authors of this work. The author chose the research questions a
 
 \chapter{Functional Realizations of Matrices and Hypertensors: Emergent Invariants and Geometric Measures}
 \chaptermark{Realizations of Matrices and Hypertensors}
-\includepdf[pages=1-]{chap01_functional_realizations_matrices_tensors.pdf}
+\input{gen/chap01_body}
 
 \chapter{Geometric Flows, Partial Differential Equations, and Variational Dynamics on Matrix and Tensor Manifolds}
 \chaptermark{Geometric Flows on Matrix and Tensor Manifolds}
-\includepdf[pages=1-]{chap02_geometric_flows_tensor_varieties.pdf}
+\input{gen/chap02_body}
 
 % ==============================================================================
 \part{Continuous Simplicial Geometry and Fractional Calculus on Pascal Simplices}
@@ -145,19 +133,19 @@ AI tools are not authors of this work. The author chose the research questions a
 
 \chapter{Analytic Continuation of Pascal's Simplex: Continuous Multinomial Integrals, Polytope Boundary Recurrences, and Simplicial Fractional Calculus}
 \chaptermark{Analytic Continuation of Pascal's Simplex}
-\includepdf[pages=1-]{chap03_pascal_simplex_continuous_multinomials.pdf}
+\input{gen/chap03_body}
 
 \chapter{Nonlinear Simplicial Waves and Anomalous Porous Transport Induced by Beta-Kernel Fractional Laplacians}
 \chaptermark{Nonlinear Simplicial Waves and Porous Transport}
-\includepdf[pages=1-]{chap04_simplicial_waves_porous_transport.pdf}
+\input{gen/chap04_body}
 
 \chapter{Inter-Dimensional Simplicial Transforms, Fractional Boundary Traces, and Matrix Beta-Kernels}
 \chaptermark{Inter-Dimensional Simplicial Transforms}
-\includepdf[pages=1-]{chap05_interdimensional_transforms_barnes_lie.pdf}
+\input{gen/chap05_body}
 
 \chapter{Continuous Pascal Simplexes, Sierpi\'nski Gasket Laplacians, and Multifractal Singularity Spectra}
 \chaptermark{Sierpi\'nski Gasket Laplacians}
-\includepdf[pages=1-]{chap06_sierpinski_fractal_resolvents_spectral_reduction.pdf}
+\input{gen/chap06_body}
 
 % ==============================================================================
 \part{Non-Euclidean Minimax Extrinsic Curvature and Relativistic Foliations}
@@ -165,45 +153,49 @@ AI tools are not authors of this work. The author chose the research questions a
 
 \chapter{Minimax-Flat \texorpdfstring{$k$}{k}-Submanifolds in Obstacle Environments: Variational Theory, Constructive Heuristics, and Explicit Candidates}
 \chaptermark{Minimax-Flat Submanifolds}
-\includepdf[pages=1-]{chap07_minimax_extrinsic_curvature_submanifolds.pdf}
+\input{gen/chap07_body}
 
 \chapter{Minimax Extrinsic Curvature in Non-Euclidean Geometries and General Relativity: Variational Theory, Space Forms, and ADM Spacetime Slicings}
 \chaptermark{Minimax Curvature and ADM Slicings}
-\includepdf[pages=1-]{chap08_noneuclidean_minimax_relativity_adm.pdf}
+\input{gen/chap08_body}
 
 \chapter{Global Minimax Curvature in Multiply-Connected Domains: Homotopy Search, Universal Covering Spaces, and Non-Trivial Loop Dynamics}
 \chaptermark{Global Minimax Curvature}
-\includepdf[pages=1-]{chap09_global_homotopy_covering_spaces_jordan_loops.pdf}
+\input{gen/chap09_body}
 
 \chapter{Minimax Curvature Trajectories on Statistical Manifolds: A Proposal for Deep Learning and Its Limits}
 \chaptermark{Minimax Trajectories on Statistical Manifolds}
-\includepdf[pages=1-]{chap10_information_geometry_minimax_deep_learning.pdf}
+\input{gen/chap10_body}
 
 % ==============================================================================
-\part{Emergent Spacetime, Holography, and Quantum Geometry}
+\part{Emergent Spacetime: Established Results, Conjectures, and Heuristics}
 % ==============================================================================
 
 \chapter[Emergent Spacetime and Quantum Geometry: Tensor Networks, Holo\-no\-mies, and Entanglement (Established Results and Conjectures)]{Emergent Spacetime and Quantum Geometry: Tensor Networks, Holonomies, and Entanglement (Established Results and Conjectures)}
 \chaptermark{Emergent Spacetime and Quantum Geometry}
-\includepdf[pages=1-]{chap11_emergent_spacetime_tensor_networks_holonomies.pdf}
+\input{gen/chap11_body}
 
 \chapter{Emergent Spacetime, Holographic Entanglement, and Quantum Geometry: Proved Results, Conjectures, and Observational Limits}
 \chaptermark{Holographic Entanglement and Quantum Geometry}
-\includepdf[pages=1-]{chap12_grand_unification_quantum_gravity_treatise.pdf}
+\input{gen/chap12_body}
 
 % ==============================================================================
-\part{Observational Signatures: An Order-of-Magnitude Assessment}
+\part{Observational Signatures: Order-of-Magnitude Estimates}
 % ==============================================================================
 
 \chapter{Observational Signatures of a Running Spectral Dimension: Parametrization and Order-of-Magnitude Assessment}
 \chaptermark{Observational Signatures}
-\includepdf[pages=1-]{chap13_experimental_observational_signatures_quantum_gravity.pdf}
+\input{gen/chap13_body}
 
 \backmatter
 
 \chapter[Comprehensive Dictionary of Terms, Symbols, and Core Formulations]{Comprehensive Dictionary of Terms, Symbols, and Core Formulations}
 \chaptermark{Dictionary of Terms and Symbols}
 \includepdf[pages=1-]{DICTIONARY_TERMS_AND_SYMBOLS.pdf}
+
+% Results Index: generated by gen_results_index.py from the chapter labels and
+% formal_proofs_mathlib/README.md; the file lives one level up, like the declarations.
+\input{../appendix_results_index}
 
 \end{document}
 
