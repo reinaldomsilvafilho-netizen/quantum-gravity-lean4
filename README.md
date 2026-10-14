@@ -23,7 +23,17 @@ This repository accompanies a research monograph and several companion papers ar
 
 This is ongoing work by a single author. Comments, criticism and corrections are welcome and will be credited.
 
-## Current status (26 September 2026)
+## How this repository is verified
+
+Every result goes through the same cycle before it is labelled "verified", and the records of that cycle are in the repository:
+
+- **Four eyes.** Whoever writes a proof or a correction never checks it. A blind referee reads the text (layer 1), an independent pass applies the corrections, and a targeted re-check confirms them (layer 2). Reports and correction logs are in `audit/verify/` next to each work.
+- **Honest labels.** "Theorem" means a complete proof in the text. Everything else is a proposition with a cited source, a computer-assisted proposition with its certificate, a heuristic, or a conjecture.
+- **Numerics.** Each numerical check uses an independent oracle and a negative control: a deliberately wrong formula that must fail. A script that only reproduces its own expectation does not count.
+- **Lean 4.** Only `formal_proofs_mathlib/` is machine-checked: Mathlib, no `sorry`, no added axioms (`#print axioms` on every theorem), non-vacuity witnesses, and mutants proved false. It is built by the GitHub Actions workflow in `.github/workflows/`. The other Lean folders are naming skeletons and verify nothing.
+- **AI tools.** Large language models were used for drafting, checking and formalising, under the author's direction. Every work carries a disclosure written after the Leiden Declaration on AI and Mathematics; the author is solely responsible for the content.
+
+## Current status (12 October 2026)
 
 All 13 chapters of the monograph and three companion papers have been through an independent audit, carried out in three steps:
 
@@ -38,18 +48,18 @@ Outcomes:
 - **Errors in earlier versions.** Several statements were **wrong**. They have been corrected or withdrawn, and others are now labelled as conjectures. The corrected versions are released as new Zenodo versions. Each carries a note listing what changed and what still needs updating.
 - **New proofs.** The audit also produced new proofs. Examples: the asymptotics of continuous multinomial integrals, an inversion formula for the Radon–Beta transform, and U-turn curvature bounds in constant-curvature spaces.
 - **Yang–Mills.** **None of the papers claims a solution of the Yang–Mills mass-gap problem.** The Yang–Mills paper states a *conditional* result: a gap follows from hypotheses that are not established.
-- **Lean 4.** Only `formal_proofs_mathlib/` verifies mathematics, and only the results listed there: part of Chapter 3 and the pointwise algebraic content of one theorem of Chapter 12. **The other Lean folders verify nothing** (see below).
+- **Lean 4.** Only `formal_proofs_mathlib/` verifies mathematics, and only the results listed in its README: selected lemmas of chapters 1, 2, 3, 4, 6, 7, 9, 10 and 12 of the monograph and of the companion papers, with the hypotheses stated there. **The other Lean folders verify nothing** (see below).
 
 ## Works
 
 | Work | Zenodo (concept DOI, always the latest version) | Status |
 |---|---|---|
-| *Geometry, Tensors, and Quantum Gravity* (monograph, 13 chapters) | [10.5281/zenodo.22290043](https://doi.org/10.5281/zenodo.22290043) | Audited and corrected (September 2026); final consistency pass awaiting re-check |
-| *Simplicial Quantum Gravity on Δ₄ × Δ₂* (companion paper) | [10.5281/zenodo.22704111](https://doi.org/10.5281/zenodo.22704111) | Corrected against the monograph; second check pending |
-| *A Geometric and Metric-Measure Framework for the Yang–Mills Mass Gap* | [10.5281/zenodo.22301093](https://doi.org/10.5281/zenodo.22301093) | Corrected: conditional result only; second check pending |
-| *An S₃-Circulant Parametrization of Fermion Masses and Mixing* | [10.5281/zenodo.22373916](https://doi.org/10.5281/zenodo.22373916) | Corrected: fits and relations with an explicit parameter count; second check pending |
-| *Beyond the Spectrum* (three-volume monograph) | [10.5281/zenodo.22644743](https://doi.org/10.5281/zenodo.22644743) | Audited, corrected and re-checked (October 2026); new major version 3.0.0 with expanded references. Several earlier claims were false and are corrected or withdrawn; no formal verification is claimed |
-| *Quantum Fisher Geometry of Continuous Matrix Product State Fields and Lorentzian Cylinders* (formerly *A Functorial Bridge … Cobordisms*) | [10.5281/zenodo.22441676](https://doi.org/10.5281/zenodo.22441676) | Audited, corrected and re-checked (October 2026); new major version 2.0.0. The cobordism functor of the first version does not exist as defined; the paper now proves a Moore-path functor and records the obstructions |
+| *Geometry, Tensors, and Quantum Gravity* (monograph, 13 chapters) | [10.5281/zenodo.22290043](https://doi.org/10.5281/zenodo.22290043) | Version 3.0.0 (12 October 2026, 248 pp): audited, corrected and re-checked; single-source build; index of results; Lean references in every chapter. Tag `book-v3.0.0` |
+| *Simplicial Quantum Gravity on Δ₄ × Δ₂* (companion paper) | [10.5281/zenodo.22704111](https://doi.org/10.5281/zenodo.22704111) | Version 2.4.0 (12 October 2026): the graphon-condensation conjecture is withdrawn and replaced by a remark; the simplicial operator is shown not to produce the +ℓ²k⁴ term. Tag `sqg-v2.4.0` |
+| *A Geometric and Metric-Measure Framework for the Yang–Mills Mass Gap* | [10.5281/zenodo.22301093](https://doi.org/10.5281/zenodo.22301093) | Version 2.4.0 (12 October 2026): conditional result only; references and declarations revised. Tag `ym-v2.4.0` |
+| *An S₃-Circulant Parametrization of Fermion Masses and Mixing* | [10.5281/zenodo.22373916](https://doi.org/10.5281/zenodo.22373916) | Version 2.4.0 (12 October 2026): fits and relations with an explicit parameter count; the non-degeneracy hypothesis found by the Lean check is stated. Tag `fermions-v2.4.0` |
+| *Beyond the Spectrum* (three-volume monograph) | [10.5281/zenodo.22644743](https://doi.org/10.5281/zenodo.22644743) | Version 3.0.1 (12 October 2026): audited, corrected and re-checked. Several earlier claims were false and are corrected or withdrawn; only the lemmas listed in `formal_proofs_mathlib/` are machine-checked. Tag `bts-v3.0.1` |
+| *Quantum Fisher Geometry of Continuous Matrix Product State Fields and Lorentzian Cylinders* (formerly *A Functorial Bridge … Cobordisms*) | [10.5281/zenodo.22441676](https://doi.org/10.5281/zenodo.22441676) | Version 2.0.1 (12 October 2026): audited, corrected and re-checked. The cobordism functor of the first version does not exist as defined; the paper now proves a Moore-path functor and records the obstructions. Tag `fb-v2.0.1` |
 
 [All records by the author on Zenodo](https://zenodo.org/search?q=metadata.creators.person_or_org.name:%22Silva-Filho,+Reinaldo+M.%22)
 
