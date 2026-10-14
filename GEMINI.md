@@ -49,6 +49,15 @@ Use the template `Projeto_Gravidade_Quantica/_staging/MODELO_PROVA.md`. The mini
 - Headings, abstracts and Zenodo descriptions are claims: three published works said "Lean verified" on their landing pages, which was false.
 - Never send the author's e-mail to any API.
 
+## Lessons from 2026-10-07 (full list in the `prova-rigorosa` skill)
+- **Hypotheses.** Before proving, show one explicit example that satisfies all the hypotheses at once. Two propositions failed because their hypotheses were contradictory.
+- **Rounding.** Round certified bounds in the safe direction: 3.0745e-3 is bounded by 3.08e-3, not 3.07e-3.
+- **Elementary formulas.** They are usually known, sometimes in applied fields (the Omega-turn in agriculture). Search there before claiming novelty.
+- **Tests.** A test chosen after seeing data needs a held-out check. Labels built from the test statistic are not ground truth.
+- **No-go results.** When a result is refuted (SQG-2: the simplicial operator does not give +l^2 k^4; SQG-6: graphon condensation), update every text that relied on it: paper, book chapters and dictionary.
+- **Machine limits.** Never use `sed` on LaTeX. At most 2 processes per agent and 5 agents at once.
+- **AI declarations.** They follow the Leiden Declaration (arXiv:2609.35334); use `_staging/DECLARACOES_PADRAO_ARTIGOS.tex`.
+
 ## Tools for checking (use them)
 The full local toolbox installed on 2026-10-07 is listed in the "Local toolbox" section of the `prova-rigorosa` skill: HiGHS, SCIP, OR-Tools CP-SAT, CasADi/IPOPT, NLopt, PICOS/CVXOPT, cvxpy, Pyomo, POT, python-flint/Arb and z3, plus native GAP 4.16.1 (`bash /c/Users/monar/tools/rodar_gap.sh script.g`) and PARI/GP 2.19 (`/c/Users/monar/tools/pari/gp64-2-19-0.exe -q script.gp`). The smoke test is `Projeto_Gravidade_Quantica/_staging/teste_solvers.py`. An optimizer's answer is evidence, not proof: certify it exactly, in Arb, or with a checked dual.
 - **sympy:** symbolic algebra and differentiation; check identities and first integrals.

@@ -15,6 +15,9 @@ Goal: spend the expensive model on hard thinking, the cheap models on mechanics,
 | Blind referee of a chapter (layer 1), layer-2 re-check of *new proofs* | `opus` | Must find subtle errors |
 | Fix severity-A/M items, write new proofs, restate conjectures | `opus` | Mathematical judgement |
 | Second-model check of severity-A items | Gemini (outside Claude) with `audit/verify/PROTOCOL.md` | Decorrelates errors |
+| Lean batch writer | `opus` or `fable`; the L2 reviewer must be the **other** model | Pilot round 2: Fable writer at the same level as Opus; its one subtle slip (real vs complex projector) was caught by the Opus reviewer |
+| Blind L1 of a new proof | **two in parallel, one `opus` and one `fable`**, separate files, no reading of DIARIO while working | Pilot round 3 (S23): identical verdicts, independent certificates |
+| Lean L2 fidelity review | `fable` or `opus`, alternating; **both in parallel** for high-risk batches (new proof, book finding) | Pilot 2026-10-10 (`formal_proofs_mathlib/PILOTO_FABLE.md`): same quality and cost, complementary findings; uses the separate Fable quota |
 
 Rule of thumb: if a wrong answer would be caught by the next automatic check (compile, script, Crossref), use the cheap model. If a wrong answer would silently enter the text, use the strong one.
 
@@ -37,6 +40,16 @@ Rule of thumb: if a wrong answer would be caught by the next automatic check (co
 - **Stable prompts.** Reuse the prompt templates below instead of writing new ones; they already encode the rules.
 
 ## 4. Prompt templates (fill the brackets)
+
+**Task skills (added 2026-10-10).** Every agent prompt starts with "Read and follow `C:\Users\monar\.claude\skills\<skill>\SKILL.md`". The index, with model choice and limits, is `gtqg-orquestrador`. The task skills are:
+- `gtqg-tarefa-latex`;
+- `gtqg-tarefa-python`;
+- `gtqg-tarefa-lean` (role A writer, role B reviewer);
+- `gtqg-tarefa-revisao`;
+- `gtqg-tarefa-referencias`;
+- `gtqg-tarefa-publicacao`.
+
+They hold the step-by-step procedure and every past failure. The templates below only add the task details. Add each new failure mode to the matching skill.
 
 **Blind referee (opus):**
 "Independent referee. Read `audit/verify/PROTOCOL.md` (Camada 1). Chapter: [file]. Do not read ledgers, WORKPLAN, CHANGELOG, other reports. Write only in `audit/verify/`. Save scripts as `audit/verify/scripts/[chNN]_*.py` with negative controls. Report: `audit/verify/[chNN]_blind.md`. Reply in ≤ 150 words."
@@ -91,6 +104,32 @@ Every agent prompt that runs Python must include these rules:
 4. **Never** `taskkill /IM python.exe` or anything else that kills by name.
 6. **Read the sources (author's authorization, 2026-10-07, all projects).** When a text matters for a claim, a proof, a novelty check or a citation, download the open-access PDF (arXiv, the author's page, the publisher's OA copy, a repository) into the project's `biblioteca/` folder and read the relevant theorem or section; an abstract is not a source. Put this permission in every literature, verification or citation prompt.
 5. **No personal data to external services** (added 2026-10-06 after an agent sent the author's e-mail to the Unpaywall API): never put the author's e-mail, name or other identifiers in API queries, headers or URLs (Unpaywall, Crossref `mailto`, etc.) unless the author has approved that service. A paywalled source is reported as "not accessible"; the author fetches it through CAPES.
+
+7. **Machine limits** (added 2026-10-07, after the author's 8-core / 8 GB machine froze):
+   - at most **2 worker processes per agent**, with no multiprocessing pools;
+   - at most **10 minutes per run**;
+   - **5 agents is the standing level**, and 6 or more freezes the machine.
+   - An agent with no file activity for about 1 h is stuck. Stop it with TaskStop and relaunch it from its partial files. A SendMessage to a stopped agent stays "queued" forever.
+
+## 6b. Editing and tooling pitfalls (learned 2026-10-07)
+- **LaTeX edits.** Never edit LaTeX with `sed`: it turns `\t` and `\m` into control characters (`\times` → TAB+"imes"). Use the Edit tool or a Python script, and write MANIFESTO rows with Python, not `printf`, which mangles backslashes. Inline `python -c "…"` with parentheses breaks in the cmd hook; use a heredoc or a script file.
+- **Unknown scripts.** `update_workplan_status.py --help` runs the update; scripts may ignore flags. Read a script before running it with flags.
+- **Instructions to agents.** Give every instruction at launch. A mid-task SendMessage can be refused as a suspected prompt injection; it happened once, correctly cautious.
+- **Build fixes.**
+  - `\usepackage{fixcmex}` before microtype removes the pdfTeX font-expansion warnings.
+  - `\usepackage{morewrites}` fixes "No room for a new \write" in the single-source book.
+- **Concurrency.** Two agents must not edit the same chapter at once. Order the edits, or have the second agent re-read the file before editing (Edit refuses stale state).
+- **Declarations.** Declarations follow the Leiden Declaration on AI and Mathematics (arXiv:2609.35334): the "Tool and computational resource disclosure" heading, human-only credit, proactive attribution, risk-proportional verification, and the note that Zenodo is not peer review. Template: `_staging/DECLARACOES_PADRAO_ARTIGOS.tex`.
+
+## 6c. Proof-fidelity techniques (added 2026-10-09; full list in the `prova-rigorosa` skill)
+- **Statement freeze and back-translation:** formalise the statement first; another agent back-translates it blindly and compares it with the paper.
+- **Non-vacuity witness:** each theorem gets an `example` or a ∃-proof with concrete data satisfying all hypotheses.
+- **Mutants:** prove the mutant false (¬statement or an explicit counterexample). Failing to compile is not enough.
+- **Counterexample search before proving:** Z3/CVC5, Arb, Plausible.
+- **Mechanical verifier loops:** best-of-n or proof repair, accepting only what Lean or Arb checks. Evolutionary search (OpenEvolve with the Claude Code CLI) is an option for constructions and counterexamples.
+- **CI:** GitHub Actions on the public repo checks `formal_proofs_mathlib` off the PC (proposal `_staging/lean_ci_proposta.yml`).
+- **Lean rounds (2026-10-09):** writer agent → different agent does blind back-translation → wire (LeanReal.lean, verificar.sh, CI, README) → push → CI green. Witnesses must be non-degenerate. Never `lake build` the whole library on the PC (memory kill, orphan lake tree); compile per file with `lake env lean`. Unpublished work goes in `formal_proofs_mathlib/LeanLocal/`, excluded via `.git/info/exclude`.
+- **Do not cite** claims about other groups' AI results until the primary source has been read; abstract-level reading has produced extraordinary-sounding errors.
 
 The orchestrator:
 - after each agent finishes, runs `python _staging/processos_orfaos.py` (lists Python processes older than 45 min in project folders) and kills orphans by PID with `--matar`;
