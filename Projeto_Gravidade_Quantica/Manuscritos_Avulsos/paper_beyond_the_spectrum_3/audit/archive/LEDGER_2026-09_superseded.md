@@ -1,3 +1,5 @@
+> **ARCHIVED (2026-10-16).** This ledger predates the October 2026 audit of *Beyond the Spectrum* III. Its status line ("CERTIFIED — PASSED") was produced by a protocol that the audit found unreliable; it does not describe the current paper. The valid records are `audit/blind_layer1.md`, `audit/fixes_layer1.md`, `audit/L2_layer2.md`, `audit/L2_release.md` and `CORRECTIONS_2026-10-06.md`; the published version is 3.0.1 (Zenodo record 23307678). Kept for the historical record only.
+
 # Dual Proof Obligation Ledger: Beyond the Spectrum III (Audited & Patched — Phase 3)
 
 > **Treatise:** Beyond the Spectrum III: Higher Invariants, Bipartite Kernels, and Non-Equilibrium Geometry of Functional Realizations  
