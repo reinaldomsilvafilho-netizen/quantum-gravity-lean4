@@ -1,8 +1,8 @@
 # Changelog — *Geometry, Tensors, and Quantum Gravity*
 
-## Unreleased (3.1)
+## v3.1.0 (2026-10-17) — contact components (ch. 7), dual certificate (ch. 9), exact numerical statements, F-02 checks, declarations
 
-Finding F-64 in `WORKPLAN.md`; not yet independently re-checked.
+Findings F-01, F-02, F-12, F-21, F-23, F-24, F-28, F-29, F-64, F-65, F-66 in `WORKPLAN.md`, all verified. All versions: concept DOI `10.5281/zenodo.22290043`. The master volume has 250 pages.
 
 ### Chapter 7
 - New subsection "Contact Sets of Planar Minimizers" at the end of Section 4.
@@ -12,6 +12,15 @@ Finding F-64 in `WORKPLAN.md`; not yet independently re-checked.
 
 ### Chapter 9
 - Remark after the search pipeline: a dual system (a costate of bounded variation and a contact measure, with the sign $D\lambda = +\nu\mu$) whose solutions satisfy a quantitative $\infty$-elastica inequality under an exterior-ball condition, and which exists for minimizers with finitely many isolated contacts on disjoint discs. Both statements are given as remarks with their mechanism, not as theorems. New reference: Moser, Amer. J. Math. 144 (2022).
+
+### Chapters 2 and 10 — numerical statements made exact (F-65, F-66)
+- Chapter 2: the transition law of the random walk is stated (simple lazy walk, uniform over neighbours, weights only through the distance); under the literal reading with step proportional to $1/\ell_e$ the quoted numbers are not reproduced.
+- Chapter 10: the seeds (1000–1005 and 7), the teacher and the loss normalization are stated; the reported range is 1.57–1.75, inside the earlier 1.3–2.1.
+
+### Numerical checks (F-02) and declarations (F-21, F-29)
+- Checks of all thirteen chapters use an independent oracle and a negative control per claim. For Chapters 2, 4, 5, 8, 10, 11 the scripts were iterated against blind critiques until convergence: 71 statements verified, 0 failures, 10 exploratory, 27 not numerically checkable.
+- Declarations confirmed by the author, with two added sentences: Lean toolchain and kernel replay; audit files.
+- Layer-2 status pass: F-01, F-12, F-23, F-24, F-28 verified (Lean skeleton folders labelled; Theorem 3.1 of Chapter 12 with explicit constants; five DOIs resolved).
 
 ### Build
 - `build_pdfs_safe.py` now copies every `fig_*.pdf` and `fig_*.png` of the book folder into the single-source master build.
