@@ -3,7 +3,7 @@
 
 [![Zenodo: Monograph](https://zenodo.org/badge/DOI/10.5281/zenodo.22290043.svg)](https://doi.org/10.5281/zenodo.22290043)
 [![Lean 4](https://img.shields.io/badge/Lean_4-v4.35.0--rc2_%2B_Mathlib-blue.svg)](https://github.com/leanprover/lean4)
-[![Formalization](https://img.shields.io/badge/Formalization-two%20chapters%2C%20partial-orange.svg)](#status-of-the-lean-4-code)
+[![Formalization](https://img.shields.io/badge/Formalization-chapters%201--13%2C%20partial-orange.svg)](#status-of-the-lean-4-code)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 **Author:** Reinaldo Maia Silva-Filho
@@ -48,13 +48,13 @@ Outcomes:
 - **Errors in earlier versions.** Several statements were **wrong**. They have been corrected or withdrawn, and others are now labelled as conjectures. The corrected versions are released as new Zenodo versions. Each carries a note listing what changed and what still needs updating.
 - **New proofs.** The audit also produced new proofs. Examples: the asymptotics of continuous multinomial integrals, an inversion formula for the Radon–Beta transform, and U-turn curvature bounds in constant-curvature spaces.
 - **Yang–Mills.** **None of the papers claims a solution of the Yang–Mills mass-gap problem.** The Yang–Mills paper states a *conditional* result: a gap follows from hypotheses that are not established.
-- **Lean 4.** Only `formal_proofs_mathlib/` verifies mathematics, and only the results listed in its README: selected lemmas of chapters 1, 2, 3, 4, 6, 7, 9, 10 and 12 of the monograph and of the companion papers, with the hypotheses stated there. **The other Lean folders verify nothing** (see below).
+- **Lean 4.** Only `formal_proofs_mathlib/` verifies mathematics, and only the results listed in its README: selected lemmas of chapters 1 to 13 of the monograph (for chapter 13, only the closed form of the running spectral dimension and the arithmetic of its numerical bounds) and of the companion papers, with the hypotheses stated there. **The other Lean folders verify nothing** (see below).
 
 ## Works
 
 | Work | Zenodo (concept DOI, always the latest version) | Status |
 |---|---|---|
-| *Geometry, Tensors, and Quantum Gravity* (monograph, 13 chapters) | [10.5281/zenodo.22290043](https://doi.org/10.5281/zenodo.22290043) | Version 3.0.0 (12 October 2026, 248 pp): audited, corrected and re-checked; single-source build; index of results; Lean references in every chapter. Tag `book-v3.0.0` |
+| *Geometry, Tensors, and Quantum Gravity* (monograph, 13 chapters) | [10.5281/zenodo.22290043](https://doi.org/10.5281/zenodo.22290043) | Version 3.0.0 (12 October 2026, 248 pp): audited, corrected and re-checked; single-source build; index of results; Lean references in the chapters whose lemmas are formalised. Tag `book-v3.0.0` |
 | *Simplicial Quantum Gravity on Δ₄ × Δ₂* (companion paper) | [10.5281/zenodo.22704111](https://doi.org/10.5281/zenodo.22704111) | Version 2.4.0 (12 October 2026): the graphon-condensation conjecture is withdrawn and replaced by a remark; the simplicial operator is shown not to produce the +ℓ²k⁴ term. Tag `sqg-v2.4.0` |
 | *A Geometric and Metric-Measure Framework for the Yang–Mills Mass Gap* | [10.5281/zenodo.22301093](https://doi.org/10.5281/zenodo.22301093) | Version 2.4.0 (12 October 2026): conditional result only; references and declarations revised. Tag `ym-v2.4.0` |
 | *An S₃-Circulant Parametrization of Fermion Masses and Mixing* | [10.5281/zenodo.22373916](https://doi.org/10.5281/zenodo.22373916) | Version 2.4.0 (12 October 2026): fits and relations with an explicit parameter count; the non-degeneracy hypothesis found by the Lean check is stated. Tag `fermions-v2.4.0` |
@@ -86,9 +86,12 @@ Outcomes:
 
 ## Status of the Lean 4 code
 
-**Machine-checked: `formal_proofs_mathlib/` only.** It holds statements in Mathlib with no `sorry` and no `axiom`. `#print axioms` gives only `propext`, `Classical.choice` and `Quot.sound`, and each result has a negative control, a mutated false statement that must fail. Its `README.md` links each Lean statement to the result in the text and says how much of it is covered. It covers:
-- in Chapter 3, the continuous binomial coefficient: the Stifel recurrence, the Star of David identity, and the zero loci and positivity;
-- in Chapter 12, Theorem "Pointwise Constraint Bounds", which is also Theorem `minimax_shear` of the *Simplicial Quantum Gravity* paper. Only its algebraic content is formalized: one point, an orthonormal frame, and the Hamiltonian constraint taken as a hypothesis.
+**Machine-checked: `formal_proofs_mathlib/` only.** It holds statements in Mathlib with no `sorry` and no `axiom`. `#print axioms` gives only `propext`, `Classical.choice` and `Quot.sound`, and each result has a negative control, a mutated false statement that must fail. Its `README.md` links each Lean statement to the result in the text and says how much of it is covered. It covers selected results of every chapter, 1 to 13, each in a declared form (full, finite-dimensional, pointwise or conditional on named hypotheses):
+- in Chapter 3, the continuous binomial coefficient: the Stifel recurrence, the Star of David identity, and the zero loci and positivity, among others;
+- in Chapter 12, Theorem "Pointwise Constraint Bounds", which is also Theorem `minimax_shear` of the *Simplicial Quantum Gravity* paper (algebraic content only: one point, an orthonormal frame, and the Hamiltonian constraint taken as a hypothesis), and the running spectral dimension in a declared reduction;
+- in Chapter 8, pointwise algebra and reduced U-turn and causal statements; in Chapter 11, the linear-algebra half of the minimum-cut bound and the commuting-case first law, with the tensor-network factorization taken as a hypothesis;
+- in Chapter 13, the closed form of the running spectral dimension and the arithmetic of the numerical bounds, with the CODATA inputs taken as data;
+- in Chapters 1, 2, 4, 5, 6, 7, 9 and 10, the modules `Chap01*` to `Chap10*`, listed with their coverage in `formal_proofs_mathlib/README.md`.
 
 Nothing else in the monograph or the papers is machine-checked.
 

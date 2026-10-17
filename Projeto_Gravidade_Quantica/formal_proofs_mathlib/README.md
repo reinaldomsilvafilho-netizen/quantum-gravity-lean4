@@ -10,16 +10,21 @@ The other Lean folders (`formal_proofs_book/`, `formal_proofs_lean4/`, and the L
 mathematics; see the `README_SKELETON.md` in each of them.
 
 **Scope.** The following pieces are formalized:
-- part of Chapter 3 (continuous Pascal triangle);
-- the algebraic, pointwise content of one theorem of Chapter 12. The same theorem appears in the
-  *Simplicial Quantum Gravity* paper;
+- selected results of every chapter of the monograph, Chapters 1 to 13, each in a declared form
+  (full, finite-dimensional, pointwise or conditional on named hypotheses). The modules are
+  `Chap01*` to `Chap13Numbers` in `LeanReal/`, and the sections "Round 2" to "Final round" below list
+  them. Chapter 13 is covered only by the closed form of the running spectral dimension and the
+  arithmetic of its numerical bounds (`Chap13Numbers`); Chapter 12 by the constraint bounds
+  (`Chap12Constraint`, `Chap12ConstraintMatrix`) and `Chap12Spectral`. The constraint-bounds theorem also
+  appears in the *Simplicial Quantum Gravity* paper;
 - since 2026-10-09: elementary statements of four Zenodo works. These are the fermion-mass paper
   (Koide identity, CKM of two commuting sectors), the Yang–Mills paper (convexity of the truncated
   Gribov region, unique nearest point in its closure, tree-level bound), *Beyond the Spectrum* I
   together with Book Ch. 1 (the algebraic part of `thm:dirichlet_blindness`), and *Functorial Bridge*
   (`prop:cov-nogo`). See "Zenodo papers" below and `FORMALIZACAO_ZENODO_2026-10-09.md`.
 
-Nothing else in the monograph or in the papers is machine-checked. The plan for further statements is in
+Nothing else in the monograph or in the papers is machine-checked: only the statements listed in the
+tables of this file, at the level of coverage stated for each. The plan for further statements is in
 `PLANO_FORMALIZACAO.md`.
 
 - Toolchain: `leanprover/lean4:v4.35.0-rc2` (`lean-toolchain`).
