@@ -277,6 +277,30 @@ Given $\Omega$, boundary data at $p, q$, obstacles $\mathcal{O}_1, \dots, \mathc
 
 Step~4 is a nonconvex local optimization, and the pipeline does not certify global optimality. A check on a collocation grid does not certify an upper bound either: it can miss penetration of an obstacle between grid points, and it can underestimate the peak curvature. For a nearly cuspidal cubic B\'ezier segment, the maximal curvature on a grid of $200$ points is about $3.7\cdot10^3$, whereas on a grid of $2\cdot10^6$ points it is about $1.2\cdot10^6$. The output is a certified feasible curve, and its peak curvature a certified upper bound for $\kappa^*_{\mathrm{global}}$, only if step~5 is replaced by a rigorous check, for example interval arithmetic on the piecewise polynomial $\gamma$, its derivatives and the obstacle constraints.
 
+\begin{remark}[A dual certificate for the output of step~4]
+\label{rem:dual_certificate}
+Step~4 replaces $\|\kappa\|_{L^\infty}$ by $L^p$ norms, and its output is only a candidate. Whether a candidate is optimal can be examined, independently of how it was found, through a system of equations with an obstacle term. Here $\mu$ denotes a measure, not the penalty weight of Step~4. Fix a length $\ell > 0$, endpoints $a_1, a_2$ and unit end tangents $T_1, T_2$, let $G(\ell)$ be the set of unit-speed curves $\gamma \in W^{2,\infty}((0,\ell); \R^n)$ in a closed set $F \subset \R^n$ with these data, and $K(\gamma) = \operatorname{ess\,sup}|\gamma''|$. Here $F = \mathcal{F}$ and $n = 2$, but (i) below holds in every dimension. A minimizer of $K$ under the length bound $V$, of length $\ell_0 \le V$, is also a minimizer in $G(\ell_0)$. For $\gamma \in G(\ell)$ with $T = \gamma'$ and $k = K(\gamma) > 0$, a \emph{certificate} is a quadruple $(g, \lambda, \mu, \nu)$ such that:
+\begin{itemize}
+    \item $g \in W^{1,\infty}(0,\ell)$, $g \ge 0$ and $g \not\equiv 0$;
+    \item $\lambda \in \BV((0,\ell); \R^n)$, and $\mu$ is a finite nonnegative Radon measure on $(0,\ell)$ carried by the contact set $\{s : \gamma(s) \in \partial F\}$;
+    \item for $\mu$-a.e.\ $s$, $\nu(s)$ is a unit normal to $\partial F$ at $\gamma(s)$ that points into $F$, with $\nu(s) \cdot T(s) = 0$;
+    \item $D\lambda = +\nu\,\mu$ as distributions, and, weakly on $(0,\ell)$,
+    \[
+    g\,(T'' + k^2 T) = k^2\,\mathrm{proj}^\perp_{T,T'}(\lambda), \qquad g' = \lambda \cdot T',
+    \]
+    where $\mathrm{proj}^\perp_{T,T'}$ is the orthogonal projection onto the orthogonal complement of the span of $T$ and $T'$.
+\end{itemize}
+Without obstacle, $\mu = 0$ and $\lambda$ is constant, and the system reduces to the one by which Moser, with $\lambda$ a constant unit vector, characterises the $\infty$-elasticae \cite[Theorem~2]{moser2022} (numbering of arXiv:1908.01569): the curves $\gamma$ for which some $M$ gives $K(\gamma) \le K(\tilde\gamma) + \tfrac{M}{2}\int_0^\ell|\tilde\gamma' - \gamma'|^2\,ds$ for every competitor $\tilde\gamma$ \cite[Definition~1]{moser2022}.
+
+(i) \emph{Sufficiency.} Suppose that, in addition, there is $\tau > 0$ such that for $\mu$-a.e.\ $s$ the open ball $B(\gamma(s) - \tau\nu(s), \tau)$ does not meet $F$; this holds when $\reach(F) \ge \tau$, by \cite[Theorem~4.8(12)]{federer1959}, in particular when the obstacles and the free region both have reach at least $\tau$. One can then show that every $\tilde\gamma \in G(\ell)$, in any homotopy class, satisfies
+\[
+K(\tilde\gamma) \ge K(\gamma) - \frac{M}{2}\int_0^\ell |\tilde\gamma' - \gamma'|^2\,ds, \qquad M = \frac{2k\,(\|g\|_\infty + \|\lambda\|_\infty)}{\|g\|_{L^1}} + \frac{k\,\ell\,\mu((0,\ell))}{\tau\,\|g\|_{L^1}},
+\]
+so that $\gamma$ is an $\infty$-elastica in $F$. The mechanism: $u = gT'/k^2$ satisfies $u' + (u \cdot T')T = \lambda - (\lambda\cdot T)T$, and an integration by parts against $\tilde\gamma' - \gamma'$ brings in the obstacle only through $\int\langle\nu, \tilde\gamma - \gamma\rangle\,d\mu$. The exterior ball bounds this term below by $-\frac{1}{2\tau}\int|\tilde\gamma - \gamma|^2\,d\mu$, and Moser's averaging argument \cite[Proposition~11]{moser2022} gives the inequality. The argument needs the sign $D\lambda = +\nu\mu$: with $D\lambda = -\nu\mu$ the obstacle term has the wrong sign and this argument gives no bound. The inequality is weaker than global minimality: it bounds the decrease of the peak curvature that a competitor can achieve by a multiple of its squared $L^2$ distance in the tangent.
+
+(ii) \emph{Existence in a finite case} (the proof uses a first-order realisation lemma that is not reproduced here). Let $n = 2$, $F = \R^2 \setminus \bigcup_j \operatorname{int} D_j$ with finitely many pairwise disjoint closed discs $D_j$ and no outer boundary, and $a_1, a_2 \in \operatorname{int} F$. One can show that if $\gamma$ minimizes $K$ in $G(\ell)$, or in a fixed homotopy class of $G(\ell)$, with $k > 0$, if $\gamma$ consists of finitely many arcs of curvature $\pm k$ and segments, and if it touches $\partial F$ at finitely many parameters $\sigma_1 < \dots < \sigma_N$, then a certificate exists in which $\mu = \sum_c \mu_c\,\delta_{\sigma_c}$ and $\lambda$ is piecewise constant, with a jump $+\mu_c\,\nu(\sigma_c)$ at $\sigma_c$. The mechanism: with finitely many contacts the first-order analysis is finite-dimensional, and a separating hyperplane between the attainable first-order changes of the end pose and of the contact distances, and the cone of changes that lower the curvature and move the curve off the discs, gives the multipliers. Their signs $\mu_c \ge 0$ come from that cone, and $g \not\equiv 0$ because the jumps $\mu_c\,\nu(\sigma_c)$ of $\lambda$ are normal to the curve at the contacts ($\nu \cdot T = 0$), so the contacts alone cannot produce a vanishing $g$. The finiteness of the contact set is a genuine hypothesis: it holds when $R_j k < 1$ for every $j$ by Chapter~7, Proposition~\xref{chap07:prop:sharp_disc_spacing}{4.10}(3), and it can fail for obstacles of positive reach (Chapter~7, Remark~\xref{chap07:rem:notched_disc}{4.9}).
+\end{remark}
+
 \section{\texorpdfstring{$\Gamma$}{Gamma}-Convergence of the Discretization}
 \label{sec:gamma_convergence}
 
@@ -500,6 +524,11 @@ Ann. of Math. \textbf{117} (1983), no.~1, 109--146, \href{https://doi.org/10.230
 W.~M.~Goldman,
 \emph{Trace coordinates on Fricke spaces of some simple hyperbolic surfaces},
 in: A.~Papadopoulos (ed.), Handbook of Teichm\"uller Theory, Vol.~II, IRMA Lect. Math. Theor. Phys. \textbf{13}, EMS, Z\"urich, 2009, 611--684, \href{https://doi.org/10.4171/055-1/16}{doi:10.4171/055-1/16}.
+
+\bibitem{moser2022}
+R.~Moser,
+\emph{Structure and classification results for the $\infty$-elastica problem},
+Amer. J. Math. \textbf{144} (2022), no.~5, 1299--1329, \href{https://doi.org/10.1353/ajm.2022.0030}{doi:10.1353/ajm.2022.0030}.
 
 \bibitem{lieutier2004}
 A.~Lieutier,

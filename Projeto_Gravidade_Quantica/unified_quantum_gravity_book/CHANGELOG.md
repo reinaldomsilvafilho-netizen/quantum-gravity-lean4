@@ -1,5 +1,21 @@
 # Changelog — *Geometry, Tensors, and Quantum Gravity*
 
+## Unreleased (3.1)
+
+Finding F-64 in `WORKPLAN.md`; not yet independently re-checked.
+
+### Chapter 7
+- New subsection "Contact Sets of Planar Minimizers" at the end of Section 4.
+  - Remark (computer-assisted, with a figure): the notched disc, an obstacle with two-sided positive reach whose unique minimizer at the tight length budget has infinitely many contact components. With slack, the same behaviour is shown numerically in a second-order model, and certified in that model for a convex variant at two values of the curvature level; the exact geometry with slack is supported by numerical evidence only. The remark also states, without proof, the supporting-disc mechanism and the separation of contacts on opposite sides under positive reach.
+  - Proposition with proof: for a disc obstacle with $RK \le 1$, consecutive contacts of a curve with curvature at most $K$ are more than $\pi\sqrt{R/K}$ apart, and more than $\pi/K$ after an interior contact; finitely many such discs give finitely many contact components. A remark gives the sharpness at $RK = 1$ and a counterexample for $RK > 1$.
+  - The abstract, the outline and the summary of status were updated to match.
+
+### Chapter 9
+- Remark after the search pipeline: a dual system (a costate of bounded variation and a contact measure, with the sign $D\lambda = +\nu\mu$) whose solutions satisfy a quantitative $\infty$-elastica inequality under an exterior-ball condition, and which exists for minimizers with finitely many isolated contacts on disjoint discs. Both statements are given as remarks with their mechanism, not as theorems. New reference: Moser, Amer. J. Math. 144 (2022).
+
+### Build
+- `build_pdfs_safe.py` now copies every `fig_*.pdf` and `fig_*.png` of the book folder into the single-source master build.
+
 ## v3.0.0 (2026-10-11) — chapter 14 salvage, operator consistency, statement repairs, references, single-source build
 
 This version follows the previous correction release, v2.3 (2026-09-26). All versions: concept DOI `10.5281/zenodo.22290043`.

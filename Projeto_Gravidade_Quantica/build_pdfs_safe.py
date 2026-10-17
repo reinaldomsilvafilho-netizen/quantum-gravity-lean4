@@ -128,8 +128,9 @@ def build_single_source_master(out, time_budget_s=540):
     with tempfile.TemporaryDirectory() as tmp:
         src = os.path.join(tmp, 'src')
         os.makedirs(src)
-        for name in ('declarations_chapter.tex', 'fig_experimental_signatures.pdf',
-                     'DICTIONARY_TERMS_AND_SYMBOLS.pdf', 'appendix_results_index.tex'):
+        figures = sorted(f for f in os.listdir(BOOK) if re.match(r'fig_.*\.(pdf|png)$', f))
+        for name in ['declarations_chapter.tex', 'DICTIONARY_TERMS_AND_SYMBOLS.pdf',
+                     'appendix_results_index.tex'] + figures:
             shutil.copy2(os.path.join(BOOK, name), os.path.join(tmp, name))
         shutil.copy2(os.path.join(PROTO, 'common_preamble.tex'), os.path.join(src, 'common_preamble.tex'))
         shutil.copytree(os.path.join(PROTO, 'gen'), os.path.join(src, 'gen'))
