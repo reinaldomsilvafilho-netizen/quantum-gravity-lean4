@@ -53,7 +53,7 @@ def snapshot(src, dst):
 
 def classify_log(log):
     errors = len(re.findall(r'^! ', log, re.M))
-    warns = len(re.findall(r'(LaTeX|Package \w+|Class \w+) Warning', log))
+    warns = len(re.findall(r'(LaTeX|Package \w+|Class \w+) Warning|pdfTeX warning', log))
     overfull = log.count('Overfull')
     undefined = len(re.findall(r'undefined on input line|There were undefined (references|citations)', log))
     return errors, warns, overfull, undefined

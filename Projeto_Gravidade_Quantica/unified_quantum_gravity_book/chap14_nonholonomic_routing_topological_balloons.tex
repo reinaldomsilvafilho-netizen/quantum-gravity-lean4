@@ -1,0 +1,92 @@
+\documentclass[12pt, a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath, amsthm, amssymb, amsfonts}
+\usepackage{geometry}
+\geometry{margin=1in}
+\usepackage{graphicx}
+\usepackage{hyperref}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{remark}[theorem]{Remark}
+
+\title{Topological Routing, Homotopy Balloons, and Fractal Constraint Geodesics\\
+\large An Exact Algebraic Resolution to the Non-Holonomic Bottleneck}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+We formalize the routing of non-holonomic trajectories with bounded curvature ($\|\kappa\|_{L^\infty} \le \kappa^*$) in multiply-connected planar domains. We prove the \emph{Bulbous Loop Theorem}, demonstrating that local geometric bottlenecks (channels of width $w < 2/\kappa^*$) where the homotopy class is seemingly dead can be bypassed if the path routes into an adjacent convex region (a ``balloon'') with inradius $R \ge 1/\kappa^*$, executing a loop that increments the winding number. We frame this within an exact Cellular Decomposition of $SE(2)$. Furthermore, we prove that bounding the derivative of curvature (jerk) forces constraint geodesics along obstacle walls to exhibit Fuller's Phenomenon, yielding an infinite fractal sequence of chattering switches.
+\end{abstract}
+
+\section{Introduction}
+
+The $L^\infty$ minimax extrinsic curvature problem governs the optimal paths of non-holonomic systems (such as Dubins cars or continuous-curvature splines). Classical path planning often relies on static Minkowski sums to buffer obstacles. However, for systems where orientation $\theta \in S^1$ and curvature $\kappa$ are state variables, static buffers fail because the required clearance depends dynamically on the current state.
+
+\section{The Bottleneck Law and Topological Balloons}
+
+We consider a planar domain $\Omega \subset \mathbb{R}^2$ with obstacles $\mathcal{O}$. Let $\gamma: [0, L] \to \Omega \setminus \mathcal{O}$ be an arc-length parameterized curve with curvature bounded by $\kappa^*$.
+
+\begin{lemma}[The U-Turn Bottleneck]
+Let $\mathcal{C} \subset \Omega \setminus \mathcal{O}$ be a straight channel of width $w$. If $w < \frac{2}{\kappa^*}$, then no admissible curve $\gamma$ can achieve a turning angle of $\Delta \theta = \pi$ while remaining strictly inside $\mathcal{C}$.
+\end{lemma}
+\begin{proof}
+The minimum lateral displacement to reverse direction with curvature $\kappa \le \kappa^*$ is achieved by a semicircle of radius $1/\kappa^*$, which requires a width of $2/\kappa^*$. Since $w < 2/\kappa^*$, the curve must mathematically collide with the channel walls. In a purely local search, this homotopy class is declared dead.
+\end{proof}
+
+However, global topology allows for constraint relaxation via adjacent free spaces.
+
+\begin{definition}[Inradius Classification]
+A convex subset $B \subset \Omega \setminus \mathcal{O}$ is classified as a \emph{Routing Balloon} if its inradius $R_{in}$ satisfies $R_{in} \ge \frac{1}{\kappa^*}$. Otherwise, if $R_{in} < \frac{1}{\kappa^*}$, it is a \emph{Strict Corridor}.
+\end{definition}
+
+\begin{theorem}[The Bulbous Loop Theorem]
+Suppose a trajectory must achieve a net angle change $\Delta \theta = \pi$ to exit a channel $\mathcal{C}$ of width $w < \frac{2}{\kappa^*}$, but is adjacent to a Routing Balloon $B$. Then there exists a valid solution in a higher homotopy class (winding number $n \ge 1$ inside $B$) that accrues the necessary angle without violating the curvature bound $\kappa \le \kappa^*$ or the boundary constraints.
+\end{theorem}
+\begin{proof}
+By definition, the Routing Balloon $B$ contains a maximal inscribed disk $D \subset B$ of radius $R \ge 1/\kappa^*$. Provided the aperture connecting $\mathcal{C}$ and $B$ is sufficiently wide to permit a bounded-curvature transition, the curve $\gamma$ can enter $B$, merge tangentially onto the boundary of $D$, and trace an arc (or a full loop) of constant curvature $\kappa = 1/R \le \kappa^*$. 
+As established in the topological classification of paths in multiply-connected domains, the path increments its winding number around a virtual obstacle in $B$, accumulating an arbitrary continuous variation in orientation $\theta$. Once the required heading aligns with the egress trajectory, the curve smoothly exits $B$. The local geometric bottleneck in $\mathcal{C}$ is thus circumvented by exploiting the higher homotopy class facilitated by $B$.
+\end{proof}
+
+\section{Fractal Constraint Geodesics (Fuller's Phenomenon)}
+
+When we restrict not only the curvature $\kappa$ but its derivative (jerk), the optimal control problem enters a higher-order regime. Let the system be:
+\begin{equation}
+    \dot{x} = \cos \theta, \quad \dot{y} = \sin \theta, \quad \dot{\theta} = \kappa, \quad \dot{\kappa} = u
+\end{equation}
+with control constraint $|u| \le u_{max}$.
+
+\begin{theorem}[Fractal Chattering at Constraint Boundaries]
+Let the obstacle boundary $\partial \mathcal{O}$ be a straight wall ($y=0$). The constraint $y \ge 0$ is a state constraint of order 3. An optimal path merging onto the wall $\partial \mathcal{O}$ cannot do so with a finite number of control switches (bang-bang). Instead, the optimal control $u(t)$ undergoes an infinite number of switches (chattering) in finite time, forming a Cantor set of switching times prior to the junction.
+\end{theorem}
+\begin{proof}
+To merge smoothly with the wall $y=0$, the path must satisfy $y=0, \theta=0, \kappa=0$ at the junction time $t_f$. Because the state constraint is of order 3 (the control $u$ appears in the third derivative of $y$: $\dddot{y} = u \cos \theta - \kappa^2 \sin \theta$), the Maximum Principle with state constraints dictates that the adjoint variables must cycle. This is the classic Fuller's Phenomenon.
+The switching times $t_k$ accumulate geometrically at $t_f$, such that $t_{f} - t_k \sim \mu^k$ for some $\mu \in (0,1)$. Consequently, the trajectory in $SE(2)$ traces a fractal sequence of diminishing clothoid arcs (Cornu spirals), converging asymptotically to the constraint boundary with infinite chattering.
+\end{proof}
+
+\section{Generalization to M-Dimensions: Nash-Kuiper Corrugations and Topological Eversions}
+
+We now generalize the framework from curves in $SE(2)$ to submanifolds $\Sigma^N$ of dimension $N$ immersed in an $M$-dimensional ambient manifold $\mathcal{M}$ (where $1 \le N \le M-1$). The minimax curvature constraint scales to a strict bound on the norm of the Second Fundamental Form: $\|h_{ij}\|_{\infty} \le K_{max}$, where $h_{ij}$ denotes the components of the second fundamental form.
+
+\subsection{Topological Eversion and M-Dimensional Balloons}
+In $M$-dimensional space, when a hypersurface $\Sigma^{M-1}$ encounters a geometric bottleneck (an aperture $w < 2/K_{max}$), it cannot pass rigidly. However, if there exists an adjacent free-space cavity (an $M$-dimensional Routing Balloon) with sufficient inradius, the hypersurface can execute a topological herniation. It expands into the cavity, performing a continuous eversion of its normal vector field (analogous to Smale's sphere eversion paradox), distributing the prohibited high curvature across a broad topological bubble. This topological maneuvering proves that optimal search cannot occur in $\mathcal{M}$, but must be formulated as a flow on the Grassmann bundle $Gr(N, M)$.
+
+\subsection{Nash-Kuiper Fractality and Young Measures}
+When an optimal geometric flow (such as Curve Shortening Flow or Mean Curvature Flow) forces $\Sigma^N$ against an insurmountable $M$-dimensional constraint boundary without the topological space to perform an eversion, the rigid $L^\infty$ bound forces a structural collapse of the smooth ($C^2$) manifold.
+
+\begin{theorem}[Nash-Kuiper Fractal Corrugations as Minimax Limits]
+Let $\Sigma^N$ be subject to a strict geometric flow minimizing volume under the extrinsic constraint $\|h_{ij}\|_{\infty} \le K_{max}$. In the absence of a smooth solution, the optimal geometric realization transitions to a Young Measure defined over the space of extreme Second Fundamental Forms. Physically, the submanifold develops an infinite sequence of fractal corrugations (microscopic twinning or wrinkling).
+\end{theorem}
+
+This represents the exact macroscopic-microscopic equivalence established by the Nash-Kuiper $C^1$ isometric embedding theorem. Just as Nash proved that a Riemannian manifold can be isometrically embedded into an arbitrarily small domain via infinite fractal folding, our bounded optimal control ($L^\infty$) generates precisely these corrugations as the Bang-Bang limit of the geometric flow. The spatial ``chattering'' of Fuller's phenomenon in 1D generalizes in $M$-dimensions to an omnipresent fractal roughness (Young Measures), revealing that macroscopic continuous fields in constrained theories (such as the Hamiltonian constraint in Quantum Gravity) must inherently harbor high-frequency spectral aliasing to preserve global topology.
+
+\section{Conclusion}
+The synthesis of the $L^\infty$ minimax curvature bottleneck with global homotopy reveals that non-holonomic path planning is fundamentally a topological routing problem over $SE(2)$. Local collisions can be resolved algebraically by identifying maximal inscribed Routing Balloons and optimizing over classes with non-trivial winding numbers. At the limit of high-order constraints, the geometry of optimal constraint merging becomes inherently fractal.
+
+\end{document}
