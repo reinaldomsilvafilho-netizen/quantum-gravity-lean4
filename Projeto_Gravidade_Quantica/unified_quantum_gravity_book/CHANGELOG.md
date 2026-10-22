@@ -2,7 +2,7 @@
 
 ## v3.1.0 (2026-10-17) — contact components (ch. 7), dual certificate (ch. 9), exact numerical statements, F-02 checks, declarations
 
-Findings F-01, F-02, F-12, F-21, F-23, F-24, F-28, F-29, F-64, F-65, F-66 in `WORKPLAN.md`, all verified. All versions: concept DOI `10.5281/zenodo.22290043`. The master volume has 250 pages.
+Findings F-01, F-02, F-12, F-21, F-23, F-24, F-28, F-29, F-64, F-65, F-66, F-67 in `WORKPLAN.md`. All versions: concept DOI `10.5281/zenodo.22290043`. The master volume has 250 pages.
 
 ### Chapter 7
 - New subsection "Contact Sets of Planar Minimizers" at the end of Section 4.
@@ -21,6 +21,9 @@ Findings F-01, F-02, F-12, F-21, F-23, F-24, F-28, F-29, F-64, F-65, F-66 in `WO
 - Checks of all thirteen chapters use an independent oracle and a negative control per claim. For Chapters 2, 4, 5, 8, 10, 11 the scripts were iterated against blind critiques until convergence: 71 statements verified, 0 failures, 10 exploratory, 27 not numerically checkable.
 - Declarations confirmed by the author, with two added sentences: Lean toolchain and kernel replay; audit files.
 - Layer-2 status pass: F-01, F-12, F-23, F-24, F-28 verified (Lean skeleton folders labelled; Theorem 3.1 of Chapter 12 with explicit constants; five DOIs resolved).
+
+### Wording (F-67)
+- Decorative adverbs removed in Chapters 1 and 2; the text no longer refers to an internal repository file for the status of results (the Results Index is the reference).
 
 ### Build
 - `build_pdfs_safe.py` now copies every `fig_*.pdf` and `fig_*.png` of the book folder into the single-source master build.

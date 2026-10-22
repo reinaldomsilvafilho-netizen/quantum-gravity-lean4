@@ -1,4 +1,4 @@
-# Protocolo de verificação independente (regra dos quatro olhos)
+# Protocolo de verificação independente (descida cega; antes "regra dos quatro olhos")
 
 Objetivo: dar a cada afirmação do livro um veredito de alguém que **não** escreveu a correção. Um achado F-xx só passa a `verificado` no WORKPLAN com CONFIRMA na camada 1 (cega) **e** na camada 2 (dirigida). Quem corrige nunca verifica a própria correção.
 

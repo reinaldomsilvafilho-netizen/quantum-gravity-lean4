@@ -434,7 +434,7 @@ Then $f_A \colon \Sph^{n-1} \to \R$ is a strictly non-degenerate Morse function.
     \begin{equation}
         P_t(f_A) = 2 \sum_{i=1}^n t^{i-1} = 2 (1 + t + t^2 + \dots + t^{n-1}).
     \end{equation}
-    Evaluating at $t = -1$ rigorously recovers the topological Euler--Poincar\'e characteristic:
+    Evaluating at $t = -1$ recovers the topological Euler--Poincar\'e characteristic:
     \begin{equation}
         \chi(\Sph^{n-1}) = P_{-1}(f_A) = 1 - (-1)^n = \begin{cases} 0, & n \text{ even} \ (\Sph^{n-1} \text{ odd}), \\ 2, & n \text{ odd} \ (\Sph^{n-1} \text{ even}). \end{cases}
     \end{equation}
@@ -846,7 +846,7 @@ Several fundamental open problems invite future research:
     \item \textbf{Optimal Realization Bounds:} For a given matrix $A$, what is the infimum Dirichlet energy $\inf_{\pi \in \mathcal{S}_n} \mathcal{E}(f_{P_\pi A P_\pi^T})$ over all coordinate permutations, and can this combinatorial-functional optimization problem be relaxed to a tractable Riemannian flow?
     \item \textbf{Hypergraphon Curvature:} Can one define a Ricci curvature tensor directly on higher-order tensor realizations (hypergraphons) that governs the convergence of message-passing algorithms on dense hypergraphs?
     \item \textbf{Topological Data Analysis (TDA) of Tensor Landscapes:} How do persistent homology barcodes of the sublevel sets $\{f_{\mathcal{T}} \le c\}$ correlate with the numerical rank and tensor train (TT) decomposition ranks of $\mathcal{T}$?
-    \item \textbf{Betti Numbers and Replica Symmetry Breaking:} Does the zeroth Betti number $\beta_0(M_E)$ of the sub-level sets $M_E = \{\sigma \in \Sph^{n-1} \colon f_J(\sigma) \le E\}$ of the $p$-spin Hamiltonian undergo a sharp transition at the Parisi RSB temperature $T_c$, and can this transition be established rigorously from the critical-point complexity of Theorem~\ref{thm:kac_rice_tensors} together with an explicit connectivity estimate, rather than asserted by analogy?
+    \item \textbf{Betti Numbers and Replica Symmetry Breaking:} Does the zeroth Betti number $\beta_0(M_E)$ of the sub-level sets $M_E = \{\sigma \in \Sph^{n-1} \colon f_J(\sigma) \le E\}$ of the $p$-spin Hamiltonian undergo a sharp transition at the Parisi RSB temperature $T_c$, and can this transition be proved from the critical-point complexity of Theorem~\ref{thm:kac_rice_tensors} together with an explicit connectivity estimate, rather than asserted by analogy?
 \end{enumerate}
 
 \input{declarations_chapter}

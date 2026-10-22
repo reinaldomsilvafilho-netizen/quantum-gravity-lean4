@@ -27,7 +27,7 @@ This is ongoing work by a single author. Comments, criticism and corrections are
 
 Every result goes through the same cycle before it is labelled "verified", and the records of that cycle are in the repository:
 
-- **Four eyes.** Whoever writes a proof or a correction never checks it. A blind referee reads the text (layer 1), an independent pass applies the corrections, and a targeted re-check confirms them (layer 2). Reports and correction logs are in `audit/verify/` next to each work.
+- **Blind descent.** Whoever writes a proof or a correction never critiques it. The check is a loop: a blind critic, in a fresh context, reads the current text; an independent pass corrects what it found; a new blind critic, on a different model, reads the result. The loop stops when a critique finds nothing (at most four rounds), and "verified" states exactly what that last critique read. An object that cannot be fixed is recorded as stuck, with the precise obstacle. Reports and correction logs are in `audit/verify/` next to each work.
 - **Honest labels.** "Theorem" means a complete proof in the text. Everything else is a proposition with a cited source, a computer-assisted proposition with its certificate, a heuristic, or a conjecture.
 - **Numerics.** Each numerical check uses an independent oracle and a negative control: a deliberately wrong formula that must fail. A script that only reproduces its own expectation does not count.
 - **Lean 4.** Only `formal_proofs_mathlib/` is machine-checked: Mathlib, no `sorry`, no added axioms (`#print axioms` on every theorem), non-vacuity witnesses, and mutants proved false. It is built by the GitHub Actions workflow in `.github/workflows/`. The other Lean folders are naming skeletons and verify nothing.
