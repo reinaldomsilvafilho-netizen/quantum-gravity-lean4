@@ -23,7 +23,8 @@ Findings F-01, F-02, F-12, F-21, F-23, F-24, F-28, F-29, F-64, F-65, F-66, F-67 
 - Layer-2 status pass: F-01, F-12, F-23, F-24, F-28 verified (Lean skeleton folders labelled; Theorem 3.1 of Chapter 12 with explicit constants; five DOIs resolved).
 
 ### Wording (F-67)
-- Decorative adverbs removed in Chapters 1 and 2; the text no longer refers to an internal repository file for the status of results (the Results Index is the reference).
+- Title page: a single subtitle, *From Simplicial Fractional Calculus and Minimax Foliations to Emergent Holographic Spacetime and Observational Signatures* (also in the PDF metadata).
+- Decorative adverbs removed in Chapters 1 and 2 and in the preface; the text no longer refers to an internal repository file for the status of results (the Results Index is the reference).
 
 ### Build
 - `build_pdfs_safe.py` now copies every `fig_*.pdf` and `fig_*.png` of the book folder into the single-source master build.
